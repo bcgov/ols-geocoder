@@ -1,2 +1,3 @@
-# ols-geocoder
-Physical Address Geocoder
+#ols-geocoder
+
+OLS geocoding service
