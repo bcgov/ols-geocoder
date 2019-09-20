@@ -3,8 +3,7 @@ title: BC Address Geocoder Developer Guide
 description: Locate and standardize your addresses with the BC Address Geocoder.
 ---
 
-# BC Address Geocoder
-# Developer Guide
+# BC Address Geocoder Developer Guide
 This guide is aimed at developers and web masters that would like to incorporate the Physical Address Geocoder into their applications and websites.
 <br>
 ## Introduction
@@ -74,20 +73,26 @@ https://geocoder.api.gov.bc.ca/addresses.xhtml?addressString=13450%20104%20ave%2
 https://geocoder.api.gov.bc.ca/sites/nearest.xhtml?point=-122.8491387,49.1914645<br><br>
 13.	Extrapolate the known location of 12 Bushby St from a parcelPoint to get an accessPoint<br> 
 https://geocoder.api.gov.bc.ca/addresses.xhtml?setBack=0&minScore=1&maxResults=1&maxDistance=0&interpolation=adaptive&echo=true&outputSRS=4326&addressString=12%20bushby%20st%20victoria%20bc&locationDescriptor=any&extrapolate=true&parcelPoint=-123.349174,2048.407134<br><br> 
+14. Limit address search to a single locality<br>
+https://geocoder.api.gov.bc.ca/addresses.xhtml?localities=surrey&addressString=13450%20104%20ave%20surrey%20bc<br><br>
+15. Limit address search to a locality that address isn't in<br>
+https://geocoder.api.gov.bc.ca/addresses.xhtml?localities=richmond&addressString=13450%20104%20ave%20surrey%20bc
+16. Limit address search to multiple localities<br>
+https://geocoder.api.gov.bc.ca/addresses.xhtml?localities=richmond,surrey&addressString=13450%20104%20ave%20surrey%20bc<br><br>
 
 ## occupants/addresses resource
 The occupants/addresses resource represents all occupant addresses in the geocoder. A request on this resource to find a query address will return one or more matching occupants and their addresses.
 
-14. Find up to 10 schools named Sir James Douglas Elementary<br>
+17. Find up to 10 schools named Sir James Douglas Elementary<br>
 https://geocoder.api.gov.bc.ca/occupants/addresses.json?addressString=Sir%20James%20Douglas%20Elementary&maxResults=10
 
-15. Find a school named Sir James Douglas Elementary in Victoria<br>
+18. Find a school named Sir James Douglas Elementary in Victoria<br>
 https://geocoder.api.gov.bc.ca/occupants/addresses.json?addressString=Sir%20James%20Douglas%20Elementary%20%2A%2A%20Victoria
 
 ## occupants/nearest resource
 The occupants/nearest resource represents the nearest site to a given point location
 
-16.	Find the nearest courthouse to a given point<br>
+19.	Find the nearest courthouse to a given point<br>
 https://geocoder.api.gov.bc.ca/occupants/nearest.geojson?point=-123.7064038,48.8498537&tags=courts<br><br>
 <br>
 
