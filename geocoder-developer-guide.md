@@ -73,11 +73,11 @@ https://geocoder.api.gov.bc.ca/addresses.xhtml?addressString=13450%20104%20ave%2
 https://geocoder.api.gov.bc.ca/sites/nearest.xhtml?point=-122.8491387,49.1914645<br><br>
 13.	Extrapolate the known location of 12 Bushby St from a parcelPoint to get an accessPoint<br> 
 https://geocoder.api.gov.bc.ca/addresses.xhtml?setBack=0&minScore=1&maxResults=1&maxDistance=0&interpolation=adaptive&echo=true&outputSRS=4326&addressString=12%20bushby%20st%20victoria%20bc&locationDescriptor=any&extrapolate=true&parcelPoint=-123.349174,2048.407134<br><br> 
-14. Limit address search to a single locality<br>
+14. Geocode a Surrey address and limit address search to Surrey<br>
 https://geocoder.api.gov.bc.ca/addresses.xhtml?localities=surrey&addressString=13450%20104%20ave%20surrey%20bc<br><br>
-15. Limit address search to a locality that address isn't in<br>
+15. Geocode a Surrey address and limit address search to Richmond. This will return a fullAddress of BC which means no match.<br>
 https://geocoder.api.gov.bc.ca/addresses.xhtml?localities=richmond&addressString=13450%20104%20ave%20surrey%20bc
-16. Limit address search to multiple localities<br>
+16. Geocode a Surrey address and limit address search to Surrey and Richmond.<br>
 https://geocoder.api.gov.bc.ca/addresses.xhtml?localities=richmond,surrey&addressString=13450%20104%20ave%20surrey%20bc<br><br>
 
 ## occupants/addresses resource
