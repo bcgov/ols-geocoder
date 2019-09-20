@@ -1,2 +1,2 @@
-# ols-geocoder
-Physical Address Geocoder
+# BC Address Geocoder
+BC Address Geocoderis an open source geocoder with support for geocodingtime-dependent routing and truck routing on the BC Integrated Transportation Network. [Source code](https://github.com/bcgov/ols-router) is licensed under [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0). Route Planner version 2.0 was released on June 11, 2019. To see it in use by an application, visit [Location Services in Action](https://ols-demo.apps.gov.bc.ca/index.html).
