@@ -1,7 +1,5 @@
 # BC Address Geocoder
-The BC Address Geocoder provides address cleaning and standardization, correction, completion, geocoding, and reverse geocoding for government and the public at large. 
-
-To see it in use by an application, visit [Location Services in Action](https://ols-demo.apps.gov.bc.ca/index.html).
+The BC Address Geocoder provides address cleaning and standardization, correction, completion, geocoding, and reverse geocoding for government and the public at large. To see it in use by an application, visit [Location Services in Action](https://ols-demo.apps.gov.bc.ca/index.html).
 
 Geocoding turns a physical address into a form of spatial data called a point that can be used to display the location of the address on a map or ask spatial questions about the address such as:
    - how close is the nearest school, firehall, hospital, or swimming pool?
