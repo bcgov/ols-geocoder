@@ -76,7 +76,7 @@ https://geocoder.api.gov.bc.ca/addresses.xhtml?setBack=0&minScore=1&maxResults=1
 14. Geocode a Surrey address and limit address search to Surrey<br>
 https://geocoder.api.gov.bc.ca/addresses.xhtml?localities=surrey&addressString=13450%20104%20ave%20surrey%20bc<br><br>
 15. Geocode a Surrey address and limit address search to Richmond. This will return a fullAddress of BC which means no match.<br>
-https://geocoder.api.gov.bc.ca/addresses.xhtml?localities=richmond&addressString=13450%20104%20ave%20surrey%20bc
+https://geocoder.api.gov.bc.ca/addresses.xhtml?localities=richmond&addressString=13450%20104%20ave%20surrey%20bc<br><br>
 16. Geocode a Surrey address and limit address search to Surrey and Richmond.<br>
 https://geocoder.api.gov.bc.ca/addresses.xhtml?localities=richmond,surrey&addressString=13450%20104%20ave%20surrey%20bc<br><br>
 
