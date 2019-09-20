@@ -69,8 +69,8 @@ https://geocoder.api.gov.bc.ca/addresses.xhtml?&bbox=-119.8965522070019%2C49.705
 10.	Geocode 1434 Graham St, Kelowna, BC and limit results to ten street-level matches<br>
 https://geocoder.api.gov.bc.ca/addresses.xhtml?&addressString=1434%20Graham%20St%2C%20Kelowna%2C%20BC%20&matchPrecision=street&maxResults=10<br><br> 
 
-11.Geocode 13450 104 ave, Surrey, BC<br>
-<br>https://geocoder.api.gov.bc.ca/addresses.xhtml?addressString=13450%20104%20ave%20surrey%20bc<br><br>
+11. Geocode 13450 104 ave, Surrey, BC<br>
+https://geocoder.api.gov.bc.ca/addresses.xhtml?addressString=13450%20104%20ave%20surrey%20bc<br><br>
 
 12. Reverse geocode the location returned by example 11. This should return 13450 104 ave, Surrey, BC. Note that reverse geocoding a point means finding the nearest known address to that point<br>
 <br>https://geocoder.api.gov.bc.ca/sites/nearest.xhtml?point=-122.8491387,49.1914645<br><br>
