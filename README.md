@@ -7,6 +7,7 @@ Geocoding turns a physical address into a form of spatial data called a point th
    - how far is a particular shopping centre, how long does it take to drive there, and what's the best route to take?
    
 Reverse geocoding finds the nearest address to a given point. Address cleaning and standardization allow you to deduplicate your data and link data records that have nothing in common but address.
+
 Established in 2013, the BC Address Geocoder is used by over two dozen government ministries and agencies in dozens of government digital services. As of March 2019, the BC Address Geocoder had geocoded over one-half a billion addresses. From January to August of 2019, the Geocoder processed over 150 million addresses.
 
 The BC Address Geocoder is based on authoritative address data provided by BC municipalities and BC Assessment. It also uses the BC Integrated Road Network which is the authoritative source for road network data in BC. In two independent studies, the BC Geocoder was found to be more accurate than commercial products.
