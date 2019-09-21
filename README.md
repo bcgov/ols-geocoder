@@ -10,7 +10,7 @@ Reverse geocoding finds the nearest address to a given point. Address cleaning a
 
 Established in 2013, the BC Address Geocoder is used by over two dozen government ministries and agencies in dozens of government digital services. As of March 2019, the BC Address Geocoder had geocoded over one-half a billion addresses. From January to August of 2019, the Geocoder processed over 150 million addresses.
 
-The BC Address Geocoder is based on authoritative address data provided by BC municipalities and BC Assessment. It also uses the BC Integrated Road Network which is the authoritative source for road network data in BC. In two independent studies, the BC Geocoder was found to be more accurate than commercial products.
+The BC Address Geocoder is based on authoritative address data provided by BC municipalities and BC Assessment, and place names from the [BC Geographical Names Information System](https://www2.gov.bc.ca/gov/content/governments/celebrating-british-columbia/historic-places/geographical-names). It also uses the BC Integrated Road Network which is the authoritative source for road network data in BC. In two independent studies, the BC Geocoder was found to be more accurate than commercial products.
 
 The BC Address Geocoder is free and open to end-users. Geocoded addresses are covered under an open government license and their locations can be used for any legal purpose. Source code for the geocoder is in the process of being released under an Apache 2.0 license with the intent of building community to share enhancement and maintenance costs, ideas, documentation, and advocacy.
 
