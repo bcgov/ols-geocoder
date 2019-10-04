@@ -1,0 +1,20 @@
+[
+	{
+		"type" : "FeatureCollection",
+		"name" : "adates",
+		"features" : [
+			{
+				"type" : "Feature",
+				"geometry" : null,
+					"PROCESSING_DATE" : "20190822"
+				}
+			}
+		]
+	},
+	{
+		"type" : "FeatureCollection",
+		"name" : "bgeo_electoral_areas",
+		"features" : [
+		]
+	}
+]
