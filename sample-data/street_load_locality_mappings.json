@@ -1,0 +1,381 @@
+[
+	{
+		"type" : "FeatureCollection",
+		"name" : "adates",
+		"features" : [
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"PROCESSING_DATE" : "20190922"
+				}
+			}
+		]
+	},
+	{
+		"type" : "FeatureCollection",
+		"name" : "bgeo_locality_mappings",
+		"features" : [
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 188,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "arbutus ridge",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 269,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "hastings-sunrise",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 312,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "riley park",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 427,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "marpole",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 675,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "west end",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 856,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "kitsilano 6",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 1067,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "sunset",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 1181,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "strathcona",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 1481,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "west point grey",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 1530,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "oakridge",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 1543,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "renfrew-collingwood",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 1638,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "south cambie",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 1772,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "grandview-woodlands",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 1819,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "kerrisdale",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 1834,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "musqueam 2",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 1841,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "dunbar-southlands",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 2069,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "shaughnessy",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 2106,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "university hill",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 2269,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "mount pleasant",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 2277,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "fairview",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 2312,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "kensington-cedar cottage",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 2400,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "killarney",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 2520,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "victoria-fraserview",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 2535,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "kitsilano",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 5000,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "brockton point",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 5001,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "burnaby",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 5002,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "capilano river",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 5003,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "coal harbour",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 5004,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "english bay",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 5005,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "false creek",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 5006,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "jericho beach",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 5007,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "musqueam",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 5008,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "richmond",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 5009,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "university endowment area",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 5010,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "musqueam indian band",
+					"CONFIDENCE" : 80
+				}
+			},
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"LOCALITY_MAPPING_ID" : 5011,
+					"LOCALITY_ID" : 502,
+					"INPUT_STRING" : "ubc",
+					"CONFIDENCE" : 80
+				}
+			}
+		]
+	}
+]

@@ -1,0 +1,39 @@
+[
+	{
+		"type" : "FeatureCollection",
+		"name" : "adates",
+		"features" : [
+			{
+				"type" : "Feature",
+				"geometry" : null,
+				"properties" : {
+					"PROCESSING_DATE" : "20190822"
+				}
+			}
+		]
+	},
+	{
+		"type" : "FeatureCollection",
+		"name" : "bgeo_state_prov_terrs",
+		"crs" : {
+			"type" : "name",
+			"properties" : {
+				"name" : "EPSG:3005"
+			}
+		},
+		"features" : [
+			{
+				"type" : "Feature",
+				"geometry" : {
+					"type" : "Point",
+					"coordinates" : [ 1213223, 994809 ]
+				},
+				"properties" : {
+					"STATE_PROV_TERR_ID" : 1,
+					"STATE_PROV_TERR_NAME" : "BC",
+					"COUNTRY_CODE" : "CA"
+				}
+			}
+		]
+	}
+]
