@@ -138,7 +138,7 @@ ACCESS_POINT_LON|(aReal)|lon of building A access point
 Field | Value | Comment
 -----: | ------ | -----
 UNIT_DESIGNATOR| APT
-UNIT_NUMBER_PREFIX|represents Building B
+UNIT_NUMBER_PREFIX|B|represents Building B
 UNIT_NUMBER|100-110,200-210,300-310,400-410
 CIVIC_NUMBER|810
 STREET_NAME|Esquimalt
