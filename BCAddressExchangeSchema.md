@@ -1,5 +1,5 @@
 # BC Physical Address Exchange Schema Draft v0.4
-## Change history 
+### Change history 
 v0.4 - added SUPER_SITE_YOURID to schema, cleaned up definition of extra points, improved examples, added example of single apartment building, improved readability
 
 ## Introduction
