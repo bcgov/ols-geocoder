@@ -48,12 +48,12 @@ STREET_DIRECTION|W
 LOCALITY|Saanich
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|Parcel
-SITE_LAT| (real)
-SITE_LON| (real)
-ACCESS_POINT_LAT|(real)
-ACCESS_POINT_LON|(real)
+SITE_LAT| (aReal)
+SITE_LON| (aReal)
+ACCESS_POINT_LAT|(aReal)
+ACCESS_POINT_LON|()
 FOOTPRINT_DESCRIPTOR|building
-FOOTPRINT|(multiPolygon)
+FOOTPRINT|(aMultiPolygon)
 
 Field | Value
 -----: | ------
@@ -106,12 +106,12 @@ STREET_TYPE|Rd
 LOCALITY|Esquimalt
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|Parcel
-SITE_LAT| (real)
-SITE_LON| (real)
-ACCESS_POINT_LAT|(real)
-ACCESS_POINT_LON|(real)
+SITE_LAT| (aReal)
+SITE_LON| (aReal)
+ACCESS_POINT_LAT|(aReal)
+ACCESS_POINT_LON|(aReal)
 FOOTPRINT_DESCRIPTOR|building
-FOOTPRINT|(multiPolygon) | shape of complex
+FOOTPRINT|(aMultiPolygon) | shape of complex
 
 
 Field | Value | Comment
@@ -125,10 +125,10 @@ STREET_TYPE|Rd
 LOCALITY|Esquimalt
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|Parcel
-SITE_LAT|(real)| lat of building A parcel point
-SITE_LON|(real)| lon of building A parcel point
-ACCESS_POINT_LAT|(real)|lat of building A access point
-ACCESS_POINT_LON|(real)|lon of building A access point 
+SITE_LAT|(aReal)| lat of building A parcel point
+SITE_LON|(aReal)| lon of building A parcel point
+ACCESS_POINT_LAT|(aReal)|lat of building A access point
+ACCESS_POINT_LON|(aReal)|lon of building A access point 
 
 Field | Value | Comment
 -----: | ------ | -----
@@ -141,10 +141,10 @@ STREET_TYPE|Rd
 LOCALITY|Esquimalt
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|Parcel
-SITE_LAT|(real)| lat of building B parcel point 
-SITE_LON|(real)| lon of building B parcel point
-ACCESS_POINT_LAT|(real)|lat of building B access point
-ACCESS_POINT_LON|(real)|lon of building B access point 
+SITE_LAT|(aReal)| lat of building B parcel point 
+SITE_LON|(aReal)| lon of building B parcel point
+ACCESS_POINT_LAT|(aReal)|lat of building B access point
+ACCESS_POINT_LON|(aReal)|lon of building B access point 
 
 
 If this example was provided as reference data to the BC Address Geocoder, the Geocoder would derive full addresses such as:
@@ -176,12 +176,12 @@ STREET_TYPE|Way
 LOCALITY|Richmond
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|parcel
-SITE_LAT|(real)
-SITE_LON|(real)
-ACCESS_POINT_LAT|(real)
-ACCESS_POINT_LON|(real)
+SITE_LAT|(aReal)
+SITE_LON|(aReal)
+ACCESS_POINT_LAT|(aReal)
+ACCESS_POINT_LON|(aReal)
 FOOTPRINT_DESCRIPTOR|complex
-FOOTPRINT|(multiPolygon)
+FOOTPRINT|(aMultiPolygon)
 
 Field | Value
 ----:|----
@@ -194,8 +194,8 @@ STREET_TYPE|Way
 LOCALITY|Richmond
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|frontDoor
-SITE_LAT|(real)
-SITE_LON|(real)
+SITE_LAT|(aReal)
+SITE_LON|(aReal)
 FOOTPRINT_DESCRIPTOR|building
 FOOTPRINT|(polygon)
 
@@ -210,8 +210,8 @@ STREET_TYPE|Way
 LOCALITY|Richmond
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|frontDoor
-SITE_LAT|(real)
-SITE_LON|(real)
+SITE_LAT|(aReal)
+SITE_LON|(aReal)
 FOOTPRINT_DESCRIPTOR|building
 FOOTPRINT|(polygon)
 
@@ -226,8 +226,8 @@ STREET_TYPE|Way
 LOCALITY|Richmond
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|frontDoor
-SITE_LAT|(real)
-SITE_LON|(real)
+SITE_LAT|(aReal)
+SITE_LON|(aReal)
 FOOTPRINT_DESCRIPTOR|building
 FOOTPRINT|(polygon)
 
@@ -243,8 +243,8 @@ STREET_TYPE|Way
 LOCALITY|Richmond
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|frontDoor
-SITE_LAT|(real) 
-SITE_LON|(real)
+SITE_LAT|(aReal) 
+SITE_LON|(aReal)
 
 The gates of terminals B and C are represented similarly.
 
@@ -280,12 +280,12 @@ STREET_TYPE|Rd
 LOCALITY|Victoria
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|Parcel
-SITE_LAT|(real) 
-SITE_LON|(real)
-ACCESS_POINT_LAT|(real)
-ACCESS_POINT_LON|(real)
+SITE_LAT|(aReal) 
+SITE_LON|(aReal)r
+ACCESS_POINT_LAT|(aReal)
+ACCESS_POINT_LON|(aReal)
 FOOTPRINT_DESCRIPTOR|complex
-FOOTPRINT|(multiPolygon)
+FOOTPRINT|(aMultiPolygon)
 
 Field | Value
 ----:|----
@@ -297,10 +297,10 @@ STREET_TYPE|Rd
 LOCALITY|Saanich
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|frontDoor
-SITE_LAT|(real) 
-SITE_LON|(real)
-ACCESS_POINT_LAT|(real)
-ACCESS_POINT_LON|(real)
+SITE_LAT|(aReal) 
+SITE_LON|(aReal)
+ACCESS_POINT_LAT|(aReal)
+ACCESS_POINT_LON|(aReal)
 FOOTPRINT_DESCRIPTOR|building
 FOOTPRINT|(polygon)
 
@@ -314,10 +314,10 @@ STREET_TYPE|Rd
 LOCALITY|Saanich
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|frontDoor
-SITE_LAT|(real) 
-SITE_LON|(real)
-ACCESS_POINT_LAT|(real)
-ACCESS_POINT_LON|(real)
+SITE_LAT|(aReal) 
+SITE_LON|(aReal)
+ACCESS_POINT_LAT|(aReal)
+ACCESS_POINT_LON|(aReal)
 FOOTPRINT_DESCRIPTOR|building
 FOOTPRINT|(polygon)
 
@@ -331,10 +331,10 @@ STREET_TYPE|Rd
 LOCALITY|Saanich
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|frontDoor
-SITE_LAT|(real)
-SITE_LON|(real)
-ACCESS_POINT_LAT|(real)
-ACCESS_POINT_LON|(real)
+SITE_LAT|(aReal)
+SITE_LON|(aReal)
+ACCESS_POINT_LAT|(aReal)
+ACCESS_POINT_LON|(aReal)
 FOOTPRINT_DESCRIPTOR|indoorArea
 FOOTPRINT|(polygon)
 
