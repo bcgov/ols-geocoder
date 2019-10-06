@@ -382,12 +382,5 @@ ACCESS_POINT_LAT|Number|Only needed if access point is different than site point
 ACCESS_POINT_LON|Number|Only needed if access point is different than site point or super site point|No|Yes
 FOOTPRINT_DESCRIPTOR|String| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)
 FOOTPRINT|OGC WKT|geometry of site footprint in OGC Well-Known Text format. Can use other geometry standards in other formats (e.g., GML GeoJson)|No|No
-EXTRA_POINT1_DESCRIPTOR|String|one of serviceAccess, emergencyAccess, internalDoor, frontDoor, parcel, rooftop|No|No
-EXTRA_POINT1_LAT|Number||No|No
-EXTRA_POINT1_LON|Number||No|No
-EXTRA_POINT2_DESCRIPTOR|String|one of serviceAccess, emergencyAccess, internalDoor, frontDoor, parcel, rooftop|No|No
-EXTRA_POINT2_LAT|Number||No|No
-EXTRA_POINT2_LON|Number||No|No
-EXTRA_POINT3_DESCRIPTOR|String|one of serviceAccess, emergencyAccess, internalDoor,frontDoor, parcel, rooftop|No|No
-EXTRA_POINT3_LAT|Number||No|No
-EXTRA_POINT3_LON|Number||No|No
+EXTRA_POINT_DESCRIPTORS|String| a comma separated list of additional location descriptors as in "serviceAccess,emergencyAccess " |No|No
+EXTRA_POINTS|String|A comma separated list of lat/lon pairs representing extra point locations (e.g., "lat1, lon1, lat2, lon2")|No|No
