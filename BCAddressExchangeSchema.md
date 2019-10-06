@@ -64,7 +64,7 @@ STREET_DIRECTION|W
 LOCALITY|Saanich
 PROVINCE_CODE|BC
 
-This example will add the following fullAddresses to the geocoder reference address list:
+If this example was provided as reference data to the BC Address Geocoder, the Geocoder would derive full addresses such as:
 
 Unit 101, 740 Gorge Rd W, Saanich, BC
 
@@ -360,6 +360,7 @@ UNIT_NUMBER|String|unit number or letter or sequence of unit number/letter range
 UNIT_NUMBER_SUFFIX|String|Canada Post unit number suffix (e.g., C)|No|No
 SITE_NAME |String|building or landmark name (e.g., Centennial Candle)|yes|yes
 SUPER_FULL_SITE_DESCRIPTOR|String|names of all units and sites in parent site hierarchy separated by double-dash (e.g., Student Union Building -- University of Victoria)|No|No
+SUPER_YOUR_ID | Unique identifier of super site, if any |No|No
 CIVIC_NUMBER|Number| civic number, usually a positive integer (e.g., 1321)|Yes|No
 CIVIC_NUMBER_SUFFIX|String|Canada Post civic number suffix (e.g., A)|No|No
 STREET_NAME|String|Street name|Yes|No
