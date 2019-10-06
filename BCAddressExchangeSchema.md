@@ -56,7 +56,7 @@ FOOTPRINT|(multiPolygon)
 Field | Value
 -----: | ------
 UNIT_DESIGNATOR|APT
-UNIT_NUMBER:101-104,201-204,301-304
+UNIT_NUMBER|101-104,201-204,301-304
 CIVIC_NUMBER|740
 STREET_NAME|Gorge
 STREET_TYPE|Rd
@@ -67,14 +67,23 @@ PROVINCE_CODE|BC
 This example will add the following fullAddresses to the geocoder reference address list:
 
 Unit 101, 740 Gorge Rd W, Saanich, BC
+
 Unit 102, 740 Gorge Rd W, Saanich, BC
+
 Unit 103, 740 Gorge Rd W, Saanich, BC
+
 Unit 104, 740 Gorge Rd W, Saanich, BC
+
 Unit 201, 740 Gorge Rd W, Saanich, BC
+
 Unit 202, 740 Gorge Rd W, Saanich, BC
+
 Unit 203, 740 Gorge Rd W, Saanich, BC
+
 Unit 301, 740 Gorge Rd W, Saanich, BC
+
 Unit 302, 740 Gorge Rd W, Saanich, BC
+
 Unit 303, 740 Gorge Rd W, Saanich, BC
 
 All addresses will be assigned the site and accessPoint locations assigned to 740 Gorge Rd W, Saanich, BC
