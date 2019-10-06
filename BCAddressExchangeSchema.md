@@ -24,19 +24,101 @@ STREET_TYPE|Ave
 LOCALITY|Victoria
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|Parcel
-SITE_LAT| 
-SITE_LON|
-ACCESS_POINT_LAT|
-ACCESS_POINT_LON|
+SITE_LAT| (Real)
+SITE_LON| (Real)
+ACCESS_POINT_LAT| (Real)
+ACCESS_POINT_LON| (Real)
 FOOTPRINT_DESCRIPTOR|building
 FOOTPRINT| (polygon)
 
 
-## Example 2 - Multiple buildings distinguished by unit number prefix
+## Example 2 - Building with multiple floors and units
+740 Gorge Rd W, Saanich, BC has three floors with 4 units each numbered, 101-104, 201-204, and 301-304. Site and access points of building, not units, are known.
+
+The following exchange data records will represent the above addresses:
+
+Field | Value
+-----: | ------
+CIVIC_NUMBER|740
+STREET_NAME|Gorge
+STREET_TYPE|Rd
+STREET_DIRECTION|W
+LOCALITY|Saanich
+PROVINCE_CODE|BC
+SITE_POINT_DESCRIPTOR|Parcel
+SITE_LAT| (real)
+SITE_LON| (real)
+ACCESS_POINT_LAT|(real)
+ACCESS_POINT_LON|(real)
+FOOTPRINT_DESCRIPTOR|building
+FOOTPRINT|(multiPolygon)
+
+Field | Value
+-----: | ------
+UNIT_DESIGNATOR|APT
+UNIT_NUMBER:101-105,201-205,301-305
+CIVIC_NUMBER|740
+STREET_NAME|Gorge
+STREET_TYPE|Rd
+STREET_DIRECTION|W
+LOCALITY|Saanich
+PROVINCE_CODE|BC
+
+This example will add the following fullAddresses to the geocoder reference address list:
+
+Unit 101, 740 Gorge Rd W, Saanich, BC
+Unit 102, 740 Gorge Rd W, Saanich, BC
+Unit 103, 740 Gorge Rd W, Saanich, BC
+Unit 104, 740 Gorge Rd W, Saanich, BC
+Unit 201, 740 Gorge Rd W, Saanich, BC
+Unit 202, 740 Gorge Rd W, Saanich, BC
+Unit 203, 740 Gorge Rd W, Saanich, BC
+Unit 301, 740 Gorge Rd W, Saanich, BC
+Unit 302, 740 Gorge Rd W, Saanich, BC
+Unit 303, 740 Gorge Rd W, Saanich, BC
+
+All addresses will be assigned the site and accessPoint locations assigned to 740 Gorge Rd W, Saanich, BC
+
+
+
+## Example 3 - Multiple buildings distinguished by unit number prefix
 
 810 Esquimalt Rd, Esquimalt, BC has three buildings A,B,C. Each building has four floors with 10 units each numbered 100-110, 200-210, 300-310, and 400-410
 
-The following exchange data record will represent the above addresses:
+The following exchange data records will represent the above addresses:
+
+Field | Value
+-----: | ------
+CIVIC_NUMBER|810
+STREET_NAME|Esquimalt
+STREET_TYPE|Rd
+LOCALITY|Esquimalt
+PROVINCE_CODE|BC
+SITE_POINT_DESCRIPTOR|Parcel
+SITE_LAT| (real)
+SITE_LON| (real)
+ACCESS_POINT_LAT|(real)
+ACCESS_POINT_LON|(real)
+FOOTPRINT_DESCRIPTOR|building
+FOOTPRINT|(multiPolygon)
+
+Field | Value
+-----: | ------
+UNIT_DESIGNATOR| BLDG
+UNIT_NUMBER_PREFIX|A-C
+UNIT_NUMBER|100-110,200-210,300-310,400-410
+CIVIC_NUMBER|810
+STREET_NAME|Esquimalt
+STREET_TYPE|Rd
+LOCALITY|Esquimalt
+PROVINCE_CODE|BC
+SITE_POINT_DESCRIPTOR|Parcel
+SITE_LAT|
+SITE_LON|
+ACCESS_POINT_LAT|
+ACCESS_POINT_LON|
+FOOTPRINT_DESCRIPTOR|building
+FOOTPRINT|(multiPolygon)
 
 Field | Value
 -----: | ------
@@ -49,7 +131,7 @@ STREET_TYPE|Rd
 LOCALITY|Esquimalt
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|Parcel
-SITE_LAT| 
+SITE_LAT|
 SITE_LON|
 ACCESS_POINT_LAT|
 ACCESS_POINT_LON|
