@@ -1,4 +1,6 @@
 # BC Physical Address Exchange Schema Draft v0.4
+## Change history 
+v0.4 - added SUPER_SITE_YOURID to schema, cleaned up definition of extra points, improved examples, added example of single apartment building
 
 The Physical Address Exchange Schema can be used to exchange physical addresses between software systems. The schema supports the exchange of the following types of address situations:
 
@@ -363,7 +365,7 @@ UNIT_NUMBER|String|unit number or letter or sequence of unit number/letter range
 UNIT_NUMBER_SUFFIX|String|Canada Post unit number suffix (e.g., C)|No|No
 SITE_NAME |String|building or landmark name (e.g., Centennial Candle)|yes|yes
 SUPER_FULL_SITE_DESCRIPTOR|String|names of all units and sites in parent site hierarchy separated by double-dash (e.g., Student Union Building -- University of Victoria)|No|No
-SUPER_YOUR_ID|Sting|Unique identifier of super site|No|No
+SUPER_SITE_YOUR_ID|Sting|Unique identifier of super site|No|No
 CIVIC_NUMBER|Number| civic number, usually a positive integer (e.g., 1321)|Yes|No
 CIVIC_NUMBER_SUFFIX|String|Canada Post civic number suffix (e.g., A)|No|No
 STREET_NAME|String|Street name|Yes|No
