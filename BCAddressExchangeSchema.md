@@ -353,14 +353,14 @@ This schema can be used in any common text format that supports named properties
 
 Field Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
 ---: | --- | --- | ---| ---
-YOUR_ID |String|Unique identifier in your local address management system (e.g., X0233212)| No|No
+YOUR_ID|String|Unique identifier in your local address management system (e.g., X0233212)|No|No
 UNIT_DESIGNATOR |String|Canada Post unit designator (e.g., APT)|No|No
 UNIT_NUMBER_PREFIX|String|a single letter or sequence of letter ranges separated by commas (e.g., A-D,J,M-P)|No|No
-UNIT_NUMBER|String|unit number or letter or sequence of unit number/letter ranges separated by commas (e.g., 100-119,200-219)|No|No
+UNIT_NUMBER|String|unit number or letter or sequence of unit number/letter ranges separated by commas (e.g., 100-119, 200-219)|No|No
 UNIT_NUMBER_SUFFIX|String|Canada Post unit number suffix (e.g., C)|No|No
 SITE_NAME |String|building or landmark name (e.g., Centennial Candle)|yes|yes
 SUPER_FULL_SITE_DESCRIPTOR|String|names of all units and sites in parent site hierarchy separated by double-dash (e.g., Student Union Building -- University of Victoria)|No|No
-SUPER_YOUR_ID | Unique identifier of super site, if any|No|No
+SUPER_YOUR_ID | Unique identifier of super site|No|No
 CIVIC_NUMBER|Number| civic number, usually a positive integer (e.g., 1321)|Yes|No
 CIVIC_NUMBER_SUFFIX|String|Canada Post civic number suffix (e.g., A)|No|No
 STREET_NAME|String|Street name|Yes|No
@@ -374,20 +374,20 @@ PROVINCE_CODE|String|Canada Post two-character province code|Yes|Yes
 IS_NON_CIVIC_ADDRESS|Boolean|True if address has no assigned civic number|Yes|Yes
 IS_OFFICIAL_ADDRESS|Boolean|True if address is official; False if unofficial (e.g., former address)|Yes|Yes
 NARRATIVE_LOCATION|String|step by step directions to a non-civic address location|No|Yes	
-SITE_POINT_DESCRIPTOR|String|one of parcel,rooftop,frontDoor,internalDoor,entrance,frontGate|Yes|Yes
+SITE_POINT_DESCRIPTOR|String|one of parcel, rooftop, frontDoor, internalDoor, entrance, frontGate|Yes|Yes
 SITE_LAT|Number|site latitude|Yes|Yes
 SITE_LON|Number)|site longitude|Yes|Yes
 SITE_TAGS|String| Comma-separated list of descriptive tags (e.g. stadium)|No|No
 ACCESS_POINT_LAT|Number|Only needed if access point is different than site point or super site point|No|Yes
 ACCESS_POINT_LON|Number|Only needed if access point is different than site point or super site point|No|Yes
-FOOTPRINT_DESCRIPTOR|String| one of building,complex,parcel,outdoorArea,indoorArea,secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)
+FOOTPRINT_DESCRIPTOR|String| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)
 FOOTPRINT|OGC WKT|geometry of site footprint in OGC Well-Known Text format. Can use other geometry standards in other formats (e.g., GML GeoJson)|No|No
-EXTRA_POINT1_DESCRIPTOR|String|one of serviceAccess,emergencyAccess,internalDoor,frontDoor,parcel,rooftop|No|No
+EXTRA_POINT1_DESCRIPTOR|String|one of serviceAccess, emergencyAccess, internalDoor, frontDoor, parcel, rooftop|No|No
 EXTRA_POINT1_LAT|Number||No|No
 EXTRA_POINT1_LON|Number||No|No
-EXTRA_POINT2_DESCRIPTOR|String|one of serviceAccess,emergencyAccess,internalDoor,frontDoor,parcel,rooftop|No|No
+EXTRA_POINT2_DESCRIPTOR|String|one of serviceAccess, emergencyAccess, internalDoor, frontDoor, parcel, rooftop|No|No
 EXTRA_POINT2_LAT|Number||No|No
 EXTRA_POINT2_LON|Number||No|No
-EXTRA_POINT3_DESCRIPTOR|String|one of serviceAccess,emergencyAccess,internalDoor,frontDoor,parcel,rooftop|No|No
+EXTRA_POINT3_DESCRIPTOR|String|one of serviceAccess, emergencyAccess, internalDoor,frontDoor, parcel, rooftop|No|No
 EXTRA_POINT3_LAT|Number||No|No
 EXTRA_POINT3_LON|Number||No|No
