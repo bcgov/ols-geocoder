@@ -98,6 +98,7 @@ All addresses will be assigned the site and accessPoint locations assigned to 74
 ## Example 3 - An apartment complex with buildings distinguished by unit number prefix
 
 Here is a common situation where a complex has building names that are single letters embedded in a unit number as in APT A105.
+
 810 Esquimalt Rd, Esquimalt, BC has two buildings: A and B. Each building has four floors with 10 units each numbered 100-110, 200-210, 300-310, and 400-410. Each building has its own site location and footprint but share a single access point. Unit locations are assigned the site and accessPoints of their respective buildings. 
 
 The following exchange data records will represent the above addresses:
