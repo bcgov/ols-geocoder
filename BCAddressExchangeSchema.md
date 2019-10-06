@@ -1,4 +1,4 @@
-# BC Physical Address Exchange Schema Draft v0.3
+# BC Physical Address Exchange Schema Draft v0.4
 
 The Physical Address Exchange Schema can be used to exchange physical addresses between software systems. The schema supports the exchange of the following types of address situations:
 
@@ -95,7 +95,7 @@ FOOTPRINT|(multiPolygon)
 Field | Value
 ----:|----
 UNIT_DESIGNATOR|Terminal
-UNIT_NUMBER|A-C
+UNIT_NUMBER|A
 SUPER_FULL_SITE_DESCRIPTOR|Vancouver International Airport
 CIVIC_NUMBER|3211
 STREET_NAME|Grant McConnachie
@@ -107,6 +107,39 @@ SITE_LAT|
 SITE_LON|
 FOOTPRINT_DESCRIPTOR|building
 FOOTPRINT|(polygon)
+
+Field | Value
+----:|----
+UNIT_DESIGNATOR|Terminal
+UNIT_NUMBER|B
+SUPER_FULL_SITE_DESCRIPTOR|Vancouver International Airport
+CIVIC_NUMBER|3211
+STREET_NAME|Grant McConnachie
+STREET_TYPE|Way
+LOCALITY|Richmond
+PROVINCE_CODE|BC
+SITE_POINT_DESCRIPTOR|frontDoor
+SITE_LAT| 
+SITE_LON|
+FOOTPRINT_DESCRIPTOR|building
+FOOTPRINT|(polygon)
+
+Field | Value
+----:|----
+UNIT_DESIGNATOR|Terminal
+UNIT_NUMBER|C
+SUPER_FULL_SITE_DESCRIPTOR|Vancouver International Airport
+CIVIC_NUMBER|3211
+STREET_NAME|Grant McConnachie
+STREET_TYPE|Way
+LOCALITY|Richmond
+PROVINCE_CODE|BC
+SITE_POINT_DESCRIPTOR|frontDoor
+SITE_LAT| 
+SITE_LON|
+FOOTPRINT_DESCRIPTOR|building
+FOOTPRINT|(polygon)
+
 
 Field | Value
 ----:|----
