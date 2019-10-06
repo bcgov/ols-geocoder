@@ -13,7 +13,8 @@ An address can have rooftop, front door, parcel, vehicle access, and other locat
 
 Buildings, complexes, outdoor areas, and any other site that can be assigned an address can also have its own footprint.
 
-In all examples, attributes that are null are not shown. The full address exchange schema is the last section in this document. 
+In all examples, attributes that are null are not shown. The full address exchange schema is the last section in this document.
+References such as (aReal), (aMultiPolygon), and (aPolygon) represent an arbitrary value that conforms to the named type (e.g., Real, Multipolygon, Polygon)
 
 ## Example 1 - A house with a single civic number and no units
 37 Olympia Ave, Victoria, BC
@@ -51,7 +52,7 @@ SITE_POINT_DESCRIPTOR|Parcel
 SITE_LAT| (aReal)
 SITE_LON| (aReal)
 ACCESS_POINT_LAT|(aReal)
-ACCESS_POINT_LON|()
+ACCESS_POINT_LON|(aReal)
 FOOTPRINT_DESCRIPTOR|building
 FOOTPRINT|(aMultiPolygon)
 
