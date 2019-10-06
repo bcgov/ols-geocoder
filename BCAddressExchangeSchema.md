@@ -13,7 +13,7 @@ An address can have rooftop, front door, parcel, vehicle access, and other locat
 
 Buildings, complexes, outdoor areas, and any other site that can be assigned an address can also have its own footprint.
 
-In all examples, attributes that are null are not shown. The full address exchange schema is the last section in this document.
+In all examples, attributes that are null are not shown. The full address exchange schema is the last section in this document. 
 
 ## Example 1 - A house with a single civic number and no units
 37 Olympia Ave, Victoria, BC
