@@ -366,7 +366,7 @@ CIVIC_NUMBER_SUFFIX|String|Canada Post civic number suffix (e.g., A)|No|No
 STREET_NAME|String|Street name|Yes|No
 STREET_TYPE|String|Street type|No|No
 IS_STREET_TYPE_PREFIX|Boolean| True if street type appears before street name as in HWY 17|No|No
-STREET_DIRECTION|String|Canada Post street direction (e.g., NW); Note Canada Post does not allow prefix and suffix street type in same address as in: 103 N 52 St SW|No|No
+STREET_DIRECTION|String|Canada Post street direction (e.g., NW); Note Canada Post does not allow prefix and suffix street direction in same address as in: 103 N 52 St SW|No|No
 IS_STREET_DIRECTION_PREFIX|Boolean|true if street direction appears before street name as in SW Marine Dr|No|No
 LOCALITY|String|Locality (e.g., Victoria)|Yes|Yes
 LOCALITY_DESCRIPTOR|String|type of locality|(e.g., Municipality)|Yes|Yes
