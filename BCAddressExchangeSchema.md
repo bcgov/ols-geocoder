@@ -27,12 +27,12 @@ STREET_TYPE|Ave
 LOCALITY|Victoria
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|Parcel
-SITE_LAT| (Real)
-SITE_LON| (Real)
-ACCESS_POINT_LAT| (Real)
-ACCESS_POINT_LON| (Real)
+SITE_LAT| (aReal)
+SITE_LON| (aReal)
+ACCESS_POINT_LAT| (aReal)
+ACCESS_POINT_LON| (aReal)
 FOOTPRINT_DESCRIPTOR|building
-FOOTPRINT| (polygon)
+FOOTPRINT| (aPolygon)
 
 
 ## Example 2 - A single apartment building with multiple floors and units
