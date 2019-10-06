@@ -128,8 +128,8 @@ SITE_LON|(real)| lon of building A parcel point
 ACCESS_POINT_LAT|(real)|lat of building A access point
 ACCESS_POINT_LON|(real)|lon of building A access point 
 
-Field | Value
------: | ------
+Field | Value | Comment
+-----: | ------ | -----
 UNIT_DESIGNATOR| APT
 UNIT_NUMBER_PREFIX|B
 UNIT_NUMBER|100-110,200-210,300-310,400-410
