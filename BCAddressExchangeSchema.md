@@ -32,7 +32,7 @@ FOOTPRINT_DESCRIPTOR|building
 FOOTPRINT| (polygon)
 
 
-## Example 2 - Building with multiple floors and units
+## Example 2 - A single apartment building with multiple floors and units
 740 Gorge Rd W, Saanich, BC has three floors with 4 units each numbered, 101-104, 201-204, and 301-304. Site and access points of building, not units, are known.
 
 The following exchange data records will represent the above addresses:
@@ -56,7 +56,7 @@ FOOTPRINT|(multiPolygon)
 Field | Value
 -----: | ------
 UNIT_DESIGNATOR|APT
-UNIT_NUMBER:101-105,201-205,301-305
+UNIT_NUMBER:101-104,201-204,301-304
 CIVIC_NUMBER|740
 STREET_NAME|Gorge
 STREET_TYPE|Rd
@@ -80,10 +80,9 @@ Unit 303, 740 Gorge Rd W, Saanich, BC
 All addresses will be assigned the site and accessPoint locations assigned to 740 Gorge Rd W, Saanich, BC
 
 
-
 ## Example 3 - Multiple buildings distinguished by unit number prefix
 
-810 Esquimalt Rd, Esquimalt, BC has three buildings A,B,C. Each building has four floors with 10 units each numbered 100-110, 200-210, 300-310, and 400-410
+810 Esquimalt Rd, Esquimalt, BC has two buildings: A and B. Each building has four floors with 10 units each numbered 100-110, 200-210, 300-310, and 400-410. Each building has its own site location and footprint but share a single access point.
 
 The following exchange data records will represent the above addresses:
 
@@ -105,46 +104,50 @@ FOOTPRINT|(multiPolygon)
 Field | Value
 -----: | ------
 UNIT_DESIGNATOR| BLDG
-UNIT_NUMBER_PREFIX|A-C
-UNIT_NUMBER|100-110,200-210,300-310,400-410
+UNIT_NUMBER|A
 CIVIC_NUMBER|810
 STREET_NAME|Esquimalt
 STREET_TYPE|Rd
 LOCALITY|Esquimalt
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|Parcel
-SITE_LAT|
-SITE_LON|
-ACCESS_POINT_LAT|
-ACCESS_POINT_LON|
+SITE_LAT|(real)
+SITE_LON|(real)
 FOOTPRINT_DESCRIPTOR|building
 FOOTPRINT|(multiPolygon)
 
 Field | Value
 -----: | ------
 UNIT_DESIGNATOR| APT
-UNIT_NUMBER_PREFIX|A-C
+UNIT_NUMBER_PREFIX|A
 UNIT_NUMBER|100-110,200-210,300-310,400-410
+SUPER_FULL_SITE_DESCRIPTOR|BLDG A
 CIVIC_NUMBER|810
 STREET_NAME|Esquimalt
 STREET_TYPE|Rd
 LOCALITY|Esquimalt
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|Parcel
-SITE_LAT|
-SITE_LON|
-ACCESS_POINT_LAT|
-ACCESS_POINT_LON|
-FOOTPRINT_DESCRIPTOR|building
-FOOTPRINT|(multiPolygon)
+
+Field | Value
+-----: | ------
+UNIT_DESIGNATOR| APT
+UNIT_NUMBER_PREFIX|B
+UNIT_NUMBER|100-110,200-210,300-310,400-410
+SUPER_FULL_SITE_DESCRIPTOR|BLDG A
+CIVIC_NUMBER|810
+STREET_NAME|Esquimalt
+STREET_TYPE|Rd
+LOCALITY|Esquimalt
+PROVINCE_CODE|BC
+
 
 If this example was provided as reference data to the BC Address Geocoder, the Geocoder would derive full addresses such as:
 
-APT A100 -- 810 Esquimalt Rd,Esquimalt,BC
+APT A100, BLDG A -- 810 Esquimalt Rd,Esquimalt,BC
 
-APT B407 -- 810 Esquimalt Rd,Esquimalt,BC
+APT B407, BLDG B -- 810 Esquimalt Rd,Esquimalt,BC
 
-APT C210 -- 810 Esquimalt Rd,Esquimalt,BC
+APT B210, BLDG B -- 810 Esquimalt Rd,Esquimalt,BC
 
 ## Example 3 - A complex with multiple levels of units
 
