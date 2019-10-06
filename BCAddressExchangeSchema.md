@@ -13,6 +13,8 @@ An address can have rooftop, front door, parcel, vehicle access, and other locat
 
 Buildings, complexes, outdoor areas, and any other site that can be assigned an address can also have its own footprint.
 
+In all examples, attributes that are null are not shown. The full address exchange schema is the last section in this document.
+
 ## Example 1 - A house with a single civic number and no units
 37 Olympia Ave, Victoria, BC
 
@@ -174,10 +176,10 @@ STREET_TYPE|Way
 LOCALITY|Richmond
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|parcel
-SITE_LAT| 
-SITE_LON|
-ACCESS_POINT_LAT|
-ACCESS_POINT_LON|
+SITE_LAT|(real)
+SITE_LON|(real)
+ACCESS_POINT_LAT|(real)
+ACCESS_POINT_LON|(real)
 FOOTPRINT_DESCRIPTOR|complex
 FOOTPRINT|(multiPolygon)
 
@@ -192,8 +194,8 @@ STREET_TYPE|Way
 LOCALITY|Richmond
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|frontDoor
-SITE_LAT| 
-SITE_LON|
+SITE_LAT|(real)
+SITE_LON|(real)
 FOOTPRINT_DESCRIPTOR|building
 FOOTPRINT|(polygon)
 
@@ -208,8 +210,8 @@ STREET_TYPE|Way
 LOCALITY|Richmond
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|frontDoor
-SITE_LAT| 
-SITE_LON|
+SITE_LAT|(real)
+SITE_LON|(real)
 FOOTPRINT_DESCRIPTOR|building
 FOOTPRINT|(polygon)
 
@@ -224,8 +226,8 @@ STREET_TYPE|Way
 LOCALITY|Richmond
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|frontDoor
-SITE_LAT| 
-SITE_LON|
+SITE_LAT|(real)
+SITE_LON|(real)
 FOOTPRINT_DESCRIPTOR|building
 FOOTPRINT|(polygon)
 
@@ -241,8 +243,8 @@ STREET_TYPE|Way
 LOCALITY|Richmond
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|frontDoor
-SITE_LAT| 
-SITE_LON|
+SITE_LAT|(real) 
+SITE_LON|(real)
 
 The gates of terminals B and C are represented similarly.
 
@@ -278,10 +280,10 @@ STREET_TYPE|Rd
 LOCALITY|Victoria
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|Parcel
-SITE_LAT| 
-SITE_LON|
-ACCESS_POINT_LAT|
-ACCESS_POINT_LON|
+SITE_LAT|(real) 
+SITE_LON|(real)
+ACCESS_POINT_LAT|(real)
+ACCESS_POINT_LON|(real)
 FOOTPRINT_DESCRIPTOR|complex
 FOOTPRINT|(multiPolygon)
 
@@ -295,10 +297,10 @@ STREET_TYPE|Rd
 LOCALITY|Saanich
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|frontDoor
-SITE_LAT| 
-SITE_LON|
-ACCESS_POINT_LAT|
-ACCESS_POINT_LON|
+SITE_LAT|(real) 
+SITE_LON|(real)
+ACCESS_POINT_LAT|(real)
+ACCESS_POINT_LON|(real)
 FOOTPRINT_DESCRIPTOR|building
 FOOTPRINT|(polygon)
 
@@ -312,10 +314,10 @@ STREET_TYPE|Rd
 LOCALITY|Saanich
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|frontDoor
-SITE_LAT| 
-SITE_LON|
-ACCESS_POINT_LAT|
-ACCESS_POINT_LON|
+SITE_LAT|(real) 
+SITE_LON|(real)
+ACCESS_POINT_LAT|(real)
+ACCESS_POINT_LON|(real)
 FOOTPRINT_DESCRIPTOR|building
 FOOTPRINT|(polygon)
 
@@ -329,10 +331,10 @@ STREET_TYPE|Rd
 LOCALITY|Saanich
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|frontDoor
-SITE_LAT| 
-SITE_LON|
-ACCESS_POINT_LAT|
-ACCESS_POINT_LON|
+SITE_LAT|(real)
+SITE_LON|(real)
+ACCESS_POINT_LAT|(real)
+ACCESS_POINT_LON|(real)
 FOOTPRINT_DESCRIPTOR|indoorArea
 FOOTPRINT|(polygon)
 
