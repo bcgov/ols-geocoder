@@ -80,14 +80,15 @@ Unit 303, 740 Gorge Rd W, Saanich, BC
 All addresses will be assigned the site and accessPoint locations assigned to 740 Gorge Rd W, Saanich, BC
 
 
-## Example 3 - Multiple buildings distinguished by unit number prefix
+## Example 3 - An apartment complex with buildings distinguished by unit number prefix
 
-810 Esquimalt Rd, Esquimalt, BC has two buildings: A and B. Each building has four floors with 10 units each numbered 100-110, 200-210, 300-310, and 400-410. Each building has its own site location and footprint but share a single access point.
+Here is a common situation where a complex has building names that are single letters embedded in a unit number as in APT A105.
+810 Esquimalt Rd, Esquimalt, BC has two buildings: A and B. Each building has four floors with 10 units each numbered 100-110, 200-210, 300-310, and 400-410. Each building has its own site location and footprint but share a single access point. Unit locations are assigned the site and accessPoints of their respective buildings. 
 
 The following exchange data records will represent the above addresses:
 
-Field | Value
------: | ------
+Field | Value | Comment
+-----: | ------ | -----
 CIVIC_NUMBER|810
 STREET_NAME|Esquimalt
 STREET_TYPE|Rd
@@ -99,57 +100,51 @@ SITE_LON| (real)
 ACCESS_POINT_LAT|(real)
 ACCESS_POINT_LON|(real)
 FOOTPRINT_DESCRIPTOR|building
-FOOTPRINT|(multiPolygon)
+FOOTPRINT|(multiPolygon) | shape of complex
 
-Field | Value
------: | ------
-UNIT_DESIGNATOR| BLDG
-UNIT_NUMBER|A
+
+Field | Value | Comment
+-----: | ------ | -----
+UNIT_DESIGNATOR| APT
+UNIT_NUMBER_PREFIX|A
+UNIT_NUMBER|100-110,200-210,300-310,400-410
 CIVIC_NUMBER|810
 STREET_NAME|Esquimalt
 STREET_TYPE|Rd
 LOCALITY|Esquimalt
 PROVINCE_CODE|BC
 SITE_POINT_DESCRIPTOR|Parcel
-SITE_LAT|(real)
-SITE_LON|(real)
-FOOTPRINT_DESCRIPTOR|building
-FOOTPRINT|(multiPolygon)
-
-Field | Value
------: | ------
-UNIT_DESIGNATOR| APT
-UNIT_NUMBER_PREFIX|A
-UNIT_NUMBER|100-110,200-210,300-310,400-410
-SUPER_FULL_SITE_DESCRIPTOR|BLDG A
-CIVIC_NUMBER|810
-STREET_NAME|Esquimalt
-STREET_TYPE|Rd
-LOCALITY|Esquimalt
-PROVINCE_CODE|BC
+SITE_LAT|(real)| lat of building A parcel point
+SITE_LON|(real)| lon of building A parcel point
+ACCESS_POINT_LAT|(real)|lat of building A access point
+ACCESS_POINT_LON|(real)|lon of building A access point 
 
 Field | Value
 -----: | ------
 UNIT_DESIGNATOR| APT
 UNIT_NUMBER_PREFIX|B
 UNIT_NUMBER|100-110,200-210,300-310,400-410
-SUPER_FULL_SITE_DESCRIPTOR|BLDG A
 CIVIC_NUMBER|810
 STREET_NAME|Esquimalt
 STREET_TYPE|Rd
 LOCALITY|Esquimalt
 PROVINCE_CODE|BC
+SITE_POINT_DESCRIPTOR|Parcel
+SITE_LAT|(real)| lat of building B parcel point 
+SITE_LON|(real)| lon of building B parcel point
+ACCESS_POINT_LAT|(real)|lat of building B access point
+ACCESS_POINT_LON|(real)|lon of building B access point 
 
 
 If this example was provided as reference data to the BC Address Geocoder, the Geocoder would derive full addresses such as:
 
-APT A100, BLDG A -- 810 Esquimalt Rd,Esquimalt,BC
+APT A100, 810 Esquimalt Rd,Esquimalt,BC
 
-APT B407, BLDG B -- 810 Esquimalt Rd,Esquimalt,BC
+APT B407, 810 Esquimalt Rd,Esquimalt,BC
 
-APT B210, BLDG B -- 810 Esquimalt Rd,Esquimalt,BC
+APT B210, 810 Esquimalt Rd,Esquimalt,BC
 
-## Example 3 - A complex with multiple levels of units
+## Example 4 - A complex with multiple levels of units
 
 Vancouver International Airport, 3211 Grant McConachie Way, Richmond, BC has the following terminals and gates:
 - Terminal A
@@ -254,7 +249,7 @@ Gate 7, Terminal B, Vancouver International Airport -- 3211 Grant McConnachie Wa
 
 Each Terminal and Gate can have its own site and access locations
 
-## Example 4 - A complex of buildings
+## Example 5 - A complex of buildings
 
 Given the following addresses for UVIC:
 
