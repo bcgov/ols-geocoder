@@ -173,6 +173,8 @@ ROOM 103A, CLEARIHUE BUILDING, UNIVERSITY OF VICTORIA -- 3800 Finnerty Rd, Saani
 
 which contains the following address elements:
 
+Address Element |	Value
+----: | -----------
 unitDesignator |	Room
 unitNumber |	103A
 siteName|CLEARHUE BUILDING
@@ -187,6 +189,8 @@ ROOM 230, WEST BLOCK, ROYAL JUBILEE HOSPITAL -- 1952 BAY ST, VICTORIA, BC
 
 which contains the following address elements:
 
+Address Element |	Value
+----: | -----------
 unitDesignator |	Room
 unitNumber |	230
 siteName|WEST BLOCK
@@ -204,6 +208,8 @@ PAD 2, HAPPY MOBILE HOME PARK -- REMOTE RD, NIMPO LAKE, BC
 
 which contains the following address elements:
 
+Address Element |	Value
+----: | -----------
 unitDesignator |	Pad
 unitNumber |	2
 siteName| Happy Mobile Home Park
@@ -218,6 +224,8 @@ Paws N Suds ** PAD 2, HAPPY MOBILE HOME PARK -- REMOTE RD, NIMPO LAKE, BC
 
 which contains the following occupant address elements:
 
+Address Element |	Value
+----: | -----------
 occupantName|Paws N Suds
 unitDesignator |Pad
 unitNumber |2
