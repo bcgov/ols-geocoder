@@ -229,7 +229,7 @@ Address Element |	Value
 occupantName|Paws N Suds
 unitDesignator |Pad
 unitNumber |2
-siteName| appy Mobile Home Park
+siteName|Happy Mobile Home Park
 streetName|Remote
 streetType|Rd
 localityName |Nimpo Lake
