@@ -19,15 +19,31 @@ There are essentially 3 parts to the configuration:
 
 ## Build and Deploy the Application
 
-Fetch the code from GitHub:
+Fetch the ols-util code from GitHub (ols-util is a library of code shared by OLS Geocoder and Router which is not yet available from a maven repository):
 
 ```
+cd <project_dir>
+git clone https://github.com/bcgov/ols-util.git
+```
+
+Build the code with Maven and install into the local Maven repository:
+
+```
+cd ols-util
+mvn clean install
+```
+
+Fetch the ols-geocoder code from GitHub:
+
+```
+cd <project_dir>
 git clone https://github.com/bcgov/ols-geocoder.git
 ```
 
 Build the code with Maven:
 
 ```
+cd ols-geocoder
 mvn clean install -DskipTests -PtomcatDeploy,localhost
 ```
 
@@ -66,7 +82,7 @@ The URL, username, and password must match up with your Tomcat configuration. A 
 put the associated username and password into your maven settings.xml file, along with the correct URL. 
 
 Alternatively, you can remove the -PtomcatDeploy,localhost from the maven command line, and just build the .war files and deploy them to tomcat 
-manually using the tomcat manager gui. Note that there are two separate web applications that need to be deployed: ols-geocoder-web and ols-geocoder-admin.
+manually using the Tomcat manager web UI. Note that there are two separate web applications that need to be deployed: ols-geocoder-web and ols-geocoder-admin.
 
 ## Bootstrap Configuration
 
