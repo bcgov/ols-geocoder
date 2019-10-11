@@ -86,11 +86,15 @@ Unit 202, 740 Gorge Rd W, Saanich, BC
 
 Unit 203, 740 Gorge Rd W, Saanich, BC
 
+Unit 204, 740 Gorge Rd W, Saanich, BC
+
 Unit 301, 740 Gorge Rd W, Saanich, BC
 
 Unit 302, 740 Gorge Rd W, Saanich, BC
 
 Unit 303, 740 Gorge Rd W, Saanich, BC
+
+Unit 304, 740 Gorge Rd W, Saanich, BC
 
 All addresses will be assigned the site and accessPoint locations assigned to 740 Gorge Rd W, Saanich, BC
 
