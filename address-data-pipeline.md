@@ -22,7 +22,3 @@ There are several data sources and each one has a defined schema that is approve
  
 
 derivation of access points, address ranges
-
-https://2019.stateofthemap.org/attachments/W8BA9K_sl_Anderson_corparate_editing.pdf
-
-
