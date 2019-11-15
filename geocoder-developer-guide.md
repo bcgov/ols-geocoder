@@ -191,11 +191,12 @@ Attribute Name |	Type
 [custodianId](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#custodianId) |	string
 [sourceDataId](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#sourceDataId) |	string
 
-
+<br><br>
 ## Implementing address autocompletion in your application
-Using the autocomplete boolean parameter is the key to successful implementation. Let's assume your application input form has an address text box and a search icon. A user starts entering the characters of an address. After three or so characters, the application should issue a get request on the addresses resource with autocomplete set to True every time a user enters an additional character. This tells the geocoder that the user has entered a partial address and it should try to complete it and return the best N address matches for display in a pick list below the address text box.
+Using the autoComplete boolean request parameter is the key to successful implementation. Let's assume your application input form has an address text box and a search icon. A user starts entering the characters of an address. After three or so characters, the application should issue a get request on the addresses resource with autoComplete set to True every time a user enters an additional character. This tells the geocoder that addressString contains a partial address and to find the best N address prefix matches for display in a pick list below the address text box.
 
-If the user clicks the search icon, the application should issue a get request on the addresses resource with autocomplete set to False so the geocoder can treat the input address as a combecause by clicking on the search icon, the user has indicated that they have entered a full address. The geocoder
+If the user clicks the search icon, the application should issue a get request on the addresses resource with autocomplete set to False. This tells the geocoder to use addressString as entered when trying to find the best N matches.
 
-If you are using jQuery in your app, check out our javascript code for autocompletion [here](https://github.com/bcgov/ols-devkit/tree/gh-pages/widget)
+
+If you are using jQuery in your app, check out our javascript code for autocompletion [here](https://github.com/bcgov/ols-devkit/tree/gh-pages/widget). To see the code in action, visit [here](https://bcgov.github.io/ols-devkit/examples/address_autocomplete.html)
 
