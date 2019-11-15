@@ -193,4 +193,9 @@ Attribute Name |	Type
 
 
 ## Implementing address autocompletion in your application
-Using the autocomplete boolean parameter is the key to successful implementation. Let's assume your application input form has an address text box and a search icon. A user starts entering the characters of an address. After three or so characters, the application should issue a get request on the addresses resource with autocomplete set to True every time a user enters an additional character. This tells the geocoder that the user has entered a partial address and it should try to complete it and return the best N address matches for display in a pick list below the address text box. If the user clicks the search icon, the application should issue a get request on the addresses resource with autocomplete set to False so the geocoder can treat the input address as a combecause by clicking on the search icon, the user has indicated that they have entered a full address. The geocoder
+Using the autocomplete boolean parameter is the key to successful implementation. Let's assume your application input form has an address text box and a search icon. A user starts entering the characters of an address. After three or so characters, the application should issue a get request on the addresses resource with autocomplete set to True every time a user enters an additional character. This tells the geocoder that the user has entered a partial address and it should try to complete it and return the best N address matches for display in a pick list below the address text box.
+
+If the user clicks the search icon, the application should issue a get request on the addresses resource with autocomplete set to False so the geocoder can treat the input address as a combecause by clicking on the search icon, the user has indicated that they have entered a full address. The geocoder
+
+If you are using jQuery in your app, check out our javascript code for autocompletion [here](https://github.com/bcgov/ols-devkit/tree/gh-pages/widget)
+
