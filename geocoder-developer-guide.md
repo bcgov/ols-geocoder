@@ -193,7 +193,7 @@ Attribute Name |	Type
 
 <br><br>
 ## Implementing address autocompletion in your application
-Using the autoComplete boolean request parameter is the key to successful implementation. Let's assume your application input form has an address text box and a search icon. 
+Using the autoComplete boolean request parameter is the key to successful implementation of address autocompletion in your application. Let's assume your application input form has an address text box and a search icon. 
 
 A user starts entering the characters of an address. After three or so characters, the application should issue a get request on the addresses resource with autoComplete set to True every time a user enters an additional character. This tells the geocoder that addressString contains a partial address and to find the best N address prefix matches for display in a pick list below the address text box.
 
