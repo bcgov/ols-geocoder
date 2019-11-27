@@ -6,7 +6,7 @@ Here are the processing stages of the pipeline:
 Acquisition | Integration | Verification | Deployment
 
 ## Acquisition
-In this initial stage, all data sources are validated against their own schemas and transformed into a common schema called the OLS-Geocoder integration schema. Every attempt is made to repair data to fit their own schemas without violating semantics (e.g., common misspellings of domains are corrected).
+In this initial stage, addresses from multiple sources are validated against their own schemas and transformed into a common schema called the OLS-Geocoder integration schema. Every attempt is made to repair source data to fit their own schemas without violating semantics (e.g., common misspellings of domains are corrected).
 
 There are several data sources and each one has a defined schema that is approved by the source data custodian. 
    - all data sources transformed into standard OLS-Geocoder Reference Address Format 
