@@ -1,5 +1,5 @@
 node ('master'){
-	def server = Artifactory.server '${artifactSvr}'
+	def server = Artifactory.server ${artifactSvr}
     def rtMaven = Artifactory.newMavenBuild()
     def buildInfo
 
