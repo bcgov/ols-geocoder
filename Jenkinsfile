@@ -21,7 +21,7 @@ node ('master'){
     }
 
     stage ('Maven Install'){
-		env.JAVA_HOME = "${tool 'jdk'}"
+		env.JAVA_HOME = "${tool 'ojdk'}"
         rtMaven.run pom: 'pom.xml', goals: 'clean install ${mvnTrgt} -Dmaven.test.skip=true', buildInfo: buildInfo
     }
     
