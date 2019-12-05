@@ -1,10 +1,11 @@
 node ('master'){
-	def server = Artifactory.server "${artifactSvr}"
+    def server = Artifactory.server "${artifactSvr}"
     def rtMaven = Artifactory.newMavenBuild()
     def buildInfo
 
     stage ('SCM prepare'){
         deleteDir()
+	    
         checkout([$class: 'GitSCM', 
 		  branches: [[name: '*/dev']], // branches: [[name: '${gitTag}']], 
 		  doGenerateSubmoduleConfigurations: false, 
