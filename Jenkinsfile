@@ -33,8 +33,10 @@ node ('master'){
         server.publishBuildInfo buildInfo
     }
 
+    /* do not deploy
     stage ('Deploy to Application Server') {
         sh '''ssh app@${appServer} "rm -rf /apps/geocat/webapps/pub#geocoder*"
               scp -r $WORKSPACE/ols-web/target/*.war app@${appServer}:/apps/geocat/webapps/pub#geocoder.war'''
     }
+    */
 }
