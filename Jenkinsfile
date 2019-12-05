@@ -6,14 +6,15 @@ node ('master'){
     stage ('SCM prepare'){
         deleteDir()
         checkout([$class: 'GitSCM', 
-		  branches: [[name: '${gitTag}']], 
+		  branches: [[name: '*/dev']], // branches: [[name: '${gitTag}']], 
 		  doGenerateSubmoduleConfigurations: false, 
 		  extensions: [[$class: 'WipeWorkspace']], 
 		  gitTool: 'Default', 
 		  submoduleCfg: [], 
-		  userRemoteConfigs: [[credentialsId: '607141bd-ef34-4e80-8e7e-1134b7c77176', 
-				       url: 'https://github.com/bcgov/ols-geocoder']]])
-        withMaven(jdk: 'jdk', maven: 'm3') {
+		  userRemoteConfigs: [[url: 'https://github.com/bcgov/ols-geocoder']]
+		 ])
+	    
+        withMaven(jdk: 'ojdk', maven: 'm3') {
             sh 'mvn versions:set -DnewVersion="${mvnTag}"'
         }
     }
