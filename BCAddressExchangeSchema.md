@@ -3,7 +3,7 @@
 v0.4 - added SUPER_SITE_YOURID to schema, changed schema to allow any number of extra points, improved examples, added example of single apartment building, improved readability, fixed formatting of schema definition table
 
 ## Introduction
-The Physical Address Exchange Schema can be used to exchange reference physical addresses between government agencies such as address authorities, emergency response agencies, government address geocoder service providers, etc. The schema supports the exchange of the following types of address situations:
+The Physical Address Exchange Schema can be used to exchange reference physical addresses between government agencies such as address authorities, emergency response agencies, geocoder service providers, etc. The schema supports the exchange of the following types of address situations:
 
 - Addresses of buildings without units
 - Addresses of buildings assigned single or multiple civic numbers
