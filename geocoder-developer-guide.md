@@ -119,7 +119,7 @@ Attribute Name |	Type
 [fullAddress](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#fullAddress) |	String
 [score](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#score) |	integer
 [matchPrecision](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#matchPrecision) |	String
-[precisionPoints](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#matchPrecision) | integer
+[precisionPoints](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#mprecisionPoints) | integer
 [faults](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#faults) | String
 [siteName](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#siteName) | String
 [unitDesignator](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#unitDesignator) | String
