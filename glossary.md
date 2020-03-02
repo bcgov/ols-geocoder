@@ -47,6 +47,8 @@ Term | Definition
 <a name="intersectionAddress">Intersection Address</a> | The intersection of two or more named streets as a single string. Here are some examples: <br>Douglas St and Gorge Rd E and Hillside Ave, Victoria, BC<br>48th Ave W and Marine Dr SW, Vancouver, BC 
 <a name="intersectionName">intersectionName</a> | The [street name](#streetName), [type](#streetType), [direction](#streetDirection), and [qualifier](#streetQualifier) of all streets that meet at a given intersection. Here are some examples:<br>Douglas St and Gorge Rd E and Hillside Ave<br>48th Ave W and Marine Dr SW
 <a name="isOfficial">isOfficial</a> | True if official accessPoint of the associated site.
+<a name="isStreetDirectionPrefix">isStreetDirectionPrefix</a> | True if streetDirection should appear before streetName in fullAddress; False if streetDirection should appear after streetName.
+<a name="isStreetTypePrefix">isStreetTypePrefix</a> | True if streetType should appear before streetName in fullAddress; False if streetType should appear after streetName.
 <a name="keywords">keywords</a> | semi-colon delimited list of keywords associated with occupant 
 <a name="linearAddressInterpolation">Linear Address Interpolation</a> | The process of inferring the location of a [site](#site) with a given [civic number](#civicNumber) using a road centreline and address range for a given block face. Linear interpolation uses the ratio (civicNumber - blockFaceMinCivicNumber) / (blockFaceMaxCivicNumber - blockFaceMinCivicNumber) and the locations of the beginning and end of the block. 
 <a name="localities">localities</a> | A comma separated list of locality names that matched addresses must belong to. For example, setting localities to Nanaimo only returns addresses in Nanaimo.
