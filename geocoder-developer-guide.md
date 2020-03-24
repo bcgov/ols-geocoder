@@ -9,7 +9,7 @@ This guide is aimed at developers and web masters that would like to incorporate
 ## Introduction
 The BC Physical Address Online Geocoder REST API lets you integrate real-time standardization, validation, and geocoding of physical addresses into your own applications. This document defines aspects of the REST API that are not covered in the [OpenAPI definition](https://catalogue.data.gov.bc.ca/dataset/physical-address-geocoding-web-service/resource/40d6411e-ab98-4df9-a24e-67f81c45f6fa/view/1d3c42fc-53dc-4aab-ae3b-f4d056cb00e0).
 <br>
-## API Changes in v4.0
+## API Changes in v4.0.0
 There are no API changes in this release.
 
 
