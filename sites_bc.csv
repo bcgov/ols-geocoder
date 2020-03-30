@@ -1,0 +1,163 @@
+yourId,addressString,localityType
+1,"485 Cedar Ave, 100 Mile House, BC",District
+2,"2627 Park Dr, Abbotsford, BC",City
+3,"111 Cedar St, Alert Bay, BC",village
+4,"76 Elementary Rd, Anmore, BC",village
+5,"2715 Danallanko Dr, Armstrong, BC",City
+6,"705 Brink St, Ashcroft, BC",village
+7,"620 Dixon Creek Rd, Barriere, BC",District
+8,"3221 Main Ave, Belcarra, BC",village
+9,"599 Parkview Lane, Bowen Island, BC",Island Municipality
+10,"6510 Thomas St, Burnaby, BC",City
+11,"1200 Wiebe Rd, Burns Lake, BC",village
+12,"1480 Lopez Creek Dr, Cache Creek, BC",village
+13,"2451 Spit Rd, Campbell River, BC",City
+14,"8964 Columbia View Cres, Canal Flats, BC",village
+15,"3360 Southridge Dr, Castlegar, BC",City
+16,"8000 Larkvale Rd, Central Saanich, BC",District
+17,"428 Riverwind Dr, Chase, BC",village
+18,"5700 Rifle Range Rd NW, Chetwynd, BC",District
+19,"45630 Spadina Ave, Chilliwack, BC",City
+20,"61 Blanchard Rd, Clearwater, BC",District
+21,"1001 Kelly Lake Rd, Clinton, BC",village
+22,"7707 Meadow Rd, Coldstream, BC",District
+23,"3054 Leroy Pl, Colwood, BC",City
+24,"1265 Docliddle Rd, Comox, BC",Town
+25,"2865 Glen Dr, Coquitlam, BC",City
+26,"440 Evergreen Pl, Courtenay, BC",City
+27,"804 22nd Ave S, Cranbrook, BC",City
+28,"2802 Lower Wynndel Rd, Creston, BC",Town
+29,"2832 Wellington St, Cumberland, BC",village
+30,"1201 118 Ave, Dawson Creek, BC",City
+31,"4716 Ashbury Pl, Delta, BC",District
+32,"353 Dogwood Pl, Duncan, BC",City
+33,"147 Coal Creek Cres, Elkford, BC",District
+34,"152 Nichlous Rd, Enderby, BC",City
+35,"1041 Lyall St, Esquimalt, BC",Township
+36,"21 Cedar Bowl Cres, Fernie, BC",City
+37,"750 Takla Rd, Fort St. James, BC",District
+38,"11712 88A St, Fort St. John, BC",City
+39,"341 Chilako Pl, Fraser Lake, BC",village
+40,"210 Trest Dr, Fruitvale, BC",village
+41,"796 Oceanmount Blvd, Gibsons, BC",Town
+42,"3945 Medeek St, Gitanmaax, BC",village
+43,"591 Hummingbird Lane, Gold River, BC",village
+44,"558 Anderson Rd, Golden, BC",Town
+45,"7289 Cypress Way, Grand Forks, BC",City
+46,"11 Hearne Ave, Granisle, BC",village
+47,"2050 Motherlode Rd, Greenwood, BC",city
+48,"520 Cottonwood Pl, Harrison Hot Springs, BC",village
+49,"1560 Sargent St, Hazelton, BC",village
+50,"301 Ross-Durrance Rd, Highlands, BC",District
+51,"21388 Thacker Mountain Rd, Hope, BC",District
+52,"3294 Cooper Rd, Houston, BC",District
+53,"4654 Reschke Rd, Hudson's Hope, BC",District
+54,"3655 Toby Creek Rd, Invermere, BC",District
+55,"249 Bestwick Crt W, Kamloops, BC",City
+56,"711 Jackson St, Kaslo, BC",village
+57,"1802 Edgehill Crt, Kelowna, BC",City
+58,"15 Veterans Ave, Keremeos, BC",village
+59,"377 7th Ave, Kimberley, BC",City
+60,"1509 Kingfisher Ave, Kitimat, BC",District
+61,"575 Greenhorn Pl, Ladysmith, BC",Town
+62,"10750 Cheryl Crt, Lake Country, BC",District
+63,"7465 Teal Crt, Lake Cowichan, BC",Town
+64,"2751 Echo Valley Dr, Langford, BC",City
+65,"5900 Glover Rd, Langley, BC",City
+66,"21009 56 Ave, Township of Langley, BC",District Municipality
+67,"7099 Schines Pl, Lantzville, BC",District
+68,"760 Moha Rd, Lillooet, BC",District
+69,"242 Bayview Rd, Lions Bay, BC",village
+70,"132 Chartrand Pl, Logan Lake, BC",District
+71,"2575 Cedar Ridge Crt, Lumby, BC",village
+72,"127 Kent Rd, Lytton, BC",village
+73,"7 Tutu Pl, Mackenzie, BC",District
+74,"21960 Cliff Pl, Maple Ridge, BC",District
+75,"1630 Spruce Cres, Masset, BC",village
+76,"730 Dominion St, McBride, BC",village
+77,"2699 Quilchena Ave, Merritt, BC",City
+78,"4710 Badger Pl, Metchosin, BC",District
+79,"100 Dominion St, Midway, BC",village
+80,"32159 Cherry Ave, Mission, BC",District
+81,"32251 Cherry Ave, Mission, BC",District
+82,"775 12A Ave, Montrose, BC",village
+83,"106 6th St NW, Nakusp, BC",village
+84,"211 Buttertubs Pl, Nanaimo, BC",City
+85,"605 Kary Cres, Nelson, BC",City
+86,"1211 Victoria St, New Denver, BC",village
+87,"2726 Brewster St, New Hazelton, BC",District
+88,"6668 Cheshire Crt, Burnaby, BC",City
+89,"6678 Altringham Crt, Burnaby, BC",City
+90,"11070 Trillium Pl, North Saanich, BC",District
+91,"120 E 5th St, North Vancouver, BC",
+92,"5542 Deerhorn Pl, District of North Vancouver, BC",District
+93,"2750 Thorpe Pl, Oak Bay, BC",District
+94,"5874 Panorama Crt, Oliver, BC",Town
+95,"11018 97th St, Osoyoos, BC",Town
+96,"527 Church Rd, Parksville, BC",City
+97,"6537 Vernon Ave, Peachland, BC",District
+98,"7350 Crabapple Crt, Pemberton, BC",village
+99,"170 McDonald Pl, Penticton, BC",City
+100,"11760 194B St, Pitt Meadows, BC",City
+101,"7955 Wolfe Rd, Port Alberni, BC",City
+102,"200 Totem Way, Port Alice, BC",village
+103,"94 Bayview Dr, Port Clements, BC",village
+104,"2327 Lobb Ave, Port Coquitlam, BC",City
+105,"1035 Royal Dr, Port Edward, BC",District
+106,"8760 Telco St, Port Hardy, BC",District
+107,"1840 Jordan Pl, Port McNeill, BC",Town
+108,"2041 Mohawk Ave, Coquitlam, BC",City
+109,"13401 Old Edmonton Hwy, Pouce Coupe, BC",village
+110,"5862 Ash Ave, Powell River, BC",City
+111,"4306 Dome Ave, Prince George, BC",City
+112,"25 Grenville Crt, Prince Rupert, BC",City
+113,"406 Brandlmayr Gate, Princeton, BC",Town
+114,"592 Walnut Pl, Qualicum Beach, BC",Town
+115,"583 Hickory Pl, Qualicum Beach, BC",Town
+116,"3621 Oceanview Dr, Queen Charlotte, BC",village
+117,"260 Lear Rd, Quesnel, BC",City
+118,"7525 Springs Terr, Radium Hot Springs, BC",village
+119,"2102 Mary Hansen Pl, Revelstoke, BC",City
+120,"7711 Lindsay Crt, Richmond, BC",City
+121,"2792 Railway St, Rossland, BC",City
+122,"4169 Crosshaven Close, Saanich, BC",District
+123,"511 Cottonwood Ave, Salmo, BC",village
+124,"915 Cottonwood Ave, Salmo, BC",village
+125,"2531 26 St NE, Salmon Arm, BC",City
+126,"963 Cheryl Lynn Rd, Sayward, BC",village
+127,"6759A Seaview Lane, Sechelt, BC",District
+128,"701 Zappone Rd, Sicamous, BC",District
+129,"10251 Forsythia Pl, Sidney, BC",Town
+130,"222 Hume Lane, Silverton, BC",village
+131,"315 Dick Ave, Slocan, BC",village
+132,"4256 Mountainview Cres, Smithers, BC",Town
+133,"1944 Powliuk Cres, Sooke, BC",District
+134,"4175 Crozier Rd, Spallumcheen, BC",Township
+135,"102 2nd Ave, Sparwood, BC",District
+136,"37791 Third Ave, Squamish, BC",District
+137,"403 13th Ave, Stewart, BC",District
+138,"13822 Theed Cres, Summerland, BC",District
+139,"4250 Bella Vista Dr, Sun Peaks, BC",Mountain Resort Municipality
+140,"14089 67A Ave, Surrey, BC",City
+141,"1233 S Maquinna Dr, Tahsis, BC",village
+142,"10487 101st St, Taylor, BC",District
+143,"1696 Telegraph St, Telkwa, BC",village
+144,"3605 Hallock Pl, Terrace, BC",City
+145,"660 Warren Way, Tofino, BC",District
+146,"224 Rossland Ave, Trail, BC",City
+147,"24 Wapiti Pl, Tumbler Ridge, BC",District
+148,"1969 St. Jacques Blvd, Ucluelet, BC",District
+149,"1280 Juniper St, Valemount, BC",village
+150,"1953 Blanca St, Vancouver, BC",City
+151,"3498 Marrow Pl, Vanderhoof, BC",District
+152,"2815 35 St, Vernon, BC",City
+153,"310 Lillooet Hts, Victoria, BC",City
+154,"8 Edwards Estates Rd, View Royal, BC",Town
+155,"328 Murray Dr, Warfield, BC",village
+156,"3973 Legion Dr, Wells, BC",District
+157,"2936 Shannon Green Crt, West Kelowna, BC",City
+158,"2352 Orchard Lane, West Vancouver, BC",District
+159,"6456 Toad Hollow, Whistler, BC",Resort Municipality
+160,"15655 Semiahmoo Ave, White Rock, BC",City
+161,"1115 Tresierra St, Williams Lake, BC",City
+162,"108 Maquinna Ave, Zeballos, BC",village
