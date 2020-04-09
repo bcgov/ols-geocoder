@@ -4,7 +4,7 @@ Check out the Geocoder release [roadmap](https://github.com/bcgov/ols-geocoder/b
 
 ## March 31, 2020
 - BC Address Geocoder version 4.0\* released.
-- Backward compatible with version 3.4.2.
+- API is backward compatible with version 3.4.2.
 - Improved error handling for GeoJSON output.
 - Improved security and performance.
 - Road network and address data updated to reflect sources available as of March 2020.
