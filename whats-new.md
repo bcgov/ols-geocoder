@@ -8,7 +8,7 @@ Check out the Geocoder release roadmap
 - Improved error handling for GeoJSON output.
 - Improved security and performance.
 - Road network and address data updated to reflect sources available as of March 2020.
-<br>\* Excluding Batch Geocoder software, which remains at version 3.4.2 pending future update
+<br><br>\* Excluding Batch Geocoder software, which remains at version 3.4.2 pending future update
 
 ## September 1, 2018
 - The following URLs are deprecated, no longer supported and may be shut down in the future:
