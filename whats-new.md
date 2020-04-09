@@ -2,6 +2,7 @@
 Version | Release Date | Features
 -------: | --------------- | -------------
 4.0|April 2020| Upgraded source code to Java 11 (Open JDK)
+|||Source code is now released under the Apache 2.0 license
 3.2 | Sep 2017 | Improved address autocompletion
 ||| Enhanced reverse geocoding - to the accessPoint (where the driveway meets the road) in addition to the parcelPoint
 3.1 | May 2017 | Monthly data updates - to keep up with changes to the Digital Road Atlas and our address data sources
