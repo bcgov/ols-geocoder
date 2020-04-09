@@ -3,7 +3,7 @@
 Check out the Geocoder release roadmap                                            
 
 ## March 31, 2020
-BC Address Geocoder version 4.0* released.
+BC Address Geocoder version 4.0 released.
 Backward compatible with version 3.4.2.
 Improved error handling for GeoJSON output.
 Improved security and performance.
