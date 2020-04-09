@@ -1,4 +1,4 @@
-# What's New in BC Geocoder
+# What's New in BC Address Geocoder
 Version | Release Date | Features
 -------: | --------------- | -------------
 4.0|April 2020| Upgraded source code to Java 11 (Open JDK)
