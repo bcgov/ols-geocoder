@@ -3,28 +3,40 @@
 Check out the Geocoder release roadmap                                            
 
 ## March 31, 2020
-BC Address Geocoder version 4.0 released.
-Backward compatible with version 3.4.2.
-Improved error handling for GeoJSON output.
-Improved security and performance.
-Road network and address data updated to reflect sources available as of March 2020.
-* Excluding Batch Geocoder software, which remains at version 3.4.2 pending future update
+- BC Address Geocoder version 4.0\* released.
+- Backward compatible with version 3.4.2.
+- Improved error handling for GeoJSON output.
+- Improved security and performance.
+- Road network and address data updated to reflect sources available as of March 2020.
+\* Excluding Batch Geocoder software, which remains at version 3.4.2 pending future update
 
 ## September 1, 2018
-The following URLs are deprecated, no longer supported and may be shut down in the future:
+- The following URLs are deprecated, no longer supported and may be shut down in the future:
+
+```
 http://apps.gov.bc.ca/pub/geocoder
+
 https://apps.gov.bc.ca/pub/geocoder
-The following URL should be used, with or without an API key:
+
+```
+- The following URL should be used, with or without an API key:
+
+```
 https://geocoder.api.gov.bc.ca
-A rate limit of 1,000 requests per minute now applies to use without an API key.
+
+```
+
+- A rate limit of 1,000 requests per minute now applies to use without an API key.
 
 ## June 19, 2018
 BC Address Geocoder version 3.4.1 released.
-The BC Digital Road Atlas for May, 2018 has been loaded.
-A bug fixed in the address range generator has resulted in 10% more blocks with addresses.
-Re. geocoder.api.gov.bc.ca/occupants/addresses: 
-In the fullAddress response parameter, occupant name is now separated from address by two consecutive asterisks as in the following: 
+- The BC Digital Road Atlas for May, 2018 has been loaded.
+- A bug fixed in the address range generator has resulted in 10% more blocks with addresses.
+- In the occupants address resource (e.g., /occupants/addresses),the fullAddress response parameter, occupant name is now separated from address by two consecutive asterisks as in the following:
+
+```
 Sir James Douglas Elementary ** 401 Moss St, Victoria, BC 
+```
 If addressString doesn’t contain the occupant separator “\*\*”, addressString will be treated as an occupant name. In previous releases, addressString was treated as an address.
 
 ## April 24, 2018
