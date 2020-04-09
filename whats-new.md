@@ -1,6 +1,7 @@
 # What's New with the BC Address Geocoder
 
-Check out the Geocoder release [roadmap](https://github.com/bcgov/ols-geocoder/blob/gh-pages/roadmap.md)                                            
+Check out the Geocoder release [roadmap](https://github.com/bcgov/ols-geocoder/blob/gh-pages/roadmap.md)
+For detailed API release notes, see the [BC Geocoder Developer Guide](https://github.com/bcgov/api-specs/blob/master/geocoder/geocoder-developer-guide.md)
 
 ## March 31, 2020
 - BC Address Geocoder version 4.0\* released.
