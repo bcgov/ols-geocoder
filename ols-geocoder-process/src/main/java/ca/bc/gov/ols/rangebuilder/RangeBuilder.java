@@ -127,7 +127,6 @@ public class RangeBuilder {
 			System.exit(-1);
 		}
 		outputDataDir = dir;
-		logger.info("Reading config properties");
 
 		RangeBuilder rb = new RangeBuilder();
 		rb.buildRanges();
@@ -1393,8 +1392,18 @@ public class RangeBuilder {
 	
 	private static float getWidth(RbBlockFace face, GeocoderConfig config) {
 		RbStreetSegment seg = face.getSegment();
-		float laneWidth = config.getRoadLaneWidth(seg.getRoadClass());
-		float baseWidth = config.getRoadBaseWidth(seg.getRoadClass());
+		float laneWidth = 2.5f;
+		try {
+			laneWidth = config.getRoadLaneWidth(seg.getRoadClass());
+		} catch(NullPointerException npe) {
+			logger.warn("Unknown RoadLaneWidth for RoadClass: " + seg.getRoadClass());
+		}
+		float baseWidth = 0f;
+		try {
+			baseWidth = config.getRoadBaseWidth(seg.getRoadClass());
+		} catch(NullPointerException npe) {
+			logger.warn("Unknown RoadBaseWidth for RoadClass: " + seg.getRoadClass());
+		}
 		float dividerWidth = config.getRoadDividerWidth(seg.getDividerType());
 		float narrowMultiplier = 1;
 		if(LaneRestriction.NARROW.equals(seg.getLaneRestriction())) {
