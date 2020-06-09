@@ -5,5 +5,5 @@ Version | Release Date | Features
 |||Support for critical data patches between monthly data updates
 |||More office and apartment unit data
 4.2|Apr 2021|Higher service availability through auto-scaling and cloud-ready architecture
-4.3| Jan 2022|Continuous data input|
+4.3| Jan 2022|Continuous data update|
 |||Better occupant data management tools|
