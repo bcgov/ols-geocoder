@@ -415,7 +415,7 @@ PROVINCE_CODE|String|Canada Post two-character province code|Yes|Yes
 IS_NON_CIVIC_ADDRESS|Boolean|True if address has no assigned civic number|Yes|Yes
 IS_OFFICIAL_ADDRESS|Boolean|True if address is official; False if unofficial (e.g., former address)|Yes|Yes
 NARRATIVE_LOCATION|String|step by step directions to a non-civic address location|No|Yes	
-SITE_POINT_DESCRIPTOR|String|one of site, rooftop, frontDoor, internalDoor, entrance, frontGate|No|No
+SITE_POINT_DESCRIPTOR|String|one of site (somewhere on the site or the parcel containing the site), rooftop, frontDoor, internalDoor, entrance, frontGate|No|No
 SITE_LAT|Number|site latitude|Yes|Yes
 SITE_LON|Number)|site longitude|Yes|Yes
 SITE_TAGS|String| Comma-separated list of descriptive tags (e.g. stadium)|No|No
