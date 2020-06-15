@@ -1,6 +1,6 @@
 # BC Physical Address Exchange Schema Draft v0.5
 ### Change history 
-v0.5 June 15, 2020 - eliminated option to use ExtraPoints to define an unlimited number of additional coordinate locations for a given site; added uses cases to handle emergency entrances, etc. as subsites, each with its own sitePoint and accessPoint.
+v0.5 June 15, 2020 - eliminated option to use ExtraPoints to define an unlimited number of additional coordinate locations for a given site. Extra site and access points can be added to a given site using subsites; added uses cases to handle emergency entrances, etc. as subsites, each with its own sitePoint and accessPoint.
 
 v0.4 - added SUPER_SITE_YOURID to schema, changed schema to allow any number of extra points, improved examples, added example of single apartment building, improved readability, fixed formatting of schema definition table
 
