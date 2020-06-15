@@ -1,5 +1,6 @@
-# BC Physical Address Exchange Schema Draft v0.4
+# BC Physical Address Exchange Schema Draft v0.5
 ### Change history 
+v0.5 June 15, 2020 - eliminated option to use ExtraPoints to define an unlimited number of additional coordinate locations for a given site; added uses cases to handle emergency entrances, etc. as subsites, each with its own sitePoint and accessPoint.
 v0.4 - added SUPER_SITE_YOURID to schema, changed schema to allow any number of extra points, improved examples, added example of single apartment building, improved readability, fixed formatting of schema definition table
 
 ## Introduction
@@ -9,18 +10,19 @@ The Physical Address Exchange Schema can be used to exchange reference physical 
 - Addresses of buildings assigned single or multiple civic numbers
 - Addresses that have no civic number (landmark or non-civic addresses)
 - Addresses of buildings with multiple units
+- Addresses of buildings with special entrances (e.g., entrance pavillion, emergency access)
 - Addresses of complexes that contain multiple buildings
 - Addresses of buildings that contain sub-buildings (e.g., floors, wards, wings)
 
-An address can have rooftop, front door, parcel, vehicle access, and other locations. Units within buildings and buildings within complexes can have their own rooftop and vehicle access locations (e.g., townhouse units within a complex, buildings within a campus).
+An address can have site and vehicle access locations. Units within buildings and buildings within complexes can have their own rooftop and vehicle access locations (e.g., townhouse units within a complex, buildings within a campus).
 
-Buildings, complexes, outdoor areas, and any other site that can be assigned an address can also have its own footprint.
+Buildings, complexes, outdoor areas, and any other site that can be assigned an address may also have its own footprint.
 
 In all examples, attributes that are null are not shown. The full address exchange schema is the last section in this document.
 References such as (aReal), (aMultiPolygon), and (aPolygon) represent an arbitrary value that conforms to the named type (e.g., Real, Multipolygon, Polygon)
 
 ## Example 1 - A house with a single civic number and no units
-37 Olympia Ave, Victoria, BC
+37 Olympia Ave, Victoria, BCa
 
 Field | Value
 -----: | ------
@@ -29,7 +31,7 @@ STREET_NAME|Olympia
 STREET_TYPE|Ave
 LOCALITY|Victoria
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|parcel
+SITE_POINT_DESCRIPTOR|site
 SITE_LAT| (aReal)
 SITE_LON| (aReal)
 ACCESS_POINT_LAT| (aReal)
@@ -51,7 +53,7 @@ STREET_TYPE|Rd
 STREET_DIRECTION|W
 LOCALITY|Saanich
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|parcel
+SITE_POINT_DESCRIPTOR|site
 SITE_LAT| (aReal)
 SITE_LON| (aReal)
 ACCESS_POINT_LAT|(aReal)
@@ -114,7 +116,7 @@ STREET_NAME|Esquimalt
 STREET_TYPE|Rd
 LOCALITY|Esquimalt
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|parcel
+SITE_POINT_DESCRIPTOR|site
 SITE_LAT| (aReal)
 SITE_LON| (aReal)
 ACCESS_POINT_LAT|(aReal)
@@ -133,7 +135,7 @@ STREET_NAME|Esquimalt
 STREET_TYPE|Rd
 LOCALITY|Esquimalt
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|parcel
+SITE_POINT_DESCRIPTOR|site
 SITE_LAT|(aReal)| lat of building A parcel point
 SITE_LON|(aReal)| lon of building A parcel point
 ACCESS_POINT_LAT|(aReal)|lat of building A access point
@@ -149,7 +151,7 @@ STREET_NAME|Esquimalt
 STREET_TYPE|Rd
 LOCALITY|Esquimalt
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|parcel
+SITE_POINT_DESCRIPTOR|site
 SITE_LAT|(aReal)| lat of building B parcel point 
 SITE_LON|(aReal)| lon of building B parcel point
 ACCESS_POINT_LAT|(aReal)|lat of building B access point
@@ -184,7 +186,7 @@ STREET_NAME|Grant McConnachie
 STREET_TYPE|Way
 LOCALITY|Richmond
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|parcel
+SITE_POINT_DESCRIPTOR|site
 SITE_LAT|(aReal)
 SITE_LON|(aReal)
 ACCESS_POINT_LAT|(aReal)
@@ -288,7 +290,7 @@ STREET_NAME|Finnerty
 STREET_TYPE|Rd
 LOCALITY|Victoria
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|parcel
+SITE_POINT_DESCRIPTOR|site
 SITE_LAT|(aReal) 
 SITE_LON|(aReal)
 ACCESS_POINT_LAT|(aReal)
@@ -358,6 +360,33 @@ STREET_TYPE|Rd
 LOCALITY|Saanich
 PROVINCE_CODE|BC
 
+## Example #6 - A building with an emergency lane and door
+
+Field | Value
+----:|----
+SITE_NAME|HR MacMillan Space Centre
+CIVIC_NUMBER|1100
+STREET_NAME|Chestnut
+STREET_TYPE|St
+LOCALITY|Vancouver
+PROVINCE_CODE|BC
+
+
+Field | Value
+----:|----
+SITE_NAME|Emergency Access
+SUPER_FULL_SITE_DESCRIPTOR|HR MacMillan Space Centre
+CIVIC_NUMBER|1100
+STREET_NAME|Chestnut
+STREET_TYPE|St
+LOCALITY|Vancouver
+PROVINCE_CODE|BC
+SITE_LAT|(aReal)
+SITE_LON|(aReal)
+ACCESS_POINT_LAT|(aReal) ;location of intersection of emergency access lane and Chestnut St
+ACCESS_POINT_LON|(aReal)
+
+
 
 ## Schema Definition
 This schema can be used in any common text format that supports named properties including CSV,TSV,JSON, and XML
@@ -385,7 +414,7 @@ PROVINCE_CODE|String|Canada Post two-character province code|Yes|Yes
 IS_NON_CIVIC_ADDRESS|Boolean|True if address has no assigned civic number|Yes|Yes
 IS_OFFICIAL_ADDRESS|Boolean|True if address is official; False if unofficial (e.g., former address)|Yes|Yes
 NARRATIVE_LOCATION|String|step by step directions to a non-civic address location|No|Yes	
-SITE_POINT_DESCRIPTOR|String|one of parcel, rooftop, frontDoor, internalDoor, entrance, frontGate|Yes|Yes
+SITE_POINT_DESCRIPTOR|String|one of site, rooftop, frontDoor, internalDoor, entrance, frontGate|No|No
 SITE_LAT|Number|site latitude|Yes|Yes
 SITE_LON|Number)|site longitude|Yes|Yes
 SITE_TAGS|String| Comma-separated list of descriptive tags (e.g. stadium)|No|No
@@ -393,5 +422,3 @@ ACCESS_POINT_LAT|Number|Only needed if access point is different than site point
 ACCESS_POINT_LON|Number|Only needed if access point is different than site point or super site point|No|Yes
 FOOTPRINT_DESCRIPTOR|String| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)
 FOOTPRINT|OGC WKT|geometry of site footprint in OGC Well-Known Text format. Can use other geometry standards in other formats (e.g., GML GeoJson)|No|No
-EXTRA_POINT_DESCRIPTORS|String| a quoted, comma-separated list of additional location descriptors as in<br> "serviceAccess,emergencyAccess"|No|No
-EXTRA_POINTS|String|A comma separated list of lat/lon pairs representing extra point locations (e.g., "lat1, lon1, lat2, lon2")|No|No
