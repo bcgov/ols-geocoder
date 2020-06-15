@@ -9,7 +9,7 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
     - geojson input and output no longer support coordinates in Spatial Reference Systems other than EPSG 4326 (lon/lat) as per [latest specification](https://tools.ietf.org/pdf/rfc7946.pdf) of the geojson standard.
 
 ## March 31, 2020
-- BC Address Geocoder version 4.0.1\* released.
+- BC Online Address Geocoder version 4.0.1\* released.
 - API is backward compatible with version 3.4.2. with one exception:
     - geojson input and output no longer support coordinates in Spatial Reference Systems other than EPSG 4326 (lon/lat) as per [latest specification](https://tools.ietf.org/pdf/rfc7946.pdf) of the geojson standard.
 - Improved error handling for GeoJSON output.
