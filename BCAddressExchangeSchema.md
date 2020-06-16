@@ -23,7 +23,7 @@ In all examples, attributes that are null are not shown. The full address exchan
 References such as (aReal), (aMultiPolygon), and (aPolygon) represent an arbitrary value that conforms to the named type (e.g., Real, Multipolygon, Polygon)
 
 ## Example 1 - A house with a single civic number and no units
-37 Olympia Ave, Victoria, BCa
+37 Olympia Ave, Victoria, BC
 
 Field | Value
 -----: | ------
@@ -361,7 +361,15 @@ STREET_TYPE|Rd
 LOCALITY|Saanich
 PROVINCE_CODE|BC
 
+
 ## Example #6 - A building with an emergency lane and door
+
+Assume the HR MacMillan Space Centre in Vancouver has an emergency access door and an adjacent emergency access lane that runs to Chestnut St, here are the addresses to be exchanged:
+
+HR MacMillan Space Centre -- 1100 Chestnut St, Vancouver, BC
+Emergency Access, HR MacMillan Space Centre -- 1100 Chestnut St, Vancouver, BC
+
+The following exchange data records will represent the above addresses:
 
 Field | Value
 ----:|----
