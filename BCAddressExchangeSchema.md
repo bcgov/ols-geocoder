@@ -422,7 +422,7 @@ LOCALITY_DESCRIPTOR|String|type of locality|(e.g., Municipality)|Yes|Yes
 PROVINCE_CODE|String|Canada Post two-character province code|Yes|Yes
 IS_NON_CIVIC_ADDRESS|Boolean|True if address has no assigned civic number|Yes|Yes
 IS_OFFICIAL_ADDRESS|Boolean|True if address is official; False if unofficial (e.g., former address)|Yes|Yes
-RELATIVE_LOCATION|String|step by step directions to a non-civic address location or relative geographic location of a locality (e.g., Lonely Cabins - 43 km west of Stui on Hwy 20; Port Alberni - Head of Alberni Inlet, south central Vancouver Island)|No|Yes	
+RELATIVE_LOCATION|String|step by step directions to a non-civic address location or relative geographic location of a locality (e.g., Lonely Cabins - 43 km west of Stui on N side of Hwy 20; Port Alberni - Head of Alberni Inlet, south central Vancouver Island)|No|Yes	
 SITE_POINT_DESCRIPTOR|String|one of site (somewhere on the site or the parcel containing the site), rooftop, frontDoor, internalDoor, entrance, frontGate|No|No
 SITE_LAT|Number|site latitude|Yes|Yes
 SITE_LON|Number)|site longitude|Yes|Yes
