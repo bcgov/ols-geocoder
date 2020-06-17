@@ -1,5 +1,5 @@
 
-## Physical Address Elements
+## Physical Address Properties
 
 
 Element Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
