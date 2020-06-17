@@ -6,8 +6,8 @@ Element Name | Data Type |	Description | Required for Civic Address|Required for
 ---: | --- | --- | ---| ---
 unitDesignator|String|Official unit designator abbreviation (e.g., APT)|No|No
 unitNumberPrefix|String|A single letter attached to the front of a Unit number (e.g., the A in A100)|No|No
-unitNumber|String|Unit number of a unit(the 100 in A100)|No|No
-unitNumberSuffix|String|A single letter appended to the UNIT_NUMBER (e.g.,the A in 102)|No|No
+unitNumber|String|Unit number of a unit(e.g., the 100 in A100)|No|No
+unitNumberSuffix|String|A single letter appended to the UNIT_NUMBER (e.g.,the A in 102A)|No|No
 siteName|String|name of building (e.g., University of Victoria), part of a building (e.g., Emergency) or landmark name (e.g., Centennial Candle)|no|yes
 fullSiteDescriptor|String|Full site descriptor starting with unit and SITE_NAME followed by all units and SITE_NAMEs in parent site hierarchy separated by commas (e.g., RM 104, Student Union Building, University of Victoria)|No|No
 civicNumber|Number| civic number, usually a positive integer (e.g., 1321)|Yes|No
