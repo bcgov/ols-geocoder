@@ -14,7 +14,7 @@ civicNumber|Number| civic number, usually a positive integer (e.g., 1321)|Yes|No
 civicNumberSuffix|String|Civic number suffix (e.g., A)|No|No
 streetName|String|Street name|Yes|No
 streetType|String|Street type|No|No
-isStreetTypePrefix|Boolean| True if street type appears before street name as in HWY 17|No|No
+isStreetTypePrefix|Boolean| True if street type appears before street name (e.g., HWY 17)|No|No
 streetDirection|String|Official street direction abbreviation (e.g., N,S,E,W,NE,SE,NW,SW); Prefix and suffix street directions in the same address (e.g., 103 N 52nd St SW) are not allowed|No|No
 isStreetDirectionPrefix|Boolean|true if street direction appears before street name as in SW Marine Dr|No|No
 locality|String|Locality name (e.g., Victoria)|Yes|Yes
