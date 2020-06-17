@@ -21,9 +21,9 @@ locality|String|Locality name (e.g., Victoria)|Yes|Yes
 localityDescriptor|String|type of locality(e.g.,Municipality,Unincorporated)|Yes|Yes
 subCountryCode|String|ISO 3166-2-CA sub-country code (e.g., BC, YT)|Yes|Yes
 isOfficial|Boolean|True if address is official; False if unofficial (e.g., former address)|Yes|Yes
-location|Point|Location of the site; the point must lie within the site or parcel containing the site (e.g., a point on the roof of a house just above the front door)
-accessLocation|Point|The point at which the site's driveway, walkway, or access road meets the street named in the site's address
-centrelineLocation|Point|The nearest point on the road centreline to the site's LOCATION. The road centreline is the centreline of the street named in the site's address. If the named street is divided, the road centreline on the same side as the site should be used.
+location|Point|Location of the site; the point must lie within the site or parcel containing the site (e.g., a point on the roof of a house just above the front door)|Yes|Yes
+accessLocation|Point|The point at which the site's driveway, walkway, or access road meets the street named in the site's address|Yes|Yes
+centrelineLocation|Point|The nearest point on the road centreline to the site's LOCATION. The road centreline is the centreline of the street named in the site's address. If the named street is divided, the road centreline on the same side as the site should be used|Yes|Yes
 isNonCivic|Boolean|True if address has no assigned civic number; a non-civic address must have a SITE_NAME to be referenced (e.g., Lonely Cabins -- Hwy 20, Stui, BC)|Yes|Yes
 relativeLocation|String|Relative geographic location of a non-civic address (e.g., Lonely Cabins - 43 km west of Stui on N side of Hwy 20)|No|Yes	
 footprintDescriptor|String| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)|No|No
