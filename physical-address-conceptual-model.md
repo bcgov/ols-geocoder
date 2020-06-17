@@ -18,7 +18,7 @@ IS_STREET_TYPE_PREFIX|Boolean| True if street type appears before street name as
 STREET_DIRECTION|String|Official street direction abbreviation (e.g., N,S,E,W,NE,SE,NW,SW); Prefix and suffix street directions in the same address (e.g., 103 N 52nd St SW) are not allowed|No|No
 IS_STREET_DIRECTION_PREFIX|Boolean|true if street direction appears before street name as in SW Marine Dr|No|No
 LOCALITY|String|Locality name (e.g., Victoria)|Yes|Yes
-LOCALITY_DESCRIPTOR|String|type of locality|(e.g.,Municipality,Unincorporated)|Yes|Yes
+LOCALITY_DESCRIPTOR|String|type of locality(e.g.,Municipality,Unincorporated)|Yes|Yes
 SUB_COUNTRY_CODE|String|ISO 3166-2-CA sub-country code (e.g., BC, YT)|Yes|Yes
 IS_OFFICIAL_ADDRESS|Boolean|True if address is official; False if unofficial (e.g., former address)|Yes|Yes
 LOCATION|Point|Location of the site; the point must lie within the site or parcel containing the site (e.g., a point on the roof of a house just above the front door)
