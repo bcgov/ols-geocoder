@@ -2,7 +2,7 @@
 ## Physical Address Properties
 
 
-Element Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
+Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
 ---: | --- | --- | ---| ---
 unitDesignator|String|Official unit designator abbreviation (e.g., APT)|No|No
 unitNumberPrefix|String|A single letter attached to the front of a Unit number (e.g., the A in A100)|No|No
