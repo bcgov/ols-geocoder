@@ -1,33 +1,31 @@
 
-## Schema Definition
+## Physical Address Elements
 
 
-Property Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
+Element Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
 ---: | --- | --- | ---| ---
-UNIT_DESIGNATOR |String|Canada Post unit designator (e.g., APT)|No|No
-UNIT_NUMBER_PREFIX|String|a single letter that should appear at the beginning of a unit number (e.g., the A in A100)|No|No
-UNIT_NUMBER|String|unit number or letter of a unit with a site (the 100 in A100)|No|No
-UNIT_NUMBER_SUFFIX|String|A single letter that should appear at the end of a unit number(e.g.,the A in 102)|No|No
+UNIT_DESIGNATOR |String|Official unit designator abbreviation (e.g., APT)|No|No
+UNIT_NUMBER_PREFIX|String|A single letter attached to the front of a Unit number (e.g., the A in A100)|No|No
+UNIT_NUMBER|String|Unit number of a unit(the 100 in A100)|No|No
+UNIT_NUMBER_SUFFIX|String|A single letter appended to the UNIT_NUMBER (e.g.,the A in 102)|No|No
 SITE_NAME |String|building or landmark name (e.g., Centennial Candle)|yes|yes
-FULL_SITE_DESCRIPTOR|String|full site descriptor starting with unit and SITE_NAME followed by all units and SITE_NAMEs in parent site hierarchy separated by commas (e.g., RM 104, Student Union Building, University of Victoria)|No|No
+FULL_SITE_DESCRIPTOR|String|Full site descriptor starting with unit and SITE_NAME followed by all units and SITE_NAMEs in parent site hierarchy separated by commas (e.g., RM 104, Student Union Building, University of Victoria)|No|No
 CIVIC_NUMBER|Number| civic number, usually a positive integer (e.g., 1321)|Yes|No
-CIVIC_NUMBER_SUFFIX|String|Canada Post civic number suffix (e.g., A)|No|No
+CIVIC_NUMBER_SUFFIX|String|Civic number suffix (e.g., A)|No|No
 STREET_NAME|String|Street name|Yes|No
 STREET_TYPE|String|Street type|No|No
 IS_STREET_TYPE_PREFIX|Boolean| True if street type appears before street name as in HWY 17|No|No
-STREET_DIRECTION|String|Canada Post street direction (e.g., NW); Note Canada Post does not allow prefix and suffix street direction in same address as in: 103 N 52 St SW|No|No
+STREET_DIRECTION|String|Official street direction abbreviation (e.g., N,S,E,W,NE,SE,NW,SW); Prefix and suffix street directions in the same address (e.g., 103 N 52nd St SW) are not allowed|No|No
 IS_STREET_DIRECTION_PREFIX|Boolean|true if street direction appears before street name as in SW Marine Dr|No|No
-LOCALITY|String|Locality (e.g., Victoria)|Yes|Yes
-LOCALITY_DESCRIPTOR|String|type of locality|(e.g., Municipality)|Yes|Yes
-PROVINCE_CODE|String|Canada Post two-character province code|Yes|Yes
-IS_NON_CIVIC_ADDRESS|Boolean|True if address has no assigned civic number|Yes|Yes
+LOCALITY|String|Locality name (e.g., Victoria)|Yes|Yes
+LOCALITY_DESCRIPTOR|String|type of locality|(e.g.,Municipality,Unincorporated)|Yes|Yes
+SUB_COUNTRY_CODE|String|ISO 3166-2-CA sub-country code (e.g., BC, YT)|Yes|Yes
 IS_OFFICIAL_ADDRESS|Boolean|True if address is official; False if unofficial (e.g., former address)|Yes|Yes
+LOCATION - A point that represents the location of the site; the point must lie within the site or parcel containing the site (e.g., a point on the roof of a house just above the front door); coordinates of the point should be in a defined coordinate reference system (e.g., WGS84).
+ACCESS_LOCATION - The point at which the site's driveway, walkway, or access road meets the street named in the site's address
+STREET_LOCATION - The nearest point along the centreline to the site's LOCATION. The centreline is the road centreline of the street named in the site's address.
+IS_NON_CIVIC_ADDRESS|Boolean|True if address has no assigned civic number; a non-civic address must have a SITE_NAME to be referenced (e.g., Lonely Cabins -- Hwy 20, Stui, BC)|Yes|Yes
 RELATIVE_LOCATION|String|Relative geographic location of a non-civic address (e.g., Lonely Cabins - 43 km west of Stui on N side of Hwy 20)|No|Yes	
-SITE_POINT_DESCRIPTOR|String|one of site (somewhere on the site or the parcel containing the site), rooftop, frontDoor, internalDoor, entrance, frontGate|No|No
-SITE_LAT|Number|site latitude|Yes|Yes
-SITE_LON|Number)|site longitude|Yes|Yes
-SITE_TAGS|String| Comma-separated list of descriptive tags (e.g. stadium)|No|No
-ACCESS_POINT_LAT|Number|Only needed if access point is different than site point or super site point|No|Yes
-ACCESS_POINT_LON|Number|Only needed if access point is different than site point or super site point|No|Yes
+TAGS|String| Comma-separated list of descriptive tags (e.g. stadium)|No|No
 FOOTPRINT_DESCRIPTOR|String| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)|No|No
-FOOTPRINT|OGC WKT|geometry of site footprint in OGC Well-Known Text format. Can use other geometry standards in other formats (e.g., GML GeoJson)|No|No
+FOOTPRINT|OGC WKT|Spatial extent of the site|No|No
