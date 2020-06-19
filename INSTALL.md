@@ -89,12 +89,14 @@ manually using the Tomcat manager web UI. Note that there are two separate web a
 OLS Geocoder supports storing its configuration as files in a directory, or in tables in a Cassandra keyspace. The bootstrap configuration tells the geocoder where to look 
 for the main configuration. This is done using the following environment variables:
 
-- OLS_GEOCODER_CONFIGURATION_STORE - may be either "ca.bc.gov.ols.geocoder.config.CassandraGeocoderConfigurationStore" or "ca.bc.gov.ols.geocoder.config.FileGeocoderConfigurationStore" - defaults to: "ca.bc.gov.ols.geocoder.config.CassandraGeocoderConfigurationStore"
-- OLS_FILE_CONFIGURATION_URL - if FileGeocoderConfigurationStore is used, this must be set to a writeable directory path, to which default configuration files will be written if they are not already present 
-- OLS_CASSANDRA_CONTACT_POINT - if CassandraGeocoderConfigurationStore is used, this specifies the IP name or address of the cassandra contact point - defaults to: "cassandra"
-- OLS_CASSANDRA_LOCAL_DATACENTER - if CassandraGeocoderConfigurationStore is used, this specifies the deafult datacenter for the cassandra connection - defaults to: "datacenter1"
-- OLS_CASSANDRA_KEYSPACE - if CassandraGeocoderConfigurationStore is used, this specifies the Cassandra keyspace to use - defaults to "bgeo"
-- OLS_CASSANDRA_REPL_FACTOR - if CassandraGeocoderConfigurationStore is used, and the Cassandra keyspace is not already created, the keyspace will be created with this replication factor - defaults to "2"
+| Variable | Details |
+| -------- | ------- |
+| `OLS_GEOCODER_CONFIGURATION_STORE` | may be either `ca.bc.gov.ols.geocoder.config.CassandraGeocoderConfigurationStore` or `ca.bc.gov.ols.geocoder.config.FileGeocoderConfigurationStore` - defaults to: `ca.bc.gov.ols.geocoder.config.CassandraGeocoderConfigurationStore`|
+| `OLS_FILE_CONFIGURATION_URL` | if `FileGeocoderConfigurationStore` is used, this must be set to a writeable directory path, to which default configuration files will be written if they are not already present |
+| `OLS_CASSANDRA_CONTACT_POINT` | if `CassandraGeocoderConfigurationStore` is used, this specifies the IP name or address of the cassandra contact point - defaults to: `cassandra`|
+| `OLS_CASSANDRA_LOCAL_DATACENTER` | if `CassandraGeocoderConfigurationStore` is used, this specifies the deafult datacenter for the cassandra connection - defaults to: `datacenter1`|
+| `OLS_CASSANDRA_KEYSPACE` | if `CassandraGeocoderConfigurationStore` is used, this specifies the Cassandra keyspace to use - defaults to `bgeo`|
+| `OLS_CASSANDRA_REPL_FACTOR` | if `CassandraGeocoderConfigurationStore` is used, and the Cassandra keyspace is not already created, the keyspace will be created with this replication factor - defaults to "2"|
 
 If the application is being deployed in a docker or kubernetes container, these environment variables can be set in the container definition. 
 Otherwise, use the appropriate tools for your operating system to set the variables; the Tomcat catalina startup script might be a good place to set them.
