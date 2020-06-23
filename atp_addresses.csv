@@ -161,4 +161,4 @@ CivicAddressWithFractionalCivicNumberSuffix,"535 1/2 Fisgard Street	 Victoria	 B
 CivicAddressWithUTF-8FractionalCivicNumberSuffix,"535?ó Fisgard Street	 Victoria	 BC",CIVIC_NUMBER,"535 1/2 Fisgard Street	 Victoria	 BC",[CIVIC_NUMBER_SUFFIX.notMatched:1],F,
 NumberedStreetName,"857 E 45th Ave	 Vancouver	 BC",CIVIC_NUMBER,"857 E 45th Ave	 Vancouver	 BC",[],F,
 NumberedStreetNameWithEmbeddedBlanks,"857 E 45 th Ave, Vancouver, BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],F,
-CivicAddressStreetNameWithCompoundWord,CIVIC_NUMBER,”2845 Cedarhill Rd, Victoria, BC”,”2845 Cedar Hill Rd, Victoria, BC”,[],F,
+CivicAddressStreetNameWithCompoundWord,CIVIC_NUMBER,"2845 Cedarhill Rd, Victoria, BC","2845 Cedar Hill Rd, Victoria, BC",[],F,
