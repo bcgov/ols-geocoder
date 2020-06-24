@@ -11,11 +11,12 @@ A non-civic address is a site-name assigned to a site assigned to a street in a 
       Centennial Candle -- Laurel Lane, Victoria, BC
 
 
-An intersection address is sequence of road names of roads at an intersection in a locality in a subCountry. For example:
+An intersection address is a sequence of the names of all roads that meet at a single intersection in a locality in a subCountry. For example:
 
        Dallas Rd and Government St, Victoria, BC
+       Douglas St and Gorge Rd and Hillside Ave and Government St, Victoria, BC
 
-A physical address is a compound name of a site and its coordinate location and can take the form of a civic address, an non-civic address, or an intersection address. >ven though it has a coordinate location, a physical address is data type, not a geographic feature.
+A physical address is the compound name of a site and its coordinate location and can take the form of a civic address, an non-civic address, or an intersection address. Even though it has a coordinate location, a physical address is a data type, not a geographic feature.
 
 A site is any geographic feature that may be assigned a civic number. Examples include house, cabin, building, building complex, empty lot, RV park, manufactured home park, race-track, stadium, golf course, industrial plant, bandshell, hospital, university, recreation centre, place of worship, campground, motel, park entrance or washroom, water tower, municipal pumping station, hydro sub-station, unit within a building, and building within a complex.
 
