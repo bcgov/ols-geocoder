@@ -18,7 +18,7 @@ An intersection address is a sequence of the names of all roads that meet at a s
 
 A physical address is the compound name of a site and its coordinate location and can take the form of a civic address, an non-civic address, or an intersection address. Even though it has a coordinate location, a physical address is a data type, not a geographic feature.
 
-A site is any geographic feature that may be assigned a civic number. Examples include house, cabin, building, building complex, empty lot, RV park, manufactured home park, race-track, stadium, golf course, industrial plant, bandshell, hospital, university, recreation centre, place of worship, campground, motel, park entrance or washroom, water tower, municipal pumping station, hydro sub-station, unit within a building, and building within a complex.
+A site is any geographic feature that is connected to a road. Examples include house, cabin, building, building complex, empty lot, RV park, manufactured home park, race-track, stadium, golf course, industrial plant, bandshell, hospital, university, recreation centre, place of worship, campground, motel, park entrance or washroom, water tower, municipal pumping station, hydro sub-station, unit within a building, and building within a complex.
 
 ## Civic Address Data Type
 
