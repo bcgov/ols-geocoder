@@ -50,9 +50,9 @@ From here on in, all examples in this document will assume a country of Canada w
 
 ## Anatomy of a site address
 
-The following table defines the elements of a site address.
+The following table defines the elements of a site address:
 
-Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
+Element Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
 ---: | --- | --- | ---| ---
 fullAddress|String|Full address in [Single-Line Address Format](https://github.com/bcgov/ols-geocoder/blob/gh-pages/singleLineAddressFormat.md)|Y|Y
 unitDesignator|String|Official unit designator abbreviation (e.g., APT)|No|No
