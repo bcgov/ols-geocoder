@@ -3,11 +3,11 @@
 Topics: fullAddress as business unique identifier, what is a physical address, difference from mailing address, uses, address fabric designs, addresses in the real world, adding a sense of history, how is site location defined, 
 
 ### What is a physical address?
-A physical address is a compound name assigned to a geographic feature connected to a road network. We call such a geographic feature a site. Examples of site include house, office or apartment building, university campus, mobile home park, campground, place of worship, and industrial plant.
+A physical address is the compound name of a geographic feature connected to a road network. We call such a geographic feature a site. Examples of site include house, office or apartment building, university campus, mobile home park, campground, place of worship, and industrial plant.
 
 A physical address can take the form of a civic address, a non-civic address, or an intersection address.
 
-A civic address includes a civic number assigned to a site assigned to a street in a locality in a subCountry in a Country. A civic address may also include the name of a site and the names of its subsites. Here are some examples of civic address:
+A civic address includes a civic number assigned by a local government to a site assigned to a street in a locality in a subCountry in a Country. A civic address may also include the name of a site and the names of its subsites. Here are some examples of civic address:
 
 
 Nature of Site | Civic Address | Notes
@@ -53,6 +53,7 @@ streetType|String|Official abbreviation of street type (e.g., Ave, Blvd, Hwy)|No
 isStreetTypePrefix|Boolean| True if street type appears before street name. For example, the street type HWY appears before the streetName 17 in Hwy 17|No|No
 streetDirection|String|Official street direction abbreviation (e.g., N,S,E,W,NE,SE,NW,SW); Prefix and suffix street directions in the same address (e.g., 103 N 52nd St SW) are not allowed|No|No
 isStreetDirectionPrefix|Boolean|true if street direction appears before street name as in SW Marine Dr|No|No
+StreetQualifier|String|ddd|No|no
 locality|String|Locality name (e.g., Victoria)|Yes|Yes
 subCountryCode|String|ISO 3166-2-CA sub-country code (e.g., BC, YT)|Yes|Yes
 isOfficial|Boolean|True if address is designated as official by the appropriate address authority; False if unofficial (e.g., former address)|Yes|Yes
