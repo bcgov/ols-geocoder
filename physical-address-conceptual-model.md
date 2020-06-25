@@ -2,10 +2,12 @@
 
 Topics: fullAddress as business unique identifier, what is a physical address, difference from mailing address, uses, address fabric designs, addresses in the real world, adding a sense of history, how is site location defined, how is a site related to a parcel
 
-### What is a physical address?
+## What is a physical address?
 A physical address is the compound name of a geographic feature connected to a road network. We call such a geographic feature a site. Examples of site include house, office or apartment building, university campus, mobile home park, campground, place of worship, and industrial plant. A physical address is not a geographic feature; it is the name of one.
 
 A physical address can take the form of a civic address, a non-civic address, or an intersection address.
+
+## Civic Address
 
 A civic address includes a civic number assigned by a local government to a site assigned to a street in a locality in a subCountry in a Country. A civic address may also include the name of a site and the names of its subsites. Here are some examples of civic address:
 
@@ -21,6 +23,8 @@ Room within a building within a complex|Room 100, Clearihue Building, University
 Unit within a building within a complex|Gate 23, Terminal A, Vancouver International Airport -- 3211 Grant McConnachie Way, Richmond,BC, Canada|Gate 23 is a subsite of Terminal A which is a subsite of Vancouver International Airport
 Unit within a building within a complex|Unit A301 -- 810 Esquimalt Rd, Esquimalt, BC, Canada| Unit A301 is a subsite of Building A which is a subsite of the complex at 810 Esquimalt Rd
 
+## Non-civic Address
+
 A non-civic address is the address of a site that hasn't been assigned a civic number and includes a site-name assigned to a site assigned to a street in a locality in a subCountry in a country. Non-civic addresses usually designate landmarks, city infrastructure, or buildings in rural areas. Some non-civic addresses are simply streets within a locality. Here are some examples of non-civic address:
 
 Non-civic Address | Description
@@ -33,6 +37,8 @@ Massey Dr Overpass, Prince George, BC|named overpass is named after street
 Great Bear Snowshed, Coquihalla, BC|named snowshed is street name
 
 All named bridges, overpasses, snowsheds, and tunnels are street names or street name + street qualifier as in the case of Johnson St Bridge.
+
+## Intersection Address
 
 An intersection address is a sequence of the names of all roads that meet at a single intersection in a locality in a subCountry. For example:
 
