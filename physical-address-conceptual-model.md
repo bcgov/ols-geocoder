@@ -47,7 +47,9 @@ An intersection address is a sequence of the names of all roads that meet at a s
 
 From here on in, all examples in this document will assume a country of Canada without showing it.
 
-## Site Address Elements
+
+## Anatomy of a site address
+
 The following table defines each element of a site address.
 
 Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
