@@ -39,7 +39,7 @@ The following table defines each element of a site address.
 
 Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
 ---: | --- | --- | ---| ---
-fullAddress|String|Full address in Single-Line Address Format|Y|Y
+fullAddress|String|Full address in [Single-Line Address Format](https://github.com/bcgov/ols-geocoder/edit/gh-pages/physical-address-conceptual-model.md)|Y|Y
 unitDesignator|String|Official unit designator abbreviation (e.g., APT)|No|No
 unitNumberPrefix|String|A single letter attached to the front of a Unit number (e.g., the A in A100)|No|No
 unitNumber|String|Unit number of a unit(e.g., the 100 in A100)|No|No
