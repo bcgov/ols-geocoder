@@ -12,7 +12,7 @@ A civic address includes a civic number assigned to a site assigned to a street 
 
 Nature of Site | Civic Address | Notes
 ---: | --- | ---
-Single House assigned a civic number|1211 16 St NE, Salmon Arm, BC, Canada| 1211 is the civic number assigned to the house on a street called 16 St NE in Salmon Arm in the Province of British Columbia.
+Single House assigned a civic number|1211 16 St NE, Salmon Arm, BC, Canada| 1211 is the civic number assigned to the house on a street called 16 St NE in the City of Salmon Arm in the Province of British Columbia.
 Unit within a building|Unit 401 -- 1225 Douglas St, Victoria, BC, Canada| Unit 401 is a subsite
 Special entrance of a industrial complex|Entrance, Delta Port Terminal -- 2 Roberts Bank Rd, Delta, BC, Canada|Entrance is a subsite
 Sub-building within a building|Emergency Ward, Royal Jubilee Hospital -- 1952 Bay St, Victoria, BC, Canada|Emergency Ward is a subsite of Royal Jubilee Hospital
