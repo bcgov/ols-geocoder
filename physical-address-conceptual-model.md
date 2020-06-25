@@ -7,52 +7,34 @@ A physical address is a compound name assigned to a geographic feature connected
 
 A physical address can take the form of a civic address, a non-civic address, or an intersection address.
 
-Addresses of buildings without units
-Addresses of buildings assigned single or multiple civic numbers
-Addresses that have no civic number (landmark or non-civic addresses)
-Addresses of buildings with multiple units
-Addresses of buildings with special entrances (e.g., entrance pavillion, emergency access)
-Addresses of complexes that contain multiple buildings
-Addresses of buildings that contain sub-buildings (e.g., floors, wards, wings)
+A civic address includes a civic number assigned to a site assigned to a street in a locality in a subCountry in a Country. A civic address may also include the name of a site and the names of its subsites. Here are some examples of civic address:
 
 
-Nature of Site | Address
----: | ---
-Single House assigned a civic number|1211 16 St NE, Salmon Arm, BC
-Unit within a building|Unit 401 -- 1225 Douglas St, Victoria, BC
-Special entrance of a industrial complex|Entrance, Delta Port Terminal -- 2 Roberts Bank Rd, Delta, BC
-Sub-building within a building|Emergency Unit, Royal Jubilee Hospital -- 1952 Bay St, Victoria, BC
-Building within a complex|Clearihue Building, University of Victoria -- 3800 Finnerty Rd, Saanich BC
-Room within a building within a complex|Rooms 100, Clearihue Building, University of Victoria -- 3800 Finnerty Rd, Saanich BC
-
-A civic address is a civic number assigned to a site assigned to a street in a locality in a subCountry. For example,
-
-     1175 Douglas St, Victoria, BC
-
-A civic address may also contain the name of a subsite of a site assigned a civic number a site as in the following:
-
-     Unit 101 -- 740 Gorge Rd W, Saanich, BC
-
-Unit 101 is the name of a unit within a building assigned a civic address of 740 Gorge Rd W, Saanich, BC
-
-     Unit A301 -- 810 Esquimalt Rd, Esquimalt, BC
-     
-Unit A301 is name of a unit within a building called "A" with an apartment complex assigned a civic address of 810 Esquimalt Rd, Esquimalt, BC
+Nature of Site | Civic Address | Notes
+---: | --- | ---
+Single House assigned a civic number|1211 16 St NE, Salmon Arm, BC, Canada
+Unit within a building|Unit 401 -- 1225 Douglas St, Victoria, BC, Canada| Unit 401 is a subsite
+Special entrance of a industrial complex|Entrance, Delta Port Terminal -- 2 Roberts Bank Rd, Delta, BC, Canada|Entrance is a subsite
+Sub-building within a building|Emergency Ward, Royal Jubilee Hospital -- 1952 Bay St, Victoria, BC, Canada|Emergency Ward is a subsite of Royal Jubilee Hospital
+Building within a complex|Clearihue Building, University of Victoria -- 3800 Finnerty Rd, Saanich BC, Canada|Clearihue Building is a subsite of University of Victoria
+Room within a building within a complex|Room 100, Clearihue Building, University of Victoria -- 3800 Finnerty Rd, Saanich BC, Canada
+Unit within a building within a complex|Gate 23, Terminal A, Vancouver International Airport -- 3211 Grant McConnachie Way,Richmond,BC, Canada
+Unit within a building within a complex|Unit A301 -- 810 Esquimalt Rd, Esquimalt, BC, Canada| Unit A301 is a subsite and the "A" in A301 is the building name
 
 
+A non-civic address is the address of a site that hasn't been assigned a civic number and includes a site-name assigned to a site assigned to a street in a locality in a subCountry in a country. Here's an example:
 
-
-A non-civic address is a site-name assigned to a site assigned to a street in a locality in a subCountry.
-
-      Centennial Candle -- Laurel Lane, Victoria, BC
+      Centennial Candle -- Laurel Lane, Victoria, BC, Canada
+      
+Non-civic addresses usually designate landmarks, city infrastructure, or buildings in rural areas
 
 
 An intersection address is a sequence of the names of all roads that meet at a single intersection in a locality in a subCountry. For example:
 
-       Dallas Rd and Government St, Victoria, BC
-       Douglas St and Gorge Rd and Hillside Ave and Government St, Victoria, BC
+       Dallas Rd and Government St, Victoria, BC, Canada
+       Douglas St and Gorge Rd and Hillside Ave and Government St, Victoria, BC, Canada
 
-
+From here on in, all examples in this document will assume a country of Canada without showing it.
 
 ## Site Address Data Type
 
