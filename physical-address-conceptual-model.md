@@ -2,6 +2,10 @@
 
 Topics: fullAddress as business unique identifier, what is a physical address, difference from mailing address, uses, address fabric designs, addresses in the real world, adding a sense of history, how is address location defined, 
 
+### What is a physical address?
+A physical address is a compound name assigned to a geographic feature connected to a road network. We call such a geographic feature a site. Examples of site include house, building, unit within a building, special gate or entrance to a building, building complex such as a university campus or hospital, mobile home or RV park, campground, water tower, industrial plant, and place of worship. 
+
+A physical address can take the form of a civic address, a non-civic address, or an intersection address.
 
 
 A civic address is a civic number assigned to a site assigned to a street in a locality in a subCountry. For example:
@@ -19,9 +23,7 @@ An intersection address is a sequence of the names of all roads that meet at a s
        Dallas Rd and Government St, Victoria, BC
        Douglas St and Gorge Rd and Hillside Ave and Government St, Victoria, BC
 
-A physical address is the compound name of a site and its coordinate location and can take the form of a civic address, an non-civic address, or an intersection address. Even though it has a coordinate location, a physical address is a data type, not a geographic feature.
 
-A site is any geographic feature that is connected to a road. Examples include house, cabin, building, building complex, empty lot, RV park, manufactured home park, race-track, stadium, golf course, industrial plant, bandshell, hospital, university, recreation centre, place of worship, campground, motel, park entrance or washroom, water tower, municipal pumping station, hydro sub-station, unit within a building, and building within a complex.
 
 ## Site Address Data Type
 
