@@ -21,11 +21,18 @@ Room within a building within a complex|Room 100, Clearihue Building, University
 Unit within a building within a complex|Gate 23, Terminal A, Vancouver International Airport -- 3211 Grant McConnachie Way,Richmond,BC, Canada|Gate 23 is a subsite of Terminal A which is a subsite of Vancouver International Airport
 Unit within a building within a complex|Unit A301 -- 810 Esquimalt Rd, Esquimalt, BC, Canada| Unit A301 is a subsite of building "A" which is a subsite of the complex at 810 Esquimalt Rd
 
-A non-civic address is the address of a site that hasn't been assigned a civic number and includes a site-name assigned to a site assigned to a street in a locality in a subCountry in a country. Here's an example:
+A non-civic address is the address of a site that hasn't been assigned a civic number and includes a site-name assigned to a site assigned to a street in a locality in a subCountry in a country. Non-civic addresses usually designate landmarks, city infrastructure, or buildings in rural areas. Some non-civic addresses are simply streets within a locality. Here are some examples of non-civic address:
 
-      Centennial Candle -- Laurel Lane, Victoria, BC, Canada
-      
-Non-civic addresses usually designate landmarks, city infrastructure, or buildings in rural areas
+Non-civic Address | Description
+--- | ---
+Centennial Candle -- Laurel Lane, Victoria, BC, Canada|named water tower on a street in a city
+Hwy 97, Chasm, BC, Canada|numbered hwy as street name
+Cariboo Hwy, Buckhorn, BC|named hwy as street name
+Johnson St Bridge, Victoria, BC, Canada|Named bridge is named after street; Johnson St is street name, Bridge is street qualifier
+Massey Dr Overpass, Prince George, BC|named overpass is named after street
+Great Bear Snowshed, Coquihalla, BC|named snowshed is street name
+
+All named bridges, overpasses, snowsheds, and tunnels are street names or street name + street qualifier as in the case of Johnson St Bridge.
 
 An intersection address is a sequence of the names of all roads that meet at a single intersection in a locality in a subCountry. For example:
 
@@ -53,7 +60,7 @@ streetType|String|Official abbreviation of street type (e.g., Ave, Blvd, Hwy)|No
 isStreetTypePrefix|Boolean| True if street type appears before street name. For example, the street type HWY appears before the streetName 17 in Hwy 17|No|No
 streetDirection|String|Official street direction abbreviation (e.g., N,S,E,W,NE,SE,NW,SW); Prefix and suffix street directions in the same address (e.g., 103 N 52nd St SW) are not allowed|No|No
 isStreetDirectionPrefix|Boolean|true if street direction appears before street name as in SW Marine Dr|No|No
-StreetQualifier|String|ddd|No|no
+StreetQualifier|String|One of Frontage, Bridge, Tunnel, or Snowshed|No|no
 locality|String|Locality name (e.g., Victoria)|Yes|Yes
 subCountryCode|String|ISO 3166-2-CA sub-country code (e.g., BC, YT)|Yes|Yes
 isOfficial|Boolean|True if address is designated as official by the appropriate address authority; False if unofficial (e.g., former address)|Yes|Yes
