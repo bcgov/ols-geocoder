@@ -19,8 +19,7 @@ Sub-building within a building|Emergency Ward, Royal Jubilee Hospital -- 1952 Ba
 Building within a complex|Clearihue Building, University of Victoria -- 3800 Finnerty Rd, Saanich BC, Canada|Clearihue Building is a subsite of University of Victoria
 Room within a building within a complex|Room 100, Clearihue Building, University of Victoria -- 3800 Finnerty Rd, Saanich BC, Canada
 Unit within a building within a complex|Gate 23, Terminal A, Vancouver International Airport -- 3211 Grant McConnachie Way,Richmond,BC, Canada
-Unit within a building within a complex|Unit A301 -- 810 Esquimalt Rd, Esquimalt, BC, Canada| Unit A301 is a subsite and the "A" in A301 is the building name
-
+Unit within a building within a complex|Unit A301 -- 810 Esquimalt Rd, Esquimalt, BC, Canada| Unit A301 is a subsite of building "A" which is a subsite of the complex at 810 Esquimalt Rd
 
 A non-civic address is the address of a site that hasn't been assigned a civic number and includes a site-name assigned to a site assigned to a street in a locality in a subCountry in a country. Here's an example:
 
