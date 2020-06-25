@@ -1,9 +1,9 @@
 # Conceptual Model of Physical Address
 
-Topics: fullAddress as business unique identifier, what is a physical address, difference from mailing address, uses, address fabric designs, addresses in the real world, adding a sense of history, how is address location defined, 
+Topics: fullAddress as business unique identifier, what is a physical address, difference from mailing address, uses, address fabric designs, addresses in the real world, adding a sense of history, how is site location defined, 
 
 ### What is a physical address?
-A physical address is a compound name assigned to a geographic feature connected to a road network. We call such a geographic feature a site. Examples of site include house, building, unit within a building, special gate or entrance to a building, building complex such as a university campus or hospital, mobile home or RV park, campground, water tower, industrial plant, and place of worship. 
+A physical address is a compound name assigned to a geographic feature connected to a road network. We call such a geographic feature a site. Examples of site include house, office or apartment building, university campus, mobile home park, campground, place of worship, and industrial plant.
 
 A physical address can take the form of a civic address, a non-civic address, or an intersection address.
 
@@ -28,7 +28,6 @@ A non-civic address is the address of a site that hasn't been assigned a civic n
       
 Non-civic addresses usually designate landmarks, city infrastructure, or buildings in rural areas
 
-
 An intersection address is a sequence of the names of all roads that meet at a single intersection in a locality in a subCountry. For example:
 
        Dallas Rd and Government St, Victoria, BC, Canada
@@ -36,8 +35,8 @@ An intersection address is a sequence of the names of all roads that meet at a s
 
 From here on in, all examples in this document will assume a country of Canada without showing it.
 
-## Site Address Data Type
-
+## Site Address Elements
+The following table defines each element of a site address.
 
 Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
 ---: | --- | --- | ---| ---
@@ -57,13 +56,6 @@ isStreetTypePrefix|Boolean| True if street type appears before street name. For 
 streetDirection|String|Official street direction abbreviation (e.g., N,S,E,W,NE,SE,NW,SW); Prefix and suffix street directions in the same address (e.g., 103 N 52nd St SW) are not allowed|No|No
 isStreetDirectionPrefix|Boolean|true if street direction appears before street name as in SW Marine Dr|No|No
 locality|String|Locality name (e.g., Victoria)|Yes|Yes
-localityDescriptor|String|type of locality(e.g.,Municipality,Unincorporated)|Yes|Yes
 subCountryCode|String|ISO 3166-2-CA sub-country code (e.g., BC, YT)|Yes|Yes
 isOfficial|Boolean|True if address is designated as official by the appropriate address authority; False if unofficial (e.g., former address)|Yes|Yes
-location|Point|Location of the site; the point must lie within the site or within the parcel containing the site (e.g., a point on the roof of a house just above the front door)|Yes|Yes
-accessLocation|Point|The point at which the site's driveway, walkway, or access road meets the street named in the site's address|Yes|Yes
-centrelineLocation|Point|The nearest point on the road centreline to the site's LOCATION. The road centreline is the centreline of the street named in the site's address. If the named street is divided, the road centreline on the same side as the site should be used|Yes|Yes
-isNonCivic|Boolean|True if address has no assigned civic number; a non-civic address must have a SITE_NAME to be referenced (e.g., Lonely Cabins -- Hwy 20, Stui, BC)|Yes|Yes
-relativeLocation|String|Relative geographic location of a non-civic address (e.g., Lonely Cabins - 43 km west of Stui on N side of Hwy 20)|No|Yes	
-footprintDescriptor|String| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)|No|No
-footprint|OGC WKT|Spatial extent of the site|No|No
+isNonCivic|Boolean|True if address has no assigned civic number; a non-civic address must have a SITE_NAME to be referenced (e.g., Lonely Cabins -- Hwy 20, Stui, BC)|Yes|Yes	
