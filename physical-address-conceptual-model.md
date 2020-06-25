@@ -7,10 +7,39 @@ A physical address is a compound name assigned to a geographic feature connected
 
 A physical address can take the form of a civic address, a non-civic address, or an intersection address.
 
+Addresses of buildings without units
+Addresses of buildings assigned single or multiple civic numbers
+Addresses that have no civic number (landmark or non-civic addresses)
+Addresses of buildings with multiple units
+Addresses of buildings with special entrances (e.g., entrance pavillion, emergency access)
+Addresses of complexes that contain multiple buildings
+Addresses of buildings that contain sub-buildings (e.g., floors, wards, wings)
 
-A civic address is a civic number assigned to a site assigned to a street in a locality in a subCountry. For example:
+
+Nature of Site | Address
+---: | ---
+Single House assigned a civic number|1211 16 St NE, Salmon Arm, BC
+Unit within a building|Unit 401 -- 1225 Douglas St, Victoria, BC
+Special entrance of a industrial complex|Entrance, Delta Port Terminal -- 2 Roberts Bank Rd, Delta, BC
+Sub-building within a building|Emergency Unit, Royal Jubilee Hospital -- 1952 Bay St, Victoria, BC
+Building within a complex|Clearihue Building, University of Victoria -- 3800 Finnerty Rd, Saanich BC
+Room within a building within a complex|Rooms 100, Clearihue Building, University of Victoria -- 3800 Finnerty Rd, Saanich BC
+
+A civic address is a civic number assigned to a site assigned to a street in a locality in a subCountry. For example,
 
      1175 Douglas St, Victoria, BC
+
+A civic address may also contain the name of a subsite of a site assigned a civic number a site as in the following:
+
+     Unit 101 -- 740 Gorge Rd W, Saanich, BC
+
+Unit 101 is the name of a unit within a building assigned a civic address of 740 Gorge Rd W, Saanich, BC
+
+     Unit A301 -- 810 Esquimalt Rd, Esquimalt, BC
+     
+Unit A301 is name of a unit within a building called "A" with an apartment complex assigned a civic address of 810 Esquimalt Rd, Esquimalt, BC
+
+
 
 
 A non-civic address is a site-name assigned to a site assigned to a street in a locality in a subCountry.
