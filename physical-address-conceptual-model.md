@@ -5,7 +5,7 @@ Topics: fullAddress as business unique identifier, what is a physical address, d
 ## What is a physical address?
 A physical address is the compound name of a geographic feature connected to a road network. We call such a geographic feature a site. Examples of site include house, office or apartment building, university campus, mobile home park, campground, place of worship, and industrial plant. A physical address is not a geographic feature; it is the name of one.
 
-A physical address can take the form of a civic address, a non-civic address, or an intersection address.
+A physical address can take the form of a site address or an intersection address. A site address can be a civic address or a non-civic address.
 
 ## Civic Address
 
