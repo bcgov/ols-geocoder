@@ -50,7 +50,7 @@ From here on in, all examples in this document will assume a country of Canada w
 
 ## Anatomy of a site address
 
-The following table defines each element of a site address.
+The following table defines the elements of a site address.
 
 Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
 ---: | --- | --- | ---| ---
