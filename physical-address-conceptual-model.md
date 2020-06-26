@@ -1,6 +1,6 @@
 # Conceptual Model of Physical Address
 
-Topics: fullAddress as business unique identifier, what is a physical address, difference from mailing address, uses, address fabric designs (Shuswap St N/S and Hwy 1 are the quadrant boundaries in Salmon Arm), addresses in the real world, adding a sense of history, how is site location defined, how are sites and parcels related, how are sites related spatially to the earth,
+Topics: fullAddress as business unique identifier, what is a physical address, difference from mailing address, uses, address fabric designs (Hwy 1 is the spine for Shuswap St N/S; together they form the quadrant boundaries in Salmon Arm), addresses in the real world, adding a sense of history, how is site location defined, how are sites and parcels related, how are sites related spatially to the earth,
 
 ## What is a physical address?
 A physical address is the compound name of a geographic feature connected to a road network. We call such a geographic feature a site. Examples of site include house, office or apartment building, university campus, mobile home park, campground, place of worship, and industrial plant. A physical address is not a geographic feature; it is the name of one.
