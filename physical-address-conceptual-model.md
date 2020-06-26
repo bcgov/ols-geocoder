@@ -1,6 +1,6 @@
 # Conceptual Model of Physical Address
 
-Topics: fullAddress as business unique identifier, what is a physical address, difference from mailing address, uses, address fabric designs, addresses in the real world, adding a sense of history, how is site location defined, how are sites and parcels related
+Topics: fullAddress as business unique identifier, what is a physical address, difference from mailing address, uses, address fabric designs, addresses in the real world, adding a sense of history, how is site location defined, how are sites and parcels related, how are sites related spatially to the earth,
 
 ## What is a physical address?
 A physical address is the compound name of a geographic feature connected to a road network. We call such a geographic feature a site. Examples of site include house, office or apartment building, university campus, mobile home park, campground, place of worship, and industrial plant. A physical address is not a geographic feature; it is the name of one.
@@ -44,6 +44,11 @@ An intersection address is a sequence of the names of all roads that meet at a s
 
        Dallas Rd and Government St, Victoria, BC, Canada
        Douglas St and Gorge Rd and Hillside Ave and Government St, Victoria, BC, Canada
+
+A special type of intersection address is a highway exit which is the intersection of a highway and an offramp as in the following example:
+
+       Hwy 1 at Exit 366, Kamloops, BC, Canada
+
 
 From here on in, all examples in this document will assume a country of Canada without showing it.
 
