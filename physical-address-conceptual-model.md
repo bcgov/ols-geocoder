@@ -1,4 +1,4 @@
-# Conceptual Model of Physical Address
+# Conceptual Model of Physical Addressing
 
 Topics: fullAddress as business unique identifier, what is a physical address, difference from mailing address, uses, address fabric designs (Hwy 1 is the spine for Shuswap St N/S; together they form the quadrant boundaries in Salmon Arm), addresses in the real world, adding a sense of history, how is site location defined, how are sites and parcels related, how are sites related spatially to the earth,
 
@@ -78,3 +78,10 @@ locality|String|Locality name (e.g., Victoria)|Yes|Yes
 subCountryCode|String|ISO 3166-2-CA sub-country code (e.g., BC, YT)|Yes|Yes
 isOfficial|Boolean|True if address is designated as official by the appropriate address authority; False if unofficial (e.g., former address)|Yes|Yes
 isNonCivic|Boolean|True if address has no assigned civic number; a non-civic address must have a SITE_NAME to be referenced (e.g., Lonely Cabins -- Hwy 20, Stui, BC)|Yes|Yes	
+
+
+## Differences between Physical Address and Mailing Address
+
+There are several differences between a physical address and a postal address that reflect the different purposes of each. First and foremost, the locality of a physical address is an incorporated municipality or unincorporated populated place. the locality of a mailing address is the postal community assigned by the mailing authority which is Canada Post in BC. For example, the locality of 4440 Happy Valley Rd is Victoria in a mailing address and Metchosin in a physical address. Knowing that 440 Happy Valley Rd is in the postal community of Victoria when Canada Post is sorting and delivering the mail but not very helpful when you are trying to find the Metchosin Fire Hall in your car or on a map since Victoria is over 23km away from Metchosin.
+
+Another difference is that Canada Post doesn't care if a street type or street direction is a predirectional or postdirectional in a mailing address; just that there is a streetDirection, a streetType or both. Again this is very important when trying to find a physical address so there are isStreetTypePrefix and isStreetDirectionPrefix flags included in physical address.
