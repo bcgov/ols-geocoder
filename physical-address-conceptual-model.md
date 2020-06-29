@@ -5,9 +5,9 @@ Topics: fullAddress as business unique identifier, what is a physical address, d
 ## What is a physical address?
 A physical address is the compound name of a geographic feature connected to a road network. We call such a geographic feature a site. Examples of site include house, office or apartment building, university campus, mobile home park, campground, place of worship, and industrial plant. A physical address is not a geographic feature; it is the name of one.
 
-The primary purpose of a physical address is to make it is easy for people and digital devices to find the location of a particular site on the earth or on a map of the earth. To achieve this purpose, physical addresses depend on accurately spelled and visible road-name signs on roads and civic-number plaques on sites. Here areFor an example https://www.summerlandreview.com/news/spellings-inconsistent-on-summerland-street-signs/
+The primary purpose of a physical address is to make it is easy for people and digital devices to find the location of a particular site on the earth or on a map of the earth. To achieve this purpose, physical addresses depend on accurately spelled and visible road-name signs on roads and civic-number plaques on sites. For example, if the name of a site or street on a sign is different from the official name, this may cause [confusion](https://www.summerlandreview.com/news/spellings-inconsistent-on-summerland-street-signs/)
 
-as well as a well-designed designed address fabric. 
+Efficient physical addressing also depends on a well-designed designed address fabric. 
 
 A physical address can take the form of a site address or an intersection address. A site address can be a civic address or a non-civic address.
 
