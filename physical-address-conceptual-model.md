@@ -14,13 +14,13 @@ In a grid layout, streets may be numbered instead of named. Numbered streets all
 
 A grid may also be broken up into quadrants with each quadrant assigned a street directions of NE, NW, SE,or SW. The grid may also be broken up into pairs by a spine street that divides all cross-streets into either E/W or N/S street directions.[Salmon Arm](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=50.69959,-119.28523) is a good example of quadrant street layout. Shuswap St and the Trans-Canada Hwy divide Salmon Arm into four quadrants. In each quadrant, streets are generally numbered, not named. This means there are up to four street with the same name, one in each quadrant. In Salmon Arm, there are four 10th Ave's and three 1st Ave's (there is no 1st Ave NW). You might notice that Shuswap St is divided into N and S by the TCH but that doesn't make the TCH a pair spine because it doesn't divide any other streets in two.
 
-While quadrant and pair patterns have a certain logic to them, they can cause great confusion because a single street direction error can lead you to a site miles from the correct location. For examplewhere mean ending up in the ex you need to be
+While quadrant and pair patterns have a certain appeal to urban planners, they can cause great confusion because a single street direction error can lead you to a site miles from the correct location. For example, 
 
-2. Star
+     5860 10 Ave NW, Salmon Arm, BC
+     5860 10 Ave NE, Salmon Arm, BC
+     
+have only a single character difference between them but they are over twelve kilometers away from each other.
 
-rules for street naming: numbering and proper names. In numbering, streets are
-
-https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=50.69959,-119.28523
 
 A physical address can take the form of a site address or an intersection address. A site address can be a civic address or a non-civic address.
 
