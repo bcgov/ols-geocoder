@@ -1,14 +1,26 @@
 # Conceptual Model of Physical Addressing
 
-Topics: fullAddress as business unique identifier, what is a physical address, difference from mailing address, uses, address fabric designs (Hwy 1 is the spine for Shuswap St N/S; together they form the quadrant boundaries in Salmon Arm), addresses in the real world, adding a sense of history, how is site location defined, how are sites and parcels related, how are sites related spatially to the earth,
+Topics: fullAddress as business unique identifier,  address fabric designs (Hwy 1 is the spine for Shuswap St N/S; together they form the quadrant boundaries in Salmon Arm), addresses in the real world, adding a sense of history, how is site location defined, how are sites and parcels related, how are sites related spatially to the earth,
 
 ## What is a physical address?
 A physical address is the compound name of a geographic feature connected to a road network. We call such a geographic feature a site. Examples of site include house, office or apartment building, university campus, mobile home park, campground, place of worship, and industrial plant. A physical address is not a geographic feature; it is the name of one.
 
-The primary purpose of a physical address is to make it is easy for people and digital devices to find the location of a particular site on the earth or on a map of the earth. To achieve this purpose, physical addresses depend on accurately spelled and visible road-name signs on roads and civic-number plaques on sites. For example, its hard to find a particular building if there is no street sign. Another example is a house on a corner lot that has a plaque of the correct civic number mounted on an exterior wall facing the wrong street. This has caused significant, needless delays for emergency response vehicles in the past.  Other examples include [mispelled names on street signs or wrong site names on site signs](https://www.summerlandreview.com/news/spellings-inconsistent-on-summerland-street-signs/).
+The primary purpose of a physical address is to make it is easy for people and digital devices to find the location of a particular site on the earth or on a map of the earth. To achieve this purpose, physical addresses depend on accurately spelled and visible road-name signs on roads and civic-number plaques on sites. For example, its hard to find a particular building if there is no street sign. Another example is a house on a corner lot that has a plaque of the correct civic number mounted on an exterior wall facing the wrong street. This has caused more than one emergency response vehicle needless delay.  Other examples include [mispelled names on street signs or wrong site names on site signs](https://www.summerlandreview.com/news/spellings-inconsistent-on-summerland-street-signs/).
 
 
-Efficient physical addressing also depends on a well-designed designed address fabric. 
+Efficient physical addressing also depends on a well-designed address fabric. An address fabric is the set of patterns applied to the layout and naming of civic streets. There are three common patterns for street layout: grid, star, and tree. In the grid layout, streets follow evenly-spaced, straight lines and intersect at right-angles. In the star layout, streets form a spider web of radiating lines intersected by evenly spaced cross-streets. In the tree layout, many smaller streets converge to a single trunk the connects to a main artery. This is the dominant pattern of urban suburbs. A single urban area typically has multiple layout patterns reflecting different phases of its growth.
+
+In a grid layout, streets may be numbered instead of named. Numbered streets allow you to estimate the number of blocks you might be from a given civic address. Parts of Vancouver are laid out in a numbered grid like [here](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=49.26301,-123.10500). This area also contains a pair street layout with Main St acting as the spine that cuts all cross-streets into E and W pairs (e.g., E 7th Ave, W 7th Ave).
+
+A grid may also be broken up into quadrants with each quadrant assigned a street directions of NE, NW, SE,or SW. The grid may also be broken up into pairs by a spine street that divides all cross-streets into either E/W or N/S street directions.[Salmon Arm](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=50.69959,-119.28523) is a good example of quadrant street layout. Shuswap St and the Trans-Canada Hwy divide Salmon Arm into four quadrants. In each quadrant, streets are generally numbered, not named. This means there are up to four street with the same name, one in each quadrant. In Salmon Arm, there are four 10th Ave's and three 1st Ave's (there is no 1st Ave NW). You might notice that Shuswap St is divided into N and S by the TCH but that doesn't make the TCH a pair spine because it doesn't divide any other streets in two.
+
+While quadrant and pair patterns have a certain logic to them, they can cause great confusion because a single street direction error can lead you to a site miles from the correct location. For examplewhere mean ending up in the ex you need to be
+
+2. Star
+
+rules for street naming: numbering and proper names. In numbering, streets are
+
+https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=50.69959,-119.28523
 
 A physical address can take the form of a site address or an intersection address. A site address can be a civic address or a non-civic address.
 
