@@ -24,7 +24,7 @@ have only a single character difference between them but they are over twelve ki
 ## Types of physical address
 A physical address can take the form of a site address or an intersection address. A site address can be a civic address or a non-civic address.
 
-## Civic Address
+### Civic Address
 A civic address includes a civic number assigned by a local government to a site assigned to a street in a locality in a subCountry in a Country. A civic address may also include the name of a site and the names of its subsites. Here are some examples of civic address:
 
 
@@ -39,8 +39,7 @@ Room within a building within a complex|Room 100, Clearihue Building, University
 Unit within a building within a complex|Gate 23, Terminal A, Vancouver International Airport -- 3211 Grant McConnachie Way, Richmond,BC, Canada|Gate 23 is a subsite of Terminal A which is a subsite of Vancouver International Airport
 Unit within a building within a complex|Unit A301 -- 810 Esquimalt Rd, Esquimalt, BC, Canada| Unit A301 is a subsite of Building A which is a subsite of the complex at 810 Esquimalt Rd
 
-## Non-civic Address
-
+### Non-civic Address
 A non-civic address is the address of a site that hasn't been assigned a civic number and includes a site-name assigned to a site assigned to a street in a locality in a subCountry in a country. Non-civic addresses usually designate landmarks, city infrastructure, or buildings in rural areas. Some non-civic addresses are simply streets within a locality. Here are some examples of non-civic address:
 
 Non-civic Address | Description
@@ -54,8 +53,7 @@ Great Bear Snowshed, Coquihalla, BC|named snowshed is street name
 
 All named bridges, overpasses, snowsheds, and tunnels are street names or street name + street qualifier as in the case of Johnson St Bridge.
 
-## Intersection Address
-
+### Intersection Address
 An intersection address is a sequence of the names of all roads that meet at a single intersection in a locality in a subCountry. For example:
 
        Dallas Rd and Government St, Victoria, BC, Canada
@@ -96,9 +94,9 @@ isOfficial|Boolean|True if address is designated as official by the appropriate 
 isNonCivic|Boolean|True if address has no assigned civic number; a non-civic address must have a SITE_NAME to be referenced (e.g., Lonely Cabins -- Hwy 20, Stui, BC)|Yes|Yes	
 
 
-## Differences between Physical Address and Mailing Address
+### Differences between Physical Address and Mailing Address
 
-There are several differences between a physical address and a postal address that reflect their different purposes. First and foremost, the locality of a physical address is an incorporated municipality or unincorporated populated place. The locality of a mailing address is the postal community assigned by the mailing authority, which in BC, is Canada Post. For example, the locality of 4440 Happy Valley Rd is the postal community of Victoria in a mailing address and the Municipality of Metchosin in a physical address. Knowing that 440 Happy Valley Rd is in the postal community of Victoria helps Canada Post collect, sort, and deliver the mail but it's not very helpful when you are trying to find the Metchosin Fire Hall in your car or on a map since Victoria is over 23km away from Metchosin.
+There are several differences between a physical address and a mailing address that reflect their different purposes. First and foremost, the locality of a physical address is an incorporated municipality or unincorporated populated place. The locality of a mailing address is the postal community assigned by the mailing authority, which in BC, is Canada Post. For example, the locality of 4440 Happy Valley Rd is the postal community of Victoria in a mailing address and the Municipality of Metchosin in a physical address. Knowing that 440 Happy Valley Rd is in the postal community of Victoria helps Canada Post collect, sort, and deliver the mail but it's not very helpful when you are trying to find the Metchosin Fire Hall in your car or on a map since Victoria is over 23km away from Metchosin.
 
 Mailing service addresses such as PO Boxes, Rural Routes, General Delivery are equally unhelpful when looking for a particular house, business, etc so are not recognized as valid elements of a physical address. For example, Main Branch, Victoria Public Library , PO BOX 320, Victoria, BC will, at best be understood as the physical address, Victoria, BC since Victoria is a known municipality in BC. However, this won't help you find the location of the main branch of the library.
 
