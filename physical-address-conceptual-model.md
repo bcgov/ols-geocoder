@@ -10,22 +10,21 @@ The primary purpose of a physical address is to make it is easy for people and d
 
 Efficient physical addressing also depends on a well-designed address fabric. An address fabric is the set of patterns applied to the layout and naming of civic streets. There are three common patterns for street layout: grid, star, and tree. In the grid layout, streets follow evenly-spaced, straight lines and intersect at right-angles. In the star layout, streets form a spider web of radiating lines intersected by evenly spaced cross-streets. In the tree layout, many smaller streets converge to a single trunk the connects to a main artery. This is the dominant pattern of urban suburbs. A single urban area typically has multiple layout patterns reflecting different phases of its growth.
 
-In a grid layout, streets may be numbered instead of named. Numbered streets allow you to estimate the number of blocks you might be from a given civic address. Parts of Vancouver are laid out in a numbered grid like [here](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=49.26301,-123.10500). This area also contains a pair street layout with Main St acting as the spine that cuts all cross-streets into E and W pairs (e.g., E 7th Ave, W 7th Ave).
+In a grid layout, streets may be numbered instead of named. Numbered streets allow you to estimate the number of blocks you might be from a given civic address. Parts of Vancouver are laid out in a numbered grid like [here](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=49.26301,-123.10500). This area also contains a pair street layout with Main St acting as the spine that cuts cross-streets 1st through 69th into E and W pairs (e.g., E 7th Ave, W 7th Ave).
 
-A grid may also be broken up into quadrants with each quadrant assigned a street directions of NE, NW, SE,or SW. The grid may also be broken up into pairs by a spine street that divides all cross-streets into either E/W or N/S street directions.[Salmon Arm](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=50.69959,-119.28523) is a good example of quadrant street layout. Shuswap St and the Trans-Canada Hwy divide Salmon Arm into four quadrants. In each quadrant, streets are generally numbered, not named. This means there are up to four street with the same name, one in each quadrant. In Salmon Arm, there are four 10th Ave's and three 1st Ave's (there is no 1st Ave NW). You might notice that Shuswap St is divided into N and S by the TCH but that doesn't make the TCH a pair spine because it doesn't divide any other streets in two.
+A grid may also be broken up into quadrants with each quadrant assigned a street directions of NE, NW, SE,or SW.[Salmon Arm](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=50.69959,-119.28523) is a good example of quadrant street layout. Shuswap St and the Trans-Canada Hwy divide Salmon Arm into four quadrants. In each quadrant, streets are generally numbered, not named. This means there are up to four street with the same name, one in each quadrant. In Salmon Arm, there are four 10th Ave's and three 1st Ave's (there is no 1st Ave NW). You might notice that Shuswap St is divided into N and S by the TCH but that doesn't make the TCH a pair spine because it doesn't divide any other streets in two.
 
-While quadrant and pair patterns have a certain appeal to urban planners, they can cause great confusion because a single street direction error can lead you to a site miles from the correct location. For example, 
+While quadrant and pair patterns have a certain appeal to urban planners, they can cause great confusion because a single street direction error can lead you or your delivery person to a site miles from the correct location. For example, 
 
      5860 10 Ave NW, Salmon Arm, BC
      5860 10 Ave NE, Salmon Arm, BC
      
 have only a single character difference between them but they are over twelve kilometers away from each other.
 
-
+## Types of physical address
 A physical address can take the form of a site address or an intersection address. A site address can be a civic address or a non-civic address.
 
 ## Civic Address
-
 A civic address includes a civic number assigned by a local government to a site assigned to a street in a locality in a subCountry in a Country. A civic address may also include the name of a site and the names of its subsites. Here are some examples of civic address:
 
 
