@@ -177,6 +177,7 @@ public class GeocoderConfig {
 				logger.warn("Unparseable configuration parameter '{}' with value '{}'", name, value);
 			}
 		});
+		configStore.close();
 	}
 	
 	public int getBaseSrsCode() {
@@ -477,6 +478,11 @@ public class GeocoderConfig {
 		matchFaultPenalties.put("ADDRESS.missing", new MatchFault(
 				MatchFault.MatchElement.ADDRESS, "missing", 12));
 
+		// default all roadClasses to 3m per lane + 1m base
+		for(RoadClass rc : RoadClass.values()) {
+			roadLaneWidths.put(rc, 3f);
+			roadBaseWidths.put(rc, 1f);
+		}
 		roadLaneWidths.put(RoadClass.ALLEYWAY, 2.5f);
 		roadBaseWidths.put(RoadClass.ALLEYWAY, 0f);
 		roadLaneWidths.put(RoadClass.ARTERIAL_MAJOR, 3f);
@@ -487,7 +493,7 @@ public class GeocoderConfig {
 		roadBaseWidths.put(RoadClass.COLLECTOR_MAJOR, 0.5f);
 		roadLaneWidths.put(RoadClass.COLLECTOR_MINOR, 3f);
 		roadBaseWidths.put(RoadClass.COLLECTOR_MINOR, 0.5f);
-		roadBaseWidths.put(RoadClass.FERRY, 0f);
+		roadLaneWidths.put(RoadClass.FERRY, 0f);
 		roadBaseWidths.put(RoadClass.FERRY, 0f);
 		roadLaneWidths.put(RoadClass.FREEWAY, 3f);
 		roadBaseWidths.put(RoadClass.FREEWAY, 2f);
@@ -501,14 +507,14 @@ public class GeocoderConfig {
 		roadBaseWidths.put(RoadClass.LOCAL, 1f);
 		roadLaneWidths.put(RoadClass.RAMP, 3f);
 		roadBaseWidths.put(RoadClass.RAMP, 2f);
-		roadLaneWidths.put(RoadClass.RUNWAY, 1f);
-		roadBaseWidths.put(RoadClass.RUNWAY, 0f);
 		roadLaneWidths.put(RoadClass.RECREATION, 3f);
 		roadBaseWidths.put(RoadClass.RECREATION, 1f);
 		roadLaneWidths.put(RoadClass.RESOURCE, 2.5f);
 		roadBaseWidths.put(RoadClass.RESOURCE, 0f);
 		roadLaneWidths.put(RoadClass.RESTRICTED, 3f);
 		roadBaseWidths.put(RoadClass.RESTRICTED, 0.5f);
+		roadLaneWidths.put(RoadClass.RUNWAY, 1f);
+		roadBaseWidths.put(RoadClass.RUNWAY, 0f);
 		roadLaneWidths.put(RoadClass.SERVICE, 3f);
 		roadBaseWidths.put(RoadClass.SERVICE, 0.5f);
 		roadLaneWidths.put(RoadClass.STRATA, 3f);
@@ -517,8 +523,6 @@ public class GeocoderConfig {
 		roadBaseWidths.put(RoadClass.TRAIL, 0f);
 		roadLaneWidths.put(RoadClass.TRAIL_RECREATION, 1f);
 		roadBaseWidths.put(RoadClass.TRAIL_RECREATION, 0f);
-		roadLaneWidths.put(RoadClass.UNKNOWN, 3f);
-		roadBaseWidths.put(RoadClass.UNKNOWN, 1f);
 		
 		roadDividerWidths.put(DividerType.HARD, 1f);
 		roadDividerWidths.put(DividerType.SOFT, 2f);

@@ -13,7 +13,7 @@
   <h2>Import Failed</h2>
   <p><b>Errors</b></p>
   <ul>
-  <c:forEach var="error" items="${configuration.errors}">
+  <c:forEach var="error" items="${errors}">
     <li>${error}</li>
   </c:forEach>  
   </ul>
