@@ -16,14 +16,12 @@
 package ca.bc.gov.ols.geocoder.datasources;
 
 import java.lang.reflect.Constructor;
-import java.util.Properties;
 
+import org.locationtech.jts.geom.GeometryFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
-
-import org.locationtech.jts.geom.GeometryFactory;
 
 public class GeocoderDataSourceFactory {
 	private static final Logger logger = LoggerFactory.getLogger(GeocoderConfig.LOGGER_PREFIX

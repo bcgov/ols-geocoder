@@ -320,9 +320,6 @@ public class GeocoderDataStore {
 		TIntObjectHashMap<List<AccessPoint>> accessPointMap = buildAccessPointAndSiteMaps(wordMapBuilder, siteIdMap);
 		streetNameTrie = buildStreetNameTrie(wordMapBuilder, accessPointMap, intersectionIdMap, electoralAreaIdMap);
 		
-		// should be done reading from config now
-		dataSource.getConfig().close();
-		
 		// loop over all intersections and minimize their arraySets
 		for(StreetIntersection i : intersectionIdMap.valueCollection()) {
 			i.trimToSize();
