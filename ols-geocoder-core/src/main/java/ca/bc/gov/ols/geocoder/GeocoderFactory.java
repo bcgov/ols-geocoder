@@ -91,6 +91,7 @@ public class GeocoderFactory {
 	
 	public static Properties getBootstrapConfigFromEnvironment() {
 		Properties bootstrapConfig = new Properties();
+		bootstrapConfig.setProperty("OLS_CASSANDRA_APP_ID", "BGEO");
 		Optional.ofNullable(System.getenv("OLS_FILE_CONFIGURATION_URL")).ifPresent(e -> bootstrapConfig.setProperty("OLS_FILE_CONFIGURATION_URL", e));
 		bootstrapConfig.setProperty("OLS_CASSANDRA_CONTACT_POINT", Optional.ofNullable(System.getenv("OLS_CASSANDRA_CONTACT_POINT")).orElse("cassandra"));
 		bootstrapConfig.setProperty("OLS_CASSANDRA_LOCAL_DATACENTER", Optional.ofNullable(System.getenv("OLS_CASSANDRA_LOCAL_DATACENTER")).orElse("datacenter1"));
