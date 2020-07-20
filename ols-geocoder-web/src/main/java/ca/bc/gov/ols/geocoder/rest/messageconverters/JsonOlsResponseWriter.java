@@ -143,7 +143,7 @@ public class JsonOlsResponseWriter implements OlsResponseWriter {
 			return "\"\"";
 		}
 		field = OlsResponseWriter.formatDate(field);
-		if(!forceString && field.toString().matches("\\A-?[0-9]+\\.?[0-9]*\\z")) {
+		if(!forceString && field.toString().matches("\\A-?(0|[1-9][0-9]*)(\\.[0-9]*)?\\z")) {
 			// if numeric, return as is
 			return field.toString();
 		}

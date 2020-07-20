@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 
 import ca.bc.gov.ols.config.ConfigDifference;
 import ca.bc.gov.ols.config.ConfigurationComparison;
-import ca.bc.gov.ols.config.ConfigurationParameter;
 
 public class GeocoderConfigurationComparison extends ConfigurationComparison {
 	
@@ -37,11 +36,7 @@ public class GeocoderConfigurationComparison extends ConfigurationComparison {
 	private List<ConfigDifference<LocalityMapping>> localityMappingDiffs;
 	
 	public GeocoderConfigurationComparison(GeocoderConfigurationStore curConfig, GeocoderConfigurationStore otherConfig) {
-		List<ConfigurationParameter> curConfigParams = curConfig.getConfigParams().collect(Collectors.toList());
-		curConfigParamCount = curConfigParams.size();
-		List<ConfigurationParameter> otherConfigParams = otherConfig.getConfigParams().collect(Collectors.toList());
-		otherConfigParamCount = otherConfigParams.size();
-		configParamDiffs = diffLists(curConfigParams, otherConfigParams);
+		super(curConfig, otherConfig);
 		
 		List<AbbreviationMapping> curAbbrevMappings = curConfig.getAbbrevMappings().collect(Collectors.toList());
 		curAbbrevMappingCount = curAbbrevMappings.size();
