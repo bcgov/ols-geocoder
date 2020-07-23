@@ -39,7 +39,7 @@ import ca.bc.gov.ols.util.GeomParseUtil;
 import gnu.trove.map.hash.THashMap;
 
 public class GeocoderConfig {
-	public static final String VERSION = "4.0.1";
+	public static final String VERSION = "4.0.2";
 	public static final String LOGGER_PREFIX = "BGEO.";
 	public static final PrecisionModel BASE_PRECISION_MODEL = new PrecisionModel(1000);
 	private static final Logger logger = LoggerFactory.getLogger(LOGGER_PREFIX
