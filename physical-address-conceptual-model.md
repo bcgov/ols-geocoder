@@ -36,41 +36,38 @@ A civic address includes a civic number assigned by a local government to a site
 
 Nature of Site | Civic Address | Notes
 ---: | --- | ---
-Single House assigned a civic number|1211 16 St NE, Salmon Arm, BC, Canada| 1211 is the civic number assigned to a particular house on a street called 16 St NE in the City of Salmon Arm in the Province of British Columbia.
-Unit within a building|Unit 401 -- 1225 Douglas St, Victoria, BC, Canada| Unit 401 is a subsite of an office building assigned a civic number of 1225 on a street called Douglas St.
-Special entrance of a industrial complex|Entrance, Delta Port Terminal -- 2 Roberts Bank Rd, Delta, BC, Canada|Entrance is a subsite of Delta Port Terminal
-Sub-building within a building|Emergency Ward, Royal Jubilee Hospital -- 1952 Bay St, Victoria, BC, Canada|Emergency Ward is a subsite of Royal Jubilee Hospital
-Building within a complex|Clearihue Building, University of Victoria -- 3800 Finnerty Rd, Saanich BC, Canada|Clearihue Building is a subsite of University of Victoria
-Room within a building within a complex|Room 100, Clearihue Building, University of Victoria -- 3800 Finnerty Rd, Saanich BC, Canada| Room 100 is a subsite of Clearihue Building which is a subsite of University of Victoria
-Unit within a building within a complex|Gate 23, Terminal A, Vancouver International Airport -- 3211 Grant McConnachie Way, Richmond,BC, Canada|Gate 23 is a subsite of Terminal A which is a subsite of Vancouver International Airport
-Unit within a building within a complex|Unit A301 -- 810 Esquimalt Rd, Esquimalt, BC, Canada| Unit A301 is a subsite of Building A which is a subsite of the complex at 810 Esquimalt Rd
+Single House assigned a civic number|1211 16 St NE, Salmon Arm, BC, CA| 1211 is the civic number assigned to a particular house on a street called 16 St NE in the City of Salmon Arm in the Province of British Columbia in the country of Canada.
+Unit within a building|Unit 401 -- 1225 Douglas St, Victoria, BC, CA| Unit 401 is a subsite of an office building assigned a civic number of 1225 on a street called Douglas St.
+Special entrance of a industrial complex|Entrance, Delta Port Terminal -- 2 Roberts Bank Rd, Delta, BC, CA|Entrance is a subsite of Delta Port Terminal -- 2 Roberts Bank Rd, Delta, BC, CA
+Sub-building within a building|Emergency Ward, Royal Jubilee Hospital -- 1952 Bay St, Victoria, BC, CA|Emergency Ward is a subsite of Royal Jubilee Hospital
+Building within a complex|Clearihue Building, University of Victoria -- 3800 Finnerty Rd, Saanich BC, CA|Clearihue Building is a subsite of University of Victoria
+Room within a building within a complex|Room 100, Clearihue Building, University of Victoria -- 3800 Finnerty Rd, Saanich BC, CA| Room 100 is a subsite of Clearihue Building which is a subsite of University of Victoria
+Unit within a building within a complex|Gate 23, Terminal A, Vancouver International Airport -- 3211 Grant McConnachie Way, Richmond, BC, CA|Gate 23 is a subsite of Terminal A which is a subsite of Vancouver International Airport
+Unit within a building within a complex|Unit A301 -- 810 Esquimalt Rd, Esquimalt, BC, CA| Unit A301 is a subsite of Building A which is a subsite of the complex at 810 Esquimalt Rd
 
 ### Non-civic Address
 A non-civic address is the address of a site that hasn't been assigned a civic number and includes a site-name assigned to a site assigned to a street in a locality in a subCountry in a country. Non-civic addresses usually designate landmarks, city infrastructure, or buildings in rural areas. Some non-civic addresses are simply streets within a locality. Here are some examples of non-civic address:
 
 Non-civic Address | Description
 --- | ---
-Centennial Candle -- Laurel Lane, Victoria, BC, Canada|named water tower on a street in a city
-Hwy 97, Chasm, BC, Canada|numbered hwy as street name
-Cariboo Hwy, Buckhorn, BC|named hwy as street name
-Johnson St Bridge, Victoria, BC, Canada|Named bridge is named after street; Johnson St is street name, Bridge is street qualifier
-Massey Dr Overpass, Prince George, BC|named overpass is named after street
-Great Bear Snowshed, Coquihalla, BC|named snowshed is street name
+Centennial Candle -- Laurel Lane, Victoria, BC, CA|named water tower on a street in a city
+Hwy 97, Chasm, BC, CA|numbered hwy as street name
+Cariboo Hwy, Buckhorn, BC, CA|named hwy as street name
+Johnson St Bridge, Victoria, BC, CA|Named bridge is named after street; Johnson St is street name, Bridge is street qualifier
+Massey Dr Overpass, Prince George, BC, CA|named overpass is named after street
+Great Bear Snowshed, Coquihalla, BC, CA|named snowshed is street name
 
 All named bridges, overpasses, snowsheds, and tunnels are street names or street name + street qualifier as in the case of Johnson St Bridge.
 
 ### Intersection Address
 An intersection address is a sequence of the names of all roads that meet at a single intersection in a locality in a subCountry. For example:
 
-       Dallas Rd and Government St, Victoria, BC, Canada
-       Douglas St and Gorge Rd and Hillside Ave and Government St, Victoria, BC, Canada
+       Dallas Rd and Government St, Victoria, BC, CA
+       Douglas St and Gorge Rd and Hillside Ave and Government St, Victoria, BC, CA
 
 A special type of intersection address is a highway exit which is the intersection of a highway and an offramp as in the following example:
 
-       Hwy 1 at Exit 366, Kamloops, BC, Canada
-
-
-From here on in, all examples in this document will assume a country of Canada without showing it.
+       Hwy 1 at Exit 366, Kamloops, BC, CA
 
 
 ## Anatomy of a site address
