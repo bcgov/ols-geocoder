@@ -1,5 +1,6 @@
-# BC Physical Address Exchange Schema Draft v0.5
+# BC Physical Address Exchange Schema Draft v0.6
 ### Change history 
+v0.6 July 28, 2020 - improved Example 6 (Special entrances) 
 v0.5 June 15, 2020 - eliminated option to use ExtraPoints to define an unlimited number of additional coordinate locations for a given site. Extra site and access points can be added to a given site using subsites; added uses cases to handle emergency entrances, etc. as subsites, each with its own sitePoint and accessPoint.
 
 v0.4 - added SUPER_SITE_YOURID to schema, changed schema to allow any number of extra points, improved examples, added example of single apartment building, improved readability, fixed formatting of schema definition table
@@ -364,10 +365,10 @@ PROVINCE_CODE|BC
 
 ## Example #6 - A building with an emergency lane and door
 
-Assume the HR MacMillan Space Centre in Vancouver has an emergency access door and an adjacent emergency access lane that runs to Chestnut St, here are the addresses to be exchanged:
+Buildings may have special entrances for emergency access or service staff. These can be treated as subsites of the main building. For example, assume the HR MacMillan Space Centre in Vancouver has an emergency entrance with an adjacent emergency access lane that runs to Chestnut St, here are the site and subsite addresses to be exchanged:
 
 HR MacMillan Space Centre -- 1100 Chestnut St, Vancouver, BC
-Emergency Access, HR MacMillan Space Centre -- 1100 Chestnut St, Vancouver, BC
+Emergency Entrance, HR MacMillan Space Centre -- 1100 Chestnut St, Vancouver, BC
 
 The following exchange data records will represent the above addresses:
 
@@ -383,7 +384,7 @@ PROVINCE_CODE|BC
 
 Field | Value
 ----:|----
-SITE_NAME|Emergency Access
+SITE_NAME|Emergency Entrance
 SUPER_FULL_SITE_DESCRIPTOR|HR MacMillan Space Centre
 CIVIC_NUMBER|1100
 STREET_NAME|Chestnut
