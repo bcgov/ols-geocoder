@@ -1,9 +1,11 @@
 # Conceptual Model of Physical Addressing
 
-Topics: fullAddress as business unique identifier,  address fabric designs (Hwy 1 is the spine for Shuswap St N/S; together they form the quadrant boundaries in Salmon Arm), addresses in the real world, adding a sense of history, how is site location defined, how are sites and parcels related, how are sites related spatially to the earth,
 
 ## What is a physical address?
 A physical address is the compound name of a geographic feature connected to a road network. We call such a geographic feature a site. Examples of site include house, office or apartment building, university campus, mobile home park, campground, place of worship, and industrial plant. A physical address is not a geographic feature; it is the name of one. That name includes a site's name or civic number, the street block it is connected to, the locality that contains the block, the province or territory that contains the locality, and the country that contains the province or territory.
+
+
+SITE ---- STREET ---- LOCALITY ---- SUBCOUNTRY ---- COUNTRY
 
 A physical address makes it is easy for people and digital devices to find the location of a particular site on the earth or on a map of the earth. However it only works if the real sites and road network on the Earth have complete and accurate signage. For example, it's hard to drive to a particular building if it has no civic number plaque on it or if there is no street sign. Another example is a house on a corner lot that has a plaque of the correct civic number mounted on an exterior wall facing the wrong street. This has caused more than one emergency response vehicle needless delay.  Other examples include [mispelled names on street signs or wrong site names on site signs](https://www.summerlandreview.com/news/spellings-inconsistent-on-summerland-street-signs/).
 
@@ -100,3 +102,6 @@ There are several differences between a physical address and a mailing address t
 Mailing service addresses such as PO Boxes, Rural Routes, General Delivery are equally unhelpful when looking for a particular house, business, etc so are not recognized as valid elements of a physical address. For example, Main Branch, Victoria Public Library , PO BOX 320, Victoria, BC will, at best, be understood as the physical address, Victoria, BC since Victoria is a known municipality in BC. However, this won't help you find the location of the main branch of the library.
 
 Another difference is that Canada Post doesn't care if a street type or street direction is a predirectional or postdirectional in a mailing address; just that there is a streetDirection, a streetType or both. Again this is very important when trying to find a physical address so there are isStreetTypePrefix and isStreetDirectionPrefix flags included in physical address.
+
+### Topics
+fullAddress as business unique identifier,  address fabric designs (Hwy 1 is the spine for Shuswap St N/S; together they form the quadrant boundaries in Salmon Arm), addresses in the real world, adding a sense of history, how is site location defined, how are sites and parcels related, how are sites related spatially to the earth,
