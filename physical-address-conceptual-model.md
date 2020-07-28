@@ -96,6 +96,7 @@ isStreetDirectionPrefix|Boolean|true if street direction appears before street n
 StreetQualifier|String|One of Frontage, Bridge, Tunnel, or Snowshed|No|no
 locality|String|Locality name (e.g., Victoria)|Yes|Yes
 subCountryCode|String|ISO 3166-2-CA sub-country code (e.g., BC, YT)|Yes|Yes
+countryCode|String|ISO 3166-1-alpha-2 country code (e.g., CA)|Yes|Yes
 isOfficial|Boolean|True if address is designated as official by the appropriate address authority; False if unofficial (e.g., former address)|Yes|Yes
 isNonCivic|Boolean|True if address has no assigned civic number; a non-civic address must have a SITE_NAME to be referenced (e.g., Lonely Cabins -- Hwy 20, Stui, BC)|Yes|Yes	
 
