@@ -106,5 +106,5 @@ Mailing service addresses such as PO Boxes, Rural Routes, General Delivery are e
 
 Another difference is that Canada Post doesn't care if a street type or street direction is a predirectional or postdirectional in a mailing address; just that there is a streetDirection, a streetType or both. Again this is very important when trying to find a physical address so there are isStreetTypePrefix and isStreetDirectionPrefix flags included in physical address.
 
-### Topics to be covered
+### Topics to do
 fullAddress as business unique identifier, addresses in the real world, adding a sense of history, how is site location defined, how are sites and parcels related, how are sites related spatially to the earth,
