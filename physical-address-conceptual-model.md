@@ -2,7 +2,7 @@
 
 
 ## What is a physical address?
-A physical address is the compound name of a geographic feature connected to a road network. We call such a geographic feature a site. Examples of site include house, office or apartment building, university campus, mobile home park, campground, place of worship, and industrial plant. A physical address is not a geographic feature; it is the name of one. That name includes a site's name or civic number, the street block it is connected to, the locality that contains the block, the province or territory that contains the locality, and the country that contains the province or territory. Here is a schematic (or data model diagram) of the geographic features that contribute their names to a physical address:
+A physical address is the compound name of a geographic feature connected to a road network. We call such a geographic feature a Site. Examples of Site include house, office or apartment building, university campus, mobile home park, campground, place of worship, and industrial plant. A physical address is not a geographic feature; it is the name of one. That name includes a site's name or civic number, the street block it is connected to, the locality that contains the block, the province or territory that contains the locality, and the country that contains the province or territory. Here is a schematic (or data model diagram) of the geographic features that contribute their names to a physical address:
 
 
 SITE ----- STREET ----- LOCALITY ----- SUBCOUNTRY ----- COUNTRY
