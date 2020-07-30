@@ -3,6 +3,12 @@
 Check out the Geocoder release [roadmap](https://github.com/bcgov/ols-geocoder/blob/gh-pages/roadmap.md)
 For detailed API release notes, see the [BC Geocoder Developer Guide](https://github.com/bcgov/api-specs/blob/master/geocoder/geocoder-developer-guide.md)
 
+## July 28, 2020
+- BC Address Geocoder version 4.0.2 released.
+- Batch Geocoder version 4.0.2 released.
+- Improved handling of new road classes
+- Address data updated to reflect sources available as of July 2020.
+
 ## June 24, 2020
 - BC Batch Address Geocoder version 4.0.1 released
 - API is backward compatible with version 3.4.2. with one exception:
