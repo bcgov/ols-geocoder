@@ -5,11 +5,10 @@
 A physical address is the compound name of a geographic feature connected to a road network. We call such a geographic feature a Site. Examples of Site include house, office or apartment building, university campus, mobile home park, campground, place of worship, and industrial plant. A physical address is not a geographic feature; it is the name of one. That name includes a site's name or civic number, the street block it is connected to, the locality that contains the block, the province or territory that contains the locality, and the country that contains the province or territory. Here is a schematic (or data model diagram) of the geographic features that contribute their names to a physical address:
 
 
-SITE ------------------ STREET ----- LOCALITY ----- SUBCOUNTRY ----- COUNTRY
-       (civic-number)
+SITE ----- STREET ----- LOCALITY ----- SUBCOUNTRY ----- COUNTRY
   
 
-The above diagram says that a site on a street may be assigned a civic number, a street belongs to a locality, a locality belongs to a subcountry (e.g., a province or territory), and a subcountry belongs to a country.
+The above diagram says that a site is assigned to a street, a street belongs to a locality, a locality belongs to a subcountry (e.g., a province or territory), and a subcountry belongs to a country. A site assigned to a street may optionally be assigned a civic number.
 
 A physical address makes it is easy for people and digital devices to find the location of a particular site on the earth or on a map of the earth. However it only works if the real sites and road network on the Earth have complete and accurate signage. For example, it's hard to drive to a particular building if it has no civic number plaque on it or if there is no street sign. Another example is a house on a corner lot that has a plaque of the correct civic number mounted on an exterior wall facing the wrong street. This has caused more than one emergency response vehicle needless delay.  Other examples include [mispelled names on street signs or wrong site names on site signs](https://www.summerlandreview.com/news/spellings-inconsistent-on-summerland-street-signs/).
 
