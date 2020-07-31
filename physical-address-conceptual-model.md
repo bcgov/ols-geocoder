@@ -6,8 +6,10 @@ A physical address is the compound name of a geographic feature connected to a r
 
 
 SITE ----- STREET ----- LOCALITY ----- SUBCOUNTRY ----- COUNTRY
+
        |
-  (civic-number)
+
+ (civic-number)
   
 
 The above diagram says that a site on a street may be assigned a civic number, a street belongs to a locality, a locality belongs to a subcountry (e.g., a province or territory), and a subcountry belongs to a country.
