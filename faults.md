@@ -4,7 +4,7 @@ Name | Definition | Penalty
 <a name="CIVIC_NUMBER.missing">Civic Number Missing</a> | A given address didn't contain a civic number but one was found.
 <a name="CIVIC_NUMBER.notInAnyBlock">Civic Number Not In Any Block</a> | A given civic number is not in any known address range for a given street in a given locality. The street within the given locality is returned with a match precision of STREET.|10
 <a name="CIVIC_NUMBER_SUFFIX.notMatched">Civic Number Suffix Not Matched</a> | A given civic number suffix for a given civic number and street was not found in a given locality.
-<a name="LOCALITY.isAlias">Locality Is Alias</a>	| A given civic number and street were found in an alias of the given locality but not the locality itself.
+<a name="LOCALITY.isAlias">Locality Is Alias</a>	| A given civic number and street were found in an alias of the given locality but not the locality itself.|4
 <a name="LOCALITY.missing">Locality Missing</a> | A given address didn’t contain a locality name but one was found that contains the given civic number and street.
 <a name="LOCALITY.notMatched">Locality Not Matched</a> | A given locality does not contain a given civic number and street but another locality was found that does.
 <a name="LOCALITY.spelledWrong">Locality Spelled Wrong</a> | A given locality was spelled wrong but was successfully corrected to match a known locality. 
@@ -28,7 +28,7 @@ Name | Definition | Penalty
 <a name="STREET_QUALIFIER.missing">Street Qualifier Missing</a> | A given address didn't contain a street qualifier but one was found.
 <a name="STREET_QUALIFIER.notMatched">Street Qualifier Not Matched</a> | A given street qualifier was not found. A match without a street qualifier is returned.
 <a name="STREET_QUALIFIER.spelledWrong">Street Qualifier Spelled Wrong</a> | A given street qualifier was spelled wrong but was successfully corrected to match a known street qualifier.
-<a name="STREET_TYPE.missing">Street Type Missing</a> | A given address didn’t contain a street type for a given street name in a given locality but one was found.
+<a name="STREET_TYPE.missing">Street Type Missing</a> | A given address didn’t contain a street type for a given street name in a given locality but one was found.|6
 <a name="STREET_TYPE.notMatched">Street Type Not Matched</a> | A given street type for a given street name in a given locality was not found. A match containing the correct street type is returned.
 <a name="STREET_TYPE.notPrefix">Street Type Not Prefix</a> | A given street street was placed before street name instead of after. A match with a correctly positioned street type is returned.
 <a name="STREET_TYPE.notSuffix">Street Type Not Suffix</a> | A given street type was placed after street name instead of before. A match with a correctly positioned street type is returned.
