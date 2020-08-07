@@ -5,8 +5,8 @@
 ## Address Match score = Match precision award - Fault penalties
 
 
-## Match Precision Levels
-Precision | Meaning | Points awarded
+## Match Precisions
+Name | Meaning | Points awarded
 -------: | --------------- | -----:
 Province|No match|1
 Locality| Locality matched perfectly but finer-grained address elements such as street, civic number, and unit number, if provided, did not match|68
