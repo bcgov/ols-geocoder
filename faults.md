@@ -8,7 +8,7 @@
 
 ## Address Match score = Match precision award - Fault penalties
 
-<br><br><br>
+<br><br>
 
 ## Match Precisions
 Name | Meaning | Points awarded
