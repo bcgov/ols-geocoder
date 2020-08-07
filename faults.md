@@ -27,6 +27,7 @@ Name | Meaning | Points awarded
 ## Match Faults
 Name | Meaning | Penalty
 -------: | --------------- | -----:
+<a name="ADDRESS.missing">Address Missing</a> | No address was found in an occupant-address request. Just an occupant name.|12
 <a name="CIVIC_NUMBER.missing">Civic Number Missing</a> | A given address didn't contain a civic number but one was found.|10
 <a name="CIVIC_NUMBER.notInAnyBlock">Civic Number Not In Any Block</a> | A given civic number is not in any known address range for a given street in a given locality. The street within the given locality is returned with a match precision of STREET.|10
 <a name="CIVIC_NUMBER_SUFFIX.notMatched">Civic Number Suffix Not Matched</a> | A given civic number suffix for a given civic number and street was not found in a given locality.|1
@@ -34,12 +35,13 @@ Name | Meaning | Penalty
 <a name="LOCALITY.missing">Locality Missing</a> | A given address didn’t contain a locality name but one was found that contains the given civic number and street.|
 <a name="LOCALITY.notMatched">Locality Not Matched</a> | A given locality does not contain a given civic number and street but another locality was found that does.
 <a name="LOCALITY.spelledWrong">Locality Spelled Wrong</a> | A given locality was spelled wrong but was successfully corrected to match a known locality. 
+<a name="OCCUPANT_NAME.partiallyMatched">Occupant Name Partially Matched</a> | Some of the words in an occupant name were matched. A match with a full occupant name is returned.| Up to 10 points depending on how weak the partial match is.
 <a name="POSTAL_ADDRESS_ELEMENT.notAllowed">Postal Address Element Not Allowed</a> | An element of a mailing address was detected (e.g., PO, BOX nn, SS, RR nn, a postal code. All such elements are ignored.
 <a name="PROVINCE.missing">Province Missing</a> | A given address didn't contain a province code (e.g., BC)|1
 <a name="PROVINCE.notMatched">Province Not Matched</a> |	A province code other than BC was found 
 <a name="SITE_NAME.missing"> Site Name missing</a> |	A given address didn't contain a site name but one was found.
 <a name="SITE_NAME.notMatched">Site Name Not Matched</a> | A given site name was not found. A match without a site name is returned.
-<a name="SITE_NAME.partiallyMatched">Site Name Partially Matched</a> | Some of the words in a site name were matched. A match with a full site name is returned.
+<a name="SITE_NAME.partiallyMatched">Site Name Partially Matched</a> | Some of the words in a site name were matched. A match with a full site name is returned.| Up to 10 points depending on how weak the partial match is.
 <a name="SITE_NAME.spelledWrong">Site Name Spelled Wrong</a> |	A given site name was spelled wrong but was successfully matched to a known site.
 <a name="STREET.missing">Street Missing</a> | A given address didn't contain a street but one was found.
 <a name="STREET_DIRECTION.missing">Street Direction Missing</a> | A given address didn’t contain a street direction for a given street name and street type in a given locality but one was found.
