@@ -1,7 +1,8 @@
 # Geocoder Match Score Calculation
 
 ## Match Score Calculation
-Match score = Match precision award - Fault penalties
+
+ **Match score = Match precision award - Fault penalties** 
 
 ## Match Precision Points
 Precision | Meaning | Points awarded
@@ -10,11 +11,11 @@ Province|No match|1
 Locality||68
 Street||78
 Block||99
-Civic Number||100
-Unit||100
-Site||100
-Occcupant||100
-Intersection||100
+Civic Number|Perfect match down to civic number|100
+Unit|Perfect match down to unit|100
+Site|Perfect match down to site name|100
+Occcupant|Perfect match down to occupant name (only used in occupants resource)|100
+Intersection|Perfect match down to intersection name|100
 
 
 
