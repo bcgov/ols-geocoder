@@ -22,7 +22,7 @@ Name | Meaning | Points awarded
 <a name="SITE">Site</a>|Perfect match down to site name|100
 <a name="OCCUPANT">Occupant</a>|Perfect match down to occupant name (only used in occupants resource)|100
 <a name="INTERSECTION">Intersection</a>|Perfect match down to intersection name|100
-
+<br><br>
 
 ## Match Faults
 Name | Meaning | Penalty
