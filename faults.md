@@ -9,7 +9,7 @@ Name | Definition | Penalty
 <a name="LOCALITY.notMatched">Locality Not Matched</a> | A given locality does not contain a given civic number and street but another locality was found that does.
 <a name="LOCALITY.spelledWrong">Locality Spelled Wrong</a> | A given locality was spelled wrong but was successfully corrected to match a known locality. 
 <a name="POSTAL_ADDRESS_ELEMENT.notAllowed">Postal Address Element Not Allowed</a> | An element of a mailing address was detected (e.g., PO, BOX nn, SS, RR nn, a postal code. All such elements are ignored.
-<a name="PROVINCE.missing">Province Missing</a> | A given address didn't contain a province code (e.g., BC)
+<a name="PROVINCE.missing">Province Missing</a> | A given address didn't contain a province code (e.g., BC)|1
 <a name="PROVINCE.notMatched">Province Not Matched</a> |	A province code other than BC was found 
 <a name="SITE_NAME.missing"> Site Name missing</a> |	A given address didn't contain a site name but one was found.
 <a name="SITE_NAME.notMatched">Site Name Not Matched</a> | A given site name was not found. A match without a site name is returned.
@@ -33,7 +33,7 @@ Name | Definition | Penalty
 <a name="STREET_TYPE.notPrefix">Street Type Not Prefix</a> | A given street street was placed before street name instead of after. A match with a correctly positioned street type is returned.
 <a name="STREET_TYPE.notSuffix">Street Type Not Suffix</a> | A given street type was placed after street name instead of before. A match with a correctly positioned street type is returned.
 <a name="STREET_TYPE.spelledWrong">Street Type Spelled Wrong</A> | A given street type was spelled wrong but was successfully corrected to match a known street type.
-<a name="UNRECOGNIZED_ELEMENT.notAllowed">Unrecognized element notAllowed</a>	| There are unnecessary or redundant words in an address. For example, the following address has a redundant streetType (e.g., Road): 33457 COTTAGE LANE ROAD ABBOTSFORD BC. The following address has an unnecessary site name (e.g., ABERDEEN SQUARE) : ABERDEEN SQUARE 101-2764 BARNET HIGHWAY COQUITLAM BC
+<a name="UNRECOGNIZED_ELEMENT.notAllowed">Unrecognized element notAllowed</a>	| There are unnecessary or redundant words in an address. For example, the following address has a redundant streetType (e.g., Road): 33457 COTTAGE LANE ROAD ABBOTSFORD BC. The following address has an unnecessary site name (e.g., ABERDEEN SQUARE) : ABERDEEN SQUARE 101-2764 BARNET HIGHWAY COQUITLAM BC |33
 Unit Designator Is Alias | A given unit designator is an alias of the official unit designator. A match containing the official unit designator is returned.
 Unit Designator Missing | A given address didn't contain a unit designator but one was found.
 Unit Designator Not Matched | A given unit designator was not found. A match containing the correct unit designator is returned.
