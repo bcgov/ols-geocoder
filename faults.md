@@ -1,6 +1,6 @@
 # Geocoder Address Match Score Calculation
 
-<br><br><br>
+<br><br>
 
 ## Address List Match Accuracy = Number of addresses with a match score of ninety or higher divided by the number of addresses in list
 
@@ -8,7 +8,7 @@
 
 ## Address Match score = Match precision award - Fault penalties
 
-<br><br>
+<br><br><br>
 
 ## Match Precisions
 Name | Meaning | Points awarded
