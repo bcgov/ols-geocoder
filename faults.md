@@ -6,7 +6,7 @@
 
 <br><br>
 
-## Address Match score = Match precision award - Fault penalties
+## Address Match Score = Match Precision award - Fault penalties
 
 <br><br>
 
