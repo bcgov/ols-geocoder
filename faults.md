@@ -19,7 +19,7 @@ Occcupant|Perfect match down to occupant name (only used in occupants resource)|
 Intersection|Perfect match down to intersection name|100
 
 
-Match Faults
+## Match Faults
 Name | Meaning | Penalty
 -------: | --------------- | -----:
 <a name="CIVIC_NUMBER.missing">Civic Number Missing</a> | A given address didn't contain a civic number but one was found.
