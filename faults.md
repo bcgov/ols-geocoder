@@ -4,14 +4,14 @@
 
  **Match score = Match precision award - Fault penalties** 
 
-## Match Precision Points
+## Match Precision Levels
 Precision | Meaning | Points awarded
 -------: | --------------- | -----:
 Province|No match|1
-Locality||68
-Street||78
-Block||99
-Civic Number|Perfect match down to civic number|100
+Locality| Locality matched perfectly but finer-grained address elements such as street, civic number, and unit number, if provided, did not match|68
+Street|Locality and street matched but finer grained address elements such as civic number and unit number, if provided, did not match|78
+Block|An address range on a given block of a street was found that contains the civic number provided but no civic number in that block matched|99
+Civic Number|Perfect match down to civic number but unit number, if provided, did not match|100
 Unit|Perfect match down to unit|100
 Site|Perfect match down to site name|100
 Occcupant|Perfect match down to occupant name (only used in occupants resource)|100
@@ -19,9 +19,8 @@ Intersection|Perfect match down to intersection name|100
 
 
 
-Scoring Formula
-match score = match precision points - fault penalties
-Name | Definition | Penalty
+Match Faults
+Name | Meaning | Penalty
 -------: | --------------- | -----:
 <a name="CIVIC_NUMBER.missing">Civic Number Missing</a> | A given address didn't contain a civic number but one was found.
 <a name="CIVIC_NUMBER.notInAnyBlock">Civic Number Not In Any Block</a> | A given civic number is not in any known address range for a given street in a given locality. The street within the given locality is returned with a match precision of STREET.|10
