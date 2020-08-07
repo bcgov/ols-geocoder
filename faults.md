@@ -1,8 +1,8 @@
-# Geocoder Match Score Calculation
+# Geocoder Address Match Score Calculation
 
 
 
-## Match score = Match precision award - Fault penalties
+## Address Match score = Match precision award - Fault penalties
 
 
 ## Match Precision Levels
