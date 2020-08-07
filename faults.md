@@ -1,4 +1,25 @@
-# Geocoder Faults
+# Geocoder Match Score Calculation
+
+## Match Score Calculation
+Match score = Match precision award - Fault penalties
+
+## Match Precision Points
+Precision | Meaning | Points awarded
+-------: | --------------- | -----:
+Province|No match|1
+Locality||68
+Street||78
+Block||99
+Civic Number||100
+Unit||100
+Site||100
+Occcupant||100
+Intersection||100
+
+
+
+Scoring Formula
+match score = match precision points - fault penalties
 Name | Definition | Penalty
 -------: | --------------- | -----:
 <a name="CIVIC_NUMBER.missing">Civic Number Missing</a> | A given address didn't contain a civic number but one was found.
