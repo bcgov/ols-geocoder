@@ -11,7 +11,7 @@ Precision | Meaning | Points awarded
 Province|No match|1
 Locality| Locality matched perfectly but finer-grained address elements such as street, civic number, and unit number, if provided, did not match|68
 Street|Locality and street matched but finer grained address elements such as civic number and unit number, if provided, did not match|78
-Block|An address range on a given block of a street was found that contains the civic number provided but no civic number in that block matched|99
+Block|An address range on a given block of a street was found that contains the civic number provided but no civic number in that block matched and no unit number, if provided, matched either|99
 Civic Number|Perfect match down to civic number but unit number, if provided, did not match|100
 Unit|Perfect match down to unit|100
 Site|Perfect match down to site name|100
