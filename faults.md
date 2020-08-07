@@ -27,11 +27,11 @@ Name | Meaning | Points awarded
 ## Match Faults
 Name | Meaning | Penalty
 -------: | --------------- | -----:
-<a name="CIVIC_NUMBER.missing">Civic Number Missing</a> | A given address didn't contain a civic number but one was found.
+<a name="CIVIC_NUMBER.missing">Civic Number Missing</a> | A given address didn't contain a civic number but one was found.|10
 <a name="CIVIC_NUMBER.notInAnyBlock">Civic Number Not In Any Block</a> | A given civic number is not in any known address range for a given street in a given locality. The street within the given locality is returned with a match precision of STREET.|10
-<a name="CIVIC_NUMBER_SUFFIX.notMatched">Civic Number Suffix Not Matched</a> | A given civic number suffix for a given civic number and street was not found in a given locality.
+<a name="CIVIC_NUMBER_SUFFIX.notMatched">Civic Number Suffix Not Matched</a> | A given civic number suffix for a given civic number and street was not found in a given locality.|1
 <a name="LOCALITY.isAlias">Locality Is Alias</a>	| A given civic number and street were found in an alias of the given locality but not the locality itself.|4
-<a name="LOCALITY.missing">Locality Missing</a> | A given address didn’t contain a locality name but one was found that contains the given civic number and street.
+<a name="LOCALITY.missing">Locality Missing</a> | A given address didn’t contain a locality name but one was found that contains the given civic number and street.|
 <a name="LOCALITY.notMatched">Locality Not Matched</a> | A given locality does not contain a given civic number and street but another locality was found that does.
 <a name="LOCALITY.spelledWrong">Locality Spelled Wrong</a> | A given locality was spelled wrong but was successfully corrected to match a known locality. 
 <a name="POSTAL_ADDRESS_ELEMENT.notAllowed">Postal Address Element Not Allowed</a> | An element of a mailing address was detected (e.g., PO, BOX nn, SS, RR nn, a postal code. All such elements are ignored.
