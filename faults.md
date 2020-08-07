@@ -17,7 +17,7 @@ Name | Definition | Penalty
 <a name="SITE_NAME.spelledWrong">Site Name Spelled Wrong</a> |	A given site name was spelled wrong but was successfully matched to a known site.
 <a name="STREET.missing">Street Missing</a> | A given address didn't contain a street but one was found.
 <a name="STREET_DIRECTION.missing">Street Direction Missing</a> | A given address didn’t contain a street direction for a given street name and street type in a given locality but one was found.
-<a name="STREET_DIRECTION.notMatched">Street Direction Not Matched</a> | A given street direction for a given street name and street type in a given locality was not found. A match without the street direction is returned.
+<a name="STREET_DIRECTION.notMatched">Street Direction Not Matched</a> | A given street direction for a given street name and street type in a given locality was not found. A match without the street direction is returned.|2
 <a name="STREET_DIRECTION.notPrefix">Street Direction Not Prefix</a> | A given street direction was placed before street name instead of after. A match with a correctly positioned street direction is returned.|0
 <a name="STREET_DIRECTION.notSuffix">Street Direction Not Suffix</a> | A given street direction was placed after street name instead of before. A match with a correctly positioned street direction is returned.|0
 <a name="STREET_DIRECTION.spelledWrong">Street Direction Spelled Wrong</a> | A given street direction was spelled wrong. A match with a correctly spelled street direction is returned.
@@ -29,7 +29,7 @@ Name | Definition | Penalty
 <a name="STREET_QUALIFIER.notMatched">Street Qualifier Not Matched</a> | A given street qualifier was not found. A match without a street qualifier is returned.
 <a name="STREET_QUALIFIER.spelledWrong">Street Qualifier Spelled Wrong</a> | A given street qualifier was spelled wrong but was successfully corrected to match a known street qualifier.
 <a name="STREET_TYPE.missing">Street Type Missing</a> | A given address didn’t contain a street type for a given street name in a given locality but one was found.|6
-<a name="STREET_TYPE.notMatched">Street Type Not Matched</a> | A given street type for a given street name in a given locality was not found. A match containing the correct street type is returned.
+<a name="STREET_TYPE.notMatched">Street Type Not Matched</a> | A given street type for a given street name in a given locality was not found. A match containing the correct street type is returned.|3
 <a name="STREET_TYPE.notPrefix">Street Type Not Prefix</a> | A given street street was placed before street name instead of after. A match with a correctly positioned street type is returned.
 <a name="STREET_TYPE.notSuffix">Street Type Not Suffix</a> | A given street type was placed after street name instead of before. A match with a correctly positioned street type is returned.
 <a name="STREET_TYPE.spelledWrong">Street Type Spelled Wrong</A> | A given street type was spelled wrong but was successfully corrected to match a known street type.
