@@ -1,8 +1,9 @@
 # Geocoder Match Score Calculation
 
-## Match Score Calculation
 
- **Match score = Match precision award - Fault penalties** 
+
+## Match score = Match precision award - Fault penalties
+
 
 ## Match Precision Levels
 Precision | Meaning | Points awarded
@@ -16,7 +17,6 @@ Unit|Perfect match down to unit|100
 Site|Perfect match down to site name|100
 Occcupant|Perfect match down to occupant name (only used in occupants resource)|100
 Intersection|Perfect match down to intersection name|100
-
 
 
 Match Faults
