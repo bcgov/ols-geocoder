@@ -62,12 +62,12 @@ Name | Meaning | Penalty
 <a name="STREET_TYPE.notPrefix">Street Type Not Prefix</a> | A given street street was placed before street name instead of after. A match with a correctly positioned street type is returned.|0
 <a name="STREET_TYPE.notSuffix">Street Type Not Suffix</a> | A given street type was placed after street name instead of before. A match with a correctly positioned street type is returned.|0
 <a name="STREET_TYPE.spelledWrong">Street Type Spelled Wrong</A> | A given street type was spelled wrong but was successfully corrected to match a known street type.|1 
-<a name=UNIT_DESIGNATOR.isAlias>Unit Designator Is Alias</A> | A given unit designator is an alias of the official unit designator. A match containing the official unit designator is returned.|0
-<a name=UNIT_DESIGNATOR.missing>Unit Designator Missing</A> | A given address didn't contain a unit designator but one was found.|0
-Unit Designator Not Matched | A given unit designator was not found. A match containing the correct unit designator is returned.|1
-Unit Designator Spelled Wrong | A given unit designator was spelled wrong but was successfully corrected to match a known unit designator.|1
-Unit Number Missing | A given address didn't contain a unit number but one was found.|1
-Unit Number Not Matched | A given unit number was not found. A match containing the correct unit number is returned.|1
-Unit Number Suffix missing | A given address didn't contain a unit number suffix but one was found.|1
-Unit Number Suffix Not Matched | A given unit number suffix was not found. A match containing the correct unit number suffix is returned.|1
+<a name="UNIT_DESIGNATOR.isAlias">Unit Designator Is Alias</A> | A given unit designator is an alias of the official unit designator. A match containing the official unit designator is returned.|0
+<a name="UNIT_DESIGNATOR.missing">Unit Designator Missing</A> | A given address didn't contain a unit designator but one was found.|0
+<a name="UNIT_DESIGNATOR.notMatched">Unit Designator Not Matched</A> | A given unit designator was not found. A match containing the correct unit designator is returned.|1
+<a name="UNIT_DESIGNATOR.spelledWrong">Unit Designator Spelled Wrong</A> | A given unit designator was spelled wrong but was successfully corrected to match a known unit designator.|1
+<a name="UNIT_NUMBER.missing">Unit Number Missing</A> | A given address didn't contain a unit number but one was found.|1
+<a name="UNIT_NUMBER.notMatched">Unit Number Not Matched</A> | A given unit number was not found. A match containing the correct unit number is returned.|1
+<a name="UNIT_NUMBER.suffixMissing">Unit Number Suffix missing</A> | A given address didn't contain a unit number suffix but one was found.|1
+  <a name="UNIT_NUMBER.suffixNotMatched">Unit Number Suffix Not Matched</A> | A given unit number suffix was not found. A match containing the correct unit number suffix is returned.|1
 <a name="UNRECOGNIZED_ELEMENT.notAllowed">Unrecognized element notAllowed</a>	| There are unnecessary or redundant words in an address. For example, the following address has a redundant streetType (e.g., Road): 33457 COTTAGE LANE ROAD ABBOTSFORD BC. The following address has an unnecessary site name (e.g., ABERDEEN SQUARE) : ABERDEEN SQUARE 101-2764 BARNET HIGHWAY COQUITLAM BC |30 + (3 \* number of words not recognized) 
