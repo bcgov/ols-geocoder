@@ -44,7 +44,7 @@ A non-civic address has a site name, an optional street, a locality, and a provi
 Assuming no faults, here is how addresses containing various match precisions are scored:
 
 Input Address|Match Precision|Score
--------------:|---------------:|---------
+--------:|-------|------:
 BC|Province|1
 Victoria, BC|Locality|68
 Esquimalt Rd, Esquimalt,BC|Street|78
