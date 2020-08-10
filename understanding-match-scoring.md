@@ -60,5 +60,7 @@ Address List Match Accuracy = number of addresses with a score of 90 or higher d
 
 The score of 90 is the minimum score of a good match.
 
-Once you have measured the initial match accuracy, use the match precision and list of faults in the geocoder output to analyse the misclassification rates with an eye on reducing the number of false negatives (e.g., Central Building 620 View St, Victoria, BC gets rejected because it is missing the front-gate delimiter ("--"). For more detailed information on faults, see the address match scoring reference.
+Once you have measured the initial match accuracy, use the match precision and the list of faults in the geocoder output to analyse the misclassification rates with an eye on reducing the number of false negatives (e.g., Central Building 620 View St, Victoria, BC gets rejected because it is missing the front-gate delimiter ("--"). For more detailed information on faults, see the [address match scoring reference](https://github.com/bcgov/ols-geocoder/blob/gh-pages/faults.md). For examples of faulty addresses and their root causes, see [Understanding Batch Geocoder Output](https://www2.gov.bc.ca/assets/gov/data/geographic/location-services/geocoder/understanding_geocoder_results.pdf). 
+
+Once you have the misclassification rates, you can determine what combination of address ETL improvement and manual editing gives you the best return on investment. You should also try to set an accuracy improvement goal. As you work through your address list, keep measuring match accuracy to measure progress toward your accuracy improvement goal.
 
