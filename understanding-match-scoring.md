@@ -37,8 +37,6 @@ A civic address has a civic number and may also have a unit number. A perfect ci
 A non-civic address has a site name, an optional street, a locality, and a province. It also has its own match precision of Site.
 
 
-
-
 ### Examples of matches with various match precisions
 
 Assuming no faults, here is how addresses containing various match precisions are scored:
@@ -51,19 +49,7 @@ Esquimalt Rd, Esquimalt,BC|Street|78
 832 Esquimalt Rd, Esquimalt, BC|Block|99
 840 Esquimalt Rd, Esquimalt, BC|Civic Number|100
 Unit 201 -- 840 Esquimalt Rd, Esquimalt,BC|Unit Number|100
-
-Locality                             68
-              Esquimalt Rd, Esquimalt , BC                                    Street                                78
-               832 Esquimalt Rd, Esquimalt, BC                            Block                                 99
-               840 Esquimalt Rd, Esquimalt, BC                            Civic-number                   100
-              Unit 201 – 840 Esquimalt Rd, Esquimalt, BC         Unit-number                   100
-
-A civic address has a civic number and may also have a unit number. A perfect civic address match is assigned a match precision of civic-number or unit-number depending on whether or not the reference civic address includes a unit number. If an input civic address includes a unit number and the matching reference address doesn’t have it, a unit.notFound fault with a 1 point penalty and net score of 99 will be returned.
-
-              A non-civic address has a site name, an optional street, a locality, and a province. It also has its own match precision of Site. Here is an example:
-
-Input Address                                                              Match precision                             Score
-              Ksan Historical Village – Hazelton, BC                    Site                                    100
+Ksan Historical Village -- Hazelton, BC|Site|100
 
               
 Our analysis tasks
