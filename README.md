@@ -19,3 +19,11 @@ The BC Address Geocoder is registered with the [BC Data Catalogue](https://catal
 Another developer friendly feature is our [Location Services in Action](https://ols-demo.apps.gov.bc.ca/index.html) application that demonstrates the geocoder (and route planner) in action. Source code is freely available to the public on [GitHub](https://github.com/bcgov/ols-devkit/tree/gh-pages/ols-demo).
 
 The BC Address Geocoder complies with BC's data sovereignty policy which protects the privacy of citizens by controlling access and discretely managing user requests.
+
+For more information, please consult the following documents:
+
+[Geocoder Developer Guide](https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md)
+[Geocoder Address Match Scoring Reference](https://github.com/bcgov/ols-geocoder/blob/gh-pages/faults.md)
+[Single-line Address Format](https://github.com/bcgov/ols-geocoder/blob/gh-pages/singleLineAddressFormat.md)
+[BC Physical Address Exchange Schema](https://github.com/bcgov/ols-geocoder/blob/gh-pages/BCAddressExchangeSchema.md)
+[Draft BC Physical Address Conceptual Model v2](https://github.com/bcgov/ols-geocoder/blob/gh-pages/physical-address-conceptual-model.md)
