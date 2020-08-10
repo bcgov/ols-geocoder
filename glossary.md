@@ -1,4 +1,4 @@
-# Geocoder Glossary of Terms
+# Glossary of Geocoder Terms
 Term | Definition
 ----: | -----------
 <a name="accessNotes">accessNotes</a> | Contains additional information that is helpful in determining the access location and any restrictions on mode of access (e.g., boat only, floatplane only). For example, turn by turn directions from a named road to a site in the woods could be helpful as in the following: From Tlell, travel north on Highway 16 till you see a big golden spruce tree on your left, hike west for about one kilometre.
