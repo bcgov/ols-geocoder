@@ -29,3 +29,4 @@ For more information about using the BC Address Geocoder and incorporating it in
 [Understanding Address Match Scoring](https://github.com/bcgov/ols-geocoder/blob/gh-pages/understanding-match-scoring.md)<br><br>
 [BC Physical Address Exchange Schema](https://github.com/bcgov/ols-geocoder/blob/gh-pages/BCAddressExchangeSchema.md)<br><br>
 [Draft BC Physical Address Conceptual Model v2](https://github.com/bcgov/ols-geocoder/blob/gh-pages/physical-address-conceptual-model.md)<br><br>
+[Batch address list submitter](https://bcgov.github.io/ols-devkit/als/)
