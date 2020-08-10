@@ -22,8 +22,9 @@ The BC Address Geocoder complies with BC's data sovereignty policy which protect
 
 For more information, please consult the following documents:
 
-[Geocoder Developer Guide](https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md)
-[Geocoder Address Match Scoring Reference](https://github.com/bcgov/ols-geocoder/blob/gh-pages/faults.md)
-[Single-line Address Format](https://github.com/bcgov/ols-geocoder/blob/gh-pages/singleLineAddressFormat.md)
-[BC Physical Address Exchange Schema](https://github.com/bcgov/ols-geocoder/blob/gh-pages/BCAddressExchangeSchema.md)
-[Draft BC Physical Address Conceptual Model v2](https://github.com/bcgov/ols-geocoder/blob/gh-pages/physical-address-conceptual-model.md)
+[Geocoder Developer Guide](https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md)<br><br>
+[Geocoder Address Match Scoring Reference](https://github.com/bcgov/ols-geocoder/blob/gh-pages/faults.md)<br><br>
+Understanding Address Match Scoring
+[Single-line Address Format](https://github.com/bcgov/ols-geocoder/blob/gh-pages/singleLineAddressFormat.md)<br><br>
+[BC Physical Address Exchange Schema](https://github.com/bcgov/ols-geocoder/blob/gh-pages/BCAddressExchangeSchema.md)<br><br>
+[Draft BC Physical Address Conceptual Model v2](https://github.com/bcgov/ols-geocoder/blob/gh-pages/physical-address-conceptual-model.md)<br><br>
