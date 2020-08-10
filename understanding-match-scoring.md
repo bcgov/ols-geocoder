@@ -1,6 +1,7 @@
-Hi All,
-Thanks for agreeing to participate in the Geocoder 4.1 meeting next week. One of the main objectives of Geocoder 4.1 is to improve address match accuracy. To understand this objective, let's take a closer look at the design of the geocoder's address match scoring system.  
+# Understanding Address Match Scoring
 
+Understanding address match scoring is the key to getting the most out of the BC Physical Address Geocoder.
+ 
 An effective address match scoring system should have the following properties:
 
 P1. It should distinguish between good and bad matches without ambiguity
