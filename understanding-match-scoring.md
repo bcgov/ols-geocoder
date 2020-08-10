@@ -2,6 +2,8 @@
 
 Understanding address match scoring is the key to getting the most out of the BC Physical Address Geocoder.
  
+## Properties of an effective address match scoring system
+
 An effective address match scoring system should have the following properties:
 
 P1. It should distinguish between good and bad matches without ambiguity
@@ -14,6 +16,7 @@ P4. It should provide enough information  to diagnose and fix the data issues de
 
 P5. Handle multiple types of input addresses including civic address, non-civic address, and partial addresses (e.g., street-level, locality-level).
 
+## How the BC Address Geocoder measures up
 
 The BC Geocoder scoring system has the following properties:
 
