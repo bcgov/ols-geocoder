@@ -28,11 +28,31 @@ The BC Geocoder scoring system has the following properties:
 
 4.	A list of faults is returned indicating the mismatches encountered by the geocoder while trying to match the input address to a reference address [P4]. Each fault includes the type of fault and a penalty but doesn’t include the object of the fault (e.g., the fault message says “unrecognized word” but doesn’t include the word the geocoder couldn’t recognize)
 
-5.	The geocoder scoring system handles multiple types of addresses through the match precision concept. Match precision is the level the match achieved. Levels include province-level (e.g., BC), locality-level (e.g., Salmon Arm, BC),  street-level (e.g., Esquimalt Rd),  block-level (e.g., couldn’t find 832 Esquimalt Rd but found an 800-block of Esquimalt Rd),  civic number level (e.g., found 840 Esquimalt Rd), and unit number level (e.g., found (Unit 201 – 840 Esquimalt Rd). The scoring system assigns an initial score according to the match precision (e.g., 100 for civic number, 99 for block, 68 for street, 48 for locality, 1 for province). It then subtracts the penalties of all the faults encountered to arrive at a final score. Here are some examples (assume no faults):
+5.	The geocoder scoring system handles multiple types of addresses through the match precision concept. Match precision is the level the match achieved. Levels include province-level (e.g., BC), locality-level (e.g., Salmon Arm, BC),  street-level (e.g., Esquimalt Rd),  block-level (e.g., couldn’t find 832 Esquimalt Rd but found an 800-block of Esquimalt Rd),  civic number level (e.g., found 840 Esquimalt Rd), and unit number level (e.g., found (Unit 201 – 840 Esquimalt Rd). The scoring system assigns an initial score according to the match precision (e.g., 100 for civic number, 99 for block, 68 for street, 48 for locality, 1 for province). It then subtracts the penalties of all the faults encountered to arrive at a final score.
 
-Input Address                                                              Match precision                             Score
-              BC                                                                                  Province                           1
-              Victoria, BC                                                                  Locality                             68
+### Scoring Civic and Non-civic addresses
+
+A civic address has a civic number and may also have a unit number. A perfect civic address match is assigned a match precision of civic-number or unit-number depending on whether or not the reference civic address includes a unit number. If an input civic address includes a unit number and the matching reference address doesn’t have it, a unit.notFound fault with a 1 point penalty and net score of 99 will be returned.
+
+A non-civic address has a site name, an optional street, a locality, and a province. It also has its own match precision of Site.
+
+
+
+
+### Examples of matches with various match precisions
+
+Assuming no faults, here is how addresses containing various match precisions are scored:
+
+Input Address|Match Precision|Score
+-------------:|---------------:|---------
+BC|Province|1
+Victoria, BC|Locality|68
+Esquimalt Rd, Esquimalt,BC|Street|78
+832 Esquimalt Rd, Esquimalt, BC|Block|99
+840 Esquimalt Rd, Esquimalt, BC|Civic Number|100
+Unit 201 -- 840 Esquimalt Rd, Esquimalt,BC|Unit Number|100
+
+Locality                             68
               Esquimalt Rd, Esquimalt , BC                                    Street                                78
                832 Esquimalt Rd, Esquimalt, BC                            Block                                 99
                840 Esquimalt Rd, Esquimalt, BC                            Civic-number                   100
