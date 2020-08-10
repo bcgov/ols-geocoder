@@ -20,7 +20,7 @@ Another developer friendly feature is our [Location Services in Action](https://
 
 The BC Address Geocoder complies with BC's data sovereignty policy which protects the privacy of citizens by controlling access and discretely managing user requests.
 
-For more information, please consult the following documents:
+For more information about using the BC Address Geocoder and incorporating it into your automated workflows, please consult the following documents:
 
 [Geocoder Developer Guide](https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md)<br><br>
 [Single-line Address Format](https://github.com/bcgov/ols-geocoder/blob/gh-pages/singleLineAddressFormat.md)<br><br>
