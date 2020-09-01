@@ -18,6 +18,8 @@ You will be rejected but don’t take it hard. Just email your bceid account nam
 Whether you are a BC IDIR user or a BCeID user, you need to learn how to prepare your address list for batch geocoding and how to understand geocoder output. Here are a couple of links to get your started:
 
 [Preparing you address list for batch geocoding](https://www2.gov.bc.ca/assets/gov/data/geographic/location-services/geocoder/batch_address_data_prep.pdf)
+
 [Understanding address geocoding match scoring](https://github.com/bcgov/ols-geocoder/blob/gh-pages/understanding-match-scoring.md)
+
 [Understanding geocoder results](https://www2.gov.bc.ca/assets/gov/data/geographic/location-services/geocoder/understanding_geocoder_results.pdf)
 
