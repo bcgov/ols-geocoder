@@ -2,7 +2,7 @@
 
 If you have a BC IDIR account, you don't need to register to access the Batch Geocoder. Just visit https://apps.gov.bc.ca/pub/cpf/secure/ws/apps/geocoder/
 
-If you don't have a BC IDIR account and are in an agency outside of core goverment (e.g., crown corporation, local or federal government, local health authority, university), here are the steps to access:
+If you don't have a BC IDIR account and are in an agency outside of core goverment (e.g., crown corporation, local or federal government, local health authority, university), here are the steps to registration and access:
 
 1. Provide us (e.g., michael.ra.ross@gov.bc.ca or brian.kelsey@gov.bc.ca) with answers to the following questions:
 
