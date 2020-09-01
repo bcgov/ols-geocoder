@@ -8,7 +8,7 @@ If you don't have a BC IDIR account and are in an agency outside of core goverme
 
      - What is the nature of your business?
      - How do you propose to use the geocoder?
-     - What busines outcome do you hope the geocoder will help you achieve? 
+     - What business outcomes do you hope the geocoder will help you achieve? 
  
 2. If you don't have an active bceid account, please register for a basic BCeID account at https://www.bceid.ca/
 
