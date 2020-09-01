@@ -15,7 +15,7 @@ If you don't have a BC IDIR account and are in an agency outside of core goverme
 3.	Using your bceid account, try to log in to the batch geocoder located at https://apps.gov.bc.ca/pub/cpf/secure/ws/apps/geocoder/
 You will be rejected but don’t take it hard. Just email your bceid account name to us and we will complete the registration process and notify you when your registered. 
 
-Whether you are a BC IDIR user or a BCeID user, you need to learn how to prepare your address list for batch geocoding and how to understand geocoder output. Here are a couple of links to get your started:
+Whether you are a BC IDIR user or a BCeID user, you need to learn how to prepare your address list for batch geocoding and how to understand geocoder output. Here are some links to get your started:
 
 [Preparing you address list for batch geocoding](https://www2.gov.bc.ca/assets/gov/data/geographic/location-services/geocoder/batch_address_data_prep.pdf)
 
