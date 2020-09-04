@@ -170,7 +170,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00170-LocalityNameWithGluedWords,"206 E 15th St, Northvancouver, BC",CIVIC_NUMBER,"206 E 15th St, North Vancouver, BC",[],F,
 00171-SiteNameWithGluedWords,"AnahimLake Airport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],F,
 00172-StreetNameWithMultipleSpellingMistakes,"Omineca St, Kitimat, BC",STREET,"Omenica St, Kitimat, BC",[],F,
-00173-LocalityNameWithMultipleSpellingMistakes,"Kittymatt, BC",LOCALITY,"Kitimat, BC",[],F,
+00173-LocalityNameWithMultipleSpellingMistakes,"Sawasen, BC",LOCALITY,"Tsawassen, BC",[],F,
 00174-SiteNameWithMultipleSpellingMistakes,"Anahyme Lak Arport -- Anahim Lake, BC",SITE,"Anahyme Lak Arport -- Anahim Lake, BC",[],F,
 00175-NumberedStreetName,"857 E 45th Ave	 Vancouver	 BC",CIVIC_NUMBER,"857 E 45th Ave	 Vancouver	 BC",[],F,
 00176-NumberedStreetNameWithEmbeddedBlanks,"857 E 45 th Ave, Vancouver, BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],F,
