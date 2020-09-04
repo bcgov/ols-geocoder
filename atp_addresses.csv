@@ -169,7 +169,7 @@ LocalityNameWithGluedWords,"206 E 15th St, Northvancouver, BC",CIVIC_NUMBER,"206
 SiteNameWithGluedWords,"AnahimLake Airport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],F,
 StreetNameWithMultipleSpellingMistakes,"Omineca St, Kitimat, BC",STREET,"Omenica St, Kitimat, BC",[],F,
 LocalityNameWithMultipleSpellingMistakes,"Kittymatt, BC",LOCALITY,"Kitimat, BC",[],F,
-SiteNameWithMultipleSpellingMistakes,"need example",SITE,"",[],T,
+SiteNameWithMultipleSpellingMistakes,"Anahyme Lak Arport -- Anahim Lake, BC",SITE,"Anahyme Lak Arport -- Anahim Lake, BC",[],T,
 NumberedStreetName,"857 E 45th Ave	 Vancouver	 BC",CIVIC_NUMBER,"857 E 45th Ave	 Vancouver	 BC",[],F,
 NumberedStreetNameWithEmbeddedBlanks,"857 E 45 th Ave, Vancouver, BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],F,
 StreetNameWithTwoWordsGluedTogether,"2845 Cedarhill Rd, Victoria, BC",CIVIC_NUMBER,"2845 Cedar Hill Rd, Victoria, BC",[],F,
