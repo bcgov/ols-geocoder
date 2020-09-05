@@ -406,3 +406,4 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00406-AddressInSmallCommunityUsingLocalityAlias,"4232 MAYOOK SETTLEMENT RD, CRANBROOK, BC",BLOCK,"4232 Mayook Settlement Rd, Mayook, BC",[LOCALITY.isAlias],F,
 00407-AddressInSmallCommunity,"10571 CHESLATTA RD, CHESLATTA, BC",CIVIC_NUMBER,"10571 Cheslatta Rd, Cheslatta, BC",[],F,
 00408-AddressInSmallCommunityUsingLocalityAlias,"10571 CHESLATTA RD, BURNS LAKE, BC",CIVIC_NUMBER,"10571 Cheslatta Rd, Cheslatta, BC",[LOCALITY.isAlias],F,
+00409-NumberedStreetNameWithEmbeddedBlanks,"102 A Ave, Surrey, BC",CIVIC_NUMBER,"102A Ave, Surrey, BC",[],F,
