@@ -422,5 +422,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00422-UnitNumberWithLetterSuffix,"P 100 1518 W 70TH AVE, VANCOUVER, BC",UNIT,"UNIT P100 -- 1518 W 70TH AVE, VANCOUVER, BC",[],F,
 00423-UnitNumberWithLetterSuffix,"P2 1855 NELSON ST, VANCOUVER, BC",UNIT,"UNIT P2 -- 1855 NELSON ST, VANCOUVER, BC",[],F,
 00424-UnitNumberWithLetterSuffix,"P 2 1855 NELSON ST, VANCOUVER, BC",UNIT,"UNIT P2 -- 1855 NELSON ST, VANCOUVER, BC",[],F,
+00425-CivicAddressWithCareOfName,"c/o Joe Fonebone, P2-1855 NELSON ST, VANCOUVER, BC",UNIT,"UNIT P2 -- 1855 NELSON ST, VANCOUVER, BC",[],F,
+
 
 
