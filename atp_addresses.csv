@@ -423,3 +423,4 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00423-UnitNumberWithLetterSuffix,"P2 1855 NELSON ST, VANCOUVER, BC",UNIT,"UNIT P2 -- 1855 NELSON ST, VANCOUVER, BC",[],F,,
 00424-UnitNumberWithLetterSuffix,"P 2 1855 NELSON ST, VANCOUVER, BC",UNIT,"UNIT P2 -- 1855 NELSON ST, VANCOUVER, BC",[],F,,
 00425-CivicAddressWithCareOfName,"c/o Joe Fonebone, P2-1855 NELSON ST, VANCOUVER, BC",UNIT,"UNIT P2 -- 1855 NELSON ST, VANCOUVER, BC",[],F,,
+00426-NonStandardStreetTypeAbbreviation,"2351 Parkway Bv, Coquitlam, BC","2351 Parkway Blvd, Coquitlam, BC",[],F,,https://github.com/bcgov/ols-geocoder/issues/102
