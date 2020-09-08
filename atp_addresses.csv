@@ -423,4 +423,15 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00423-UnitNumberWithLetterSuffix,"P2 1855 NELSON ST, VANCOUVER, BC",UNIT,"UNIT P2 -- 1855 NELSON ST, VANCOUVER, BC",[],F,,
 00424-UnitNumberWithLetterSuffix,"P 2 1855 NELSON ST, VANCOUVER, BC",UNIT,"UNIT P2 -- 1855 NELSON ST, VANCOUVER, BC",[],F,,
 00425-CivicAddressWithCareOfName,"c/o Joe Fonebone, P2-1855 NELSON ST, VANCOUVER, BC",UNIT,"UNIT P2 -- 1855 NELSON ST, VANCOUVER, BC",[],F,,
-00426-NonStandardStreetTypeAbbreviation,"2351 Parkway Bv, Coquitlam, BC",CIVIC_NUMBER,"2351 Parkway Blvd, Coquitlam, BC",[],F,,102
+00426-NonStandardStreetTypeAbbreviation,"2351 Parkway Bv, Coquitlam, BC",CIVIC_NUMBER,CIVIC_NUMBER,"2351 Parkway Blvd, Coquitlam, BC",[],F,,102
+00427-NonStandardStreetTypeAbbreviation,"3176 Plateau Bu, Coquitlam, BC",CIVIC_NUMBER"3176 Plateau Bu, Coquitlam, BC",[],F,,102
+00428-NonStandardStreetTypeAbbreviation,"895 Academy Clo, Victoria, BC",CIVIC_NUMBER,"895 Academy Close, Victoria, BC",[],F,,102
+00429-NonStandardStreetTypeAbbreviation,"4965 Vista View Cre, Nanaimo, BC",CIVIC_NUMBER,"4965 Vista View Cres, Nanaimo, BC",[],F,,102
+00430-NonStandardStreetTypeAbbreviation,"1000 Thermal Dri, Coquitlam,BC",CIVIC_NUMBER,"1000 Thermal Dr, Coquitlam,BC",[],F,,102
+00431-NonStandardStreetTypeAbbreviation,"8400 Forest Grove Dri,Burnaby,BC,CIVIC_NUMBER,"8400 Forest Grove Dr,Burnaby,BC",[],F,,102
+00432-NonStandardStreetTypeAbbreviation,"3458 Burlee Village Pr, Coquitlam,BC",CIVIC_NUMBER,"3458 Burlee Village Promenade, Coquitlam,BC",[],F,,102
+00433-NonStandardStreetTypeAbbreviation,"3458 Burlee Village Pm, Coquitlam,BC",CIVIC_NUMBER,"3458 Burlee Village Promenade, Coquitlam,BC",[],F,,102
+00434-NonStandardStreetTypeAbbreviation,"7701 Central Saanich Ro, Saanichton,BC",CIVIC_NUMBER,"7701 Central Saanich Rd, Saanichton,BC",[],F,,102
+00435-NonStandardStreetTypeAbbreviation,"3942 Coumbia Valley Roa, Cultus Lake, BC",CIVIC_NUMBER,"3942 Coumbia Valley Rd, Cultus Lake, BC",[],F,,102
+00436-NonStandardStreetTypeAbbreviation,"950 hope princeton wa, Hope, BC",CIVIC_NUMBER,"950 Hope Princeton Way, Hope, BC",[],F,,102
+00437-NonStandardStreetTypeAbbreviation,"774 Great Northern Wa, Vancouver, BC",CIVIC_NUMBER,"774 Great Northern Wa, Vancouver, BC",[],F,,102
