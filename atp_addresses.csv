@@ -428,7 +428,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00428-NonStandardStreetTypeAbbreviation,"895 Academy Clo, Victoria, BC",CIVIC_NUMBER,"895 Academy Close, Victoria, BC",[],F,,102
 00429-NonStandardStreetTypeAbbreviation,"4965 Vista View Cre, Nanaimo, BC",CIVIC_NUMBER,"4965 Vista View Cres, Nanaimo, BC",[],F,,102
 00430-NonStandardStreetTypeAbbreviation,"1000 Thermal Dri, Coquitlam,BC",CIVIC_NUMBER,"1000 Thermal Dr, Coquitlam,BC",[],F,,102
-00431-NonStandardStreetTypeAbbreviation,"8400 Forest Grove Dri,Burnaby,BC,CIVIC_NUMBER,"8400 Forest Grove Dr,Burnaby,BC",[],F,,102
+00431-NonStandardStreetTypeAbbreviation,"8400 Forest Grove Dri,Burnaby,BC",CIVIC_NUMBER,"8400 Forest Grove Dr,Burnaby,BC",[],F,,102
 00432-NonStandardStreetTypeAbbreviation,"3458 Burlee Village Pr, Coquitlam,BC",CIVIC_NUMBER,"3458 Burlee Village Promenade, Coquitlam,BC",[],F,,102
 00433-NonStandardStreetTypeAbbreviation,"3458 Burlee Village Pm, Coquitlam,BC",CIVIC_NUMBER,"3458 Burlee Village Promenade, Coquitlam,BC",[],F,,102
 00434-NonStandardStreetTypeAbbreviation,"7701 Central Saanich Ro, Saanichton,BC",CIVIC_NUMBER,"7701 Central Saanich Rd, Saanichton,BC",[],F,,102
