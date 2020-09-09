@@ -1,5 +1,5 @@
 yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,exampleNeeded,parcelPoint,issue
-00002-civicAddressWithCivicNumber,"525 Superior St Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[],F,SRID=4326;POINT(-123.370780 48.417926)
+00002-civicAddressWithCivicNumber,"525 Superior St Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[],F,SRID=4326;POINT(-123.370780 48.417926),
 00003-civicAddressWithCivicNumberSuffix,"4251A Rockbank Pl West Vancouver BC",CIVIC_NUMBER,"4251A Rockbank Pl, West Vancouver, BC",[],F,,
 00004-civicAddressWithOrdinalCivicNumberSuffix,"749E Lakeview Arrow Creek Rd Wynndel BC",CIVIC_NUMBER,"749E Lakeview Arrow Creek Rd, Wynndel, BC",[],F,,
 00005-civicAddressWithStreetDirection,"456 Gorge Rd E Victoria BC",CIVIC_NUMBER,"456 Gorge Rd E, Victoria, BC",[],F,,
