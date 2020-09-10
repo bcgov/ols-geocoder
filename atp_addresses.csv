@@ -435,3 +435,5 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00435-NonStandardStreetTypeAbbreviation,"3942 Coumbia Valley Roa, Cultus Lake, BC",CIVIC_NUMBER,"3942 Coumbia Valley Rd, Cultus Lake, BC",[],F,,102
 00436-NonStandardStreetTypeAbbreviation,"950 hope princeton wa, Hope, BC",CIVIC_NUMBER,"950 Hope Princeton Way, Hope, BC",[],F,,102
 00437-NonStandardStreetTypeAbbreviation,"774 Great Northern Wa, Vancouver, BC",CIVIC_NUMBER,"774 Great Northern Wa, Vancouver, BC",[],F,,102
+00438-NonStandardLocalityNameAbbreviation,"1745 Esquimalt Ave, West Van, BC",CIVIC_NUMBER,"1745 Esquimalt Ave, West Vancouver, BC",[],F,,102
+00439-NonStandardLocalityNameAbbreviation,"352 W 14th St, North Vanc, BC",CIVIC_NUMBER,"352 W 14th St, North Vancouver, BC",[],F,,102
