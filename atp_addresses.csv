@@ -70,7 +70,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00070-CivicAddressWithUnneededStreetDirectionOnHighway,"8930 Cariboo Hwy S Pineview FFG BC",CIVIC_NUMBER,"8930 Cariboo Hwy S, Pineview FFG, BC",[STREET_DIRECTION.notMatchedInHighway:0],F,,,T,T
 00071-CivicAddressWithMisplacedStreetTypeandUnneededStreetDirectionOnHighway,"12621 99 Hwy N Lillooet BC",CIVIC_NUMBER,"12621 Hwy 99, Lillooet, BC","[STREET_DIRECTION.notMatchedInHighway:0 STREET_TYPE.notSuffix:0]",F,,,T,T
 00072-CivicAddressWithMisplacedStreetTypeandUnneededStreetDirectionOnHighway,"8930 Hwy Cariboo S Pineview FFG BC",CIVIC_NUMBER,"8930 Cariboo Hwy S, Pineview FFG, BC","[STREET_DIRECTION.notMatchedInHighway:0 STREET_TYPE.notPrefix:0]",F,,,T,T
-00073-CivicAddressUnknownLocality,"626 Lindley Dr Leftbank bc ",CIVIC_NUMBER,"626 Lindley Dr, West Kelowna, BC","[UNRECOGNIZED.notAllowed:33 LOCALITY.missing:10]",F,,F,F
+00073-CivicAddressUnknownLocality,"626 Lindley Dr Leftbank bc ",CIVIC_NUMBER,"626 Lindley Dr, West Kelowna, BC","[UNRECOGNIZED.notAllowed:33 LOCALITY.missing:10]",F,,,F,F
 00074-CivicAddressUnknownStreetDirection,"456 Gorge Rd WN Victoria BC",CIVIC_NUMBER,"456 Gorge Rd E, Victoria, BC","[UNRECOGNIZED.notAllowed:33 STREET_DIRECTION.missing:2]",F,,,T,T
 00075-CivicAddressUnknownStreetType,"561 60 Roseway SE Salmon Arm BC ",CIVIC_NUMBER,"561 60 St SE, Salmon Arm, BC","[UNRECOGNIZED.notAllowed:33 STREET_TYPE.missing:6]",F,,,F,F
 00076-CivicAddressUnknownStreetName,"561 Gruffle St SE Salmon Arm BC",BLOCK,"561 Salmon Rd, Central Saanich, BC","[UNRECOGNIZED.notAllowed:33 LOCALITY.missing:10 STREET_DIRECTION.notMatched:2 STREET_TYPE.notMatched:3 STREET_QUALIFIER.notMatched:1 MAX_RESULTS.too_low_to_include_all_best_matches:0]",F,,,F,F
