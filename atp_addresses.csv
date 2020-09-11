@@ -78,7 +78,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00078-CivicAddressUnknownUnitDescriptor,"Abode 116 195 Chamberlain Cres Tumbler Ridge BC",UNIT,"UNIT 116 -- 195 Chamberlain Cres, Tumbler Ridge, BC","[UNRECOGNIZED.notAllowed:33 UNIT_DESIGNATOR.missing:0]",F,,,T,T
 00079-CivicAddressStreetDirectionForUndirectedStreet,"109 Quarry Dr W Salt Spring Island BC",CIVIC_NUMBER,"109 Quarry Dr, Salt Spring Island, BC",[STREET_DIRECTION.notMatched:2],F,,,T,T
 00080-CivicAddressWithMailBagAtEnd,"525 Superior St, Victoria, BC MAILBAG 300",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00081-CivicAddressWithMailBagAfterStreet,"525 Superior St MAILBAG 300 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,T,T
+00081-CivicAddressWithMailBagAfterStreet,"525 Superior St MAILBAG 300 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
 00082-CivicAddressWithBagAtEnd,"525 Superior St, Victoria, BC BAG 300",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
 00083-CivicAddressWithBagAfterStreet,"525 Superior St BAG 300 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
 00084-CivicAddressWithCompAtEnd,"525 Superior St, Victoria, BC COMP 300",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
