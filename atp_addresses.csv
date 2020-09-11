@@ -92,7 +92,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00092-CivicAddressWithRuralRouteStnAtEnd,"525 Superior St, Victoria, BC RR3 STN A",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
 00093-CivicAddressWithRuralRouteStnAfterStreet,"525 Superior St RR3 STN A Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
 00094-CivicAddressWithUnabbreviatedRuralRoute,"525 Superior St Rural Route 3 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00095-CivicAddresswithPostBoxStnNoStreet,"PO BOX 283 STN A Victoria BC",LOCALITY,"Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,F,T
+00095-CivicAddresswithPostBoxStnNoStreet,"PO BOX 283 STN A Victoria BC",LOCALITY,"Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,F,T
 00096-CivicAddressWithPostBoxStnAtEnd,"525 Superior St PO BOX 283 STN A Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
 00097-CivicAddressWithPostBoxStnAfterStreet,"525 Superior St, Victoria, BC PO BOX 283 STN A",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
 00098-CivicAddresswithPostBoxNoStreet,"PO BOX 283 Victoria BC",LOCALITY,"Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,F,T
