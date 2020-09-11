@@ -137,7 +137,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00137-CivicAddressFailedInPast,671D MARKET HILL VANCOUVER BC ,BLOCK,"671D Market Hill, Vancouver, BC",[],F,,,T,T
 00138-CivicAddressFailedInPast,100 mile house BC,LOCALITY,"100 Mile House, BC",[],F,,,T,T
 00139-CivicAddressFailedInPast,"WILLOW DRIVE 70 MILE HOUSE BC",STREET,"Willow Dr, 70 Mile House, BC",[],F,,,T,T
-00140-CivicAddressFailedInPast,gorge and gorge,INTERSECTION,"Gorge Bridge and Gorge Bridge, Esquimalt, BC","[STREET_QUALIFIER.missing:1 LOCALITY.missing:10 PROVINCE.missing:1]",F,,F,F
+00140-CivicAddressFailedInPast,gorge and gorge,INTERSECTION,"Gorge Bridge and Gorge Bridge, Esquimalt, BC","[STREET_QUALIFIER.missing:1 LOCALITY.missing:10 PROVINCE.missing:1]",F,,,F,F
 00141-CivicAddressFailedInPast,"Vancouver BC",LOCALITY,"Vancouver, BC",[],F,,,T,T
 00142-CivicAddressNotInAnyAddressRange,"1 Commercial Dr Dease Lake BC",BLOCK,"1 Commercial Dr, Dease Lake, BC",[],F,,,T,T
 00143-CivicAddressStreetNameNotPrimary,"1271 Winchester Rd Qualicum Beach ",CIVIC_NUMBER,"1271 Winchester Rd, Qualicum Beach, BC",[PROVINCE.missing:1],F,,,T,T
