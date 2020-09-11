@@ -309,7 +309,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00309-DuplicateBCAfterStreetType,"10011 SIMKIN PL BC, SIDNEY, BC",CIVIC_NUMBER,"10011 Simkin Pl, Sidney, BC",[PROVINCE_CODE.duplicated],F,,,T,T
 00310-DuplicateBCAfterLocality,"10011 SIMKIN PL, SIDNEY, BC, BC",CIVIC_NUMBER,"10011 Simkin Pl, Sidney, BC",[PROVINCE_CODE.duplicated],F,,,T,T
 00311-GoodAddress,"1447 RUPERT ST VANCOUVER, BC",CIVIC_NUMBER,"1447 Rupert St, Vancouver, BC",[],F,,,T,T
-00312-DuplicateLocalityAfterLocality,"1447 RUPERT ST VANCOUVER, VANCOUVER, BC",CIVIC_NUMBER,"1447 Rupert St, Vancouver, BC",[REPEATED_ELEMENT.notAllowed],F,,
+00312-DuplicateLocalityAfterLocality,"1447 RUPERT ST VANCOUVER, VANCOUVER, BC",CIVIC_NUMBER,"1447 Rupert St, Vancouver, BC",[REPEATED_ELEMENT.notAllowed],F,,,
 00313-GoodAddress,"964 LILLOOET RD NORTH VANCOUVER, BC",CIVIC_NUMBER,"964 Lillooet Rd, District of North Vancouver, BC",[LOCALITY.isAlias],F,,
 00314-DuplicateLocalityAfterLocality,"964 LILLOOET RD NORTH VANCOUVER, NORTH VANCOUVER, BC",CIVIC_NUMBER,"964 Lillooet Rd, District of North Vancouver, BC","[REPEATED_ELEMENT.notAllowed,LOCALITY.isAlias]",F,,
 00315-GoodAddress,"1135 JEFFERSON AVE WEST VANCOUVER, BC",CIVIC_NUMBER,"1135 Jefferson Ave, West Vancouver, BC",[],F,,,T,T
@@ -345,7 +345,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00345-AddressInSmallCommunity,"1514 LOON LAKE RD, LOON LAKE, BC",CIVIC_NUMBER,"1514 Loon Lake Rd, Loon Lake, BC",[],F,,,T,T
 00346-AddressInSmallCommunityUsingLocalityAlias,"1514 LOON LAKE RD, CACHE CREEK, BC",CIVIC_NUMBER,"1514 Loon Lake Rd, Loon Lake, BC",[LOCALITY.isAlias],F,,
 00347-AddressInSmallCommunity,"2048 CAMBIE-SOLSQUA RD, SOLSQUA, BC",CIVIC_NUMBER,"2048 Cambie-Solsqua Rd, Solsqua, BC",[],F,,,T,T
-00348-AddressInSmallCommunityUsingLocalityAlias,"2048 CAMBIE-SOLSQUA RD, SICAMOUS, BC",CIVIC_NUMBER,"2048 Cambie-Solsqua Rd, Solsqua, BC",[LOCALITY.isAlias],F,,
+00348-AddressInSmallCommunityUsingLocalityAlias,"2048 CAMBIE-SOLSQUA RD, SICAMOUS, BC",CIVIC_NUMBER,"2048 Cambie-Solsqua Rd, Solsqua, BC",[LOCALITY.isAlias],F,,T,T
 00349-AddressInSmallCommunity,"3492 SPOKIN LAKE RD, SPOKIN LAKE, BC",CIVIC_NUMBER,"3492 Spokin Lake Rd, Spokin Lake, BC",[],F,,,T,T
 00350-AddressInSmallCommunityUsingLocalityAlias,"3492 SPOKIN LAKE RD, 150 MILE HOUSE, BC",CIVIC_NUMBER,"3492 Spokin Lake Rd, Spokin Lake, BC",[LOCALITY.isAlias],F,,
 00351-AddressInSmallCommunity,"2582 SHOREACRES RD, SHOREACRES, BC",CIVIC_NUMBER,"2582 Shoreacres Rd, Shoreacres, BC",[],F,,,T,T
