@@ -24,7 +24,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00024-civicAddressWithUnitNumberSuffix,"101A - 1413 Sunshine Coast Hwy Gibsons BC",UNIT,"UNIT 101A -- 1413 Sunshine Coast Hwy, Gibsons, BC",[],F,,,T,T
 00025-CivicNumberWithHighwayStreetName,"4390 Highway 33 Beaverdell BC",CIVIC_NUMBER,"4390 Hwy 33, Beaverdell, BC",[],F,,,T,T
 00026-CivicAddressWithoutProvinceCode,"525 Superior St Victoria",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[PROVINCE.missing:1],F,,,T,T
-00027-CivicAddressWithoutLocality,"525 Superior St BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[LOCALITY.missing:10],F,,F,F
+00027-CivicAddressWithoutLocality,"525 Superior St BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[LOCALITY.missing:10],F,,,F,F
 00028-CivicAddressWithoutStreetName,"Kamloops bc",LOCALITY,"Kamloops, BC",[],F,,,F,T
 00029-CivicAddressWithoutStreetType,"661A Market Vancouver BC",CIVIC_NUMBER,"661A Market Hill, Vancouver, BC",[STREET_TYPE.missing:6],F,,,T,T
 00030-CivicAddressWithoutStreetDirection,"456 Gorge Rd Victoria BC",CIVIC_NUMBER,"456 Gorge Rd E, Victoria, BC",[STREET_DIRECTION.missing:2],F,,,T,T
