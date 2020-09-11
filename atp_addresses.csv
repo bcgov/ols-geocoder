@@ -439,3 +439,4 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00439-NonStandardLocalityNameAbbreviation,"352 W 14th St, North Vanc, BC",CIVIC_NUMBER,"352 W 14th St, North Vancouver, BC",[],F,,102
 00439-NonStandardLocalityNameAbbreviation,"569 Hody Dr, Ok Falls, BC",CIVIC_NUMBER,"569 Hody Dr, Okanagan Falls, BC",[],F,,102
 00440-NonStandardStreetNameAbbreviation,"5450 Ok Ave, Vernon, BC",CIVIC_NUMBER,"5450 Okanagan Ave, Vernon, BC",[],F,,102
+00441-NonStandardStreetNameAbbreviation,"1301 Ok Ave, Quesnel, BC",CIVIC_NUMBER,"1301 Oak Ave, Quesnel, BC",[],F,,102
