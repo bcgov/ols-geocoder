@@ -310,12 +310,12 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00310-DuplicateBCAfterLocality,"10011 SIMKIN PL, SIDNEY, BC, BC",CIVIC_NUMBER,"10011 Simkin Pl, Sidney, BC",[PROVINCE_CODE.duplicated],F,,,T,T
 00311-GoodAddress,"1447 RUPERT ST VANCOUVER, BC",CIVIC_NUMBER,"1447 Rupert St, Vancouver, BC",[],F,,,T,T
 00312-DuplicateLocalityAfterLocality,"1447 RUPERT ST VANCOUVER, VANCOUVER, BC",CIVIC_NUMBER,"1447 Rupert St, Vancouver, BC",[REPEATED_ELEMENT.notAllowed],F,,,T,T
-00313-GoodAddress,"964 LILLOOET RD NORTH VANCOUVER, BC",CIVIC_NUMBER,"964 Lillooet Rd, District of North Vancouver, BC",[LOCALITY.isAlias],F,,
+00313-GoodAddress,"964 LILLOOET RD NORTH VANCOUVER, BC",CIVIC_NUMBER,"964 Lillooet Rd, District of North Vancouver, BC",[LOCALITY.isAlias],F,,,T,T
 00314-DuplicateLocalityAfterLocality,"964 LILLOOET RD NORTH VANCOUVER, NORTH VANCOUVER, BC",CIVIC_NUMBER,"964 Lillooet Rd, District of North Vancouver, BC","[REPEATED_ELEMENT.notAllowed,LOCALITY.isAlias]",F,,
 00315-GoodAddress,"1135 JEFFERSON AVE WEST VANCOUVER, BC",CIVIC_NUMBER,"1135 Jefferson Ave, West Vancouver, BC",[],F,,,T,T
 00316-DuplicateLocalityAfterLocality,"1135 JEFFERSON AVE WEST VANCOUVER, WEST VANCOUVER, BC",CIVIC_NUMBER,"1135 Jefferson Ave, West Vancouver, BC",[REPEATED_ELEMENT.notAllowed],F,,
 00317-GoodAddress,"11048 157A ST SURREY, BC",CIVIC_NUMBER,"11048 157A St, Surrey, BC",[],F,,,T,T
-00318-DuplicateLocalityAfterLocality,"11048 157A ST SURREY, SURREY, BC",CIVIC_NUMBER,"11048 157A St, Surrey, BC",[REPEATED_ELEMENT.notAllowed],F,,
+00318-DuplicateLocalityAfterLocality,"11048 157A ST SURREY, SURREY, BC",CIVIC_NUMBER,"11048 157A St, Surrey, BC",[REPEATED_ELEMENT.notAllowed],F,,,T,T
 00319-GoodAddress,"9917 ASHWOOD DR RICHMOND, BC",CIVIC_NUMBER,"9917 Ashwood Dr, Richmond, BC",[],F,,,T,T
 00320-DuplicateLocalityAfterLocality,"9917 ASHWOOD DR RICHMOND, RICHMOND, BC",CIVIC_NUMBER,"9917 Ashwood Dr, Richmond, BC",[REPEATED_ELEMENT.notAllowed],F,,
 00321-GoodAddress,"1120 FOSTER AVE COQUITLAM, BC",CIVIC_NUMBER,"1120 Foster Ave, Coquitlam, BC",[],F,,,T,T
