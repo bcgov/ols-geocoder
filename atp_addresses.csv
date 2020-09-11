@@ -185,7 +185,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00185-UnknownSiteNameAfterStreetWithoutFrontGate,"1985 Millstream Rd Old Mill Stream Manor, Highlands, BC",CIVIC_NUMBER,"Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],F,,,T,T
 00186-UnknownUnitWithUnknownSiteNameAfterStreetWithoutFrontGate,"1985 Millstream Rd APT 101 Old Mill Stream Manor, Highlands, BC",CIVIC_NUMBER,"APT 101, Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,FRONT_GATE.missing,UNIT_DESIGNATOR.notMatched,UNIT_NUMBER.notMatched]",F,,,T,T
 00187-SpelledOutProvinceName,"8525 TERRACE DR DELTA, BRITISH COLUMBIA",CIVIC_NUMBER,"8525 Terrace Dr, Delta, BC",[],F,,,T,T
-00188-RedundantSpelledOutProvinceNameAndAbbreviation,"8525 TERRACE DR DELTA, BRITISH COLUMBIA, BC",CIVIC_NUMBER,"8525 Terrace Dr, Delta, BC",[PROVINCE_NAME.redundant],F,,T,T
+00188-RedundantSpelledOutProvinceNameAndAbbreviation,"8525 TERRACE DR DELTA, BRITISH COLUMBIA, BC",CIVIC_NUMBER,"8525 Terrace Dr, Delta, BC",[PROVINCE_NAME.redundant],F,,,T,T
 00189-WordUNKNOWNInAddress,"975 BALMORAL RD UNKNOWN, VICTORIA, BC",CIVIC_NUMBER,"975 Balmoral Rd, Victoria, BC",[NOISE_WORD.notAllowed],F,,,T,T
 00190-WordCANADAInAddress,"5142 MANOR ST CANADA, BURNABY, BC",CIVIC_NUMBER,"5142 Manor St, Burnaby, BC",[NOISE_WORD.notAllowed],F,,,T,T
 00191-GDPostalElementAfterStreet,"400 GOWER POINT RD GD, GIBSONS, BC",CIVIC_NUMBER,"400 Gower Point Rd, Gibsons, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
