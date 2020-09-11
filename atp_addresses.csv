@@ -18,7 +18,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00018-civicAddressWithUnitBeforeCivicNumberandWithoutFrontGate,"Unit 170 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[],F,,,T,T
 00019-civicAddressWithUnitandUnknownSiteName,"Douglas College Unit 170 -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched],F,,,T,T
 00020-civicAddressWithSiteName,"Anahim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],F,,,T,T
-00021-civicAddressWithPartialSiteName,"Anahim -- Anahim Lake BC",CIVIC_NUMBER,"Anahim -- Anahim Lake, BC",[SITE_NAME.partialMatch:5],F,,T,T
+00021-civicAddressWithPartialSiteName,"Anahim -- Anahim Lake BC",CIVIC_NUMBER,"Anahim -- Anahim Lake, BC",[SITE_NAME.partialMatch:5],F,,,T,T
 00022-civicAddressWithSiteNameAndMissingCivicNumber,need example,CIVIC_NUMBER,need example,[CIVIC_NUMBER.missing:10],T,,,F,F
 00023-civicAddressWithNumberForStreetName,"4216 E 51 Ave Fort Nelson BC",CIVIC_NUMBER,"4216 51st Ave E, Fort Nelson, BC",[],F,,,T,T
 00024-civicAddressWithUnitNumberSuffix,"101A - 1413 Sunshine Coast Hwy Gibsons BC",UNIT,"UNIT 101A -- 1413 Sunshine Coast Hwy, Gibsons, BC",[],F,,,T,T
