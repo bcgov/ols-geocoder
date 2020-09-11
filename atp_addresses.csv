@@ -198,116 +198,116 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00198-RedundantStreetTypeInAddress,"10008 COLDSTREAM CREEK RD ROAD, COLDSTREAM, BC",CIVIC_NUMBER,"10008 Coldstream Creek Rd, Coldstream, BC",[STREET_TYPE.duplicated],F,,,T,T
 00199-RedundantStreetTypeInAddress,"10008 COLDSTREAM CREEK ROAD RD, COLDSTREAM, BC",CIVIC_NUMBER,"10008 Coldstream Creek Rd, Coldstream, BC",[STREET_TYPE.duplicated],F,,,T,T
 00200-RedundantStreetTypeInAddress,"10008 COLDSTREAM CREEK ROAD ROAD, COLDSTREAM, BC",CIVIC_NUMBER,"10008 Coldstream Creek Rd, Coldstream, BC",[STREET_TYPE.duplicated],F,,,T,T
-00201-RedundantStreetTypeInAddress,"1 1430 CHESTERFIELD AVE AVE, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 -- 1430 Chesterfield Ave, North Vancouver, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00202-RedundantStreetTypeInAddress,"1 1430 CHESTERFIELD AVE AVENUE, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 -- 1430 Chesterfield Ave, North Vancouver, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00203-RedundantStreetTypeInAddress,"1 1430 CHESTERFIELD AVENUE AVE, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 -- 1430 Chesterfield Ave, North Vancouver, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00204-RedundantStreetTypeInAddress,"1 1430 CHESTERFIELD AVENUE AVENUE, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 -- 1430 Chesterfield Ave, North Vancouver, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00205-RedundantStreetTypeInAddress,"10140 BAMBERTON DR DR, RICHMOND, BC",CIVIC_NUMBER,"10140 Bamberton Dr, Richmond, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00206-RedundantStreetTypeInAddress,"10140 BAMBERTON DR DRIVE, RICHMOND, BC",CIVIC_NUMBER,"10140 Bamberton Dr, Richmond, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00207-RedundantStreetTypeInAddress,"10140 BAMBERTON DRIVE DR, RICHMOND, BC",CIVIC_NUMBER,"10140 Bamberton Dr, Richmond, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00208-RedundantStreetTypeInAddress,"10140 BAMBERTON DRIVE DRIVE, RICHMOND, BC",CIVIC_NUMBER,"10140 Bamberton Dr, Richmond, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00209-RedundantStreetTypeInAddress,"105 RIVER TERR TCE, NANAIMO, BC",CIVIC_NUMBER,"105 River Terr, Nanaimo, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00210-RedundantStreetTypeInAddress,"105 RIVER TCE TCE, NANAIMO, BC",CIVIC_NUMBER,"105 River Terr, Nanaimo, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00211-RedundantStreetTypeInAddress,"1168 DOUGLAS TERR TERR, PORT COQUITLAM, BC",CIVIC_NUMBER,"1168 Douglas Terr, Port Coquitlam, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00212-RedundantStreetTypeInAddress,"1272 CREEKSTONE TERR TRC, COQUITLAM, BC",CIVIC_NUMBER,"1272 Creekstone Terr, Coquitlam, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00213-RedundantStreetTypeInAddress,"1272 CREEKSTONE TRC TERR, COQUITLAM, BC",CIVIC_NUMBER,"1272 Creekstone Terr, Coquitlam, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00214-RedundantStreetTypeInAddress,"1272 CREEKSTONE TRC TRC COQUITLAM, BC",CIVIC_NUMBER,"1272 Creekstone Terr, Coquitlam, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00215-RedundantStreetTypeInAddress,"269 BURNS ST ST, COQUITLAM, BC",CIVIC_NUMBER,"269 Burns St, Coquitlam, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00216-RedundantStreetTypeInAddress,"269 BURNS ST STREET, COQUITLAM, BC",CIVIC_NUMBER,"269 Burns St, Coquitlam, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00217-RedundantStreetTypeInAddress,"269 BURNS STREET ST, COQUITLAM, BC",CIVIC_NUMBER,"269 Burns St, Coquitlam, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00218-RedundantStreetTypeInAddress,"269 BURNS STREET STREET, COQUITLAM, BC",CIVIC_NUMBER,"270 Burns St, Coquitlam, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00219-RedundantStreetTypeInAddress,"10881 SUNSHINE COAST HWY HWY, HALFMOON BAY, BC",CIVIC_NUMBER,"10881 Sunshine Coast Hwy, Halfmoon Bay, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00220-RedundantStreetTypeInAddress,"10881 SUNSHINE COAST HWY HIG, HALFMOON BAY, BC",CIVIC_NUMBER,"10881 Sunshine Coast Hwy, Halfmoon Bay, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00221-RedundantStreetTypeInAddress,"10881 SUNSHINE COAST HIG HWY, HALFMOON BAY, BC",CIVIC_NUMBER,"10881 Sunshine Coast Hwy, Halfmoon Bay, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00222-RedundantStreetTypeInAddress,"10881 SUNSHINE COAST HIGHWAY HWY, HALFMOON BAY, BC",CIVIC_NUMBER,"10881 Sunshine Coast Hwy, Halfmoon Bay, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00223-RedundantStreetTypeInAddress,"10881 SUNSHINE COAST HWY HIGHWAY, HALFMOON BAY, BC",CIVIC_NUMBER,"10881 Sunshine Coast Hwy, Halfmoon Bay, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00224-RedundantStreetTypeInAddress,"10881 SUNSHINE COAST HIGHWAY HIGHWAY, HALFMOON BAY, BC",CIVIC_NUMBER,"10881 Sunshine Coast Hwy, Halfmoon Bay, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00225-RedundantStreetTypeInAddress,"1065 CINNAMON SEDGE WAY WAY, NANOOSE BAY, BC",CIVIC_NUMBER,"1065 Cinnamon Sedge Way, Nanoose Bay, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00226-RedundantStreetTypeInAddress,"902 5828 THUNDERBIRD BLVD BLV, VANCOUVER, BC",CIVIC_NUMBER,"UNIT 902 -- 5828 Thunderbird Blvd, Vancouver, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00227-RedundantStreetTypeInAddress,"902 5828 THUNDERBIRD BLVD BOULEVARD, VANCOUVER, BC",CIVIC_NUMBER,"UNIT 902 -- 5828 Thunderbird Blvd, Vancouver, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00228-RedundantStreetTypeInAddress,"902 5828 THUNDERBIRD BLVD BLVD, VANCOUVER, BC",CIVIC_NUMBER,"UNIT 902 -- 5828 Thunderbird Blvd, Vancouver, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00229-RedundantStreetTypeInAddress,"902 5828 THUNDERBIRD BLV BLVD, VANCOUVER, BC",CIVIC_NUMBER,"UNIT 902 -- 5828 Thunderbird Blvd, Vancouver, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00230-RedundantStreetTypeInAddress,"902 5828 THUNDERBIRD BLV BOULEVARD, VANCOUVER, BC",CIVIC_NUMBER,"UNIT 902 -- 5828 Thunderbird Blvd, Vancouver, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00231-RedundantStreetTypeInAddress,"902 5828 THUNDERBIRD BLV BLV, VANCOUVER, BC",CIVIC_NUMBER,"UNIT 902 -- 5828 Thunderbird Blvd, Vancouver, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00232-RedundantStreetTypeInAddress,"902 5828 THUNDERBIRD BOULEVARD BLV, VANCOUVER, BC",CIVIC_NUMBER,"UNIT 902 -- 5828 Thunderbird Blvd, Vancouver, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00233-RedundantStreetTypeInAddress,"902 5828 THUNDERBIRD BOULEVARD BLVD, VANCOUVER, BC",CIVIC_NUMBER,"UNIT 902 -- 5828 Thunderbird Blvd, Vancouver, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00234-RedundantStreetTypeInAddress,"902 5828 THUNDERBIRD BOULEVARD BOULEVARD, VANCOUVER, BC",CIVIC_NUMBER,"UNIT 902 -- 5828 Thunderbird Blvd, Vancouver, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00235-RedundantStreetTypeInAddress,"9806 STIRLING ARM CRES CRESCENT, PORT ALBERNI, BC",CIVIC_NUMBER,"9806 Stirling Arm Cres, Port Alberni, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00236-RedundantStreetTypeInAddress,"9806 STIRLING ARM CRES CR, PORT ALBERNI, BC",CIVIC_NUMBER,"9806 Stirling Arm Cres, Port Alberni, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00237-RedundantStreetTypeInAddress,"9806 STIRLING ARM CRES CRES, PORT ALBERNI, BC",CIVIC_NUMBER,"9806 Stirling Arm Cres, Port Alberni, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00238-RedundantStreetTypeInAddress,"9806 STIRLING ARM CR CRESCENT, PORT ALBERNI, BC",CIVIC_NUMBER,"9806 Stirling Arm Cres, Port Alberni, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00239-RedundantStreetTypeInAddress,"9806 STIRLING ARM CR CRES, PORT ALBERNI, BC",CIVIC_NUMBER,"9806 Stirling Arm Cres, Port Alberni, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00240-RedundantStreetTypeInAddress,"945 STONE FLY CLOSE CL, NANOOSE BAY, BC",CIVIC_NUMBER,"945 Stone Fly Close, Nanoose Bay, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00241-RedundantStreetTypeInAddress,"945 STONE FLY CLOSE CLO, NANOOSE BAY, BC",CIVIC_NUMBER,"945 Stone Fly Close, Nanoose Bay, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00242-RedundantStreetTypeInAddress,"945 STONE FLY CLOSE CLOSE, NANOOSE BAY, BC",CIVIC_NUMBER,"945 Stone Fly Close, Nanoose Bay, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00243-RedundantStreetTypeInAddress,"945 STONE FLY CL CLOSE, NANOOSE BAY, BC",CIVIC_NUMBER,"945 Stone Fly Close, Nanoose Bay, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00244-RedundantStreetTypeInAddress,"945 STONE FLY CL CL, NANOOSE BAY, BC",CIVIC_NUMBER,"945 Stone Fly Close, Nanoose Bay, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00245-RedundantStreetTypeInAddress,"945 STONE FLY CL CLO, NANOOSE BAY, BC",CIVIC_NUMBER,"945 Stone Fly Close, Nanoose Bay, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00246-RedundantStreetTypeInAddress,"945 STONE FLY CLO CLO, NANOOSE BAY, BC",CIVIC_NUMBER,"945 Stone Fly Close, Nanoose Bay, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00247-RedundantStreetTypeInAddress,"945 STONE FLY CLO CL, NANOOSE BAY, BC",CIVIC_NUMBER,"945 Stone Fly Close, Nanoose Bay, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00248-RedundantStreetTypeInAddress,"945 STONE FLY CLO CLOSE, NANOOSE BAY, BC",CIVIC_NUMBER,"945 Stone Fly Close, Nanoose Bay, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00249-RedundantStreetTypeInAddress,"1401 COPPER MOUNTAIN CRT CRT, VERNON, BC",CIVIC_NUMBER,"1401 Copper Mountain Crt, Vernon, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00250-RedundantStreetTypeInAddress,"1401 COPPER MOUNTAIN CRT COURT, VERNON, BC",CIVIC_NUMBER,"1401 Copper Mountain Crt, Vernon, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00251-RedundantStreetTypeInAddress,"1401 COPPER MOUNTAIN COURT CRT, VERNON, BC",CIVIC_NUMBER,"1401 Copper Mountain Crt, Vernon, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00252-RedundantStreetTypeInAddress,"1401 COPPER MOUNTAIN COURT COURT, VERNON, BC",CIVIC_NUMBER,"1401 Copper Mountain Crt, Vernon, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00253-RedundantStreetTypeInAddress,"1 1040 MT REVELSTOKE PL PL, VERNON, BC",UNIT,"UNIT 1 -- 1040 Mt Revelstoke Pl, Vernon, BC","[REPEATED_ELEMENT.notAllowed,UNIT_DESIGNATOR.missing]",F,,
-00254-RedundantStreetTypeInAddress,"1 1040 MT REVELSTOKE PL PLACE, VERNON, BC",UNIT,"UNIT 1 -- 1040 Mt Revelstoke Pl, Vernon, BC","[REPEATED_ELEMENT.notAllowed,UNIT_DESIGNATOR.missing]",F,,
-00255-UnknownSiteNameWithFrontGate,"HOLLYBURN HOUSE -- 2095 MARINE DR, WEST VANCOUVER, BC",CIVIC_NUMBER,"Hollyburn House -- 2095 Marine Dr, West Vancouver, BC",[SITE_NAME.notMatched],F,,
+00201-RedundantStreetTypeInAddress,"1 1430 CHESTERFIELD AVE AVE, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 -- 1430 Chesterfield Ave, North Vancouver, BC",[STREET_TYPE.duplicated],F,,,T,T
+00202-RedundantStreetTypeInAddress,"1 1430 CHESTERFIELD AVE AVENUE, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 -- 1430 Chesterfield Ave, North Vancouver, BC",[STREET_TYPE.duplicated],F,,,T,T
+00203-RedundantStreetTypeInAddress,"1 1430 CHESTERFIELD AVENUE AVE, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 -- 1430 Chesterfield Ave, North Vancouver, BC",[STREET_TYPE.duplicated],F,,,T,T
+00204-RedundantStreetTypeInAddress,"1 1430 CHESTERFIELD AVENUE AVENUE, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 -- 1430 Chesterfield Ave, North Vancouver, BC",[STREET_TYPE.duplicated],F,,,T,T
+00205-RedundantStreetTypeInAddress,"10140 BAMBERTON DR DR, RICHMOND, BC",CIVIC_NUMBER,"10140 Bamberton Dr, Richmond, BC",[STREET_TYPE.duplicated],F,,,T,T
+00206-RedundantStreetTypeInAddress,"10140 BAMBERTON DR DRIVE, RICHMOND, BC",CIVIC_NUMBER,"10140 Bamberton Dr, Richmond, BC",[STREET_TYPE.duplicated],F,,,T,T
+00207-RedundantStreetTypeInAddress,"10140 BAMBERTON DRIVE DR, RICHMOND, BC",CIVIC_NUMBER,"10140 Bamberton Dr, Richmond, BC",[STREET_TYPE.duplicated],F,,,T,T
+00208-RedundantStreetTypeInAddress,"10140 BAMBERTON DRIVE DRIVE, RICHMOND, BC",CIVIC_NUMBER,"10140 Bamberton Dr, Richmond, BC",[STREET_TYPE.duplicated],F,,,T,T
+00209-RedundantStreetTypeInAddress,"105 RIVER TERR TCE, NANAIMO, BC",CIVIC_NUMBER,"105 River Terr, Nanaimo, BC",[STREET_TYPE.duplicated],F,,,T,T
+00210-RedundantStreetTypeInAddress,"105 RIVER TCE TCE, NANAIMO, BC",CIVIC_NUMBER,"105 River Terr, Nanaimo, BC",[STREET_TYPE.duplicated],F,,,T,T
+00211-RedundantStreetTypeInAddress,"1168 DOUGLAS TERR TERR, PORT COQUITLAM, BC",CIVIC_NUMBER,"1168 Douglas Terr, Port Coquitlam, BC",[STREET_TYPE.duplicated],F,,,T,T
+00212-RedundantStreetTypeInAddress,"1272 CREEKSTONE TERR TRC, COQUITLAM, BC",CIVIC_NUMBER,"1272 Creekstone Terr, Coquitlam, BC",[STREET_TYPE.duplicated],F,,,T,T
+00213-RedundantStreetTypeInAddress,"1272 CREEKSTONE TRC TERR, COQUITLAM, BC",CIVIC_NUMBER,"1272 Creekstone Terr, Coquitlam, BC",[STREET_TYPE.duplicated],F,,,T,T
+00214-RedundantStreetTypeInAddress,"1272 CREEKSTONE TRC TRC COQUITLAM, BC",CIVIC_NUMBER,"1272 Creekstone Terr, Coquitlam, BC",[STREET_TYPE.duplicated],F,,,T,T
+00215-RedundantStreetTypeInAddress,"269 BURNS ST ST, COQUITLAM, BC",CIVIC_NUMBER,"269 Burns St, Coquitlam, BC",[STREET_TYPE.duplicated],F,,,T,T
+00216-RedundantStreetTypeInAddress,"269 BURNS ST STREET, COQUITLAM, BC",CIVIC_NUMBER,"269 Burns St, Coquitlam, BC",[STREET_TYPE.duplicated],F,,,T,T
+00217-RedundantStreetTypeInAddress,"269 BURNS STREET ST, COQUITLAM, BC",CIVIC_NUMBER,"269 Burns St, Coquitlam, BC",[STREET_TYPE.duplicated],F,,,T,T
+00218-RedundantStreetTypeInAddress,"269 BURNS STREET STREET, COQUITLAM, BC",CIVIC_NUMBER,"270 Burns St, Coquitlam, BC",[STREET_TYPE.duplicated],F,,,T,T
+00219-RedundantStreetTypeInAddress,"10881 SUNSHINE COAST HWY HWY, HALFMOON BAY, BC",CIVIC_NUMBER,"10881 Sunshine Coast Hwy, Halfmoon Bay, BC",[STREET_TYPE.duplicated],F,,,T,T
+00220-RedundantStreetTypeInAddress,"10881 SUNSHINE COAST HWY HIG, HALFMOON BAY, BC",CIVIC_NUMBER,"10881 Sunshine Coast Hwy, Halfmoon Bay, BC",[STREET_TYPE.duplicated],F,,,T,T
+00221-RedundantStreetTypeInAddress,"10881 SUNSHINE COAST HIG HWY, HALFMOON BAY, BC",CIVIC_NUMBER,"10881 Sunshine Coast Hwy, Halfmoon Bay, BC",[STREET_TYPE.duplicated],F,,,T,T
+00222-RedundantStreetTypeInAddress,"10881 SUNSHINE COAST HIGHWAY HWY, HALFMOON BAY, BC",CIVIC_NUMBER,"10881 Sunshine Coast Hwy, Halfmoon Bay, BC",[STREET_TYPE.duplicated],F,,,T,T
+00223-RedundantStreetTypeInAddress,"10881 SUNSHINE COAST HWY HIGHWAY, HALFMOON BAY, BC",CIVIC_NUMBER,"10881 Sunshine Coast Hwy, Halfmoon Bay, BC",[STREET_TYPE.duplicated],F,,,T,T
+00224-RedundantStreetTypeInAddress,"10881 SUNSHINE COAST HIGHWAY HIGHWAY, HALFMOON BAY, BC",CIVIC_NUMBER,"10881 Sunshine Coast Hwy, Halfmoon Bay, BC",[STREET_TYPE.duplicated],F,,,T,T
+00225-RedundantStreetTypeInAddress,"1065 CINNAMON SEDGE WAY WAY, NANOOSE BAY, BC",CIVIC_NUMBER,"1065 Cinnamon Sedge Way, Nanoose Bay, BC",[STREET_TYPE.duplicated],F,,,T,T
+00226-RedundantStreetTypeInAddress,"902 5828 THUNDERBIRD BLVD BLV, VANCOUVER, BC",CIVIC_NUMBER,"UNIT 902 -- 5828 Thunderbird Blvd, Vancouver, BC",[STREET_TYPE.duplicated],F,,,T,T
+00227-RedundantStreetTypeInAddress,"902 5828 THUNDERBIRD BLVD BOULEVARD, VANCOUVER, BC",CIVIC_NUMBER,"UNIT 902 -- 5828 Thunderbird Blvd, Vancouver, BC",[STREET_TYPE.duplicated],F,,,T,T
+00228-RedundantStreetTypeInAddress,"902 5828 THUNDERBIRD BLVD BLVD, VANCOUVER, BC",CIVIC_NUMBER,"UNIT 902 -- 5828 Thunderbird Blvd, Vancouver, BC",[STREET_TYPE.duplicated],F,,,T,T
+00229-RedundantStreetTypeInAddress,"902 5828 THUNDERBIRD BLV BLVD, VANCOUVER, BC",CIVIC_NUMBER,"UNIT 902 -- 5828 Thunderbird Blvd, Vancouver, BC",[STREET_TYPE.duplicated],F,,,T,T
+00230-RedundantStreetTypeInAddress,"902 5828 THUNDERBIRD BLV BOULEVARD, VANCOUVER, BC",CIVIC_NUMBER,"UNIT 902 -- 5828 Thunderbird Blvd, Vancouver, BC",[STREET_TYPE.duplicated],F,,,T,T
+00231-RedundantStreetTypeInAddress,"902 5828 THUNDERBIRD BLV BLV, VANCOUVER, BC",CIVIC_NUMBER,"UNIT 902 -- 5828 Thunderbird Blvd, Vancouver, BC",[STREET_TYPE.duplicated],F,,,T,T
+00232-RedundantStreetTypeInAddress,"902 5828 THUNDERBIRD BOULEVARD BLV, VANCOUVER, BC",CIVIC_NUMBER,"UNIT 902 -- 5828 Thunderbird Blvd, Vancouver, BC",[STREET_TYPE.duplicated],F,,,T,T
+00233-RedundantStreetTypeInAddress,"902 5828 THUNDERBIRD BOULEVARD BLVD, VANCOUVER, BC",CIVIC_NUMBER,"UNIT 902 -- 5828 Thunderbird Blvd, Vancouver, BC",[STREET_TYPE.duplicated],F,,,T,T
+00234-RedundantStreetTypeInAddress,"902 5828 THUNDERBIRD BOULEVARD BOULEVARD, VANCOUVER, BC",CIVIC_NUMBER,"UNIT 902 -- 5828 Thunderbird Blvd, Vancouver, BC",[STREET_TYPE.duplicated],F,,,T,T
+00235-RedundantStreetTypeInAddress,"9806 STIRLING ARM CRES CRESCENT, PORT ALBERNI, BC",CIVIC_NUMBER,"9806 Stirling Arm Cres, Port Alberni, BC",[STREET_TYPE.duplicated],F,,,T,T
+00236-RedundantStreetTypeInAddress,"9806 STIRLING ARM CRES CR, PORT ALBERNI, BC",CIVIC_NUMBER,"9806 Stirling Arm Cres, Port Alberni, BC",[STREET_TYPE.duplicated],F,,,T,T
+00237-RedundantStreetTypeInAddress,"9806 STIRLING ARM CRES CRES, PORT ALBERNI, BC",CIVIC_NUMBER,"9806 Stirling Arm Cres, Port Alberni, BC",[STREET_TYPE.duplicated],F,,,T,T
+00238-RedundantStreetTypeInAddress,"9806 STIRLING ARM CR CRESCENT, PORT ALBERNI, BC",CIVIC_NUMBER,"9806 Stirling Arm Cres, Port Alberni, BC",[STREET_TYPE.duplicated],F,,,T,T
+00239-RedundantStreetTypeInAddress,"9806 STIRLING ARM CR CRES, PORT ALBERNI, BC",CIVIC_NUMBER,"9806 Stirling Arm Cres, Port Alberni, BC",[STREET_TYPE.duplicated],F,,,T,T
+00240-RedundantStreetTypeInAddress,"945 STONE FLY CLOSE CL, NANOOSE BAY, BC",CIVIC_NUMBER,"945 Stone Fly Close, Nanoose Bay, BC",[STREET_TYPE.duplicated],F,,,T,T
+00241-RedundantStreetTypeInAddress,"945 STONE FLY CLOSE CLO, NANOOSE BAY, BC",CIVIC_NUMBER,"945 Stone Fly Close, Nanoose Bay, BC",[STREET_TYPE.duplicated],F,,,T,T
+00242-RedundantStreetTypeInAddress,"945 STONE FLY CLOSE CLOSE, NANOOSE BAY, BC",CIVIC_NUMBER,"945 Stone Fly Close, Nanoose Bay, BC",[STREET_TYPE.duplicated],F,,,T,T
+00243-RedundantStreetTypeInAddress,"945 STONE FLY CL CLOSE, NANOOSE BAY, BC",CIVIC_NUMBER,"945 Stone Fly Close, Nanoose Bay, BC",[STREET_TYPE.duplicated],F,,,T,T
+00244-RedundantStreetTypeInAddress,"945 STONE FLY CL CL, NANOOSE BAY, BC",CIVIC_NUMBER,"945 Stone Fly Close, Nanoose Bay, BC",[STREET_TYPE.duplicated],F,,,T,T
+00245-RedundantStreetTypeInAddress,"945 STONE FLY CL CLO, NANOOSE BAY, BC",CIVIC_NUMBER,"945 Stone Fly Close, Nanoose Bay, BC",[STREET_TYPE.duplicated],F,,,T,T
+00246-RedundantStreetTypeInAddress,"945 STONE FLY CLO CLO, NANOOSE BAY, BC",CIVIC_NUMBER,"945 Stone Fly Close, Nanoose Bay, BC",[STREET_TYPE.duplicated],F,,,T,T
+00247-RedundantStreetTypeInAddress,"945 STONE FLY CLO CL, NANOOSE BAY, BC",CIVIC_NUMBER,"945 Stone Fly Close, Nanoose Bay, BC",[STREET_TYPE.duplicated],F,,,T,T
+00248-RedundantStreetTypeInAddress,"945 STONE FLY CLO CLOSE, NANOOSE BAY, BC",CIVIC_NUMBER,"945 Stone Fly Close, Nanoose Bay, BC",[STREET_TYPE.duplicated],F,,,T,T
+00249-RedundantStreetTypeInAddress,"1401 COPPER MOUNTAIN CRT CRT, VERNON, BC",CIVIC_NUMBER,"1401 Copper Mountain Crt, Vernon, BC",[STREET_TYPE.duplicated],F,,,T,T
+00250-RedundantStreetTypeInAddress,"1401 COPPER MOUNTAIN CRT COURT, VERNON, BC",CIVIC_NUMBER,"1401 Copper Mountain Crt, Vernon, BC",[STREET_TYPE.duplicated],F,,,T,T
+00251-RedundantStreetTypeInAddress,"1401 COPPER MOUNTAIN COURT CRT, VERNON, BC",CIVIC_NUMBER,"1401 Copper Mountain Crt, Vernon, BC",[STREET_TYPE.duplicated],F,,,T,T
+00252-RedundantStreetTypeInAddress,"1401 COPPER MOUNTAIN COURT COURT, VERNON, BC",CIVIC_NUMBER,"1401 Copper Mountain Crt, Vernon, BC",[STREET_TYPE.duplicated],F,,,T,T
+00253-RedundantStreetTypeInAddress,"1 1040 MT REVELSTOKE PL PL, VERNON, BC",UNIT,"UNIT 1 -- 1040 Mt Revelstoke Pl, Vernon, BC","[STREET_TYPE.duplicated,UNIT_DESIGNATOR.missing]",F,,,T,T
+00254-RedundantStreetTypeInAddress,"1 1040 MT REVELSTOKE PL PLACE, VERNON, BC",UNIT,"UNIT 1 -- 1040 Mt Revelstoke Pl, Vernon, BC","[STREET_TYPE.duplicated,UNIT_DESIGNATOR.missing]",F,,,T,T
+00255-UnknownSiteNameWithFrontGate,"HOLLYBURN HOUSE -- 2095 MARINE DR, WEST VANCOUVER, BC",CIVIC_NUMBER,"Hollyburn House -- 2095 Marine Dr, West Vancouver, BC",[SITE_NAME.notMatched],F,,T,T
 00256-UnknownSiteNameAfterStreetWithoutFrontGate,"2095 MARINE DR HOLLYBURN HOUSE, WEST VANCOUVER, BC",CIVIC_NUMBER,"Hollyburn House -- 2095 Marine Dr, West Vancouver, BC",[SITE_NAME.notMatched],F,,
-00257-UnknownSiteNameWithFrontGate,"BRIDGE HOUSING -- 100 CORDOVA ST E, VANCOUVER, BC",CIVIC_NUMBER,"Bridge Housing -- 100 E Cordova St, Vancouver, BC","[SITE_NAME.notMatched,STREET_DIRECTION.notSuffix:0]",F,,
-00258-UnknownSiteNameAfterStreetWithoutFrontGate,"100 CORDOVA ST E BRIDGE HOUSING, VANCOUVER, BC",CIVIC_NUMBER,"Bridge Housing -- 100 E Cordova St, Vancouver, BC","[SITE_NAME.notMatched,STREET_DIRECTION.notSuffix:0]",F,,
+00257-UnknownSiteNameWithFrontGate,"BRIDGE HOUSING -- 100 CORDOVA ST E, VANCOUVER, BC",CIVIC_NUMBER,"Bridge Housing -- 100 E Cordova St, Vancouver, BC","[SITE_NAME.notMatched,STREET_DIRECTION.notSuffix:0]",F,,,T,T
+00258-UnknownSiteNameAfterStreetWithoutFrontGate,"100 CORDOVA ST E BRIDGE HOUSING, VANCOUVER, BC",CIVIC_NUMBER,"Bridge Housing -- 100 E Cordova St, Vancouver, BC","[SITE_NAME.notMatched,STREET_DIRECTION.notSuffix:0]",F,,,T,T
 00259-GoodAddress,"689 ABBOTT ST, VANCOUVER, BC",CIVIC_NUMBER,"689 Abbott St, Vancouver, BC",[],F,,,T,T
-00260-WordRTDMAILAfterStreet,"689 ABBOTT ST RTD MAIL, VANCOUVER, BC",CIVIC_NUMBER,"689 Abbott St, Vancouver, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,
-00261-WordRETURNMAILAfterStreet,"689 ABBOTT ST RETURN MAIL, VANCOUVER, BC",CIVIC_NUMBER,"689 Abbott St, Vancouver, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,
-00262-WordRETURNEDMAILAfterStreet,"689 ABBOTT ST RETURNED MAIL, VANCOUVER, BC",CIVIC_NUMBER,"689 Abbott St, Vancouver, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,
-00263-WordMAILINGAfterStreet,"689 ABBOTT ST MAILING, VANCOUVER, BC",CIVIC_NUMBER,"689 Abbott St, Vancouver, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,
+00260-WordRTDMAILAfterStreet,"689 ABBOTT ST RTD MAIL, VANCOUVER, BC",CIVIC_NUMBER,"689 Abbott St, Vancouver, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
+00261-WordRETURNMAILAfterStreet,"689 ABBOTT ST RETURN MAIL, VANCOUVER, BC",CIVIC_NUMBER,"689 Abbott St, Vancouver, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
+00262-WordRETURNEDMAILAfterStreet,"689 ABBOTT ST RETURNED MAIL, VANCOUVER, BC",CIVIC_NUMBER,"689 Abbott St, Vancouver, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
+00263-WordMAILINGAfterStreet,"689 ABBOTT ST MAILING, VANCOUVER, BC",CIVIC_NUMBER,"689 Abbott St, Vancouver, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
 00264-GoodAddress,"9695 PREST RD, CHILLIWACK, BC",CIVIC_NUMBER,"9695 Prest Rd, Chilliwack, BC",[],F,,,T,T
-00265-WordPOSTALSTNAfterStreet,"9695 PREST RD POSTAL STN, CHILLIWACK, BC",CIVIC_NUMBER,"9696 Prest Rd, Chilliwack, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,
-00266-WordPOSTALSTATIONAfterStreet,"9695 PREST RD POSTAL STATION, CHILLIWACK, BC",CIVIC_NUMBER,"9696 Prest Rd, Chilliwack, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,
-00267-WordPOSTALAfterStreet,"9695 PREST RD POSTAL, CHILLIWACK, BC",CIVIC_NUMBER,"9696 Prest Rd, Chilliwack, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,
-00268-POBoxAfterStreet,"165 ARLAYNE RD PO BOX 160, KALEDEN, BC",CIVIC_NUMBER,"165 Arlayne Rd, Kaleden, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,
-00269-PspaceOBoxAfterStreet,"165 ARLAYNE RD P O BOX 160, KALEDEN, BC",CIVIC_NUMBER,"165 Arlayne Rd, Kaleden, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,
-00270-POAfterStreet,"165 ARLAYNE RD PO, KALEDEN, BC",CIVIC_NUMBER,"165 Arlayne Rd, Kaleden, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,
-00271-PspaceOAfterStreet,"165 ARLAYNE RD P O, KALEDEN, BC",CIVIC_NUMBER,"165 Arlayne Rd, Kaleden, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,
-00272-KnownUnitWithoutDesignator,"910 7380 ELMBRIDGE WAY, RICHMOND, BC",UNIT,"UNIT 910 -- 7380 Elmbridge Way, Richmond, BC",[UNIT_DESIGNATOR.missing],F,,
-00273-APARTMENTBUILDINGBeforeKnownUnitWithoutDesignator,"APARTMENT BUILDING 910 7380 ELMBRIDGE WAY, RICHMOND, BC",UNIT,"UNIT 910 -- 7380 Elmbridge Way, Richmond, BC","[NOISE_WORD.notAllowed,UNIT_DESIGNATOR.missing]",F,,
-00274-APARTMENTBUILDINGAfterStreetAddress,"910 7380 ELMBRIDGE WAY APARTMENT BUILDING, RICHMOND, BC",UNIT,"UNIT 910 -- 7380 Elmbridge Way, Richmond, BC","[NOISE_WORD.notAllowed,UNIT_DESIGNATOR.missing]",F,,
-00275-APTBUILDINGBeforeKnownUnitWithoutDesignator,"APT BUILDING 910 7380 ELMBRIDGE WAY, RICHMOND, BC",UNIT,"UNIT 910 -- 7380 Elmbridge Way, Richmond, BC","[NOISE_WORD.notAllowed,UNIT_DESIGNATOR.missing]",F,,
-00276-APTBUILDINGAfterStreetAddress,"910 7380 ELMBRIDGE WAY APT BUILDING, RICHMOND, BC",UNIT,"UNIT 910 -- 7380 Elmbridge Way, Richmond, BC","[NOISE_WORD.notAllowed,UNIT_DESIGNATOR.missing]",F,,
-00277-POBoxAtFrontOfUnitAddress,"105 150 21ST ST, WEST VANCOUVER, BC",CIVIC_NUMBER,"UNIT 105 -- 150 21st St, West Vancouver, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched]",F,,
-00278-POBoxAtFrontOfUnitAddresssWithBUZZERNumber,"105 150 21ST ST BUZZER 49, WEST VANCOUVER, BC",CIVIC_NUMBER,"UNIT 105 -- 150 21st St, West Vancouver, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,INTERCOM_NUMBER.notAllowed]",F,,
-00279-POBoxAtFrontOfUnitAddressWithBUZZNumber,"105 150 21ST ST BUZZ 49, WEST VANCOUVER, BC",CIVIC_NUMBER,"UNIT 105 -- 150 21st St, West Vancouver, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,INTERCOM_NUMBER.notAllowed]",F,,
-00280-POBoxAtFrontOfUnitAddressWithINTERCOMNumber,"105 150 21ST ST INTERCOM 49, WEST VANCOUVER, BC",CIVIC_NUMBER,"UNIT 105 -- 150 21st St, West Vancouver, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,INTERCOM_NUMBER.notAllowed]",F,,
+00265-WordPOSTALSTNAfterStreet,"9695 PREST RD POSTAL STN, CHILLIWACK, BC",CIVIC_NUMBER,"9696 Prest Rd, Chilliwack, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
+00266-WordPOSTALSTATIONAfterStreet,"9695 PREST RD POSTAL STATION, CHILLIWACK, BC",CIVIC_NUMBER,"9696 Prest Rd, Chilliwack, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
+00267-WordPOSTALAfterStreet,"9695 PREST RD POSTAL, CHILLIWACK, BC",CIVIC_NUMBER,"9696 Prest Rd, Chilliwack, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
+00268-POBoxAfterStreet,"165 ARLAYNE RD PO BOX 160, KALEDEN, BC",CIVIC_NUMBER,"165 Arlayne Rd, Kaleden, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
+00269-PspaceOBoxAfterStreet,"165 ARLAYNE RD P O BOX 160, KALEDEN, BC",CIVIC_NUMBER,"165 Arlayne Rd, Kaleden, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
+00270-POAfterStreet,"165 ARLAYNE RD PO, KALEDEN, BC",CIVIC_NUMBER,"165 Arlayne Rd, Kaleden, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
+00271-PspaceOAfterStreet,"165 ARLAYNE RD P O, KALEDEN, BC",CIVIC_NUMBER,"165 Arlayne Rd, Kaleden, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
+00272-KnownUnitWithoutDesignator,"910 7380 ELMBRIDGE WAY, RICHMOND, BC",UNIT,"UNIT 910 -- 7380 Elmbridge Way, Richmond, BC",[UNIT_DESIGNATOR.missing],F,,,T,T
+00273-APARTMENTBUILDINGBeforeKnownUnitWithoutDesignator,"APARTMENT BUILDING 910 7380 ELMBRIDGE WAY, RICHMOND, BC",UNIT,"UNIT 910 -- 7380 Elmbridge Way, Richmond, BC","[NOISE_WORD.notAllowed,UNIT_DESIGNATOR.missing]",F,,,T,T
+00274-APARTMENTBUILDINGAfterStreetAddress,"910 7380 ELMBRIDGE WAY APARTMENT BUILDING, RICHMOND, BC",UNIT,"UNIT 910 -- 7380 Elmbridge Way, Richmond, BC","[NOISE_WORD.notAllowed,UNIT_DESIGNATOR.missing]",F,,,T,T
+00275-APTBUILDINGBeforeKnownUnitWithoutDesignator,"APT BUILDING 910 7380 ELMBRIDGE WAY, RICHMOND, BC",UNIT,"UNIT 910 -- 7380 Elmbridge Way, Richmond, BC","[NOISE_WORD.notAllowed,UNIT_DESIGNATOR.missing]",F,,,T,T
+00276-APTBUILDINGAfterStreetAddress,"910 7380 ELMBRIDGE WAY APT BUILDING, RICHMOND, BC",UNIT,"UNIT 910 -- 7380 Elmbridge Way, Richmond, BC","[NOISE_WORD.notAllowed,UNIT_DESIGNATOR.missing]",F,,,T,T
+00277-POBoxAtFrontOfUnitAddress,"105 150 21ST ST, WEST VANCOUVER, BC",CIVIC_NUMBER,"UNIT 105 -- 150 21st St, West Vancouver, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched]",F,,,T,T
+00278-POBoxAtFrontOfUnitAddresssWithBUZZERNumber,"105 150 21ST ST BUZZER 49, WEST VANCOUVER, BC",CIVIC_NUMBER,"UNIT 105 -- 150 21st St, West Vancouver, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,INTERCOM_NUMBER.notAllowed]",F,,,T,T
+00279-POBoxAtFrontOfUnitAddressWithBUZZNumber,"105 150 21ST ST BUZZ 49, WEST VANCOUVER, BC",CIVIC_NUMBER,"UNIT 105 -- 150 21st St, West Vancouver, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,INTERCOM_NUMBER.notAllowed]",F,,,T,T
+00280-POBoxAtFrontOfUnitAddressWithINTERCOMNumber,"105 150 21ST ST INTERCOM 49, WEST VANCOUVER, BC",CIVIC_NUMBER,"UNIT 105 -- 150 21st St, West Vancouver, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,INTERCOM_NUMBER.notAllowed]",F,,,T,T
 00281-StreetNameWithApostrophe,"250 SMUGGLER'S COVE RD, BOWEN ISLAND, BC",CIVIC_NUMBER,"250 Smuggler's Cove Rd, Bowen Island, BC",[],F,,,T,T
-00282-StreetNameWithSpaceInsteadOfApostrophe,"250 SMUGGLER S COVE RD, BOWEN ISLAND, BC",CIVIC_NUMBER,"250 Smuggler's Cove Rd, Bowen Island, BC",[STREET_NAME.spelledWrong],F,,
+00282-StreetNameWithSpaceInsteadOfApostrophe,"250 SMUGGLER S COVE RD, BOWEN ISLAND, BC",CIVIC_NUMBER,"250 Smuggler's Cove Rd, Bowen Island, BC",[STREET_NAME.spelledWrong],F,,,T,T
 00283-GoodAddress,"1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"1110 Cardero St, Vancouver, BC",[],F,,,T,T
-00284-UnknownSiteNameWithFrontGate,"PATRICIA APTS -- 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"Patricia Apts -- 1110 Cardero St, Vancouver, BC",[SITE_NAME.notMatched],F,,
-00285-UnknownSiteNameWithoutFrontGate,"PATRICIA APTS 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"Patricia Apts -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,
-00286-UnknownSiteNameAfterStreetWithoutFrontGate,"1110 CARDERO ST  PATRICIA APTS, VANCOUVER, BC",CIVIC_NUMBER,"Patricia Apts -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,
-00287-UnknownSiteNameWithFrontGate,"PATRICIA APARTMENTS -- 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"Patricia Apartments -- 1110 Cardero St, Vancouver, BC",[SITE_NAME.notMatched],F,,
-00288-UnknownSiteNameWithoutFrontGate,"PATRICIA APARTMENTS 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"Patricia Apartments -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,
-00289-UnknownSiteNameAfterStreetWithoutFrontGate,"1110 CARDERO ST  PATRICIA APARTMENTS, VANCOUVER, BC",CIVIC_NUMBER,"Patricia Apartments -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,
-00290-UnknownSiteNameWithFrontGate,"LILLOET BLDG -- 410 2016 FULLERTON AVE, NORTH VANCOUVER, BC",UNIT,"UNIT 410 LILLOET BLDG -- 2016 Fullerton Ave, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing:0, LOCALITY.isAlias:1]",F,,
-00291-UnknownSiteNameWithoutFrontGate,"LILLOET BLDG 410 2016 FULLERTON AVE, NORTH VANCOUVER, BC",UNIT,"UNIT 410 LILLOET BLDG -- 2016 Fullerton Ave, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing:0, LOCALITY.isAlias:1,FRONT_GATE.missing]",F,,
-00292-UnknownSiteNameAfterStreetWithoutFrontGate,"410 2016 FULLERTON AVE LILLOET BLDG, NORTH VANCOUVER, BC",UNIT,"UNIT 410 LILLOET BLDG -- 2016 Fullerton Ave, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing:0, LOCALITY.isAlias:1,FRONT_GATE.missing]",F,,
-00293-UnknownSiteNameWithFrontGate,"CONDOMINIUMS -- 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 Condominiums -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched]",F,,
-00294-UnknownSiteNameWithoutFrontGate,"CONDOMINIUMS 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 Condominiums -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,
-00295-UnknownSiteNameAfterStreetWithoutFrontGate,"205 7555 120A ST CONDOMINIUMS, SURREY, BC",CIVIC_NUMBER,"UNIT 205 Condominiums -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,
-00296-UnknownSiteNameWithFrontGate,"CONDO -- 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 Condo -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched]",F,,
-00297-UnknownSiteNameWithoutFrontGate,"CONDO 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 Condo -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,
-00298-UnknownSiteNameAfterStreetWithoutFrontGate,"205 7555 120A ST CONDO, SURREY, BC",CIVIC_NUMBER,"UNIT 205 Condo -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,
-00299-UnknownSiteNameWithFrontGate,"FRASERVIEW CARE LODGE -- 9580 WILLIAMS RD, RICHMOND, BC",CIVIC_NUMBER,"Fraserview Care Lodge -- 9580 Williams Rd, Richmond, BC",[SITE_NAME.notMatched],F,,
-00300-UnknownSiteNameWithoutFrontGate,"FRASERVIEW CARE LODGE 9580 WILLIAMS RD, RICHMOND, BC",CIVIC_NUMBER,"Fraserview Care Lodge -- 9580 Williams Rd, Richmond, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,
-00301-UnknownSiteNameAfterStreetWithoutFrontGate,"9580 WILLIAMS RD FRASERVIEW CARE LODGE, RICHMOND, BC",CIVIC_NUMBER,"Fraserview Care Lodge -- 9580 Williams Rd, Richmond, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,
-00302-UnknownSiteNameWithFrontGate,"LYNN VALLEY CARE CENTRE -- 1 1070 LYNN VALLEY RD, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 Lynn Valley Care Centre-- 1070 Lynn Valley Rd, District of North Vancouver, BC","[[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched]",F,,
-00303-UnknownSiteNameWithoutFrontGate,"LYNN VALLEY CARE CENTRE 1 1070 LYNN VALLEY RD, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 Lynn Valley Care Centre-- 1070 Lynn Valley Rd, District of North Vancouver, BC","[[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched,FRONT_GATE.missing]",F,,
-00304-UnknownSiteNameAfterStreetWithoutFrontGate,"1 1070 LYNN VALLEY RD LYNN VALLEY CARE CENTRE, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 Lynn Valley Care Centre-- 1070 Lynn Valley Rd, District of North Vancouver, BC","[[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched,FRONT_GATE.missing]",F,,
-00305-UnknownSiteNameWithFrontGate,"CERWYDDEN CARE HOME -- 3243 COWICHAN LAKE RD, DUNCAN, BC",CIVIC_NUMBER,"Cerwydden Care Home -- 3243 Cowichan Lake Rd, Duncan, BC",[SITE_NAME.notMatched],F,,
-00306-UnknownSiteNameWithoutFrontGate,"CERWYDDEN CARE HOME 3243 COWICHAN LAKE RD, DUNCAN, BC",CIVIC_NUMBER,"Cerwydden Care Home -- 3243 Cowichan Lake Rd, Duncan, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,
-00307-UnknownSiteNameAfterStreetWithoutFrontGate,"3243 COWICHAN LAKE RD CERWYDDEN CARE HOME, DUNCAN, BC",CIVIC_NUMBER,"Cerwydden Care Home -- 3243 Cowichan Lake Rd, Duncan, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,
+00284-UnknownSiteNameWithFrontGate,"PATRICIA APTS -- 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"Patricia Apts -- 1110 Cardero St, Vancouver, BC",[SITE_NAME.notMatched],F,,,T,T
+00285-UnknownSiteNameWithoutFrontGate,"PATRICIA APTS 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"Patricia Apts -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00286-UnknownSiteNameAfterStreetWithoutFrontGate,"1110 CARDERO ST  PATRICIA APTS, VANCOUVER, BC",CIVIC_NUMBER,"Patricia Apts -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00287-UnknownSiteNameWithFrontGate,"PATRICIA APARTMENTS -- 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"Patricia Apartments -- 1110 Cardero St, Vancouver, BC",[SITE_NAME.notMatched],F,,,T,T
+00288-UnknownSiteNameWithoutFrontGate,"PATRICIA APARTMENTS 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"Patricia Apartments -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,T,T
+00289-UnknownSiteNameAfterStreetWithoutFrontGate,"1110 CARDERO ST  PATRICIA APARTMENTS, VANCOUVER, BC",CIVIC_NUMBER,"Patricia Apartments -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00290-UnknownSiteNameWithFrontGate,"LILLOET BLDG -- 410 2016 FULLERTON AVE, NORTH VANCOUVER, BC",UNIT,"UNIT 410 LILLOET BLDG -- 2016 Fullerton Ave, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing:0, LOCALITY.isAlias:1]",F,,,T,T
+00291-UnknownSiteNameWithoutFrontGate,"LILLOET BLDG 410 2016 FULLERTON AVE, NORTH VANCOUVER, BC",UNIT,"UNIT 410 LILLOET BLDG -- 2016 Fullerton Ave, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing:0, LOCALITY.isAlias:1,FRONT_GATE.missing]",F,,,T,T
+00292-UnknownSiteNameAfterStreetWithoutFrontGate,"410 2016 FULLERTON AVE LILLOET BLDG, NORTH VANCOUVER, BC",UNIT,"UNIT 410 LILLOET BLDG -- 2016 Fullerton Ave, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing:0, LOCALITY.isAlias:1,FRONT_GATE.missing]",F,,,T,T
+00293-UnknownSiteNameWithFrontGate,"CONDOMINIUMS -- 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 Condominiums -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched]",F,,,T,T
+00294-UnknownSiteNameWithoutFrontGate,"CONDOMINIUMS 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 Condominiums -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
+00295-UnknownSiteNameAfterStreetWithoutFrontGate,"205 7555 120A ST CONDOMINIUMS, SURREY, BC",CIVIC_NUMBER,"UNIT 205 Condominiums -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
+00296-UnknownSiteNameWithFrontGate,"CONDO -- 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 Condo -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched]",F,,,T,T
+00297-UnknownSiteNameWithoutFrontGate,"CONDO 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 Condo -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
+00298-UnknownSiteNameAfterStreetWithoutFrontGate,"205 7555 120A ST CONDO, SURREY, BC",CIVIC_NUMBER,"UNIT 205 Condo -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
+00299-UnknownSiteNameWithFrontGate,"FRASERVIEW CARE LODGE -- 9580 WILLIAMS RD, RICHMOND, BC",CIVIC_NUMBER,"Fraserview Care Lodge -- 9580 Williams Rd, Richmond, BC",[SITE_NAME.notMatched],F,,,T,T
+00300-UnknownSiteNameWithoutFrontGate,"FRASERVIEW CARE LODGE 9580 WILLIAMS RD, RICHMOND, BC",CIVIC_NUMBER,"Fraserview Care Lodge -- 9580 Williams Rd, Richmond, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00301-UnknownSiteNameAfterStreetWithoutFrontGate,"9580 WILLIAMS RD FRASERVIEW CARE LODGE, RICHMOND, BC",CIVIC_NUMBER,"Fraserview Care Lodge -- 9580 Williams Rd, Richmond, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00302-UnknownSiteNameWithFrontGate,"LYNN VALLEY CARE CENTRE -- 1 1070 LYNN VALLEY RD, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 Lynn Valley Care Centre-- 1070 Lynn Valley Rd, District of North Vancouver, BC","[[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched]",F,,,T,T
+00303-UnknownSiteNameWithoutFrontGate,"LYNN VALLEY CARE CENTRE 1 1070 LYNN VALLEY RD, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 Lynn Valley Care Centre-- 1070 Lynn Valley Rd, District of North Vancouver, BC","[[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00304-UnknownSiteNameAfterStreetWithoutFrontGate,"1 1070 LYNN VALLEY RD LYNN VALLEY CARE CENTRE, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 Lynn Valley Care Centre-- 1070 Lynn Valley Rd, District of North Vancouver, BC","[[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00305-UnknownSiteNameWithFrontGate,"CERWYDDEN CARE HOME -- 3243 COWICHAN LAKE RD, DUNCAN, BC",CIVIC_NUMBER,"Cerwydden Care Home -- 3243 Cowichan Lake Rd, Duncan, BC",[SITE_NAME.notMatched],F,,,T,T
+00306-UnknownSiteNameWithoutFrontGate,"CERWYDDEN CARE HOME 3243 COWICHAN LAKE RD, DUNCAN, BC",CIVIC_NUMBER,"Cerwydden Care Home -- 3243 Cowichan Lake Rd, Duncan, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00307-UnknownSiteNameAfterStreetWithoutFrontGate,"3243 COWICHAN LAKE RD CERWYDDEN CARE HOME, DUNCAN, BC",CIVIC_NUMBER,"Cerwydden Care Home -- 3243 Cowichan Lake Rd, Duncan, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
 00308-GoodAddress,"10011 SIMKIN PL, SIDNEY, BC",CIVIC_NUMBER,"10011 Simkin Pl, Sidney, BC",[],F,,,T,T
-00309-DuplicateBCAfterStreetType,"10011 SIMKIN PL BC, SIDNEY, BC",CIVIC_NUMBER,"10011 Simkin Pl, Sidney, BC",[REPEATED_ELEMENT.notAllowed],F,,
-00310-DuplicateBCAfterLocality,"10011 SIMKIN PL, SIDNEY, BC, BC",CIVIC_NUMBER,"10011 Simkin Pl, Sidney, BC",[REPEATED_ELEMENT.notAllowed],F,,
+00309-DuplicateBCAfterStreetType,"10011 SIMKIN PL BC, SIDNEY, BC",CIVIC_NUMBER,"10011 Simkin Pl, Sidney, BC",[PROVINCE_CODE.duplicated],F,,,T,T
+00310-DuplicateBCAfterLocality,"10011 SIMKIN PL, SIDNEY, BC, BC",CIVIC_NUMBER,"10011 Simkin Pl, Sidney, BC",[PROVINCE_CODE.duplicated],F,,,T,T
 00311-GoodAddress,"1447 RUPERT ST VANCOUVER, BC",CIVIC_NUMBER,"1447 Rupert St, Vancouver, BC",[],F,,,T,T
 00312-DuplicateLocalityAfterLocality,"1447 RUPERT ST VANCOUVER, VANCOUVER, BC",CIVIC_NUMBER,"1447 Rupert St, Vancouver, BC",[REPEATED_ELEMENT.notAllowed],F,,
 00313-GoodAddress,"964 LILLOOET RD NORTH VANCOUVER, BC",CIVIC_NUMBER,"964 Lillooet Rd, District of North Vancouver, BC",[LOCALITY.isAlias],F,,
