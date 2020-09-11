@@ -252,7 +252,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00252-RedundantStreetTypeInAddress,"1401 COPPER MOUNTAIN COURT COURT, VERNON, BC",CIVIC_NUMBER,"1401 Copper Mountain Crt, Vernon, BC",[STREET_TYPE.duplicated],F,,,T,T
 00253-RedundantStreetTypeInAddress,"1 1040 MT REVELSTOKE PL PL, VERNON, BC",UNIT,"UNIT 1 -- 1040 Mt Revelstoke Pl, Vernon, BC","[STREET_TYPE.duplicated,UNIT_DESIGNATOR.missing]",F,,,T,T
 00254-RedundantStreetTypeInAddress,"1 1040 MT REVELSTOKE PL PLACE, VERNON, BC",UNIT,"UNIT 1 -- 1040 Mt Revelstoke Pl, Vernon, BC","[STREET_TYPE.duplicated,UNIT_DESIGNATOR.missing]",F,,,T,T
-00255-UnknownSiteNameWithFrontGate,"HOLLYBURN HOUSE -- 2095 MARINE DR, WEST VANCOUVER, BC",CIVIC_NUMBER,"Hollyburn House -- 2095 Marine Dr, West Vancouver, BC",[SITE_NAME.notMatched],F,,T,T
+00255-UnknownSiteNameWithFrontGate,"HOLLYBURN HOUSE -- 2095 MARINE DR, WEST VANCOUVER, BC",CIVIC_NUMBER,"Hollyburn House -- 2095 Marine Dr, West Vancouver, BC",[SITE_NAME.notMatched],F,,,T,T
 00256-UnknownSiteNameAfterStreetWithoutFrontGate,"2095 MARINE DR HOLLYBURN HOUSE, WEST VANCOUVER, BC",CIVIC_NUMBER,"Hollyburn House -- 2095 Marine Dr, West Vancouver, BC",[SITE_NAME.notMatched],F,,,T,T
 00257-UnknownSiteNameWithFrontGate,"BRIDGE HOUSING -- 100 CORDOVA ST E, VANCOUVER, BC",CIVIC_NUMBER,"Bridge Housing -- 100 E Cordova St, Vancouver, BC","[SITE_NAME.notMatched,STREET_DIRECTION.notSuffix:0]",F,,,T,T
 00258-UnknownSiteNameAfterStreetWithoutFrontGate,"100 CORDOVA ST E BRIDGE HOUSING, VANCOUVER, BC",CIVIC_NUMBER,"Bridge Housing -- 100 E Cordova St, Vancouver, BC","[SITE_NAME.notMatched,STREET_DIRECTION.notSuffix:0]",F,,,T,T
