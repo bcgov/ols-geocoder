@@ -445,3 +445,5 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00444-NonStandardStreetNameAbbreviation,"Gerneral Delivery, Quesnel, BC",CIVIC_NUMBER,"Quesnel, BC",[],F,,102,T,T
 00445-NonStandardStreetNameAbbreviation,"General Delivry, Quesnel, BC",CIVIC_NUMBER,"Quesnel, BC",[],F,,102,T,T
 00446-NonStandardStreetNameAbbreviation,"P.O. Box 102, Quesnel, BC",CIVIC_NUMBER,"Quesnel, BC",[],F,,102,T,T
+00447-CareOf,"c/o Mr Allen & Mrs Bear, PO BOX 102, Quesnel,BC",CIVIC_NUMBER,"Quesnel,BC",[],F,,,T,T
+00448-CareOf,"c/o 1301 Oak Ave, Quesnel,BC",CIVIC_NUMBER,"Quesnel,BC",[],F,,,T,T
