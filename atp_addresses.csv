@@ -447,3 +447,6 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00446-NonStandardStreetNameAbbreviation,"P.O. Box 102, Quesnel, BC",CIVIC_NUMBER,"Quesnel, BC",[],F,,102,T,T
 00447-CareOf,"c/o Mr Allen & Mrs Bear, PO BOX 102, Quesnel,BC",CIVIC_NUMBER,"Quesnel,BC",[],F,,,T,T
 00448-CareOf,"c/o 1301 Oak Ave, Quesnel,BC",CIVIC_NUMBER,"Quesnel,BC",[],F,,,T,T
+00449-SuffixNameMatching,"2020 Kent Ave S, Vancouver, BC",CIVIC_NUMBER,"2020 East Kent Ave S, Vancouver, BC",[],F,,,T,T
+00450-StreetNameWordsGluedTogether,"3821 Cedarhill Rd, Saanich, BC",CIVIC_NUMBER,"3821 Cedar Hill Rd, Saanich, BC",[],F,,,T,T
+00451-StreetNameCompoundWordSeparated,"8514 Horse Shoe Bay Rd, Anglemont, BC",CIVIC_NUMBER,"8514 Horseshoe Bay Rd, Anglemont, BC",[],F,,,T,T
