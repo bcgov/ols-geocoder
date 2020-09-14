@@ -11,7 +11,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00011-CivicAddressWithAbbreviatedLocalityName,"7495 Columbia Ave Radium Hot Sprgs BC",STREET,"7495 Columbia Ave, Radium Hot Springs, BC",[],F,,,T,T
 00012-civicAddressWithoutProvinceCode,"2050 SW Marine Dr Vancouver",CIVIC_NUMBER,"2050 SW Marine Dr, Vancouver, BC",[PROVINCE.missing:1],F,,,T,T
 00013-civicAddressWithProvinceCode,"2050 SW Marine Dr Vancouver British Columbia",CIVIC_NUMBER,"2050 SW Marine Dr, Vancouver, BC",[],F,,,T,T
-00014-civicAddressWithoutUnit,"10372 99 St Taylor BC",CIVIC_NUMBER,"10372 99th St, Taylor, BC",[],F,,,T,T
+00014-civicAddressWithoutUnit,"10372 99 St Taylor BC",CIVIC_NUMBER,"10372 99 St, Taylor, BC",[],F,,,T,T
 00015-civicAddressWithUnitWithoutUnitDesignator,"170 - 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
 00016-civicAddressWithUnitAfterStreetType,"22470 Dewdney Trunk Rd Unit 170 Maple Ridge BC",UNIT,"UNIT 170 -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[],F,,,T,T
 00017-civicAddressWithUnitBeforeCivicNumber,"Unit 170 -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[],F,,,T,T
