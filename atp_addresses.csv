@@ -191,7 +191,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00191-GDPostalElementAfterStreet,"400 GOWER POINT RD GD, GIBSONS, BC",CIVIC_NUMBER,"400 Gower Point Rd, Gibsons, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
 00192-DNCPostalElementAfterStreet,"10631 ROCHDALE DR DNC, RICHMOND, BC",CIVIC_NUMBER,"10631 Rochdale Dr, Richmond, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
 00193-RPOPostalElementAfterStreet,"1751 MARTINI WAY RPO, QUALICUM BEACH, BC",CIVIC_NUMBER,"1751 Martini Way, Qualicum Beach, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
-00194-UnknownSiteNameAfterStreet,"2095 MARINE DR HOLLYBURN HOUSE, WEST VANCOUVER, BC",CIVIC_NUMBER,"HOLLYBURN HOUSE -- 2095 Marine Dr, West Vancouver, BC",[SITE_NAME.unknown],F,,,T,T
+00194-UnknownSiteNameAfterStreet,"2095 MARINE DR HOLLYBURN HOUSE, WEST VANCOUVER, BC",CIVIC_NUMBER,"Hollyburn House -- 2095 Marine Dr, West Vancouver, BC",[SITE_NAME.unknown],F,,,T,T
 00195-SiteNameAfterStreet,"9580 WILLIAMS RD FRASERVIEW CARE LODGE, RICHMOND, BC",CIVIC_NUMBER,"FraserView Care Lodge -- 9580 Williams Rd, Richmond, BC",[SITE_NAME.notAtFront],F,,,T,T
 00196-SiteNameAfterStreet,"9020 BRIDGEPORT RD LIONS MANOR, RICHMOND, BC",CIVIC_NUMBER,"LionsManor -- 9020 Bridgeport Rd, Richmond, BC",[SITE_NAME.notAtFront],F,,,T,T
 00197-RedundantStreetTypeInAddress,"10008 COLDSTREAM CREEK RD RD, COLDSTREAM, BC",CIVIC_NUMBER,"10008 Coldstream Creek Rd, Coldstream, BC",[STREET_TYPE.duplicateNotAllowed],F,,,T,T
