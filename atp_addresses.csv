@@ -16,7 +16,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00016-civicAddressWithUnitAfterStreetType,"925 Leon Ave, UNIT 418 Kelowna, BC",UNIT,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",[],F,,,T,T
 00017-civicAddressWithUnitBeforeCivicNumber,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",UNIT,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",[],F,,,T,T
 00018-civicAddressWithUnitBeforeCivicNumberandWithoutFrontGate,"UNIT 418 925 Leon Ave, Kelowna, BC",UNIT,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",[],F,,,T,T
-00019-civicAddressWithUnitandUnknownSiteName,"Douglas College Unit 170 -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched],F,,,T,T
+00019-civicAddressWithUnitandknownSiteName,"UNIT 170 Douglas College -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched],F,,,T,T
 00020-civicAddressWithSiteName,"Anahim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],F,,,T,T
 00021-civicAddressWithPartialSiteName,"Anahim -- Anahim Lake BC",SITE,"Anahim -- Anahim Lake, BC",[SITE_NAME.partialMatch:5],F,,,T,T
 00022-civicAddressWithSiteNameAndMissingCivicNumber,need example,SITE,need example,[CIVIC_NUMBER.missing:10],T,,,F,F
@@ -451,3 +451,4 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00450-StreetNameWordsGluedTogether,"3821 Cedarhill Rd, Saanich, BC",CIVIC_NUMBER,"3821 Cedar Hill Rd, Saanich, BC",[],F,,,T,T
 00451-StreetNameCompoundWordSeparated,"8514 Horse Shoe Bay Rd, Anglemont, BC",CIVIC_NUMBER,"8514 Horseshoe Bay Rd, Anglemont, BC",[],F,,,T,T
 00452-NonStandardStreetTypeAbbreviation,"2908 Hwy 99, Mot Currie, BC",CIVIC_NUMBER,"2908 Hwy 99, Mt Currie, BC",[],F,,102,T,T
+00453-civicAddressWithUnitandknownSiteName,"UNIT 170 Happy House -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched],F,,,T,T
