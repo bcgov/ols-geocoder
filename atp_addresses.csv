@@ -13,9 +13,9 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00013-civicAddressWithProvinceCode,"2050 SW Marine Dr Vancouver British Columbia",CIVIC_NUMBER,"2050 SW Marine Dr, Vancouver, BC",[],F,,,T,T
 00014-civicAddressWithoutUnit,"10372 99 St Taylor BC",CIVIC_NUMBER,"10372 99 St, Taylor, BC",[],F,,,T,T
 00015-civicAddressWithUnitWithoutUnitDesignator,"170 - 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
-00016-civicAddressWithUnitAfterStreetType,"U925 Leon Ave, UNIT 418 Kelowna, BC",UNIT,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",[],F,,,T,T
-00017-civicAddressWithUnitBeforeCivicNumber,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",UNIT,"925 Leon Ave, UNIT 418 Kelowna, BC",[],F,,,T,T
-00018-civicAddressWithUnitBeforeCivicNumberandWithoutFrontGate,"UNIT 418 925 Leon Ave, Kelowna, BC",UNIT,"UNIT 170 -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[],F,,,T,T
+00016-civicAddressWithUnitAfterStreetType,"925 Leon Ave, UNIT 418 Kelowna, BC",UNIT,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",[],F,,,T,T
+00017-civicAddressWithUnitBeforeCivicNumber,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",UNIT,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",[],F,,,T,T
+00018-civicAddressWithUnitBeforeCivicNumberandWithoutFrontGate,"UNIT 418 925 Leon Ave, Kelowna, BC",UNIT,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",[],F,,,T,T
 00019-civicAddressWithUnitandUnknownSiteName,"Douglas College Unit 170 -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched],F,,,T,T
 00020-civicAddressWithSiteName,"Anahim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],F,,,T,T
 00021-civicAddressWithPartialSiteName,"Anahim -- Anahim Lake BC",SITE,"Anahim -- Anahim Lake, BC",[SITE_NAME.partialMatch:5],F,,,T,T
