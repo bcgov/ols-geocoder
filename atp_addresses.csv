@@ -114,7 +114,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00114-CivicAddressWithUnKnownFrontDoorAndKnownParcelPoint,"5712 Malibu Terr Nanaimo BC",CIVIC_NUMBER,"5712 Malibu Terr, Nanaimo, BC",[],F,,,T,T
 00115-IntersectionAddressWithTwoStreetsInAscendingOrder,"douglas st and Victoria Rd Chemainus bc",INTERSECTION,"Douglas St and Private Rd and Victoria Rd, Chemainus, BC",[],F,,,T,T
 00116-IntersectionAddressWithTwoStreetsInDescendingOrder,"Victoria Rd and douglas st Chemainus bc",INTERSECTION,"Douglas St and Private Rd and Victoria Rd, Chemainus, BC",[],F,,,T,T
-00117-IntersectionAddressWithFourStreets,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC",INTERSECTION,Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC",[],F,,,T,T
+00117-IntersectionAddressWithFourStreets,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC",[],F,,,T,T
 00118-IntersectionAddressWithStreetDirection,"Davin St and Maddock Ave W Saanich BC",INTERSECTION,"Davin St and Maddock Ave W, Saanich, BC",[],F,,,T,T
 00119-IntersectionAddressWithMissingStreetDirection,"Davin St and Maddock Ave Saanich BC",INTERSECTION,"Davin St and Maddock Ave W, Saanich, BC",[STREET_DIRECTION.missing:2],F,,,T,T
 00120-IntersectionAddressWithoutStreetDirection,"Johnson st and begbie st Victoria bc",INTERSECTION,"Begbie St and Johnson St, Victoria, BC",[],F,,,T,T
