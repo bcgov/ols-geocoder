@@ -21,7 +21,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00021-civicAddressWithPartialSiteName,"Anahim -- Anahim Lake BC",SITE,"Anahim -- Anahim Lake, BC",[SITE_NAME.partialMatch:5],F,,,T,T
 00022-civicAddressWithSiteNameAndMissingCivicNumber,need example,SITE,need example,[CIVIC_NUMBER.missing:10],T,,,F,F
 00023-civicAddressWithNumberForStreetName,"4216 E 51 Ave Fort Nelson BC",CIVIC_NUMBER,"4216 51st Ave E, Fort Nelson, BC",[],F,,,T,T
-00024-civicAddressWithUnitNumberSuffix,"101A - 1413 Sunshine Coast Hwy Gibsons BC",UNIT,"UNIT 101A -- 1413 Sunshine Coast Hwy, Gibsons, BC",[],F,,,T,T
+00024-civicAddressWithUnitNumberSuffix,"need example",UNIT,"need example",[],T,,,T,T
 00025-CivicNumberWithHighwayStreetName,"4390 Highway 33 Beaverdell BC",CIVIC_NUMBER,"4390 Hwy 33, Beaverdell, BC",[],F,,,T,T
 00026-CivicAddressWithoutProvinceCode,"525 Superior St Victoria",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[PROVINCE.missing:1],F,,,T,T
 00027-CivicAddressWithoutLocality,"525 Superior St BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[LOCALITY.missing:10],F,,,F,F
@@ -29,11 +29,11 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00029-CivicAddressWithoutStreetType,"661A Market Vancouver BC",CIVIC_NUMBER,"661A Market Hill, Vancouver, BC",[STREET_TYPE.missing:6],F,,,T,T
 00030-CivicAddressWithoutStreetDirection,"456 Gorge Rd Victoria BC",CIVIC_NUMBER,"456 Gorge Rd E, Victoria, BC",[STREET_DIRECTION.missing:2],F,,,T,T
 00031-CivicAddressWithoutCivicNumber,"Superior St Victoria BC",STREET,"Superior St, Victoria, BC",[],F,,,T,T
-00032-CivicAddressWithoutUnitDesignator,"2 -- 1359 Porlier Pass Rd Galiano Island BC",UNIT,"UNIT 2 -- 1359 Porlier Pass Rd, Galiano Island, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
-00033-CivicAddressWithoutUnitDesignator,"2 - 1359 Porlier Pass Rd Galiano Island BC",UNIT,"UNIT 2 -- 1359 Porlier Pass Rd, Galiano Island, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
-00034-CivicAddressWithoutUnitDesignator,"2 1359 Porlier Pass Rd Galiano Island BC",UNIT,"UNIT 2 -- 1359 Porlier Pass Rd, Galiano Island, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
-00035-CivicAddressWithoutUnitDesignator,"1359 Porlier Pass Rd 2 Galiano Island BC",CIVIC_NUMBER,"1359 Porlier Pass Rd, Galiano Island, BC",[UNRECOGNIZED.notAllowed:33],F,,,F,F
-00036-CivicAddressWithoutUnitNumber,"Unit -- 1359 Porlier Pass Rd Galiano Island BC",CIVIC_NUMBER,"UNIT -- 1359 Porlier Pass Rd, Galiano Island, BC",[UNIT_DESIGNATOR.notMatched:1],F,,,T,T
+00032-CivicAddressWithoutUnitDesignator,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
+00033-CivicAddressWithoutUnitDesignator,"128 - 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
+00034-CivicAddressWithoutUnitDesignator,"128 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
+00035-CivicAddressWithoutUnitDesignator,"850 Saucier Ave 128 Kelowna, BC",CIVIC_NUMBER,"UNIT 128 -- 850 Saucier Ave 128 Kelowna, BC",[UNRECOGNIZED.notAllowed:33],F,,,F,F
+00036-CivicAddressWithoutUnitNumber,"UNIT -- 850 Saucier Ave, Kelowna, BC",CIVIC_NUMBER,"850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.notMatched:1],F,,,T,T
 00037-CivicAddressWithoutUnitNumber,"1359 Porlier Pass Rd APT Galiano Island BC",CIVIC_NUMBER,"APT -- 1359 Porlier Pass Rd, Galiano Island, BC",[UNIT_DESIGNATOR.notMatched:1],F,,,T,T
 00038-CivicAddressWithoutLocalityProvinceCode,3520 WENTWORTH AVE,CIVIC_NUMBER,"3520 Wentworth Ave, West Vancouver, BC","[LOCALITY.missing:10 PROVINCE.missing:1]",F,,,F,F
 00039-CivicAddressWithUnitAttachedToCivicNumber,"104490 Lorne St Kamloops bc",STREET,"Lorne St, Kamloops, BC",[CIVIC_NUMBER.notInAnyBlock:10],F,,,F,F
