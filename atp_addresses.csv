@@ -49,28 +49,28 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00049-CivicAddressWrongWordInStreetName,"6006 Happy Hilltop RD Summerland BC",CIVIC_NUMBER,"6006 Happy Valley Rd, Summerland, BC","[UNRECOGNIZED.notAllowed:33 STREET_NAME.partialMatch:1]",F,,,T,T
 00050-CivicAddressMissingFirstWordInStreetName,"6006 Valley RD Summerland BC",CIVIC_NUMBER,"6006 Happy Valley Rd, Summerland, BC","[STREET_NAME.partialMatch:1]",F,,,T,T
 00051-CivicAddressMissingFirstWordInLocalityName,"1323 5th Ave, George, BC",CIVIC_NUMBER,"1323 5th Ave, Prince George, BC","[STREET_NAME.partialMatch:1]",F,,,T,F
-00052-CivicAddressMissingFirstWordInSiteName,"Lake Airport -- Anahim Lake, BC",CIVIC_NUMBER,"Anahim Lake Airport -- Anahim Lake, BC","[STREET_NAME.partialMatch:1]",F,,,T,F
+00052-CivicAddressMissingFirstWordInSiteName,"Lake Airport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC","[STREET_NAME.partialMatch:1]",F,,,T,F
 00053-CivicAddressMissingCharactersInSiteName,"Anahi Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[SITE_NAME.spelledWrong:1],F,,,T,T
 00054-CivicAddressWrongWordInStreetName,"Community Center Rd Grand Forks BC",STREET,"Community Centre Rd, Grand Forks, BC",[STREET_NAME.spelledWrong:2],F,,,T,T
 00055-CivicAddressMissingCharactersInStreetName,"30 Frth Cres Mackenzie BC",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[STREET_NAME.spelledWrong:2],F,,,T,T
 00056-CivicAddressMissingCharactersInLocality,"30 Firth Cres Mckenzie BC",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[LOCALITY.spelledWrong:2],F,,,T,T
 00057-CivicAddressWrongAbbreviationInLocality,"2908 Hwy 99 Mot Currie BC",CIVIC_NUMBER,"2908 Hwy 99, Mount Currie, BC","[UNRECOGNIZED.notAllowed:33 LOCALITY.notMatched:35]",T,,,T,T
 00058-CivicAddressWrongProvinceCode,"30 Firth Cres Mackenzie AB",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[PROVINCE.notMatched:1],F,,,T,T
-00059-CivicAddressWrongLocality,952 COMOX AVE PRINCE GEORGE BC,CIVIC_NUMBER,"952 Comox Ave, Prince Rupert, BC",[LOCALITY.notMatched:35],F,,,F,F
+00059-CivicAddressWrongLocality,952 COMOX AVE PRINCE GEORGE BC,LOCALITY,"Prince George, BC",[LOCALITY.notMatched:35],F,,,F,F
 00060-CivicAddressWrongStreetType,952 COMOX ST PRINCE RUPERT BC,CIVIC_NUMBER,"952 Comox Ave, Prince Rupert, BC",[STREET_TYPE.notMatched:3],F,,,T,T
 00061-CivicAddressWrongStreetDirection,"456 Gorge Rd W Victoria",CIVIC_NUMBER,"456 Gorge Rd E, Victoria, BC","[STREET_DIRECTION.notMatched:2 PROVINCE.missing:1]",F,,,T,T
-00062-CivicAddressWrongStreetName,952 CLOROX AVE PRINCE RUPERT BC,BLOCK,"952 Prince Rupert Blvd, Prince Rupert, BC","[UNRECOGNIZED.notAllowed:33 LOCALITY.missing:10 STREET_TYPE.notMatched:3]",F,,,F,F
-00063-CivicAddressWithMisplacedStreetDirection,"4216 E 51 Ave Fort Nelson BC",CIVIC_NUMBER,"4216 51 Ave E, Fort Nelson, BC",[STREET_DIRECTION.notPrefix:0],F,,,T,T
+00062-CivicAddressMispelledStreetName,952 CLOROX AVE PRINCE RUPERT BC,BLOCK,"952 Comox Ave, Prince Rupert, BC","[STREET_Name.spelledWrong:3]",F,,,F,F
+00063-CivicAddressWithMisplacedStreetDirection,"4216 E 51st Ave Fort Nelson BC",CIVIC_NUMBER,"4216 51st Ave E, Fort Nelson, BC",[STREET_DIRECTION.notPrefix:0],F,,,T,T
 00064-CivicAddressWithMisplacedStreetDirection,"2186 Marine Dr SW Vancouver BC",CIVIC_NUMBER,"2186 SW Marine Dr, Vancouver, BC",[STREET_DIRECTION.notSuffix:0],F,,,T,T
 00065-CivicAddressWithMisplacedStreetType,"2288 Hwy Old Cariboo Prince George BC",CIVIC_NUMBER,"2288 Old Cariboo Hwy, Prince George, BC",[STREET_TYPE.notPrefix:0],F,,,T,T
 00066-CivicAddressWithMisplacedStreetType,"2288 Hwy Old Cariboo Hwy Prince George BC",CIVIC_NUMBER,"2288 Old Cariboo Hwy, Prince George, BC","[UNRECOGNIZED.notAllowed:33 STREET_TYPE.notPrefix:0]",F,,,T,T
 00067-CivicAddressWithMisplacedStreetType,"12621 99 Hwy Lillooet BC",CIVIC_NUMBER,"12621 Hwy 99, Lillooet, BC",[STREET_TYPE.notSuffix:0],F,,,T,T
 00068-CivicAddressWithMisplacedStreetTypeAndStreetDirection,"12621 99 Hwy N Lillooet BC",CIVIC_NUMBER,"12621 Hwy 99, Lillooet, BC","[STREET_DIRECTION.notMatchedInHighway:0 STREET_TYPE.notSuffix:0]",F,,,T,T
 00069-CivicAddressWithUnneededStreetDirectionOnHighway,"12621 Hwy 99 N Lillooet BC",CIVIC_NUMBER,"12621 Hwy 99, Lillooet, BC",[STREET_DIRECTION.notMatchedInHighway:0],F,,,T,T
-00070-CivicAddressWithUnneededStreetDirectionOnHighway,"8930 Cariboo Hwy S Pineview FFG BC",CIVIC_NUMBER,"8930 Cariboo Hwy S, Pineview FFG, BC",[STREET_DIRECTION.notMatchedInHighway:0],F,,,T,T
+00070-CivicAddressWithUnneededStreetDirectionOnHighway,"8930 Cariboo Hwy S Pineview FFG BC",CIVIC_NUMBER,"8930 Cariboo Hwy, Pineview FFG, BC",[STREET_DIRECTION.notMatchedInHighway:0],F,,,T,T
 00071-CivicAddressWithMisplacedStreetTypeandUnneededStreetDirectionOnHighway,"12621 99 Hwy N Lillooet BC",CIVIC_NUMBER,"12621 Hwy 99, Lillooet, BC","[STREET_DIRECTION.notMatchedInHighway:0 STREET_TYPE.notSuffix:0]",F,,,T,T
-00072-CivicAddressWithMisplacedStreetTypeandUnneededStreetDirectionOnHighway,"8930 Hwy Cariboo S Pineview FFG BC",CIVIC_NUMBER,"8930 Cariboo Hwy S, Pineview FFG, BC","[STREET_DIRECTION.notMatchedInHighway:0 STREET_TYPE.notPrefix:0]",F,,,T,T
-00073-CivicAddressUnknownLocality,"626 Lindley Dr Leftbank bc ",CIVIC_NUMBER,"626 Lindley Dr, West Kelowna, BC","[UNRECOGNIZED.notAllowed:33 LOCALITY.missing:10]",F,,,F,F
+00072-CivicAddressWithMisplacedStreetTypeandUnneededStreetDirectionOnHighway,"8930 Hwy Cariboo S Pineview FFG BC",CIVIC_NUMBER,"8930 Cariboo Hwy, Pineview FFG, BC","[STREET_DIRECTION.notMatchedInHighway:0 STREET_TYPE.notPrefix:0]",F,,,T,T
+00073-CivicAddressUnknownLocality,"626 Lindley Dr Leftbank bc ",BLOCK,"626 Lindley Dr, West Kelowna, BC","[UNRECOGNIZED.notAllowed:33 LOCALITY.missing:10]",F,,,F,F
 00074-CivicAddressUnknownStreetDirection,"456 Gorge Rd WN Victoria BC",CIVIC_NUMBER,"456 Gorge Rd E, Victoria, BC","[UNRECOGNIZED.notAllowed:33 STREET_DIRECTION.missing:2]",F,,,T,T
 00075-CivicAddressUnknownStreetType,"561 60 Roseway SE Salmon Arm BC ",CIVIC_NUMBER,"561 60 St SE, Salmon Arm, BC","[UNRECOGNIZED.notAllowed:33 STREET_TYPE.missing:6]",F,,,F,F
 00076-CivicAddressUnknownStreetName,"561 Gruffle St SE Salmon Arm BC",BLOCK,"561 Salmon Rd, Central Saanich, BC","[UNRECOGNIZED.notAllowed:33 LOCALITY.missing:10 STREET_DIRECTION.notMatched:2 STREET_TYPE.notMatched:3 STREET_QUALIFIER.notMatched:1 MAX_RESULTS.too_low_to_include_all_best_matches:0]",F,,,F,F
