@@ -171,19 +171,19 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00171-SiteNameWithGluedWords,"AnahimLake Airport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],F,,,T,T
 00172-StreetNameWithMultipleSpellingMistakes,"Omineca St, Kitimat, BC",STREET,"Omenica St, Kitimat, BC",[],F,,,T,T
 00173-LocalityNameWithMultipleSpellingMistakes,"Sawasen, BC",LOCALITY,"Tsawwassen, BC",[],F,,,T,T
-00174-SiteNameWithMultipleSpellingMistakes,"Anahyme Lak Arport -- Anahim Lake, BC",SITE,"Anahyme Lak Arport -- Anahim Lake, BC",[],F,,,T,T
-00175-NumberedStreetName,"857 E 45th Ave	 Vancouver	 BC",CIVIC_NUMBER,"857 E 45th Ave	 Vancouver	 BC",[],F,,,T,T
+00174-SiteNameWithMultipleSpellingMistakes,"Anahyme Lak Arport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],F,,,T,T
+00175-NumberedStreetName,"857 E 45th Ave, Vancouver, BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],F,,,T,T
 00176-NumberedStreetNameWithEmbeddedBlanks,"857 E 45 th Ave, Vancouver, BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],F,,,T,T
 00177-StreetNameWithTwoWordsGluedTogether,"2845 Cedarhill Rd, Victoria, BC",CIVIC_NUMBER,"2845 Cedar Hill Rd, Victoria, BC",[],F,,,T,T
 00178-StreetNameWithGapBetweenWords,"1985 Mill Stream Rd, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC",[],F,,,T,T
-00179-UnknownSiteNameWithFrontGate,"Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],F,,,T,T
-00180-UnknownSiteNameWithoutFrontGate,"Old Mill Stream Manor 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
-00181-UnknownUnitwithUnknownSiteNameWithFrontGate,"APT 101 Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"APT 101, Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],F,,,T,T
-00182-UnknownUnitwithUnknownSiteNameWithoutFrontGate,"APT 101 Old Mill Stream Manor 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"APT 101, Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],F,,,T,T
-00183-UnknownUnitAfterStreetWithUnknownSiteNameWithFrontGate,"Old Mill Stream Manor -- 1985 Millstream Rd APT 101, Highlands, BC",CIVIC_NUMBER,"APT 101,Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,UNIT_DESIGNATOR.notMatched,UNIT_NUMBER.notMatched]",F,,,T,T
-00184-UnknownUnitAfterStreetWithUnknownSiteNameWithoutFrontGate,"Old Mill Stream Manor 1985 Millstream Rd APT 101, Highlands, BC",CIVIC_NUMBER,"APT 101,Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,FRONT_GATE.missing,UNIT_DESIGNATOR.notMatched,UNIT_NUMBER.notMatched]",F,,,T,T
-00185-UnknownSiteNameAfterStreetWithoutFrontGate,"1985 Millstream Rd Old Mill Stream Manor, Highlands, BC",CIVIC_NUMBER,"Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],F,,,T,T
-00186-UnknownUnitWithUnknownSiteNameAfterStreetWithoutFrontGate,"1985 Millstream Rd APT 101 Old Mill Stream Manor, Highlands, BC",CIVIC_NUMBER,"APT 101, Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,FRONT_GATE.missing,UNIT_DESIGNATOR.notMatched,UNIT_NUMBER.notMatched]",F,,,T,T
+00179-UnknownSiteNameWithFrontGate,"Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],F,,,T,T
+00180-UnknownSiteNameWithoutFrontGate,"Old Mill Stream Manor 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00181-UnknownUnitwithUnknownSiteNameWithFrontGate,"APT 101 Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"APT 101, OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],F,,,T,T
+00182-UnknownUnitwithUnknownSiteNameWithoutFrontGate,"APT 101 Old Mill Stream Manor 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"APT 101, OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],F,,,T,T
+00183-UnknownUnitAfterStreetWithUnknownSiteNameWithFrontGate,"Old Mill Stream Manor -- 1985 Millstream Rd APT 101, Highlands, BC",CIVIC_NUMBER,"APT 101,OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,UNIT_DESIGNATOR.notMatched,UNIT_NUMBER.notMatched]",F,,,T,T
+00184-UnknownUnitAfterStreetWithUnknownSiteNameWithoutFrontGate,"Old Mill Stream Manor 1985 Millstream Rd APT 101, Highlands, BC",CIVIC_NUMBER,"APT 101,OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,FRONT_GATE.missing,UNIT_DESIGNATOR.notMatched,UNIT_NUMBER.notMatched]",F,,,T,T
+00185-UnknownSiteNameAfterStreetWithoutFrontGate,"1985 Millstream Rd Old Mill Stream Manor, Highlands, BC",CIVIC_NUMBER,"OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],F,,,T,T
+00186-UnknownUnitWithUnknownSiteNameAfterStreetWithoutFrontGate,"1985 Millstream Rd APT 101 Old Mill Stream Manor, Highlands, BC",CIVIC_NUMBER,"APT 101, OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,FRONT_GATE.missing,UNIT_DESIGNATOR.notMatched,UNIT_NUMBER.notMatched]",F,,,T,T
 00187-SpelledOutProvinceName,"8525 TERRACE DR DELTA, BRITISH COLUMBIA",CIVIC_NUMBER,"8525 Terrace Dr, Delta, BC",[],F,,,T,T
 00188-RedundantSpelledOutProvinceNameAndAbbreviation,"8525 TERRACE DR DELTA, BRITISH COLUMBIA, BC",CIVIC_NUMBER,"8525 Terrace Dr, Delta, BC",[PROVINCE_NAME.redundant],F,,,T,T
 00189-WordUNKNOWNInAddress,"975 BALMORAL RD UNKNOWN, VICTORIA, BC",CIVIC_NUMBER,"975 Balmoral Rd, Victoria, BC",[NOISE_WORD.notAllowed],F,,,T,T
@@ -191,9 +191,9 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00191-GDPostalElementAfterStreet,"400 GOWER POINT RD GD, GIBSONS, BC",CIVIC_NUMBER,"400 Gower Point Rd, Gibsons, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
 00192-DNCPostalElementAfterStreet,"10631 ROCHDALE DR DNC, RICHMOND, BC",CIVIC_NUMBER,"10631 Rochdale Dr, Richmond, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
 00193-RPOPostalElementAfterStreet,"1751 MARTINI WAY RPO, QUALICUM BEACH, BC",CIVIC_NUMBER,"1751 Martini Way, Qualicum Beach, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
-00194-UnknownSiteNameAfterStreet,"2095 MARINE DR HOLLYBURN HOUSE, WEST VANCOUVER, BC",CIVIC_NUMBER,"Hollyburn House -- 2095 Marine Dr, West Vancouver, BC",[SITE_NAME.unknown],F,,,T,T
-00195-SiteNameAfterStreet,"9580 WILLIAMS RD FRASERVIEW CARE LODGE, RICHMOND, BC",CIVIC_NUMBER,"FraserView Care Lodge -- 9580 Williams Rd, Richmond, BC",[SITE_NAME.notAtFront],F,,,T,T
-00196-SiteNameAfterStreet,"9020 BRIDGEPORT RD LIONS MANOR, RICHMOND, BC",CIVIC_NUMBER,"LionsManor -- 9020 Bridgeport Rd, Richmond, BC",[SITE_NAME.notAtFront],F,,,T,T
+00194-UnknownSiteNameAfterStreet,"2095 MARINE DR HOLLYBURN HOUSE, WEST VANCOUVER, BC",CIVIC_NUMBER,"HOLLYBURN HOUSE -- 2095 Marine Dr, West Vancouver, BC",[SITE_NAME.unknown],F,,,T,T
+00195-SiteNameAfterStreet,"9580 WILLIAMS RD FRASERVIEW CARE LODGE, RICHMOND, BC",CIVIC_NUMBER,"FRASERVIEW CARE LODGE -- 9580 Williams Rd, Richmond, BC",[SITE_NAME.notAtFront],F,,,T,T
+00196-SiteNameAfterStreet,"9020 BRIDGEPORT RD LIONS MANOR, RICHMOND, BC",CIVIC_NUMBER,"LIONS MANOR -- 9020 Bridgeport Rd, Richmond, BC",[SITE_NAME.notAtFront],F,,,T,T
 00197-RedundantStreetTypeInAddress,"10008 COLDSTREAM CREEK RD RD, COLDSTREAM, BC",CIVIC_NUMBER,"10008 Coldstream Creek Rd, Coldstream, BC",[STREET_TYPE.duplicateNotAllowed],F,,,T,T
 00198-RedundantStreetTypeInAddress,"10008 COLDSTREAM CREEK RD ROAD, COLDSTREAM, BC",CIVIC_NUMBER,"10008 Coldstream Creek Rd, Coldstream, BC",[STREET_TYPE.duplicated],F,,,T,T
 00199-RedundantStreetTypeInAddress,"10008 COLDSTREAM CREEK ROAD RD, COLDSTREAM, BC",CIVIC_NUMBER,"10008 Coldstream Creek Rd, Coldstream, BC",[STREET_TYPE.duplicated],F,,,T,T
@@ -252,10 +252,10 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00252-RedundantStreetTypeInAddress,"1401 COPPER MOUNTAIN COURT COURT, VERNON, BC",CIVIC_NUMBER,"1401 Copper Mountain Crt, Vernon, BC",[STREET_TYPE.duplicated],F,,,T,T
 00253-RedundantStreetTypeInAddress,"1 1040 MT REVELSTOKE PL PL, VERNON, BC",UNIT,"UNIT 1 -- 1040 Mt Revelstoke Pl, Vernon, BC","[STREET_TYPE.duplicated,UNIT_DESIGNATOR.missing]",F,,,T,T
 00254-RedundantStreetTypeInAddress,"1 1040 MT REVELSTOKE PL PLACE, VERNON, BC",UNIT,"UNIT 1 -- 1040 Mt Revelstoke Pl, Vernon, BC","[STREET_TYPE.duplicated,UNIT_DESIGNATOR.missing]",F,,,T,T
-00255-UnknownSiteNameWithFrontGate,"HOLLYBURN HOUSE -- 2095 MARINE DR, WEST VANCOUVER, BC",CIVIC_NUMBER,"Hollyburn House -- 2095 Marine Dr, West Vancouver, BC",[SITE_NAME.notMatched],F,,,T,T
-00256-UnknownSiteNameAfterStreetWithoutFrontGate,"2095 MARINE DR HOLLYBURN HOUSE, WEST VANCOUVER, BC",CIVIC_NUMBER,"Hollyburn House -- 2095 Marine Dr, West Vancouver, BC",[SITE_NAME.notMatched],F,,,T,T
-00257-UnknownSiteNameWithFrontGate,"BRIDGE HOUSING -- 100 CORDOVA ST E, VANCOUVER, BC",CIVIC_NUMBER,"Bridge Housing -- 100 E Cordova St, Vancouver, BC","[SITE_NAME.notMatched,STREET_DIRECTION.notSuffix:0]",F,,,T,T
-00258-UnknownSiteNameAfterStreetWithoutFrontGate,"100 CORDOVA ST E BRIDGE HOUSING, VANCOUVER, BC",CIVIC_NUMBER,"Bridge Housing -- 100 E Cordova St, Vancouver, BC","[SITE_NAME.notMatched,STREET_DIRECTION.notSuffix:0]",F,,,T,T
+00255-UnknownSiteNameWithFrontGate,"HOLLYBURN HOUSE -- 2095 MARINE DR, WEST VANCOUVER, BC",CIVIC_NUMBER,"HOLLYBURN HOUSE -- 2095 Marine Dr, West Vancouver, BC",[SITE_NAME.notMatched],F,,,T,T
+00256-UnknownSiteNameAfterStreetWithoutFrontGate,"2095 MARINE DR HOLLYBURN HOUSE, WEST VANCOUVER, BC",CIVIC_NUMBER,"HOLLYBURN HOUSE -- 2095 Marine Dr, West Vancouver, BC",[SITE_NAME.notMatched],F,,,T,T
+00257-UnknownSiteNameWithFrontGate,"BRIDGE HOUSING -- 100 CORDOVA ST E, VANCOUVER, BC",CIVIC_NUMBER,"BRG HOUSING -- 100 E Cordova St, Vancouver, BC","[SITE_NAME.notMatched,STREET_DIRECTION.notSuffix:0]",F,,,T,T
+00258-UnknownSiteNameAfterStreetWithoutFrontGate,"100 CORDOVA ST E BRIDGE HOUSING, VANCOUVER, BC",CIVIC_NUMBER,"BRG HOUSING -- 100 E Cordova St, Vancouver, BC","[SITE_NAME.notMatched,STREET_DIRECTION.notSuffix:0]",F,,,T,T
 00259-GoodAddress,"689 ABBOTT ST, VANCOUVER, BC",CIVIC_NUMBER,"689 Abbott St, Vancouver, BC",[],F,,,T,T
 00260-WordRTDMAILAfterStreet,"689 ABBOTT ST RTD MAIL, VANCOUVER, BC",CIVIC_NUMBER,"689 Abbott St, Vancouver, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
 00261-WordRETURNMAILAfterStreet,"689 ABBOTT ST RETURN MAIL, VANCOUVER, BC",CIVIC_NUMBER,"689 Abbott St, Vancouver, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
@@ -281,30 +281,30 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00281-StreetNameWithApostrophe,"250 SMUGGLER'S COVE RD, BOWEN ISLAND, BC",CIVIC_NUMBER,"250 Smuggler's Cove Rd, Bowen Island, BC",[],F,,,T,T
 00282-StreetNameWithSpaceInsteadOfApostrophe,"250 SMUGGLER S COVE RD, BOWEN ISLAND, BC",CIVIC_NUMBER,"250 Smuggler's Cove Rd, Bowen Island, BC",[STREET_NAME.spelledWrong],F,,,T,T
 00283-GoodAddress,"1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"1110 Cardero St, Vancouver, BC",[],F,,,T,T
-00284-UnknownSiteNameWithFrontGate,"PATRICIA APTS -- 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"Patricia Apts -- 1110 Cardero St, Vancouver, BC",[SITE_NAME.notMatched],F,,,T,T
-00285-UnknownSiteNameWithoutFrontGate,"PATRICIA APTS 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"Patricia Apts -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
-00286-UnknownSiteNameAfterStreetWithoutFrontGate,"1110 CARDERO ST  PATRICIA APTS, VANCOUVER, BC",CIVIC_NUMBER,"Patricia Apts -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
-00287-UnknownSiteNameWithFrontGate,"PATRICIA APARTMENTS -- 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"Patricia Apartments -- 1110 Cardero St, Vancouver, BC",[SITE_NAME.notMatched],F,,,T,T
-00288-UnknownSiteNameWithoutFrontGate,"PATRICIA APARTMENTS 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"Patricia Apartments -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
-00289-UnknownSiteNameAfterStreetWithoutFrontGate,"1110 CARDERO ST  PATRICIA APARTMENTS, VANCOUVER, BC",CIVIC_NUMBER,"Patricia Apartments -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00284-UnknownSiteNameWithFrontGate,"PATRICIA APTS -- 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"PATRICIA APTS -- 1110 Cardero St, Vancouver, BC",[SITE_NAME.notMatched],F,,,T,T
+00285-UnknownSiteNameWithoutFrontGate,"PATRICIA APTS 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"PATRICIA APTS -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00286-UnknownSiteNameAfterStreetWithoutFrontGate,"1110 CARDERO ST  PATRICIA APTS, VANCOUVER, BC",CIVIC_NUMBER,"PATRICIA APTS -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00287-UnknownSiteNameWithFrontGate,"PATRICIA APARTMENTS -- 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"PATRICIA APARTMENTS -- 1110 Cardero St, Vancouver, BC",[SITE_NAME.notMatched],F,,,T,T
+00288-UnknownSiteNameWithoutFrontGate,"PATRICIA APARTMENTS 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"PATRICIA APARTMENTS -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00289-UnknownSiteNameAfterStreetWithoutFrontGate,"1110 CARDERO ST  PATRICIA APARTMENTS, VANCOUVER, BC",CIVIC_NUMBER,"PATRICIA APARTMENTS -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
 00290-UnknownSiteNameWithFrontGate,"LILLOET BLDG -- 410 2016 FULLERTON AVE, NORTH VANCOUVER, BC",UNIT,"UNIT 410 LILLOET BLDG -- 2016 Fullerton Ave, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing:0, LOCALITY.isAlias:1]",F,,,T,T
 00291-UnknownSiteNameWithoutFrontGate,"LILLOET BLDG 410 2016 FULLERTON AVE, NORTH VANCOUVER, BC",UNIT,"UNIT 410 LILLOET BLDG -- 2016 Fullerton Ave, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing:0, LOCALITY.isAlias:1,FRONT_GATE.missing]",F,,,T,T
 00292-UnknownSiteNameAfterStreetWithoutFrontGate,"410 2016 FULLERTON AVE LILLOET BLDG, NORTH VANCOUVER, BC",UNIT,"UNIT 410 LILLOET BLDG -- 2016 Fullerton Ave, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing:0, LOCALITY.isAlias:1,FRONT_GATE.missing]",F,,,T,T
-00293-UnknownSiteNameWithFrontGate,"CONDOMINIUMS -- 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 Condominiums -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched]",F,,,T,T
-00294-UnknownSiteNameWithoutFrontGate,"CONDOMINIUMS 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 Condominiums -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
-00295-UnknownSiteNameAfterStreetWithoutFrontGate,"205 7555 120A ST CONDOMINIUMS, SURREY, BC",CIVIC_NUMBER,"UNIT 205 Condominiums -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
-00296-UnknownSiteNameWithFrontGate,"CONDO -- 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 Condo -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched]",F,,,T,T
-00297-UnknownSiteNameWithoutFrontGate,"CONDO 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 Condo -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
-00298-UnknownSiteNameAfterStreetWithoutFrontGate,"205 7555 120A ST CONDO, SURREY, BC",CIVIC_NUMBER,"UNIT 205 Condo -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
-00299-UnknownSiteNameWithFrontGate,"FRASERVIEW CARE LODGE -- 9580 WILLIAMS RD, RICHMOND, BC",CIVIC_NUMBER,"Fraserview Care Lodge -- 9580 Williams Rd, Richmond, BC",[SITE_NAME.notMatched],F,,,T,T
-00300-UnknownSiteNameWithoutFrontGate,"FRASERVIEW CARE LODGE 9580 WILLIAMS RD, RICHMOND, BC",CIVIC_NUMBER,"Fraserview Care Lodge -- 9580 Williams Rd, Richmond, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
-00301-UnknownSiteNameAfterStreetWithoutFrontGate,"9580 WILLIAMS RD FRASERVIEW CARE LODGE, RICHMOND, BC",CIVIC_NUMBER,"Fraserview Care Lodge -- 9580 Williams Rd, Richmond, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
-00302-UnknownSiteNameWithFrontGate,"LYNN VALLEY CARE CENTRE -- 1 1070 LYNN VALLEY RD, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 Lynn Valley Care Centre-- 1070 Lynn Valley Rd, District of North Vancouver, BC","[[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched]",F,,,T,T
-00303-UnknownSiteNameWithoutFrontGate,"LYNN VALLEY CARE CENTRE 1 1070 LYNN VALLEY RD, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 Lynn Valley Care Centre-- 1070 Lynn Valley Rd, District of North Vancouver, BC","[[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
-00304-UnknownSiteNameAfterStreetWithoutFrontGate,"1 1070 LYNN VALLEY RD LYNN VALLEY CARE CENTRE, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 Lynn Valley Care Centre-- 1070 Lynn Valley Rd, District of North Vancouver, BC","[[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
-00305-UnknownSiteNameWithFrontGate,"CERWYDDEN CARE HOME -- 3243 COWICHAN LAKE RD, DUNCAN, BC",CIVIC_NUMBER,"Cerwydden Care Home -- 3243 Cowichan Lake Rd, Duncan, BC",[SITE_NAME.notMatched],F,,,T,T
-00306-UnknownSiteNameWithoutFrontGate,"CERWYDDEN CARE HOME 3243 COWICHAN LAKE RD, DUNCAN, BC",CIVIC_NUMBER,"Cerwydden Care Home -- 3243 Cowichan Lake Rd, Duncan, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
-00307-UnknownSiteNameAfterStreetWithoutFrontGate,"3243 COWICHAN LAKE RD CERWYDDEN CARE HOME, DUNCAN, BC",CIVIC_NUMBER,"Cerwydden Care Home -- 3243 Cowichan Lake Rd, Duncan, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00293-UnknownSiteNameWithFrontGate,"CONDOMINIUMS -- 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 CONDOMINUMS -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched]",F,,,T,T
+00294-UnknownSiteNameWithoutFrontGate,"CONDOMINIUMS 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 CONDOMINIUMS -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
+00295-UnknownSiteNameAfterStreetWithoutFrontGate,"205 7555 120A ST CONDOMINIUMS, SURREY, BC",CIVIC_NUMBER,"UNIT 205 CONDOMINIUMS -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
+00296-UnknownSiteNameWithFrontGate,"CONDO -- 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 CONDO -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched]",F,,,T,T
+00297-UnknownSiteNameWithoutFrontGate,"CONDO 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 CONDO -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
+00298-UnknownSiteNameAfterStreetWithoutFrontGate,"205 7555 120A ST CONDO, SURREY, BC",CIVIC_NUMBER,"UNIT 205 CONDO -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
+00299-UnknownSiteNameWithFrontGate,"FRASERVIEW CARE LODGE -- 9580 WILLIAMS RD, RICHMOND, BC",CIVIC_NUMBER,"FRASERVIEW CARE LODGE -- 9580 Williams Rd, Richmond, BC",[SITE_NAME.notMatched],F,,,T,T
+00300-UnknownSiteNameWithoutFrontGate,"FRASERVIEW CARE LODGE 9580 WILLIAMS RD, RICHMOND, BC",CIVIC_NUMBER,"FRASERVIEW CARE LODGE -- 9580 Williams Rd, Richmond, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00301-UnknownSiteNameAfterStreetWithoutFrontGate,"9580 WILLIAMS RD FRASERVIEW CARE LODGE, RICHMOND, BC",CIVIC_NUMBER,"FRASERVIEW CARE LODGE -- 9580 Williams Rd, Richmond, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00302-UnknownSiteNameWithFrontGate,"UNIT 1 LYNN VALLEY CARE CENTRE -- 1070 LYNN VALLEY RD, NORTH VANCOUVER, BC",CIVIC_NUMBER,"LYNN VALLEY CARE CENTRE -- 1070 Lynn Valley Rd, District of North Vancouver, BC","[[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched]",F,,,T,T
+00303-UnknownSiteNameWithoutFrontGate,"UNIT 1 LYNN VALLEY CARE CENTRE 1070 LYNN VALLEY RD, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 LYNN VALLEY CARE CENTRE -- 1070 Lynn Valley Rd, District of North Vancouver, BC","[[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00304-UnknownSiteNameAfterStreetWithoutFrontGate,"1 1070 LYNN VALLEY RD LYNN VALLEY CARE CENTRE, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 LYNN VALLEY CARE CENTRE-- 1070 Lynn Valley Rd, District of North Vancouver, BC","[[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00305-UnknownSiteNameWithFrontGate,"CERWYDDEN CARE HOME -- 3243 COWICHAN LAKE RD, DUNCAN, BC",CIVIC_NUMBER,"CERWYDDEN CARE HOME -- 3243 Cowichan Lake Rd, Duncan, BC",[SITE_NAME.notMatched],F,,,T,T
+00306-UnknownSiteNameWithoutFrontGate,"CERWYDDEN CARE HOME 3243 COWICHAN LAKE RD, DUNCAN, BC",CIVIC_NUMBER,"CERWYDDEN CARE HOME -- 3243 Cowichan Lake Rd, Duncan, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00307-UnknownSiteNameAfterStreetWithoutFrontGate,"3243 COWICHAN LAKE RD CERWYDDEN CARE HOME, DUNCAN, BC",CIVIC_NUMBER,"CERWYDDEN CARE HOME -- 3243 Cowichan Lake Rd, Duncan, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
 00308-GoodAddress,"10011 SIMKIN PL, SIDNEY, BC",CIVIC_NUMBER,"10011 Simkin Pl, Sidney, BC",[],F,,,T,T
 00309-DuplicateBCAfterStreetType,"10011 SIMKIN PL BC, SIDNEY, BC",CIVIC_NUMBER,"10011 Simkin Pl, Sidney, BC",[PROVINCE_CODE.duplicated],F,,,T,T
 00310-DuplicateBCAfterLocality,"10011 SIMKIN PL, SIDNEY, BC, BC",CIVIC_NUMBER,"10011 Simkin Pl, Sidney, BC",[PROVINCE_CODE.duplicated],F,,,T,T
@@ -315,7 +315,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00315-GoodAddress,"1135 JEFFERSON AVE WEST VANCOUVER, BC",CIVIC_NUMBER,"1135 Jefferson Ave, West Vancouver, BC",[],F,,,T,T
 00316-DuplicateLocalityAfterLocality,"1135 JEFFERSON AVE WEST VANCOUVER, WEST VANCOUVER, BC",CIVIC_NUMBER,"1135 Jefferson Ave, West Vancouver, BC",[LOCALITY.duplicated],F,,,T,T
 00317-GoodAddress,"11048 157A ST SURREY, BC",CIVIC_NUMBER,"11048 157A St, Surrey, BC",[],F,,,T,T
-00318-DuplicateLocalityAfterLocality,"11048 157A ST SURREY, SURREY, BC",CIVIC_NUMBER,"11048 157A St, Surrey, BC",[REPEATED_ELEMENT.notAllowed],F,,,T,T
+00318-DuplicateLocalityAfterLocality,"11048 157A ST SURREY, SURREY, BC",CIVIC_NUMBER,"11048 157A St, Surrey, BC",[LOCALITY.duplicated],F,,,T,T
 00319-GoodAddress,"9917 ASHWOOD DR RICHMOND, BC",CIVIC_NUMBER,"9917 Ashwood Dr, Richmond, BC",[],F,,,T,T
 00320-DuplicateLocalityAfterLocality,"9917 ASHWOOD DR RICHMOND, RICHMOND, BC",CIVIC_NUMBER,"9917 Ashwood Dr, Richmond, BC",[LOCALITY.duplicated],F,,,T,T
 00321-GoodAddress,"1120 FOSTER AVE COQUITLAM, BC",CIVIC_NUMBER,"1120 Foster Ave, Coquitlam, BC",[],F,,,T,T
