@@ -157,13 +157,13 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00157-CivicAddressInWrongLocation,"4429 Gaspardone Rd Kelowna BC",CIVIC_NUMBER,"4429 Gaspardone Rd, Kelowna, BC",[],F,,,T,T
 00158-CivicAddressWithUnescapedSpecialCharacter,"4429 Gaspardone\ Rd Kelowna BC",CIVIC_NUMBER,"4429 Gaspardone Rd, Kelowna, BC",[],F,,,T,T
 00159-CivicAddressWithNegativeScore,Unit 7 7460 Lancaster Pike Hockessin DE,LOCALITY,"UNIT 7 -- Sooke, BC","[UNRECOGNIZED.notAllowed UNIT_DESIGNATOR.notMatched UNIT_NUMBER.notMatched LOCALITY.isAlias PROVINCE.missing]",F,,,F,F
-00160-CivicAddressWithCivicNumberTreatedAsCivicNumberSuffix,650 South Terminal Ave nanaimo bc,CIVIC_NUMBER,"650 S Terminal Ave, Nanaimo, BC",[STREET_DIRECTION.notMatched:2],F,,,T,T
+00160-CivicAddressWithCivicNumberTreatedAsCivicNumberSuffix,need example,CIVIC_NUMBER,need example[STREET_DIRECTION.notMatched:2],T,,,T,T
 00161-NonCivicAddressWithKnownSiteName,"Anahim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],F,,,T,T
-00162-NonCivicAddressWithKnownSiteNameAndMissingStreet,"Centennial Candle -- Victoria BC",SITE,"Centennial Candle -- Victoria, BC","[STREET_NAME.missing:10 STREET_TYPE.missing:6]",F,,,F,F
+00162-NonCivicAddressWithKnownSiteNameAndMissingStreet,"Centennial Candle -- Victoria BC",SITE,"Centennial Candle -- Laurel Lane, Victoria, BC","[STREET_NAME.missing:10 STREET_TYPE.missing:6]",T,,,F,F
 00163-NonCivicAddressWithKnownSiteNameandProvince,Anahim Lake Airport -- BC,SITE,"Anahim Lake Airport -- Anahim Lake, BC",[LOCALITY.missing:10],F,,,F,F
 00164-NonCivicAddressWithHwyNameAlias,need example,SITE,need example,[STREET_NAME.isHighwayAlias:0],T,,,T,T
-00165-CivicAddressWithFractionalCivicNumberSuffix,"535 1/2 Fisgard Street, Victoria, BC",CIVIC_NUMBER,"535 1/2 Fisgard Street, Victoria, BC",[CIVIC_NUMBER_SUFFIX.notMatched:1],F,,,T,T
-00166-CivicAddressWithUTF-8FractionalCivicNumberSuffix,"535?ó Fisgard Street, Victoria, BC",CIVIC_NUMBER,"535 1/2 Fisgard Street, Victoria, BC",[CIVIC_NUMBER_SUFFIX.notMatched:1],F,,,T,T
+00165-CivicAddressWithFractionalCivicNumberSuffix,"535 1/2 Fisgard Street, Victoria, BC",BLOCK,"535 1/2 Fisgard Street, Victoria, BC",[CIVIC_NUMBER_SUFFIX.notMatched:1],F,,,T,T
+00166-CivicAddressWithUTF-8FractionalCivicNumberSuffix,"535?ó Fisgard Street, Victoria, BC",CIVIC_NUMBER,"535 1/2 Fisgard Street, Victoria, BC",[CIVIC_NUMBER_SUFFIX.notMatched:1],T,,,T,T
 00167-NumberedStreetName,"857 E 45th Ave Vancouver BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],F,,,T,T
 00168-NumberedStreetNameWithEmbeddedBlanks,"857 E 45 th Ave, Vancouver, BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],F,,,T,T
 00169-StreetNameWithGluedWords,"2845 Cedarhill Rd, Victoria, BC",CIVIC_NUMBER,"2845 Cedar Hill Rd, Victoria, BC",[],F,,,T,T
@@ -452,3 +452,4 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00451-StreetNameCompoundWordSeparated,"8514 Horse Shoe Bay Rd, Anglemont, BC",CIVIC_NUMBER,"8514 Horseshoe Bay Rd, Anglemont, BC",[],F,,,T,T
 00452-NonStandardStreetTypeAbbreviation,"2908 Hwy 99, Mot Currie, BC",CIVIC_NUMBER,"2908 Hwy 99, Mt Currie, BC",[],F,,102,T,T
 00453-civicAddressWithUnitandUnknownSiteName,"UNIT 170 Happy House -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched],F,,,T,T
+00454-StreetNameWithMultipleSpellingMistakes,"Omenica St, Hazelton, BC",STREET,"Omineca St, Hazelton, BC",[],F,,,T,T
