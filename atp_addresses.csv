@@ -72,10 +72,10 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00072-CivicAddressWithMisplacedStreetTypeandUnneededStreetDirectionOnHighway,"8930 Hwy Cariboo S Pineview FFG BC",CIVIC_NUMBER,"8930 Cariboo Hwy, Pineview FFG, BC","[STREET_DIRECTION.notMatchedInHighway:0 STREET_TYPE.notPrefix:0]",F,,,T,T
 00073-CivicAddressUnknownLocality,"626 Lindley Dr Leftbank bc ",BLOCK,"626 Lindley Dr, West Kelowna, BC","[UNRECOGNIZED.notAllowed:33 LOCALITY.missing:10]",F,,,F,F
 00074-CivicAddressUnknownStreetDirection,"456 Gorge Rd WN Victoria BC",CIVIC_NUMBER,"456 Gorge Rd E, Victoria, BC","[UNRECOGNIZED.notAllowed:33 STREET_DIRECTION.missing:2]",F,,,T,T
-00075-CivicAddressUnknownStreetType,"561 60 Roseway SE Salmon Arm BC ",CIVIC_NUMBER,"561 60 St SE, Salmon Arm, BC","[UNRECOGNIZED.notAllowed:33 STREET_TYPE.missing:6]",F,,,F,F
-00076-CivicAddressUnknownStreetName,"561 Gruffle St SE Salmon Arm BC",BLOCK,"561 Salmon Rd, Central Saanich, BC","[UNRECOGNIZED.notAllowed:33 LOCALITY.missing:10 STREET_DIRECTION.notMatched:2 STREET_TYPE.notMatched:3 STREET_QUALIFIER.notMatched:1 MAX_RESULTS.too_low_to_include_all_best_matches:0]",F,,,F,F
+00075-CivicAddressUnknownStreetType,"561 salmon Ave, North Saanich, BC",BLOCK,"561 Salmon Rd, North Saanich, BC","[UNRECOGNIZED.notAllowed:33 STREET_TYPE.notMatched]",F,,,T,T
+00076-CivicAddressUnknownStreetName,"561 samson Rd, North Saanich, BC",CIVIC_NUMBER,"561 Lamson Rd, Abbotsford, BC","[LOCALITY.notMatched STREET_NAME.spelledWrong:2]",F,,,F,F
 00077-CivicAddressUnknownCivicNumber,"60000 Hwy 97B SE Salmon Arm BC",STREET,"Hwy 97B SE, Salmon Arm, BC",[CIVIC_NUMBER.notInAnyBlock:10],F,,,F,F
-00078-CivicAddressUnknownUnitDescriptor,"Abode 116 195 Chamberlain Cres Tumbler Ridge BC",UNIT,"UNIT 116 -- 195 Chamberlain Cres, Tumbler Ridge, BC","[UNRECOGNIZED.notAllowed:33 UNIT_DESIGNATOR.missing:0]",F,,,T,T
+00078-CivicAddressUnknownUnitDescriptor,"ABODE 128 -- 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.Unknown],F,,,T,T
 00079-CivicAddressStreetDirectionForUndirectedStreet,"109 Quarry Dr W Salt Spring Island BC",CIVIC_NUMBER,"109 Quarry Dr, Salt Spring Island, BC",[STREET_DIRECTION.notMatched:2],F,,,T,T
 00080-CivicAddressWithMailBagAtEnd,"525 Superior St, Victoria, BC MAILBAG 300",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
 00081-CivicAddressWithMailBagAfterStreet,"525 Superior St MAILBAG 300 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
@@ -114,7 +114,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00114-CivicAddressWithUnKnownFrontDoorAndKnownParcelPoint,"5712 Malibu Terr Nanaimo BC",CIVIC_NUMBER,"5712 Malibu Terr, Nanaimo, BC",[],F,,,T,T
 00115-IntersectionAddressWithTwoStreetsInAscendingOrder,"douglas st and Victoria Rd Chemainus bc",INTERSECTION,"Douglas St and Private Rd and Victoria Rd, Chemainus, BC",[],F,,,T,T
 00116-IntersectionAddressWithTwoStreetsInDescendingOrder,"Victoria Rd and douglas st Chemainus bc",INTERSECTION,"Douglas St and Private Rd and Victoria Rd, Chemainus, BC",[],F,,,T,T
-00117-IntersectionAddressWithThreeStreets,"Douglas St and Gorge Rd E and Hillside Ave, Victoria, BC",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave, Victoria, BC",[],F,,,T,T
+00117-IntersectionAddressWithFourStreets,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC",INTERSECTION,Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC",[],F,,,T,T
 00118-IntersectionAddressWithStreetDirection,"Davin St and Maddock Ave W Saanich BC",INTERSECTION,"Davin St and Maddock Ave W, Saanich, BC",[],F,,,T,T
 00119-IntersectionAddressWithMissingStreetDirection,"Davin St and Maddock Ave Saanich BC",INTERSECTION,"Davin St and Maddock Ave W, Saanich, BC",[STREET_DIRECTION.missing:2],F,,,T,T
 00120-IntersectionAddressWithoutStreetDirection,"Johnson st and begbie st Victoria bc",INTERSECTION,"Begbie St and Johnson St, Victoria, BC",[],F,,,T,T
@@ -123,23 +123,23 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00123-IntersectionAddressWithPrefixStreetDirectionAndStreetNameContainingDirectionWord,BC,STREET,BC,"[UNRECOGNIZED.notAllowed:33 STREET_NAME.spelledWrong:2 LOCALITY.missing:10 STREET_TYPE.missing:6 PROVINCE.missing:1 MAX_RESULTS.too_low_to_include_all_best_matches:0]",T,,,F,F
 00124-IntersectionAddressWithoutProvinceCode,"Pandora Ave and Blanshard St Victoria",INTERSECTION,"Blanshard St and Pandora Ave, Victoria, BC",[PROVINCE.missing:1],F,,,T,T
 00125-IntersectionAddressWithProvinceName,"Pandora Ave and Blanshard St Victoria British Columbia",INTERSECTION,"Blanshard St and Pandora Ave, Victoria, BC",[],F,,,T,T
-00126-IntersectionAddressWrongLocality,"gorge rd e and douglas st Saanich bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave, Victoria, BC","[STREET_NAME.notMatched:12 LOCALITY.isAlias:4]",F,,,T,T
-00127-IntersectionAddressWrongStreetType,"gorge st e and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave, Victoria, BC","[STREET_TYPE.notMatched:3 STREET_NAME.notMatched:12]",F,,,F,F
-00128-IntersectionAddressWrongStreetDirection,"gorge rd w and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave, Victoria, BC","[STREET_DIRECTION.notMatched:2 STREET_NAME.notMatched:12]",F,,,F,F
-00129-IntersectionAddressUnknownLocality,"gorge rd and douglas st bardville bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave, Victoria, BC","[STREET_TYPE.notMatched:3 STREET_NAME.isAlias:1 STREET_NAME.spelledWrong:2 STREET_NAME.spelledWrong:2 LOCALITY.missing:10]",F,,,F,F
-00130-IntersectionAddressUnknownStreetDirection,"gorge rd n and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave, Victoria, BC","[STREET_DIRECTION.notMatched:2 STREET_NAME.notMatched:12]",F,,,F,F
+00126-IntersectionAddressWrongLocality,"gorge rd e and douglas st Saanich bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_NAME.notMatched:12 LOCALITY.isAlias:4]",F,,,T,T
+00127-IntersectionAddressWrongStreetType,"gorge st e and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BCC","[STREET_TYPE.notMatched:3 STREET_NAME.notMatched:12]",F,,,F,F
+00128-IntersectionAddressWrongStreetDirection,"gorge rd w and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_DIRECTION.notMatched:2 STREET_NAME.notMatched:12]",F,,,F,F
+00129-IntersectionAddressUnknownLocality,"gorge rd and douglas st bardville bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_TYPE.notMatched:3 STREET_NAME.isAlias:1 STREET_NAME.spelledWrong:2 STREET_NAME.spelledWrong:2 LOCALITY.missing:10]",F,,,F,F
+00130-IntersectionAddressUnknownStreetDirection,"gorge rd n and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_DIRECTION.notMatched:2 STREET_NAME.notMatched:12]",F,,,F,F
 00131-IntersectionAddressStreetDirectionForUndirectedStreet,"Pandora Ave W and Blanshard St Victoria bc",INTERSECTION,"Blanshard St and Pandora Ave, Victoria, BC",[STREET_DIRECTION.notMatched:2],F,,,T,T
 00132-CivicAddressNumberedStreetWithoutTH,"955 13 ave Valemont bc",CIVIC_NUMBER,"955 13th Ave, Valemount, BC",[LOCALITY.spelledWrong:2],F,,,T,T
 00133-Street,"WELLS RD CHILLIWACK BC",STREET,"Wells Rd, Chilliwack, BC",[],F,,,T,T
 00134-CivicAddressFailedInPast,"1090 marine dr port alice bc",CIVIC_NUMBER,"1090 Marine Dr, Port Alice, BC",[],F,,,T,T
-00135-CivicAddressFailedInPast,"1772 CARIBOO HWY 70 MILE HOUSE BC",BLOCK,"1772 Cariboo Highway 97, 70 Mile House, BC",[STREET_NAME.isHighwayAlias:0],F,,,T,T
+00135-CivicAddressFailedInPast,"1772 CARIBOO HWY 70 MILE HOUSE BC",CIVIC_NUMBER,"1772 Hwy 97, 70 Mile House, BC",[STREET_NAME.isHighwayAlias:0],F,,,T,T
 00136-CivicAddressFailedInPast,"3545 PR EDWARD ST VANCOUVER BC",BLOCK,"3545 Prince Edward St, Vancouver, BC",[],F,,,T,T
-00137-CivicAddressFailedInPast,671D MARKET HILL VANCOUVER BC ,BLOCK,"671D Market Hill, Vancouver, BC",[],F,,,T,T
+00137-CivicAddressFailedInPast,671D MARKET HILL VANCOUVER BC ,CIVIC_NUMBER,"671D Market Hill, Vancouver, BC",[],F,,,T,T
 00138-CivicAddressFailedInPast,100 mile house BC,LOCALITY,"100 Mile House, BC",[],F,,,T,T
 00139-CivicAddressFailedInPast,"WILLOW DRIVE 70 MILE HOUSE BC",STREET,"Willow Dr, 70 Mile House, BC",[],F,,,T,T
 00140-CivicAddressFailedInPast,gorge and gorge,INTERSECTION,"Gorge Bridge and Gorge Bridge, Esquimalt, BC","[STREET_QUALIFIER.missing:1 LOCALITY.missing:10 PROVINCE.missing:1]",F,,,F,F
 00141-CivicAddressFailedInPast,"Vancouver BC",LOCALITY,"Vancouver, BC",[],F,,,T,T
-00142-CivicAddressNotInAnyAddressRange,"1 Commercial Dr Dease Lake BC",BLOCK,"1 Commercial Dr, Dease Lake, BC",[],F,,,T,T
+00142-CivicAddressNotInAnyAddressRange,"1 Commercial Dr Dease Lake BC",STREET,"Commercial Dr, Dease Lake, BC",[],F,,,T,T
 00143-CivicAddressStreetNameNotPrimary,"1271 Winchester Rd Qualicum Beach ",CIVIC_NUMBER,"1271 Winchester Rd, Qualicum Beach, BC",[PROVINCE.missing:1],F,,,T,T
 00144-CivicAddressWithHashCharacter,"#1-2145 PHILLIPS RD SOOKE BC",UNIT,"UNIT 1 -- 2145 Phillips Rd, Sooke, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
 00145-CivicAddressWithProvinceCode,"3010 Wood Ave Armstrong BC",CIVIC_NUMBER,"3010 Wood Ave, Armstrong, BC",[],F,,,T,T
@@ -156,7 +156,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00156-CivicAddressInWrongLocation,"4427 Gaspardone Rd Kelowna BC",CIVIC_NUMBER,"4427 Gaspardone Rd, Kelowna, BC",[],F,,,T,T
 00157-CivicAddressInWrongLocation,"4429 Gaspardone Rd Kelowna BC",CIVIC_NUMBER,"4429 Gaspardone Rd, Kelowna, BC",[],F,,,T,T
 00158-CivicAddressWithUnescapedSpecialCharacter,"4429 Gaspardone\ Rd Kelowna BC",CIVIC_NUMBER,"4429 Gaspardone Rd, Kelowna, BC",[],F,,,T,T
-00159-CivicAddressWithNegativeScore,Unit 7 7460 Lancaster Pike Hockessin DE,LOCALITY,"UNIT 7 -- Sooke, BC","[UNRECOGNIZED.notAllowed:33 UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1 LOCALITY.notMatched:35 STREET_TYPE.missing:6 CIVIC_NUMBER.notInAnyBlock:10 PROVINCE.missing:1 MAX_RESULTS.too_low_to_include_all_best_matches:0]",F,,,F,F
+00159-CivicAddressWithNegativeScore,Unit 7 7460 Lancaster Pike Hockessin DE,LOCALITY,"UNIT 7 -- Sooke, BC","[UNRECOGNIZED.notAllowed UNIT_DESIGNATOR.notMatched UNIT_NUMBER.notMatched LOCALITY.isAlias PROVINCE.missing]",F,,,F,F
 00160-CivicAddressWithCivicNumberTreatedAsCivicNumberSuffix,650 South Terminal Ave nanaimo bc,CIVIC_NUMBER,"650 S Terminal Ave, Nanaimo, BC",[STREET_DIRECTION.notMatched:2],F,,,T,T
 00161-NonCivicAddressWithKnownSiteName,"Anahim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],F,,,T,T
 00162-NonCivicAddressWithKnownSiteNameAndMissingStreet,"Centennial Candle -- Victoria BC",SITE,"Centennial Candle -- Victoria, BC","[STREET_NAME.missing:10 STREET_TYPE.missing:6]",F,,,F,F
