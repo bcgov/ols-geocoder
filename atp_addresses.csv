@@ -157,7 +157,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,e
 00157-CivicAddressInWrongLocation,"4429 Gaspardone Rd Kelowna BC",CIVIC_NUMBER,"4429 Gaspardone Rd, Kelowna, BC",[],F,,,T,T
 00158-CivicAddressWithUnescapedSpecialCharacter,"4429 Gaspardone\ Rd Kelowna BC",CIVIC_NUMBER,"4429 Gaspardone Rd, Kelowna, BC",[],F,,,T,T
 00159-CivicAddressWithNegativeScore,Unit 7 7460 Lancaster Pike Hockessin DE,LOCALITY,"UNIT 7 -- Sooke, BC","[UNRECOGNIZED.notAllowed UNIT_DESIGNATOR.notMatched UNIT_NUMBER.notMatched LOCALITY.isAlias PROVINCE.missing]",F,,,F,F
-00160-CivicAddressWithCivicNumberTreatedAsCivicNumberSuffix,need example,CIVIC_NUMBER,need example[STREET_DIRECTION.notMatched:2],T,,,T,T
+00160-CivicAddressWithCivicNumberTreatedAsCivicNumberSuffix,need example,CIVIC_NUMBER,need example,[STREET_DIRECTION.notMatched:2],T,,,T,T
 00161-NonCivicAddressWithKnownSiteName,"Anahim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],F,,,T,T
 00162-NonCivicAddressWithKnownSiteNameAndMissingStreet,"Centennial Candle -- Victoria BC",SITE,"Centennial Candle -- Laurel Lane, Victoria, BC","[STREET_NAME.missing:10 STREET_TYPE.missing:6]",T,,,F,F
 00163-NonCivicAddressWithKnownSiteNameandProvince,Anahim Lake Airport -- BC,SITE,"Anahim Lake Airport -- Anahim Lake, BC",[LOCALITY.missing:10],F,,,F,F
