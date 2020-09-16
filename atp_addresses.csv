@@ -166,16 +166,16 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00166-CivicAddressWithUTF-8FractionalCivicNumberSuffix,"535?ó Fisgard Street, Victoria, BC",CIVIC_NUMBER,"535 1/2 Fisgard Street, Victoria, BC",[CIVIC_NUMBER_SUFFIX.notMatched:1],U,,,T,T
 00167-NumberedStreetName,"857 E 45th Ave Vancouver BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],R,,,T,T
 00168-NumberedStreetNameWithEmbeddedBlanks,"857 E 45 th Ave, Vancouver, BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],R,,,T,T
-00169-StreetNameWithGluedWords,"2845 Cedarhill Rd, Victoria, BC",CIVIC_NUMBER,"2845 Cedar Hill Rd, Victoria, BC",[],R,,,T,T
-00170-LocalityNameWithGluedWords,"206 E 15th St, Northvancouver, BC",CIVIC_NUMBER,"206 E 15th St, North Vancouver, BC",[],R,,,T,T
-00171-SiteNameWithGluedWords,"AnahimLake Airport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],R,,,T,T
-00172-StreetNameWithMultipleSpellingMistakes,"Omineca St, Kitimat, BC",STREET,"Omenica St, Kitimat, BC",[],R,,,T,T
-00173-LocalityNameWithMultipleSpellingMistakes,"Sawasen, BC",LOCALITY,"Tsawwassen, BC",[],R,,,T,T
-00174-SiteNameWithMultipleSpellingMistakes,"Anahyme Lak Arport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],R,,,T,T
+00169-StreetNameWithGluedWords,"2845 Cedarhill Rd, Victoria, BC",CIVIC_NUMBER,"2845 Cedar Hill Rd, Victoria, BC",[],F,,,T,T
+00170-LocalityNameWithGluedWords,"206 E 15th St, Northvancouver, BC",CIVIC_NUMBER,"206 E 15th St, North Vancouver, BC",[],F,,,T,T
+00171-SiteNameWithGluedWords,"AnahimLake Airport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],F,,,T,T
+00172-StreetNameWithMultipleSpellingMistakes,"Omineca St, Kitimat, BC",STREET,"Omenica St, Kitimat, BC",[],F,,,T,T
+00173-LocalityNameWithMultipleSpellingMistakes,"Sawasen, BC",LOCALITY,"Tsawwassen, BC",[],F,,,T,T
+00174-SiteNameWithMultipleSpellingMistakes,"Anahyme Lak Arport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],F,,,T,T
 00175-NumberedStreetName,"857 E 45th Ave, Vancouver, BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],R,,,T,T
 00176-NumberedStreetNameWithEmbeddedBlanks,"857 E 45 th Ave, Vancouver, BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],R,,,T,T
-00177-StreetNameWithTwoWordsGluedTogether,"2845 Cedarhill Rd, Victoria, BC",CIVIC_NUMBER,"2845 Cedar Hill Rd, Victoria, BC",[],R,,,T,T
-00178-StreetNameWithGapBetweenWords,"1985 Mill Stream Rd, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC",[],R,,,T,T
+00177-StreetNameWithTwoWordsGluedTogether,"2845 Cedarhill Rd, Victoria, BC",CIVIC_NUMBER,"2845 Cedar Hill Rd, Victoria, BC",[],F,,,T,T
+00178-StreetNameWithGapBetweenWords,"1985 Mill Stream Rd, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC",[],F,,,T,T
 00179-UnknownSiteNameWithFrontGate,"Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],F,,,T,T
 00180-UnknownSiteNameWithoutFrontGate,"Old Mill Stream Manor 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
 00181-UnknownUnitwithUnknownSiteNameWithFrontGate,"APT 101 Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"APT 101, OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],F,,,T,T
@@ -408,21 +408,21 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00408-AddressInSmallCommunityUsingLocalityAlias,"10571 CHESLATTA RD, BURNS LAKE, BC",CIVIC_NUMBER,"10571 Cheslatta Rd, Cheslatta, BC",[LOCALITY.isAlias],F,,,T,T
 00409-NumberedStreetNameWithDetachedSuffix,"102 A Ave, Surrey, BC",CIVIC_NUMBER,"102A Ave, Surrey, BC",[],R,,,T,T
 00410-UnitNumberStuckToDesignator,"Unit910 7380 ELMBRIDGE WAY, RICHMOND, BC",UNIT,"UNIT 910 -- 7380 Elmbridge Way, Richmond, BC",[UNIT_DESIGNATOR.missing],F,,,T,T
-00411-StreetNameWithMissingAmpersand,"189 ROD GUN RD, COURTENAY, BC",CIVIC_NUMBER,"189 Rod & Gun RD, Courtenay, BC",[,F,,,T,T
-00412-StreetNameWithMissingAmpersand,"189 ROD GUN RD, COURTENAY, BC",CIVIC_NUMBER,"189 Rod & Gun RD, Courtenay, BC",[],R,,,T,T
-00413-LeadingZeroInCivicNumber,"01070 Lynn Valley Rd, North Vancouver, BC",CIVIC_NUMBER,"1070 Lynn Valley Rd, North Vancouver, BC",[],R,,,T,T
-00414-LeadingZeroInUnitNumber,"01-1070 Lynn Valley Rd, North Vancouver, BC",UNIT,"UNIT 1 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],R,,,T,T
-00415-LeadingZeroInUnitNumber,"01 1070 Lynn Valley Rd, North Vancouver, BC",UNIT,"UNIT 1 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],R,,,T,T
-00416-LeadingZeroInUnitNumber,"Unit 01 -- 1070 Lynn Valley Rd, North Vancouver, BC",UNIT,"UNIT 1 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],R,,,T,T
-00417-UnitNumberWithLetterSuffix,"B2 518 BEATTY ST, VANCOUVER, BC",UNIT,"Unit B2 -- 518 Beatty St, Vancouver, BC",[],R,,,T,T
+00411-StreetNameWithMissingAmpersand,"189 ROD GUN RD, COURTENAY, BC",CIVIC_NUMBER,"189 Rod & Gun RD, Courtenay, BC",[],F,,,T,T
+00412-StreetNameWithMissingAmpersand,"189 ROD GUN RD, COURTENAY, BC",CIVIC_NUMBER,"189 Rod & Gun RD, Courtenay, BC",[],F,,,T,T
+00413-LeadingZeroInCivicNumber,"01070 Lynn Valley Rd, North Vancouver, BC",CIVIC_NUMBER,"1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
+00414-LeadingZeroInUnitNumber,"01-1070 Lynn Valley Rd, North Vancouver, BC",UNIT,"UNIT 1 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
+00415-LeadingZeroInUnitNumber,"01 1070 Lynn Valley Rd, North Vancouver, BC",UNIT,"UNIT 1 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
+00416-LeadingZeroInUnitNumber,"Unit 01 -- 1070 Lynn Valley Rd, North Vancouver, BC",UNIT,"UNIT 1 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
+00417-UnitNumberWithLetterSuffix,"B2 518 BEATTY ST, VANCOUVER, BC",UNIT,"Unit B2 -- 518 Beatty St, Vancouver, BC",[],F,,,T,T
 00418-UnitNumberWithLetterSuffix,"B 2 518 BEATTY ST, VANCOUVER, BC",UNIT,"Unit B2 -- 518 Beatty St, Vancouver, BC",[],R,,,T,T
-00419-UnitNumberWithLetterSuffix,"C2 1845 WEST 10TH AVE, VANCOUVER, BC",UNIT,"UNIT C2 -- 1845 W 10th Ave, Vancouver, BC",[],R,,,T,T
+00419-UnitNumberWithLetterSuffix,"C2 1845 WEST 10TH AVE, VANCOUVER, BC",UNIT,"UNIT C2 -- 1845 W 10th Ave, Vancouver, BC",[],F,,,T,T
 00420-UnitNumberWithLetterSuffix,"C 2 1845 WEST 10TH AVE, VANCOUVER, BC",UNIT,"UNIT C2 -- 1845 W 10th Ave, Vancouver, BC",[],R,,,T,T
-00421-UnitNumberWithLetterSuffix,"P100 1518 W 70TH AVE, VANCOUVER, BC",UNIT,"UNIT P100 -- 1518 W 70th Ave, Vancouver, BC",[],R,,,T,T
+00421-UnitNumberWithLetterSuffix,"P100 1518 W 70TH AVE, VANCOUVER, BC",UNIT,"UNIT P100 -- 1518 W 70th Ave, Vancouver, BC",[],F,,,T,T
 00422-UnitNumberWithLetterSuffix,"P 100 1518 W 70TH AVE, VANCOUVER, BC",UNIT,"UNIT P100 -- 1518 W 70th Ave, Vancouver, BC",[],R,,,T,T
-00423-UnitNumberWithLetterSuffix,"P2 1855 NELSON ST, VANCOUVER, BC",UNIT,"UNIT P2 -- 1855 Nelson St, Vancouver, BC",[],R,,,T,T
+00423-UnitNumberWithLetterSuffix,"P2 1855 NELSON ST, VANCOUVER, BC",UNIT,"UNIT P2 -- 1855 Nelson St, Vancouver, BC",[],F,,,T,T
 00424-UnitNumberWithLetterSuffix,"P 2 1855 NELSON ST, VANCOUVER, BC",UNIT,"UNIT P2 -- 1855 Nelson St, Vancouver, BC",[],R,,,T,T
-00425-CivicAddressWithCareOfName,"c/o Joe Fonebone, P2-1855 NELSON ST, VANCOUVER, BC",UNIT,"UNIT P2 -- 1855 Nelson St, Vancouver, BC",[],R,,,T,T
+00425-CivicAddressWithCareOfName,"c/o Joe Fonebone, P2-1855 NELSON ST, VANCOUVER, BC",UNIT,"UNIT P2 -- 1855 Nelson St, Vancouver, BC",[],F,,,T,T
 00426-NonStandardStreetTypeAbbreviation,"2351 Parkway Bv, Coquitlam, BC",CIVIC_NUMBER,"2351 Parkway Blvd, Coquitlam, BC",[],C,,102,T,T
 00427-NonStandardStreetTypeAbbreviation,"3176 Plateau Bu, Coquitlam, BC",CIVIC_NUMBER,"3176 Plateau Bu, Coquitlam, BC",[],C,,102,T,T
 00428-NonStandardStreetTypeAbbreviation,"895 Academy Clo, Victoria, BC",CIVIC_NUMBER,"895 Academy Close, Victoria, BC",[],C,,102,T,T
