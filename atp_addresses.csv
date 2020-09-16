@@ -325,87 +325,87 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00325-GoodAddress,"1130 KORMAN CLOSE, COOMBS, BC",CIVIC_NUMBER,"1130 Korman Close, Coombs, BC",[],R,,,T,T
 00326-NonStandardStreetTypeAbbreviation,"1130 KORMAN CLO, COOMBS, BC",CIVIC_NUMBER,"1130 Korman Close, Coombs, BC",[],R,,,T,T
 00327-AddressInSmallCommunity,"6481 SAVONA ACCESS RD, SAVONA, BC",CIVIC_NUMBER,"6481 Savona Access Rd, Savona, BC",[],R,,,T,T
-00328-AddressInSmallCommunityUsingLocalityAlias,"6481 SAVONA ACCESS RD, KAMLOOPS, BC",CIVIC_NUMBER,"6481 Savona Access Rd, Savona, BC",[LOCALITY.isAlias],F,,,T,T
+00328-AddressInSmallCommunityUsingLocalityAlias,"6481 SAVONA ACCESS RD, KAMLOOPS, BC",CIVIC_NUMBER,"6481 Savona Access Rd, Savona, BC",[LOCALITY.isAlias],F,,101,T,T
 00329-AddressInSmallCommunity,"2089 ERRINGTON RD, ERRINGTON BC",CIVIC_NUMBER,"2089 Errington Rd, Errington, BC",[],R,,,T,T
-00330-AddressInSmallCommunityUsingLocalityAlias,"2089 ERRINGTON RD, COOMBS, BC",CIVIC_NUMBER,"2089 Errington Rd, Errington, BC",[LOCALITY.isAlias],F,,,T,T
+00330-AddressInSmallCommunityUsingLocalityAlias,"2089 ERRINGTON RD, COOMBS, BC",CIVIC_NUMBER,"2089 Errington Rd, Errington, BC",[LOCALITY.isAlias],F,,101,T,T
 00331-AddressInSmallCommunity,"1104 DEEP CREEK RD, DEEP CREEK, BC",CIVIC_NUMBER,"1104 Deep Creek Rd, Deep Creek, BC",[],R,,,T,T
-00332-AddressInSmallCommunityUsingLocalityAlias,"1104 DEEP CREEK RD, ENDERBY, BC",CIVIC_NUMBER,"1104 Deep Creek Rd, Deep Creek, BC",[LOCALITY.isAlias],F,,,T,T
+00332-AddressInSmallCommunityUsingLocalityAlias,"1104 DEEP CREEK RD, ENDERBY, BC",CIVIC_NUMBER,"1104 Deep Creek Rd, Deep Creek, BC",[LOCALITY.isAlias],F,,101,T,T
 00333-AddressInSmallCommunity,"4137 SPALLUMCHEEN DR, SPALLUMCHEEN BC",CIVIC_NUMBER,"4137 Spallumcheen Dr, Spallumcheen, BC",[],R,,,T,T
-00334-AddressInSmallCommunityUsingLocalityAlias,"4137 SPALLUMCHEEN DR, ARMSTRONG, BC",CIVIC_NUMBER,"4137 Spallumcheen Dr, Spallumcheen, BC",[LOCALITY.isAlias],F,,,T,T
+00334-AddressInSmallCommunityUsingLocalityAlias,"4137 SPALLUMCHEEN DR, ARMSTRONG, BC",CIVIC_NUMBER,"4137 Spallumcheen Dr, Spallumcheen, BC",[LOCALITY.isAlias],F,,101,T,T
 00335-AddressInSmallCommunity,"7380 HARROP PROCTER RD, PROCTER, BC",CIVIC_NUMBER,"7380 Harrop-Procter Rd, Procter, BC",[],R,,,T,T
-00336-AddressInSmallCommunityUsingLocalityAlias,"7380 HARROP PROCTER RD, NELSON, BC",CIVIC_NUMBER,"7380 Harrop-Procter Rd, Procter, BC",[LOCALITY.isAlias],F,,,T,T
+00336-AddressInSmallCommunityUsingLocalityAlias,"7380 HARROP PROCTER RD, NELSON, BC",CIVIC_NUMBER,"7380 Harrop-Procter Rd, Procter, BC",[LOCALITY.isAlias],F,,101,T,T
 00337-AddressInSmallCommunity,"4260 BLEWETT RD, BLEWETT, BC",CIVIC_NUMBER,"4260 Blewett Rd, Blewett, BC",[],R,,,T,T
-00338-AddressInSmallCommunityUsingLocalityAlias,"4260 BLEWETT RD, NELSON, BC",CIVIC_NUMBER,"4260 Blewett Rd, Blewett, BC",[LOCALITY.isAlias],F,,,T,T
+00338-AddressInSmallCommunityUsingLocalityAlias,"4260 BLEWETT RD, NELSON, BC",CIVIC_NUMBER,"4260 Blewett Rd, Blewett, BC",[LOCALITY.isAlias],F,,101,T,T
 00339-AddressInSmallCommunity,"2067 WHITE LAKE RD, WHITE LAKE, BC",CIVIC_NUMBER,"2067 White Lake Rd, White Lake, BC",[],R,,,T,T
-00340-AddressInSmallCommunityUsingLocalityAlias,"2067 WHITE LAKE RD, SORRENTO, BC",CIVIC_NUMBER,"2067 White Lake Rd, White Lake, BC",[LOCALITY.isAlias],F,,,T,T
+00340-AddressInSmallCommunityUsingLocalityAlias,"2067 WHITE LAKE RD, SORRENTO, BC",CIVIC_NUMBER,"2067 White Lake Rd, White Lake, BC",[LOCALITY.isAlias],F,,101,T,T
 00341-AddressInSmallCommunity,"1754 PASS CREEK RD, PASS CREEK, BC",CIVIC_NUMBER,"1754 Pass Creek Rd, Pass Creek, BC",[],R,,,T,T
-00342-AddressInSmallCommunityUsingLocalityAlias,"1754 PASS CREEK RD, CASTLEGAR, BC",CIVIC_NUMBER,"1754 Pass Creek Rd, Pass Creek, BC",[LOCALITY.isAlias],F,,,T,T
+00342-AddressInSmallCommunityUsingLocalityAlias,"1754 PASS CREEK RD, CASTLEGAR, BC",CIVIC_NUMBER,"1754 Pass Creek Rd, Pass Creek, BC",[LOCALITY.isAlias],F,,101,T,T
 00343-AddressInSmallCommunity,"2928 WYCLIFFE STORE RD, WYCLIFFE, BC",CIVIC_NUMBER,"2928 Wycliffe Store Rd, Wycliffe, BC",[],R,,,T,T
-00344-AddressInSmallCommunityUsingLocalityAlias,"2928 WYCLIFFE STORE RD, CRANBROOK, BC",CIVIC_NUMBER,"2928 Wycliffe Store Rd, Wycliffe, BC",[LOCALITY.isAlias],F,,,T,T
+00344-AddressInSmallCommunityUsingLocalityAlias,"2928 WYCLIFFE STORE RD, CRANBROOK, BC",CIVIC_NUMBER,"2928 Wycliffe Store Rd, Wycliffe, BC",[LOCALITY.isAlias],F,,101,T,T
 00345-AddressInSmallCommunity,"1514 LOON LAKE RD, LOON LAKE, BC",CIVIC_NUMBER,"1514 Loon Lake Rd, Loon Lake, BC",[],R,,,T,T
-00346-AddressInSmallCommunityUsingLocalityAlias,"1514 LOON LAKE RD, CACHE CREEK, BC",CIVIC_NUMBER,"1514 Loon Lake Rd, Loon Lake, BC",[LOCALITY.isAlias],F,,,T,T
+00346-AddressInSmallCommunityUsingLocalityAlias,"1514 LOON LAKE RD, CACHE CREEK, BC",CIVIC_NUMBER,"1514 Loon Lake Rd, Loon Lake, BC",[LOCALITY.isAlias],F,,101,T,T
 00347-AddressInSmallCommunity,"2048 CAMBIE-SOLSQUA RD, SOLSQUA, BC",CIVIC_NUMBER,"2048 Cambie-Solsqua Rd, Solsqua, BC",[],R,,,T,T
-00348-AddressInSmallCommunityUsingLocalityAlias,"2048 CAMBIE-SOLSQUA RD, SICAMOUS, BC",CIVIC_NUMBER,"2048 Cambie-Solsqua Rd, Solsqua, BC",[LOCALITY.isAlias],F,,,T,T
+00348-AddressInSmallCommunityUsingLocalityAlias,"2048 CAMBIE-SOLSQUA RD, SICAMOUS, BC",CIVIC_NUMBER,"2048 Cambie-Solsqua Rd, Solsqua, BC",[LOCALITY.isAlias],F,,101,T,T
 00349-AddressInSmallCommunity,"3492 SPOKIN LAKE RD, SPOKIN LAKE, BC",CIVIC_NUMBER,"3492 Spokin Lake Rd, Spokin Lake, BC",[],R,,,T,T
-00350-AddressInSmallCommunityUsingLocalityAlias,"3492 SPOKIN LAKE RD, 150 MILE HOUSE, BC",CIVIC_NUMBER,"3492 Spokin Lake Rd, Spokin Lake, BC",[LOCALITY.isAlias],F,,,T,T
+00350-AddressInSmallCommunityUsingLocalityAlias,"3492 SPOKIN LAKE RD, 150 MILE HOUSE, BC",CIVIC_NUMBER,"3492 Spokin Lake Rd, Spokin Lake, BC",[LOCALITY.isAlias],F,,101,T,T
 00351-AddressInSmallCommunity,"2582 SHOREACRES RD, SHOREACRES, BC",CIVIC_NUMBER,"2582 Shoreacres Rd, Shoreacres, BC",[],R,,,T,T
-00352-AddressInSmallCommunityUsingLocalityAlias,"2582 SHOREACRES RD, CASTLEGAR, BC",CIVIC_NUMBER,"2582 Shoreacres Rd, Shoreacres, BC",[LOCALITY.isAlias],F,,,T,T
+00352-AddressInSmallCommunityUsingLocalityAlias,"2582 SHOREACRES RD, CASTLEGAR, BC",CIVIC_NUMBER,"2582 Shoreacres Rd, Shoreacres, BC",[LOCALITY.isAlias],F,,101,T,T
 00353-AddressInSmallCommunity,"1414 THRUMS RD, THRUMS, BC",CIVIC_NUMBER,"1414 Thrums Rd, Thrums, BC",[],R,,,T,T
-00354-AddressInSmallCommunityUsingLocalityAlias,"1414 THRUMS RD, CASTLEGAR, BC",CIVIC_NUMBER,"1414 Thrums Rd, Thrums, BC",[LOCALITY.isAlias],F,,,T,T
+00354-AddressInSmallCommunityUsingLocalityAlias,"1414 THRUMS RD, CASTLEGAR, BC",CIVIC_NUMBER,"1414 Thrums Rd, Thrums, BC",[LOCALITY.isAlias],F,,101,T,T
 00355-AddressInSmallCommunity,"6010 HARROP-PROCTER RD, HARROP, BC",CIVIC_NUMBER,"6010 Harrop-Procter Rd, Harrop, BC",[],R,,,T,T
-00356-AddressInSmallCommunityUsingLocalityAlias,"6010 HARROP-PROCTER RD, NELSON, BC",CIVIC_NUMBER,"6010 Harrop-Procter Rd, Harrop, BC",[LOCALITY.isAlias],F,,,T,T
+00356-AddressInSmallCommunityUsingLocalityAlias,"6010 HARROP-PROCTER RD, NELSON, BC",CIVIC_NUMBER,"6010 Harrop-Procter Rd, Harrop, BC",[LOCALITY.isAlias],F,,101,T,T
 00357-AddressInSmallCommunity,"7136 WILLIS POINT RD, WILLIS POINT, BC",CIVIC_NUMBER,"7136 Willis Point Rd, Willis Point, BC",[],R,,,T,T
-00358-AddressInSmallCommunityUsingLocalityAlias,"7136 WILLIS POINT RD, VICTORIA, BC",CIVIC_NUMBER,"7136 Willis Point Rd, Willis Point, BC",[LOCALITY.isAlias],F,,,T,T
+00358-AddressInSmallCommunityUsingLocalityAlias,"7136 WILLIS POINT RD, VICTORIA, BC",CIVIC_NUMBER,"7136 Willis Point Rd, Willis Point, BC",[LOCALITY.isAlias],F,,101,T,T
 00359-AddressInSmallCommunity,"3918 PASSMORE UPPER RD, PASSMORE, BC",CIVIC_NUMBER,"3918 Passmore Upper Rd, Passmore, BC",[],R,,,T,T
-00360-AddressInSmallCommunityUsingLocalityAlias,"3918 PASSMORE UPPER RD, WINLAW, BC",CIVIC_NUMBER,"3918 Passmore Upper Rd, Passmore, BC",[LOCALITY.isAlias],F,,,T,T
+00360-AddressInSmallCommunityUsingLocalityAlias,"3918 PASSMORE UPPER RD, WINLAW, BC",CIVIC_NUMBER,"3918 Passmore Upper Rd, Passmore, BC",[LOCALITY.isAlias],F,,101,T,T
 00361-AddressInSmallCommunity,"1954 BLAEBERRY SCHOOL RD, BLAEBERRY, BC",CIVIC_NUMBER,"1954 Blaeberry School Rd, Blaeberry, BC",[],R,,,T,T
-00362-AddressInSmallCommunityUsingLocalityAlias,"1954 BLAEBERRY SCHOOL RD, GOLDEN, BC",CIVIC_NUMBER,"1954 Blaeberry School Rd, Blaeberry, BC",[LOCALITY.isAlias],F,,,T,T
+00362-AddressInSmallCommunityUsingLocalityAlias,"1954 BLAEBERRY SCHOOL RD, GOLDEN, BC",CIVIC_NUMBER,"1954 Blaeberry School Rd, Blaeberry, BC",[LOCALITY.isAlias],F,,101,T,T
 00363-AddressInSmallCommunity,"5199 BAKER-KERSLEY RD, KERSLEY, BC",CIVIC_NUMBER,"5199 Baker-Kersley Rd, Kersley, BC",[],R,,,T,T
-00364-AddressInSmallCommunityUsingLocalityAlias,"5199 BAKER-KERSLEY RD, QUESNEL, BC",CIVIC_NUMBER,"5199 Baker-Kersley Rd, Kersley, BC",[LOCALITY.isAlias],F,,,T,T
+00364-AddressInSmallCommunityUsingLocalityAlias,"5199 BAKER-KERSLEY RD, QUESNEL, BC",CIVIC_NUMBER,"5199 Baker-Kersley Rd, Kersley, BC",[LOCALITY.isAlias],F,,101,T,T
 00365-AddressInSmallCommunity,"7330 WATCH LAKE RD, WATCH LAKE, BC",CIVIC_NUMBER,"7330 Watch Lake Rd, Watch Lake, BC",[],R,,,T,T
-00366-AddressInSmallCommunityUsingLocalityAlias,"7330 WATCH LAKE RD, LONE BUTTE, BC",CIVIC_NUMBER,"7330 Watch Lake Rd, Watch Lake, BC",[LOCALITY.isAlias],F,,,T,T
+00366-AddressInSmallCommunityUsingLocalityAlias,"7330 WATCH LAKE RD, LONE BUTTE, BC",CIVIC_NUMBER,"7330 Watch Lake Rd, Watch Lake, BC",[LOCALITY.isAlias],F,,101,T,T
 00367-AddressInSmallCommunity,"2270 PORT MELLON HWY, PORT MELLON, BC",CIVIC_NUMBER,"2270 Port Mellon Hwy, Port Mellon, BC",[],R,,,T,T
-00368-AddressInSmallCommunityUsingLocalityAlias,"2270 PORT MELLON HWY, GIBSONS, BC",CIVIC_NUMBER,"2270 Port Mellon Hwy, Port Mellon, BC",[LOCALITY.isAlias],F,,,T,T
+00368-AddressInSmallCommunityUsingLocalityAlias,"2270 PORT MELLON HWY, GIBSONS, BC",CIVIC_NUMBER,"2270 Port Mellon Hwy, Port Mellon, BC",[LOCALITY.isAlias],F,,101,T,T
 00369-AddressInSmallCommunity,"4570 OTTER POINT PL, OTTER POINT, BC",CIVIC_NUMBER,"4570 Otter Point Pl, Otter Point, BC",[],R,,,T,T
-00370-AddressInSmallCommunityUsingLocalityAlias,"4570 OTTER POINT PL, SOOKE, BC",CIVIC_NUMBER,"4570 Otter Point Pl, Otter Point, BC",[LOCALITY.isAlias],F,,,T,T
+00370-AddressInSmallCommunityUsingLocalityAlias,"4570 OTTER POINT PL, SOOKE, BC",CIVIC_NUMBER,"4570 Otter Point Pl, Otter Point, BC",[LOCALITY.isAlias],F,,101,T,T
 00371-AddressInSmallCommunity,"14187 PALLING RD E, PALLING, BC",CIVIC_NUMBER,"14187 Palling Rd E, Palling, BC",[],R,,,T,T
-00372-AddressInSmallCommunityUsingLocalityAlias,"14187 PALLING RD E, BURNS LAKE, BC",CIVIC_NUMBER,"14187 Palling Rd E, Palling, BC",[LOCALITY.isAlias],F,,,T,T
+00372-AddressInSmallCommunityUsingLocalityAlias,"14187 PALLING RD E, BURNS LAKE, BC",CIVIC_NUMBER,"14187 Palling Rd E, Palling, BC",[LOCALITY.isAlias],F,,101,T,T
 00373-AddressInSmallCommunity,"2525 BOUCHIE LAKE RD, BOUCHIE LAKE, BC",CIVIC_NUMBER,"2525 Bouchie Lake Rd, Bouchie Lake, BC",[],R,,,T,T
-00374-AddressInSmallCommunityUsingLocalityAlias,"2525 BOUCHIE LAKE RD, QUESNEL, BC",CIVIC_NUMBER,"2525 Bouchie Lake Rd, Bouchie Lake, BC",[LOCALITY.isAlias],F,,,T,T
+00374-AddressInSmallCommunityUsingLocalityAlias,"2525 BOUCHIE LAKE RD, QUESNEL, BC",CIVIC_NUMBER,"2525 Bouchie Lake Rd, Bouchie Lake, BC",[LOCALITY.isAlias],F,,101,T,T
 00375-AddressInSmallCommunity,"20010 COLLEYMOUNT RD, COLLEYMOUNT, BC",CIVIC_NUMBER,"20010 Colleymount Rd, Colleymount, BC",[],R,,,T,T
-00376-AddressInSmallCommunityUsingLocalityAlias,"20010 COLLEYMOUNT RD, BURNS LAKE, BC",CIVIC_NUMBER,"20010 Colleymount Rd, Colleymount, BC",[LOCALITY.isAlias],F,,,T,T
+00376-AddressInSmallCommunityUsingLocalityAlias,"20010 COLLEYMOUNT RD, BURNS LAKE, BC",CIVIC_NUMBER,"20010 Colleymount Rd, Colleymount, BC",[LOCALITY.isAlias],F,,101,T,T
 00377-AddressInSmallCommunity,"1117 LONE PRAIRIE RD, LONE PRAIRIE, BC",CIVIC_NUMBER,"1117 Lone Prairie Rd, Lone Prairie, BC",[],R,,,T,T
-00378-AddressInSmallCommunityUsingLocalityAlias,"1117 LONE PRAIRIE RD, CHETWYND, BC",CIVIC_NUMBER,"1117 Lone Prairie Rd, Lone Prairie, BC",[LOCALITY.isAlias],F,,,T,T
+00378-AddressInSmallCommunityUsingLocalityAlias,"1117 LONE PRAIRIE RD, CHETWYND, BC",CIVIC_NUMBER,"1117 Lone Prairie Rd, Lone Prairie, BC",[LOCALITY.isAlias],F,,101,T,T
 00379-AddressInSmallCommunity,"58051 LAIDLAW RD, LAIDLAW, BC",CIVIC_NUMBER,"58051 Laidlaw Rd, Laidlaw, BC",[],R,,,T,T
-00380-AddressInSmallCommunityUsingLocalityAlias,"58051 LAIDLAW RD, HOPE, BC",CIVIC_NUMBER,"58051 Laidlaw Rd, Laidlaw, BC",[LOCALITY.isAlias],F,,,T,T
+00380-AddressInSmallCommunityUsingLocalityAlias,"58051 LAIDLAW RD, HOPE, BC",CIVIC_NUMBER,"58051 Laidlaw Rd, Laidlaw, BC",[LOCALITY.isAlias],F,,101,T,T
 00381-AddressInSmallCommunity,"8041 BRIDGE LAKE NORTH RD, BRIDGE LAKE , BC",CIVIC_NUMBER,"8041 Bridge Lake North Rd, Bridge Lake, BC",[],R,,,T,T
-00382-AddressInSmallCommunityUsingLocalityAlias,"8041 BRIDGE LAKE NORTH RD, LONE BUTTE, BC",CIVIC_NUMBER,"8041 Bridge Lake North Rd, Bridge Lake, BC",[LOCALITY.isAlias],F,,,T,T
+00382-AddressInSmallCommunityUsingLocalityAlias,"8041 BRIDGE LAKE NORTH RD, LONE BUTTE, BC",CIVIC_NUMBER,"8041 Bridge Lake North Rd, Bridge Lake, BC",[LOCALITY.isAlias],F,,101,T,T
 00383-AddressInSmallCommunity,"136 GRANDVIEW BENCH RD, GRANDVIEW BENCH, BC",CIVIC_NUMBER,"136 Grandview Bench Rd, Grandview Bench, BC",[],R,,,T,T
-00384-AddressInSmallCommunityUsingLocalityAlias,"136 GRANDVIEW BENCH RD, GRINDROD, BC",CIVIC_NUMBER,"136 Grandview Bench Rd, Grandview Bench, BC",[LOCALITY.isAlias],F,,,T,T
+00384-AddressInSmallCommunityUsingLocalityAlias,"136 GRANDVIEW BENCH RD, GRINDROD, BC",CIVIC_NUMBER,"136 Grandview Bench Rd, Grandview Bench, BC",[LOCALITY.isAlias],F,,101,T,T
 00385-AddressInSmallCommunity,"15351 TATALROSE RD, TATALROSE , BC",CIVIC_NUMBER,"15351 Tatalrose Rd, Tatalrose, BC",[],R,,,T,T
-00386-AddressInSmallCommunityUsingLocalityAlias,"15351 TATALROSE RD, BURNS LAKE, BC",CIVIC_NUMBER,"15351 Tatalrose Rd, Tatalrose, BC",[LOCALITY.isAlias],F,,,T,T
+00386-AddressInSmallCommunityUsingLocalityAlias,"15351 TATALROSE RD, BURNS LAKE, BC",CIVIC_NUMBER,"15351 Tatalrose Rd, Tatalrose, BC",[LOCALITY.isAlias],F,,101,T,T
 00387-AddressInSmallCommunity,"10167 PINCHI LAKE RD, PINCHI LAKE, BC",CIVIC_NUMBER,"10167 Pinchi Lake Rd, Pinchi Lake, BC",[],R,,,T,T
-00388-AddressInSmallCommunityUsingLocalityAlias,"10167 PINCHI LAKE RD, FORT ST JAMES, BC",CIVIC_NUMBER,"10167 Pinchi Lake Rd, Pinchi Lake, BC",[LOCALITY.isAlias],F,,,T,T
+00388-AddressInSmallCommunityUsingLocalityAlias,"10167 PINCHI LAKE RD, FORT ST JAMES, BC",CIVIC_NUMBER,"10167 Pinchi Lake Rd, Pinchi Lake, BC",[LOCALITY.isAlias],F,,101,T,T
 00389-AddressInSmallCommunity,"2388 HEFFLEY LAKE RD, HEFFLEY LAKE, BC",CIVIC_NUMBER,"2388 Heffley Lake Rd, Heffley Lake, BC",[],R,,,T,T
-00390-AddressInSmallCommunityUsingLocalityAlias,"2388 HEFFLEY LAKE RD, HEFFLEY CREEK, BC",CIVIC_NUMBER,"2388 Heffley Lake Rd, Heffley Lake, BC",[LOCALITY.isAlias],F,,,T,T
+00390-AddressInSmallCommunityUsingLocalityAlias,"2388 HEFFLEY LAKE RD, HEFFLEY CREEK, BC",CIVIC_NUMBER,"2388 Heffley Lake Rd, Heffley Lake, BC",[LOCALITY.isAlias],F,,101,T,T
 00391-AddressInSmallCommunity,"10381 POPKUM RD S, POPKUM, BC",CIVIC_NUMBER,"10381 Popkum Rd S, Popkum, BC",[],R,,,T,T
-00392-AddressInSmallCommunityUsingLocalityAlias,"10381 POPKUM RD S, ROSEDALE, BC",CIVIC_NUMBER,"10381 Popkum Rd S, Popkum, BC",[LOCALITY.isAlias],F,,,T,T
+00392-AddressInSmallCommunityUsingLocalityAlias,"10381 POPKUM RD S, ROSEDALE, BC",CIVIC_NUMBER,"10381 Popkum Rd S, Popkum, BC",[LOCALITY.isAlias],F,,101,T,T
 00393-AddressInSmallCommunity,"7428 ROE LAKE CRES, ROE LAKE, BC",CIVIC_NUMBER,"7428 Roe Lake Cres, Roe Lake, BC",[],R,,,T,T
-00394-AddressInSmallCommunityUsingLocalityAlias,"7428 ROE LAKE CRES, LONE BUTTE, BC",CIVIC_NUMBER,"7428 Roe Lake Cres, Roe Lake, BC",[LOCALITY.isAlias],F,,,T,T
+00394-AddressInSmallCommunityUsingLocalityAlias,"7428 ROE LAKE CRES, LONE BUTTE, BC",CIVIC_NUMBER,"7428 Roe Lake Cres, Roe Lake, BC",[LOCALITY.isAlias],F,,101,T,T
 00395-AddressInSmallCommunity,"6120 GARDEN BAY RD, GARDEN BAY, BC",CIVIC_NUMBER,"6120 Garden Bay Rd, Garden Bay, BC",[],R,,,T,T
-00396-AddressInSmallCommunityUsingLocalityAlias,"6120 GARDEN BAY RD, MADEIRA PARK, BC",CIVIC_NUMBER,"6120 Garden Bay Rd, Garden Bay, BC",[LOCALITY.isAlias],F,,,T,T
+00396-AddressInSmallCommunityUsingLocalityAlias,"6120 GARDEN BAY RD, MADEIRA PARK, BC",CIVIC_NUMBER,"6120 Garden Bay Rd, Garden Bay, BC",[LOCALITY.isAlias],F,,101,T,T
 00397-AddressInSmallCommunity,"1977 TAPPEN NOTCH HILL RD, TAPPEN, BC",CIVIC_NUMBER,"1977 Tappen Notch Hill Rd, Tappen, BC",[],R,,,T,T
-00398-AddressInSmallCommunityUsingLocalityAlias,"1977 TAPPEN NOTCH HILL RD, SORRENTO, BC",CIVIC_NUMBER,"1977 Tappen Notch Hill Rd, Tappen, BC",[LOCALITY.isAlias],F,,,T,T
+00398-AddressInSmallCommunityUsingLocalityAlias,"1977 TAPPEN NOTCH HILL RD, SORRENTO, BC",CIVIC_NUMBER,"1977 Tappen Notch Hill Rd, Tappen, BC",[LOCALITY.isAlias],F,,101,T,T
 00399-AddressInSmallCommunity,"116 ROSEBERY LOOP RD, ROSEBERY, BC",CIVIC_NUMBER,"116 Rosebery Loop Rd, Rosebery, BC",[],R,,,T,T
-00400-AddressInSmallCommunityUsingLocalityAlias,"116 ROSEBERY LOOP RD, NEW DENVER, BC",CIVIC_NUMBER,"116 Rosebery Loop Rd, Rosebery, BC",[LOCALITY.isAlias],F,,,T,T
+00400-AddressInSmallCommunityUsingLocalityAlias,"116 ROSEBERY LOOP RD, NEW DENVER, BC",CIVIC_NUMBER,"116 Rosebery Loop Rd, Rosebery, BC",[LOCALITY.isAlias],F,,101,T,T
 00401-AddressInSmallCommunity,"1525 LANGDALE RD, LANGDALE, BC",CIVIC_NUMBER,"1525 Langdale Rd, Langdale, BC",[],R,,,T,T
-00402-AddressInSmallCommunityUsingLocalityAlias,"1525 LANGDALE RD, GIBSONS, BC",CIVIC_NUMBER,"1525 Langdale Rd, Langdale, BC",[LOCALITY.isAlias],F,,,T,T
+00402-AddressInSmallCommunityUsingLocalityAlias,"1525 LANGDALE RD, GIBSONS, BC",CIVIC_NUMBER,"1525 Langdale Rd, Langdale, BC",[LOCALITY.isAlias],F,,101,T,T
 00403-AddressInSmallCommunity,"6607 APPLEDALE LOWER RD, APPLEDALE, BC",CIVIC_NUMBER,"6607 Appledale Lower Rd, Appledale, BC",[],R,,,T,T
-00404-AddressInSmallCommunityUsingLocalityAlias,"6607 APPLEDALE LOWER RD, WINLAW, BC",CIVIC_NUMBER,"6607 Appledale Lower Rd, Appledale, BC",[LOCALITY.isAlias],F,,,T,T
+00404-AddressInSmallCommunityUsingLocalityAlias,"6607 APPLEDALE LOWER RD, WINLAW, BC",CIVIC_NUMBER,"6607 Appledale Lower Rd, Appledale, BC",[LOCALITY.isAlias],F,,101,T,T
 00405-AddressInSmallCommunity,"4232 MAYOOK SETTLEMENT RD, MAYOOK, BC",BLOCK,"4232 Mayook Settlement Rd, Mayook, BC",[],R,,,T,T
-00406-AddressInSmallCommunityUsingLocalityAlias,"4232 MAYOOK SETTLEMENT RD, CRANBROOK, BC",BLOCK,"4232 Mayook Settlement Rd, Mayook, BC",[LOCALITY.isAlias],F,,,T,T
+00406-AddressInSmallCommunityUsingLocalityAlias,"4232 MAYOOK SETTLEMENT RD, CRANBROOK, BC",BLOCK,"4232 Mayook Settlement Rd, Mayook, BC",[LOCALITY.isAlias],F,,101,T,T
 00407-AddressInSmallCommunity,"10571 CHESLATTA RD, CHESLATTA, BC",CIVIC_NUMBER,"10571 Cheslatta Rd, Cheslatta, BC",[],R,,,T,T
-00408-AddressInSmallCommunityUsingLocalityAlias,"10571 CHESLATTA RD, BURNS LAKE, BC",CIVIC_NUMBER,"10571 Cheslatta Rd, Cheslatta, BC",[LOCALITY.isAlias],F,,,T,T
+00408-AddressInSmallCommunityUsingLocalityAlias,"10571 CHESLATTA RD, BURNS LAKE, BC",CIVIC_NUMBER,"10571 Cheslatta Rd, Cheslatta, BC",[LOCALITY.isAlias],F,,101,T,T
 00409-NumberedStreetNameWithDetachedSuffix,"102 A Ave, Surrey, BC",CIVIC_NUMBER,"102A Ave, Surrey, BC",[],R,,,T,T
 00410-UnitNumberStuckToDesignator,"Unit910 7380 ELMBRIDGE WAY, RICHMOND, BC",UNIT,"UNIT 910 -- 7380 Elmbridge Way, Richmond, BC",[UNIT_DESIGNATOR.missing],F,,,T,T
 00411-StreetNameWithMissingAmpersand,"189 ROD GUN RD, COURTENAY, BC",CIVIC_NUMBER,"189 Rod & Gun RD, Courtenay, BC",[],F,,,T,T
