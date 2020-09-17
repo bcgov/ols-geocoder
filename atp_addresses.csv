@@ -320,7 +320,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00320-DuplicateLocalityAfterLocality,"9917 ASHWOOD DR RICHMOND, RICHMOND, BC",CIVIC_NUMBER,"9917 Ashwood Dr, Richmond, BC",[LOCALITY.duplicated],F,,,T,T
 00321-GoodAddress,"1120 FOSTER AVE COQUITLAM, BC",CIVIC_NUMBER,"1120 Foster Ave, Coquitlam, BC",[],R,,,T,T
 00322-DuplicateLocalityAfterLocality,"1120 FOSTER AVE COQUITLAM, COQUITLAM, BC",CIVIC_NUMBER,"1120 Foster Ave, Coquitlam, BC",[LOCALITY.duplicated],F,,,T,T
-00323-GoodAddress,"1040 FRASERVIEW ST PORT COQUITLAM, PORT COQUITLAM, BC",CIVIC_NUMBER,"1040 Fraserview St, Port Coquitlam, BC",[],R,,,T,T
+00323-GoodAddress,"1040 FRASERVIEW ST PORT COQUITLAM, BC",CIVIC_NUMBER,"1040 Fraserview St, Port Coquitlam, BC",[],R,,,T,T
 00324-DuplicateLocalityAfterLocality,"1040 FRASERVIEW ST PORT COQUITLAM, PORT COQUITLAM, BC",CIVIC_NUMBER,"1040 Fraserview St, Port Coquitlam, BC",[LOCALITY.duplicated],F,,,T,T
 00325-GoodAddress,"1130 KORMAN CLOSE, COOMBS, BC",CIVIC_NUMBER,"1130 Korman Close, Coombs, BC",[],R,,,T,T
 00326-NonStandardStreetTypeAbbreviation,"1130 KORMAN CLO, COOMBS, BC",CIVIC_NUMBER,"1130 Korman Close, Coombs, BC",[],R,,,T,T
