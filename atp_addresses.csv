@@ -19,7 +19,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00019-civicAddressWithUnitandKnownSiteName,"UNIT 170 Douglas College -- 22470 Dewdney Trunk Rd, Maple Ridge,BC",UNIT,"UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[],R,,,T,T
 00020-civicAddressWithSiteName,"Anahim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],R,,,T,T
 00021-civicAddressWithPartialSiteName,"Anahim -- Anahim Lake BC",SITE,"Anahim -- Anahim Lake, BC",[SITE_NAME.partialMatch:5],F,,,T,T
-00022-civicAddressWithSiteNameAndMissingCivicNumber,need example,SITE,need example,[CIVIC_NUMBER.missing:10],U,,,F,F
+00022-civicAddressWithSiteNameAndMissingCivicNumber,"Douglas College -- Dewdney Trunk Rd, Maple Ridge,BC",SITE,UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC,[UNIT_DESIGNATOR.missing:0 UNIT_NUMBER.missing:1 CIVIC_NUMBER.missing:10],R,,,F,F
 00023-civicAddressWithNumberForStreetName,"4216 E 51 Ave Fort Nelson BC",CIVIC_NUMBER,"4216 51st Ave E, Fort Nelson, BC",[],R,,,T,T
 00024-civicAddressWithUnitNumberSuffix,"need example",UNIT,"need example",[],U,,,T,T
 00025-CivicNumberWithHighwayStreetName,"4390 Highway 33 Beaverdell BC",CIVIC_NUMBER,"4390 Hwy 33, Beaverdell, BC",[],R,,,T,T
