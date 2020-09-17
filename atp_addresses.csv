@@ -12,11 +12,11 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00012-civicAddressWithoutProvinceCode,"2050 SW Marine Dr Vancouver",CIVIC_NUMBER,"2050 SW Marine Dr, Vancouver, BC",[PROVINCE.missing:1],F,,,T,T
 00013-civicAddressWithProvinceCode,"2050 SW Marine Dr Vancouver British Columbia",CIVIC_NUMBER,"2050 SW Marine Dr, Vancouver, BC",[],R,,,T,T
 00014-civicAddressWithoutUnit,"10372 99 St Taylor BC",CIVIC_NUMBER,"10372 99 St, Taylor, BC",[],R,,,T,T
-00015-civicAddressWithUnitWithoutUnitDesignator,"170 - 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
+00015-civicAddressWithUnitWithoutUnitDesignator,"170 - 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.missing:0 UNIT_DESIGNATOR.missing:0],F,,,T,T
 00016-civicAddressWithUnitAfterStreetType,"925 Leon Ave, UNIT 418 Kelowna, BC",UNIT,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",[],R,,,T,T
 00017-civicAddressWithUnitBeforeCivicNumber,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",UNIT,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",[],R,,,T,T
 00018-civicAddressWithUnitBeforeCivicNumberandWithoutFrontGate,"UNIT 418 925 Leon Ave, Kelowna, BC",UNIT,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",[],R,,,T,T
-00019-civicAddressWithUnitandknownSiteName,"UNIT 170 Douglas College -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched],F,,,T,T
+00019-civicAddressWithUnitandKnownSiteName,"UNIT 170 Douglas College -- 22470 Dewdney Trunk Rd, Maple Ridge,BC",UNIT,"UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[],R,,,T,T
 00020-civicAddressWithSiteName,"Anahim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],R,,,T,T
 00021-civicAddressWithPartialSiteName,"Anahim -- Anahim Lake BC",SITE,"Anahim -- Anahim Lake, BC",[SITE_NAME.partialMatch:5],F,,,T,T
 00022-civicAddressWithSiteNameAndMissingCivicNumber,need example,SITE,need example,[CIVIC_NUMBER.missing:10],U,,,F,F
@@ -455,3 +455,4 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00455-StreetNameWithMultipleSpellingMistakes,"Omenica St, Hazelton, BC",STREET,"Omineca St, Hazelton, BC",[],F,,,T,T
 00456-NonStandardStreetTypeAbbreviation,"134 E 15th St, Nvan, BC",CIVIC_NUMBER,"134 E 15th St, North Vancouver, BC",[],C,,102,T,T
 00457-NonStandardStreetTypeAbbreviation,"2248 McAllister Ave, Poco, BC",CIVIC_NUMBER,"2248 McAllister Ave, Port Coquitlam, BC",[],C,,102,T,T
+00458-civicAddressWithUnitandUnknownSiteName,"UNIT 170 Doogie University -- 22470 Dewdney Trunk Rd, Maple Ridge,BC",UNIT,"UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched MAX_RESULTS.too_low_to_include_all_best_matches],F,,,T,T
