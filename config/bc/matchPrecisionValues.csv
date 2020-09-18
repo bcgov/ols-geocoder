@@ -1,4 +1,4 @@
-matchPrecision,value
+precision,value
 precision.BLOCK,99
 precision.CIVIC_NUMBER,100
 precision.INTERSECTION,100
