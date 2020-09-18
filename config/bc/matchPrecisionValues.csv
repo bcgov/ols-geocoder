@@ -1,0 +1,10 @@
+matchPrecision,value
+precision.BLOCK,99
+precision.CIVIC_NUMBER,100
+precision.INTERSECTION,100
+precision.LOCALITY,68
+precision.OCCUPANT,100
+precision.PROVINCE,1
+precision.SITE,100
+precision.STREET,78
+precision.UNIT,100
