@@ -8,3 +8,5 @@ precision.PROVINCE,1
 precision.SITE,100
 precision.STREET,78
 precision.UNIT,100
+precision.SITE_STREET,97
+precision.SITE_LOCALITY,94
