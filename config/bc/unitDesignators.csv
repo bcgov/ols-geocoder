@@ -2,7 +2,7 @@ unitDesignator,Description
 APT,Apartment
 BLDG,Building
 BSMT,Basement
-HOUSE,House
+HOUSE,A detached dwelling within a complex; similar to TH
 LOBBY,Lobby
 LWR,Lower level or downstairs
 PAD,Pad
@@ -12,6 +12,6 @@ RM,Room
 SIDE,Side entrance or side of building
 SITE,RV or camp site
 SUITE,Suite
-TH,Townhouse
+TH,Townhouse within a complex
 UPPR,Upper level or upstairs
 UNIT,Unit and default unitDesignator to use when one isn't specified in a given address
