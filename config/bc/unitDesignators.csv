@@ -1,3 +1,17 @@
-unitDesignator
-UNIT
-APT
+unitDesignator,Description
+APT,Apartment
+BLDG,Building
+BSMT,Basement
+HOUSE,House
+LOBBY,Lobby
+LWR,Lower level or downstairs
+PAD,Pad
+PH,Penthouse
+REAR,Rear entrance or back of building
+RM,Room
+SIDE,Side entrance or side of building
+SITE,RV or camp site
+SUITE,Suite
+TH,Townhouse
+UPPR,Upper level or upstairs
+UNIT,Unit and default unitDesignator to use when one isn't specified in a given address
