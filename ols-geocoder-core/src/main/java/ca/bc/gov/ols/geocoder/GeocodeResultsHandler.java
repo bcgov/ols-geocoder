@@ -27,6 +27,7 @@ import ca.bc.gov.ols.geocoder.api.data.AddressComponentMisspellings;
 import ca.bc.gov.ols.geocoder.api.data.GeocodeMatch;
 import ca.bc.gov.ols.geocoder.api.data.IntersectionMatch;
 import ca.bc.gov.ols.geocoder.api.data.MatchFault;
+import ca.bc.gov.ols.geocoder.api.data.MatchFault.MatchElement;
 import ca.bc.gov.ols.geocoder.api.data.OccupantAddress;
 import ca.bc.gov.ols.geocoder.api.data.StreetIntersectionAddress;
 import ca.bc.gov.ols.geocoder.data.StreetIntersection;
@@ -134,7 +135,7 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 						match.addFault(datastore.getConfig().getUnrecognizedMatchFault(pd.getNonWords()));
 					}
 					if(nameBodyMatch.getError() > 0) {
-						match.addFault(datastore.getConfig().getMatchFault("STREET_NAME.partialMatch"));
+						match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.STREET_NAME, "partialMatch"));
 					}
 					geocoder.scoreIntersectionMatch(intAddr, streetNames, intersection, match, misspellings);
 					if(query.pass(match)) {
@@ -222,8 +223,8 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 			addr.setStateProvTerr(pd.getPart("stateProvTerr"));
 			misspellings.setStateProvTerrMS(pd.getError("stateProvTerr"));
 			if(pd.getPart("postalJunk") != null) {
-				faults.add(datastore.getConfig().getMatchFault(
-						"POSTAL_ADDRESS_ELEMENT.notAllowed"));
+				faults.add(datastore.getConfig().getMatchFault(pd.getPart("postalJunk"),
+						MatchElement.POSTAL_ADDRESS_ELEMENT, "notAllowed"));
 			}
 			if(pd.getNonWords().size() > 0) {
 				faults.add(datastore.getConfig().getUnrecognizedMatchFault(pd.getNonWords()));

@@ -131,6 +131,7 @@ public class OlsResponseReader {
 		writer.faultsHeader();
 		for(MatchFault fault : match.getFaults()) {
 			writer.faultHeader();
+			writer.field("text", fault.getText());
 			writer.field("element", fault.getElement());
 			writer.field("fault", fault.getFault());
 			writer.field("penalty", fault.getPenalty());

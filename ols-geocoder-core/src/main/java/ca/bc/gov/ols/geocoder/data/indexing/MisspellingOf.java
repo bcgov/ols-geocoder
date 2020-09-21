@@ -18,10 +18,12 @@ package ca.bc.gov.ols.geocoder.data.indexing;
 public class MisspellingOf<T> {
 	private T item;
 	private int error;
+	private String misspelling;
 	
-	public MisspellingOf(T item, int error) {
+	public MisspellingOf(T item, int error, String misspelling) {
 		this.item = item;
 		this.error = error;
+		this.misspelling = misspelling;
 	}
 	
 	public T get() {
@@ -30,6 +32,10 @@ public class MisspellingOf<T> {
 	
 	public int getError() {
 		return error;
+	}
+	
+	public String getMisspelling() {
+		return misspelling;
 	}
 	
 	@Override

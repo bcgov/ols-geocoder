@@ -78,7 +78,7 @@ public class Lexer
 					wordClasses.retainAll(wc);
 					finalWordList.add(new MisspellingOf<Word>(
 							new Word(word.get().getWord(), wordClasses),
-							word.getError()));
+							word.getError(), word.getMisspelling()));
 				}
 			}
 		}

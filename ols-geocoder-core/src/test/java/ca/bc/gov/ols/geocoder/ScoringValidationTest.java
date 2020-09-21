@@ -29,6 +29,7 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ca.bc.gov.ols.geocoder.api.data.MatchFault.MatchElement;
 import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 import ca.bc.gov.ols.geocoder.data.enumTypes.MatchPrecision;
 import ca.bc.gov.ols.geocoder.test.TestCase;
@@ -54,10 +55,10 @@ public class ScoringValidationTest extends TestCase {
 		// Rule: matchPrecision.STREET - STREET_TYPE.notMatched - CIVIC_NUMBER.notInAnyBlock >
 		// matchPrecisison.Locality - STREET_NAME.notMatched
 		assertGreater(config.getMatchPrecisionPoints(MatchPrecision.STREET)
-				- config.getMatchFault("STREET_NAME.spelledWrong").getPenalty()
-				- config.getMatchFault("CIVIC_NUMBER.notInAnyBlock").getPenalty(),
+				- config.getMatchFault("", MatchElement.STREET_NAME, "spelledWrong").getPenalty()
+				- config.getMatchFault("",  MatchElement.CIVIC_NUMBER, "notInAnyBlock").getPenalty(),
 				config.getMatchPrecisionPoints(MatchPrecision.LOCALITY)
-						- config.getMatchFault("STREET_NAME.notMatched").getPenalty());
+						- config.getMatchFault("", MatchElement.STREET_NAME, "notMatched").getPenalty());
 		
 		// TODO: Put more rules here as they are identified
 	}

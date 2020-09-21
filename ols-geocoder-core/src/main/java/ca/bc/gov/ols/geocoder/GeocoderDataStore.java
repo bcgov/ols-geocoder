@@ -274,9 +274,9 @@ public class GeocoderDataStore {
 						&& GeocoderUtil.equalsIgnoreCaseNullSafe(streetName.getType(), type)
 						&& GeocoderUtil.equalsIgnoreCaseNullSafe(streetName.getDir(), dir)
 						&& GeocoderUtil.equalsIgnoreCaseNullSafe(streetName.getQual(), qual)) {
-					names.add(0, new MisspellingOf<StreetName>(streetName, body.getError()));
+					names.add(0, new MisspellingOf<StreetName>(streetName, body.getError(), name));
 				} else {
-					names.add(new MisspellingOf<StreetName>(streetName, body.getError()));
+					names.add(new MisspellingOf<StreetName>(streetName, body.getError(), name));
 				}
 			}
 		}

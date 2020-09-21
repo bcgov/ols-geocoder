@@ -99,7 +99,7 @@ public class WordMap {
 			// if the wordWithOrdinal looks like a number with suffix
 			if(wordWithOrdinal.inClass(WordClass.NUMBER_WITH_SUFFIX)) {
 				// then add this as an alternative interpretation 
-				words.add(0, new MisspellingOf<Word>(wordWithOrdinal,0));
+				words.add(0, new MisspellingOf<Word>(wordWithOrdinal,0, withOrdinal));
 			}
 			// if the word without the ordinal was classified as a number, remove that wordClass
 			word.removeClass(WordClass.NUMBER);
@@ -107,7 +107,7 @@ public class WordMap {
 
 		// if the word classified into some extra categories
 		if(word.numClasses() > 0) {
-			words.add(0, new MisspellingOf<Word>(word, 0));
+			words.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
 		}
 		// if word is otherwise unrecognized, add itself with the unrecognized class
 		// if(words.size() == 0) {
