@@ -3,7 +3,7 @@
 
 	<groupId>ca.bc.gov.ols</groupId>
 	<artifactId>ols-geocoder</artifactId>
-	<version>4.0.2-SNAPSHOT</version>
+	<version>4.0.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>OLS Geocoder</name>
 	<url>https://bcgov.github.io/ols-geocoder/</url>

@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>ca.bc.gov.ols</groupId>
 		<artifactId>ols-geocoder</artifactId>
-		<version>4.0.2-SNAPSHOT</version>
+		<version>4.0.3-SNAPSHOT</version>
 	</parent>
 
 	<name>OLS Geocoder Admin</name>
@@ -98,27 +98,4 @@
 		</dependency>
 	</dependencies>
 
-	<profiles>
-		<profile>
-			<id>deliv</id>
-			<properties>
-				<cassandraContactPoint>nusakan.dmz</cassandraContactPoint>
-				<environment>deliv</environment>
-			</properties>
-		</profile>
-		<profile>
-			<id>test</id>
-			<properties>
-				<cassandraContactPoint>nusakan.dmz</cassandraContactPoint>
-				<environment>test</environment>
-			</properties>
-		</profile>
-		<profile>
-			<id>prod</id>
-			<properties>
-				<cassandraContactPoint>canopus.dmz</cassandraContactPoint>
-				<environment>prod</environment>
-			</properties>
-		</profile>
-	</profiles>
 </project>

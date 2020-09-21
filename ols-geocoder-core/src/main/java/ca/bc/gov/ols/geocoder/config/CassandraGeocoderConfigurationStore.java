@@ -291,8 +291,8 @@ public class CassandraGeocoderConfigurationStore extends CassandraConfigurationS
 				+ "VALUES (?, ?);");
 		configStore.getAbbrevMappings().map(abbrMap ->
 				session.executeAsync(amPStatement.bind(abbrMap.getAbbreviatedForm(), 
-					abbrMap.getLongForm())).toCompletableFuture())
-				.map(CompletableFuture::join);
+						abbrMap.getLongForm())).toCompletableFuture())
+				.forEach(CompletableFuture::join);
 
 		// save BGEO_UNIT_DESIGNATORS
 		session.execute("TRUNCATE " + keyspace + ".BGEO_UNIT_DESIGNATORS;");
@@ -301,8 +301,8 @@ public class CassandraGeocoderConfigurationStore extends CassandraConfigurationS
 				+ "(CANONICAL_FORM) " 
 				+ "VALUES (?);");
 		configStore.getUnitDesignators().map(unit ->
-			session.executeAsync(udPStatement.bind(unit.getCanonicalForm())).toCompletableFuture())
-			.map(CompletableFuture::join);
+				session.executeAsync(udPStatement.bind(unit.getCanonicalForm())).toCompletableFuture())
+				.forEach(CompletableFuture::join);
 		
 		// save BGEO_LOCALITY_MAPPINGS
 		session.execute("TRUNCATE " + keyspace + ".BGEO_LOCALITY_MAPPINGS;");
@@ -311,9 +311,9 @@ public class CassandraGeocoderConfigurationStore extends CassandraConfigurationS
 				+ "(LOCALITY_ID, INPUT_STRING, CONFIDENCE) " 
 				+ "VALUES (?, ?, ?);");
 		configStore.getLocalityMappings().map(locMap ->
-			session.executeAsync(lmPStatement.bind(locMap.getLocalityId(), locMap.getInputString(), 
-					locMap.getConfidence())).toCompletableFuture())
-			.map(CompletableFuture::join);
+				session.executeAsync(lmPStatement.bind(locMap.getLocalityId(), locMap.getInputString(), 
+						locMap.getConfidence())).toCompletableFuture())
+				.forEach(CompletableFuture::join);
 	}
 	
 }
