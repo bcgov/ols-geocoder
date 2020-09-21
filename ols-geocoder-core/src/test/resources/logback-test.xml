@@ -7,9 +7,10 @@
     </encoder>
   </appender>
    
-  <logger name="com.base22" level="TRACE"/>
+  <logger name="ca.bc.gov.ols" level="DEBUG"/>
    
-  <root level="debug">
+  <root level="WARN">
     <appender-ref ref="STDOUT" />
   </root>
+  
 </configuration>
