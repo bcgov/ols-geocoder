@@ -459,3 +459,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00459-LocalityHopping,"B0X 188, KALEDEN, BC",LOCALITY,"KALEDEN,BC",[POSTAL_ELEMENT.notAllowed],F,,,F,T
 00460-LocalityHopping,"200 21st Ave, prince george, BC",LOCALITY,"Prince George,BC",[STREET.notFound],F,,,F,T
 00461-LocalityHopping,"500 helmcken rd, victoria, BC",STREET,"Helmcken Alley, Victoria, BC","[CIVIC_NUMBER.notInAnyBlock, STREET_TYPE.notMatched]",F,,,F,T
+00462-IRAddresses,"1901 LUST RD RED BLUFF RESERVE QUESNEL,BC",CIVIC_NUMBER,"1901 Lust Rd, Quesnel, BC",[SITE_NAME:unknown],F,,,F,T
+00463-IRAddresses,"Blueberry Reserve, Buick",STREET,"Blueberry Reserve Rd, Buick, BC",[SITE_NAME:unknown],R,,,F,T
+00464-IRAddresses,"Blueberry Reserve, Buick",SITE_LOCALITY,"Blueberry Reserve -- Buick, BC",[FRONT_GATE.missing],F,,,F,T
+00465-IRAddresses," #8 Blueberry Reserve, Buick",SITE_LOCALITY,"House 8, Blueberry Reserve -- Buick, BC",[FRONT_GATE.missing, UNIT_DESIGNATOR.missing],F,,,F,T
