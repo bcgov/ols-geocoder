@@ -456,4 +456,6 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00456-NonStandardStreetTypeAbbreviation,"134 E 15th St, Nvan, BC",CIVIC_NUMBER,"134 E 15th St, North Vancouver, BC",[],C,,102,T,T
 00457-NonStandardStreetTypeAbbreviation,"2248 McAllister Ave, Poco, BC",CIVIC_NUMBER,"2248 McAllister Ave, Port Coquitlam, BC",[],C,,102,T,T
 00458-civicAddressWithUnitandUnknownSiteName,"UNIT 170 Doogie University -- 22470 Dewdney Trunk Rd, Maple Ridge,BC",UNIT,"UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched MAX_RESULTS.too_low_to_include_all_best_matches],F,,,T,T
-00459-CausesLocalityHopping,"B0X 188, KALEDEN, BC",LOCALITY,"KALEDEN,BC",[POSTAL_ELEMENT.notAllowed],F,,,F,T
+00459-LocalityHopping,"B0X 188, KALEDEN, BC",LOCALITY,"KALEDEN,BC",[POSTAL_ELEMENT.notAllowed],F,,,F,T
+00460-LocalityHopping,"200 21st Ave, prince george, BC",LOCALITY,"Prince George,BC",[STREET.notFound],F,,,F,T
+00461-LocalityHopping,"500 helmcken rd, victoria, BC",LOCALITY,"Prince George,BC",[CIVIC_NUMBER.notInAnyBlock],F,,,F,T
