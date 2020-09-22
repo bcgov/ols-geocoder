@@ -459,4 +459,3 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00459-LocalityHopping,"B0X 188, KALEDEN, BC",LOCALITY,"KALEDEN,BC",[POSTAL_ELEMENT.notAllowed],F,,,F,T
 00460-LocalityHopping,"200 21st Ave, prince george, BC",LOCALITY,"Prince George,BC",[STREET.notFound],F,,,F,T
 00461-LocalityHopping,"500 helmcken rd, victoria, BC",STREET,"Helmcken Alley, Victoria, BC","[CIVIC_NUMBER.notInAnyBlock, STREET_TYPE.notMatched]",F,,,F,T
-\
