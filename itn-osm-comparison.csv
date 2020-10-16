@@ -1,25 +1,25 @@
 addressString,roadGeometry,roadName
-"3242 Hwy 23, Nakusp, BC",usable(offset),great
+"3242 Hwy 23, Nakusp, BC",usable (offset),great
 "621 Beech Rd, Nakusp, BC",great,great
 "391 Crescent Bay Rd, Nakusp, BC",great,great
 "595 Saddle Mountain Rd, Arrow Park, BC",good,missing
-"1385 E Hwy 6, Nakusp, BC",great,ok (missing E)
+"1385 E Hwy 6, Nakusp, BC",great,usable(missing E)
 "2745 Hwy 23, Nakusp, BC",good,great
-"862 Alexander Rd, Nakusp, BC",usable(offset),great
+"862 Alexander Rd, Nakusp, BC",usable (offset),great
 "243 Island View Rd, Nakusp, BC",great,great
 "2203 Allshouse Rd, Nakusp, BC",great,great
 "4010 Spring Creek Ave, Terrace, BC",good,great
-"25049 Hwy 16 W, Smithers, BC",great,ok (missing W)
+"25049 Hwy 16 W, Smithers, BC",great,usable (missing W)
 "23891 Taman Creek Rd, Rose Lake, BC",great,great
-"760 Campbell Rd, Hazelton Rural, BC",some usable(offset),great
+"760 Campbell Rd, Hazelton Rural, BC",usable (some offset),great
 "5414 Morris Rd, Telkwa, BC",great,great
-"50033 Owen Lake Rd, Noralee, BC",great, poor (Owen E Forset Service Rd)
+"50033 Owen Lake Rd, Noralee, BC",great,poor (Owen E Forset Service Rd)
 "17512 Hutter Rd, Palling, BC",great,great
 "79A Abbey Rd, Rosswood, BC",great,great
 "3128A Ziegler Rd, Thornhill, BC",great,great
 "8587 Sunset Lake Rd, Houston, BC",great,great
 "960 Chew Rd, Quesnel, BC",great,great
-"371 Thompson Rd, Quesnel, BC",usable(offset) at corners,great
+"371 Thompson Rd, Quesnel, BC",usable (offset at corners),great
 "2495 Gook Rd, Quesnel, BC",great,great
 "2181 Golden Pond Rd, Quesnel, BC",great,great
 "401 Willow St, Quesnel, BC",great,great
@@ -38,7 +38,7 @@ addressString,roadGeometry,roadName
 "4503 46 Dr NE, Chetwynd, BC",great,great
 "4801 42A St NE, Chetwynd, BC",great,great
 "3458 Hwy 97 S, Chetwynd, BC",great,missing S
-"5000 50 Ave NW, Chetwynd, BC",great,not 50th
+"5000 50 Ave NW, Chetwynd, BC",great,usable (50th Ave instead of 50 Ave)
 "3593 Hwy 97 S, Chetwynd, BC",usable (offset),missing S
 "1106 Downie St, Revelstoke, BC",great,great
 "795 Cedar St, Revelstoke, BC",short,great
