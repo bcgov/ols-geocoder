@@ -30,16 +30,16 @@ addressString,roadGeometry,roadName
 "692 Westland Close, Quesnel, BC",usable (offset),great
 "1302 Maple Dr, Quesnel, BC",great,great
 "1311 Borregard Rd, Quesnel, BC",usable (offset),great
-"3593 Hwy 97 S, Chetwynd, BC",usable (offset),missing S
+"3593 Hwy 97 S, Chetwynd, BC",usable (offset),usable (missing S)
 "4701 Airport Rd SE, Chetwynd, BC",great,great
 "3441 Campbell Way, Chetwynd, BC",great,great
 "3598 West Fraser Rd, Chetwynd, BC",usable (offset),great
-"4701 Hwy 29 N, Chetwynd, BC",usable (offset),missing N
+"4701 Hwy 29 N, Chetwynd, BC",usable (offset),usable( missing N)
 "4503 46 Dr NE, Chetwynd, BC",great,great
 "4801 42A St NE, Chetwynd, BC",great,great
 "3458 Hwy 97 S, Chetwynd, BC",great,missing S
 "5000 50 Ave NW, Chetwynd, BC",great,usable (50th Ave instead of 50 Ave)
-"3593 Hwy 97 S, Chetwynd, BC",usable (offset),missing S
+"3593 Hwy 97 S, Chetwynd, BC",usable (offset),usable (missing S)
 "1106 Downie St, Revelstoke, BC",great,great
 "795 Cedar St, Revelstoke, BC",short,great
 "800 Trans-Canada Hwy E, Revelstoke, BC",great,great
@@ -48,6 +48,6 @@ addressString,roadGeometry,roadName
 "354 Leoffler Rd, Canyon Hot Springs, BC",great,great
 "2457 KOA Rd, Revelstoke, BC",usable (offset),great
 "108 7th St W, Revelstoke, BC",usable (offset),great
-"1456 Hwy 23 S, Revelstoke, BC",usable (offset),missing S
+"1456 Hwy 23 S, Revelstoke, BC",usable (offset),usable (missing S)
 "306 Downie St, Revelstoke, BC",usable (offset),great
 "1750 Mill St, Revelstoke, BC",usable (offset),great
