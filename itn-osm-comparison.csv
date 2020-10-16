@@ -41,7 +41,7 @@ addressString,roadGeometry,roadName
 "5000 50 Ave NW, Chetwynd, BC",great,usable (50th Ave instead of 50 Ave)
 "3593 Hwy 97 S, Chetwynd, BC",usable (offset),usable (missing S)
 "1106 Downie St, Revelstoke, BC",great,great
-"795 Cedar St, Revelstoke, BC",short,great
+"795 Cedar St, Revelstoke, BC",usable (short),great
 "800 Trans-Canada Hwy E, Revelstoke, BC",great,great
 "1916 Forest Dr, Revelstoke, BC",usable (offset),great
 "1082 Cashato Cres, Revelstoke, BC",usable (offset),great
