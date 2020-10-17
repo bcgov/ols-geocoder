@@ -60,7 +60,7 @@ addressString,roadGeometry,roadName
 "17960 Fraser Dyke Rd, Pitt Meadows, BC",great,great
 "531 Westside Rd, West Kelowna, BC",great,great
 "1098 Richter St, Kelowna, BC",great,great
-"487 Fitzpatrick Rd, Kelowna, BC",usable (offset),
+"487 Fitzpatrick Rd, Kelowna, BC",usable (offset),great
 "415 Casa Rio Dr, West Kelowna, BC",good (offset in one corner),great
 "271 Snowsell St, Kelowna, BC",usable (offset),great
 "2341 Campbell Rd, West Kelowna, BC",great (ITN has small offset),great
