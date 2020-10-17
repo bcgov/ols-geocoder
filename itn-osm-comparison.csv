@@ -2,7 +2,7 @@ addressString,roadGeometry,roadName
 "3242 Hwy 23, Nakusp, BC",usable (offset),great
 "621 Beech Rd, Nakusp, BC",great,great
 "391 Crescent Bay Rd, Nakusp, BC",great,great
-"595 Saddle Mountain Rd, Arrow Park, BC",good,missing
+"595 Saddle Mountain Rd, Arrow Park, BC",good,poor (no label)
 "1385 E Hwy 6, Nakusp, BC",great,usable(missing E)
 "2745 Hwy 23, Nakusp, BC",good,great
 "862 Alexander Rd, Nakusp, BC",usable (offset),great
@@ -37,7 +37,7 @@ addressString,roadGeometry,roadName
 "4701 Hwy 29 N, Chetwynd, BC",usable (offset),usable( missing N)
 "4503 46 Dr NE, Chetwynd, BC",great,great
 "4801 42A St NE, Chetwynd, BC",great,great
-"3458 Hwy 97 S, Chetwynd, BC",great,missing S
+"3458 Hwy 97 S, Chetwynd, BC",great,usable (missing S)
 "5000 50 Ave NW, Chetwynd, BC",great,usable (50th Ave instead of 50 Ave)
 "3593 Hwy 97 S, Chetwynd, BC",usable (offset),usable (missing S)
 "1106 Downie St, Revelstoke, BC",great,great
@@ -51,10 +51,10 @@ addressString,roadGeometry,roadName
 "1456 Hwy 23 S, Revelstoke, BC",usable (offset),usable (missing S)
 "306 Downie St, Revelstoke, BC",usable (offset),great
 "1750 Mill St, Revelstoke, BC",usable (offset),great
-"218 Dyke Rd, Surrey, BC",,
-"17897 Triggs Rd, Surrey, BC",,
-"2591 Pitt River Rd, Port Coquitlam, BC",,
-"415 Westview St, Coquitlam, BC",,
-"1647 Broadway St, Port Coquitlam, BC",,
-"9900 140 St, Surrey, BC",,
-"17960 Fraser Dyke Rd, Pitt Meadows, BC",,
+"218 Dyke Rd, Surrey, BC",great,great
+"17897 Triggs Rd, Surrey, BC",usable (corner offset),great
+"2591 Pitt River Rd, Port Coquitlam, BC",usable (ITN missing divided road),great
+"415 Westview St, Coquitlam, BC",usable (offset),great
+"1647 Broadway St, Port Coquitlam, BC",usable (offset),great
+"9900 140 St, Surrey, BC",great (ITN road may need dividing),great
+"17960 Fraser Dyke Rd, Pitt Meadows, BC",great,great
