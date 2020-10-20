@@ -55,6 +55,7 @@ Causeway,Cswy
 Cemtry,Cemetery
 Ch,Chemin
 Chemin,Road
+Chwk,Chilliwack
 Ci,Circle
 Cir,Circle
 Circ,Circle
@@ -67,6 +68,7 @@ Cours,Path
 Cpt,Captain
 Crcl,Circle
 Cre,Crescent
+Cres,Crescent
 Crk,Creek
 Crl,Circle
 Crnrs,Corners
@@ -113,6 +115,7 @@ Fwy,Freeway
 GD,General Delivery
 Gdn,Garden
 Gdns,Gardens
+Gnrl,General
 Genral,General
 Gerneral,General
 Glcr,Glacier
@@ -166,6 +169,7 @@ P.O.,PO
 PH,Penthouse
 Pk,Park
 Pkw,Parkway
+Pky,Parkway
 Pkwy,Parkway
 Pl,Place
 Pla,Place
@@ -255,3 +259,4 @@ Wk,Walk
 Wrf,Wharf
 X,Cross
 bobo,BobaFet
+Univ,University
