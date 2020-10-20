@@ -30,6 +30,7 @@ Aly,Alley
 App,Appartement
 Appartement,Apartment
 Apt,Apartment
+Ashley,Ashleigh
 Aut,Autoroute
 Av,Avenue
 Ave,Avenue
@@ -51,7 +52,8 @@ Capt,Captain
 Carre,Square
 Carref,Carrefour
 Carrefour,Crossing
-Causeway,Cswy
+Cswy,Causeway
+Ceader,Cedar
 Cemtry,Cemetery
 Ch,Chemin
 Chemin,Road
@@ -152,6 +154,7 @@ Lp,Loop
 Montee,Rise
 Mt,Mount
 Mtns,Mountains
+Muse,Mews
 N,North
 NE,Northeast
 NW,Northwest
