@@ -68,3 +68,34 @@ addressString,roadGeometry,roadName
 "1040 Sussex Rd, West Kelowna, BC",great(ITN is offset),great
 "1725 Rampone Rd, Kelowna, BC",great (ITN has small offset),great
 "1260 Raymer Ave, Kelowna, BC",great,great
+"1651 Maple St, Campbell River, BC",great,great
+"2995 Quinsam Rd, Campbell River, BC",great,great
+"847 Noble Rd, Quathiaski Cove, BC",usable(partial offset),great
+"3601 Argonaut Rd, Campbell River, BC",great,great
+"1001 Campbell River Ferry Terminal, Campbell River, BC",great,great
+"747 Noble Rd, Quathiaski Cove, BC",great,great
+"1947 Pinehurst Pl, Campbell River, BC",great,great
+"523 Island Hwy, Campbell River, BC",great,great
+"905 Nursery Rd, Campbell River, BC",good (ITN looks offset),great
+"1469 16th Ave, Campbell River, BC",great,great
+"2810 Palmer Rd, Qualicum Beach, BC",great,great
+"3105 Rinvold Rd, Qualicum Beach, BC",great,great
+"910 Jones Rd, Qualicum Beach, BC",good,great
+"3837 Marples Rd, Qualicum Beach, BC",great,great
+"859 Clarke Rd, Qualicum Beach, BC",great (ITN offset),great
+"1309 Chatsworth Rd, Qualicum Beach, BC",great (ITN offset),great
+"1272 Pratt Rd, Qualicum Beach, BC",great (ITN offset),great
+"901 Epron Rd, Qualicum Beach, BC",usable (offset),great
+"2418 Avon Pl, Port Coquitlam, BC",great,poor (no label)
+"2310 Ranger Lane, Port Coquitlam, BC",good,great
+"1466 Mary Hill Lane, Port Coquitlam, BC",great,great
+"2965 Wagon Wheel Cir, Coquitlam, BC",great (ITN offset),great
+"2705 Davies Ave, Port Coquitlam, BC",great,great
+"2110 Rowland St, Port Coquitlam, BC",great,great
+"1912 Humber Cres, Port Coquitlam, BC",great,usable (Cr instead of Cres)
+"859 Village Dr, Port Coquitlam, BC",usable (offset),great
+"1411 Grenfell Pl, Valemount, BC",great,great
+"857 Hillside Dr, Valemount Rural, BC",great,great
+"325 Hwy 5 N, Valemount Rural, BC",great,usable (missing N)
+"101 Dogwood St, Valemount, BC",great,great
+"1250 17th Ave, Valemount, BC",great,great
