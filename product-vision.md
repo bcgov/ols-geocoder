@@ -8,7 +8,7 @@
 **NEVER FAR**|No public facilities or services that are hard to find or reach by road
 
 ## Slogan
-Find a better way with BC Digital Road Services
+Find a better way with BC Location Services
 
 ## BC Address Geocoder
 The BC Address Geocoder provides address cleaning, correction, completion, geocoding, and reverse geocoding for government and the public at large. Geocoding turns a physical address into a form of spatial data called a point that can be used to display the location of the address on a map or ask spatial questions about the address such as:
