@@ -404,32 +404,32 @@ This schema can be used in any common text format that supports named properties
 
 Field Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
 ---: | --- | --- | ---| ---
-YOUR_ID|String|Unique identifier in your local address management system (e.g., X0233212)|No|No
-UNIT_DESIGNATOR |String|Canada Post unit designator (e.g., APT)|No|No
-UNIT_NUMBER_PREFIX|String|a single letter or sequence of letter ranges separated by commas (e.g., A-D,J,M-P)|No|No
-UNIT_NUMBER|String|unit number or letter or sequence of unit number/letter ranges separated by commas (e.g., 100-119, 200-219)|No|No
-UNIT_NUMBER_SUFFIX|String|Canada Post unit number suffix (e.g., C)|No|No
-SITE_NAME |String|building or landmark name (e.g., Centennial Candle)|yes|yes
-SUPER_FULL_SITE_DESCRIPTOR|String|names of all units and sites in parent site hierarchy separated by double-dash (e.g., Student Union Building -- University of Victoria)|No|No
-SUPER_SITE_YOUR_ID|Sting|Unique identifier of super site|No|No
-CIVIC_NUMBER|Number| civic number, usually a positive integer (e.g., 1321)|Yes|No
-CIVIC_NUMBER_SUFFIX|String|Canada Post civic number suffix (e.g., A)|No|No
-STREET_NAME|String|Street name|Yes|No
-STREET_TYPE|String|Street type|No|No
-IS_STREET_TYPE_PREFIX|Boolean| True if street type appears before street name as in HWY 17|No|No
-STREET_DIRECTION|String|Canada Post street direction (e.g., NW); Note Canada Post does not allow prefix and suffix street direction in same address as in: 103 N 52 St SW|No|No
-IS_STREET_DIRECTION_PREFIX|Boolean|true if street direction appears before street name as in SW Marine Dr|No|No
-LOCALITY|String|Locality (e.g., Victoria)|Yes|Yes
-LOCALITY_DESCRIPTOR|String|type of locality|(e.g., Municipality)|Yes|Yes
-PROVINCE_CODE|String|Canada Post two-character province code|Yes|Yes
-IS_NON_CIVIC_ADDRESS|Boolean|True if address has no assigned civic number|Yes|Yes
-IS_OFFICIAL_ADDRESS|Boolean|True if address is official; False if unofficial (e.g., former address)|Yes|Yes
-RELATIVE_LOCATION|String|Relative geographic location of a non-civic address (e.g., Lonely Cabins - 43 km west of Stui on N side of Hwy 20)|No|Yes	
-SITE_POINT_DESCRIPTOR|String|one of site (somewhere on the site or the parcel containing the site), rooftop, frontDoor, internalDoor, entrance, frontGate|No|No
-SITE_LAT|Number|site latitude|Yes|Yes
-SITE_LON|Number)|site longitude|Yes|Yes
-SITE_TAGS|String| Comma-separated list of descriptive tags (e.g. stadium)|No|No
-ACCESS_POINT_LAT|Number|Only needed if access point is different than site point or super site point|No|Yes
-ACCESS_POINT_LON|Number|Only needed if access point is different than site point or super site point|No|Yes
-FOOTPRINT_DESCRIPTOR|String| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)|No|No
-FOOTPRINT|OGC WKT|geometry of site footprint in OGC Well-Known Text format. Can use other geometry standards in other formats (e.g., GML GeoJson)|No|No
+yourId|String|Unique identifier in your local address management system (e.g., X0233212)|No|No
+unitDesignator|String|Canada Post unit designator (e.g., APT)|No|No
+unitNumberPrefix|String|a single letter or sequence of letter ranges separated by commas (e.g., A-D,J,M-P)|No|No
+unitNumber|String|unit number or letter or sequence of unit number/letter ranges separated by commas (e.g., 100-119, 200-219)|No|No
+unitNumberSuffix|String|Canada Post unit number suffix (e.g., C)|No|No
+siteName|String|building or landmark name (e.g., Centennial Candle)|yes|yes
+superFullsiteDescriptor|String|names of all units and sites in parent site hierarchy separated by double-dash (e.g., Student Union Building -- University of Victoria)|No|No
+superSiteYourId|Sting|Unique identifier of super site|No|No
+civicNumber|Number| civic number, usually a positive integer (e.g., 1321)|Yes|No
+civicNumberSuffix|String|Canada Post civic number suffix (e.g., A)|No|No
+streetName|String|Street name|Yes|No
+streetType|String|Street type|No|No
+isStreetTypePrefix|Boolean| True if street type appears before street name as in HWY 17|No|No
+streetDirection|String|Canada Post street direction (e.g., NW); Note Canada Post does not allow prefix and suffix street direction in same address as in: 103 N 52 St SW|No|No
+isStreetDirectionPrefix|Boolean|true if street direction appears before street name as in SW Marine Dr|No|No
+locality|String|Locality (e.g., Victoria)|Yes|Yes
+localityDescriptor|String|type of locality|(e.g., Municipality)|Yes|Yes
+provinceCode|String|Canada Post two-character province code|Yes|Yes
+isNonCivicAddress|Boolean|True if address has no assigned civic number|Yes|Yes
+isOfficialAddress|Boolean|True if address is official; False if unofficial (e.g., former address)|Yes|Yes
+relativeLocation|String|Relative geographic location of a non-civic address (e.g., Lonely Cabins - 43 km west of Stui on N side of Hwy 20)|No|Yes	
+sitePointDescriptor|String|one of site (somewhere on the site or the parcel containing the site), rooftop, frontDoor, internalDoor, entrance, frontGate|No|No
+siteLat|Number|site latitude|Yes|Yes
+siteLon|Number)|site longitude|Yes|Yes
+siteTags|String| Comma-separated list of descriptive tags (e.g. stadium)|No|No
+accessPointLat|Number|Only needed if access point is different than site point or super site point|No|Yes
+accessPointLon|Number|Only needed if access point is different than site point or super site point|No|Yes
+footprintDescriptor|String| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)|No|No
+footprint|OGC WKT|geometry of site footprint in OGC Well-Known Text format. Can use other geometry standards in other formats (e.g., GML GeoJson)|No|No
