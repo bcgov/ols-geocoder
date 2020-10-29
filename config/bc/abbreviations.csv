@@ -56,8 +56,10 @@ British Columbia,BC
 Brk,Brook
 Bsmnt,Basement
 Bsmt,Basement
+Bu,Boulevard
 Bur,Bureau
 Bureau,Suite
+Bv,Boulevard
 Byp,Bypass
 C,Central
 Campgrnd,Campground
@@ -81,6 +83,7 @@ Circ,Circle
 Circt,Circuit
 Ck,Creek
 Cl,Close
+Clo,Close
 Cls,Close
 Conc,Concession
 Conn,Connector
@@ -89,6 +92,7 @@ Cours,Path
 Cpt,Captain
 Cr,Crescent
 Crcl,Circle
+Cre,Crescent
 Cres,Crescent
 Crk,Creek
 Crl,Circle
@@ -107,6 +111,7 @@ Divers,Diversion
 Dixieme,10
 Douzieme,12
 Dr,Drive
+Dri,Drive
 Drv,Drive
 Dvrs,Diversion
 E,East
@@ -200,6 +205,7 @@ Nord,North
 Nrs,Narrows
 NW,Northwest
 O,Ouest
+Ok,Oak
 Onzieme,11
 Orch,Orchard
 Ouest,West
@@ -244,6 +250,8 @@ Riv,River
 Rk,Rock
 Rks,Rocks
 Rm,Room
+Ro,Road
+Roa,Road
 Rt,Route
 Rte,Route
 Ruelle,Alley
@@ -317,6 +325,7 @@ Vlg,Village
 Vly,Valley
 Voie,Path
 W,West
+Wa,Way
 Wht,White
 Wk,Walk
 Wrf,Wharf
