@@ -17,7 +17,10 @@ Last updated November 3, 2020 by MR
 
 1.	Provide client training.
 
-1.	Improve geocoder documentation (e.g., new geocoder address scoring guide and reference done)
+1.	Improve geocoder documentation
+   1. Match Scoring guide
+   1. Match scoring reference
+   1. 
 
 1.	Improve location of rural localities (e.g., move point to post office; requested by MoH to improve CHSA resolution).
 
