@@ -1,4 +1,4 @@
-# Geocoder V4.1 Development Plan
+# Geocoder V4.1 Product Development Plan
 Last updated November 3, 2020 by MR
 
 1. Add missing abbreviations and non-adjacent locality aliases to geocoder configuration data.
