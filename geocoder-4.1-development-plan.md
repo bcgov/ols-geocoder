@@ -39,6 +39,6 @@ Last updated November 3, 2020 by MR
   
    1. Enhancing the handling of site/occupant names in the address
   
-   1. Removal of duplicate address elements especially locality 
+   1. Removal of duplicate address elements especially locality.
 
 1. Adjust geocoder match scoring system to more accurately score matches.
