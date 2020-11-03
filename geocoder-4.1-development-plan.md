@@ -27,18 +27,18 @@ Last updated November 3, 2020 by MR
 
 1.	Enhance geocoder parser to solve the common address problems identified by MCFD, MoH, and our Rejected Address Analysis including:
 
-   1. Multiple spelling mistakes(e.g., Omenica/Omineca)
+   1.1 Multiple spelling mistakes(e.g., Omenica/Omineca)
   
-   1. Glued words (e.g., WildRose/Wild Rose)
+   1.1 Glued words (e.g., WildRose/Wild Rose)
   
-   1. Suffixes not matching (e.g., George/Prince George)
+   1.1 Suffixes not matching (e.g., George/Prince George)
   
-   1. Locality hopping when a civic number is not in any block range
+   1.1 Locality hopping when a civic number is not in any block range
   
-   1. Enhancing the handling of additional postal elements
+   1.1 Enhancing the handling of additional postal elements
   
-   1. Enhancing the handling of site/occupant names in the address
+   1.1 Enhancing the handling of site/occupant names in the address
   
-   1. Removal of duplicate address elements especially locality.
+   1.1 Removal of duplicate address elements especially locality.
 
 1. Adjust geocoder match scoring system to more accurately score matches.
