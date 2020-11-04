@@ -475,3 +475,6 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00475-StreetNameWithMultipleSpellingMistakes,"209 8611 GENERAL CURRY RD, RICHMOND, BC",STREET,"209 8611 GENERAL CURRIE RD, RICHMOND, BC",[],F,,,T,T
 00476-StreetNameWithMultipleSpellingMistakes,"305 1135 WINDSOR MUSE ST, COQUITLAM, BC",STREET,"305 1135 WINDSOR MEWS ST, COQUITLAM, BC",[],F,,,T,T
 00477-StreetNameWithOneSpellingMistakeAtFront,"106 1355 UMBERLAND, COURTENAY, BC",STREET,"106 1355 UMBERLAND, COURTENAY, BC",[],F,,,T,T
+00478-AddressInSmallCommunityUsingLocalityAlias,"352 W 14th St, North Van, BC",CIVIC_NUMBER,"352 W 14th St, North Vancouver, BC",[LOCALITY.isAlias],F,,101,T,T
+00479-AddressInSmallCommunityUsingLocalityAlias,"1745 Esquimalt Ave, West Van, BC",CIVIC_NUMBER,"1745 Esquimalt Ave, West Vancouver, BC",[LOCALITY.isAlias],F,,101,T,T
+00480-AddressInSmallCommunityUsingLocalityAlias,"223 W 7th Ave, Vancouver, BC",CIVIC_NUMBER,"223 W 7th Ave, Vancouver, BC",[LOCALITY.isAlias],F,,101,T,T
