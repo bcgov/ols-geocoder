@@ -25,7 +25,7 @@ Established in 2013, the BC Address Geocoder is used by over two dozen governmen
 
 Major clients include Elections BC, MOTI, MoH Health Ideas Warehouse, SDPR, LTSA, AVED Business Intelligence Warehouse, BC Centre for Disease Control, BC Oil and Gas Commission, MCFD, FLNROD, most BC Health Authorities, City of Vancouver, BC Wildfire Service, BC Emergency Health Services, WildSafe BC.
 
-The BC Address Geocoder is registered with the BC Data Catalogue, uses the DataBC API Gateway, and uses industry standards for its design and specification (e.g., REST, OpenAPI 3.0) which makes it very easy for developers to use in their own digital services.
+The BC Address Geocoder is registered with the BC Data Catalogue, uses the DataBC API Gateway, and uses industry standards for its design and specification (e.g., REST, OpenAPI 3.0) which makes it easy to integrate into your application or API.
 
 The BC Address Geocoder is based on authoritative address data provided by BC municipalities and BC Assessment. It also uses the BC Integrated Road Network which is the authoritative source for road network data in BC. In two independent studies, the BC Geocoder was found to be more accurate than commercial products.
 
