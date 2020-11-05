@@ -11,13 +11,12 @@
 Find a better way with BC Location Services
 
 ## BC Address Geocoder
-The BC Address Geocoder provides address cleaning, correction, completion, geocoding, and reverse geocoding for government and the public at large. Geocoding turns a physical address into a form of spatial data called a point that can be used to display the location of the address on a map or ask spatial questions about the address such as:
+The BC Address Geocoder provides address cleaning, correction, completion, geocoding, and reverse geocoding for government and the public at large. Geocoding turns a physical address into a form of spatial data called a point that can be used to display the location of the address on a map or answer spatial queries such as:
 
 - how close is the nearest school, firehall, hospital, or swimming pool?
-- how far is the nearest garbage dump or sewer outfall?
-- how far is a particular shopping centre, how long does it takes to drive there and what's the best route to take?
+- are there any medical lab test facilities within three kilometres of here
 
-Reverse geocoding find the nearest address to a given point. Address cleaning and standardization allow you to deduplicate your data and link data records that have no key fields in common.
+Reverse geocoding finds the nearest address to a given point. Address cleaning and standardization allow you to deduplicate your data and link data records that have no key fields in common.
 
 Established in 2013, the BC Address Geocoder is used by over two dozen government ministries and agencies in dozens of government digital services. As of June, 2020, the geocoder has processed over one billion addresses.
 
