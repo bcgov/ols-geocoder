@@ -10,7 +10,7 @@
 ## Slogan
 Find a better way with BC Location Services
 
-## Products
+## Product Line
 
 ### BC Address Geocoder
 
