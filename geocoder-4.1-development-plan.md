@@ -16,7 +16,7 @@ Task|Status|Details
 |Improve location of rural localities|In progress|MOH requested moving point of a small town to its post office to improve CHSA resolution
 |Improve representation of first nations addresses in Geocoder|In progress| For example, we could  model a reserve with a known location but without DRA roads as a single complex with multiple houses (e.g., House 21, Akisqnuk Reserve – Windermere, BC).
 |Look for common error patterns in rejected addresses|In progress
-|Enhance geocoder parser to solve the common address problems identified by MCFD, MoH, and our Rejected Address Analysis|In progress|Multiple spelling mistakes such as Omenica/Omineca (In QA)
+|Enhance geocoder parser to solve the common address problems identified by MCFD, MoH, and our Rejected Address Analysis|In QA|Multiple spelling mistakes such as Omenica/Omineca
 ||In QA|Glued/separated words as in WildRose/Wild Rose
 ||In QA|Locality hopping when a civic number is not in any block range
 ||In QA|Enhancing the handling of additional postal elements
