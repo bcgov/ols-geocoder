@@ -1,23 +1,24 @@
 # Geocoder V4.1 Product Development Plan
 Last updated November 3, 2020 by MR
 
-1. Add missing abbreviations and non-adjacent locality aliases to geocoder configuration data.
+1. Add missing abbreviations and non-adjacent locality aliases to geocoder configuration data. (In QA)
 
-1. Generate locality aliases for all adjacent localities. 
+1. Generate locality aliases for all adjacent localities. (In QA)
 
-1. Add address data from other sources (e.g., missing address ranges from DRA)
+1. Add address data from other sources such as address ranges from ITN (In QA)
 
-1. Add verified addresses from our major clients to the DataBC Address Exception List (e.g., House 900 -- Malachan Reserve – Ditidaht,BC; Malachan Reserve – Ditidaht, BC; SAULTEAU RESERVE -- MOBERLY LAKE, BC)
+1. Add verified addresses from our major clients to the DataBC Address Exception List (Not started)
 
-1. Request simple changes to an individual client’s ETL where practical (e.g., eliminating exact duplicates)
+1. Request simple changes to an individual client’s ETL where practical such as eliminating exact duplicates (Not started)
 
-1. Devise and suggest potential improvements to our clients’ workflows (e.g., re-geocode failed addresses periodically to take advantage of continuous improvements in address and road network data; accept locality-level matches if locality has only one post-office; provide streetAddress + locality to the geocoder instead of a single address string)
+1. Devise and suggest potential improvements to our clients’ workflows (In progress)
+- examples include re-geocoding failed addresses periodically to take advantage of continuous improvements in address and road network data; accept locality-level matches if locality has only one post-office; provide streetAddress + locality to the geocoder instead of a single address string)
 
-1. Continue to consult with clients to better understand their geocoding needs.
+1. Continue to consult with clients to better understand their geocoding needs (In progress)
 
-1. Provide client training.
+1. Provide client training (In progress)
 
-1. Improve geocoder documentation.
+1. Improve geocoder documentation (In progresS)
 
 1. Improve location of rural localities (e.g., move point to post office; requested by MoH to improve CHSA resolution).
 
