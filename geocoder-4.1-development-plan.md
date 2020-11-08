@@ -23,7 +23,7 @@ Task|Status|Details
 ||In progress|Enhanced handling of c/o elements|In progress
 ||In progress|Enhanced handling of site/occupant names in the address
 ||In progress|Removal of duplicate address elements especially locality
-||In progress|Adjust geocoder match scoring system to more accurately score matches
+||In progress|Adjust geocoder match scoring system to more accurately reflect address match accuracy
 ||Not started|Suffixes not matching as in George/Prince George
 |Improve fault traceability|In review|Can now see value of address element at fault (e.g., Roseway is an unknown streetType)
 |Disambiguate locality-level bianyms|In review|An example of a bianym is Mill Bay on the Malahat and Mill Bay near Gincolith; requested by ICBC in June, 2020; proposed solution approved by Provincial Toponymist in Oct, 2020
