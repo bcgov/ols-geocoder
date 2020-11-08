@@ -4,7 +4,7 @@ Last updated November 3, 2020 by MR
 Task|Status|Details
 |---|---|---|
 |Add missing abbreviations and non-adjacent locality aliases to geocoder configuration data|In QA|
-|Generate locality aliases for all adjacent localities|QA|
+|Generate locality aliases for all adjacent localities|In QA|
 | Add address data from other sources such as address ranges from ITN|In QA|
 |Add verified addresses from our major clients to the DataBC Address Exception List|Not started
 |Request simple changes to an individual client’s ETL where practical such as eliminating exact duplicates|Not started
