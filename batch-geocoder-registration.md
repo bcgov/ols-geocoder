@@ -6,7 +6,7 @@ If you have a BC IDIR account, you don't need to register to access the Batch Ge
 
 If you don't have a BC IDIR account and are in an agency outside of core goverment (e.g., crown corporation, local or federal government, local health authority, university), here are the steps to registration and access:
 
-1. Provide us (e.g., michael.ra.ross@gov.bc.ca or brian.kelsey@gov.bc.ca) with answers to the following questions:
+1. Provide us (e.g., IDDDBCLS@Victoria1.gov.bc.ca) with answers to the following questions:
 
      - What is the nature of your business?
      - How do you propose to use the geocoder?
