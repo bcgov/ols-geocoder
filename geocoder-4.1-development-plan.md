@@ -10,7 +10,7 @@ Task|Status|Details
 |Request simple changes to an individual client’s ETL where practical such as eliminating exact duplicates|Not started
 |Devise and suggest potential improvements to our clients’ workflows|In progress|Suggested that Health Ideas re-geocode failed addresses periodically to take advantage of continuous improvements in address and road network data
 |||Potentially accept locality-level matches if locality has only one post-office
-|Consult with clients to better understand their geocoding needs|In progress|
+|Consult with clients to better understand their geocoding needs|In progress|Conducted consultations with MoH, MCFD, Vital Stats, and BC EHS; ongoing follow-up discussions
 |Provide client training|In progress|
 |Improve geocoder documentation|In progress|
 |Improve location of rural localities|In progress|MOH requested moving point of a small town to its post office to improve CHSA resolution
