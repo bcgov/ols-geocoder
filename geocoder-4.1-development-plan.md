@@ -25,3 +25,6 @@ Task|Status|Details
 ||In progress|Removal of duplicate address elements especially locality
 ||In progress|Adjust geocoder match scoring system to more accurately score matches
 ||Not started|Suffixes not matching as in George/Prince George
+|Improve fault traceability|In review|Can now see value of address element at fault (e.g., Roseway is an unknown streetType)
+|Disambiguate locality-level bianyms|In review|An example of a bianym is Mill Bay on the Malahat and Mill Bay near Gincolith; requested by ICBC in June, 2020
+|Add support for named highway and freeway exits|In review|Hwy 1 and Exit 366; requested by WildFire in 2018
