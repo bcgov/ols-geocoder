@@ -17,10 +17,11 @@ Task|Status|Details
 |Improve representation of first nations addresses in Geocoder|In progress| For example, we could  model a reserve with a known location but without DRA roads as a single complex with multiple houses (e.g., House 21, Akisqnuk Reserve – Windermere, BC).
 |Look for common error patterns in rejected addresses|In progress
 |Enhance geocoder parser to solve the common address problems identified by MCFD, MoH, and our Rejected Address Analysis|In progress|Multiple spelling mistakes such as Omenica/Omineca (In QA)
-|||Glued/separated words as in WildRose/Wild Rose (In QA)
-|||Locality hopping when a civic number is not in any block range (In QA)
-|||Enhancing the handling of additional postal elements (In QA)
-|||Enhancing the handling of site/occupant names in the address (In progress)
-|||Removal of duplicate address elements especially locality(In progress)
-|||Suffixes not matching as in George/Prince George (Not started)
-|||Adjust geocoder match scoring system to more accurately score matches(In progress)
+||In QA|Glued/separated words as in WildRose/Wild Rose
+||In QA|Locality hopping when a civic number is not in any block range
+||In QA|Enhancing the handling of additional postal elements
+||In progress|Enhanced handling of c/o elements|In progress
+||In progress|Enhanced handling of site/occupant names in the address
+||In progress|Removal of duplicate address elements especially locality
+||In progress|Adjust geocoder match scoring system to more accurately score matches
+||Not started|Suffixes not matching as in George/Prince George
