@@ -2,7 +2,7 @@ unitDesignator,description
 APT,Apartment
 BLDG,Building
 BSMT,Basement
-CONDO,Condominium
+CONDO,Condominium; similar to TH
 FLR,Floor
 HOUSE,A detached dwelling within a complex; similar to TH
 LOBBY,Lobby
