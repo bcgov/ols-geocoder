@@ -18,7 +18,7 @@ Task|Status|Details
 |Look for common error patterns in rejected addresses|In progress
 |Enhance geocoder parser to solve the common address problems identified by MCFD, MoH, Vital Stats, and our Rejected Address Analysis|In review|The address:<br><br>10 main st blah blah pimbreton bc<br><br> should be cleaned and corrected to:<br><br> 10 Main St, Mount Currie, BC<br><br> This requires correcting two spelling errors, aliasing to the correct locality, and picking up the garbage. For details, visit:<br><br>  https://ssl.refractions.net/ols/pub/geocoder/addresses.html?maxResults=10&echo=true&brief=true&addressString=10+main+st+blah+blah+pimbreton+bc <br> <br> The scoring system has been enhanced to show you the objects at fault for easier traceability.
 ||Improve noise immunity| 1175 Douglas St back alley Victoria BC; back alley is where much garbage is found so we taught v4.1 how to pick up the garbage
-||Multiple spelling mistakes such as Omenica/Omineca|
+||Multiple spelling mistakes|Omenica/Omineca, Pimbreton/Pemberton
 ||In review|Glued/separated words as in WildRose/Wild Rose
 ||In review|Locality hopping when a civic number is not in any block range
 ||In review|Enhancing the handling of additional postal elements
