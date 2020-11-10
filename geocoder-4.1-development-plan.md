@@ -3,13 +3,13 @@ Last updated November 3, 2020 by MR
 
 Task|Status|Details
 |---|---|---|
-|Add missing abbreviations and non-adjacent locality aliases to geocoder configuration data|In review|
-|Generate locality aliases for all adjacent localities|In review|
-| Add address data from other sources such as address ranges from ITN|In Review|
-|Add verified addresses from our major clients to the DataBC Address Exception List|Not started
-|Request simple changes to an individual client’s ETL where practical such as eliminating exact duplicates|Not started
+|Add missing abbreviations and non-adjacent locality aliases to geocoder configuration data|In review| Abbreviations and non-adjacent locality aliases added to geocoder configuration data
+|Generate locality aliases for all adjacent localities|In review| Data integration process extended to generate and include locality aliases for all adjacent localities
+| Add address data from other sources such as address ranges from ITN|In Review| Data integration process extended to include all ITN address ranges
+|Add verified addresses from our major clients to the DataBC Address Exception List|Not started| Don't expect to start until 4.1 released and clients trained in preparing reference addresses
+|Request simple changes to an individual client’s ETL where practical such as eliminating exact duplicates|Not started| Can't start until 4.1 complete.
 |Devise and suggest potential improvements to our clients’ workflows|In progress|Suggested that Health Ideas re-geocode failed addresses periodically to take advantage of continuous improvements in address and road network data
-|||Potentially accept locality-level matches if locality has only one post-office
+|||Potentially accept locality-level matches if locality has only one post-office. Provincial toponymist willing to work with us
 |Consult with clients to better understand their geocoding needs|In progress|Conducted consultations with MoH, MCFD, Vital Stats, and BC EHS; ongoing follow-up discussions
 |Provide client training|In progress|
 |Improve geocoder documentation|In progress|
