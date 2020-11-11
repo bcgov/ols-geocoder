@@ -24,12 +24,13 @@ import ca.bc.gov.ols.geocoder.api.data.GeocodeMatch;
 import ca.bc.gov.ols.geocoder.api.data.MatchFault;
 import ca.bc.gov.ols.geocoder.api.data.SearchResults;
 import ca.bc.gov.ols.geocoder.data.enumTypes.MatchPrecision;
+import ca.bc.gov.ols.geocoder.lucene.LuceneGeocoder;
 import ca.bc.gov.ols.rowreader.XsvRowWriter;
 
 @TestInstance(Lifecycle.PER_CLASS)
-public class GeocoderAcceptanceTest {
+public class LuceneGeocoderAcceptanceTest {
 
-	private IGeocoder gc;
+	private LuceneGeocoder lgc;
 	private XsvRowWriter logWriter;
 	private List<String> logSchema;
 	
@@ -37,11 +38,11 @@ public class GeocoderAcceptanceTest {
 	void setup() {
 		GeocoderFactory gcf = new GeocoderFactory();
 		gcf.setCassandraContactPoint("hummingbird");
-		gc = gcf.getGeocoder();
+		lgc = new LuceneGeocoder(gcf.getGeocoder().getDatastore());
 				
 		logSchema = Arrays.asList(new String[] {
 				"yourId", "testResult", "testMessage", "expectedMatchPrecision", "resultMatchPrecision", "addressString", "expectedFullAddress", "resultAddress", 
-				"expectedFaults", "resultFaults", "status", "parcelPoint", "issue", "resultPoint", "executionTime"});
+				"expectedFaults", "resultFaults", "status", "parcelPoint", "issue", "resultPoint"});
 		Date date = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss") ;
 		File logFile = new File("log/" + dateFormat.format(date) + "_test_log.csv") ;
@@ -94,6 +95,10 @@ public class GeocoderAcceptanceTest {
 			testMessage.append(iae.getMessage() + ";");
 			skip = true;
 		}
+		if(!expectedMP.equals(MatchPrecision.CIVIC_NUMBER)) {
+			testMessage.append("not a CIVIC_NUMBER test;");
+			skip = true;
+		}
 		if(skip) {
 			testMessage.append("test skipped;");
 			String msg = testMessage.toString();
@@ -105,63 +110,35 @@ public class GeocoderAcceptanceTest {
 		
 		// execute test and compare results
 		boolean fail = false;
-		GeocodeQuery query = new GeocodeQuery(addressString);
-		//query.setEcho(false);
-		SearchResults results = gc.geocode(query);
-		GeocodeMatch bestMatch = results.getBestMatch();
-		log.put("resultAddress", bestMatch.getAddressString());
-		log.put("resultMatchPrecision", bestMatch.getPrecision().toString());
-		log.put("resultFaults", bestMatch.getFaults().toString());
-		log.put("resultPoint", bestMatch.getLocation().toText());
-		log.put("executionTime", results.getExecutionTime().toPlainString());
-				
-		if(!expectedMP.equals(bestMatch.getPrecision())) {
-			testMessage.append("MatchPrecision did not match expected;");
-			fail = true;
-		}
-		if(!expectedFullAddress.equals(bestMatch.getAddressString())) {
+		List<String> results = lgc.query(addressString);
+		String result = results.get(0);
+		log.put("resultAddress", result);
+//		log.put("resultMatchPrecision", bestMatch.getPrecision().toString());
+//		log.put("resultFaults", bestMatch.getFaults().toString());
+//		log.put("resultPoint", bestMatch.getLocation().toText());
+		
+//		if(!expectedMP.equals(bestMatch.getPrecision())) {
+//			testMessage.append("MatchPrecision did not match expected;");
+//			fail = true;
+//		}
+		if(!expectedFullAddress.equals(result)) {
 			testMessage.append("Full address string did not match expected;");
 			fail = true;
 		}
-		if(!compareFaults(expectedFaults, bestMatch.getFaults(), testMessage)) {
-			fail = true;
-		}
+//		if(!compareFaults(expectedFaults, bestMatch.getFaults(), testMessage)) {
+//			fail = true;
+//		}
 		
 		String msg = testMessage.toString();
 		log.put("testMessage", msg);
 		if(fail) {
 			log.put("testResult", "FAIL");
 			logWriter.writeRow(log);
-			String matchString = " Best Match: " + bestMatch.getAddressString() + " - " + bestMatch.getPrecision() + " - " + bestMatch.getFaults().toString();
+			String matchString = " Best Match: " + result; // + " - " + bestMatch.getPrecision() + " - " + bestMatch.getFaults().toString();
 			assertTrue(false, msg + matchString);			
 		}
 		log.put("testResult", "SUCCESS");
 		logWriter.writeRow(log);
 	}
-	
-	/* returns true if faults match, false if not */
-	boolean compareFaults(String expectedFaults, List<MatchFault> faults, StringBuilder testMessage) {
-		 if((expectedFaults == null || expectedFaults.isBlank()) 
-				 && !faults.isEmpty()) {
-			 testMessage.append("Unexpected Faults returned;");
-			 return false;
-		 }
-		 boolean overallMatch = true;
-		 String[] expected = StringUtils.strip(expectedFaults, "[]").split(" ");
-		 for(String faultStr : expected) {
-			 if(faultStr.isBlank()) continue;
-			 boolean matched = false; 
-			 for(MatchFault fault : faults) {
-				 if(StringUtils.substringBefore(faultStr, ":").equals(fault.getElement() + "." + fault.getFault())) {
-					 matched = true;
-					 break;
-				 }
-			 }
-			 if(!matched) {
-				 testMessage.append("Expected fault '" + faultStr + "' was not in the result;");
-				 overallMatch = false;
-			 }
-		 }
-		 return overallMatch;
-	 }
+
 }

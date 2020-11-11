@@ -18,6 +18,7 @@ package ca.bc.gov.ols.geocoder.api.data;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -46,6 +47,14 @@ public abstract class GeocodeMatch implements ModifiableLocation {
 			int diff = m2.score - m1.score;
 			if(diff == 0) {
 				diff = m2.precisionPoints - m1.precisionPoints;
+			}
+			if(diff == 0) {
+				// note that this is reverse order because lower ordinal is better
+				diff = m1.precision.ordinal() - m2.precision.ordinal();
+			}
+			if(diff == 0) {
+				// note that this is reverse order because fewer faults is better
+				diff = m1.faults.size() - m2.faults.size();
 			}
 			return diff;
 		}
@@ -111,6 +120,18 @@ public abstract class GeocodeMatch implements ModifiableLocation {
 		this.precision = precision;
 		this.precisionPoints = precisionPoints;
 		this.score = precisionPoints;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(getLocation());
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(!(o instanceof GeocodeMatch)) return false;
+		GeocodeMatch m = (GeocodeMatch)o;
+		return m.getAddressString().equals(getAddressString());
 	}
 	
 	@Override

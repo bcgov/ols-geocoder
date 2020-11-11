@@ -18,7 +18,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00018-civicAddressWithUnitBeforeCivicNumberandWithoutFrontGate,"UNIT 418 925 Leon Ave, Kelowna, BC",UNIT,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",[],R,,,T,T
 00019-civicAddressWithUnitandknownSiteName,"UNIT 170 Douglas College -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched],F,,,T,T
 00020-civicAddressWithSiteName,"Anahim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],R,,,T,T
-00021-civicAddressWithPartialSiteName,"Anahim -- Anahim Lake BC",SITE,"Anahim -- Anahim Lake, BC",[SITE_NAME.partialMatch:5],F,,,T,T
+00021-civicAddressWithPartialSiteName,"Anahim -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[SITE_NAME.partialMatch],R,,,T,T
 00022-civicAddressWithSiteNameAndMissingCivicNumber,need example,SITE,need example,[CIVIC_NUMBER.missing:10],U,,,F,F
 00023-civicAddressWithNumberForStreetName,"4216 E 51 Ave Fort Nelson BC",CIVIC_NUMBER,"4216 51st Ave E, Fort Nelson, BC",[],R,,,T,T
 00024-civicAddressWithUnitNumberSuffix,"need example",UNIT,"need example",[],U,,,T,T
@@ -32,7 +32,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00032-CivicAddressWithoutUnitDesignator,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
 00033-CivicAddressWithoutUnitDesignator,"128 - 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
 00034-CivicAddressWithoutUnitDesignator,"128 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
-00035-CivicAddressWithoutUnitDesignator,"850 Saucier Ave 128 Kelowna, BC",CIVIC_NUMBER,"UNIT 128 -- 850 Saucier Ave 128 Kelowna, BC",[UNRECOGNIZED.notAllowed:33],F,,,F,F
+00035-CivicAddressWithoutUnitDesignator,"850 Saucier Ave 128 Kelowna, BC",CIVIC_NUMBER,"850 Saucier Ave Kelowna, BC",[UNRECOGNIZED.notAllowed:33],R,,,F,F
 00036-CivicAddressWithoutUnitNumber,"UNIT -- 850 Saucier Ave, Kelowna, BC",CIVIC_NUMBER,"850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.notMatched:1],F,,,T,T
 00037-CivicAddressWithoutUnitNumber,"1359 Porlier Pass Rd APT Galiano Island BC",CIVIC_NUMBER,"APT -- 1359 Porlier Pass Rd, Galiano Island, BC",[UNIT_DESIGNATOR.notMatched:1],F,,,T,T
 00038-CivicAddressWithoutLocalityProvinceCode,3520 WENTWORTH AVE,CIVIC_NUMBER,"3520 Wentworth Ave, West Vancouver, BC","[LOCALITY.missing:10 PROVINCE.missing:1]",F,,,F,F
@@ -59,7 +59,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00059-CivicAddressWrongLocality,952 COMOX AVE PRINCE GEORGE BC,LOCALITY,"Prince George, BC",[LOCALITY.notMatched:35],F,,,F,F
 00060-CivicAddressWrongStreetType,952 COMOX ST PRINCE RUPERT BC,CIVIC_NUMBER,"952 Comox Ave, Prince Rupert, BC",[STREET_TYPE.notMatched:3],F,,,T,T
 00061-CivicAddressWrongStreetDirection,"456 Gorge Rd W Victoria",CIVIC_NUMBER,"456 Gorge Rd E, Victoria, BC","[STREET_DIRECTION.notMatched:2 PROVINCE.missing:1]",F,,,T,T
-00062-CivicAddressMispelledStreetName,952 CLOROX AVE PRINCE RUPERT BC,BLOCK,"952 Comox Ave, Prince Rupert, BC","[STREET_Name.spelledWrong:3]",F,,,F,F
+00062-CivicAddressMispelledStreetName,952 CLOROX AVE PRINCE RUPERT BC,BLOCK,"952 Comox Ave, Prince Rupert, BC","[STREET_Name.spelledWrong]",R,,,F,F
 00063-CivicAddressWithMisplacedStreetDirection,"4216 E 51st Ave Fort Nelson BC",CIVIC_NUMBER,"4216 51st Ave E, Fort Nelson, BC",[STREET_DIRECTION.notPrefix:0],F,,,T,T
 00064-CivicAddressWithMisplacedStreetDirection,"2186 Marine Dr SW Vancouver BC",CIVIC_NUMBER,"2186 SW Marine Dr, Vancouver, BC",[STREET_DIRECTION.notSuffix:0],F,,,T,T
 00065-CivicAddressWithMisplacedStreetType,"2288 Hwy Old Cariboo Prince George BC",CIVIC_NUMBER,"2288 Old Cariboo Hwy, Prince George, BC",[STREET_TYPE.notPrefix:0],F,,,T,T
@@ -70,37 +70,37 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00070-CivicAddressWithUnneededStreetDirectionOnHighway,"8930 Cariboo Hwy S Pineview FFG BC",CIVIC_NUMBER,"8930 Cariboo Hwy, Pineview FFG, BC",[STREET_DIRECTION.notMatchedInHighway:0],F,,,T,T
 00071-CivicAddressWithMisplacedStreetTypeandUnneededStreetDirectionOnHighway,"12621 99 Hwy N Lillooet BC",CIVIC_NUMBER,"12621 Hwy 99, Lillooet, BC","[STREET_DIRECTION.notMatchedInHighway:0 STREET_TYPE.notSuffix:0]",F,,,T,T
 00072-CivicAddressWithMisplacedStreetTypeandUnneededStreetDirectionOnHighway,"8930 Hwy Cariboo S Pineview FFG BC",CIVIC_NUMBER,"8930 Cariboo Hwy, Pineview FFG, BC","[STREET_DIRECTION.notMatchedInHighway:0 STREET_TYPE.notPrefix:0]",F,,,T,T
-00073-CivicAddressUnknownLocality,"626 Lindley Dr Leftbank bc ",BLOCK,"626 Lindley Dr, West Kelowna, BC","[UNRECOGNIZED.notAllowed:33 LOCALITY.missing:10]",F,,,F,F
+00073-CivicAddressUnknownLocality,"626 Lindley Dr Leftbank bc ",BLOCK,"626 Lindley Dr, West Kelowna, BC","[]",R,,,F,F
 00074-CivicAddressUnknownStreetDirection,"456 Gorge Rd WN Victoria BC",CIVIC_NUMBER,"456 Gorge Rd E, Victoria, BC","[UNRECOGNIZED.notAllowed:33 STREET_DIRECTION.missing:2]",F,,,T,T
-00075-CivicAddressUnknownStreetType,"561 salmon Ave, North Saanich, BC",BLOCK,"561 Salmon Rd, North Saanich, BC","[UNRECOGNIZED.notAllowed:33 STREET_TYPE.notMatched]",F,,,T,T
-00076-CivicAddressUnknownStreetName,"561 samson Rd, North Saanich, BC",CIVIC_NUMBER,"561 Lamson Rd, Abbotsford, BC","[LOCALITY.notMatched STREET_NAME.spelledWrong:2]",F,,,F,F
-00077-CivicAddressUnknownCivicNumber,"60000 Hwy 97B SE Salmon Arm BC",STREET,"Hwy 97B SE, Salmon Arm, BC",[CIVIC_NUMBER.notInAnyBlock:10],F,,,F,F
-00078-CivicAddressUnknownUnitDescriptor,"ABODE 128 -- 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.Unknown],F,,,T,T
-00079-CivicAddressStreetDirectionForUndirectedStreet,"109 Quarry Dr W Salt Spring Island BC",CIVIC_NUMBER,"109 Quarry Dr, Salt Spring Island, BC",[STREET_DIRECTION.notMatched:2],F,,,T,T
-00080-CivicAddressWithMailBagAtEnd,"525 Superior St, Victoria, BC MAILBAG 300",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00081-CivicAddressWithMailBagAfterStreet,"525 Superior St MAILBAG 300 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00082-CivicAddressWithBagAtEnd,"525 Superior St, Victoria, BC BAG 300",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00083-CivicAddressWithBagAfterStreet,"525 Superior St BAG 300 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00084-CivicAddressWithCompAtEnd,"525 Superior St, Victoria, BC COMP 300",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00085-CivicAddressWithCompAfterStreet,"525 Superior St COMP 300 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00086-CivicAddressWithLcdAtEnd,"525 Superior St, Victoria, BC LCD 300",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00087-CivicAddressWithLcdAfterStreet,"525 Superior St LCD 300 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00088-CivicAddressWithPostalCodeAtEnd,"525 Superior St, Victoria, BC V8W9V3",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00089-CivicAddressWithPostalCodeAfterStreet,"525 Superior St V8W9V3 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00090-CivicAddressWithRuralRouteAtEnd,"525 Superior St, Victoria, BC RR13",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00091-CivicAddressWithRuralRouteAfterStreet,"525 Superior St RR3 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00092-CivicAddressWithRuralRouteStnAtEnd,"525 Superior St, Victoria, BC RR3 STN A",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00093-CivicAddressWithRuralRouteStnAfterStreet,"525 Superior St RR3 STN A Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00094-CivicAddressWithUnabbreviatedRuralRoute,"525 Superior St Rural Route 3 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00095-CivicAddresswithPostBoxStnNoStreet,"PO BOX 283 STN A Victoria BC",LOCALITY,"Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,F,T
-00096-CivicAddressWithPostBoxStnAtEnd,"525 Superior St PO BOX 283 STN A Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00097-CivicAddressWithPostBoxStnAfterStreet,"525 Superior St, Victoria, BC PO BOX 283 STN A",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00098-CivicAddresswithPostBoxNoStreet,"PO BOX 283 Victoria BC",LOCALITY,"Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,F,T
-00099-CivicAddressWithPostBoxAtEnd,"525 Superior St PO BOX 283 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00100-CivicAddressWithPostBoxAfterStreet,"525 Superior St, Victoria, BC PO BOX 283",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00101-CivicAddresswithBoxNoStreet,"BOX 283 Victoria BC",LOCALITY,"Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00102-CivicAddressWithBoxAtEnd,"525 Superior St BOX 283 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00103-CivicAddressWithBoxAfterStreet,"525 Superior St, Victoria, BC BOX 283",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
+00075-CivicAddressUnknownStreetType,"561 salmon Ave, North Saanich, BC",BLOCK,"561 Salmon Rd, North Saanich, BC","[STREET_TYPE.notMatched]",R,,,T,T
+00076-CivicAddressUnknownStreetName,"561 samson Rd, North Saanich, BC",CIVIC_NUMBER,"561 Salmon Rd, North Saanich, BC","[STREET_NAME.spelledWrong]",R,,,F,F
+00077-CivicAddressUnknownCivicNumber,"60000 Hwy 97B SE Salmon Arm BC",STREET,"Hwy 97B SE, Salmon Arm, BC",[CIVIC_NUMBER.notInAnyBlock:10],R,,,F,F
+00078-CivicAddressUnknownUnitDescriptor,"ABODE 128 -- 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[],R,,,T,T
+00079-CivicAddressStreetDirectionForUndirectedStreet,"109 Quarry Dr W Salt Spring Island BC",CIVIC_NUMBER,"109 Quarry Dr, Salt Spring Island, BC",[STREET_DIRECTION.notMatched:2],R,,,T,T
+00080-CivicAddressWithMailBagAtEnd,"525 Superior St, Victoria, BC MAILBAG 300",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00081-CivicAddressWithMailBagAfterStreet,"525 Superior St MAILBAG 300 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00082-CivicAddressWithBagAtEnd,"525 Superior St, Victoria, BC BAG 300",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00083-CivicAddressWithBagAfterStreet,"525 Superior St BAG 300 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00084-CivicAddressWithCompAtEnd,"525 Superior St, Victoria, BC COMP 300",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00085-CivicAddressWithCompAfterStreet,"525 Superior St COMP 300 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00086-CivicAddressWithLcdAtEnd,"525 Superior St, Victoria, BC LCD 300",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00087-CivicAddressWithLcdAfterStreet,"525 Superior St LCD 300 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00088-CivicAddressWithPostalCodeAtEnd,"525 Superior St, Victoria, BC V8W9V3",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00089-CivicAddressWithPostalCodeAfterStreet,"525 Superior St V8W9V3 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00090-CivicAddressWithRuralRouteAtEnd,"525 Superior St, Victoria, BC RR13",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00091-CivicAddressWithRuralRouteAfterStreet,"525 Superior St RR3 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00092-CivicAddressWithRuralRouteStnAtEnd,"525 Superior St, Victoria, BC RR3 STN A",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00093-CivicAddressWithRuralRouteStnAfterStreet,"525 Superior St RR3 STN A Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00094-CivicAddressWithUnabbreviatedRuralRoute,"525 Superior St Rural Route 3 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00095-CivicAddresswithPostBoxStnNoStreet,"PO BOX 283 STN A Victoria BC",LOCALITY,"Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,F,T
+00096-CivicAddressWithPostBoxStnAtEnd,"525 Superior St PO BOX 283 STN A Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00097-CivicAddressWithPostBoxStnAfterStreet,"525 Superior St, Victoria, BC PO BOX 283 STN A",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00098-CivicAddresswithPostBoxNoStreet,"PO BOX 283 Victoria BC",LOCALITY,"Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,F,T
+00099-CivicAddressWithPostBoxAtEnd,"525 Superior St PO BOX 283 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00100-CivicAddressWithPostBoxAfterStreet,"525 Superior St, Victoria, BC PO BOX 283",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00101-CivicAddresswithBoxNoStreet,"BOX 283 Victoria BC",LOCALITY,"Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00102-CivicAddressWithBoxAtEnd,"525 Superior St BOX 283 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
+00103-CivicAddressWithBoxAfterStreet,"525 Superior St, Victoria, BC BOX 283",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
 00104-CivicAddressWithFloorDesignator,"FLR 2 1175 Douglas St Victoria BC",CIVIC_NUMBER,"FLR 2 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",F,,,T,T
 00105-CivicAddressWithReverseFloorDesignator,"2nd FLR 1175 Douglas St Victoria BC",CIVIC_NUMBER,"FLR 2 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",F,,,T,T
 00106-CivicAddressWithUnabbreviatedFloorDesignator,"Floor 2 1175 Douglas St Victoria BC",CIVIC_NUMBER,"FLR 2 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",F,,,T,T
@@ -108,7 +108,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00108-SimpleInterpolatedCivicAddress,"5742 Malibu Terr Nanaimo BC",BLOCK,"5742 Malibu Terr, Nanaimo, BC",[],R,,,T,T
 00109-AdaptiveInterpolatedCivicAddress,"5686 Malibu Terr Nanaimo BC",BLOCK,"5686 Malibu Terr, Nanaimo, BC",[],R,,,T,T
 00110-CivicAddressWithKnownCivicNumber,"525 Superior St, Victoria, BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[],R,,,T,T
-00111-CivicAddressWithKnownMainEntrance,"525 Superior St, Victoria, BC",STREET,"525 Superior St, Victoria, BC",[],U,,,T,T
+00111-CivicAddressWithKnownMainEntrance,"525 Superior St, Victoria, BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[],R,,,T,T
 00112-CivicAddressWithKnownParcelPoint,"5706 Malibu Terr Nanaimo BC",CIVIC_NUMBER,"5706 Malibu Terr, Nanaimo, BC",[],R,,,T,T
 00113-CivicAddressWithKnownFrontDoorAndUnknownParcelPoint,BC,STREET,BC,"[UNRECOGNIZED.notAllowed:33 STREET_NAME.spelledWrong:2 LOCALITY.missing:10 STREET_TYPE.missing:6 PROVINCE.missing:1 MAX_RESULTS.too_low_to_include_all_best_matches:0]",T,,,T,T
 00114-CivicAddressWithUnKnownFrontDoorAndKnownParcelPoint,"5712 Malibu Terr Nanaimo BC",CIVIC_NUMBER,"5712 Malibu Terr, Nanaimo, BC",[],R,,,T,T
@@ -124,7 +124,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00124-IntersectionAddressWithoutProvinceCode,"Pandora Ave and Blanshard St Victoria",INTERSECTION,"Blanshard St and Pandora Ave, Victoria, BC",[PROVINCE.missing:1],F,,,T,T
 00125-IntersectionAddressWithProvinceName,"Pandora Ave and Blanshard St Victoria British Columbia",INTERSECTION,"Blanshard St and Pandora Ave, Victoria, BC",[],R,,,T,T
 00126-IntersectionAddressWrongLocality,"gorge rd e and douglas st Saanich bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_NAME.notMatched:12 LOCALITY.isAlias:4]",F,,,T,T
-00127-IntersectionAddressWrongStreetType,"gorge st e and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BCC","[STREET_TYPE.notMatched:3 STREET_NAME.notMatched:12]",F,,,F,F
+00127-IntersectionAddressWrongStreetType,"gorge st e and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_TYPE.notMatched STREET_NAME.notMatched]",R,,,F,F
 00128-IntersectionAddressWrongStreetDirection,"gorge rd w and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_DIRECTION.notMatched:2 STREET_NAME.notMatched:12]",F,,,F,F
 00129-IntersectionAddressUnknownLocality,"gorge rd and douglas st bardville bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_TYPE.notMatched:3 STREET_NAME.isAlias:1 STREET_NAME.spelledWrong:2 STREET_NAME.spelledWrong:2 LOCALITY.missing:10]",F,,,F,F
 00130-IntersectionAddressUnknownStreetDirection,"gorge rd n and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_DIRECTION.notMatched:2 STREET_NAME.notMatched:12]",F,,,F,F
@@ -452,6 +452,6 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00452-StreetNameCompoundWordSeparated,"8514 Horse Shoe Bay Rd, Anglemont, BC",CIVIC_NUMBER,"8514 Horseshoe Bay Rd, Anglemont, BC",[],F,,,T,T
 00453-NonStandardStreetTypeAbbreviation,"2908 Hwy 99, Mot Currie, BC",CIVIC_NUMBER,"2908 Hwy 99, Mt Currie, BC",[],C,,102,T,T
 00454-civicAddressWithUnitandUnknownSiteName,"UNIT 170 Happy House -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched],F,,,T,T
-00455-StreetNameWithMultipleSpellingMistakes,"Omenica St, Hazelton, BC",STREET,"Omineca St, Hazelton, BC",[],F,,,T,T
+00455-StreetNameWithMultipleSpellingMistakes,"Omenica St, Hazelton, BC",STREET,"Omineca St, Hazelton, BC",[],R,,,T,T
 00456-NonStandardStreetTypeAbbreviation,"134 E 15th St, Nvan, BC",CIVIC_NUMBER,"134 E 15th St, North Vancouver, BC",[],C,,102,T,T
 00457-NonStandardStreetTypeAbbreviation,"2248 McAllister Ave, Poco, BC",CIVIC_NUMBER,"2248 McAllister Ave, Port Coquitlam, BC",[],C,,102,T,T

@@ -23,14 +23,16 @@ public class Locality {
 	private final int id;
 	private final String name;
 	private final LocalityType type;
+	private final String electoralArea;
 	private final StateProvTerr stateProvTerr;
 	private final Point location;
 	
-	public Locality(int id, String name, LocalityType type, StateProvTerr stateProvTerr,
+	public Locality(int id, String name, LocalityType type, String electoralArea, StateProvTerr stateProvTerr,
 			Point location) {
 		this.id = id;
 		this.name = name;
 		this.type = type;
+		this.electoralArea = electoralArea;
 		this.stateProvTerr = stateProvTerr;
 		this.location = location;
 	}
@@ -45,6 +47,10 @@ public class Locality {
 	
 	public LocalityType getType() {
 		return type;
+	}
+	
+	public String getElectoralArea() {
+		return electoralArea;
 	}
 	
 	public StateProvTerr getStateProvTerr() {

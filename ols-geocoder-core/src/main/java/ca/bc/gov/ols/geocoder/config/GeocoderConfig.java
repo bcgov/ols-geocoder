@@ -40,7 +40,7 @@ import ca.bc.gov.ols.geocoder.data.enumTypes.MatchPrecision;
 import ca.bc.gov.ols.util.GeomParseUtil;
 
 public class GeocoderConfig {
-	public static final String VERSION = "4.0.2";
+	public static final String VERSION = "4.1.0";
 	public static final String LOGGER_PREFIX = "BGEO.";
 	public static final PrecisionModel BASE_PRECISION_MODEL = new PrecisionModel(1000);
 	private static final Logger logger = LoggerFactory.getLogger(LOGGER_PREFIX
@@ -49,7 +49,7 @@ public class GeocoderConfig {
 	public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	public static final LocalDate NOT_RETIRED_DATE = LocalDate.parse("9999-12-31", DATE_FORMATTER);
-
+	
 	protected GeocoderConfigurationStore configStore;
 	protected int baseSrsCode = -1;
 	protected Polygon baseSrsBounds;
@@ -256,11 +256,9 @@ public class GeocoderConfig {
 				(int)Math.round(matchFaultPenalties.get("OCCUPANT_NAME.partialMatch") * coefficient));
 	}
 
-	public MatchFault getUnrecognizedMatchFault(List<String> nonWords) {
+	public MatchFault getUnrecognizedMatchFault(String unrecognized) {
 		// penalty value is the base penalty plus 10% for each word
-		return new MatchFault(String.join(" ", nonWords), MatchFault.MatchElement.UNRECOGNIZED, "notAllowed",
-				(int)Math.round(matchFaultPenalties.get("UNRECOGNIZED.notAllowed")
-						* (1 + (0.1 * nonWords.size()))));
+		return new MatchFault(unrecognized, MatchFault.MatchElement.UNRECOGNIZED, "notAllowed", matchFaultPenalties.get("UNRECOGNIZED.notAllowed"));
 	}
 
 	public MatchFault getMatchFault(String text, MatchElement element, String fault) {
@@ -416,6 +414,7 @@ public class GeocoderConfig {
 		matchFaultPenalties.put("LOCALITY.missing", 10);
 		matchFaultPenalties.put("LOCALITY.spelledWrong", 2);
 		matchFaultPenalties.put("LOCALITY.partialMatch", 1);
+		matchFaultPenalties.put("LOCALITY.partialMatchToAlias", 30);
 
 		matchFaultPenalties.put("PROVINCE.notMatched", 1);
 		matchFaultPenalties.put("PROVINCE.missing", 1);
@@ -423,7 +422,7 @@ public class GeocoderConfig {
 
 		matchFaultPenalties.put("POSTAL_ADDRESS_ELEMENT.notAllowed", 1);
 
-		matchFaultPenalties.put("UNRECOGNIZED.notAllowed", 30);
+		matchFaultPenalties.put("UNRECOGNIZED.notAllowed", 5);
 
 		matchFaultPenalties.put("MAX_RESULTS.too_low_to_include_all_best_matches", 0);
 
