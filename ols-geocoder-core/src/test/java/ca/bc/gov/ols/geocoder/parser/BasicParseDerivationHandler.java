@@ -38,5 +38,10 @@ public class BasicParseDerivationHandler implements ParseDerivationHandler {
 	public List<ParseDerivation> getDerivations() {
 		return derivations;
 	}
+
+	@Override
+	public int getBestScore() {
+		return 0;
+	}
 	
 }

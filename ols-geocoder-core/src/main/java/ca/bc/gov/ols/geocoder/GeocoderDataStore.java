@@ -15,6 +15,8 @@
  */
 package ca.bc.gov.ols.geocoder;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,6 +32,23 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Stream;
 
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.document.TextField;
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.store.Directory;
+import org.apache.lucene.store.MMapDirectory;
+import org.apache.lucene.util.IOUtils;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LineString;
@@ -78,15 +97,16 @@ import ca.bc.gov.ols.geocoder.data.enumTypes.PositionalAccuracy;
 import ca.bc.gov.ols.geocoder.data.enumTypes.Side;
 import ca.bc.gov.ols.geocoder.data.indexing.BlockFaceIntervalTree;
 import ca.bc.gov.ols.geocoder.data.indexing.InvertedIndex;
+import ca.bc.gov.ols.geocoder.data.indexing.InvertedIndex.InvertedIndexBuilder;
 import ca.bc.gov.ols.geocoder.data.indexing.KDTree;
 import ca.bc.gov.ols.geocoder.data.indexing.MisspellingOf;
 import ca.bc.gov.ols.geocoder.data.indexing.NameLookupTrie;
 import ca.bc.gov.ols.geocoder.data.indexing.PartialTagIndex;
 import ca.bc.gov.ols.geocoder.data.indexing.TagIndex;
+import ca.bc.gov.ols.geocoder.data.indexing.TrieWordMap;
 import ca.bc.gov.ols.geocoder.data.indexing.WordClass;
 import ca.bc.gov.ols.geocoder.data.indexing.WordMap;
 import ca.bc.gov.ols.geocoder.data.indexing.WordMapBuilder;
-import ca.bc.gov.ols.geocoder.data.indexing.InvertedIndex.InvertedIndexBuilder;
 import ca.bc.gov.ols.geocoder.datasources.GeocoderDataSource;
 import ca.bc.gov.ols.geocoder.datasources.GeocoderDataSourceFactory;
 import ca.bc.gov.ols.geocoder.dra.DraLexicalRules;
@@ -103,6 +123,7 @@ import ca.bc.gov.ols.geocoder.util.GeocoderUtil;
 import ca.bc.gov.ols.rowreader.DateType;
 import ca.bc.gov.ols.rowreader.RowReader;
 import ca.bc.gov.ols.util.ArraySet;
+import ca.bc.gov.ols.util.StopWatch;
 import gnu.trove.iterator.TIntObjectIterator;
 import gnu.trove.map.hash.THashMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
@@ -121,8 +142,8 @@ import gnu.trove.set.hash.THashSet;
  * @author chodgson
  */
 public class GeocoderDataStore {
-	private static final Logger logger = LoggerFactory.getLogger(GeocoderConfig.LOGGER_PREFIX
-			+ GeocoderDataStore.class.getCanonicalName());
+	private static final Logger logger = LoggerFactory.getLogger(GeocoderConfig.LOGGER_PREFIX +
+			GeocoderDataStore.class.getCanonicalName());
 	
 	private GeocoderDataSource dataSource;
 	
@@ -133,6 +154,12 @@ public class GeocoderDataStore {
 	
 	private EnumSet<GeocoderFeature> featureSet = EnumSet.allOf(GeocoderFeature.class);
 
+	private Analyzer analyzer;
+	private Directory luceneIndex;
+	private DirectoryReader ireader;
+	private IndexSearcher isearcher;
+	private MultiFieldQueryParser parser;
+	
 	/*
 	 * Map from Intersection UUID to Intersection object, used for geocode lookups
 	 */
@@ -314,11 +341,12 @@ public class GeocoderDataStore {
 		abbrMappings = buildAbbreviationMappings(wordMapBuilder);
 		TIntObjectHashMap<ISite> siteIdMap = new TIntObjectHashMap<ISite>();
 		stateProvTerrByName = buildStateProvTerrMap(wordMapBuilder);
-		localityNameTrie = buildLocalityNameTrie(wordMapBuilder);
-		TIntObjectHashMap<String> electoralAreaIdMap = buildElectoralAreaIdMap();
+		TIntObjectHashMap<String> electoralAreaById = buildElectoralAreaIdMap();
+		Map<String, Set<LocalityMapTarget>> localityMappings = buildLocalityNameTrie(electoralAreaById, wordMapBuilder);
+		localityNameTrie = new NameLookupTrie<LocalityMapTarget>(localityMappings);
 		TIntObjectHashMap<StreetIntersection> intersectionIdMap = buildIntersectionIdMap();
 		TIntObjectHashMap<List<AccessPoint>> accessPointMap = buildAccessPointAndSiteMaps(wordMapBuilder, siteIdMap);
-		streetNameTrie = buildStreetNameTrie(wordMapBuilder, accessPointMap, intersectionIdMap, electoralAreaIdMap);
+		streetNameTrie = buildStreetNameTrie(wordMapBuilder, accessPointMap, intersectionIdMap, electoralAreaById);
 
 		// should be done reading from config now
 		dataSource.getConfig().close();
@@ -357,7 +385,8 @@ public class GeocoderDataStore {
 		} else {
 			occupantKDTree = new KDTree<IOccupant>(new ArrayList<IOccupant>(occupantsByUuid.values()));
 		}
-		wordMap = wordMapBuilder.build();
+		wordMap = new TrieWordMap(wordMapBuilder.getWordMap());
+		//wordMap = new LuceneWordMap(wordMapBuilder.getWordList(), wordMapBuilder.getWordMap());
 		wordMapBuilder = null;
 		dateMap = null;
 		siteIdMap = null;
@@ -374,8 +403,102 @@ public class GeocoderDataStore {
 		} else {
 			logger.info("Data file dates are consistent.");
 		}
+		//buildLuceneIndex(accessPointMap, localityMappings);
 	}
 	
+	private void buildLuceneIndex(TIntObjectHashMap<List<AccessPoint>> accessPointMap, Map<String, Set<LocalityMapTarget>> localityMappings) {
+		Map<Locality, Set<String>> invertedLocalityMap = new THashMap<Locality, Set<String>>();
+		for(Entry<String, Set<LocalityMapTarget>> entry : localityMappings.entrySet()) {
+			String fromStr = entry.getKey();
+			for(LocalityMapTarget locMap : entry.getValue()) {
+				Locality loc = locMap.getLocality();
+				Set<String> strings = invertedLocalityMap.get(loc);
+				if(strings == null) {
+					strings = new THashSet<String>();
+					invertedLocalityMap.put(loc, strings);
+				}
+				strings.add(fromStr);
+			}
+		}
+		try {
+			logger.info("Lucene Index build starting...");
+			StopWatch sw = new StopWatch();
+			sw.start();
+			analyzer = new StandardAnalyzer();
+			Path indexPath = Path.of("C:/apps/bgeo/index/");
+			IOUtils.rm(indexPath);
+			luceneIndex = new MMapDirectory(indexPath);
+	
+			IndexWriterConfig config = new IndexWriterConfig(analyzer);
+			int baseAddrs = 0;
+			int altAddrs = 0;
+			try(IndexWriter w = new IndexWriter(luceneIndex, config)) {
+				for(List<AccessPoint> aps : accessPointMap.valueCollection()) {
+					for(AccessPoint ap : aps) {
+						SiteAddress addr = new SiteAddress(ap.getSite(), ap);
+					    baseAddrs++;
+					    Locality loc = null;
+					    if(ap instanceof CivicAccessPoint) {
+					    	loc = ((CivicAccessPoint) ap).getBlockFace().getLocality();
+					    } else if(ap instanceof NonCivicAccessPoint) {
+					    	loc = ((NonCivicAccessPoint) ap).getLocality();
+					    }
+					    if(loc != null) {
+					    	Set<String> locMaps = invertedLocalityMap.get(loc);
+					    	if(locMaps != null) {
+					    		for(String locMap: locMaps) {
+					    			SiteAddress altAddr = new SiteAddress(addr);
+					    			addr.setLocalityName(locMap);
+								    w.addDocument(docFromAddr(altAddr));
+								    altAddrs++;
+					    		}
+					    	}
+					    }
+					}
+				}
+				logger.info("Base addresses added to index: {} ; alternate addresses: {}", baseAddrs, altAddrs);
+				w.close();
+			}
+			
+			sw.stop();
+			logger.info("Lucene Index built in: " + sw.getElapsedTimeSecs() + "s");
+			ireader = DirectoryReader.open(luceneIndex);
+		    isearcher = new IndexSearcher(ireader);
+		    //QueryParser parser = new QueryParser("address", analyzer);
+		    parser = new MultiFieldQueryParser(new String[] {"streetAddress", "locality", "province"}, analyzer);
+
+		} catch(IOException ioe) {
+			throw new RuntimeException(ioe);
+		} 
+	}
+	
+	private Document docFromAddr(SiteAddress addr) {
+		Document doc = new Document();
+	    doc.add(new Field("streetAddress", addr.getStreetAddressString(), TextField.TYPE_STORED));
+	    doc.add(new Field("locality", addr.getLocalityName(), TextField.TYPE_STORED));
+	    doc.add(new Field("province", addr.getStateProvTerr(), TextField.TYPE_STORED));
+	    return doc;
+	}
+	
+	public List<String> queryLuceneIndex(String queryString) {
+		try {
+		    Query query = parser.parse(queryString);
+		    TopDocs topDocs = isearcher.search(query, 10);
+		    ScoreDoc[] hits = topDocs.scoreDocs;
+		    List<String> results = new ArrayList<String>(hits.length);
+		    // Iterate through the results:
+		    for (int i = 0; i < hits.length; i++) {
+		    	Document hitDoc = isearcher.doc(hits[i].doc);
+		    	results.add(hitDoc.get("streetAddress") + ", " + hitDoc.get("locality") + ", " + hitDoc.get("province"));
+		    }
+		    return results;
+		} catch(IOException ioe) {
+			throw new RuntimeException(ioe);
+		} catch (ParseException pe) {
+			throw new RuntimeException(pe);
+		}
+	}
+
 	private TIntObjectHashMap<StreetIntersection> buildIntersectionIdMap() {
 		// build a map from the intersection Id to the Intersection object
 		TIntObjectHashMap<StreetIntersection> intMap = new TIntObjectHashMap<StreetIntersection>();
@@ -419,8 +542,8 @@ public class GeocoderDataStore {
 		return sptMap;
 	}
 	
-	private NameLookupTrie<LocalityMapTarget> buildLocalityNameTrie(
-			WordMapBuilder wordMapBuilder) {
+	private Map<String, Set<LocalityMapTarget>> buildLocalityNameTrie(
+			TIntObjectHashMap<String> electoralAreaById, WordMapBuilder wordMapBuilder) {
 		// Build a map from locality names to a set of the LocalityMappings the name maps to
 		Map<String, Set<LocalityMapTarget>> localityMappings = new THashMap<String, Set<LocalityMapTarget>>();
 		localityIdMap = new THashMap<Integer, Locality>();
@@ -431,6 +554,7 @@ public class GeocoderDataStore {
 			int id = rr.getInt("locality_id");
 			String unMappedName = rr.getString("locality_name");
 			LocalityType localityType = LocalityType.convert(rr.getInteger("locality_type_id"));
+			int ea = rr.getInt("electoral_area_id");
 			int stateProvTerrId = rr.getInt("state_prov_terr_id");
 			Point point = rr.getPoint();
 			String mappedName = mapWords(unMappedName).toUpperCase();
@@ -441,7 +565,7 @@ public class GeocoderDataStore {
 				localityMappings.put(mappedName, names);
 			}
 			Locality locality = new Locality(id, unMappedName, localityType,
-					stateProvTerrById.get(stateProvTerrId), point);
+					electoralAreaById.get(ea), stateProvTerrById.get(stateProvTerrId), point);
 			localityIdMap.put(id, locality);
 			names.add(new LocalityMapTarget(100, locality));
 		}
@@ -491,7 +615,7 @@ public class GeocoderDataStore {
 		}
 		
 		// build a trie using the map
-		return new NameLookupTrie<LocalityMapTarget>(localityMappings);
+		return localityMappings;
 	}
 	
 	private TIntObjectHashMap<String> buildElectoralAreaIdMap() {

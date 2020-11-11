@@ -17,6 +17,7 @@ package ca.bc.gov.ols.geocoder;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -35,6 +36,8 @@ import ca.bc.gov.ols.geocoder.data.StreetName;
 import ca.bc.gov.ols.geocoder.data.StreetNameBody;
 import ca.bc.gov.ols.geocoder.data.enumTypes.MatchPrecision;
 import ca.bc.gov.ols.geocoder.data.indexing.MisspellingOf;
+import ca.bc.gov.ols.geocoder.data.indexing.UniquePriorityQueue;
+import ca.bc.gov.ols.geocoder.data.indexing.Word;
 import ca.bc.gov.ols.geocoder.parser.ParseDerivation;
 import ca.bc.gov.ols.geocoder.parser.ParseDerivationHandler;
 import ca.bc.gov.ols.geocoder.util.GeocoderUtil;
@@ -46,14 +49,17 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 	private GeocodeQuery query;
 	private Geocoder geocoder;
 	private GeocoderDataStore datastore;
-	private List<GeocodeMatch> matches;
+	//private List<GeocodeMatch> matches;
+	private UniquePriorityQueue<GeocodeMatch> matches;
 	private int derivationCount = 0;
+	private int bestScore = 0;
 	
 	public GeocodeResultsHandler(GeocodeQuery query, Geocoder geocoder) {
 		this.query = query;
 		this.geocoder = geocoder;
 		this.datastore = geocoder.getDatastore();
-		matches = new ArrayList<GeocodeMatch>();
+		//matches = new ArrayList<GeocodeMatch>();
+		matches = new UniquePriorityQueue<GeocodeMatch>(query.getMaxResults() + 1, GeocodeMatch.SCORE_COMPARATOR.reversed());
 	}
 	
 	@Override
@@ -77,20 +83,20 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 			for(int i = 0; i <= numIntersectionSeparators; i++) {
 				boolean streetTypePrefix = true;
 				String streetType = pd.getPartBySeparator("streetPreType", i, "intersectionSeparator");
-				int streetTypeMS = pd.getErrorBySeparator("streetPreType", i, "intersectionSeparator");
+				List<MisspellingOf<Word>> streetTypeMS = pd.getMisspellingsBySeparator("streetPreType", i, "intersectionSeparator");
 				if(streetType == null) {
 					streetTypePrefix = false;
 					streetType = pd.getPartBySeparator("streetPostType", i, "intersectionSeparator");				
-					streetTypeMS = pd.getErrorBySeparator("streetPostType", i, "intersectionSeparator");
+					streetTypeMS = pd.getMisspellingsBySeparator("streetPostType", i, "intersectionSeparator");
 				}
 
 				boolean streetDirectionPrefix = true;
 				String streetDirection = pd.getPartBySeparator("streetPreDirection", i, "intersectionSeparator");
-				int streetDirectionMS = pd.getErrorBySeparator("streetPreDirection", i, "intersectionSeparator");
+				List<MisspellingOf<Word>> streetDirectionMS = pd.getMisspellingsBySeparator("streetPreDirection", i, "intersectionSeparator");
 				if(streetDirection == null) {
 					streetDirectionPrefix = false;
 					streetDirection = pd.getPartBySeparator("streetPostDirection", i, "intersectionSeparator");				
-					streetDirectionMS = pd.getErrorBySeparator("streetPostDirection", i, "intersectionSeparator");
+					streetDirectionMS = pd.getMisspellingsBySeparator("streetPostDirection", i, "intersectionSeparator");
 				}
 
 				streetNames[i] = new StreetName(
@@ -99,11 +105,11 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 						pd.getPartBySeparator("streetQualifier", i, "intersectionSeparator"),
 						streetTypePrefix, streetDirectionPrefix, null);
 				misspellings.setStreetNameMS(i,
-						pd.getErrorBySeparator("streetName", i, "intersectionSeparator"));
+						pd.getMisspellingsBySeparator("streetName", i, "intersectionSeparator"));
 				misspellings.setStreetTypeMS(i, streetTypeMS);
 				misspellings.setStreetDirectionMS(i,streetDirectionMS);
 				misspellings.setStreetQualifierMS(i,
-						pd.getErrorBySeparator("streetQualifier", i, "intersectionSeparator"));
+						pd.getMisspellingsBySeparator("streetQualifier", i, "intersectionSeparator"));
 				if(i > 0) {
 					intersectionNameBuilder.append(" and ");
 				}
@@ -111,9 +117,9 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 			}
 			intAddr.setName(intersectionNameBuilder.toString());
 			intAddr.setLocalityName(pd.getPart("locality"));
-			misspellings.setLocalityMS(pd.getError("locality"));
+			misspellings.setLocalityMS(pd.getMisspellings("locality"));
 			intAddr.setStateProvTerr(pd.getPart("stateProvTerr"));
-			misspellings.setStateProvTerrMS(pd.getError("stateProvTerr"));
+			misspellings.setStateProvTerrMS(pd.getMisspellings("stateProvTerr"));
 			String streetName1 = streetNames[0].getBody();
 			Collection<MisspellingOf<StreetNameBody>> nameBodyMatches = datastore
 					.getStreetNameBodies(streetName1);
@@ -131,15 +137,18 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 							address, MatchPrecision.INTERSECTION,
 							datastore.getConfig().getMatchPrecisionPoints(
 									MatchPrecision.INTERSECTION));
-					if(pd.getNonWords().size() > 0) {
-						match.addFault(datastore.getConfig().getUnrecognizedMatchFault(pd.getNonWords()));
-					}
+//					if(pd.getNonWords().size() > 0) {
+//						match.addFault(datastore.getConfig().getUnrecognizedMatchFault(pd.getNonWords()));
+//					}
 					if(nameBodyMatch.getError() > 0) {
 						match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.STREET_NAME, "partialMatch"));
 					}
 					geocoder.scoreIntersectionMatch(intAddr, streetNames, intersection, match, misspellings);
 					if(query.pass(match)) {
 						matches.add(match);
+						if(match.getScore() > bestScore) {
+							bestScore = match.getScore();
+						}
 					}
 				}
 			}
@@ -155,7 +164,7 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 			if(unitNumber != null && !unitNumber.isEmpty()) {
 				if((unitNumberSuffix != null && !unitNumberSuffix.isEmpty())) {
 					addr.setUnitNumber(unitNumber);
-					misspellings.setUnitNumberMS(pd.getError("unitNumber"));
+					misspellings.setUnitNumberMS(pd.getMisspellings("unitNumber"));
 					addr.setUnitNumberSuffix(pd.getPart("unitNumberSuffix"));
 				} else {
 					// try to extract a suffix from the number
@@ -172,15 +181,15 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 			String floor = pd.getPart("floor");
 			if(unitDesignator != null) {
 				addr.setUnitDesignator(pd.getPart("unitDesignator"));
-				misspellings.setUnitDesignatorMS(pd.getError("unitDesignator"));
+				misspellings.setUnitDesignatorMS(pd.getMisspellings("unitDesignator"));
 			} else if(floor != null) {
 				addr.setUnitDesignator(pd.getPart("floor"));
-				misspellings.setUnitDesignatorMS(pd.getError("floor"));
+				misspellings.setUnitDesignatorMS(pd.getMisspellings("floor"));
 			}
 
 			addr.setOccupantName(pd.getPart("occupantName"));
 			addr.setSiteName(pd.getPart("siteName"));
-			misspellings.setSiteNameMS(pd.getError("siteName"));
+			misspellings.setSiteNameMS(pd.getMisspellings("siteName"));
 			
 			String part = pd.getPart("civicNumberWithAttachedSuffix");
 			if(part != null && !part.isEmpty()) {
@@ -194,41 +203,46 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 				addr.setCivicNumberSuffix(pd.getPart("civicNumberSuffix"));
 			}
 			addr.setStreetName(pd.getPart("streetName"));
-			misspellings.setStreetNameMS(pd.getError("streetName"));
+			misspellings.setStreetNameMS(pd.getMisspellings("streetName"));
 			
 			addr.setStreetTypePrefix(true);
 			String streetType = pd.getPart("streetPreType");
-			misspellings.setStreetTypeMS(pd.getError("streetPreType"));
+			misspellings.setStreetTypeMS(pd.getMisspellings("streetPreType"));
 			if(streetType == null) {
 				addr.setStreetTypePrefix(false);
 				streetType = pd.getPart("streetPostType");				
-				misspellings.setStreetTypeMS(pd.getError("streetPostType"));
+				misspellings.setStreetTypeMS(pd.getMisspellings("streetPostType"));
 			}
 			addr.setStreetType(streetType);
 
 			addr.setStreetDirectionPrefix(true);
 			String streetDirection = pd.getPart("streetPreDirection");
-			misspellings.setStreetDirectionMS(pd.getError("streetPreDirection"));
+			misspellings.setStreetDirectionMS(pd.getMisspellings("streetPreDirection"));
 			if(streetDirection == null) {
 				addr.setStreetDirectionPrefix(false);
 				streetDirection = pd.getPart("streetPostDirection");				
-				misspellings.setStreetDirectionMS(pd.getError("streetPostDirection"));
+				misspellings.setStreetDirectionMS(pd.getMisspellings("streetPostDirection"));
 			}
 			addr.setStreetDirection(streetDirection);
 
 			addr.setStreetQualifier(pd.getPart("streetQualifier"));
-			misspellings.setStreetQualifierMS(pd.getError("streetQualifier"));
+			misspellings.setStreetQualifierMS(pd.getMisspellings("streetQualifier"));
 			addr.setLocalityName(pd.getPart("locality"));
-			misspellings.setLocalityMS(pd.getError("locality"));
+			misspellings.setLocalityMS(pd.getMisspellings("locality"));
 			addr.setStateProvTerr(pd.getPart("stateProvTerr"));
-			misspellings.setStateProvTerrMS(pd.getError("stateProvTerr"));
+			misspellings.setStateProvTerrMS(pd.getMisspellings("stateProvTerr"));
 			if(pd.getPart("postalJunk") != null) {
 				faults.add(datastore.getConfig().getMatchFault(pd.getPart("postalJunk"),
 						MatchElement.POSTAL_ADDRESS_ELEMENT, "notAllowed"));
 			}
-			if(pd.getNonWords().size() > 0) {
-				faults.add(datastore.getConfig().getUnrecognizedMatchFault(pd.getNonWords()));
+			String unrecognized = pd.getPart("unrecognized");
+			if(unrecognized != null) {
+				faults.add(datastore.getConfig().getUnrecognizedMatchFault(unrecognized));
 			}
+				
+//			if(pd.getNonWords().size() > 0) {
+//				faults.add(datastore.getConfig().getUnrecognizedMatchFault(pd.getNonWords()));
+//			}
 			List<GeocodeMatch> results = geocoder.geocodeInternal(addr, query, faults, misspellings);
 			for(GeocodeMatch match : results) {
 				if(geocoder.canShortCircuit(query, match)) {
@@ -238,7 +252,12 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 					return false;
 				}
 			}
-			matches.addAll(results);
+			for(GeocodeMatch match : results) {
+				matches.add(match);
+				if(match.getScore() > bestScore) {
+					bestScore = match.getScore();
+				}
+			}
 		}
 		return true;
 	}
@@ -247,7 +266,16 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 		return derivationCount;
 	}
 	
+	public int getBestScore() {
+		return bestScore;
+	}
+	
 	public List<GeocodeMatch> getMatches() {
-		return matches;
+		List<GeocodeMatch> list = new ArrayList<GeocodeMatch>(matches.size());
+		while(!matches.isEmpty()) {
+			list.add(matches.poll());
+		}
+		Collections.reverse(list);
+		return list;
 	}
 }

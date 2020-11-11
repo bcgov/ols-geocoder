@@ -106,6 +106,7 @@ public class SearchResults {
 	 * 
 	 * @param query the query used to create these results
 	 * @param matches the results that matched the query
+	 * @param processingDate the date
 	 */
 	public SearchResults(GeocodeQuery query, List<GeocodeMatch> matches, LocalDate processingDate) {
 		this.queryAddress = query.getQueryAddress();
