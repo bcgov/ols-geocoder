@@ -27,8 +27,8 @@ Task|Status|Details
 ||Improve noise immunity| 1175 Douglas St back alley Victoria BC; back alley (between street and locality) is where much garbage is found so we taught v4.1 how to pick up the garbage
 ||Multiple spelling mistakes|Omenica/Omineca, Pimbreton/Pemberton
 ||In review|Locality hopping when a civic number is not in any block range
-||In review|Enhancing the handling of additional postal elements
-||In progress|Enhanced handling of c/o elements|In progress
+||In review|Improved handling of postal elements
+||In progress|Handling of c/o elements|In review
 ||In progress|Enhanced handling of site/occupant names in the address
 ||In progress|Removal of duplicate address elements especially locality
 ||In progress|Adjust geocoder match scoring system to more accurately reflect address match accuracy
