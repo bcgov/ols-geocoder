@@ -9,7 +9,7 @@ Task|Status|Details
 |Generate street aliases for numbered streets that have gaps in their names|In progress|For example, 1200 102 A St, Surrey, BC becomes an alias for 1200 102A St, Surrey, BC
 |Add address data from other sources such as address ranges from ITN|In Review| Data integration process extended to include all ITN address ranges
 |Add non-adjacent locality aliases identified in rejected address analysis to geocoder configuration data|In review|Non-adjacent aliases such as Victoria to Willis Point added to geocoder configuration data
-|Add abbreviations identified in rejected address analysis to geocoder configuration data|In review|In progress|Abbreviations added to geocoder configuration data
+|Add abbreviations identified in rejected address analysis to geocoder configuration data|In review|Abbreviations added to geocoder configuration data
 |Add verified addresses from our major clients to the DataBC Address Exception List|Not started| Don't expect to start until 4.1 released and clients trained in preparing reference addresses
 |Request simple changes to an individual client’s ETL where practical such as eliminating exact duplicates|Not started| Can't start until 4.1 complete.
 |Devise and suggest potential improvements to our clients’ workflows|In progress|Suggested that Health Ideas re-geocode failed addresses periodically to take advantage of continuous improvements in address and road network data
