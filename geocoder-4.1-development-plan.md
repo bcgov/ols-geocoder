@@ -4,7 +4,7 @@ Last updated November 3, 2020 by MR
 Task|Status|Details
 |---|---|---|
 |Add non-adjacent locality aliases identified in rejected address analysis to geocoder configuration data|In review|Non-adjacent aliases such as Victoria to Willis Point added to geocoder configuration data
-|Add abbreviations identified in rejected address analysis to geocoder configuration data|In review|In progress|Abbreviations added to geocoder configuration data
+|Add abbreviations identified in rejected address analysis to geocoder configuration data|In review|Abbreviations added to geocoder configuration data
 |Generate locality aliases for all adjacent localities|In review| Data integration process extended to generate and include aliases for all adjacent localities
 |Generate street aliases for glued and unglued street names|In review|Data integration process extended. For example, Hill Side Ave is an alias of Hillside Ave
 |Generate street aliases for street that have a directional word in their name|In review|Data integration process extended. For example, N Park St is an alias of North Park St
