@@ -10,8 +10,8 @@ Task|Status|Details
 |Request simple changes to an individual client’s ETL where practical such as eliminating exact duplicates|Not started| Can't start until 4.1 complete.
 |Devise and suggest potential improvements to our clients’ workflows|In progress|Suggested that Health Ideas re-geocode failed addresses periodically to take advantage of continuous improvements in address and road network data
 |||Potentially accept locality-level matches if locality has only one post-office. Provincial toponymist willing to work with us
-|Consult with clients to better understand their geocoding needs|In progress|Had follow-up discussions with MoH, MCFD, and BC EHS on providing CHSA of an address; all agreed it would be useful to business for reporting, analysis, and planning
-|||Conducted consultation with BC EHS who were in process of proposing a project to compute address CHSA so they asked for estimate and offered to pitch a funding request to their management
+|Consult with clients to better understand their geocoding needs|In progress|Had follow-up discussions with MoH, MCFD on providing CHSA of an address; all agreed it would be useful to business for reporting, analysis, and planning
+|||Had chat with BC EHS and they also need address CHSA for reporting, analysis, and planning
 |Provide client training|In progress| Ongoing one-on-one training with Health Ideas, MCFD, and Vital Stats about Geocoding scoring system and match accuracy metrics
 |Improve geocoder documentation|In progress|Added geocoder-4.1-development-plan (this document), OSM base-suitability assessment, and product vision. Previously added geocoder scoring guide and reference, batch geocoder registration, batch geocoder UAT process, rejected address examples, conceptual model of addressing,  unit descriptors, and abbreviations.
 |Improve location of rural localities|In progress|MOH requested moving point of a small town to its post office to improve CHSA resolution; Provincial toponymist agreed to work on this
