@@ -27,9 +27,9 @@ Task|Status|Details
 |Multiple spelling mistakes (parser)|In review|Omenica/Omineca, Pimbreton/Pemberton
 |Locality hopping when a civic number is not in any block range (parser)|In review
 |Improve handling of postal elements (parser)|In review
-|Ignore c/o elements|In review|
-|Improve handling of site/occupant names|In review|
-|Removal of duplicate address elements especially locality|In review|
+|Ignore c/o elements (parser)|In review|
+|Improve handling of site/occupant names (parser)|In review|
+|Removal of duplicate address elements especially locality (parser)|In review|
 |Adjust geocoder match scoring system to more accurately reflect address match accuracy (parser)|In progress
 |Add support for suffix matching (parser)|Not started| For example match George to Prince George
 |Improve fault traceability (parser)|In review|Can now see value of address element at fault (e.g., Roseway is an unknown streetType)
