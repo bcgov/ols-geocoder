@@ -23,16 +23,16 @@ Task|Status|Details
 |Look for common error patterns in rejected addresses|In progress|Used stratified random sampling to speed up analysis of thirteen million addresses from Health Ideas Warehouse; used sampling on MCFD data and confirmed results of previous analysis but found no new patterns.
 |Release plan|In Progress| v4.1 will have bronze, silver, and gold releases; only gold will be released to the public. Bronze will be delivered to Ministry this week.
 |Enhance geocoder parser to solve the common address problems identified by MCFD, MoH, Vital Stats, and our Rejected Address Analysis|In review|The address:<br><br>10 main st back alley garbage pimbreton bc<br><br> should be cleaned and corrected to:<br><br> 10 Main St, Mount Currie, BC<br><br> This requires correcting two spelling errors, aliasing to the correct locality, and picking up the garbage. For details, visit:<br><br> https://cmhodgson.github.io/ols-devkit/ols-demo/index.html?gc=rri&q=10+main+st+back+alley+garbage+pimbreton+bc <br><br> https://ssl.refractions.net/ols/pub/geocoder/addresses.html?maxResults=10&echo=true&brief=true&addressString=10+main+st+back+alley+garbage+pimbreton+bc <br> <br> The scoring system has been enhanced to show you the objects at fault for better traceability.
-||Improve noise immunity| 1175 Douglas St back alley Victoria BC; back alley (between street and locality) is where much garbage is found so we taught v4.1 how to pick up the garbage
-||Multiple spelling mistakes|Omenica/Omineca, Pimbreton/Pemberton
-||In review|Locality hopping when a civic number is not in any block range
-||In review|Improved handling of postal elements
-||In progress|Handling of c/o elements|In review
-||In progress|Improved handling of site/occupant names in the address
-||In progress|Removal of duplicate address elements especially locality
-||In progress|Adjust geocoder match scoring system to more accurately reflect address match accuracy
-||Not started|Suffixes not matching as in George/Prince George
-|Improve fault traceability|In review|Can now see value of address element at fault (e.g., Roseway is an unknown streetType)
-|Disambiguate locality-level bianyms|In review|An example of a bianym is Mill Bay on the Malahat and Mill Bay near Gincolith; requested by ICBC in June, 2020; proposed solution approved by Provincial Toponymist in Oct, 2020
+|Improve noise immunity (parser)|In review| 1175 Douglas St back alley Victoria BC; back alley (between street and locality) is where much garbage is found so we taught v4.1 how to pick up the garbage
+|Multiple spelling mistakes (parser)|In review|Omenica/Omineca, Pimbreton/Pemberton
+|Locality hopping when a civic number is not in any block range (parser)|In review
+|Improve handling of postal elements (parser)|In review
+|Ignore c/o elements|In review|
+|Improve handling of site/occupant names|In review|
+|Removal of duplicate address elements especially locality|In review|
+|Adjust geocoder match scoring system to more accurately reflect address match accuracy (parser)|In progress
+|Add support for suffix matching (parser)|Not started| For example match George to Prince George
+|Improve fault traceability (parser)|In review|Can now see value of address element at fault (e.g., Roseway is an unknown streetType)
+|Disambiguate locality-level bianyms (parser)|In review|An example of a bianym is Mill Bay on the Malahat and Mill Bay near Gincolith; requested by ICBC in June, 2020; proposed solution approved by Provincial Toponymist in Oct, 2020
 |Add support for named highway and freeway exits|In review|An example is Hwy 1 and Exit 366; requested by WildFire in 2018; solved by generating appropriate street aliases
 |Quality Assurance|In progress|Prepared test cases (480 in total); Prepared test framework including scripts for metrics calculation and stratified random sampling. Metrics calculation will be integrated with batch list address submitter so metrics will be calculated every time a client submits a batch job. MOH, MCFD, Vital Stats, and AG agreed to participate in UAT.
