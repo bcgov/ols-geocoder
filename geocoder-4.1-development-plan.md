@@ -8,6 +8,7 @@ Task|Status|Details
 |Generate locality aliases for all adjacent localities|In review| Data integration process extended to generate and include aliases for all adjacent localities
 |Generate street aliases for glued and unglued street names|In review|Data integration process extended. For example, Hill Side Ave is an alias of Hillside Ave
 |Generate street aliases for streets that have a directional word in their name|In review|Data integration process extended. For example, N Park St is an alias of North Park St
+|Generate street aliases for numbered streets that have gaps in their names|In progress|For example, 1200 102 A St, Surrey, BC becomes an alias for 1200 102A St, Surrey, BC
 |Add abbreviations identified in rejected address analysis to geocoder configuration data|In review|In progress|Abbreviations added to geocoder configuration data
 |Add address data from other sources such as address ranges from ITN|In Review| Data integration process extended to include all ITN address ranges
 |Add verified addresses from our major clients to the DataBC Address Exception List|Not started| Don't expect to start until 4.1 released and clients trained in preparing reference addresses
