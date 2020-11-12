@@ -29,7 +29,7 @@ Task|Status|Details
 ||In review|Locality hopping when a civic number is not in any block range
 ||In review|Improved handling of postal elements
 ||In progress|Handling of c/o elements|In review
-||In progress|Enhanced handling of site/occupant names in the address
+||In progress|Improved handling of site/occupant names in the address
 ||In progress|Removal of duplicate address elements especially locality
 ||In progress|Adjust geocoder match scoring system to more accurately reflect address match accuracy
 ||Not started|Suffixes not matching as in George/Prince George
