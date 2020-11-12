@@ -8,7 +8,6 @@ Task|Status|Details
 |Add address data from other sources such as address ranges from ITN|In Review| Data integration process extended to include all ITN address ranges
 |Generate street aliases for glued and unglued street names|In review|Data integration process extended. For example, Hill Side Ave is an alias of Hillside Ave
 |Generate street aliases for street that have a directional word in their name|In review|Data integration process extended. For example, N Park St is an alias of North Park St
-|Add address data from other sources such as address ranges from ITN|In Review| Data integration process extended to include all ITN address ranges
 |Add missing abbreviations to geocoder configuration data|In review|In progress|Abbreviations added to geocoder configuration data
 |Add verified addresses from our major clients to the DataBC Address Exception List|Not started| Don't expect to start until 4.1 released and clients trained in preparing reference addresses
 |Request simple changes to an individual client’s ETL where practical such as eliminating exact duplicates|Not started| Can't start until 4.1 complete.
