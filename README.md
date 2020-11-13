@@ -6,7 +6,7 @@ For more information about using the BC Address Geocoder and incorporating it in
 
 Document|Description|Audience
 |---:|---|---|
-[Geocoder Developer Guide](https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md)|Learn the online geocoder API through series of examples|app developers
+[Geocoder Developer Guide](https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md)|Learn the online geocoder API through series of examples|App developers
 [Single-line Address Format](https://github.com/bcgov/ols-geocoder/blob/gh-pages/singleLineAddressFormat.md)|Address format supported by the geocoder|Geocoder clients, app developers, address data suppliers
 [Glossary of Geocoder Terms](https://github.com/bcgov/ols-geocoder/blob/gh-pages/glossary.md)|Linked geocoder terms|geocoder clients, app developers, address data suppliers|
 [Understanding Address Match Scoring](https://github.com/bcgov/ols-geocoder/blob/gh-pages/understanding-match-scoring.md)|Explain how geocoder matches are ranked by the geocoder;|Geocoder clients, app developers, address data suppliers
