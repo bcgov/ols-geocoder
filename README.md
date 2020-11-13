@@ -18,4 +18,4 @@ Document|Description|Audience
 [Batch address list submitter](https://bcgov.github.io/ols-devkit/als/)|A Python script for automatically submitting a batch job of addresses to the batch geocoder and retrieving the results|Batch geocoder clients
 [OpenStreetMap Suitability Study](https://github.com/bcgov/ols-geocoder/blob/gh-pages/osm-suitability.md)|Is OSM a suitable base map to display addresses from the BC Address Geocoder?|App developers
 [OpenStreetMap Suitability Addresses](https://github.com/bcgov/ols-geocoder/blob/gh-pages/itn-osm-comparison.csv)|Random addresses selected for use in the OSM suitability study|App developers
-|Geocoder Standards Roadmap||data administrators, geocoder clients,app developers,address authorities, address data suppliers
+|Geocoder Standards Roadmap|(https://github.com/bcgov/ols-geocoder/blob/gh-pages/standards-roadmap.md)|data administrators, geocoder clients,app developers,address authorities, address data suppliers
