@@ -8,7 +8,7 @@ Document|Description|Audience
 |---:|---|---|
 [Geocoder Developer Guide](https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md)|Learn the online geocoder API through series of examples|App developers
 [Single-line Address Format](https://github.com/bcgov/ols-geocoder/blob/gh-pages/singleLineAddressFormat.md)|The single-string format of addresses supported by the geocoder|Geocoder clients, app developers, address data suppliers
-[Glossary of Geocoder Terms](https://github.com/bcgov/ols-geocoder/blob/gh-pages/glossary.md)|Linked geocoder terms|geocoder clients, app developers, address data suppliers|
+[Glossary of Geocoder Terms](https://github.com/bcgov/ols-geocoder/blob/gh-pages/glossary.md)|Defines all technical terms used by the geocoder|geocoder clients, app developers, address data suppliers|
 [Understanding Address Match Scoring](https://github.com/bcgov/ols-geocoder/blob/gh-pages/understanding-match-scoring.md)|Explains how geocoder matches are ranked by the geocoder;|Geocoder clients, app developers, address data suppliers
 [Geocoder Address Match Scoring Reference](https://github.com/bcgov/ols-geocoder/blob/gh-pages/faults.md)|Defines how addresses matches are ranked by the geocoder. A companion document to [Understanding Address Match Scoring](https://github.com/bcgov/ols-geocoder/blob/gh-pages/understanding-match-scoring.md)|Geocoder clients, app developers, address data suppliers
 [BC Physical Address Exchange Schema](https://github.com/bcgov/ols-geocoder/blob/gh-pages/BCAddressExchangeSchema.md)|Define a schema for the exchange of reference addresses between address authorities and geocoding service providers|Address authorities, app developers, geocoder developers and operators
