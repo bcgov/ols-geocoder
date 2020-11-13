@@ -6,7 +6,7 @@ For more information about using the BC Address Geocoder and incorporating it in
 
 Document|Description|Audience
 |---:|---|---|
-[License](https://github.com/bcgov/ols-geocoder/blob/gh-pages/license.md)|License under which all documents and source code in this repository are released under|All
+[License](https://github.com/bcgov/ols-geocoder/blob/gh-pages/LICENSE)|License under which all documents and source code in this repository are released under|All
 [Copyright Notices](https://github.com/bcgov/ols-geocoder/blob/gh-pages/notice.md)|Copyright notices of all software packaged used by this repository|All
 [Geocoder Developer Guide](https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md)|Learn the online geocoder API through series of examples|App developers
 [Single-line Address Format](https://github.com/bcgov/ols-geocoder/blob/gh-pages/singleLineAddressFormat.md)|The single-string format of addresses supported by the geocoder|Geocoder clients, app developers, address data suppliers
