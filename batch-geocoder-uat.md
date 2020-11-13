@@ -1,4 +1,4 @@
-# Batch Geocoder User Acceptance Testing
+# Batch Geocoder User Acceptance Test Plan
 If you are a current batch geocoder client and we have asked you to participate in the testing of a new release, this document describes what's involved so you effectively plan and execute acceptance testing.
 
 
