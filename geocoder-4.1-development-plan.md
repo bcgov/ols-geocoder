@@ -28,7 +28,7 @@ Task|Status|Details
 |Locality hopping when a civic number is not in any block range (parser)|In review
 |Improve handling of postal elements (parser)|In review
 |Ignore c/o elements (parser)|In review|
-|Improve handling of site/occupant names (parser)|In review|
+|Improve handling of site/occupant names (parser)|In progress|
 |Removal of duplicate address elements especially locality (parser)|In review|
 |Adjust geocoder match scoring system to more accurately reflect address match accuracy (parser)|In progress
 |Add support for suffix matching (parser)|Not started| For example match George to Prince George
