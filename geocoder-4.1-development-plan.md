@@ -2,7 +2,7 @@
 Last updated November 3, 2020 by MR
 
 Task|Status|Details
-|---|---|---|
+|-----------|---|---|
 |Generate locality aliases for all adjacent localities|In review| Data integration process extended to generate and include aliases for all adjacent localities
 |Generate street aliases for glued and unglued street names|In review|Data integration process extended. For example, Hill Side Ave becomes an alias of Hillside Ave
 |Generate street aliases for streets that have a directional word in their name|In review|Data integration process extended. For example, N Park St becomes an alias of North Park St
