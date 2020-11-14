@@ -21,7 +21,7 @@ The OLS Address Geocoder provides address cleaning, correction, completion, geoc
 - how close is the nearest school, firehall, hospital, or swimming pool?
 - are there any medical lab test facilities within three kilometres of a given medical drop-in clinic?
 
-Reverse geocoding finds the nearest address to a given point. Address cleaning and standardization allow you to deduplicate your data and link data records that have no key fields in common.
+Reverse geocoding finds the nearest address to a given point. Address cleaning and standardization allow you to improve address quality, remove duplicates, and link client records that have no explicit fields in common.
 
 #### History at the Province of British Columbia
 
