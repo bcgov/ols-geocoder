@@ -33,8 +33,10 @@ The BC Address Geocoder is based on authoritative address data provided by BC mu
 
 The BC Address Geocoder is free and open to end-users. Geocoder addresses are covered under an open government license and their locations can be used for any legal purpose. For example, the Geocoder has become quite popular in the real-estate sector. 
 
+#### Open Source
 The OLS Address Geocoder is released under the Apache 2.0 Open Source License with the intent of building a community of government partners to share the effort of code enhancement and maintenance, ideas, documentation, and advocacy. In its current form, the OLS Address Geocoder is most suitable to local, provincial, and federal governments of Canada since it is consistent with Canada Post address standards, deviating only where necessary such as the use of civic authority instead of postal community (e.g., civic authority of North Saanich instead of postal community of Victoria for a civic address in North Saanich).
 
+#### Architecture Overview
 The OLS Address Geocoder is designed to run behind an API Gateway such as [Kong](https://github.com/Kong/kong), which is a plugin for [NGINX](https://www.nginx.com/). Both Kong and NGNIX are open source projects. The OLS Address Geocoder API is RESTful which makes it easy to integrate into your application or API. The API is defined using the industry standard OpenAPI 3.0. OLS Address Geocoder exposes a batch geocoding API through the [Concurrent Processing Framework](https://bcgov.github.io/cpf/), which is another open source project of Open Location Services. The CPF supports a single scheduler, multiple worker architecture. Thanks to the CPF, the batch geocoder can process seven million addresses per hour and there are plans to double throughput in the next year.
 
 
@@ -42,8 +44,11 @@ The OLS Address Geocoder is designed to run behind an API Gateway such as [Kong]
 
 Road and ferry travel are essential to the business of government. Route planning can be used to find the best routes, determine proximity of clients to service delivery locations, and optimize goods and service delivery. Route planning is useful across a wide range of government business activities; from field operations to resource and emergency planning, to policy and law making.
 
+#### History
 Established as an open source (Apache 2.0) project in 2017, the OLS Route Planner is deployed at the Province of British Columbia as the BC Route Planner. Recognized as a common component suitable for use across government, The BC Route Planner, is currently in use by several government clients including the Ministry of Transportation and Infrastructure, Ministry of Health, Ministry of Citizen Services, BC Emergency Health Services, and TransLink.
 
+#### Open Source
 The OLS Route Planner is released under the Apache 2.0 Open Source License with the intent of building community of government partners to share the effort of enhancement and maintenance, ideas, documentation, and advocacy. The OLS Route Planner leverages other open source projects such as JSprit and Apache Spring.
 
+#### Architecture Overview
 The OLS Route Planner is designed to run behind an API Gateway such as [Kong](https://github.com/Kong/kong), which is a plugin for [NGINX](https://www.nginx.com/). Both Kong and NGNIX are open source projects. The OLS Route Planner API is RESTful which makes it easy it integrate into your application or API. The OLS Route Planner is defined using the industry standard OpenAPI 3.0.
