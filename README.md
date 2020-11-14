@@ -24,4 +24,5 @@ Document|Description|Audience
 [Geocoder Data Integration Pipeline Architecture](https://github.com/bcgov/ols-geocoder/blob/gh-pages/address-data-pipeline.md)|An overview of the geocoder reference data integration pipeline|Geocoder developers
 [OpenStreetMap Suitability Study](https://github.com/bcgov/ols-geocoder/blob/gh-pages/osm-suitability.md)|Is OSM a suitable base map to display addresses from the BC Address Geocoder?|App developers
 [OpenStreetMap Suitability Addresses](https://github.com/bcgov/ols-geocoder/blob/gh-pages/itn-osm-comparison.csv)|Random addresses selected for use in the OSM suitability study|App developers
+[Geocoder Roadmap](https://github.com/bcgov/ols-geocoder/blob/gh-pages/roadmap.md)|Planned major enhancements to the geocoder|Everyone
 [Geocoder Standards Roadmap](https://github.com/bcgov/ols-geocoder/blob/gh-pages/standards-roadmap.md)||Data administrators, geocoder clients,app developers,address authorities, address data suppliers
