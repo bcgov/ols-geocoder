@@ -15,15 +15,9 @@
  */
 package ca.bc.gov.ols.geocoder.data.indexing;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import junit.framework.TestCase;
 
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
@@ -31,35 +25,27 @@ import org.locationtech.jts.geom.Point;
 
 import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 import ca.bc.gov.ols.geocoder.data.ILocation;
-import ca.bc.gov.ols.geocoder.data.indexing.KDTree;
 import ca.bc.gov.ols.util.StopWatch;
+import junit.framework.TestCase;
 
 public class KDTreeTest extends TestCase {
 	
+	private static final int NUMBER_OF_POINTS = 12000000;
+	private static final int NUMBER_OF_TESTS = 40000;
+	
 	public void testKDTree() throws SQLException, ClassNotFoundException {
-		GeometryFactory gf = new GeometryFactory(GeocoderConfig.BASE_PRECISION_MODEL,
-				3005);
-		Class.forName("org.postgresql.Driver");
-		Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql://192.168.50.5/bgeo_load_test", "bgeo", "bgeo");
-		Statement stmt = conn.createStatement();
+		GeometryFactory gf = new GeometryFactory(GeocoderConfig.BASE_PRECISION_MODEL, 3005);
 		StopWatch sw = new StopWatch();
 		sw.start();
-		ResultSet rs = stmt
-				.executeQuery("Select st_x(geometry) as x, st_y(geometry) as y from bgeo_sites");
 		ArrayList<PointProxy> items = new ArrayList<PointProxy>();
-		ArrayList<PointProxy> items2 = new ArrayList<PointProxy>();
-		int nextId = 1;
-		while(rs.next()) {
-			Double x = rs.getDouble("x");
-			Double y = rs.getDouble("y");
-			PointProxy p = new PointProxy(nextId++, gf.createPoint(new Coordinate(x, y)));
+		//ArrayList<PointProxy> items2 = new ArrayList<PointProxy>();
+		for(int i = 1; i <= NUMBER_OF_POINTS; i++) {
+			PointProxy p = new PointProxy(i, gf.createPoint(new Coordinate(Math.random()*1000000, Math.random()*100000)));
 			items.add(p);
-			items2.add(p);
+			//items2.add(p);
 		}
-		conn.close();
 		sw.stop();
-		System.out.println(items.size() + " site points loaded in " + sw.getElapsedTime() + "ms");
+		System.out.println(items.size() + " random points generated in " + sw.getElapsedTime() + "ms");
 		System.out
 				.println("Memory in use after loading(Megs): "
 						+ ((Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1000000));
@@ -72,8 +58,7 @@ public class KDTreeTest extends TestCase {
 						+ ((Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1000000));
 		
 		sw.start();
-		int tests = 10000;
-		for(int i = 0; i < tests; i++) {
+		for(int i = 0; i < NUMBER_OF_TESTS; i++) {
 			List<PointProxy> results = tree.search(items.get(i).getLocation(), 10, null);
 			if(!results.get(0).getLocation().equals(items.get(i).getLocation())) {
 				System.out.println("ERROR!");
@@ -82,17 +67,12 @@ public class KDTreeTest extends TestCase {
 			}
 		}
 		sw.stop();
-		System.out.println("KDTree searched " + tests + " times in "
+		System.out.println("KDTree searched " + NUMBER_OF_TESTS + " times in "
 				+ sw.getElapsedTime() + "ms ("
-				+ (double)sw.getElapsedTime() / (double)tests + "ms/query)");
-		/*
-		 * Iterable<PrioNode<PointProxy>> results = tree.search(items.get(0).getLocation(), 10, -1);
-		 * 
-		 * for(PrioNode<PointProxy> result : results) { System.out.println("Point: " +
-		 * result.item.getLocation() + " priority: " + result.priority + " dist: " +
-		 * Math.sqrt(result.priority)); }
-		 */
+				+ (double)sw.getElapsedTime() / (double)NUMBER_OF_TESTS + "ms/query)");
 	}
+	
+
 }
 
 class PointProxy implements ILocation {

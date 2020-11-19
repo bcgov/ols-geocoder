@@ -34,6 +34,11 @@ public class LocationBase implements ILocation, CoordinateSequence {
 		}
 	}	
 
+	private LocationBase(double x, double y) {
+		this.x = x;
+		this.y = y;
+	}
+	
 	// ILocation
 	
 	@Override
@@ -135,7 +140,7 @@ public class LocationBase implements ILocation, CoordinateSequence {
 
 	@Override
 	public CoordinateSequence copy() {
-		throw new RuntimeException("This coordinate sequence cannot be copied!");
+		return new LocationBase(x,y);
 	}
 
 }

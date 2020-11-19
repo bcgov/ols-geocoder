@@ -100,18 +100,15 @@ public class DraLexicalRules extends LexicalRules
 				Pattern.compile(
 						"\\b[ABCEGHJ-NPRSTVXY][0-9][ABCEGHJ-NPRSTV-Z]\\s*[0-9][ABCEGHJ-NPRSTV-Z][0-9]\\b",
 						Pattern.CASE_INSENSITIVE),
-				// Postal Box eg: PO BOX ## STN ABC
-				Pattern.compile("\\b(PO\\s*)?BOX\\s*[0-9]+\\s*(STN\\s+[^\\s]*)?\\b(?!.*\\/FG)",
-						Pattern.CASE_INSENSITIVE),
-				// Mailbag eg MAILBAG ##
-				Pattern.compile("\\b(((MAIL)?BAG)|LCD)\\s*[0-9]+\\b(?!.*\\/FG)", Pattern.CASE_INSENSITIVE),
-				// Rural Routes/Mail Route/SS eg: RR ##
-				Pattern.compile("\\b(RR|MR|SS|RURAL ROUTE)\\s*[0-9]+\\s*(STN\\s+[^\\s]*)?\\b(?!.*\\/FG)",
-						Pattern.CASE_INSENSITIVE),
+				// Postal Box eg: PO BOX ##
+				Pattern.compile("\\b(P\\s*O\\s*)?BOX\\s*[0-9]+\\b(?!.*\\/FG)",Pattern.CASE_INSENSITIVE),
+				// Mailbag/Rural Routes/Mail Route/SS eg: MAILBAG ##, RR ## 
+				Pattern.compile("\\b(((MAIL)?BAG)|LCD|COMP|RR|MR|SS|RURAL\\s+ROUTE)\\s*[0-9]+\\b(?!.*\\/FG)", Pattern.CASE_INSENSITIVE),
 				// General Delivery Station eg: GD STN ABC
-				Pattern.compile("\\b(GD\\s*)?STN\\s+[^\\s]+\\b(?!.*\\/FG)", Pattern.CASE_INSENSITIVE),
+				Pattern.compile("\\b(POSTAL\\s+)?STN\\s+[^\\s]+\\b(?!.*\\/FG)", Pattern.CASE_INSENSITIVE),
 				// General Delivery
-				Pattern.compile("\\bGENERAL\\s+DELIVERY\\b", Pattern.CASE_INSENSITIVE)
+				Pattern.compile("\\b(GD|GENERAL\\s+DELIVERY)\\b", Pattern.CASE_INSENSITIVE),
+				Pattern.compile("\\bC\\/O\\b", Pattern.CASE_INSENSITIVE)
 		};
 		
 	}

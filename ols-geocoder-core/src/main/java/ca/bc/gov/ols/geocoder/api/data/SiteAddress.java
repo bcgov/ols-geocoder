@@ -295,6 +295,33 @@ public class SiteAddress extends GeocoderAddress {
 		return addressString;
 	}
 	
+	public String getStreetAddressString() {
+		StringBuilder sb = new StringBuilder(1024);
+		appendPart(sb, " ", GeocoderUtil.formatCivicNumber(civicNumber));
+		if(civicNumberSuffix != null) {
+			if(civicNumberSuffix.equals("1/2")) {
+				appendPart(sb, " ", civicNumberSuffix);
+			} else {
+				appendPart(sb, "", civicNumberSuffix);
+			}
+		}
+		if(Boolean.TRUE == isStreetDirectionPrefix) {
+			appendPart(sb, " ", streetDirection);
+		}
+		if(Boolean.TRUE == isStreetTypePrefix) {
+			appendPart(sb, " ", streetType);
+		}
+		appendPart(sb, " ", streetName);
+		if(Boolean.TRUE != isStreetTypePrefix) {
+			appendPart(sb, " ", streetType);
+		}
+		if(Boolean.TRUE != isStreetDirectionPrefix) {
+			appendPart(sb, " ", streetDirection);
+		}
+		appendPart(sb, " ", streetQualifier);
+		return sb.toString();		
+	}
+
 	protected String buildStreetAddressString() {
 		StringBuilder sb = new StringBuilder(1024);
 		appendPart(sb, " ", GeocoderUtil.formatCivicNumber(civicNumber));
