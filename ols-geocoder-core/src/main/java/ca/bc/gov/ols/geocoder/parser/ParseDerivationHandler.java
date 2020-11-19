@@ -18,4 +18,5 @@ package ca.bc.gov.ols.geocoder.parser;
 
 public interface ParseDerivationHandler {
 	public boolean handleDerivation(ParseDerivation pd);
+	public int getBestScore();
 }

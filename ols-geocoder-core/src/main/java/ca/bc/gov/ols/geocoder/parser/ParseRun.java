@@ -17,6 +17,10 @@ package ca.bc.gov.ols.geocoder.parser;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 import ca.bc.gov.ols.geocoder.data.indexing.MisspellingOf;
 import ca.bc.gov.ols.geocoder.data.indexing.Word;
 import ca.bc.gov.ols.geocoder.data.indexing.WordClass;
@@ -31,6 +35,9 @@ import ca.bc.gov.ols.geocoder.data.indexing.WordClass;
  * 
  */
 public class ParseRun {
+	private static final Logger logger = LoggerFactory.getLogger(GeocoderConfig.LOGGER_PREFIX +
+			ParseRun.class.getCanonicalName());
+
 	private List<List<MisspellingOf<Word>>> words;
 	private MisspellingOf<Word>[] chosenWords;
 	private int wordIndex = 0;
@@ -90,21 +97,21 @@ public class ParseRun {
 	}
 	
 	public void traceMatchSymbol(MatchState state, Object wordValue) {
-		if(isTracing) {
-			System.out.println("Accepted: " + toString(words, wordIndex)
-					+ "  Word: " + wordValue
-					+ "   Class: " + state.wordClass
-					+ "   Rule: " + state.getRuleName());
-		}
+//		if(isTracing) {
+//			logger.trace("Accepted: " + toString(words, wordIndex)
+//					+ "  Word: " + wordValue
+//					+ "   Class: " + state.wordClass
+//					+ "   Rule: " + state.getRuleName());
+//		}
 	}
 	
 	public void traceMatchSymbol(String ruleName, WordClass clz, Object value) {
-		if(isTracing) {
-			System.out.println("Accepted: " + toString(words, wordIndex)
-					+ "  Word: " + value
-					+ "   Class: " + clz
-					+ "   Rule: " + ruleName);
-		}
+//		if(isTracing) {
+//			logger.trace("Accepted: " + toString(words, wordIndex)
+//					+ "  Word: " + value
+//					+ "   Class: " + clz
+//					+ "   Rule: " + ruleName);
+//		}
 	}
 	
 	public void traceParseComplete(boolean isValid) {
@@ -112,16 +119,14 @@ public class ParseRun {
 	}
 	
 	public void traceParseComplete(boolean isValid, String info) {
-		String msg = "*** VALID PARSE ***";
-		if(!isValid) {
-			msg = "--- INVALID ---";
-		}
-		if(info != null) {
-			msg += " : " + info;
-		}
 		if(isTracing) {
-			System.out.println(msg);
-			System.out.println();
+			if(isValid) {
+				String msg = "*** VALID PARSE ***";
+				if(info != null) {
+					msg += " : " + info;
+				}
+				logger.trace(msg);
+			}
 		}
 	}
 	

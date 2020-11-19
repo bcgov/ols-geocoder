@@ -46,16 +46,16 @@ public class Lexer
 		this.wordMap = wordMap;
 	}
 	
-	public List<List<MisspellingOf<Word>>> lex(String sentence, boolean autoComplete, List<String> nonWords)
+	public List<List<MisspellingOf<Word>>> lex(String sentence, boolean allowMisspellings, boolean autoComplete, List<String> nonWords)
 	{
-		sentence = " " + sentence;
+		//sentence = " " + sentence;
 		sentence = rules.cleanSentence(sentence);
 		sentence = rules.runSpecialRules(sentence);
 		String[] atoms = sentence.split(rules.getTokenDelimiterRegex());
 		
 		String[] atomsSplit = runSplitRules(atoms);
 		String[] atomsJoin = runJoinRules(atomsSplit);
-		return tokenize(atomsJoin, autoComplete, nonWords);
+		return tokenize(atomsJoin, allowMisspellings, autoComplete, nonWords);
 		
 	}
 	
@@ -65,7 +65,7 @@ public class Lexer
 		}
 		// TODO need to do something with the list of nonwords?
 		List<String> nonWords = new ArrayList<String>();
-		List<List<MisspellingOf<Word>>> words = lex(sentence, false, nonWords);
+		List<List<MisspellingOf<Word>>> words = lex(sentence, true, false, nonWords);
 		List<List<MisspellingOf<Word>>> finalWords = new ArrayList<List<MisspellingOf<Word>>>();
 		for(List<MisspellingOf<Word>> wordList : words) {
 			Iterator<MisspellingOf<Word>> wordIt = wordList.iterator();
@@ -78,7 +78,7 @@ public class Lexer
 					wordClasses.retainAll(wc);
 					finalWordList.add(new MisspellingOf<Word>(
 							new Word(word.get().getWord(), wordClasses),
-							word.getError()));
+							word.getError(), word.getMisspelling()));
 				}
 			}
 		}
@@ -140,7 +140,7 @@ public class Lexer
 		return joinAtoms;
 	}
 	
-	public List<List<MisspellingOf<Word>>> tokenize(String[] atoms, boolean autoComplete, List<String> nonWords)
+	public List<List<MisspellingOf<Word>>> tokenize(String[] atoms, boolean allowMisspellings, boolean autoComplete, List<String> nonWords)
 	{
 		List<List<MisspellingOf<Word>>> tokList = new ArrayList<List<MisspellingOf<Word>>>();
 		for(int i = 0; i < atoms.length; i++) {
@@ -153,7 +153,8 @@ public class Lexer
 				continue;
 			}
 			// last parameter (autoComplete) is true if autoComplete is true and this is the last token
-			List<MisspellingOf<Word>> tok = wordMap.mapWord(atom, autoComplete && (i == atoms.length - 1));
+			// now every word is at least an UNRECOGNIZED so non-words should always be blank 
+			List<MisspellingOf<Word>> tok = wordMap.mapWord(atom, allowMisspellings, autoComplete && (i == atoms.length - 1));
 			if(tok.size() > 0) {
 				tokList.add(tok);
 			} else {

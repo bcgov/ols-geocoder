@@ -38,6 +38,7 @@ public class MatchFault {
 		LOCALITY, PROVINCE, POSTAL_ADDRESS_ELEMENT, UNRECOGNIZED, MAX_RESULTS, ADDRESS
 	}
 	
+	private String value;
 	private MatchElement element;
 	private String fault;
 	private int penalty = 0;
@@ -46,10 +47,15 @@ public class MatchFault {
 		
 	}
 	
-	public MatchFault(MatchElement element, String fault, int penalty) {
+	public MatchFault(String value, MatchElement element, String fault, int penalty) {
+		this.value = value;
 		this.element = element;
 		this.fault = fault;
 		this.penalty = penalty;
+	}
+	
+	public String getValue() {
+		return value;
 	}
 	
 	public MatchElement getElement() {
