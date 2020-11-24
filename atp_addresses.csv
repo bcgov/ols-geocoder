@@ -478,4 +478,4 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00478-AddressInSmallCommunityUsingLocalityAlias,"352 W 14th St, North Van, BC",CIVIC_NUMBER,"352 W 14th St, North Vancouver, BC",[LOCALITY.isAlias],F,,101,T,T
 00479-AddressInSmallCommunityUsingLocalityAlias,"1745 Esquimalt Ave, West Van, BC",CIVIC_NUMBER,"1745 Esquimalt Ave, West Vancouver, BC",[LOCALITY.isAlias],F,,101,T,T
 00480-AddressInSmallCommunityUsingLocalityAlias,"223 W 7th Ave, Vancouver, BC",CIVIC_NUMBER,"223 W 7th Ave, Vancouver, BC",[LOCALITY.isAlias],F,,101,T,T
-00481-UnitNumAndCivicNumberSwapped,"1045 317 Haro St, Vancouver, BC",CIVIC_NUMBER,"1045 Haro St, Vancouver, BC",[Faults.tooMany],F,,86,T,F
+00481-UnitNumberAndCivicNumberSwapped,"1045 317 Haro St, Vancouver, BC",CIVIC_NUMBER,"1045 Haro St, Vancouver, BC",[Faults.tooMany],F,,86,T,F
