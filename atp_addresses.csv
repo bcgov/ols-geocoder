@@ -415,13 +415,13 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00415-LeadingZeroInUnitNumber,"01 1070 Lynn Valley Rd, North Vancouver, BC",UNIT,"UNIT 1 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
 00416-LeadingZeroInUnitNumber,"Unit 01 -- 1070 Lynn Valley Rd, North Vancouver, BC",UNIT,"UNIT 1 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
 00417-UnitNumberWithLetterPrefix,"B2 518 BEATTY ST, VANCOUVER, BC",UNIT,"Unit B2 -- 518 Beatty St, Vancouver, BC",[],R,,,T,T
-00418-UnitNumberWithLetterPrefix,"B 2 518 BEATTY ST, VANCOUVER, BC",UNIT,"Unit B2 -- 518 Beatty St, Vancouver, BC",[],F,,,T,T
+00418-UnitNumberWithLetterPrefixGapped,"B 2 518 BEATTY ST, VANCOUVER, BC",UNIT,"Unit B2 -- 518 Beatty St, Vancouver, BC",[],F,,,T,T
 00419-UnitNumberWithLetterPrefix,"C2 1845 WEST 10TH AVE, VANCOUVER, BC",UNIT,"UNIT C2 -- 1845 W 10th Ave, Vancouver, BC",[],R,,,T,T
-00420-UnitNumberWithLetterPrefix,"C 2 1845 WEST 10TH AVE, VANCOUVER, BC",UNIT,"UNIT C2 -- 1845 W 10th Ave, Vancouver, BC",[],F,,,T,T
+00420-UnitNumberWithLetterPrefixGapped,"C 2 1845 WEST 10TH AVE, VANCOUVER, BC",UNIT,"UNIT C2 -- 1845 W 10th Ave, Vancouver, BC",[],F,,,T,T
 00421-UnitNumberWithLetterPrefix,"P100 1518 W 70TH AVE, VANCOUVER, BC",UNIT,"UNIT P100 -- 1518 W 70th Ave, Vancouver, BC",[],R,,,T,T
-00422-UnitNumberWithLetterPrefix,"P 100 1518 W 70TH AVE, VANCOUVER, BC",UNIT,"UNIT P100 -- 1518 W 70th Ave, Vancouver, BC",[],F,,,T,T
+00422-UnitNumberWithLetterPrefixGapped,"P 100 1518 W 70TH AVE, VANCOUVER, BC",UNIT,"UNIT P100 -- 1518 W 70th Ave, Vancouver, BC",[],F,,,T,T
 00423-UnitNumberWithLetterPrefix,"P2 1855 NELSON ST, VANCOUVER, BC",UNIT,"UNIT P2 -- 1855 Nelson St, Vancouver, BC",[],R,,,T,T
-00424-UnitNumberWithLetterPrefix,"P 2 1855 NELSON ST, VANCOUVER, BC",UNIT,"UNIT P2 -- 1855 Nelson St, Vancouver, BC",[],F,,,T,T
+00424-UnitNumberWithLetterPrefixGapped,"P 2 1855 NELSON ST, VANCOUVER, BC",UNIT,"UNIT P2 -- 1855 Nelson St, Vancouver, BC",[],F,,,T,T
 00425-CivicAddressWithCareOfName,"c/o Joe Fonebone, P2-1855 NELSON ST, VANCOUVER, BC",UNIT,"UNIT P2 -- 1855 Nelson St, Vancouver, BC",[],F,,,T,T
 00426-NonStandardStreetTypeAbbreviation,"2351 Parkway Bv, Coquitlam, BC",CIVIC_NUMBER,"2351 Parkway Blvd, Coquitlam, BC",[],C,,102,T,T
 00427-NonStandardStreetTypeAbbreviation,"3176 Plateau Bu, Coquitlam, BC",CIVIC_NUMBER,"3176 Plateau Bu, Coquitlam, BC",[],C,,102,T,T
@@ -480,8 +480,8 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00480-AddressInSmallCommunityUsingLocalityAlias,"223 W 7th Ave, Vancouver, BC",CIVIC_NUMBER,"223 W 7th Ave, Vancouver, BC",[LOCALITY.isAlias],F,,101,T,T
 00481-UnitNumberAndCivicNumberSwapped,"1045 317 Haro St, Vancouver, BC",CIVIC_NUMBER,"UNIT 317 -- 1045 Haro St, Vancouver, BC",[Faults.tooMany],F,,86,T,F
 00482-UnitNumberAndCivicNumberSwapped,"1177 103 Howie St, Vancouver, BC",CIVIC_NUMBER,"UNIT 103 -- 1177 Howie St, Vancouver, BC",[Faults.tooMany],F,,86,T,F
-00483-Unknown multi-word unitDesignator,"APARTMENT BUILDING 221 4280 MONCTON ST, RICHMOND, BC",CIVIC_NUMBER,"UNIT 221 -- 4280 MONCTON ST, RICHMOND, BC",[UNIT_DESIGNATOR.unknown],F,,86,T,T
-00484-Unknown multi-word unitDesignator,"APARTMENT BUILDING 54 2938 TRAFALGAR ST, ABBOTSFORD, BC",CIVIC_NUMBER,"UNIT 54 -- 2938 TRAFALGAR ST, ABBOTSFORD, BC",[UNIT_DESIGNATOR.unknown],F,,86,T,T
-00485-UnitNumberPrefixSeparatedFromUnitNumber,"A 309 10557 150TH ST, SURREY, BC",UNIT_NUMBER,"UNIT A309 -- 10557 150TH ST, SURREY, BC",[],F,,86,T,T
-00486-UnitNumberPrefixSeparatedFromUnitNumber,"C 7 6901 W ISLAND HWY, BOWSER, BC",UNIT_NUMBER,"C7 6901 W ISLAND HWY, BOWSER, BC",[],F,,86,T,T
+00483-UnknownMulti-wordUnitDesignator,"APARTMENT BUILDING 221 4280 MONCTON ST, RICHMOND, BC",CIVIC_NUMBER,"UNIT 221 -- 4280 MONCTON ST, RICHMOND, BC",[UNIT_DESIGNATOR.unknown],F,,86,T,T
+00484-UnknownMulti-wordUunitDesignator,"APARTMENT BUILDING 54 2938 TRAFALGAR ST, ABBOTSFORD, BC",CIVIC_NUMBER,"UNIT 54 -- 2938 TRAFALGAR ST, ABBOTSFORD, BC",[UNIT_DESIGNATOR.unknown],F,,86,T,T
+00485-UnknownUnitNumberWithPrefixGapped,"A 309 10557 150TH ST, SURREY, BC",UNIT_NUMBER,"UNIT A309 -- 10557 150TH ST, SURREY, BC",[],F,,86,T,T
+00486-UnknownUnitNumberWithPrefixGapped,"C 7 6901 W ISLAND HWY, BOWSER, BC",UNIT_NUMBER,"C7 6901 W ISLAND HWY, BOWSER, BC",[],F,,86,T,T
 00487-UnitNumberWithPrefix,"A114-20211 66 Ave, Township of Langley, BC",UNIT_NUMBER,"UNIT A114 -- 20211 66 Ave, Township of Langley, BC",[],F,,86,T,T
