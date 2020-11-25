@@ -482,6 +482,6 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00482-UnitNumberAndCivicNumberSwapped,"1177 103 Howie St, Vancouver, BC",CIVIC_NUMBER,"UNIT 103 -- 1177 Howie St, Vancouver, BC",[Faults.tooMany],F,,86,T,F
 00483-UnknownMulti-wordUnitDesignator,"APARTMENT BUILDING 221 4280 MONCTON ST, RICHMOND, BC",CIVIC_NUMBER,"UNIT 221 -- 4280 MONCTON ST, RICHMOND, BC",[UNIT_DESIGNATOR.unknown],F,,86,T,T
 00484-UnknownMulti-wordUunitDesignator,"APARTMENT BUILDING 54 2938 TRAFALGAR ST, ABBOTSFORD, BC",CIVIC_NUMBER,"UNIT 54 -- 2938 TRAFALGAR ST, ABBOTSFORD, BC",[UNIT_DESIGNATOR.unknown],F,,86,T,T
-00485-UnknownUnitNumberWithPrefixGapped,"A 309 10557 150TH ST, SURREY, BC",UNIT_NUMBER,"UNIT A309 -- 10557 150TH ST, SURREY, BC",[],F,,86,T,T
-00486-UnknownUnitNumberWithPrefixGapped,"C 7 6901 W ISLAND HWY, BOWSER, BC",UNIT_NUMBER,"C7 6901 W ISLAND HWY, BOWSER, BC",[],F,,86,T,T
-00487-UnitNumberWithPrefix,"A114-20211 66 Ave, Township of Langley, BC",UNIT_NUMBER,"UNIT A114 -- 20211 66 Ave, Township of Langley, BC",[],F,,86,T,T
+00485-UnknownUnitNumberWithLetterPrefixGapped,"A 309 10557 150TH ST, SURREY, BC",UNIT_NUMBER,"UNIT A309 -- 10557 150TH ST, SURREY, BC",[],F,,86,T,T
+00486-UnknownUnitNumberWithLetterPrefixGapped,"C 7 6901 W ISLAND HWY, BOWSER, BC",UNIT_NUMBER,"C7 6901 W ISLAND HWY, BOWSER, BC",[],F,,86,T,T
+00487-UnitNumberWithLetterPrefix,"A114-20211 66 Ave, Township of Langley, BC",UNIT_NUMBER,"UNIT A114 -- 20211 66 Ave, Township of Langley, BC",[],F,,86,T,T
