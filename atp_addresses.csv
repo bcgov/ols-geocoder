@@ -484,4 +484,4 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00484-Unknown multi-word unitDesignator,"APARTMENT BUILDING 54 2938 TRAFALGAR ST, ABBOTSFORD, BC",CIVIC_NUMBER,"UNIT 54 -- 2938 TRAFALGAR ST, ABBOTSFORD, BC",[UNIT_DESIGNATOR.unknown],F,,86,T,T
 00485-UnitNumberPrefixSeparatedFromUnitNumber,"A 309 10557 150TH ST, SURREY, BC",UNIT_NUMBER,"UNIT A309 -- 10557 150TH ST, SURREY, BC",[],F,,86,T,T
 00486-UnitNumberPrefixSeparatedFromUnitNumber,"C 7 6901 W ISLAND HWY, BOWSER, BC",UNIT_NUMBER,"C7 6901 W ISLAND HWY, BOWSER, BC",[],F,,86,T,T
-00487-UnitNumberWithPrefixSuffix,"A114-20211 66 Ave, Township of Langley, BC",UNIT_NUMBER,"UNIT A114 -- 20211 66 Ave, Township of Langley, BC",[],F,,86,T,T
+00487-UnitNumberWithPrefix,"A114-20211 66 Ave, Township of Langley, BC",UNIT_NUMBER,"UNIT A114 -- 20211 66 Ave, Township of Langley, BC",[],F,,86,T,T
