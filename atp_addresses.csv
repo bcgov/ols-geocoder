@@ -487,7 +487,11 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00487-UnitNumberWithLetterPrefix,"A114-20211 66 Ave, Township of Langley, BC",UNIT_NUMBER,"UNIT A114 -- 20211 66 Ave, Township of Langley, BC",[],F,,86,T,T
 00488-ExtraWordAtFrontOfStreetName,"19 2100 Mount Boucherie Rd West Kelowna BC",UNIT_NUMBER,"UNIT 19 -- 2100 Boucherie Rd West Kelowna BC",[],F,,144,T,T
 00489-UnitNumberSuffixInBackAlley,"555 Burrard St Unit 206A, Vancouver, BC",UNIT_NUMBER,"UNIT 206A -- 555 Burrard St Vancouver, BC",[],F,,144,T,T
-00490-SiteNameInBackAlley,"1175 Douglas St, CIBC, Victoria, BC",UNIT_NUMBER,"1175 Douglas St, CIBC, Victoria, BC",[],F,,144,T,T
-00491-DuplicateStreetTypeInBackAlley,"1175 Douglas St Street, Victoria, BC",UNIT_NUMBER,"1175 Douglas St, Victoria, BC",[],F,,144,T,T
-00492-CareOfInBackAlley,"1175 Douglas St c/o Big Wave Dave Victoria, BC",UNIT_NUMBER,"1175 Douglas St c/o Big Wave Dave Victoria, BC",[],F,,144,T,T
-00493-DuplicateStreetAndLocalityInBackAlley,"1175 Douglas St, Douglas St, Victoria Victoria, BC",UNIT_NUMBER,"1175 Douglas St, Victoria, BC",[],F,,144,T,T
+00490-SiteNameInBackAlley,"1175 Douglas St, CIBC, Victoria, BC",CIVIC_NUMBER,"1175 Douglas St, CIBC, Victoria, BC",[],F,,144,T,T
+00491-DuplicateStreetTypeInBackAlley,"1175 Douglas St Street, Victoria, BC",CIVIC_NUMBER,"1175 Douglas St, Victoria, BC",[],F,,144,T,T
+00492-CareOfInBackAlley,"1175 Douglas St c/o Big Wave Dave Victoria, BC",CIVIC_NUMBER,"1175 Douglas St c/o Big Wave Dave Victoria, BC",[],F,,144,T,T
+00493-DuplicateStreetAndLocalityInBackAlley,"1175 Douglas St, Douglas St, Victoria Victoria, BC",CIVIC_NUMBER,"1175 Douglas St, Victoria, BC",[],F,,144,T,T
+00494-StreetNameWithSpecialCharacters,"Pipeho:em Rd, Agassiz, BC",STREET,"Pipeho:em Rd, Agassiz, BC",[],F,,129,T,T
+00495-StreetNameWithSpecialCharacters,"ʔEqeʔat’in ʔEten, Anahims Flat IR, BC",STREET,"ʔEqeʔat’in ʔEten, Anahims Flat IR, BC",[],F,,129,T,T
+00496-StreetNameWithSpecialCharacters,"Tl’etinqox Rd, Anahims Flat IR, BC",STREET,"Tl’etinqox Rd, Anahims Flat IR, BC",[],F,,129,T,T
+00497-StreetNameWithSpecialCharacters,"Clinton/Loon Lake FSR, Hutchison Lake, BC",STREET,"Clinton/Loon Lake FSR, Hutchison Lake, BC",[],F,,129,T,T
