@@ -495,3 +495,4 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00495-StreetNameWithSpecialCharacters,"ʔEqeʔat’in ʔEten, Anahims Flat IR, BC",STREET,"ʔEqeʔat’in ʔEten, Anahims Flat IR, BC",[],F,,129,T,T
 00496-StreetNameWithSpecialCharacters,"Tl’etinqox Rd, Anahims Flat IR, BC",STREET,"Tl’etinqox Rd, Anahims Flat IR, BC",[],F,,129,T,T
 00497-StreetNameWithSpecialCharacters,"Clinton/Loon Lake FSR, Hutchison Lake, BC",STREET,"Clinton/Loon Lake FSR, Hutchison Lake, BC",[],F,,129,T,T
+00498-ACrazy,"201 A 201 A A St, Abbotsford, BC",UNIT,"UNIT 201A -- 201A A St, Abbotsford, BC",[],F,,156,T,T
