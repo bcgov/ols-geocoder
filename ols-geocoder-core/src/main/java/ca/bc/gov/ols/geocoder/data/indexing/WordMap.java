@@ -26,13 +26,12 @@ import ca.bc.gov.ols.geocoder.parser.RegExMatcher;
 public interface WordMap {
 	static final List<WordClassifier> classifiers = Collections.unmodifiableList(Arrays.asList(new WordClassifier[] {
 			new WordClassifier(WordClass.NUMBER, new RegExMatcher(DraLexicalRules.RE_NUMBER)),
-			new WordClassifier(WordClass.NUMBER_WITH_SUFFIX, new RegExMatcher(
-					DraLexicalRules.RE_NUMBER_WITH_SUFFIX)),
-			new WordClassifier(WordClass.UNIT_NUMBER_WORD, new RegExMatcher(
-					DraLexicalRules.RE_UNIT_NUMBER)),
+			//new WordClassifier(WordClass.NUMBER_WITH_SUFFIX, new RegExMatcher(DraLexicalRules.RE_NUMBER_WITH_SUFFIX)),
+			//new WordClassifier(WordClass.UNIT_NUMBER_WORD, new RegExMatcher(DraLexicalRules.RE_UNIT_NUMBER)),
 			new WordClassifier(WordClass.SUFFIX, new RegExMatcher(DraLexicalRules.RE_SUFFIX)),
+			new WordClassifier(WordClass.LETTER, new RegExMatcher(DraLexicalRules.RE_LETTER)),
 			new WordClassifier(WordClass.ORDINAL, new RegExMatcher(DraLexicalRules.RE_ORDINAL)),
-			new WordClassifier(WordClass.UNRECOGNIZED, n -> true)
+			new WordClassifier(WordClass.UNRECOGNIZED, n -> !n.equals(DraLexicalRules.FRONT_GATE))
 	}));
 
 	List<MisspellingOf<Word>> mapWord(String fromWord, boolean allowMisspellings);
