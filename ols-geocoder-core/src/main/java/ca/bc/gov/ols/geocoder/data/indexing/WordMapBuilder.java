@@ -132,9 +132,6 @@ public class WordMapBuilder {
 			wordMap.put(fromWord, wordSet);
 		} 
 		wordSet.add(toWord);
-		if(wordSet.size() > 1) {
-			System.out.println("multiwordmap: " + fromWord + " => " + wordSet.toString());
-		}
 	}
 	
 	

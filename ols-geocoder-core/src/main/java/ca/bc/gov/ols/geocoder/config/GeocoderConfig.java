@@ -256,11 +256,6 @@ public class GeocoderConfig {
 				(int)Math.round(matchFaultPenalties.get("OCCUPANT_NAME.partialMatch") * coefficient));
 	}
 
-	public MatchFault getUnrecognizedMatchFault(String unrecognized) {
-		// penalty value is the base penalty plus 10% for each word
-		return new MatchFault(unrecognized, MatchFault.MatchElement.UNRECOGNIZED, "notAllowed", matchFaultPenalties.get("UNRECOGNIZED.notAllowed"));
-	}
-
 	public MatchFault getMatchFault(String text, MatchElement element, String fault) {
 		Integer penalty = matchFaultPenalties.get(element.toString() + "." + fault);
 		if(penalty != null) {
@@ -377,8 +372,8 @@ public class GeocoderConfig {
 		matchFaultPenalties.put("UNIT_NUMBER.notMatched", 1);
 		matchFaultPenalties.put("UNIT_NUMBER.spelledWrong", 1);
 
-		matchFaultPenalties.put("UNIT_NUMBER_SUFFIX.missing", 1);
-		matchFaultPenalties.put("UNIT_NUMBER_SUFFIX.notMatched", 1);
+//		matchFaultPenalties.put("UNIT_NUMBER_SUFFIX.missing", 1);
+//		matchFaultPenalties.put("UNIT_NUMBER_SUFFIX.notMatched", 1);
 
 		matchFaultPenalties.put("CIVIC_NUMBER.notInAnyBlock", 10);
 		matchFaultPenalties.put("CIVIC_NUMBER.missing", 10);
@@ -422,10 +417,15 @@ public class GeocoderConfig {
 
 		matchFaultPenalties.put("POSTAL_ADDRESS_ELEMENT.notAllowed", 1);
 
-		matchFaultPenalties.put("UNRECOGNIZED.notAllowed", 5);
+		matchFaultPenalties.put("INITIAL_GARBAGE.notAllowed", 2);
+		matchFaultPenalties.put("LOCALITY_GARBAGE.notAllowed", 3);
+		matchFaultPenalties.put("PROVINCE_GARBAGE.notAllowed", 2);
+
+		matchFaultPenalties.put("FAULTS.tooMany", 6);
 
 		matchFaultPenalties.put("MAX_RESULTS.too_low_to_include_all_best_matches", 0);
 
+		matchFaultPenalties.put("ADDRESS.autoCompleted", 5);
 		matchFaultPenalties.put("ADDRESS.missing", 12);
 
 		// default all roadClasses to 3m per lane + 1m base

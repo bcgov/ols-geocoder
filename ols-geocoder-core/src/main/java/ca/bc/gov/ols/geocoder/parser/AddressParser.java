@@ -85,8 +85,26 @@ public class AddressParser {
 		// logger.trace(toks); // DEBUG Mispellings
 		
 		// if we have at least 90 we are done
-//		if(handler.getBestScore() >= 90) {
-//			return;
+		if(handler.getBestScore() >= 90) {
+			return;
+		}
+		
+		// try adding a front gate sequentially after each word
+//		Word fg = new Word("/FG", WordClass.FRONT_GATE);
+//		MisspellingOf<Word> fgMS = new MisspellingOf<Word>(fg, 0, fg.getWord());
+//		List<MisspellingOf<Word>> fgTok = Arrays.asList(fgMS);
+//		toks.add(1, fgTok);
+//		for(int i = 1; i < toks.size(); i++) {
+//			cont = parse(toks, nonWords, handler);
+//			if(!cont) {
+//				return;
+//			}
+//			if(i == toks.size() - 1) {
+//				break;
+//			}
+//			List<MisspellingOf<Word>> nextTok = toks.get(i+1);
+//			toks.set(i, nextTok);
+//			toks.set(i+1, fgTok);
 //		}
 
 		// try removing a word as garbage

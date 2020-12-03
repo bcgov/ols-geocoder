@@ -75,6 +75,7 @@ public abstract class GeocoderAddress implements ModifiableLocation {
 		addressString = null;
 		this.localityName = locality.getName();
 		this.localityType = locality.getType();
+		electoralArea = locality.getElectoralArea();
 		this.stateProvTerr = locality.getStateProvTerr().getName();
 	}
 	

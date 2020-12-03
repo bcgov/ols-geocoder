@@ -17,7 +17,10 @@ package ca.bc.gov.ols.geocoder.api.data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import ca.bc.gov.ols.geocoder.api.data.MatchFault.MatchElement;
+import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 import ca.bc.gov.ols.geocoder.data.indexing.MisspellingOf;
 import ca.bc.gov.ols.geocoder.data.indexing.Word;
 
@@ -261,6 +264,63 @@ public class AddressComponentMisspellings {
 
 	public void setStateProvTerrMS(List<MisspellingOf<Word>> stateProvTerrMS) {
 		this.stateProvTerrMS = stateProvTerrMS;
+	}
+	
+	public String wasAutoCompleted() {
+		String misspelling = wasAutoCompleted(siteNameMS);
+		if(misspelling != null) {
+			return misspelling;
+		}
+		misspelling = wasAutoCompleted(unitNumberMS);
+		if(misspelling != null) {
+			return misspelling;
+		}
+		misspelling = wasAutoCompleted(unitDesignatorMS);
+		if(misspelling != null) {
+			return misspelling;
+		}
+		misspelling = wasListAutoCompleted(streetNameMS);
+		if(misspelling != null) {
+			return misspelling;
+		}
+		misspelling = wasListAutoCompleted(streetTypeMS);
+		if(misspelling != null) {
+			return misspelling;
+		}
+		misspelling = wasListAutoCompleted(streetDirectionMS);
+		if(misspelling != null) {
+			return misspelling;
+		}
+		misspelling = wasListAutoCompleted(streetQualifierMS);
+		if(misspelling != null) {
+			return misspelling;
+		}
+		misspelling = wasAutoCompleted(localityMS);
+		if(misspelling != null) {
+			return misspelling;
+		}
+		misspelling = wasAutoCompleted(stateProvTerrMS);
+		if(misspelling != null) {
+			return misspelling;
+		}
+
+		return null;
+	}
+
+	private String wasListAutoCompleted(List<List<MisspellingOf<Word>>> listOfLists) {
+		for(List<MisspellingOf<Word>> list: listOfLists) {
+			String misspelling = wasAutoCompleted(list);
+			if(misspelling != null) return misspelling;
+		}
+		return null;
+	}
+
+	private String wasAutoCompleted(List<MisspellingOf<Word>> list) {
+		if(list == null) return null;
+		for(MisspellingOf<Word> ms: list) {
+			if(ms.getError() < 0) return ms.getMisspelling();
+		}
+		return null;
 	}
 	
 	private static int sumErrors(List<MisspellingOf<Word>> misspellingList) {
