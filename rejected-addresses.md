@@ -1,4 +1,4 @@
-|Given address|Expected result|Actual result|What the geocoder can't handle
+|Given address|Expected result|Actual result|What Geocoder 4.0 can't handle
 |----|----|----|----|
 Omenica St, Hazelton, BC|Omineca St, Hazelton, BC|Omenica St, South Hazelton, BC|Multiple spelling mistakes
 2020 Kent Ave S, Vancouver, BC|2020 East Kent Ave S, Vancouver, BC|Dent Ave, Burnaby, BC|Suffix matching
