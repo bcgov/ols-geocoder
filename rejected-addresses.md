@@ -9,7 +9,7 @@ Old Mill Stream Manor 1985 Millstream Rd, Highlands, BC|Old Mill Stream -- 1985 
 c/o Joe Fonebone, PO BOX 201, Quesnel, BC|Quesnel,BC|BC|Care-of info
 200 21st Ave, prince george, BC|Prince George, BC|200 21st Ave N, Cranbrook, BC|Unknown street in locality
 500 helmcken rd, victoria, BC|Helmcken Alley, Victoria, BC|500 Helmcken St, Vancouver, BC|Locality hopping
-500 helmcken rd, saanich, BC|Helmcken Rd, View Royal, BC|Helmcken Rd, View Royal, BC|Nothing because given address had correct locality
+500 helmcken rd, saanich, BC|Helmcken Rd, Saanich, BC|Helmcken Rd, Saanich, BC|Nothing because given address had correct locality
 2248 McAllister Ave, Poco, BC|2248 McAllister Ave, Port Coquitlam, BC|2248 McAllister Ave, Port Coquitlam, BC|Non-standard abbreviation which leads to a false negative
 10381 POPKUM RD S, ROSEDALE, BC|10381 Popkum Rd S, Popkum, BC|10381 Popkum Rd S, Popkum, BC|Missing locality alias which leads to a false negative
-105 150 21ST ST BUZZER 49, WEST VANCOUVER, BC|UNIT 105 -- 150 21st St, West Vancouver, BC|UNIT 105 -- 150 21st St, West Vancouver, BC|Unexpected info (PO Box) at front of address and between streetAddress and locality which leads to a false negative
+105 150 21ST ST BUZZER 49, WEST VANCOUVER, BC|UNIT 105 -- 150 21st St, West Vancouver, BC with score above 89|UNIT 105 -- 150 21st St, West Vancouver, BC with score below 90|Unexpected info (PO Box) at front of address and between streetAddress and locality which leads to a false negative
