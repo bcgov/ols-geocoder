@@ -1,5 +1,5 @@
 |Given address|Expected result|Actual result|What Geocoder 4.0 can't handle|Fixed in 4.1
-|----|----|----|----|
+|---|---|---|---|---|
 Omenica St, Hazelton, BC|Omineca St, Hazelton, BC|Omenica St, South Hazelton, BC|Multiple spelling mistakes|yes
 2020 Kent Ave S, Vancouver, BC|2020 East Kent Ave S, Vancouver, BC|Dent Ave, Burnaby, BC|Suffix matching|no
 3821 Cedarhill Rd, Saanich, BC|3821 Cedar hill Rd, Saanich, BC|3821 Saanich Rd, Saanich, BC|Separate words glued together|no
