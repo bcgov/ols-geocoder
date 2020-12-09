@@ -4,7 +4,7 @@ Omenica St, Hazelton, BC|Omineca St, Hazelton, BC|Omenica St, South Hazelton, BC
 2020 Kent Ave S, Vancouver, BC|2020 East Kent Ave S, Vancouver, BC|Dent Ave, Burnaby, BC|Suffix matching
 3821 Cedarhill Rd, Saanich, BC|3821 Cedar hill Rd, Saanich, BC|3821 Saanich Rd, Saanich, BC|Separate words glued together
 8514 Horse Shoe Bay Rd, Anglemont, BC|8514 Horseshoe Bay Rd, Anglemont, BC|Anglemont,BC|Compound words separated
-Old Mill Stream Manor 1985 Millstream Rd, Highlands, BC|Old Mill Stream -- 1985 Millstream Rd, Highlands|Highlands, BC|Unknown siteNames or missing frontGate
+1985 Millstream Rd, Old Mill Stream Manor, Highlands, BC|1985 Millstream Rd, Highlands,BC|Highlands, BC|Unknown siteName
 102 A Ave, Surrey, BC|102A Ave, Surrey, BC|A Surrey Ave, Kamloops, BC|Numbered streetName with detached suffix
 c/o Joe Fonebone, PO BOX 201, Quesnel, BC|Quesnel,BC|BC|Care-of info
 200 21st Ave, prince george, BC|Prince George, BC|200 21st Ave N, Cranbrook, BC|Unknown street in locality
