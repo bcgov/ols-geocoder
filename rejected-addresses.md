@@ -1,10 +1,11 @@
 |Given address|Expected result|Actual result|What Geocoder 4.0 can't handle|Fixed in 4.1
 |---|---|---|---|---|
 Oscar the Grouch 1 Centennial Sq Felix the Cat Victoria Winnie the Pooh BC| 1 Centennial Sq, Victoria, BC|Atlin, BC|Noise|Yes
-Omenica St, Hazelton, BC|Omineca St, Hazelton, BC|Omenica St, South Hazelton, BC|Multiple spelling mistakes|yes
+1413 Omenica Ave, Prince Rupert, BC|1413 Omineca Ave, Prince Rupert, BC|Rupert, BC|Multiple spelling mistakes|yes
+HOUSE 900 Malachan Reserve|Malachan 11, BC|Numbered houses in an IR|Partially if IR addresses are structured like this: HOUSE 900 Malachan 11 -- Ditidaht, BC
 2020 Kent Ave S, Vancouver, BC|2020 East Kent Ave S, Vancouver, BC|Dent Ave, Burnaby, BC|Suffix matching|no
 3821 Cedarhill Rd, Saanich, BC|3821 Cedar hill Rd, Saanich, BC|3821 Saanich Rd, Saanich, BC|Separate words glued together|no
-8514 Horse Shoe Bay Rd, Anglemont, BC|8514 Horseshoe Bay Rd, Anglemont, BC|Anglemont,BC|Compound words separated|no
+58550 Wild Rose Lane Hope BC|58550 Wildrose Lane, Laidlaw, BC|Hope, BC|Compound words separated|no
 1985 Millstream Rd, Old Mill Stream Manor, Highlands, BC|1985 Millstream Rd, Highlands,BC|Highlands, BC|Unknown siteName|yes
 102 A Ave, Surrey, BC|102A Ave, Surrey, BC|A Surrey Ave, Kamloops, BC|Numbered streetName with detached suffix|yes
 c/o Joe Fonebone, PO BOX 201, Quesnel, BC|Quesnel, BC|BC|Care-of info|no
