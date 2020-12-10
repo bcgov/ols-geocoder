@@ -181,7 +181,7 @@ public class Geocoder implements IGeocoder {
 			addressWords.addAll(lexer.lexField(query.getUnitDesignator(),
 					EnumSet.of(WordClass.UNIT_DESIGNATOR)));
 			addressWords.addAll(lexer.lexField(query.getUnitNumber(),
-					EnumSet.of(WordClass.NUMBER, WordClass.UNIT_NUMBER_WORD)));
+					EnumSet.of(WordClass.NUMBER, WordClass.LETTER)));
 			addressWords.addAll(lexer.lexField(query.getUnitNumberSuffix(),
 					EnumSet.of(WordClass.SUFFIX)));
 			List<List<MisspellingOf<Word>>> siteWords = lexer.lexField(query.getSiteName(),
@@ -425,6 +425,7 @@ public class Geocoder implements IGeocoder {
 								match.addFault(datastore.getConfig().getMatchFault(nameMatch.getMisspelling(), MatchElement.STREET_NAME, "partialMatch"));
 							}
 							score(address, match, name, misspellings, query);
+							globalScoring(match, misspellings);
 							if(query.pass(match)) {
 								if(canShortCircuit(query, match)) {
 									// lets short-circuit outta here!
@@ -498,6 +499,7 @@ public class Geocoder implements IGeocoder {
 								if(nameMatch.getError() > 0) {
 									match.addFault(datastore.getConfig().getMatchFault(nameMatch.getMisspelling(), MatchElement.STREET_NAME, "partialMatch"));
 								}
+								globalScoring(match, misspellings);
 								if(query.pass(match)) {
 									if(canShortCircuit(query, match)) {
 										// lets short-circuit outta here!
@@ -558,6 +560,7 @@ public class Geocoder implements IGeocoder {
 										match.addFault(datastore.getConfig().getMatchFault(nameMatch.getMisspelling(), MatchElement.STREET_NAME, "partialMatch"));
 									}
 									score(address, match, name, misspellings, query);
+									globalScoring(match,misspellings);
 									if(query.pass(match)) {
 										if(canShortCircuit(query, match)) {
 											// lets short-circuit outta here!
@@ -594,6 +597,7 @@ public class Geocoder implements IGeocoder {
 						match.addFault(datastore.getConfig().getMatchFault(nameMatch.getMisspelling(), MatchElement.STREET_NAME, "partialMatch"));
 					}
 					score(address, match, name, misspellings, query);
+					globalScoring(match, misspellings);
 					if(query.pass(match)) {
 						matches.add(match);
 					}
@@ -617,6 +621,7 @@ public class Geocoder implements IGeocoder {
 					match.addFaults(incomingFaults);
 					match.addFault(datastore.getConfig().getMatchFault(streetName, MatchElement.STREET_NAME, "notMatched"));
 					scoreLocalityMatch(address, lm, match, misspellings, query);
+					globalScoring(match, misspellings);
 					if(query.pass(match)) {
 						matches.add(match);
 					}
@@ -644,6 +649,7 @@ public class Geocoder implements IGeocoder {
 					
 					match.addFaults(incomingFaults);
 					scoreSiteNameMatch(address, match, misspellings, query);
+					globalScoring(match, misspellings);
 					if(query.pass(match)) {
 						if(canShortCircuit(query, match)) {
 							// lets short-circuit outta here!
@@ -670,6 +676,7 @@ public class Geocoder implements IGeocoder {
 					// TODO possibly need different scoring for NCAPs
 					//score(address, match, null, misspellings, query);
 					scoreSiteNameMatch(address, match, misspellings, query);
+					globalScoring(match, misspellings);
 					// we don't want to accept unit-number only matches
 					if(match.containsFault(MatchFault.MatchElement.SITE_NAME, "notMatched") ||
 							match.containsFault(MatchFault.MatchElement.SITE_NAME, "missing")) {
@@ -711,6 +718,7 @@ public class Geocoder implements IGeocoder {
 							match.addFaults(incomingFaults);
 							// match.addFault(datastore.getConfig().getMatchFault("SITE_NAME.notMatched"));
 							scoreLocalityMatch(address, lm, match, misspellings, query);
+							globalScoring(match, misspellings);
 							if(query.pass(match)) {
 								matches.add(match);
 							}
@@ -741,6 +749,7 @@ public class Geocoder implements IGeocoder {
 									match.containsFault(MatchFault.MatchElement.SITE_NAME, "missing")) {
 								continue;
 							}
+							globalScoring(match, misspellings);
 							if(query.pass(match)) {
 								if(canShortCircuit(query, match)) {
 									// lets short-circuit outta here!
@@ -773,6 +782,7 @@ public class Geocoder implements IGeocoder {
 									match.containsFault(MatchFault.MatchElement.SITE_NAME, "missing")) {
 								continue;
 							}
+							globalScoring(match, misspellings);
 							if(query.pass(match)) {
 								if(canShortCircuit(query, match)) {
 									// lets short-circuit outta here!
@@ -806,6 +816,7 @@ public class Geocoder implements IGeocoder {
 					match.addFault(datastore.getConfig().getMatchFault(address.getLocalityName(), MatchElement.LOCALITY, "partialMatch"));
 				}
 				scoreLocalityMatch(address, lm, match, misspellings, query);
+				globalScoring(match, misspellings);
 				if(query.pass(match)) {
 					matches.add(match);
 				}
@@ -825,6 +836,7 @@ public class Geocoder implements IGeocoder {
 								MatchPrecision.PROVINCE));
 				match.addFaults(incomingFaults);
 				scoreStateProvTerr(address, match, misspellings);
+				globalScoring(match, misspellings);
 				if(query.pass(match)) {
 					matches.add(match);
 				}
@@ -1324,15 +1336,23 @@ public class Geocoder implements IGeocoder {
 		if(misspellings.getUnitDesignatorMSError() > 0) {
 			match.addFault(datastore.getConfig().getMatchFault(misspellings.getUnitDesignatorMSString(), MatchElement.UNIT_DESIGNATOR, "spelledWrong"));
 		}
-		// score unitNumber
-		if(!GeocoderUtil.equalsIgnoreCaseNullSafe(input.getUnitNumber(),
-				matchAddress.getUnitNumber())) {
+		// score unitNumber and suffix
+		if(!GeocoderUtil.equalsIgnoreCaseNullSafe(input.getUnitNumber(), matchAddress.getUnitNumber())
+				|| !GeocoderUtil.equalsIgnoreCaseNullSafe(input.getUnitNumberSuffix(), matchAddress.getUnitNumberSuffix())) {
 			if(input.getUnitNumber() == null || input.getUnitNumber().isEmpty()) {
 				match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.UNIT_NUMBER, "missing"));
 			} else {
-				match.addFault(datastore.getConfig().getMatchFault(input.getUnitNumber(), MatchElement.UNIT_NUMBER, "notMatched"));
+				StringBuilder sb = new StringBuilder();
+				if(input.getUnitNumber() != null) {
+					sb.append(input.getUnitNumber());
+				}
+				if(input.getUnitNumberSuffix() != null) {
+					sb.append(input.getUnitNumberSuffix());
+				}
+				match.addFault(datastore.getConfig().getMatchFault(sb.toString(), MatchElement.UNIT_NUMBER, "notMatched"));
 				if(query.isEcho()) {
 					matchAddress.setUnitNumber(input.getUnitNumber());
+					matchAddress.setUnitNumberSuffix(input.getUnitNumberSuffix());
 				}
 			}
 		}
@@ -1344,17 +1364,17 @@ public class Geocoder implements IGeocoder {
 			matchAddress.setUnitDesignator(datastore.getConfig().getDefaultUnitDesignator());
 		}
 		// score the unit number suffix
-		if(!GeocoderUtil.equalsIgnoreCaseNullSafe(input.getUnitNumberSuffix(),
-				matchAddress.getUnitNumberSuffix())) {
-			if(input.getUnitNumberSuffix() == null || input.getUnitNumberSuffix().isEmpty()) {
-				match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.UNIT_NUMBER_SUFFIX, "missing"));
-			} else {
-				match.addFault(datastore.getConfig().getMatchFault(input.getUnitNumberSuffix(), MatchElement.UNIT_NUMBER_SUFFIX, "notMatched"));
-				if(query.isEcho()) {
-					matchAddress.setUnitNumberSuffix(input.getUnitNumberSuffix());
-				}
-			}
-		}
+//		if(!GeocoderUtil.equalsIgnoreCaseNullSafe(input.getUnitNumberSuffix(),
+//				matchAddress.getUnitNumberSuffix())) {
+//			if(input.getUnitNumberSuffix() == null || input.getUnitNumberSuffix().isEmpty()) {
+//				match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.UNIT_NUMBER_SUFFIX, "missing"));
+//			} else {
+//				match.addFault(datastore.getConfig().getMatchFault(input.getUnitNumberSuffix(), MatchElement.UNIT_NUMBER_SUFFIX, "notMatched"));
+//				if(query.isEcho()) {
+//					matchAddress.setUnitNumberSuffix(input.getUnitNumberSuffix());
+//				}
+//			}
+//		}
 	}
 	
 	/**
@@ -1590,6 +1610,24 @@ public class Geocoder implements IGeocoder {
 		return new StreetNameMatchCombination(selections.clone(), totalPenalty);
 	}
 	
+	private void globalScoring(GeocodeMatch match, AddressComponentMisspellings misspellings) {
+		// check for autoComplete
+		String misspelling = misspellings.wasAutoCompleted();
+		if(misspelling != null) {
+			match.addFault(datastore.getConfig().getMatchFault(misspelling, MatchElement.ADDRESS, "autoCompleted"));
+		}
+		// check for too many faults
+		int faultCount = 0;
+		for(MatchFault fault : match.getFaults()) {
+			if(fault.getPenalty() > 0) {
+				faultCount++;
+			}
+		}
+		if(faultCount >= 5) {
+			match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.FAULTS, "tooMany"));
+		}
+	}
+	
 	private AddressParser createParser(Lexer lexer) {
 		AddressParserGenerator parserGen = new AddressParserGenerator();
 		
@@ -1613,6 +1651,7 @@ public class Geocoder implements IGeocoder {
 		
 		parserGen.addRule(new RuleChoice("civicAddress", false,
 				new RuleTerm[] {
+						new RuleTerm("civicAddressGarbageFirst"),
 						new RuleTerm("civicAddressUnitFirst"),
 						new RuleTerm("civicAddressUnitFirstNoSiteName"),
 						new RuleTerm("civicAddressUnitAfterSiteName"),
@@ -1624,16 +1663,23 @@ public class Geocoder implements IGeocoder {
 						new RuleTerm("OCCUPANT_SEPARATOR"),
 						new RuleTerm("civicAddress")}));
 
-		// civic address with unit first, site name optional
+		// civic address with optional garbage first, then unit, no site name or front gate
+		parserGen.addRule(new RuleSequence("civicAddressGarbageFirst", false,
+				new RuleTerm[] {
+						new RuleTerm("initialGarbage", "UNRECOGNIZED", RuleOperator.STAR),
+						new RuleTerm("unitDescription", RuleOperator.OPTION),
+						new RuleTerm("civicNumberDescription"),
+						new RuleTerm("streetDescription"),
+						new RuleTerm("localityTail")}));
+
+		// civic address with unit first, then site name and front gate
 		parserGen.addRule(new RuleSequence("civicAddressUnitFirst", false,
 				new RuleTerm[] {
 						new RuleTerm("unitDescription"),
-						new RuleTerm("siteNameWithFrontGate", RuleOperator.OPTION),
+						new RuleTerm("siteNameWithFrontGate"),
 						new RuleTerm("civicNumberDescription"),
 						new RuleTerm("streetDescription"),
-						new RuleTerm("unrecognized", "UNRECOGNIZED", RuleOperator.STAR),
-						new RuleTerm("locality", RuleOperator.OPTION),
-						new RuleTerm("stateProvTerr", RuleOperator.OPTION)}));
+						new RuleTerm("localityTail")}));
 		
 		// civic address with unit and front gate first, no site name
 		parserGen.addRule(new RuleSequence("civicAddressUnitFirstNoSiteName", false,
@@ -1663,17 +1709,14 @@ public class Geocoder implements IGeocoder {
 						new RuleTerm("civicNumberDescription"),
 						new RuleTerm("streetDescription"),
 						new RuleTerm("unitDescriptionWithDesignator", RuleOperator.OPTION),
-						new RuleTerm("unrecognized", "UNRECOGNIZED", RuleOperator.STAR),
-						new RuleTerm("locality", RuleOperator.OPTION),
-						new RuleTerm("stateProvTerr", RuleOperator.OPTION)}));
+						new RuleTerm("localityTail")}));
 		
 		parserGen.addRule(new RuleSequence("nonCivicAddress", false,
 				new RuleTerm[] {
 						new RuleTerm("unitDescription", RuleOperator.OPTION),
 						new RuleTerm("siteNameWithFrontGate"),
 						new RuleTerm("streetDescription", RuleOperator.OPTION),
-						new RuleTerm("locality", RuleOperator.OPTION),
-						new RuleTerm("stateProvTerr", RuleOperator.OPTION)}));
+						new RuleTerm("localityTail")}));
 		
 		parserGen.addRule(new RuleSequence("occSepNonCivicAddress", false,
 				new RuleTerm[] {
@@ -1682,20 +1725,45 @@ public class Geocoder implements IGeocoder {
 						new RuleTerm("unitDescription", RuleOperator.OPTION),
 						new RuleTerm("siteNameWithFrontGate", RuleOperator.OPTION),
 						new RuleTerm("streetDescription", RuleOperator.OPTION),
-						new RuleTerm("locality", RuleOperator.OPTION),
-						new RuleTerm("stateProvTerr", RuleOperator.OPTION)}));
+						new RuleTerm("localityTail")}));
 
 		parserGen.addRule(new RuleSequence("streetAddress", false,
 				new RuleTerm[] {
 						new RuleTerm("streetDescription"),
-						new RuleTerm("locality", RuleOperator.OPTION),
+						new RuleTerm("localityTail"),}));
+
+		parserGen.addRule(new RuleChoice("localityTail", false,
+				new RuleTerm[] {
+						new RuleTerm("localityTailNoGarbage"),
+						new RuleTerm("localityTailWithGarbage"),
 						new RuleTerm("stateProvTerr", RuleOperator.OPTION)}));
+
+		parserGen.addRule(new RuleSequence("localityTailNoGarbage", false,
+				new RuleTerm[] {
+						new RuleTerm("locality"),
+						new RuleTerm("sptTail")}));
+
+		parserGen.addRule(new RuleSequence("localityTailWithGarbage", false,
+				new RuleTerm[] {
+						new RuleTerm("localityGarbage", "garbage"),
+						new RuleTerm("locality"),
+						new RuleTerm("sptTail")}));
 		
+		parserGen.addRule(new RuleChoice("sptTail", false,
+				new RuleTerm[] {
+						new RuleTerm("stateProvTerr", RuleOperator.OPTION),
+						new RuleTerm("sptTailWithGarbage")}));
+
+		parserGen.addRule(new RuleSequence("sptTailWithGarbage", false,
+				new RuleTerm[] {
+						new RuleTerm("provinceGarbage", "garbage"),
+						new RuleTerm("stateProvTerr")}));
+
 		parserGen.addRule(new RuleSequence("localityAddress", false,
 				new RuleTerm[] {
 						new RuleTerm("locality"),
-						new RuleTerm("stateProvTerr", RuleOperator.OPTION)}));
-		
+						new RuleTerm("stateProvTerr", RuleOperator.OPTION)}));		
+
 		parserGen.addRule(new RuleSequence("intersectionAddress", false,
 				new RuleTerm[] {
 						new RuleTerm("streetDescription"),
@@ -1729,22 +1797,22 @@ public class Geocoder implements IGeocoder {
 						new RuleTerm("unitNumberDescription"),
 						new RuleTerm("floor")}));
 		
-		parserGen.addRule(new RuleChoice("unitNumberDescription", false,
+		parserGen.addRule(new RuleSequence("unitNumberDescription", false,
 				new RuleTerm[] {
 						new RuleTerm("unitNumber"),
-						new RuleTerm("unitNumberWithSuffix")}));
-		
-		parserGen.addRule(new RuleSequence("unitNumberWithSuffix", false,
+						new RuleTerm("unitNumberSuffix", RuleOperator.OPTION)}));
+
+		parserGen.addRule(new RuleChoice("unitNumber", true,
 				new RuleTerm[] {
-						new RuleTerm("unitNumber"),
-						new RuleTerm("unitNumberSuffix")}));
-		
-		parserGen.addRule(new RuleChoice("civicNumberDescription", false,
+						new RuleTerm("unitNumberLetterFirst"),
+						new RuleTerm("NUMBER")}));
+
+		parserGen.addRule(new RuleSequence("unitNumberLetterFirst", false,
 				new RuleTerm[] {
-						new RuleTerm("civicNumberWithAttachedSuffix"),
-						new RuleTerm("civicNumberWithOptionalSuffix")}));
-		
-		parserGen.addRule(new RuleSequence("civicNumberWithOptionalSuffix", false,
+						new RuleTerm("LETTER"),
+						new RuleTerm("NUMBER", RuleOperator.OPTION)}));
+
+		parserGen.addRule(new RuleSequence("civicNumberDescription", false,
 				new RuleTerm[] {
 						new RuleTerm("civicNumber"),
 						new RuleTerm("civicNumberSuffix", RuleOperator.OPTION)}));
@@ -1800,19 +1868,10 @@ public class Geocoder implements IGeocoder {
 						new RuleTerm("streetPostType", RuleOperator.OPTION)}));
 		
 		// Base Symbols - refer to wordClasses
-		// parserGen.addRule(new RuleTerm("unitDesignatorNoNum", "UNIT_DESIGNATOR_NO_NUM"));
-		// parserGen.addRule(new RuleTerm("unitDesignatorWithNum", "UNIT_DESIGNATOR_WITH_NUM"));
 		parserGen.addRule(new RuleTerm("unitDesignator", "UNIT_DESIGNATOR"));
 		
-		// parserGen.addRule(new RuleChoice("unitNumber", true,
-		// new RuleTerm[] {
-		// new RuleTerm("NUMBER"),
-		// new RuleTerm("UNIT_NUMBER_WORD")}));
-		// parserGen.addRule(new RuleTerm("unitNumberWithAttachedSuffix", "NUMBER_WITH_SUFFIX"));
-		parserGen.addRule(new RuleTerm("unitNumberSuffix", "SUFFIX"));
-		parserGen.addRule(new RuleTerm("unitNumber", "UNIT_NUMBER_WORD"));
+		parserGen.addRule(new RuleTerm("unitNumberSuffix", "LETTER"));
 		parserGen.addRule(new RuleTerm("civicNumber", "NUMBER"));
-		parserGen.addRule(new RuleTerm("civicNumberWithAttachedSuffix", "NUMBER_WITH_SUFFIX"));
 		parserGen.addRule(new RuleTerm("civicNumberSuffix", "SUFFIX"));
 		parserGen.addRule(new RuleTerm("streetPreType", "STREET_TYPE"));
 		parserGen.addRule(new RuleTerm("streetPostType", "STREET_TYPE"));
@@ -1865,6 +1924,11 @@ public class Geocoder implements IGeocoder {
 						new RuleTerm("NAME"),
 						new RuleTerm("NAME", RuleOperator.STAR)}));
 
+		parserGen.addRule(new RuleSequence("garbage", false,
+				new RuleTerm[] {
+						new RuleTerm("UNRECOGNIZED"),
+						new RuleTerm("UNRECOGNIZED", RuleOperator.STAR)}));
+		
 		parserGen.addRule(new RuleTerm("stateProvTerr", "STATE_PROV_TERR"));
 		parserGen.addRule(new RuleTerm("postalJunk", "POSTAL_ADDRESS_ELEMENT"));
 		

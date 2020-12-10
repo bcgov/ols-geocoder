@@ -218,8 +218,8 @@ public class NameLookupTrie<T> {
 				List<T> children = new ArrayList<T>();
 				findAllChildren(children);
 				for(T child : children) {
-					// add them to the results list, with a maxError
-					results.add(new MisspellingOf<T>(child, maxError, s));					
+					// add them to the results list, with a -1 to indicate autocomplete
+					results.add(new MisspellingOf<T>(child, -1, s));					
 				}
 			}
 		}

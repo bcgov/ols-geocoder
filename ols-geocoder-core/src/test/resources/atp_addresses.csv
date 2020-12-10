@@ -32,7 +32,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00032-CivicAddressWithoutUnitDesignator,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
 00033-CivicAddressWithoutUnitDesignator,"128 - 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
 00034-CivicAddressWithoutUnitDesignator,"128 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
-00035-CivicAddressWithoutUnitDesignator,"850 Saucier Ave 128 Kelowna, BC",CIVIC_NUMBER,"850 Saucier Ave Kelowna, BC",[UNRECOGNIZED.notAllowed:33],R,,,F,F
+00035-CivicAddressWithoutUnitDesignator,"850 Saucier Ave 128 Kelowna, BC",CIVIC_NUMBER,"850 Saucier Ave, Kelowna, BC",[LOCALITY_GARBAGE.notAllowed],R,,,F,F
 00036-CivicAddressWithoutUnitNumber,"UNIT -- 850 Saucier Ave, Kelowna, BC",CIVIC_NUMBER,"850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.notMatched:1],F,,,T,T
 00037-CivicAddressWithoutUnitNumber,"1359 Porlier Pass Rd APT Galiano Island BC",CIVIC_NUMBER,"APT -- 1359 Porlier Pass Rd, Galiano Island, BC",[UNIT_DESIGNATOR.notMatched:1],F,,,T,T
 00038-CivicAddressWithoutLocalityProvinceCode,3520 WENTWORTH AVE,CIVIC_NUMBER,"3520 Wentworth Ave, West Vancouver, BC","[LOCALITY.missing:10 PROVINCE.missing:1]",F,,,F,F
@@ -58,8 +58,8 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00058-CivicAddressWrongProvinceCode,"30 Firth Cres Mackenzie AB",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[PROVINCE.notMatched:1],F,,,T,T
 00059-CivicAddressWrongLocality,952 COMOX AVE PRINCE GEORGE BC,LOCALITY,"Prince George, BC",[LOCALITY.notMatched:35],F,,,F,F
 00060-CivicAddressWrongStreetType,952 COMOX ST PRINCE RUPERT BC,CIVIC_NUMBER,"952 Comox Ave, Prince Rupert, BC",[STREET_TYPE.notMatched:3],F,,,T,T
-00061-CivicAddressWrongStreetDirection,"456 Gorge Rd W Victoria",CIVIC_NUMBER,"456 Gorge Rd E, Victoria, BC","[STREET_DIRECTION.notMatched:2 PROVINCE.missing:1]",F,,,T,T
-00062-CivicAddressMispelledStreetName,952 CLOROX AVE PRINCE RUPERT BC,BLOCK,"952 Comox Ave, Prince Rupert, BC","[STREET_Name.spelledWrong]",R,,,F,F
+00061-CivicAddressWrongStreetDirection,"456 Gorge Rd W Victoria",CIVIC_NUMBER,"456 Gorge Rd E, Victoria, BC","[STREET_DIRECTION.notMatched PROVINCE.missing]",F,,,T,T
+00062-CivicAddressMispelledStreetName,952 CLOROX AVE PRINCE RUPERT BC,CIVIC_NUMBER,"952 Comox Ave, Prince Rupert, BC","[STREET_NAME.spelledWrong]",R,,,F,F
 00063-CivicAddressWithMisplacedStreetDirection,"4216 E 51st Ave Fort Nelson BC",CIVIC_NUMBER,"4216 51st Ave E, Fort Nelson, BC",[STREET_DIRECTION.notPrefix:0],F,,,T,T
 00064-CivicAddressWithMisplacedStreetDirection,"2186 Marine Dr SW Vancouver BC",CIVIC_NUMBER,"2186 SW Marine Dr, Vancouver, BC",[STREET_DIRECTION.notSuffix:0],F,,,T,T
 00065-CivicAddressWithMisplacedStreetType,"2288 Hwy Old Cariboo Prince George BC",CIVIC_NUMBER,"2288 Old Cariboo Hwy, Prince George, BC",[STREET_TYPE.notPrefix:0],F,,,T,T
@@ -73,9 +73,9 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00073-CivicAddressUnknownLocality,"626 Lindley Dr Leftbank bc ",BLOCK,"626 Lindley Dr, West Kelowna, BC","[]",R,,,F,F
 00074-CivicAddressUnknownStreetDirection,"456 Gorge Rd WN Victoria BC",CIVIC_NUMBER,"456 Gorge Rd E, Victoria, BC","[UNRECOGNIZED.notAllowed:33 STREET_DIRECTION.missing:2]",F,,,T,T
 00075-CivicAddressUnknownStreetType,"561 salmon Ave, North Saanich, BC",BLOCK,"561 Salmon Rd, North Saanich, BC","[STREET_TYPE.notMatched]",R,,,T,T
-00076-CivicAddressUnknownStreetName,"561 samson Rd, North Saanich, BC",CIVIC_NUMBER,"561 Salmon Rd, North Saanich, BC","[STREET_NAME.spelledWrong]",R,,,F,F
-00077-CivicAddressUnknownCivicNumber,"60000 Hwy 97B SE Salmon Arm BC",STREET,"Hwy 97B SE, Salmon Arm, BC",[CIVIC_NUMBER.notInAnyBlock:10],R,,,F,F
-00078-CivicAddressUnknownUnitDescriptor,"ABODE 128 -- 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[],R,,,T,T
+00076-CivicAddressUnknownStreetName,"561 samson Rd, North Saanich, BC",BLOCK,"561 Salmon Rd, North Saanich, BC","[STREET_NAME.spelledWrong]",R,,,F,F
+00077-CivicAddressUnknownCivicNumber,"60000 Hwy 97B SE Salmon Arm BC",STREET,"Hwy 97B SE, Salmon Arm, BC",[CIVIC_NUMBER.notInAnyBlock],R,,,F,F
+00078-CivicAddressUnknownUnitDescriptor,"ABODE 128 -- 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 ABODE -- 850 Saucier Ave, Kelowna, BC",[],R,,,T,T
 00079-CivicAddressStreetDirectionForUndirectedStreet,"109 Quarry Dr W Salt Spring Island BC",CIVIC_NUMBER,"109 Quarry Dr, Salt Spring Island, BC",[STREET_DIRECTION.notMatched:2],R,,,T,T
 00080-CivicAddressWithMailBagAtEnd,"525 Superior St, Victoria, BC MAILBAG 300",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
 00081-CivicAddressWithMailBagAfterStreet,"525 Superior St MAILBAG 300 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
@@ -350,7 +350,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00350-AddressInSmallCommunityUsingLocalityAlias,"3492 SPOKIN LAKE RD, 150 MILE HOUSE, BC",CIVIC_NUMBER,"3492 Spokin Lake Rd, Spokin Lake, BC",[LOCALITY.isAlias],F,,,T,T
 00351-AddressInSmallCommunity,"2582 SHOREACRES RD, SHOREACRES, BC",CIVIC_NUMBER,"2582 Shoreacres Rd, Shoreacres, BC",[],R,,,T,T
 00352-AddressInSmallCommunityUsingLocalityAlias,"2582 SHOREACRES RD, CASTLEGAR, BC",CIVIC_NUMBER,"2582 Shoreacres Rd, Shoreacres, BC",[LOCALITY.isAlias],F,,,T,T
-00353-AddressInSmallCommunity,"1414 THRUMS RD, THRUMS, BC",CIVIC_NUMBER,"1414 Thrums Rd, Thrums, BC",[],R,,,T,T
+00353-AddressInSmallCommunity,"1414 THRUMS RD, THRUMS, BC",BLOCK,"1414 Thrums Rd, Thrums, BC",[],R,,,T,T
 00354-AddressInSmallCommunityUsingLocalityAlias,"1414 THRUMS RD, CASTLEGAR, BC",CIVIC_NUMBER,"1414 Thrums Rd, Thrums, BC",[LOCALITY.isAlias],F,,,T,T
 00355-AddressInSmallCommunity,"6010 HARROP-PROCTER RD, HARROP, BC",CIVIC_NUMBER,"6010 Harrop-Procter Rd, Harrop, BC",[],R,,,T,T
 00356-AddressInSmallCommunityUsingLocalityAlias,"6010 HARROP-PROCTER RD, NELSON, BC",CIVIC_NUMBER,"6010 Harrop-Procter Rd, Harrop, BC",[LOCALITY.isAlias],F,,,T,T
@@ -406,7 +406,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00406-AddressInSmallCommunityUsingLocalityAlias,"4232 MAYOOK SETTLEMENT RD, CRANBROOK, BC",BLOCK,"4232 Mayook Settlement Rd, Mayook, BC",[LOCALITY.isAlias],F,,,T,T
 00407-AddressInSmallCommunity,"10571 CHESLATTA RD, CHESLATTA, BC",CIVIC_NUMBER,"10571 Cheslatta Rd, Cheslatta, BC",[],R,,,T,T
 00408-AddressInSmallCommunityUsingLocalityAlias,"10571 CHESLATTA RD, BURNS LAKE, BC",CIVIC_NUMBER,"10571 Cheslatta Rd, Cheslatta, BC",[LOCALITY.isAlias],F,,,T,T
-00409-NumberedStreetNameWithDetachedSuffix,"102 A Ave, Surrey, BC",CIVIC_NUMBER,"102A Ave, Surrey, BC",[],R,,,T,T
+00409-NumberedStreetNameWithDetachedSuffix,"102 A Ave, Surrey, BC",STREET,"102A Ave, Surrey, BC",[],R,,,T,T
 00410-UnitNumberStuckToDesignator,"Unit910 7380 ELMBRIDGE WAY, RICHMOND, BC",UNIT,"UNIT 910 -- 7380 Elmbridge Way, Richmond, BC",[UNIT_DESIGNATOR.missing],F,,,T,T
 00411-StreetNameWithMissingAmpersand,"189 ROD GUN RD, COURTENAY, BC",CIVIC_NUMBER,"189 Rod & Gun RD, Courtenay, BC",[],F,,,T,T
 00412-StreetNameWithMissingAmpersand,"189 ROD GUN RD, COURTENAY, BC",CIVIC_NUMBER,"189 Rod & Gun RD, Courtenay, BC",[],F,,,T,T
@@ -414,8 +414,8 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00414-LeadingZeroInUnitNumber,"01-1070 Lynn Valley Rd, North Vancouver, BC",UNIT,"UNIT 1 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
 00415-LeadingZeroInUnitNumber,"01 1070 Lynn Valley Rd, North Vancouver, BC",UNIT,"UNIT 1 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
 00416-LeadingZeroInUnitNumber,"Unit 01 -- 1070 Lynn Valley Rd, North Vancouver, BC",UNIT,"UNIT 1 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
-00417-UnitNumberWithLetterSuffix,"B2 518 BEATTY ST, VANCOUVER, BC",UNIT,"Unit B2 -- 518 Beatty St, Vancouver, BC",[],F,,,T,T
-00418-UnitNumberWithLetterSuffix,"B 2 518 BEATTY ST, VANCOUVER, BC",UNIT,"Unit B2 -- 518 Beatty St, Vancouver, BC",[],R,,,T,T
+00417-UnitNumberWithLetterSuffix,"B2 518 BEATTY ST, VANCOUVER, BC",UNIT,"UNIT B2 -- 518 Beatty St, Vancouver, BC",[],F,,,T,T
+00418-UnitNumberWithLetterSuffix,"B 2 518 BEATTY ST, VANCOUVER, BC",UNIT,"UNIT B2 -- 518 Beatty St, Vancouver, BC",[],R,,,T,T
 00419-UnitNumberWithLetterSuffix,"C2 1845 WEST 10TH AVE, VANCOUVER, BC",UNIT,"UNIT C2 -- 1845 W 10th Ave, Vancouver, BC",[],F,,,T,T
 00420-UnitNumberWithLetterSuffix,"C 2 1845 WEST 10TH AVE, VANCOUVER, BC",UNIT,"UNIT C2 -- 1845 W 10th Ave, Vancouver, BC",[],R,,,T,T
 00421-UnitNumberWithLetterSuffix,"P100 1518 W 70TH AVE, VANCOUVER, BC",UNIT,"UNIT P100 -- 1518 W 70th Ave, Vancouver, BC",[],F,,,T,T

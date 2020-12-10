@@ -308,9 +308,6 @@ public class RangeBuilder {
 			}
 			site.setSiteId(rr.getInt("SITE_ID"));
 			site.setInputName(rr.getString("INPUT_NAME").intern());
-//			if(site.getInputName().equals("ITN")) {
-//				continue;
-//			}
 			site.setSiteUuid(UUID.fromString(rr.getString("SITE_UUID")));
 			site.setPids(sid2pidMap.get(site.getSiteUuid()));
 			site.setParentSiteId(rr.getInt("PARENT_SITE_ID"));
