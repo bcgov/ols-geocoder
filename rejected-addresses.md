@@ -2,7 +2,9 @@
 |---|---|---|---|---|
 Oscar the Grouch 1 Centennial Sq Felix the Cat Victoria Winnie the Pooh BC| 1 Centennial Sq, Victoria, BC|Atlin, BC|Noise|Yes
 1413 Omenica Ave, Prince Rupert, BC|1413 Omineca Ave, Prince Rupert, BC|Rupert, BC|Multiple spelling mistakes|yes
-HOUSE 900 Malachan Reserve|Malachan 11, BC|Numbered houses in an IR|Partially if IR addresses are structured like this: HOUSE 900 Malachan 11 -- Ditidaht, BC
+500 helmcken rd, victoria, BC|Helmcken Alley, Victoria, BC|500 Helmcken St, Vancouver, BC|Locality hopping|yes
+HOUSE 900 Malachan Reserve|HOUSE 900 Malachan 11 -- Ditidaht, BC|Malachan 11, BC|Numbered houses in an IR|No in Silver, maybe in Gold
+58550 Wild Rose Lane Hope BC|58550 Wildrose Lane, Laidlaw, BC|Hope, BC|Compound words separated|No in Silver, maybe in Gold
 2020 Kent Ave S, Vancouver, BC|2020 East Kent Ave S, Vancouver, BC|Dent Ave, Burnaby, BC|Suffix matching|no
 3821 Cedarhill Rd, Saanich, BC|3821 Cedar hill Rd, Saanich, BC|3821 Saanich Rd, Saanich, BC|Separate words glued together|no
 58550 Wild Rose Lane Hope BC|58550 Wildrose Lane, Laidlaw, BC|Hope, BC|Compound words separated|no
@@ -10,7 +12,6 @@ HOUSE 900 Malachan Reserve|Malachan 11, BC|Numbered houses in an IR|Partially if
 102 A Ave, Surrey, BC|102A Ave, Surrey, BC|A Surrey Ave, Kamloops, BC|Numbered streetName with detached suffix|yes
 c/o Joe Fonebone, PO BOX 201, Quesnel, BC|Quesnel, BC|BC|Care-of info|no
 200 21st Ave, prince george, BC|Prince George, BC|200 21st Ave N, Cranbrook, BC|Unknown street in locality|no
-500 helmcken rd, victoria, BC|Helmcken Alley, Victoria, BC|500 Helmcken St, Vancouver, BC|Locality hopping|yes
 500 helmcken rd, saanich, BC|Helmcken Rd, Saanich, BC|Helmcken Rd, Saanich, BC|Nothing because given address had correct locality|yes
 2248 McAllister Ave, Poco, BC|2248 McAllister Ave, Port Coquitlam, BC|2248 McAllister Ave, Port Coquitlam, BC|Abbreviated localty name which leads to a false negative|yes
 10381 POPKUM RD S, ROSEDALE, BC|10381 Popkum Rd S, Popkum, BC|10381 Popkum Rd S, Popkum, BC|Missing locality alias which leads to a false negative|yes
