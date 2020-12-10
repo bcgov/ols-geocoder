@@ -496,4 +496,5 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00496-StreetNameWithSpecialCharacters,"Tl’etinqox Rd, Anahims Flat IR, BC",STREET,"Tl’etinqox Rd, Anahims Flat IR, BC",[],F,,129,T,T
 00497-StreetNameWithSpecialCharacters,"Clinton/Loon Lake FSR, Hutchison Lake, BC",STREET,"Clinton/Loon Lake FSR, Hutchison Lake, BC",[],F,,129,T,T
 00498-ACrazy,"201 A 201 A A St, Abbotsford, BC",UNIT,"UNIT 201A -- 201A A St, Abbotsford, BC","[UNIT_DESIGNATOR.missing,UNIT_NUMBER.notMatched,CIVIC_NUMBER_SUFFIX.notMatched]",F,,156,T,T
-00498-NonIntersectionOfRoadAndHwy,"trans-canada hwy  and no 1 rd abbotsford bc",INTERSECTION,"Trans-Canada Hwy and Trans-Canada Hwy, Abbotsford, BC ",[],F,,156,T,T
+00499-NonIntersectionOfRoadAndHwy,"trans-canada hwy  and no 1 rd abbotsford bc",INTERSECTION,"Trans-Canada Hwy and Trans-Canada Hwy, Abbotsford, BC ",[],F,,156,T,T
+00500-NoisyAddress,"Oscar the Grouch 1 Centennial Sq Felix the Cat Victoria Winnie the Pooh BC",CIVIC_NUMBER,"1 Centennial Sq Victoria BC",[],F,,156,T,T
