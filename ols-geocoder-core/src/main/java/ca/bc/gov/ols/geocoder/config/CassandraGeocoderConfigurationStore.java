@@ -280,7 +280,7 @@ public class CassandraGeocoderConfigurationStore extends CassandraConfigurationS
 		// and make any changes required by new versions		
 	}
 
-	public void replaceWith(CassandraGeocoderConfigurationStore configStore) {
+	public void replaceWith(GeocoderConfigurationStore configStore) {
 		super.replaceWith(configStore);
 		
 		// save BGEO_ABBREVIATION_MAPPINGS
