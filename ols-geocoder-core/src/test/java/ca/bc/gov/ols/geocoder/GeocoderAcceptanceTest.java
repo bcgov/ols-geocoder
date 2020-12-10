@@ -83,10 +83,10 @@ public class GeocoderAcceptanceTest {
 			testMessage.append("blank expectedFullAddress;");
 			skip = true;
 		}
-//		if(!"R".equals(status)) {
-//			testMessage.append("not a regression test;");
-//			skip = true;
-//		}
+		if(!"R".equals(status)) {
+			testMessage.append("not a regression test;");
+			skip = true;
+		}
 		MatchPrecision expectedMP = MatchPrecision.NONE;
 		try {
 			expectedMP = MatchPrecision.convert(expectedMatchPrecisionStr);

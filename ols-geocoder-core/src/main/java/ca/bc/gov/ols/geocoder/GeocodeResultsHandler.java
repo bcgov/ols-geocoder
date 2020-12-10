@@ -20,8 +20,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import ca.bc.gov.ols.geocoder.api.GeocodeQuery;
 import ca.bc.gov.ols.geocoder.api.data.AddressComponentMisspellings;
@@ -43,8 +41,6 @@ import ca.bc.gov.ols.geocoder.parser.ParseDerivationHandler;
 import ca.bc.gov.ols.geocoder.util.GeocoderUtil;
 
 public class GeocodeResultsHandler implements ParseDerivationHandler {
-	private Pattern numberWithAffixPattern = Pattern
-			.compile("(.*\\d+)([a-zA-Z])");
 	
 	private GeocodeQuery query;
 	private Geocoder geocoder;
@@ -160,22 +156,12 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 			AddressComponentMisspellings misspellings = new AddressComponentMisspellings();
 			
 			String unitNumber = pd.getPart("unitNumber");
-			String unitNumberSuffix = pd.getPart("unitNumberSuffix");
 			if(unitNumber != null && !unitNumber.isEmpty()) {
-				if((unitNumberSuffix != null && !unitNumberSuffix.isEmpty())) {
-					addr.setUnitNumber(unitNumber);
-					misspellings.setUnitNumberMS(pd.getMisspellings("unitNumber"));
-					addr.setUnitNumberSuffix(pd.getPart("unitNumberSuffix"));
-				} else {
-					// try to extract a suffix from the number
-					Matcher m = numberWithAffixPattern.matcher(unitNumber);
-					if(m.matches()) {
-						addr.setUnitNumber(m.group(1));
-						addr.setUnitNumberSuffix(m.group(2));
-					} else {
-						addr.setUnitNumber(unitNumber);
-					}
-				}
+				// remove a space between a single-letter prefix and the number, if there is one
+				unitNumber = unitNumber.replace(" ", "");
+				addr.setUnitNumber(unitNumber);
+				misspellings.setUnitNumberMS(pd.getMisspellings("unitNumber"));
+				addr.setUnitNumberSuffix(pd.getPart("unitNumberSuffix"));
 			}
 			String unitDesignator = pd.getPart("unitDesignator");
 			String floor = pd.getPart("floor");
@@ -191,14 +177,7 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 			addr.setSiteName(pd.getPart("siteName"));
 			misspellings.setSiteNameMS(pd.getMisspellings("siteName"));
 			
-			String part = pd.getPart("civicNumberWithAttachedSuffix");
-			if(part != null && !part.isEmpty()) {
-				Matcher m = numberWithAffixPattern.matcher(part);
-				if(m.matches()) {
-					addr.setCivicNumber(GeocoderUtil.parseCivicNumber(m.group(1)));
-					addr.setCivicNumberSuffix(m.group(2));
-				}
-			} else if(pd.getPart("civicNumber") != null) {
+			if(pd.getPart("civicNumber") != null) {
 				addr.setCivicNumber(GeocoderUtil.parseCivicNumber(pd.getPart("civicNumber")));
 				addr.setCivicNumberSuffix(pd.getPart("civicNumberSuffix"));
 			}
@@ -235,11 +214,20 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 				faults.add(datastore.getConfig().getMatchFault(pd.getPart("postalJunk"),
 						MatchElement.POSTAL_ADDRESS_ELEMENT, "notAllowed"));
 			}
-			String unrecognized = pd.getPart("unrecognized");
-			if(unrecognized != null) {
-				faults.add(datastore.getConfig().getUnrecognizedMatchFault(unrecognized));
+			String initialGarbage = pd.getPart("initialGarbage");
+			if(initialGarbage != null) {
+				faults.add(datastore.getConfig().getMatchFault(initialGarbage, MatchElement.INITIAL_GARBAGE, "notAllowed"));
 			}
-				
+			String localityGarbage = pd.getPart("localityGarbage");
+			if(localityGarbage != null) {
+				faults.add(datastore.getConfig().getMatchFault(localityGarbage, MatchElement.LOCALITY_GARBAGE, "notAllowed"));
+			}
+
+			String provinceGarbage = pd.getPart("provinceGarbage");
+			if(provinceGarbage != null) {
+				faults.add(datastore.getConfig().getMatchFault(provinceGarbage, MatchElement.PROVINCE_GARBAGE, "notAllowed"));
+			}
+
 //			if(pd.getNonWords().size() > 0) {
 //				faults.add(datastore.getConfig().getUnrecognizedMatchFault(pd.getNonWords()));
 //			}

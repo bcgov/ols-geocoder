@@ -27,11 +27,11 @@ import ca.bc.gov.ols.geocoder.util.GeocoderUtil;
 public class TrieWordMap implements WordMap {
 	private static final int MAX_ALLOWABLE_SPELLING_DISTANCE = 1;
 	private NameLookupTrie<Word> trie;
-	private Pattern numberLikePattern;
+	private Pattern numberPattern;
 	
 	public TrieWordMap(Map<String, Set<Word>> map) {
 		this.trie = new NameLookupTrie<Word>(map);
-		numberLikePattern = Pattern.compile(DraLexicalRules.RE_NUMBER_WITH_OPTIONAL_SUFFIX);
+		numberPattern = Pattern.compile(DraLexicalRules.RE_NUMBER);
 	}
 	
 	// unused
@@ -56,14 +56,14 @@ public class TrieWordMap implements WordMap {
 	
 	@Override
 	public List<MisspellingOf<Word>> mapWord(String fromWord, boolean allowMisspellings, boolean autoComplete) {
-		String withOrdinal = fromWord;
-		fromWord = GeocoderUtil.removeOrdinal(fromWord);
+		//String withOrdinal = fromWord;
+		//fromWord = GeocoderUtil.removeOrdinal(fromWord);
 
 		int error = 0;
 		if(allowMisspellings) {
 			error = MAX_ALLOWABLE_SPELLING_DISTANCE;
 			// no errors allowed for numbers
-			Matcher m = numberLikePattern.matcher(fromWord);
+			Matcher m = numberPattern.matcher(fromWord);
 			int len = fromWord.length();
 			if(len < 4 || m.matches()) {
 				error = 0;
@@ -93,18 +93,18 @@ public class TrieWordMap implements WordMap {
 			word.addClass(WordClass.NAME);
 		}
 		
-		if(!withOrdinal.equals(fromWord)) {
-			// the word is a number with an ordinal-like ending
-			// but the ordinal-like ending might just be a suffix (unit letter?)
-			Word wordWithOrdinal = classifyWord(withOrdinal);
-			// if the wordWithOrdinal looks like a number with suffix
-			if(wordWithOrdinal.inClass(WordClass.NUMBER_WITH_SUFFIX)) {
-				// then add this as an alternative interpretation 
-				words.add(0, new MisspellingOf<Word>(wordWithOrdinal,0, withOrdinal));
-			}
-			// if the word without the ordinal was classified as a number, remove that wordClass
-			word.removeClass(WordClass.NUMBER);
-		}
+//		if(!withOrdinal.equals(fromWord)) {
+//			// the word is a number with an ordinal-like ending
+//			// but the ordinal-like ending might just be a suffix (unit letter?)
+//			Word wordWithOrdinal = classifyWord(withOrdinal);
+//			// if the wordWithOrdinal looks like a number with suffix
+//			if(wordWithOrdinal.inClass(WordClass.NUMBER_WITH_SUFFIX)) {
+//				// then add this as an alternative interpretation 
+//				words.add(0, new MisspellingOf<Word>(wordWithOrdinal,0, withOrdinal));
+//			}
+//			// if the word without the ordinal was classified as a number, remove that wordClass
+//			word.removeClass(WordClass.NUMBER);
+//		}
 
 		// if the word classified into some extra categories
 		if(word.numClasses() > 0) {

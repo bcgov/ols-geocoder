@@ -37,16 +37,18 @@ public class DraLexicalRules extends LexicalRules
 	public static final String RE_AND = "AND";
 	
 	public static final String RE_NUMBER = "\\d{1,8}";
+
+	public static final String RE_LETTER = "[A-Z]";
+
+	//public static final String RE_NUMBER_WITH_SUFFIX = "\\d{1,8}[a-zA-Z]";
 	
-	public static final String RE_NUMBER_WITH_SUFFIX = "\\d{1,8}[a-zA-Z]";
-	
-	public static final String RE_NUMBER_WITH_OPTIONAL_SUFFIX = "\\d{1,8}([a-zA-Z])?";
+	//public static final String RE_NUMBER_WITH_OPTIONAL_SUFFIX = "\\d{1,8}([a-zA-Z])?";
 	
 	public static final String RE_ORDINAL = "(?i)(ST|TH|RD|ND|E|ER|RE|EME|ERE|IEME|IERE)";
 	
 	// unit numbers can be a single letter,
 	// or an optional letter followed by some numbers followed by an optional letter
-	public static final String RE_UNIT_NUMBER = "[a-zA-Z0-9]?\\d{0,8}((?<=\\d)[a-zA-Z])?";
+	//public static final String RE_UNIT_NUMBER = "[a-zA-Z0-9]?\\d{0,8}((?<=\\d)[a-zA-Z])?";
 	
 	public static final String RE_DIRECTIONAL = "N|NW|NE|S|SE|SW|E|W";
 	
@@ -63,8 +65,6 @@ public class DraLexicalRules extends LexicalRules
 	private Pattern[] postalPatterns;
 	
 	private static CleanRule[] cleanRules = new CleanRule[] {
-			// remove periods and apostrophes between letters, squish letters together
-			new CleanRule("(?<=[a-zA-Z]|^)[.'](?=[a-zA-Z]|$)", ""),
 			// remove diacritical marks
 			new CleanRule("\\p{InCombiningDiacriticalMarks}+", ""),
 			// replace ligatures with individual characters
@@ -74,6 +74,14 @@ public class DraLexicalRules extends LexicalRules
 			new CleanRule("Œ", "OE"),
 			new CleanRule("œ", "oe"),
 			new CleanRule("½", " 1/2"),
+			// replace o: with just o - it is a native language character
+			new CleanRule("o:", "o"),
+			// replace ʔ with 7
+			new CleanRule("ʔ", "7"),
+			// remove periods and apostrophes between letters, squish letters together
+			new CleanRule("(?<=[a-zA-Z]|^)[.'`’](?=[a-zA-Z]|$)", ""),
+			// remove slashes between letters, leave a space between letters
+			new CleanRule("(?<=[a-zA-Z]|^)[\\/\\\\](?=[a-zA-Z]|$)", " "),
 			// change & into "and"
 			new CleanRule("&", " and "),
 			// change -- into "/FG"
@@ -82,6 +90,15 @@ public class DraLexicalRules extends LexicalRules
 			new CleanRule("(?<=[^\\*]|^)\\*\\*(?=[^\\*]|$)", " " + OCCUPANT_SEPARATOR + " "),
 			// replace invalid characters with spaces (including apostrophes, periods, dashes)
 			new CleanRule("[^a-zA-Z0-9/]", " "),
+			// remove ordinals eg. 1st, 2nd, 3rd 4-9th
+			new CleanRule("1[sS][tT]\\b", "1"),
+			new CleanRule("2[nN][dD]\\b", "2"),
+			new CleanRule("3[rR][dD]\\b", "3"),
+			new CleanRule("([0-9])[tT][hH]\\b", "$1"),
+			// insert spaces between sequences of letters and numbers eg. 100A
+			new CleanRule("\\b([a-zA-Z]+)(\\d+)\\b", "$1 $2"),
+			// insert spaces between numbers and trailing single letters (we can't put a space in "7Eten"!)
+			new CleanRule("\\b(\\d+)([a-zA-Z])\\b", "$1 $2"),
 			// reduce all whitespace to single spaces
 			new CleanRule("\\s+", " ")
 	};

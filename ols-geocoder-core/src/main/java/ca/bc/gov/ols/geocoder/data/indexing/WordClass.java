@@ -17,7 +17,7 @@ package ca.bc.gov.ols.geocoder.data.indexing;
 
 public enum WordClass {
 	UNIT_DESIGNATOR,
-	UNIT_NUMBER_WORD,
+	//UNIT_NUMBER_WORD,
 	NAME,
 	OCCUPANT_SEPARATOR,
 	FRONT_GATE,
@@ -29,10 +29,11 @@ public enum WordClass {
 	AND,
 	FLOOR,
 	NUMBER,
-	NUMBER_WITH_SUFFIX,
+	//NUMBER_WITH_SUFFIX,
 	ORDINAL,
 	STATE_PROV_TERR,
 	SUFFIX,
+	LETTER,
 	POSTAL_ADDRESS_ELEMENT,
 	UNRECOGNIZED
 }
