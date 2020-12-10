@@ -33,4 +33,6 @@ public interface GeocoderConfigurationStore extends ConfigurationStore {
 	void setLocalityMapping(LocalityMapping locMap);
 	void removeLocalityMapping(LocalityMapping locMap);
 	
+	void replaceWith(GeocoderConfigurationStore configStore);
+	
 }
