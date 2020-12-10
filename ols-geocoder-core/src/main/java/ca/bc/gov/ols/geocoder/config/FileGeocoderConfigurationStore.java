@@ -26,7 +26,6 @@ import java.util.stream.Stream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ca.bc.gov.ols.config.ConfigurationStore;
 import ca.bc.gov.ols.config.FileConfigurationStore;
 import ca.bc.gov.ols.rowreader.CsvRowReader;
 import ca.bc.gov.ols.rowreader.RowReader;
@@ -170,7 +169,7 @@ public class FileGeocoderConfigurationStore extends FileConfigurationStore imple
 	}
 
 	@Override
-	public void replaceWith(ConfigurationStore configStore) {
+	public void replaceWith(GeocoderConfigurationStore configStore) {
 		super.replaceWith(configStore);
 		if(configStore instanceof GeocoderConfigurationStore) {			
 			writeAbbrevMappings(((GeocoderConfigurationStore)configStore).getAbbrevMappings().collect(Collectors.toList()));			
