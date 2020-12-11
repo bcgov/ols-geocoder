@@ -11,7 +11,7 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
    - 2% improvement is due to additional address ranges (from GeoBC Integrated Transportation Network), additional locality aliases (e.g., all neighbouring localities), and additional non-standard abbreviations in common usage (e.g., Poco for Port Coquitlam).
    - Here is a [list of typical, bad addresses](https://github.com/bcgov/ols-geocoder/blob/gh-pages/rejected-addresses.md) and how v4.1 handles them compared to v4.0   
 - There is a new [batch address list metrics calculator](https://github.com/bcgov/ols-devkit/tree/gh-pages/alm) that takes your batch geocoder results file and computes address list match accuracy, address counts by score interval, and other metrics that let you see exactly how much better your results are in version 4.1
-- online and batch geocoder APIs and [batch address list submitter](https://github.com/bcgov/ols-devkit/tree/gh-pages/als) are unchanged from version 4.0.2
+- Online and Batch Geocoder APIs and [batch address list submitter](https://github.com/bcgov/ols-devkit/tree/gh-pages/als) are unchanged from version 4.0.2
 
 
 ## July 28, 2020
