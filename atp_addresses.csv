@@ -18,7 +18,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00018-civicAddressWithUnitBeforeCivicNumberandWithoutFrontGate,"UNIT 418 925 Leon Ave, Kelowna, BC",UNIT,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",[],R,,,T,T
 00019-civicAddressWithUnitandKnownSiteName,"UNIT 170 Douglas College -- 22470 Dewdney Trunk Rd, Maple Ridge,BC",UNIT,"UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[],R,,,T,T
 00020-civicAddressWithSiteName,"Anahim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],R,,,T,T
-00021-civicAddressWithPartialSiteName,"Anahim -- Anahim Lake BC",SITE,"Anahim -- Anahim Lake, BC",[SITE_NAME.partialMatch:5],F,,,T,T
+00021-civicAddressWithPartialSiteName,"Anahim -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[SITE_NAME.partialMatch:5],F,,,T,T
 00022-civicAddressWithSiteNameAndMissingCivicNumber,"Douglas College -- Dewdney Trunk Rd, Maple Ridge,BC",SITE,"UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[UNIT_DESIGNATOR.missing:0 UNIT_NUMBER.missing:1 CIVIC_NUMBER.missing:10],R,,,F,F
 00023-civicAddressWithNumberForStreetName,"4216 E 51 Ave Fort Nelson BC",CIVIC_NUMBER,"4216 51st Ave E, Fort Nelson, BC",[],R,,,T,T
 00024-civicAddressWithUnitNumberSuffix,"need example",UNIT,"need example",[],U,,,T,T
@@ -33,7 +33,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00033-CivicAddressWithoutUnitDesignator,"128 - 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
 00034-CivicAddressWithoutUnitDesignator,"128 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
 00035-CivicAddressWithoutUnitDesignator,"850 Saucier Ave 128 Kelowna, BC",CIVIC_NUMBER,"UNIT 128 -- 850 Saucier Ave 128 Kelowna, BC",[UNRECOGNIZED.notAllowed:33],F,,,F,F
-00036-CivicAddressWithoutUnitNumber,"UNIT -- 850 Saucier Ave, Kelowna, BC",CIVIC_NUMBER,"850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.notMatched:1],F,,,T,T
+00036-CivicAddressWithoutUnitNumber,"UNIT -- 850 Saucier Ave, Kelowna, BC",CIVIC_NUMBER,"UNIT -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.notMatched:1],F,,,T,T
 00037-CivicAddressWithoutUnitNumber,"1359 Porlier Pass Rd APT Galiano Island BC",CIVIC_NUMBER,"APT -- 1359 Porlier Pass Rd, Galiano Island, BC",[UNIT_DESIGNATOR.notMatched:1],F,,,T,T
 00038-CivicAddressWithoutLocalityProvinceCode,3520 WENTWORTH AVE,CIVIC_NUMBER,"3520 Wentworth Ave, West Vancouver, BC","[LOCALITY.missing:10 PROVINCE.missing:1]",F,,,F,F
 00039-CivicAddressWithUnitAttachedToCivicNumber,"104490 Lorne St Kamloops bc",STREET,"Lorne St, Kamloops, BC",[CIVIC_NUMBER.notInAnyBlock:10],F,,,F,F
@@ -47,7 +47,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00047-CivicAddressWrongCharacterInLocality,"30 Firth Cres Mackensie BC",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[LOCALITY.spelledWrong:2],F,,,T,T
 00048-CivicAddressMissingWordInSiteName,"Anahim Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[SITE_NAME.partialMatch:2],F,,,T,T
 00049-CivicAddressWrongWordInStreetName,"6006 Happy Hilltop RD Summerland BC",CIVIC_NUMBER,"6006 Happy Valley Rd, Summerland, BC","[UNRECOGNIZED.notAllowed:33 STREET_NAME.partialMatch:1]",F,,,T,T
-00050-CivicAddressMissingFirstWordInStreetName,"6006 Valley RD Summerland BC",CIVIC_NUMBER,"6006 Happy Valley Rd, Summerland, BC","[STREET_NAME.partialMatch:1]",F,,,T,T
+00050-CivicAddressMissingFirstWordInStreetName,"6006 Valley RD Summerland BC",CIVIC_NUMBER,"6006 50 St SW, Salmon Arm, BC","[STREET_NAME.partialMatch:1]",F,,,T,T
 00051-CivicAddressMissingFirstWordInLocalityName,"1323 5th Ave, George, BC",CIVIC_NUMBER,"1323 5th Ave, Prince George, BC","[STREET_NAME.partialMatch:1]",F,,,T,F
 00052-CivicAddressMissingFirstWordInSiteName,"Lake Airport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC","[STREET_NAME.partialMatch:1]",F,,,T,F
 00053-CivicAddressMissingCharactersInSiteName,"Anahi Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[SITE_NAME.spelledWrong:1],F,,,T,T
@@ -56,7 +56,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00056-CivicAddressMissingCharactersInLocality,"30 Firth Cres Mckenzie BC",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[LOCALITY.spelledWrong:2],F,,,T,T
 00057-CivicAddressWrongAbbreviationInLocality,"2908 Hwy 99 Mot Currie BC",CIVIC_NUMBER,"2908 Hwy 99, Mount Currie, BC","[UNRECOGNIZED.notAllowed:33 LOCALITY.notMatched:35]",T,,,T,T
 00058-CivicAddressWrongProvinceCode,"30 Firth Cres Mackenzie AB",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[PROVINCE.notMatched:1],F,,,T,T
-00059-CivicAddressWrongLocality,952 COMOX AVE PRINCE GEORGE BC,LOCALITY,"Prince George, BC",[LOCALITY.notMatched:35],F,,,F,F
+00059-CivicAddressWrongLocality,952 COMOX AVE PRINCE GEORGE BC,LOCALITY,"952 Comox Ave, Prince Rupert, BC",[LOCALITY.notMatched:35],F,,,F,F
 00060-CivicAddressWrongStreetType,952 COMOX ST PRINCE RUPERT BC,CIVIC_NUMBER,"952 Comox Ave, Prince Rupert, BC",[STREET_TYPE.notMatched:3],F,,,T,T
 00061-CivicAddressWrongStreetDirection,"456 Gorge Rd W Victoria",CIVIC_NUMBER,"456 Gorge Rd E, Victoria, BC","[STREET_DIRECTION.notMatched:2 PROVINCE.missing:1]",F,,,T,T
 00062-CivicAddressMispelledStreetName,952 CLOROX AVE PRINCE RUPERT BC,BLOCK,"952 Comox Ave, Prince Rupert, BC","[STREET_Name.spelledWrong:3]",F,,,F,F
@@ -75,7 +75,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00075-CivicAddressUnknownStreetType,"561 salmon Ave, North Saanich, BC",BLOCK,"561 Salmon Rd, North Saanich, BC","[UNRECOGNIZED.notAllowed:33 STREET_TYPE.notMatched]",F,,,T,T
 00076-CivicAddressUnknownStreetName,"561 samson Rd, North Saanich, BC",CIVIC_NUMBER,"561 Lamson Rd, Abbotsford, BC","[LOCALITY.notMatched STREET_NAME.spelledWrong:2]",F,,,F,F
 00077-CivicAddressUnknownCivicNumber,"60000 Hwy 97B SE Salmon Arm BC",STREET,"Hwy 97B SE, Salmon Arm, BC",[CIVIC_NUMBER.notInAnyBlock:10],F,,,F,F
-00078-CivicAddressUnknownUnitDescriptor,"ABODE 128 -- 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.Unknown],F,,,T,T
+00078-CivicAddressUnknownUnitDescriptor,"ABODE 128 -- 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 ABODE -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.Unknown],F,,,T,T
 00079-CivicAddressStreetDirectionForUndirectedStreet,"109 Quarry Dr W Salt Spring Island BC",CIVIC_NUMBER,"109 Quarry Dr, Salt Spring Island, BC",[STREET_DIRECTION.notMatched:2],F,,,T,T
 00080-CivicAddressWithMailBagAtEnd,"525 Superior St, Victoria, BC MAILBAG 300",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
 00081-CivicAddressWithMailBagAfterStreet,"525 Superior St MAILBAG 300 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
@@ -101,10 +101,10 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00101-CivicAddresswithBoxNoStreet,"BOX 283 Victoria BC",LOCALITY,"Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
 00102-CivicAddressWithBoxAtEnd,"525 Superior St BOX 283 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
 00103-CivicAddressWithBoxAfterStreet,"525 Superior St, Victoria, BC BOX 283",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],F,,,T,T
-00104-CivicAddressWithFloorDesignator,"FLR 2 1175 Douglas St Victoria BC",CIVIC_NUMBER,"FLR 2 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",F,,,T,T
-00105-CivicAddressWithReverseFloorDesignator,"2nd FLR 1175 Douglas St Victoria BC",CIVIC_NUMBER,"FLR 2 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",F,,,T,T
-00106-CivicAddressWithUnabbreviatedFloorDesignator,"Floor 2 1175 Douglas St Victoria BC",CIVIC_NUMBER,"FLR 2 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",F,,,T,T
-00107-CivicAddressWithReverseUnabbreviatedFloorDesignator,"2nd Floor 1175 Douglas St Victoria BC",CIVIC_NUMBER,"FLR 2 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",F,,,T,T
+00104-CivicAddressWithFloorDesignator,"FLR 2 1175 Douglas St Victoria BC",CIVIC_NUMBER,"UNIT 2 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",F,,,T,T
+00105-CivicAddressWithReverseFloorDesignator,"2nd FLR 1175 Douglas St Victoria BC",CIVIC_NUMBER,"UNIT 2 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",F,,,T,T
+00106-CivicAddressWithUnabbreviatedFloorDesignator,"Floor 2 1175 Douglas St Victoria BC",CIVIC_NUMBER,"UNIT 2 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",F,,,T,T
+00107-CivicAddressWithReverseUnabbreviatedFloorDesignator,"2nd Floor 1175 Douglas St Victoria BC",CIVIC_NUMBER,"UNIT 2 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",F,,,T,T
 00108-SimpleInterpolatedCivicAddress,"5742 Malibu Terr Nanaimo BC",BLOCK,"5742 Malibu Terr, Nanaimo, BC",[],R,,,T,T
 00109-AdaptiveInterpolatedCivicAddress,"5686 Malibu Terr Nanaimo BC",BLOCK,"5686 Malibu Terr, Nanaimo, BC",[],R,,,T,T
 00110-CivicAddressWithKnownCivicNumber,"525 Superior St, Victoria, BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[],R,,,T,T
@@ -126,7 +126,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00126-IntersectionAddressWrongLocality,"gorge rd e and douglas st Saanich bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_NAME.notMatched:12 LOCALITY.isAlias:4]",F,,,T,T
 00127-IntersectionAddressWrongStreetType,"gorge st e and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BCC","[STREET_TYPE.notMatched:3 STREET_NAME.notMatched:12]",F,,,F,F
 00128-IntersectionAddressWrongStreetDirection,"gorge rd w and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_DIRECTION.notMatched:2 STREET_NAME.notMatched:12]",F,,,F,F
-00129-IntersectionAddressUnknownLocality,"gorge rd and douglas st bardville bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_TYPE.notMatched:3 STREET_NAME.isAlias:1 STREET_NAME.spelledWrong:2 STREET_NAME.spelledWrong:2 LOCALITY.missing:10]",F,,,F,F
+00129-IntersectionAddressUnknownLocality,"gorge rd and douglas st bardville bc",LOCALITY,"Barkerville, BC","[STREET_TYPE.notMatched:3 STREET_NAME.isAlias:1 STREET_NAME.spelledWrong:2 STREET_NAME.spelledWrong:2 LOCALITY.missing:10]",F,,,F,F
 00130-IntersectionAddressUnknownStreetDirection,"gorge rd n and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_DIRECTION.notMatched:2 STREET_NAME.notMatched:12]",F,,,F,F
 00131-IntersectionAddressStreetDirectionForUndirectedStreet,"Pandora Ave W and Blanshard St Victoria bc",INTERSECTION,"Blanshard St and Pandora Ave, Victoria, BC",[STREET_DIRECTION.notMatched:2],F,,,T,T
 00132-CivicAddressNumberedStreetWithoutTH,"955 13 ave Valemont bc",CIVIC_NUMBER,"955 13th Ave, Valemount, BC",[LOCALITY.spelledWrong:2],F,,,T,T
@@ -156,12 +156,12 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00156-CivicAddressInWrongLocation,"4427 Gaspardone Rd Kelowna BC",CIVIC_NUMBER,"4427 Gaspardone Rd, Kelowna, BC",[],R,,,T,T
 00157-CivicAddressInWrongLocation,"4429 Gaspardone Rd Kelowna BC",CIVIC_NUMBER,"4429 Gaspardone Rd, Kelowna, BC",[],R,,,T,T
 00158-CivicAddressWithUnescapedSpecialCharacter,"4429 Gaspardone\ Rd Kelowna BC",CIVIC_NUMBER,"4429 Gaspardone Rd, Kelowna, BC",[],R,,,T,T
-00159-CivicAddressWithNegativeScore,Unit 7 7460 Lancaster Pike Hockessin DE,LOCALITY,"UNIT 7 -- Sooke, BC","[UNRECOGNIZED.notAllowed UNIT_DESIGNATOR.notMatched UNIT_NUMBER.notMatched LOCALITY.isAlias PROVINCE.missing]",F,,,F,F
-00160-CivicAddressWithCivicNumberTreatedAsCivicNumberSuffix,need example,CIVIC_NUMBER,need example,[STREET_DIRECTION.notMatched:2],U,,,T,T
+00159-CivicAddressWithNegativeScore,Unit 7 7460 Lancaster Pike Hockessin DE,LOCALITY,"UNIT 7 -- Lancaster St, Vancouver, BC","[UNRECOGNIZED.notAllowed UNIT_DESIGNATOR.notMatched UNIT_NUMBER.notMatched LOCALITY.isAlias PROVINCE.missing]",F,,,F,F
+00160-CivicAddressWithCivicNumberTreatedAsCivicNumberSuffix,BC,CIVIC_NUMBER,BC,[STREET_DIRECTION.notMatched:2],U,,,T,T
 00161-NonCivicAddressWithKnownSiteName,"Anahim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],R,,,T,T
-00162-NonCivicAddressWithKnownSiteNameAndMissingStreet,"Centennial Candle -- Victoria BC",SITE,"Centennial Candle -- Laurel Lane, Victoria, BC","[STREET_NAME.missing:10 STREET_TYPE.missing:6]",T,,,F,F
+00162-NonCivicAddressWithKnownSiteNameAndMissingStreet,"Centennial Candle -- Victoria, BC",SITE,"Centennial Candle -- Laurel Lane, Victoria, BC","[STREET_NAME.missing:10 STREET_TYPE.missing:6]",T,,,F,F
 00163-NonCivicAddressWithKnownSiteNameandProvince,Anahim Lake Airport -- BC,SITE,"Anahim Lake Airport -- Anahim Lake, BC",[LOCALITY.missing:10],F,,,F,F
-00164-NonCivicAddressWithHwyNameAlias,need example,SITE,need example,[STREET_NAME.isHighwayAlias:0],U,,,T,T
+00164-NonCivicAddressWithHwyNameAlias,BC,SITE,BC,[STREET_NAME.isHighwayAlias:0],U,,,T,T
 00165-CivicAddressWithFractionalCivicNumberSuffix,"535 1/2 Fisgard Street, Victoria, BC",BLOCK,"535 1/2 Fisgard Street, Victoria, BC",[CIVIC_NUMBER_SUFFIX.notMatched:1],F,,,T,T
 00166-CivicAddressWithUTF-8FractionalCivicNumberSuffix,"535?ó Fisgard Street, Victoria, BC",CIVIC_NUMBER,"535 1/2 Fisgard Street, Victoria, BC",[CIVIC_NUMBER_SUFFIX.notMatched:1],U,,,T,T
 00167-NumberedStreetName,"857 E 45th Ave Vancouver BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],R,,,T,T
@@ -170,20 +170,20 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00170-LocalityNameWithGluedWords,"206 E 15th St, Northvancouver, BC",CIVIC_NUMBER,"206 E 15th St, North Vancouver, BC",[],F,,,T,T
 00171-SiteNameWithGluedWords,"AnahimLake Airport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],F,,,T,T
 00172-StreetNameWithMultipleSpellingMistakes,"Omineca St, Kitimat, BC",STREET,"Omenica St, Kitimat, BC",[],F,,,T,T
-00173-LocalityNameWithMultipleSpellingMistakes,"Sawasen, BC",LOCALITY,"Tsawwassen, BC",[],F,,,T,T
+00173-LocalityNameWithMultipleSpellingMistakes,"Spalumchin BC",LOCALITY,"Spallumcheen BC",[],F,,,T,T
 00174-SiteNameWithMultipleSpellingMistakes,"Anahyme Lak Arport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],F,,,T,T
 00175-NumberedStreetName,"857 E 45th Ave, Vancouver, BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],R,,,T,T
 00176-NumberedStreetNameWithEmbeddedBlanks,"857 E 45 th Ave, Vancouver, BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],R,,,T,T
 00177-StreetNameWithTwoWordsGluedTogether,"2845 Cedarhill Rd, Victoria, BC",CIVIC_NUMBER,"2845 Cedar Hill Rd, Victoria, BC",[],F,,,T,T
 00178-StreetNameWithGapBetweenWords,"1985 Mill Stream Rd, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC",[],F,,,T,T
 00179-UnknownSiteNameWithFrontGate,"Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],F,,,T,T
-00180-UnknownSiteNameWithoutFrontGate,"Old Mill Stream Manor 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00180-UnknownSiteNameWithoutFrontGate,"Old Mill Stream Manor 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
 00181-UnknownUnitwithUnknownSiteNameWithFrontGate,"APT 101 Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"APT 101, OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],F,,,T,T
-00182-UnknownUnitwithUnknownSiteNameWithoutFrontGate,"APT 101 Old Mill Stream Manor 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"APT 101, OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],F,,,T,T
-00183-UnknownUnitAfterStreetWithUnknownSiteNameWithFrontGate,"Old Mill Stream Manor -- 1985 Millstream Rd APT 101, Highlands, BC",CIVIC_NUMBER,"APT 101,OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,UNIT_DESIGNATOR.notMatched,UNIT_NUMBER.notMatched]",F,,,T,T
-00184-UnknownUnitAfterStreetWithUnknownSiteNameWithoutFrontGate,"Old Mill Stream Manor 1985 Millstream Rd APT 101, Highlands, BC",CIVIC_NUMBER,"APT 101,OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,FRONT_GATE.missing,UNIT_DESIGNATOR.notMatched,UNIT_NUMBER.notMatched]",F,,,T,T
-00185-UnknownSiteNameAfterStreetWithoutFrontGate,"1985 Millstream Rd Old Mill Stream Manor, Highlands, BC",CIVIC_NUMBER,"OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],F,,,T,T
-00186-UnknownUnitWithUnknownSiteNameAfterStreetWithoutFrontGate,"1985 Millstream Rd APT 101 Old Mill Stream Manor, Highlands, BC",CIVIC_NUMBER,"APT 101, OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,FRONT_GATE.missing,UNIT_DESIGNATOR.notMatched,UNIT_NUMBER.notMatched]",F,,,T,T
+00182-UnknownUnitwithUnknownSiteNameWithoutFrontGate,"APT 101 Old Mill Stream Manor 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],F,,,T,T
+00183-UnknownUnitAfterStreetWithUnknownSiteNameWithFrontGate,"APT 101, Old Mill Stream Manor -- 1985 Millstream Rd APT 101, Highlands, BC",CIVIC_NUMBER,"APT 101,OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,UNIT_DESIGNATOR.notMatched,UNIT_NUMBER.notMatched]",F,,,T,T
+00184-UnknownUnitAfterStreetWithUnknownSiteNameWithoutFrontGate,"APT 101, Old Mill Stream Manor 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,FRONT_GATE.missing,UNIT_DESIGNATOR.notMatched,UNIT_NUMBER.notMatched]",F,,,T,T
+00185-UnknownSiteNameAfterStreetWithoutFrontGate,"1985 Millstream Rd Old Mill Stream Manor, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],F,,,T,T
+00186-UnknownUnitWithUnknownSiteNameAfterStreetWithoutFrontGate,"1985 Millstream Rd APT 101 Old Mill Stream Manor, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,FRONT_GATE.missing,UNIT_DESIGNATOR.notMatched,UNIT_NUMBER.notMatched]",F,,,T,T
 00187-SpelledOutProvinceName,"8525 TERRACE DR DELTA, BRITISH COLUMBIA",CIVIC_NUMBER,"8525 Terrace Dr, Delta, BC",[],R,,,T,T
 00188-RedundantSpelledOutProvinceNameAndAbbreviation,"8525 TERRACE DR DELTA, BRITISH COLUMBIA, BC",CIVIC_NUMBER,"8525 Terrace Dr, Delta, BC",[PROVINCE_NAME.redundant],F,,,T,T
 00189-WordUNKNOWNInAddress,"975 BALMORAL RD UNKNOWN, VICTORIA, BC",CIVIC_NUMBER,"975 Balmoral Rd, Victoria, BC",[NOISE_WORD.notAllowed],F,,,T,T
@@ -191,9 +191,9 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00191-GDPostalElementAfterStreet,"400 GOWER POINT RD GD, GIBSONS, BC",CIVIC_NUMBER,"400 Gower Point Rd, Gibsons, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
 00192-DNCPostalElementAfterStreet,"10631 ROCHDALE DR DNC, RICHMOND, BC",CIVIC_NUMBER,"10631 Rochdale Dr, Richmond, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
 00193-RPOPostalElementAfterStreet,"1751 MARTINI WAY RPO, QUALICUM BEACH, BC",CIVIC_NUMBER,"1751 Martini Way, Qualicum Beach, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
-00194-UnknownSiteNameAfterStreet,"2095 MARINE DR HOLLYBURN HOUSE, WEST VANCOUVER, BC",CIVIC_NUMBER,"HOLLYBURN HOUSE -- 2095 Marine Dr, West Vancouver, BC",[SITE_NAME.unknown],F,,,T,T
-00195-SiteNameAfterStreet,"9580 WILLIAMS RD FRASERVIEW CARE LODGE, RICHMOND, BC",CIVIC_NUMBER,"FRASERVIEW CARE LODGE -- 9580 Williams Rd, Richmond, BC",[SITE_NAME.notAtFront],F,,,T,T
-00196-SiteNameAfterStreet,"9020 BRIDGEPORT RD LIONS MANOR, RICHMOND, BC",CIVIC_NUMBER,"LIONS MANOR -- 9020 Bridgeport Rd, Richmond, BC",[SITE_NAME.notAtFront],F,,,T,T
+00194-UnknownSiteNameAfterStreet,"2095 MARINE DR HOLLYBURN HOUSE, WEST VANCOUVER, BC",CIVIC_NUMBER,"2095 Marine Dr, West Vancouver, BC",[SITE_NAME.unknown],F,,,T,T
+00195-SiteNameAfterStreet,"9580 WILLIAMS RD FRASERVIEW CARE LODGE, RICHMOND, BC",CIVIC_NUMBER,"9580 Williams Rd, Richmond, BC",[SITE_NAME.notAtFront],F,,,T,T
+00196-SiteNameAfterStreet,"9020 BRIDGEPORT RD LIONS MANOR, RICHMOND, BC",CIVIC_NUMBER,"9020 Bridgeport Rd, Richmond, BC",[SITE_NAME.notAtFront],F,,,T,T
 00197-RedundantStreetTypeInAddress,"10008 COLDSTREAM CREEK RD RD, COLDSTREAM, BC",CIVIC_NUMBER,"10008 Coldstream Creek Rd, Coldstream, BC",[STREET_TYPE.duplicateNotAllowed],F,,,T,T
 00198-RedundantStreetTypeInAddress,"10008 COLDSTREAM CREEK RD ROAD, COLDSTREAM, BC",CIVIC_NUMBER,"10008 Coldstream Creek Rd, Coldstream, BC",[STREET_TYPE.duplicated],F,,,T,T
 00199-RedundantStreetTypeInAddress,"10008 COLDSTREAM CREEK ROAD RD, COLDSTREAM, BC",CIVIC_NUMBER,"10008 Coldstream Creek Rd, Coldstream, BC",[STREET_TYPE.duplicated],F,,,T,T
@@ -253,9 +253,9 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00253-RedundantStreetTypeInAddress,"1 1040 MT REVELSTOKE PL PL, VERNON, BC",UNIT,"UNIT 1 -- 1040 Mt Revelstoke Pl, Vernon, BC","[STREET_TYPE.duplicated,UNIT_DESIGNATOR.missing]",F,,,T,T
 00254-RedundantStreetTypeInAddress,"1 1040 MT REVELSTOKE PL PLACE, VERNON, BC",UNIT,"UNIT 1 -- 1040 Mt Revelstoke Pl, Vernon, BC","[STREET_TYPE.duplicated,UNIT_DESIGNATOR.missing]",F,,,T,T
 00255-UnknownSiteNameWithFrontGate,"HOLLYBURN HOUSE -- 2095 MARINE DR, WEST VANCOUVER, BC",CIVIC_NUMBER,"HOLLYBURN HOUSE -- 2095 Marine Dr, West Vancouver, BC",[SITE_NAME.notMatched],F,,,T,T
-00256-UnknownSiteNameAfterStreetWithoutFrontGate,"2095 MARINE DR HOLLYBURN HOUSE, WEST VANCOUVER, BC",CIVIC_NUMBER,"HOLLYBURN HOUSE -- 2095 Marine Dr, West Vancouver, BC",[SITE_NAME.notMatched],F,,,T,T
+00256-UnknownSiteNameAfterStreetWithoutFrontGate,"2095 MARINE DR HOLLYBURN HOUSE, WEST VANCOUVER, BC",CIVIC_NUMBER,"2095 Marine Dr, West Vancouver, BC",[SITE_NAME.notMatched],F,,,T,T
 00257-UnknownSiteNameWithFrontGate,"BRIDGE HOUSING -- 100 CORDOVA ST E, VANCOUVER, BC",CIVIC_NUMBER,"BRG HOUSING -- 100 E Cordova St, Vancouver, BC","[SITE_NAME.notMatched,STREET_DIRECTION.notSuffix:0]",F,,,T,T
-00258-UnknownSiteNameAfterStreetWithoutFrontGate,"100 CORDOVA ST E BRIDGE HOUSING, VANCOUVER, BC",CIVIC_NUMBER,"BRG HOUSING -- 100 E Cordova St, Vancouver, BC","[SITE_NAME.notMatched,STREET_DIRECTION.notSuffix:0]",F,,,T,T
+00258-UnknownSiteNameAfterStreetWithoutFrontGate,"100 CORDOVA ST E BRIDGE HOUSING, VANCOUVER, BC",CIVIC_NUMBER,"100 E Cordova St, Vancouver, BC","[SITE_NAME.notMatched,STREET_DIRECTION.notSuffix:0]",F,,,T,T
 00259-GoodAddress,"689 ABBOTT ST, VANCOUVER, BC",CIVIC_NUMBER,"689 Abbott St, Vancouver, BC",[],R,,,T,T
 00260-WordRTDMAILAfterStreet,"689 ABBOTT ST RTD MAIL, VANCOUVER, BC",CIVIC_NUMBER,"689 Abbott St, Vancouver, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
 00261-WordRETURNMAILAfterStreet,"689 ABBOTT ST RETURN MAIL, VANCOUVER, BC",CIVIC_NUMBER,"689 Abbott St, Vancouver, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed],F,,,T,T
@@ -285,20 +285,20 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00285-UnknownSiteNameWithoutFrontGate,"PATRICIA APTS 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"PATRICIA APTS -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
 00286-UnknownSiteNameAfterStreetWithoutFrontGate,"1110 CARDERO ST  PATRICIA APTS, VANCOUVER, BC",CIVIC_NUMBER,"PATRICIA APTS -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
 00287-UnknownSiteNameWithFrontGate,"PATRICIA APARTMENTS -- 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"PATRICIA APARTMENTS -- 1110 Cardero St, Vancouver, BC",[SITE_NAME.notMatched],F,,,T,T
-00288-UnknownSiteNameWithoutFrontGate,"PATRICIA APARTMENTS 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"PATRICIA APARTMENTS -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
-00289-UnknownSiteNameAfterStreetWithoutFrontGate,"1110 CARDERO ST  PATRICIA APARTMENTS, VANCOUVER, BC",CIVIC_NUMBER,"PATRICIA APARTMENTS -- 1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
-00290-UnknownSiteNameWithFrontGate,"LILLOET BLDG -- 410 2016 FULLERTON AVE, NORTH VANCOUVER, BC",UNIT,"UNIT 410 LILLOET BLDG -- 2016 Fullerton Ave, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing:0, LOCALITY.isAlias:1]",F,,,T,T
-00291-UnknownSiteNameWithoutFrontGate,"LILLOET BLDG 410 2016 FULLERTON AVE, NORTH VANCOUVER, BC",UNIT,"UNIT 410 LILLOET BLDG -- 2016 Fullerton Ave, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing:0, LOCALITY.isAlias:1,FRONT_GATE.missing]",F,,,T,T
-00292-UnknownSiteNameAfterStreetWithoutFrontGate,"410 2016 FULLERTON AVE LILLOET BLDG, NORTH VANCOUVER, BC",UNIT,"UNIT 410 LILLOET BLDG -- 2016 Fullerton Ave, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing:0, LOCALITY.isAlias:1,FRONT_GATE.missing]",F,,,T,T
-00293-UnknownSiteNameWithFrontGate,"CONDOMINIUMS -- 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 CONDOMINUMS -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched]",F,,,T,T
-00294-UnknownSiteNameWithoutFrontGate,"CONDOMINIUMS 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 CONDOMINIUMS -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
+00288-UnknownSiteNameWithoutFrontGate,"PATRICIA APARTMENTS 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00289-UnknownSiteNameAfterStreetWithoutFrontGate,"1110 CARDERO ST  PATRICIA APARTMENTS, VANCOUVER, BC",CIVIC_NUMBER,"1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00290-UnknownSiteNameWithFrontGate,"LILLOET BLDG -- 2016 FULLERTON AVE, NORTH VANCOUVER, BC",UNIT,"LILLOET BLDG -- 2016 Fullerton Ave, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing:0, LOCALITY.isAlias:1]",F,,,T,T
+00291-UnknownSiteNameWithoutFrontGate,"LILLOET BLDG 2016 FULLERTON AVE, NORTH VANCOUVER, BC",UNIT,"2016 Fullerton Ave, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing:0, LOCALITY.isAlias:1,FRONT_GATE.missing]",F,,,T,T
+00292-UnknownSiteNameAfterStreetWithoutFrontGate,"410 2016 FULLERTON AVE LILLOET BLDG, NORTH VANCOUVER, BC",UNIT,"UNIT 410 -- 2016 Fullerton Ave, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing:0, LOCALITY.isAlias:1,FRONT_GATE.missing]",F,,,T,T
+00293-UnknownSiteNameWithFrontGate,"UNIT 205, CONDOMINIUMS -- 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 CONDOMINUMS -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched]",F,,,T,T
+00294-UnknownSiteNameWithoutFrontGate,"CONDOMINIUMS 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
 00295-UnknownSiteNameAfterStreetWithoutFrontGate,"205 7555 120A ST CONDOMINIUMS, SURREY, BC",CIVIC_NUMBER,"UNIT 205 CONDOMINIUMS -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
-00296-UnknownSiteNameWithFrontGate,"CONDO -- 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 CONDO -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched]",F,,,T,T
-00297-UnknownSiteNameWithoutFrontGate,"CONDO 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 CONDO -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
-00298-UnknownSiteNameAfterStreetWithoutFrontGate,"205 7555 120A ST CONDO, SURREY, BC",CIVIC_NUMBER,"UNIT 205 CONDO -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
+00296-UnknownSiteNameWithFrontGate,"CONDO 205 -- 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"CONDO 205 -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched]",F,,,T,T
+00297-UnknownSiteNameWithoutFrontGate,"CONDO 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"CONDO 205 -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
+00298-UnknownSiteNameAfterStreetWithoutFrontGate,"205 7555 120A ST CONDO, SURREY, BC",CIVIC_NUMBER,"UNIT 205 -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
 00299-UnknownSiteNameWithFrontGate,"FRASERVIEW CARE LODGE -- 9580 WILLIAMS RD, RICHMOND, BC",CIVIC_NUMBER,"FRASERVIEW CARE LODGE -- 9580 Williams Rd, Richmond, BC",[SITE_NAME.notMatched],F,,,T,T
-00300-UnknownSiteNameWithoutFrontGate,"FRASERVIEW CARE LODGE 9580 WILLIAMS RD, RICHMOND, BC",CIVIC_NUMBER,"FRASERVIEW CARE LODGE -- 9580 Williams Rd, Richmond, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
-00301-UnknownSiteNameAfterStreetWithoutFrontGate,"9580 WILLIAMS RD FRASERVIEW CARE LODGE, RICHMOND, BC",CIVIC_NUMBER,"FRASERVIEW CARE LODGE -- 9580 Williams Rd, Richmond, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00300-UnknownSiteNameWithoutFrontGate,"FRASERVIEW CARE LODGE 9580 WILLIAMS RD, RICHMOND, BC",CIVIC_NUMBER,"9580 Williams Rd, Richmond, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
+00301-UnknownSiteNameAfterStreetWithoutFrontGate,"9580 WILLIAMS RD FRASERVIEW CARE LODGE, RICHMOND, BC",CIVIC_NUMBER,"9580 Williams Rd, Richmond, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
 00302-UnknownSiteNameWithFrontGate,"UNIT 1 LYNN VALLEY CARE CENTRE -- 1070 LYNN VALLEY RD, NORTH VANCOUVER, BC",CIVIC_NUMBER,"LYNN VALLEY CARE CENTRE -- 1070 Lynn Valley Rd, District of North Vancouver, BC","[[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched]",F,,,T,T
 00303-UnknownSiteNameWithoutFrontGate,"UNIT 1 LYNN VALLEY CARE CENTRE 1070 LYNN VALLEY RD, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 LYNN VALLEY CARE CENTRE -- 1070 Lynn Valley Rd, District of North Vancouver, BC","[[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
 00304-UnknownSiteNameAfterStreetWithoutFrontGate,"1 1070 LYNN VALLEY RD LYNN VALLEY CARE CENTRE, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 LYNN VALLEY CARE CENTRE-- 1070 Lynn Valley Rd, District of North Vancouver, BC","[[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched,FRONT_GATE.missing]",F,,,T,T
