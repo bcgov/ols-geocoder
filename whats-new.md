@@ -5,11 +5,12 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
 
 ## Jan 26, 2021
 - BC Address Geocoder Version 4.1.0 released (both online and batch geocoders)
-- Improved address match accuracy; A government list of 13 million addresses showed a 17% improvement in address list match accuracy
-- 15% improvement due to smarter address parsing
-- 2% improvement due to additional address ranges (from GeoBC Integrated Transportation Network), additional locality aliases (e.g., all neighbouring localities), and additional non-standard abbreviations in common usage (e.g., Poco for Port Coquitlam).
+- Improved address match accuracy
+   - A government list of 13 million addresses showed a 17% improvement in address list match accuracy
+   - 15% improvement is due to smarter address parsing
+   - 2% improvement is due to additional address ranges (from GeoBC Integrated Transportation Network), additional locality aliases (e.g., all neighbouring localities), and additional non-standard abbreviations in common usage (e.g., Poco for Port Coquitlam).
 - online and batch geocoder APIs and [batch address list submitter](https://github.com/bcgov/ols-devkit/tree/gh-pages/als) are unchanged from version 4.0.2
-- There is a new [batch address list metrics calculator](https://github.com/bcgov/ols-devkit/tree/gh-pages/alm) that takes a batch geocoder results file and computes address list match accuracy, address counts by score interval, and other metrics that let you see how much better your results are in version 4.1
+- There is a new [batch address list metrics calculator](https://github.com/bcgov/ols-devkit/tree/gh-pages/alm) that takes your batch geocoder results file and computes address list match accuracy, address counts by score interval, and other metrics that let you see exactly how much better your results are in version 4.1
 
 
 ## July 28, 2020
