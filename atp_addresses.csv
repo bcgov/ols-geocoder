@@ -433,7 +433,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00433-NonStandardStreetTypeAbbreviation,"3458 Burlee Village Pm, Coquitlam,BC",CIVIC_NUMBER,"3458 Burlee Village Prom, Coquitlam,BC",[],C,,102,T,T
 00434-NonStandardStreetTypeAbbreviation,"7701 Central Saanich Ro, Saanichton,BC",CIVIC_NUMBER,"7701 Central Saanich Rd, Saanichton,BC",[],C,,102,T,T
 00435-NonStandardStreetTypeAbbreviation,"3942 Coumbia Valley Roa, Cultus Lake, BC",CIVIC_NUMBER,"3942 Coumbia Valley Rd, Cultus Lake, BC",[],C,,102,T,T
-00436-NonStandardStreetTypeAbbreviation,"950 hope princeton wa, Hope, BC",CIVIC_NUMBER,"950 Hope Princeton Way, Hope, BC",[],C,,102,T,T
+00436-NonStandardStreetTypeAbbreviation,"950 old hope princeton wa, Hope, BC",CIVIC_NUMBER,"950 Hope Princeton Way, Hope, BC",[],C,,102,T,T
 00437-NonStandardStreetTypeAbbreviation,"774 Great Northern Wa, Vancouver, BC",CIVIC_NUMBER,"774 Great Northern Way, Vancouver, BC",[],C,,102,T,T
 00438-NonStandardLocalityNameAbbreviation,"1745 Esquimalt Ave, West Van, BC",CIVIC_NUMBER,"1745 Esquimalt Ave, West Vancouver, BC",[],C,,102,T,T
 00439-NonStandardLocalityNameAbbreviation,"352 W 14th St, North Vanc, BC",CIVIC_NUMBER,"352 W 14th St, North Vancouver, BC",[],C,,102,T,T
@@ -454,7 +454,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00454-civicAddressWithUnitandUnknownSiteName,"UNIT 170 Happy House -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 HAPPY HOUSE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched],F,,,T,T
 00455-StreetNameWithMultipleSpellingMistakes,"Omenica St, Hazelton, BC",STREET,"Omineca St, Hazelton, BC",[],F,,,T,T
 00456-NonStandardStreetTypeAbbreviation,"134 E 15th St, Nvan, BC",CIVIC_NUMBER,"134 E 15th St, North Vancouver, BC",[],C,,102,T,T
-00457-NonStandardStreetTypeAbbreviation,"2248 McAllister Ave, Poco, BC",CIVIC_NUMBER,"2248 McAllister Ave, Port Coquitlam, BC",[],C,,102,T,T
+00457-NonStandardLocalityNAmeAbbreviation,"2248 McAllister Ave, Poco, BC",CIVIC_NUMBER,"2248 McAllister Ave, Port Coquitlam, BC",[],C,,102,T,T
 00458-civicAddressWithUnitandUnknownSiteName,"UNIT 170 Doogie University -- 22470 Dewdney Trunk Rd, Maple Ridge,BC",UNIT,"UNIT 170 DOOGIE UNIVERSITY -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched MAX_RESULTS.too_low_to_include_all_best_matches],F,,,T,T
 00459-LocalityHopping,"B0X 188, KALEDEN, BC",LOCALITY,"KALEDEN,BC",[POSTAL_ELEMENT.notAllowed],F,,,F,T
 00460-LocalityHopping,"200 21st Ave, prince george, BC",LOCALITY,"Prince George,BC",[STREET.notFound],F,,,F,T
