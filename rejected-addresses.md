@@ -1,7 +1,7 @@
 |Given address|Expected result|Actual result in 4.0|What Geocoder 4.0 can't handle|Fixed in 4.1
 |---|---|---|---|---|
 Oscar the Grouch 1 Centennial Sq Felix the Cat Victoria Winnie the Pooh BC|1 Centennial Sq, Victoria, BC|Atlin, BC|Noise|Yes
-964 Lillooet Rd North Vancouver, North Vancouver, BC and score of 90 or higher|964 Lillooet Rd North Vancouver, BC and score of 90 or higher|964 Lillooet Rd North Vancouver, BC and score below 90|Duplicate locality name|yes
+964 Lillooet Rd North Vancouver, North Vancouver, BC|964 Lillooet Rd North Vancouver, BC and score of 90 or higher|964 Lillooet Rd North Vancouver, BC and score below 90|Duplicate locality name|yes
 964 LIllooet Rd Road, North Vancouver, BC|964 Lillooet Rd, North Vancouver, BC with score of 90 or higher|964 Lillooet Rd, North Vancouver, BC with score below 90|Duplicate street type|yes
 1413 Omenica Ave, Prince Rupert, BC|1413 Omineca Ave, Prince Rupert, BC|Rupert, BC|Multiple spelling mistakes|yes
 500 helmcken rd, victoria, BC|Helmcken Alley, Victoria, BC|500 Helmcken St, Vancouver, BC|Locality hopping|yes
