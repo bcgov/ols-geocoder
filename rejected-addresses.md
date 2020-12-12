@@ -1,4 +1,4 @@
-|Given address|Expected result|Actual result|What Geocoder 4.0 can't handle|Fixed in 4.1
+|Given address|Expected result|Actual result in 4.0|What Geocoder 4.0 can't handle|Fixed in 4.1
 |---|---|---|---|---|
 Oscar the Grouch 1 Centennial Sq Felix the Cat Victoria Winnie the Pooh BC|1 Centennial Sq, Victoria, BC|Atlin, BC|Noise|Yes
 964 Lillooet Rd North Vancouver, North Vancouver, BC|964 Lillooet Rd North Vancouver, North Vancouver, BC|Duplicate locality name|yes
