@@ -411,9 +411,9 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00411-StreetNameWithMissingAmpersand,"189 ROD GUN RD, COURTENAY, BC",CIVIC_NUMBER,"189 Rod & Gun RD, Courtenay, BC",[],F,,,T,T
 00412-StreetNameWithMissingAmpersand,"189 ROD GUN RD, COURTENAY, BC",CIVIC_NUMBER,"189 Rod & Gun RD, Courtenay, BC",[],F,,,T,T
 00413-LeadingZeroInCivicNumber,"01070 Lynn Valley Rd, North Vancouver, BC",CIVIC_NUMBER,"1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
-00414-LeadingZeroInUnitNumber,"01-1070 Lynn Valley Rd, North Vancouver, BC",UNIT,"UNIT 1 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
-00415-LeadingZeroInUnitNumber,"01 1070 Lynn Valley Rd, North Vancouver, BC",UNIT,"UNIT 1 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
-00416-LeadingZeroInUnitNumber,"Unit 01 -- 1070 Lynn Valley Rd, North Vancouver, BC",UNIT,"UNIT 1 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
+00414-LeadingZeroInUnitNumber,"01-1070 Lynn Valley Rd, North Vancouver, BC",UNIT,"UNIT 01 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
+00415-LeadingZeroInUnitNumber,"01 1070 Lynn Valley Rd, North Vancouver, BC",UNIT,"UNIT 01 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
+00416-LeadingZeroInUnitNumber,"Unit 01 -- 1070 Lynn Valley Rd, North Vancouver, BC",UNIT,"UNIT 01 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
 00417-UnitNumberWithLetterPrefix,"B2 518 BEATTY ST, VANCOUVER, BC",UNIT,"Unit B2 -- 518 Beatty St, Vancouver, BC",[],R,,,T,T
 00418-UnitNumberWithLetterPrefixGapped,"B 2 518 BEATTY ST, VANCOUVER, BC",UNIT,"Unit B2 -- 518 Beatty St, Vancouver, BC",[],F,,,T,T
 00419-UnitNumberWithLetterPrefix,"C2 1845 WEST 10TH AVE, VANCOUVER, BC",UNIT,"UNIT C2 -- 1845 W 10th Ave, Vancouver, BC",[],R,,,T,T
@@ -429,16 +429,16 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00429-NonStandardStreetTypeAbbreviation,"4965 Vista View Cre, Nanaimo, BC",CIVIC_NUMBER,"4965 Vista View Cres, Nanaimo, BC",[],C,,102,T,T
 00430-NonStandardStreetTypeAbbreviation,"1000 Thermal Dri, Coquitlam,BC",CIVIC_NUMBER,"1000 Thermal Dr, Coquitlam,BC",[],C,,102,T,T
 00431-NonStandardStreetTypeAbbreviation,"8400 Forest Grove Dri,Burnaby,BC",CIVIC_NUMBER,"8400 Forest Grove Dr,Burnaby,BC",[],C,,102,T,T
-00432-NonStandardStreetTypeAbbreviation,"3458 Burlee Village Pr, Coquitlam,BC",CIVIC_NUMBER,"3458 Burlee Village Promenade, Coquitlam,BC",[],C,,102,T,T
-00433-NonStandardStreetTypeAbbreviation,"3458 Burlee Village Pm, Coquitlam,BC",CIVIC_NUMBER,"3458 Burlee Village Promenade, Coquitlam,BC",[],C,,102,T,T
+00432-NonStandardStreetTypeAbbreviation,"3458 Burlee Village Pr, Coquitlam,BC",CIVIC_NUMBER,"3458 Burlee Village Prom, Coquitlam,BC",[],C,,102,T,T
+00433-NonStandardStreetTypeAbbreviation,"3458 Burlee Village Pm, Coquitlam,BC",CIVIC_NUMBER,"3458 Burlee Village Prom, Coquitlam,BC",[],C,,102,T,T
 00434-NonStandardStreetTypeAbbreviation,"7701 Central Saanich Ro, Saanichton,BC",CIVIC_NUMBER,"7701 Central Saanich Rd, Saanichton,BC",[],C,,102,T,T
 00435-NonStandardStreetTypeAbbreviation,"3942 Coumbia Valley Roa, Cultus Lake, BC",CIVIC_NUMBER,"3942 Coumbia Valley Rd, Cultus Lake, BC",[],C,,102,T,T
 00436-NonStandardStreetTypeAbbreviation,"950 hope princeton wa, Hope, BC",CIVIC_NUMBER,"950 Hope Princeton Way, Hope, BC",[],C,,102,T,T
-00437-NonStandardStreetTypeAbbreviation,"774 Great Northern Wa, Vancouver, BC",CIVIC_NUMBER,"774 Great Northern Wa, Vancouver, BC",[],C,,102,T,T
+00437-NonStandardStreetTypeAbbreviation,"774 Great Northern Wa, Vancouver, BC",CIVIC_NUMBER,"774 Great Northern Way, Vancouver, BC",[],C,,102,T,T
 00438-NonStandardLocalityNameAbbreviation,"1745 Esquimalt Ave, West Van, BC",CIVIC_NUMBER,"1745 Esquimalt Ave, West Vancouver, BC",[],C,,102,T,T
 00439-NonStandardLocalityNameAbbreviation,"352 W 14th St, North Vanc, BC",CIVIC_NUMBER,"352 W 14th St, North Vancouver, BC",[],C,,102,T,T
 00440-NonStandardLocalityNameAbbreviation,"569 Hody Dr, Ok Falls, BC",CIVIC_NUMBER,"569 Hody Dr, Okanagan Falls, BC",[],C,,102,T,T
-00441-NonStandardStreetNameAbbreviation,"5450 Ok Ave, Vernon, BC",CIVIC_NUMBER,"5450 Okanagan Ave, Vernon, BC",[],C,,102,T,T
+00441-NonStandardStreetNameAbbreviation,"5450 Ok Ave, Vernon, BC",CIVIC_NUMBER,"Vernon, BC",[],C,,102,T,T
 00442-NonStandardStreetNameAbbreviation,"1301 Ok Ave, Quesnel, BC",CIVIC_NUMBER,"1301 Oak Ave, Quesnel, BC",[],C,,102,T,T
 00443-NonStandardStreetNameAbbreviation,"GD, Quesnel, BC",CIVIC_NUMBER,"Quesnel, BC",[],C,,102,T,T
 00444-NonStandardStreetNameAbbreviation,"Genral Delivery, Quesnel, BC",CIVIC_NUMBER,"Quesnel, BC",[],C,,102,T,T
@@ -450,12 +450,12 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00450-SuffixNameMatching,"2020 Kent Ave S, Vancouver, BC",CIVIC_NUMBER,"2020 East Kent Ave S, Vancouver, BC",[],F,,,T,T
 00451-StreetNameWordsGluedTogether,"3821 Cedarhill Rd, Saanich, BC",CIVIC_NUMBER,"3821 Cedar Hill Rd, Saanich, BC",[],F,,,T,T
 00452-StreetNameCompoundWordSeparated,"8514 Horse Shoe Bay Rd, Anglemont, BC",CIVIC_NUMBER,"8514 Horseshoe Bay Rd, Anglemont, BC",[],F,,,T,T
-00453-NonStandardStreetTypeAbbreviation,"2908 Hwy 99, Mot Currie, BC",CIVIC_NUMBER,"2908 Hwy 99, Mt Currie, BC",[],C,,102,T,T
-00454-civicAddressWithUnitandUnknownSiteName,"UNIT 170 Happy House -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched],F,,,T,T
+00453-NonStandardStreetTypeAbbreviation,"2908 Hwy 99, Mot Currie, BC",CIVIC_NUMBER,"2908 Hwy 99, Mount Currie, BC",[],C,,102,T,T
+00454-civicAddressWithUnitandUnknownSiteName,"UNIT 170 Happy House -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 HAPPY HOUSE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched],F,,,T,T
 00455-StreetNameWithMultipleSpellingMistakes,"Omenica St, Hazelton, BC",STREET,"Omineca St, Hazelton, BC",[],F,,,T,T
 00456-NonStandardStreetTypeAbbreviation,"134 E 15th St, Nvan, BC",CIVIC_NUMBER,"134 E 15th St, North Vancouver, BC",[],C,,102,T,T
 00457-NonStandardStreetTypeAbbreviation,"2248 McAllister Ave, Poco, BC",CIVIC_NUMBER,"2248 McAllister Ave, Port Coquitlam, BC",[],C,,102,T,T
-00458-civicAddressWithUnitandUnknownSiteName,"UNIT 170 Doogie University -- 22470 Dewdney Trunk Rd, Maple Ridge,BC",UNIT,"UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched MAX_RESULTS.too_low_to_include_all_best_matches],F,,,T,T
+00458-civicAddressWithUnitandUnknownSiteName,"UNIT 170 Doogie University -- 22470 Dewdney Trunk Rd, Maple Ridge,BC",UNIT,"UNIT 170 DOOGIE UNIVERSITY -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched MAX_RESULTS.too_low_to_include_all_best_matches],F,,,T,T
 00459-LocalityHopping,"B0X 188, KALEDEN, BC",LOCALITY,"KALEDEN,BC",[POSTAL_ELEMENT.notAllowed],F,,,F,T
 00460-LocalityHopping,"200 21st Ave, prince george, BC",LOCALITY,"Prince George,BC",[STREET.notFound],F,,,F,T
 00461-LocalityHopping,"500 helmcken rd, victoria, BC",STREET,"Helmcken Alley, Victoria, BC","[CIVIC_NUMBER.notInAnyBlock, STREET_TYPE.notMatched]",F,,,F,T
@@ -464,9 +464,9 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00464-IRAddresses,"Blueberry Reserve, Buick",SITE_LOCALITY,"Blueberry River 205 -- Buick, BC",[FRONT_GATE.missing],F,,,F,T
 00465-IRAddresses," #8 Blueberry Reserve, Buick",SITE_LOCALITY,"House 8, Blueberry Reserve -- Buick, BC","[FRONT_GATE.missing, UNIT_DESIGNATOR.missing]",F,,,F,T
 00466-StreetNameWithMultipleSpellingMistakes,"15 31235 UPP MACLURE RD, ABBOTSFORD, BC",STREET,"15 31235 UPPER MACLURE RD, ABBOTSFORD, BC",[],F,,,T,T
-00467-StreetNameWithMultipleSpellingMistakes,"338 32830 GEORGE FERGUNSO, ABBOTSFORD, BC",STREET,"338 32830 GEORGE FERGUNSO, ABBOTSFORD, BC",[],F,,,T,T
-00468-StreetNameWithMultipleSpellingMistakes,"215 32850 GEORGE FERGUSSO, ABBOTSFORD, BC",STREET,"215 32850 GEORGE FERGUSON, ABBOTSFORD, BC",[],F,,,T,T
-00469-StreetNameWithMultipleSpellingMistakes,"117B 34313 FORREST TERREN, ABBOTSFORD, BC ",STREET,"117B 34313 FORREST TERRACE, ABBOTSFORD, BC ",[],F,,,T,T
+00467-StreetNameWithMultipleSpellingMistakes,"338 32830 GEORGE FERGUNSO, ABBOTSFORD, BC",STREET,"UNIT 338 -- 32830 GEORGE FERGUSON WAY, ABBOTSFORD, BC",[],F,,,T,T
+00468-StreetNameWithMultipleSpellingMistakes,"215 32850 GEORGE FERGUSSO, ABBOTSFORD, BC",STREET,"UNIT 215 -- 32850 GEORGE FERGUSON WAY, ABBOTSFORD, BC",[],F,,,T,T
+00469-StreetNameWithMultipleSpellingMistakes,"117B 34313 FORREST TERREN, ABBOTSFORD, BC ",STREET,"UNIT 117B -- 34313 Forrest Terr, Abbotsford, BC",[],F,,,T,T
 00470-StreetNameWithMultipleSpellingMistakes,"14 43685 CHILLWACK MOUNTA ROAD, CHILLIWACK, BC",STREET,"14 43685 CHILLIWACK MOUNTAIN ROAD, CHILLIWACK, BC",[],F,,,T,T
 00471-StreetNameWithMultipleSpellingMistakes,"29 1885 TABIN NOTCH HILL, TAPPEN, BC",STREET,"29 1885 TAPPEN NOTCH HILL, TAPPEN, BC",[],F,,,T,T
 00472-StreetNameWithMultipleSpellingMistakes,"15 8400 ASHLEY MCIVOR DR, WHISTLER, BC ",STREET,"15 8400 ASHLEIGH MCIVOR DR, WHISTLER, BC ",[],F,,,T,T
