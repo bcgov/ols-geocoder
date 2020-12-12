@@ -1,6 +1,9 @@
 |Given address|Expected result|Actual result|What Geocoder 4.0 can't handle|Fixed in 4.1
 |---|---|---|---|---|
-Oscar the Grouch 1 Centennial Sq Felix the Cat Victoria Winnie the Pooh BC| 1 Centennial Sq, Victoria, BC|Atlin, BC|Noise|Yes
+Oscar the Grouch 1 Centennial Sq Felix the Cat Victoria Winnie the Pooh BC|1 Centennial Sq, Victoria, BC|Atlin, BC|Noise|Yes
+964 Lillooet Rd North Vancouver, North Vancouver, BC|964 Lillooet Rd North Vancouver, North Vancouver, BC|Duplicate locality name|yes
+964 LIllooet Rd Road, North Vancouver, BC|964 Lillooet Rd, North Vancouver, BC|Duplicate street type|yes
+964 Lillooet Rd Road, North Vancouver, North Vancouver, BC|964 Lillooet Rd, North Vancouver, BC|Duplicate street type and locality name|yes
 1413 Omenica Ave, Prince Rupert, BC|1413 Omineca Ave, Prince Rupert, BC|Rupert, BC|Multiple spelling mistakes|yes
 500 helmcken rd, victoria, BC|Helmcken Alley, Victoria, BC|500 Helmcken St, Vancouver, BC|Locality hopping|yes
 1985 Millstream Rd, Old Mill Stream Manor, Highlands, BC|1985 Millstream Rd, Highlands,BC|Highlands, BC|Unknown siteName|yes
