@@ -12,7 +12,7 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
    - Here is a [list of typical, bad addresses](https://github.com/bcgov/ols-geocoder/blob/gh-pages/rejected-addresses.md) and how v4.1 handles them compared to v4.0   
 - There is a new [batch address list metrics calculator](https://github.com/bcgov/ols-devkit/tree/gh-pages/alm) that takes your batch geocoder results file and computes address list match accuracy, address counts by score interval, and other metrics that let you see exactly how much better your results are in version 4.1
 
-- Localities are now all unique to eliminate user confusion during address autocompletion (e.g., no more duplicate names in the choice list)
+- To reduce user confusion during address autocompletion, the geocoder no longer returns duplicate addresses (e.g., Mill Bay on Vancouver Island and Mill Bay in Northern BC) in autocomplete mode.
    - We took all official populated placenames that aren't defined as localities in the Integrated Transportation Network and made them sites. 
    - Some of these sites, such as Brentwood Bay, are situated in an ITN locality and look like this: ***Brentwood Bay -- Central Saanich, BC***
    - Other sites are situated outside but near ITN localities and look like this: ***Boston Bar 1 -- Boston Bar, BC***
