@@ -12,14 +12,14 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
    - Here is a [list of typical, bad addresses](https://github.com/bcgov/ols-geocoder/blob/gh-pages/rejected-addresses.md) and how v4.1 handles them compared to v4.0   
 - There is a new [batch address list metrics calculator](https://github.com/bcgov/ols-devkit/tree/gh-pages/alm) that takes your batch geocoder results file and computes address list match accuracy, address counts by score interval, and other metrics that let you see exactly how much better your results are in version 4.1
 
+- Added a way for houses on Indian Reserves that are assigned unique civic numbers but no street names to be modelled in the geocoder. Address authorities may now supply such addresses to DataBC in the form: ***House N -- IRName -- localityName, BC*** as in the following example: ***HOUSE 900 Malachan 11 -- Ditidaht, BC***
+
 - To reduce user confusion during address autocompletion, the geocoder no longer returns duplicate addresses (e.g., Mill Bay on Vancouver Island and Mill Bay in Northern BC) in autocomplete mode.
    - We took all official populated placenames that aren't defined as localities in the Integrated Transportation Network and made them sites. 
    - Some of these sites, such as Brentwood Bay, are situated in an ITN locality and look like this: ***Brentwood Bay -- Central Saanich, BC***
    - Other sites are situated outside but near ITN localities and look like this: ***Boston Bar 1 -- Boston Bar, BC***
    - In applications that use the geocoder for address completion, when entering just a locality, if you don't see what you need in the results, just add a double dash (--) and the geocoder will search these new sites. For example, entering ***Brentwood Bay --*** will return ***Brentwood Bay -- Central Saanich, BC***. 
    
-- Added a way for houses on Indian Reserves that are assigned unique civic numbers but no street names to be modelled in the geocoder. Address authorities may now supply such addresses to DataBC in the form: ***House N -- IRName -- localityName, BC*** as in the following example: ***HOUSE 900 Malachan 11 -- Ditidaht, BC***
-
 - Online and Batch Geocoder APIs and the [batch address list submitter](https://github.com/bcgov/ols-devkit/tree/gh-pages/als) are unchanged from version 4.0.2
 
 
