@@ -8,9 +8,9 @@ Oscar the Grouch 1 Centennial Sq Felix the Cat Victoria Winnie the Pooh BC|1 Cen
 1985 Millstream Rd, Old Mill Stream Manor, Highlands, BC|1985 Millstream Rd, Highlands,BC|Highlands, BC|Unknown siteName|yes
 102 A Ave, Surrey, BC|102A Ave, Surrey, BC|A Surrey Ave, Kamloops, BC|Numbered streetName with detached suffix|yes
 Unit910 7380 ELMBRIDGE WAY, RICHMOND, BC | Unit 910 -- 7380 ELMBRIDGE WAY, RICHMOND, BC|7380 Elmbridge Way, Richmond, BC|Unit number stuck to unit designator|Yes
-2248 McAllister Ave, Poco, BC|2248 McAllister Ave, Port Coquitlam, BC|2248 McAllister Ave, Port Coquitlam, BC|Abbreviated localty name which leads to a false negative|yes
+2248 McAllister Ave, Poco, BC|2248 McAllister Ave, Port Coquitlam, BC|2248 McAllister Ave, Port Coquitlam, BC|Abbreviated localty name which leads to a false negative (score below 90)|yes
 10381 POPKUM RD S, ROSEDALE, BC|10381 Popkum Rd S, Popkum, BC and score below 90|10381 Popkum Rd S, Popkum, BC with score of 90 or higher|Missing locality alias which leads to a false negative (score below 90)|yes
-105 150 21ST ST BUZZER 49, WEST VANCOUVER, BC|UNIT 105 -- 150 21st St, West Vancouver, BC with score of 90 or higher|UNIT 105 -- 150 21st St, West Vancouver, BC with score below 90|Unexpected info (PO Box) at front of address and between streetAddress and locality which leads to a false negative|yes
+105 150 21ST ST BUZZER 49, WEST VANCOUVER, BC|UNIT 105 -- 150 21st St, West Vancouver, BC with score of 90 or higher|UNIT 105 -- 150 21st St, West Vancouver, BC with score below 90|Unexpected info (PO Box) at front of address and between streetAddress and locality which leads to a false negative (below 90)|yes
 HOUSE 900 Malachan Reserve|HOUSE 900 Malachan 11 -- Ditidaht, BC|Malachan 11, BC|Numbered houses in an IR|No in 4.1 Silver, maybe in Gold
 58550 Wild Rose Lane Hope BC|58550 Wildrose Lane, Laidlaw, BC|Hope, BC|Compound words separated|No in Silver, maybe in Gold
 3821 Cedarhill Rd, Saanich, BC|3821 Cedar hill Rd, Saanich, BC|3821 Saanich Rd, Saanich, BC|Separate words glued together|No in 4.1 Silver, maybe in Gold
