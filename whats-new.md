@@ -6,7 +6,7 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
 ## Jan 26, 2021
 - BC Address Geocoder Version 4.1.0 released (both online and batch geocoders)
 - Improved address match accuracy
-   - A government list of 13 million addresses showed a 17% improvement in address list match accuracy (e.g., from 58% to 75%)
+   - The address list match accuracy of a government list of 13 million addresses went from 58% to 75%, an improvement of 17% improvement over Geocoder 4.0
    - 15% improvement is due to smarter address parsing
    - 2% improvement is due to additional address ranges (from GeoBC Integrated Transportation Network), additional locality aliases (e.g., all neighbouring localities), and additional non-standard abbreviations in common usage (e.g., Poco for Port Coquitlam, West Van for West Vancouver).
    - Here is a [list of typical, bad addresses](https://github.com/bcgov/ols-geocoder/blob/gh-pages/rejected-addresses.md) and how v4.1 handles them compared to v4.0   
