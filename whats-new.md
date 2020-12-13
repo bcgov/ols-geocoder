@@ -8,7 +8,7 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
 - Improved address match accuracy
    - The address list match accuracy of a government list of 13 million addresses went from 58% in version 4.0 to 75% in version 4.1, a 17% improvement
    - 15% improvement is due to smarter address parsing
-   - 2% improvement is due to additional address ranges (from GeoBC Integrated Transportation Network), additional locality aliases (e.g., all neighbouring localities), and additional non-standard abbreviations in common usage (e.g., Poco for Port Coquitlam, West Van for West Vancouver).
+   - 2% improvement is due to additional address ranges (from GeoBC Integrated Transportation Network), additional locality aliases (e.g., all neighbouring localities, abbreviations such as Poco for Port Coquitlam), and additional non-standard abbreviations in common usage (e.g., Bu for Boulevard, Cre for Crescent, Dri for Drive).
    - Here is a [list of typical, bad addresses](https://github.com/bcgov/ols-geocoder/blob/gh-pages/rejected-addresses.md) and how v4.1 handles them compared to v4.0   
 - There is a new [batch address list metrics calculator](https://github.com/bcgov/ols-devkit/tree/gh-pages/alm) that takes your batch geocoder results file and computes address list match accuracy, address counts by score interval, and other metrics that let you see exactly how much better your results are in version 4.1
 
