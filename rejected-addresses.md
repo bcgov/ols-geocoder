@@ -16,4 +16,4 @@ HOUSE 900 Malachan Reserve|HOUSE 900 Malachan 11 -- Ditidaht, BC|Malachan 11, BC
 3821 Cedarhill Rd, Saanich, BC|3821 Cedar hill Rd, Saanich, BC|3821 Saanich Rd, Saanich, BC|Separate words glued together|No in 4.1 Silver, maybe in Gold
 c/o Joe Fonebone, PO BOX 201, Quesnel, BC|Quesnel, BC|BC|Care-of info|No in 4.1 Silver, maybe in Gold
 200 21st Ave, prince george, BC|Prince George, BC|200 21st Ave N, Cranbrook, BC|Unknown street in locality|no
-950 Hope Princeton Way, Hope, BC|Hope Railway Overhead, Hope, BC|950 Old Hope Princeton Way, Hope, BC|Suffix matching|no
+950 Hope Princeton Way, Hope, BC|Hope Railway Overhead, Hope, BC|950 Old Hope Princeton Way, Hope, BC|Suffix matching (first word(s) missing)|no
