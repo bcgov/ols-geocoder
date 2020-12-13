@@ -1,3 +1,5 @@
+Here is a table of common address errors and how well they are handled in Geocoder 4.1 compared to 4.0:
+
 |Given address|Expected result|Actual result in Geocoder 4.0|What 4.0 can't handle|Fixed in 4.1
 |---|---|---|---|---|
 Oscar the Grouch 1 Centennial Sq Felix the Cat Victoria Winnie the Pooh BC|1 Centennial Sq, Victoria, BC|Atlin, BC|Noise|Yes
