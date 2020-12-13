@@ -18,7 +18,7 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
    - Other sites are situated outside but near ITN localities and look like this: ***Boston Bar 1 -- Boston Bar, BC***
    - In applications that use the geocoder for address completion, when entering just a locality, if you don't see what you need in the results, just add a double dash (--) and the geocoder will search these new sites. For example, entering ***Brentwood Bay --*** will return ***Brentwood Bay -- Central Saanich, BC***. 
    
-- Added a way for houses on Indian Reserves that are assigned unique civic numbers but no street names to be modelled in the geocoder. Address authorities may now supply such addresses to DataBC in the form: ***House N -- IRName -- localityName, BC*** as in the following example: House 900
+- Added a way for houses on Indian Reserves that are assigned unique civic numbers but no street names to be modelled in the geocoder. Address authorities may now supply such addresses to DataBC in the form: ***House N -- IRName -- localityName, BC*** as in the following example: ***HOUSE 900 Malachan 11 -- Ditidaht, BC***
 
 - Online and Batch Geocoder APIs and the [batch address list submitter](https://github.com/bcgov/ols-devkit/tree/gh-pages/als) are unchanged from version 4.0.2
 
