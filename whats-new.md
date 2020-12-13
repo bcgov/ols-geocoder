@@ -14,9 +14,9 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
 
 - Localities are now all unique to eliminate user confusion during address autocompletion (e.g., no more duplicate names in the choice list)
    - We took all official populated placenames that aren't defined as localities in the Integrated Transportation Network and made them sites. 
-   - Some of these sites, such as Brentwood Bay, are situated in an ITN locality and look like this: Brentwood Bay -- Central Saanich BC
-   - Other sites are situated outside but near existing ITN localities and look like this: Boston Bar 1 -- Boston Bar, BC
-   - In applications that use the geocoder for address completion, when entering just a locality, if you don't see what you need in the results, just add a double dash (--) and the geocoder will look through these new sites. For example, entering Brentwood Bay -- will return Brentwood Bay -- Central Saanich, BC. 
+   - Some of these sites, such as Brentwood Bay, are situated in an ITN locality and look like this: ***Brentwood Bay -- Central Saanich, BC***
+   - Other sites are situated outside but near existing ITN localities and look like this: ***Boston Bar 1 -- Boston Bar, BC***
+   - In applications that use the geocoder for address completion, when entering just a locality, if you don't see what you need in the results, just add a double dash (--) and the geocoder will search these new sites. For example, entering ***Brentwood Bay --*** will return ***Brentwood Bay -- Central Saanich, BC***. 
 
 - Online and Batch Geocoder APIs and the [batch address list submitter](https://github.com/bcgov/ols-devkit/tree/gh-pages/als) are unchanged from version 4.0.2
 
