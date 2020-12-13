@@ -14,7 +14,7 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
 
 - Added a way for houses on Indian Reserves that are assigned unique civic numbers but no street names to be modelled in the geocoder. Address authorities may now supply such addresses to DataBC in the form: ***House N -- IRName -- localityName, BC*** as in the following example: ***HOUSE 900 Malachan 11 -- Ditidaht, BC***
 
-- To reduce user confusion during address autocompletion, the geocoder no longer returns duplicate addresses (e.g., Mill Bay on Vancouver Island and Mill Bay in Northern BC) in autocomplete mode.
+- To reduce user confusion during address autocompletion, the geocoder no longer returns duplicate addresses (e.g., ***Mill Bay*** on Vancouver Island and ***Mill Bay*** in Northern BC) in autocomplete mode.
    - We took all official populated placenames that aren't defined as localities in the Integrated Transportation Network and made them sites. 
    - Some of these sites, such as Brentwood Bay, are situated in an ITN locality and look like this: ***Brentwood Bay -- Central Saanich, BC***
    - Other sites are situated outside but near ITN localities and look like this: ***Boston Bar 1 -- Boston Bar, BC***
