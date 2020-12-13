@@ -11,8 +11,13 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
    - 2% improvement is due to additional address ranges (from GeoBC Integrated Transportation Network), additional locality aliases (e.g., all neighbouring localities), and additional non-standard abbreviations in common usage (e.g., Poco for Port Coquitlam, West Van for West Vancouver).
    - Here is a [list of typical, bad addresses](https://github.com/bcgov/ols-geocoder/blob/gh-pages/rejected-addresses.md) and how v4.1 handles them compared to v4.0   
 - There is a new [batch address list metrics calculator](https://github.com/bcgov/ols-devkit/tree/gh-pages/alm) that takes your batch geocoder results file and computes address list match accuracy, address counts by score interval, and other metrics that let you see exactly how much better your results are in version 4.1
-- Localities are now all unique to eliminate user confusion (e.g., having to make a choice in an autocompletion list that has two Mill Bays in it; one on Vancouver Island and one in Northern BC)
-   - We took all official populated placenames that aren't used as localities in the Integrated Transportation Network and made them sites. This means if you're just looking for a locality in autocomplete mode and you get no locality match (e.g., Brentwood Bay), add a double-dash (--) and the geocoder will return a site-within-locality match (e.g., Brentwood Bay -- Central Saanich, BC). The double dash indicates a site name. If you're looking for a full civic address (e.g., 1125 Clarke Rd Brentwood Bay, BC), you don't need the double-dash which is the same as in previous versions of the geocoder.
+
+- Localities are now all unique to eliminate user confusion during address autocompletion (e.g., no more duplicate names in the choice list)
+   - We took all official populated placenames that aren't defined as localities in the Integrated Transportation Network and made them sites. 
+   - Some of these sites, such as Brentwood Bay, are situated in an ITN locality and look like this: Brentwood Bay -- Central Saanich BC
+   - Other sites are situated outside but near existing ITN localities and look like this: Boston Bar 1 -- Boston Bar, BC
+   - In applications that use the geocoder for address completion, when entering just a locality, if you don't see what you need in the results, just add a double dash (--) and the geocoder will look through these new sites. For example, entering Brentwood Bay -- will return Brentwood Bay -- Central Saanich, BC. 
+
 - Online and Batch Geocoder APIs and the [batch address list submitter](https://github.com/bcgov/ols-devkit/tree/gh-pages/als) are unchanged from version 4.0.2
 
 
