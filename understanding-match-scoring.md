@@ -22,7 +22,7 @@ The BC Geocoder scoring system has the following properties:
 
 1.	There is a numeric score between 1 and 100 that is computed for each address match. Addresses with a score of 90 or higher are good matches; addresses below 90 are bad matches [P1].
 
-2.	Preliminary analysis of misclassification rates (e.g., false positives and false negatives) suggest there are too many false negatives and some false positives [P2]. 
+2.	Preliminary analysis of misclassification rates (e.g., false positives and false negatives) suggests that Geocoder 4.0 has too many false negatives and some false positives [P2]. Geocoder 4.1 has much fewer false negatives.
 
 3.	For good matches, a score of 100 indicates a perfect match, a score of 95-99 indicates a very good match and a score of 90-95 indicates a good match. For bad matches, a score of 1 indicates no match, a score of 2-79 indicates a very bad match, and a score of 80-89 indicates a bad match [P3].
 
