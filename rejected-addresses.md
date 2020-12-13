@@ -19,3 +19,5 @@ HOUSE 900 Malachan Reserve|HOUSE 900 Malachan 11 -- Ditidaht, BC|Malachan 11, BC
 c/o Joe Fonebone, PO BOX 201, Quesnel, BC|Quesnel, BC|BC|Care-of info|No in 4.1 Silver, maybe in Gold
 200 21st Ave, prince george, BC|Prince George, BC|200 21st Ave N, Cranbrook, BC|Unknown street in locality|no
 950 Hope Princeton Way, Hope, BC|Hope Railway Overhead, Hope, BC|950 Old Hope Princeton Way, Hope, BC|Suffix matching (first word(s) missing)|no
+
+[Here](https://github.com/bcgov/ols-geocoder/blob/gh-pages/understanding-match-scoring.md) is a detailed explanation of address match scoring.
