@@ -453,7 +453,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00453-NonStandardStreetTypeAbbreviation,"2908 Hwy 99, Mot Currie, BC",CIVIC_NUMBER,"2908 Hwy 99, Mount Currie, BC",[],R,,102,T,T
 00454-civicAddressWithUnitandUnknownSiteName,"UNIT 170 Happy House -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 HAPPY HOUSE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched],R,,,T,T
 00455-StreetNameWithMultipleSpellingMistakes,"Omenica St, Hazelton, BC",STREET,"Omineca St, Hazelton, BC",[],R,,,T,T
-00456-NonStandardStreetTypeAbbreviation,"134 E 15th St, Nvan, BC",CIVIC_NUMBER,"134 E 15th St, North Vancouver, BC",[],R,,102,T,T
+00456-NonStandardLocalityNameAbbreviation,"134 E 15th St, North Van, BC",CIVIC_NUMBER,"134 E 15th St, North Vancouver, BC",[],R,,102,T,T
 00457-NonStandardLocalityNAmeAbbreviation,"2248 McAllister Ave, Poco, BC",CIVIC_NUMBER,"2248 McAllister Ave, Port Coquitlam, BC",[],R,,102,T,T
 00458-civicAddressWithUnitandUnknownSiteName,"UNIT 170 Doogie University -- 22470 Dewdney Trunk Rd, Maple Ridge,BC",UNIT,"UNIT 170 DOOGIE UNIVERSITY -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched MAX_RESULTS.too_low_to_include_all_best_matches],R,,,T,T
 00459-LocalityHopping,"BOX 188, KALEDEN, BC",LOCALITY,"KALEDEN,BC",[POSTAL_ELEMENT.notAllowed],R,,,F,T
