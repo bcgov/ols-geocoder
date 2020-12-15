@@ -9,9 +9,9 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
    - The address list match accuracy of a government list of 13 million addresses went from 58% in version 4.0 to 75% in version 4.1, a 17% improvement
    - 2% improvement is due to additional address ranges (from GeoBC Integrated Transportation Network), additional locality aliases (e.g., all neighbouring localities, abbreviations such as Poco for Port Coquitlam), and additional non-standard abbreviations in common usage (e.g., Bu for Boulevard, Cre for Crescent, Dri for Drive).
     - 15% improvement is due to smarter address parsing
-   - [Here](https://github.com/bcgov/ols-geocoder/issues/102) is the complete list of added abbreviations.
    - [Here](https://github.com/bcgov/ols-geocoder/blob/gh-pages/rejected-addresses.md) is a list of typical bad addresses and how v4.1 handles them compared to v4.0   
 - There is a new [batch address list metrics calculator](https://github.com/bcgov/ols-devkit/tree/gh-pages/alm) that takes your batch geocoder results file and computes address list match accuracy, address counts by score interval, and other metrics that let you see exactly how much better your results are in version 4.1
+   - [Here](https://github.com/bcgov/ols-geocoder/issues/102) is the complete list of added abbreviations.
 
 - Added a way for houses on Indian Reserves that are assigned unique civic numbers but no street names to be modelled in the geocoder. Address authorities may now supply such addresses to DataBC in the form: ***House N -- IRName -- localityName, BC*** as in the following example: ***HOUSE 900 Malachan 11 -- Ditidaht, BC***
 
