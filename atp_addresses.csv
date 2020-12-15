@@ -119,29 +119,29 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00119-IntersectionAddressWithMissingStreetDirection,"Davin St and Maddock Ave Saanich BC",INTERSECTION,"Davin St and Maddock Ave W, Saanich, BC",[STREET_DIRECTION.missing:2],R,,,T,T
 00120-IntersectionAddressWithoutStreetDirection,"Johnson st and begbie st Victoria bc",INTERSECTION,"Begbie St and Johnson St, Victoria, BC",[],R,,,T,T
 00121-IntersectionAddressWithPrefixStreetDirection,"sw marine dr and W 48th ave Vancouver bc",INTERSECTION,"SW Marine Dr and W 48th Ave, Vancouver, BC",[],R,,,T,T
-00122-IntersectionAddressWithMissingPrefixStreetDirection,"sw marine dr and 48th ave Vancouver bc",INTERSECTION,"SW Marine Dr and W 48th Ave, Vancouver, BC",[STREET_DIRECTION.missing:2],F,,,T,T
+00122-IntersectionAddressWithMissingPrefixStreetDirection,"sw marine dr and 48th ave Vancouver bc",INTERSECTION,"SW Marine Dr and W 48th Ave, Vancouver, BC",[STREET_DIRECTION.missing:2],R,,,T,T
 00123-IntersectionAddressWithPrefixStreetDirectionAndStreetNameContainingDirectionWord,BC,STREET,BC,"[UNRECOGNIZED.notAllowed:33 STREET_NAME.spelledWrong:2 LOCALITY.missing:10 STREET_TYPE.missing:6 PROVINCE.missing:1 MAX_RESULTS.too_low_to_include_all_best_matches:0]",U,,,F,F
-00124-IntersectionAddressWithoutProvinceCode,"Pandora Ave and Blanshard St Victoria",INTERSECTION,"Blanshard St and Pandora Ave, Victoria, BC",[PROVINCE.missing:1],F,,,T,T
+00124-IntersectionAddressWithoutProvinceCode,"Pandora Ave and Blanshard St Victoria",INTERSECTION,"Blanshard St and Pandora Ave, Victoria, BC",[PROVINCE.missing:1],R,,,T,T
 00125-IntersectionAddressWithProvinceName,"Pandora Ave and Blanshard St Victoria British Columbia",INTERSECTION,"Blanshard St and Pandora Ave, Victoria, BC",[],R,,,T,T
 00126-IntersectionAddressWrongLocality,"gorge rd e and douglas st Saanich bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_NAME.notMatched:12 LOCALITY.isAlias:4]",R,,,T,T
-00127-IntersectionAddressWrongStreetType,"gorge st e and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_TYPE.notMatched:3 STREET_NAME.notMatched:12]",F,,,F,F
-00128-IntersectionAddressWrongStreetDirection,"gorge rd w and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_DIRECTION.notMatched:2 STREET_NAME.notMatched:12]",F,,,F,F
-00129-IntersectionAddressUnknownLocality,"gorge rd and douglas st bardville bc",LOCALITY,"Barkerville, BC","[STREET_TYPE.notMatched:3 STREET_NAME.isAlias:1 STREET_NAME.spelledWrong:2 STREET_NAME.spelledWrong:2 LOCALITY.missing:10]",F,,,F,F
-00130-IntersectionAddressUnknownStreetDirection,"gorge rd n and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_DIRECTION.notMatched:2 STREET_NAME.notMatched:12]",F,,,F,F
-00131-IntersectionAddressStreetDirectionForUndirectedStreet,"Pandora Ave W and Blanshard St Victoria bc",INTERSECTION,"Blanshard St and Pandora Ave, Victoria, BC",[STREET_DIRECTION.notMatched:2],F,,,T,T
-00132-CivicAddressNumberedStreetWithoutTH,"955 13 ave Valemont bc",CIVIC_NUMBER,"955 13th Ave, Valemount, BC",[LOCALITY.spelledWrong:2],F,,,T,T
+00127-IntersectionAddressWrongStreetType,"gorge st e and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_TYPE.notMatched:3 STREET_NAME.notMatched:12]",R,,,F,F
+00128-IntersectionAddressWrongStreetDirection,"gorge rd w and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_DIRECTION.notMatched:2 STREET_NAME.notMatched:12]",R,,,F,F
+00129-IntersectionAddressUnknownLocality,"gorge rd and douglas st bardville bc",LOCALITY,"Barkerville, BC","[STREET_TYPE.notMatched:3 STREET_NAME.isAlias:1 STREET_NAME.spelledWrong:2 STREET_NAME.spelledWrong:2 LOCALITY.missing:10]",R,,,F,F
+00130-IntersectionAddressUnknownStreetDirection,"gorge rd n and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC","[STREET_DIRECTION.notMatched:2 STREET_NAME.notMatched:12]",R,,,F,F
+00131-IntersectionAddressStreetDirectionForUndirectedStreet,"Pandora Ave W and Blanshard St Victoria bc",INTERSECTION,"Blanshard St and Pandora Ave, Victoria, BC",[STREET_DIRECTION.notMatched:2],R,,,T,T
+00132-CivicAddressNumberedStreetWithoutTH,"955 13 ave Valemont bc",CIVIC_NUMBER,"955 13th Ave, Valemount, BC",[LOCALITY.spelledWrong:2],R,,,T,T
 00133-Street,"WELLS RD CHILLIWACK BC",STREET,"Wells Rd, Chilliwack, BC",[],R,,,T,T
 00134-CivicAddressFailedInPast,"1090 marine dr port alice bc",CIVIC_NUMBER,"1090 Marine Dr, Port Alice, BC",[],R,,,T,T
-00135-CivicAddressFailedInPast,"1772 CARIBOO HWY 70 MILE HOUSE BC",CIVIC_NUMBER,"1772 Hwy 97, 70 Mile House, BC",[STREET_NAME.isHighwayAlias:0],F,,,T,T
+00135-CivicAddressFailedInPast,"1772 CARIBOO HWY 70 MILE HOUSE BC",CIVIC_NUMBER,"1772 Hwy 97, 70 Mile House, BC",[STREET_NAME.isHighwayAlias:0],R,,,T,T
 00136-CivicAddressFailedInPast,"3545 PR EDWARD ST VANCOUVER BC",BLOCK,"3545 Prince Edward St, Vancouver, BC",[],R,,,T,T
 00137-CivicAddressFailedInPast,671D MARKET HILL VANCOUVER BC ,CIVIC_NUMBER,"671D Market Hill, Vancouver, BC",[],R,,,T,T
 00138-CivicAddressFailedInPast,100 mile house BC,LOCALITY,"100 Mile House, BC",[],R,,,T,T
 00139-CivicAddressFailedInPast,"WILLOW DRIVE 70 MILE HOUSE BC",STREET,"Willow Dr, 70 Mile House, BC",[],R,,,T,T
-00140-CivicAddressFailedInPast,gorge and gorge,INTERSECTION,"Gorge Bridge and Gorge Bridge, Esquimalt, BC","[STREET_QUALIFIER.missing:1 LOCALITY.missing:10 PROVINCE.missing:1]",F,,,F,F
+00140-CivicAddressFailedInPast,gorge and gorge,INTERSECTION,"Gorge Bridge and Gorge Bridge, Esquimalt, BC","[STREET_QUALIFIER.missing:1 LOCALITY.missing:10 PROVINCE.missing:1]",R,,,F,F
 00141-CivicAddressFailedInPast,"Vancouver BC",LOCALITY,"Vancouver, BC",[],R,,,T,T
 00142-CivicAddressNotInAnyAddressRange,"1 Commercial Dr Dease Lake BC",STREET,"Commercial Dr, Dease Lake, BC",[],R,,,T,T
-00143-CivicAddressStreetNameNotPrimary,"1271 Winchester Rd Qualicum Beach ",CIVIC_NUMBER,"1271 Winchester Rd, Qualicum Beach, BC",[PROVINCE.missing:1],F,,,T,T
-00144-CivicAddressWithHashCharacter,"#1-2145 PHILLIPS RD SOOKE BC",UNIT,"UNIT 1 -- 2145 Phillips Rd, Sooke, BC",[UNIT_DESIGNATOR.missing:0],F,,,T,T
+00143-CivicAddressStreetNameNotPrimary,"1271 Winchester Rd Qualicum Beach ",CIVIC_NUMBER,"1271 Winchester Rd, Qualicum Beach, BC",[PROVINCE.missing:1],R,,,T,T
+00144-CivicAddressWithHashCharacter,"#1-2145 PHILLIPS RD SOOKE BC",UNIT,"UNIT 1 -- 2145 Phillips Rd, Sooke, BC",[UNIT_DESIGNATOR.missing:0],R,,,T,T
 00145-CivicAddressWithProvinceCode,"3010 Wood Ave Armstrong BC",CIVIC_NUMBER,"3010 Wood Ave, Armstrong, BC",[],R,,,T,T
 00146-InterpolatedAccessPtOnEmptyBlock,"527 Superior St Victoria BC",BLOCK,"527 Superior St, Victoria, BC",[],R,,,T,T
 00147-InterpolatedAccessPtOnBlockWithAccessPtSites,"388 Campbell St Duncan BC",BLOCK,"388 Campbell St, Duncan, BC",[],R,,,T,T
@@ -160,7 +160,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00160-CivicAddressWithCivicNumberTreatedAsCivicNumberSuffix,BC,CIVIC_NUMBER,BC,[STREET_DIRECTION.notMatched:2],U,,,T,T
 00161-NonCivicAddressWithKnownSiteName,"Anahim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],R,,,T,T
 00162-NonCivicAddressWithKnownSiteNameAndMissingStreet,"Centennial Candle -- Victoria, BC",SITE,"Centennial Candle -- Laurel Lane, Victoria, BC","[STREET_NAME.missing:10 STREET_TYPE.missing:6]",U,,,F,F
-00163-NonCivicAddressWithKnownSiteNameandProvince,Anahim Lake Airport -- BC,SITE,"Anahim Lake Airport -- Anahim Lake, BC",[LOCALITY.missing:10],F,,,F,F
+00163-NonCivicAddressWithKnownSiteNameandProvince,Anahim Lake Airport -- BC,SITE,"Anahim Lake Airport -- Anahim Lake, BC",[LOCALITY.missing:10],R,,,F,F
 00164-NonCivicAddressWithHwyNameAlias,BC,SITE,BC,[STREET_NAME.isHighwayAlias:0],U,,,T,T
 00165-CivicAddressWithFractionalCivicNumberSuffix,"535 1/2 Fisgard Street, Victoria, BC",BLOCK,"535 1/2 Fisgard Street, Victoria, BC",[CIVIC_NUMBER_SUFFIX.notMatched:1],R,,,T,T
 00166-CivicAddressWithUTF-8FractionalCivicNumberSuffix,"535?ó Fisgard Street, Victoria, BC",CIVIC_NUMBER,"535 1/2 Fisgard Street, Victoria, BC",[CIVIC_NUMBER_SUFFIX.notMatched:1],U,,,T,T
