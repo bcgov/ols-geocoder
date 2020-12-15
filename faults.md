@@ -31,12 +31,15 @@ Name | Meaning | Penalty
 <a name="CIVIC_NUMBER.missing">Civic Number Missing</a> | A given address didn't contain a civic number but one was found.|10
 <a name="CIVIC_NUMBER.notInAnyBlock">Civic Number Not In Any Block</a> | A given civic number is not in any known address range for a given street in a given locality. The street within the given locality is returned with a match precision of STREET.|10
 <a name="CIVIC_NUMBER_SUFFIX.notMatched">Civic Number Suffix Not Matched</a> | A given civic number suffix for a given civic number and street was not found in a given locality.|1
+<a name="INITIAL_GARBAGE.notAllowed">Initial Garbage Not Allowed</a> |Unrecognized words found at beginning of address and before a unit number or civic number.|3
+<a name="LOCALITY_GARBAGE.notAllowed">Locality Garbage Not Allowed</a> |Unrecognized words found between street and locality name.|3
 <a name="LOCALITY.isAlias">Locality Is Alias</a>	| A given civic number and street were found in an alias of the given locality but not the locality itself.|Up to 20 points depending on alias confidence. For example, if Victoria aliases to Willis Point with a confidence of 80%, the penalty is 4 points. If the same alias had a confidence of 20%, the penalty would be 16
 <a name="LOCALITY.missing">Locality Missing</a> | A given address didn’t contain a locality name but one was found that contains the given civic number and street.|10
 <a name="LOCALITY.notMatched">Locality Not Matched</a> | A given locality does not contain a given civic number and street but another locality was found that does.|35
 <a name="LOCALITY.spelledWrong">Locality Spelled Wrong</a> | A given locality was spelled wrong but was successfully corrected to match a known locality.|2 
 <a name="OCCUPANT_NAME.partiallyMatched">Occupant Name Partially Matched</a> | Some of the words in an occupant name were matched. A match with a full occupant name is returned.| Up to 10 points depending on how weak the partial match is.
 <a name="POSTAL_ADDRESS_ELEMENT.notAllowed">Postal Address Element Not Allowed</a> | An element of a mailing address was detected (e.g., PO, BOX nn, SS, RR nn, a postal code. All such elements are ignored.|1
+<a name="PROVINCE_GARBAGE.notAllowed">Province Garbage Not Allowed</a> |Unrecognized words found between locality name and province code.|2
 <a name="PROVINCE.missing">Province Missing</a> | A given address didn't contain a province code (e.g., BC)|1
 <a name="PROVINCE.notMatched">Province Not Matched</a> |	A province code other than BC was found|1
 <a name="SITE_NAME.missing"> Site Name missing</a> |	A given address didn't contain a site name but one was found.|0
