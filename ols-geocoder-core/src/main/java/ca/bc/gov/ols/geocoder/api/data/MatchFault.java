@@ -35,9 +35,11 @@ public class MatchFault {
 		OCCUPANT_NAME, SITE_NAME, UNIT_NUMBER, UNIT_NUMBER_SUFFIX, UNIT_DESIGNATOR,
 		CIVIC_NUMBER, CIVIC_NUMBER_SUFFIX, STREET,
 		STREET_NAME, STREET_TYPE, STREET_DIRECTION, STREET_QUALIFIER,
-		LOCALITY, PROVINCE, POSTAL_ADDRESS_ELEMENT, UNRECOGNIZED, MAX_RESULTS, ADDRESS
+		LOCALITY, PROVINCE, POSTAL_ADDRESS_ELEMENT, MAX_RESULTS, ADDRESS,
+		INITIAL_GARBAGE, LOCALITY_GARBAGE, PROVINCE_GARBAGE, FAULTS
 	}
 	
+	private String value;
 	private MatchElement element;
 	private String fault;
 	private int penalty = 0;
@@ -46,10 +48,15 @@ public class MatchFault {
 		
 	}
 	
-	public MatchFault(MatchElement element, String fault, int penalty) {
+	public MatchFault(String value, MatchElement element, String fault, int penalty) {
+		this.value = value;
 		this.element = element;
 		this.fault = fault;
 		this.penalty = penalty;
+	}
+	
+	public String getValue() {
+		return value;
 	}
 	
 	public MatchElement getElement() {

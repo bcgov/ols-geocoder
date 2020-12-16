@@ -15,130 +15,333 @@
  */
 package ca.bc.gov.ols.geocoder.api.data;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import ca.bc.gov.ols.geocoder.api.data.MatchFault.MatchElement;
+import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
+import ca.bc.gov.ols.geocoder.data.indexing.MisspellingOf;
+import ca.bc.gov.ols.geocoder.data.indexing.Word;
+
 public class AddressComponentMisspellings {
-	private int siteNameMS = 0;
-	private int unitNumberMS = 0;
-	private int unitDesignatorMS = 0;
-	private int[] streetNameMS;
-	private int[] streetTypeMS;
-	private int[] streetDirectionMS;
-	private int[] streetQualifierMS;
-	private int localityMS = 0;
-	private int stateProvTerrMS = 0;
+	// each is a list of the misspellings for each word of each component
+	// the length of the list is at most the number of words in the component 
+	private List<MisspellingOf<Word>> siteNameMS = null;
+	private List<MisspellingOf<Word>> unitNumberMS = null;
+	private List<MisspellingOf<Word>> unitDesignatorMS = null;
+	// these are lists of lists, one for each street name in an intersection
+	private List<List<MisspellingOf<Word>>> streetNameMS;
+	private List<List<MisspellingOf<Word>>> streetTypeMS;
+	private List<List<MisspellingOf<Word>>> streetDirectionMS;
+	private List<List<MisspellingOf<Word>>> streetQualifierMS;
+	
+	private List<MisspellingOf<Word>> localityMS = null;
+	private List<MisspellingOf<Word>> stateProvTerrMS = null;
 	
 	public AddressComponentMisspellings() {
 		this(1);
 	}
 	
 	public AddressComponentMisspellings(int numStreets) {
-		streetNameMS = new int[numStreets];
-		streetTypeMS = new int[numStreets];
-		streetDirectionMS = new int[numStreets];
-		streetQualifierMS = new int[numStreets];
+		streetNameMS = makeList(numStreets);
+		streetTypeMS = makeList(numStreets);
+		streetDirectionMS = makeList(numStreets);
+		streetQualifierMS = makeList(numStreets);
 	}
 	
-	public int getSiteNameMS() {
+	private List<List<MisspellingOf<Word>>> makeList(int num) {
+		ArrayList<List<MisspellingOf<Word>>> list = new ArrayList<List<MisspellingOf<Word>>>(num);
+		for(int i = 0; i < num; i++) {
+			list.add(null);
+		}
+		return list;
+	}
+	
+	public List<MisspellingOf<Word>> getSiteNameMS() {
 		return siteNameMS;
 	}
-	
-	public void setSiteNameMS(int siteNameMS) {
+
+	public String getSiteNameMSString() {
+		return combineMispellings(siteNameMS);
+	}
+
+	public int getSiteNameMSError() {
+		return sumErrors(siteNameMS);
+	}
+
+	public void setSiteNameMS(List<MisspellingOf<Word>> siteNameMS) {
 		this.siteNameMS = siteNameMS;
 	}
 	
-	public int getUnitNumberMS() {
+	public List<MisspellingOf<Word>> getUnitNumberMS() {
 		return unitNumberMS;
 	}
-	
-	public void setUnitNumberMS(int unitNumberMS) {
+
+	public String getUnitNumberMSString() {
+		return combineMispellings(unitNumberMS);
+	}
+
+	public int getUnitNumberMSError() {
+		return sumErrors(unitNumberMS);
+	}
+
+	public void setUnitNumberMS(List<MisspellingOf<Word>> unitNumberMS) {
 		this.unitNumberMS = unitNumberMS;
 	}
 	
-	public int getUnitDesignatorMS() {
+	public List<MisspellingOf<Word>> getUnitDesignatorMS() {
 		return unitDesignatorMS;
 	}
-	
-	public void setUnitDesignatorMS(int unitDesignatorMS) {
+
+	public String getUnitDesignatorMSString() {
+		return combineMispellings(unitDesignatorMS);
+	}
+
+	public int getUnitDesignatorMSError() {
+		return sumErrors(unitDesignatorMS);
+	}
+
+	public void setUnitDesignatorMS(List<MisspellingOf<Word>> unitDesignatorMS) {
 		this.unitDesignatorMS = unitDesignatorMS;
 	}
 	
-	public int getStreetNameMS() {
-		return streetNameMS[0];
+	public List<MisspellingOf<Word>> getStreetNameMS() {
+		return streetNameMS.get(0);
+	}
+
+	public String getStreetNameMSString() {
+		return combineMispellings(streetNameMS.get(0));
 	}
 	
-	public int getStreetNameMS(int num) {
-		return this.streetNameMS[num];
+	public int getStreetNameMSError() {
+		return sumErrors(streetNameMS.get(0));
+	}
+
+	public List<MisspellingOf<Word>> getStreetNameMS(int num) {
+		return streetNameMS.get(num);
+	}
+
+	public String getStreetNameMSString(int num) {
+		return combineMispellings(streetNameMS.get(num));
+	}
+
+	public int getStreetNameMSError(int num) {
+		return sumErrors(streetNameMS.get(num));
+	}
+
+	public void setStreetNameMS(List<MisspellingOf<Word>> streetNameMS) {
+		this.streetNameMS.set(0, streetNameMS);
 	}
 	
-	public void setStreetNameMS(int streetNameMS) {
-		this.streetNameMS[0] = streetNameMS;
+	public void setStreetNameMS(int num, List<MisspellingOf<Word>> streetNameMS) {
+		this.streetNameMS.set(num, streetNameMS);
 	}
 	
-	public void setStreetNameMS(int num, int streetNameMS) {
-		this.streetNameMS[num] = streetNameMS;
+	public List<MisspellingOf<Word>> getStreetTypeMS() {
+		return streetTypeMS.get(0);
+	}
+
+	public String getStreetTypeMSString() {
+		return combineMispellings(streetTypeMS.get(0));
+	}
+
+	public int getStreetTypeMSError() {
+		return sumErrors(streetTypeMS.get(0));
+	}
+
+	public List<MisspellingOf<Word>> getStreetTypeMS(int num) {
+		return streetTypeMS.get(num);
+	}
+
+	public String getStreetTypeMSString(int num) {
+		return combineMispellings(streetTypeMS.get(num));
+	}
+
+	public int getStreetTypeMSError(int num) {
+		return sumErrors(streetTypeMS.get(num));
+	}
+
+	public void setStreetTypeMS(List<MisspellingOf<Word>> streetTypeMS) {
+		this.streetTypeMS.set(0, streetTypeMS);
 	}
 	
-	public int getStreetTypeMS() {
-		return streetTypeMS[0];
+	public void setStreetTypeMS(int num, List<MisspellingOf<Word>> streetTypeMS) {
+		this.streetTypeMS.set(num, streetTypeMS);
 	}
 	
-	public int getStreetTypeMS(int num) {
-		return this.streetTypeMS[num];
+	public List<MisspellingOf<Word>> getStreetDirectionMS() {
+		return streetDirectionMS.get(0);
+	}
+
+	public String getStreetDirectionMSString() {
+		return combineMispellings(streetDirectionMS.get(0));
+	}
+
+	public int getStreetDirectionMSError() {
+		return sumErrors(streetDirectionMS.get(0));
+	}
+
+	public List<MisspellingOf<Word>> getStreetDirectionMS(int num) {
+		return streetDirectionMS.get(num);
 	}
 	
-	public void setStreetTypeMS(int streetTypeMS) {
-		this.streetTypeMS[0] = streetTypeMS;
+	public String getStreetDirectionMSString(int num) {
+		return combineMispellings(streetDirectionMS.get(num));
+	}
+
+	public int getStreetDirectionMSError(int num) {
+		return sumErrors(streetDirectionMS.get(num));
+	}
+
+	public void setStreetDirectionMS(List<MisspellingOf<Word>> streetDirectionMS) {
+		this.streetDirectionMS.set(0, streetDirectionMS);
 	}
 	
-	public void setStreetTypeMS(int num, int streetTypeMS) {
-		this.streetTypeMS[num] = streetTypeMS;
+	public void setStreetDirectionMS(int num, List<MisspellingOf<Word>> streetDirectionMS) {
+		this.streetDirectionMS.set(num, streetDirectionMS);
 	}
 	
-	public int getStreetDirectionMS() {
-		return streetDirectionMS[0];
+	public List<MisspellingOf<Word>> getStreetQualifierMS() {
+		return streetQualifierMS.get(0);
+	}
+
+	public String getStreetQualifierMSString() {
+		return combineMispellings(streetQualifierMS.get(0));
+	}
+
+	public int getStreetQualifierMSError() {
+		return sumErrors(streetQualifierMS.get(0));
+	}
+
+	public List<MisspellingOf<Word>> getStreetQualifierMS(int num) {
+		return streetQualifierMS.get(num);
+	}
+
+	public String getStreetQualifierMSString(int num) {
+		return combineMispellings(streetQualifierMS.get(num));
+	}
+
+	public int getStreetQualifierMSError(int num) {
+		return sumErrors(streetQualifierMS.get(num));
+	}
+
+	public void setStreetQualifierMS(List<MisspellingOf<Word>> streetQualifierMS) {
+		this.streetQualifierMS.set(0, streetQualifierMS);
 	}
 	
-	public int getStreetDirectionMS(int num) {
-		return this.streetDirectionMS[num];
+	public void setStreetQualifierMS(int num, List<MisspellingOf<Word>> streetQualifierMS) {
+		this.streetQualifierMS.set(num, streetQualifierMS);
 	}
 	
-	public void setStreetDirectionMS(int streetDirectionMS) {
-		this.streetDirectionMS[0] = streetDirectionMS;
-	}
-	
-	public void setStreetDirectionMS(int num, int streetDirectionMS) {
-		this.streetDirectionMS[num] = streetDirectionMS;
-	}
-	
-	public int getStreetQualifierMS() {
-		return streetQualifierMS[0];
-	}
-	
-	public int getStreetQualifierMS(int num) {
-		return streetQualifierMS[num];
-	}
-	
-	public void setStreetQualifierMS(int streetQualifierMS) {
-		this.streetQualifierMS[0] = streetQualifierMS;
-	}
-	
-	public void setStreetQualifierMS(int num, int streetQualifierMS) {
-		this.streetQualifierMS[num] = streetQualifierMS;
-	}
-	
-	public int getLocalityMS() {
+	public List<MisspellingOf<Word>> getLocalityMS() {
 		return localityMS;
 	}
 	
-	public void setLocalityMS(int localityMS) {
+	public String getLocalityMSString() {
+		return combineMispellings(localityMS);
+	}
+	
+	public int getLocalityMSError() {
+		return sumErrors(localityMS);
+	}
+	
+	public void setLocalityMS(List<MisspellingOf<Word>> localityMS) {
 		this.localityMS = localityMS;
 	}
 	
-	public int getStateProvTerrMS() {
+	public List<MisspellingOf<Word>> getStateProvTerrMS() {
 		return stateProvTerrMS;
 	}
-	
-	public void setStateProvTerrMS(int stateProvTerrMS) {
+
+	public String getStateProvTerrMSString() {
+		return combineMispellings(stateProvTerrMS);
+	}
+
+	public int getStateProvTerrMSError() {
+		return sumErrors(stateProvTerrMS);
+	}
+
+	public void setStateProvTerrMS(List<MisspellingOf<Word>> stateProvTerrMS) {
 		this.stateProvTerrMS = stateProvTerrMS;
 	}
 	
+	public String wasAutoCompleted() {
+		String misspelling = wasAutoCompleted(siteNameMS);
+		if(misspelling != null) {
+			return misspelling;
+		}
+		misspelling = wasAutoCompleted(unitNumberMS);
+		if(misspelling != null) {
+			return misspelling;
+		}
+		misspelling = wasAutoCompleted(unitDesignatorMS);
+		if(misspelling != null) {
+			return misspelling;
+		}
+		misspelling = wasListAutoCompleted(streetNameMS);
+		if(misspelling != null) {
+			return misspelling;
+		}
+		misspelling = wasListAutoCompleted(streetTypeMS);
+		if(misspelling != null) {
+			return misspelling;
+		}
+		misspelling = wasListAutoCompleted(streetDirectionMS);
+		if(misspelling != null) {
+			return misspelling;
+		}
+		misspelling = wasListAutoCompleted(streetQualifierMS);
+		if(misspelling != null) {
+			return misspelling;
+		}
+		misspelling = wasAutoCompleted(localityMS);
+		if(misspelling != null) {
+			return misspelling;
+		}
+		misspelling = wasAutoCompleted(stateProvTerrMS);
+		if(misspelling != null) {
+			return misspelling;
+		}
+
+		return null;
+	}
+
+	private String wasListAutoCompleted(List<List<MisspellingOf<Word>>> listOfLists) {
+		for(List<MisspellingOf<Word>> list: listOfLists) {
+			String misspelling = wasAutoCompleted(list);
+			if(misspelling != null) return misspelling;
+		}
+		return null;
+	}
+
+	private String wasAutoCompleted(List<MisspellingOf<Word>> list) {
+		if(list == null) return null;
+		for(MisspellingOf<Word> ms: list) {
+			if(ms.getError() < 0) return ms.getMisspelling();
+		}
+		return null;
+	}
+	
+	private static int sumErrors(List<MisspellingOf<Word>> misspellingList) {
+		int error = 0;
+		if(misspellingList != null) {
+			for(MisspellingOf<Word> mw : misspellingList) {
+				error += mw.getError();
+			}
+		}
+		return error;
+	}
+
+	private static String combineMispellings(List<MisspellingOf<Word>> misspellingList) {
+		String misspelling = "";
+		if(misspellingList != null) {
+			for(MisspellingOf<Word> mw : misspellingList) {
+				misspelling += misspelling.isEmpty() ? mw.getMisspelling() : " " + mw.getMisspelling();
+			}
+		}
+		return misspelling;
+	}
+
+
 }

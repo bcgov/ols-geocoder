@@ -37,7 +37,7 @@ public class ParseDerivation
 	// private Label[] labels;
 	private ArrayList<String> labelList;
 	private ArrayList<String> partList;
-	private ArrayList<Integer> errorList;
+	private ArrayList<List<MisspellingOf<Word>>> misspellingList;
 	private List<String> nonWords;
 	
 	public ParseDerivation(MisspellingOf<Word>[] chosenWords, WordClass[] tokenClass,
@@ -48,22 +48,22 @@ public class ParseDerivation
 		// this.labels = labels.clone();
 		labelList = new ArrayList<String>();
 		partList = new ArrayList<String>();
-		errorList = new ArrayList<Integer>();
+		misspellingList = new ArrayList<List<MisspellingOf<Word>>>();
 		this.nonWords = new ArrayList<String>(nonWords);
 		Label currLabel = null;
 		StringBuilder sb = null;
-		int error = 0;
+		List<MisspellingOf<Word>> misspellings = null;
 		for(int i = 0; i < chosenWords.length; i++) {
 			if(labels[i] != currLabel) {
 				if(currLabel != null) {
 					// save the current label contents
 					labelList.add(currLabel.getName());
 					partList.add(sb.toString());
-					errorList.add(error);
+					misspellingList.add(misspellings);
 				}
 				currLabel = labels[i];
 				sb = new StringBuilder();
-				error = 0;
+				misspellings = new ArrayList<MisspellingOf<Word>>(1);
 			}
 			if(labels[i] != null) {
 				// don't use spaces when appending streetDirections -- yes, a hack
@@ -71,14 +71,14 @@ public class ParseDerivation
 					sb.append(" ");
 				}
 				sb.append(chosenWords[i].get().getWord());
-				error += chosenWords[i].getError();
+				misspellings.add(chosenWords[i]);
 			}
 		}
 		// put the last label in the map
 		if(currLabel != null) {
 			labelList.add(currLabel.getName());
 			partList.add(sb.toString());
-			errorList.add(error);
+			misspellingList.add(misspellings);
 		}
 		
 	}
@@ -110,34 +110,34 @@ public class ParseDerivation
 		return null;
 	}
 	
-	public int getError(String label) {
-		return getError(label, 0);
+	public List<MisspellingOf<Word>>  getMisspellings(String label) {
+		return getMisspellings(label, 0);
 	}
-	
-	public int getError(String label, int index) {
+
+	public List<MisspellingOf<Word>> getMisspellings(String label, int index) {
 		int count = 0;
 		for(int i = 0; i < labelList.size(); i++) {
 			if(label.equals(labelList.get(i))) {
 				count++;
 			}
 			if(count > index) {
-				return errorList.get(i);
+				return misspellingList.get(i);
 			}
 		}
-		return 0;
+		return null;
 	}
 	
-	public int getErrorBySeparator(String label, int index, String separatorLabel) {
+	public List<MisspellingOf<Word>> getMisspellingsBySeparator(String label, int index, String separatorLabel) {
 		int count = 0;
 		for(int i = 0; i < labelList.size(); i++) {
 			if(separatorLabel.equals(labelList.get(i))) {
 				count++;
 			}
 			if(count == index && label.equals(labelList.get(i))) {
-				return errorList.get(i);
+				return misspellingList.get(i);
 			}
 		}
-		return 0;
+		return null;
 	}
 	
 	public String getPartBySeparator(String label, int index, String separatorLabel) {

@@ -25,12 +25,18 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 import org.locationtech.jts.geom.Point;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import ca.bc.gov.ols.geocoder.GeocoderDataStore;
+import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 import ca.bc.gov.ols.geocoder.data.ILocation;
 import ca.bc.gov.ols.geocoder.filters.Filter;
 
 public class KDTree<T extends ILocation> {
-	
+	private static final Logger logger = LoggerFactory.getLogger(GeocoderConfig.LOGGER_PREFIX
+			+ KDTree.class.getCanonicalName());
+
 	private T item = null;
 	private Axis splitAxis;
 	private KDTree<T> left = null;
@@ -166,22 +172,43 @@ public class KDTree<T extends ILocation> {
 		return n * n;
 	}
 	
+//	private static <T extends ILocation> int select(
+//			List<T> list, int left, int right, int n, Comparator<ILocation> comparator) {
+//		// If the list contains only one element
+//		if(left == right) {
+//			return left;
+//		}
+//		// pick a random pivot
+//		int pivotIndex = left + (int)(Math.floor(Math.random() * (right - left + 1)));
+//		pivotIndex = partition(list, left, right, pivotIndex, comparator);
+//		// The pivot is in its final sorted position
+//		if(n == pivotIndex) {
+//			return n;
+//		} else if(n < pivotIndex) {
+//			return select(list, left, pivotIndex - 1, n, comparator);
+//		} else {
+//			return select(list, pivotIndex + 1, right, n, comparator);
+//		}
+//	}
+	
 	private static <T extends ILocation> int select(
 			List<T> list, int left, int right, int n, Comparator<ILocation> comparator) {
-		// If the list contains only one element
-		if(left == right) {
-			return left;
-		}
-		// pick a random pivot
-		int pivotIndex = left + (int)(Math.floor(Math.random() * (right - left + 1)));
-		pivotIndex = partition(list, left, right, pivotIndex, comparator);
-		// The pivot is in its final sorted position
-		if(n == pivotIndex) {
-			return n;
-		} else if(n < pivotIndex) {
-			return select(list, left, pivotIndex - 1, n, comparator);
-		} else {
-			return select(list, pivotIndex + 1, right, n, comparator);
+		while(true) {
+			// If the list contains only one element
+			if(left == right) {
+				return left;
+			}
+			// pick a random pivot
+			int pivotIndex = left + (int)(Math.floor(Math.random() * (right - left + 1)));
+			pivotIndex = partition(list, left, right, pivotIndex, comparator);
+			// The pivot is in its final sorted position
+			if(n == pivotIndex) {
+				return n;
+			} else if(n < pivotIndex) {
+				right = pivotIndex - 1;
+			} else {
+				left = pivotIndex + 1;
+			}
 		}
 	}
 	

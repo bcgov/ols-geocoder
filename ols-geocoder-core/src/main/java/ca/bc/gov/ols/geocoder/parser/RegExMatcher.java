@@ -15,17 +15,16 @@
  */
 package ca.bc.gov.ols.geocoder.parser;
 
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 /**
- * A RegExMatcher is a Matcher which identifies strings that matcha specified regular expression.
+ * A RegExMatcher is a Predicate which identifies strings that match a specified regular expression.
  * 
  * @author chodgson
  *
  */
-public class RegExMatcher
-implements Matcher
-{
+public class RegExMatcher implements Predicate<String> {
 	private Pattern pattern;
 	
 	public RegExMatcher(String regex)
@@ -33,7 +32,7 @@ implements Matcher
 		pattern = Pattern.compile(regex);
 	}
 	
-	public boolean matches(String value)
+	public boolean test(String value)
 	{
 		return pattern.matcher(value).matches();
 	}
