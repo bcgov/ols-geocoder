@@ -4,7 +4,7 @@ Last updated November 3, 2020 by MR
 Task|Status|Details
 |-----------|---|---|
 |Generate locality aliases for all adjacent localities|In review| Data integration process extended to generate and include aliases for all adjacent localities
-|Generate street aliases for glued and unglued street names|Not started|Data integration process extended. For example, Hill Side Ave becomes an alias of Hillside Ave
+|Generate street aliases for glued and unglued street names|In review|Data integration process extended. For example, Hill Side Ave becomes an alias of Hillside Ave
 |Generate street aliases for streets that have a directional word in their name|In review|Data integration process extended. For example, N Park St becomes an alias of North Park St
 |Generate street aliases for numbered streets that have gaps in their names|In progress|For example, 1200 102 A St, Surrey, BC becomes an alias for 1200 102A St, Surrey, BC
 |Add address data from other sources such as address ranges from ITN|In Review| Data integration process extended to include all ITN address ranges
