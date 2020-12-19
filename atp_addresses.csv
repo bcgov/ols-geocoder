@@ -449,7 +449,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00449-CareOf,"c/o 1301 Oak Ave, Quesnel,BC",CIVIC_NUMBER,"Quesnel,BC",[],R,,,T,T
 00450-SuffixNameMatching,"2020 Kent Ave S, Vancouver, BC",CIVIC_NUMBER,"2020 East Kent Ave S, Vancouver, BC",[],F,,,T,T
 00451-StreetNameWordsGluedTogether,"3821 Cedarhill Rd, Saanich, BC",CIVIC_NUMBER,"3821 Cedar Hill Rd, Saanich, BC",[],F,,,T,T
-00452-StreetNameCompoundWordSeparated,"8514 Horse Shoe Bay Rd, Anglemont, BC",CIVIC_NUMBER,"8514 Horseshoe Bay Rd, Anglemont, BC",[],F,,,T,T
+00452-StreetNameCompoundWordsSeparated,"8514 Horseshoebay Rd, Anglemont, BC",CIVIC_NUMBER,"8514 Horseshoe Bay Rd, Anglemont, BC",[],R,,,T,T
 00453-NonStandardStreetTypeAbbreviation,"2908 Hwy 99, Mot Currie, BC",CIVIC_NUMBER,"2908 Hwy 99, Mount Currie, BC",[],R,,102,T,T
 00454-civicAddressWithUnitandUnknownSiteName,"UNIT 170 Happy House -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 HAPPY HOUSE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched],R,,,T,T
 00455-StreetNameWithMultipleSpellingMistakes,"Omenica St, Hazelton, BC",STREET,"Omineca St, Hazelton, BC",[],R,,,T,T
@@ -467,13 +467,13 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00467-StreetNameWithMultipleSpellingMistakes,"338 32830 GEORGE FERGUNSO, ABBOTSFORD, BC",STREET,"UNIT 338 -- 32830 GEORGE FERGUSON WAY, ABBOTSFORD, BC",[],R,,,T,T
 00468-StreetNameWithMultipleSpellingMistakes,"215 32850 GEORGE FERGUSSO, ABBOTSFORD, BC",STREET,"UNIT 215 -- 32850 GEORGE FERGUSON WAY, ABBOTSFORD, BC",[],R,,,T,T
 00469-StreetNameWithMultipleSpellingMistakes,"117B 34313 FORREST TERREN, ABBOTSFORD, BC ",STREET,"UNIT 117B -- 34313 Forrest Terr, Abbotsford, BC",[],R,,,T,T
-00470-StreetNameWithMultipleSpellingMistakes,"14 43685 CHILLWACK MOUNTA ROAD, CHILLIWACK, BC",STREET,"14 43685 CHILLIWACK MOUNTAIN ROAD, CHILLIWACK, BC",[],R,,,T,T
-00471-StreetNameWithMultipleSpellingMistakes,"29 1885 TABIN NOTCH HILL, TAPPEN, BC",STREET,"29 1885 TAPPEN NOTCH HILL, TAPPEN, BC",[],F,,,T,T
-00472-StreetNameWithMultipleSpellingMistakes,"15 8400 ASHLEY MCIVOR DR, WHISTLER, BC",STREET,"15 8400 ASHLEIGH MCIVOR DR, WHISTLER, BC ",[],F,,,T,T
-00473-StreetNameWithMultipleSpellingMistakes,"2204 7343 OKANAGAON LANDI, VERNON, BC",STREET,"2204 7343 OKANAGAN LANDING, VERNON, BC",[],R,,,T,T
-00474-StreetNameWithMultipleSpellingMistakes,"66 1930 CEADER VILLAGE CR, NORTH VANCOUVER, BC",STREET,"66 1930 CEDAR VILLAGE CR, NORTH VANCOUVER, BC",[],R,,,T,T
-00475-StreetNameWithMultipleSpellingMistakes,"209 8611 GENERAL CURRY RD, RICHMOND, BC",STREET,"209 8611 GENERAL CURRIE RD, RICHMOND, BC",[],R,,,T,T
-00476-StreetNameWithMultipleSpellingMistakes,"305 1135 WINDSOR MUSE ST, COQUITLAM, BC",STREET,"305 1135 WINDSOR MEWS ST, COQUITLAM, BC",[],R,,,T,T
+00470-StreetNameWithMultipleSpellingMistakes,"14 43685 CHILLWACK MOUNTA ROAD, CHILLIWACK, BC",STREET,"Unit 14 -- 43685 CHILLIWACK MOUNTAIN ROAD, CHILLIWACK, BC",[],R,,,T,T
+00471-StreetNameWithMultipleSpellingMistakes,"29 1885 TABIN NOTCH HILL, TAPPEN, BC",STREET,"UNIT 29 -- 1885 TAPPEN NOTCH HILL, TAPPEN, BC",[],F,,,T,T
+00472-StreetNameWithMultipleSpellingMistakes,"15 8400 ASHLEY MCIVOR DR, WHISTLER, BC",STREET,"UNIT 15 -- 8400 ASHLEIGH MCIVOR DR, WHISTLER, BC ",[],F,,,T,T
+00473-StreetNameWithMultipleSpellingMistakes,"2204 7343 OKANAGAON LANDI, VERNON, BC",STREET,"UNIT 2204 -- 7343 OKANAGAN LANDING, VERNON, BC",[],R,,,T,T
+00474-StreetNameWithMultipleSpellingMistakes,"66 1930 CEADER VILLAGE CR, NORTH VANCOUVER, BC",STREET,"UNIT 66 -- 1930 CEDAR VILLAGE CR, NORTH VANCOUVER, BC",[],R,,,T,T
+00475-StreetNameWithMultipleSpellingMistakes,"209 8611 GENERAL CURRY RD, RICHMOND, BC",STREET,"UNIT 209 -- 8611 GENERAL CURRIE RD, RICHMOND, BC",[],R,,,T,T
+00476-StreetNameWithMultipleSpellingMistakes,"305 1135 WINDSOR MUSE ST, COQUITLAM, BC",STREET,"UNIT 305 -- 1135 WINDSOR MEWS ST, COQUITLAM, BC",[],R,,,T,T
 00477-StreetNameWithOneSpellingMistakeAtFront,"106 1355 UMBERLAND, COURTENAY, BC",STREET,"106 1355 UMBERLAND, COURTENAY, BC",[],R,,,T,T
 00478-AddressInSmallCommunityUsingLocalityAlias,"352 W 14th St, North Van, BC",CIVIC_NUMBER,"352 W 14th St, North Vancouver, BC",[LOCALITY.isAlias],R,,101,T,T
 00479-AddressInSmallCommunityUsingLocalityAlias,"1745 Esquimalt Ave, West Van, BC",CIVIC_NUMBER,"1745 Esquimalt Ave, West Vancouver, BC",[LOCALITY.isAlias],R,,101,T,T
@@ -483,11 +483,11 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00483-UnknownMulti-wordUnitDesignator,"APARTMENT BUILDING 221 4280 MONCTON ST, RICHMOND, BC",CIVIC_NUMBER,"UNIT 221 -- 4280 MONCTON ST, RICHMOND, BC","[INITIAL_GARBAGE.notAllowed,UNIT_DESIGNATOR.isAlias,MAX_RESULTS.too_low_to_include_all_best_matches]",R,,86,T,T
 00484-UnknownMulti-wordUunitDesignator,"APARTMENT BUILDING 54 2938 TRAFALGAR ST, ABBOTSFORD, BC",CIVIC_NUMBER,"UNIT 54 -- 2938 TRAFALGAR ST, ABBOTSFORD, BC","[INITIAL_GARBAGE.notAllowed,UNIT_DESIGNATOR.isAlias,MAX_RESULTS.too_low_to_include_all_best_matches]",R,,86,T,T
 00485-UnknownUnitNumberWithLetterPrefixGapped,"A 309 10557 150TH ST, SURREY, BC",UNIT_NUMBER,"UNIT A309 -- 10557 150TH ST, SURREY, BC","[UNIT_DESIGNATOR.missing,UNIT_NUMBER.notMatched]",R,,86,T,T
-00486-UnknownUnitNumberWithLetterPrefixGapped,"C 7 6901 W ISLAND HWY, BOWSER, BC",UNIT_NUMBER,"C7 6901 W ISLAND HWY, BOWSER, BC","[UNIT_DESIGNATOR.missing,UNIT_NUMBER.notMatched,STREET_DIRECTION.notPrefix]",R,,86,T,T
+00486-UnknownUnitNumberWithLetterPrefixGapped,"C 7 6901 W ISLAND HWY, BOWSER, BC",UNIT_NUMBER,"UNIT C7 -- 6901 W ISLAND HWY, BOWSER, BC","[UNIT_DESIGNATOR.missing,UNIT_NUMBER.notMatched,STREET_DIRECTION.notPrefix]",R,,86,T,T
 00487-UnitNumberWithLetterPrefix,"A114-20211 66 Ave, Township of Langley, BC",UNIT_NUMBER,"UNIT A114 -- 20211 66 Ave, Township of Langley, BC",[UNIT_DESIGNATOR.missing],R,,86,T,T
 00488-ExtraWordAtFrontOfStreetName,"19 2100 Mount Boucherie Rd West Kelowna BC",UNIT_NUMBER,"UNIT 19 -- 2100 Boucherie Rd West Kelowna BC",[],F,,144,T,T
 00489-UnitNumberSuffixInBackAlley,"555 Burrard St Unit 206A, Vancouver, BC",UNIT_NUMBER,"UNIT 206A -- 555 Burrard St Vancouver, BC","[UNIT_DESIGNATOR.notMatched,UNIT_NUMBER.notMatched]",R,,144,T,T
-00490-SiteNameInBackAlley,"1175 Douglas St, CIBC, Victoria, BC",CIVIC_NUMBER,"1175 Douglas St, CIBC, Victoria, BC",[LOCALITY_GARBAGE.notAllowed],R,,144,T,T
+00490-SiteNameInBackAlley,"1175 Douglas St, CIBC, Victoria, BC",CIVIC_NUMBER,"1175 Douglas St, Victoria, BC",[LOCALITY_GARBAGE.notAllowed],R,,144,T,T
 00491-DuplicateStreetTypeInBackAlley,"1175 Douglas St Street, Victoria, BC",CIVIC_NUMBER,"1175 Douglas St, Victoria, BC",[LOCALITY_GARBAGE.notAllowed],R,,144,T,T
 00492-CareOfInBackAlley,"1175 Douglas St c/o Big Wave Dave Victoria, BC",CIVIC_NUMBER,"1175 Douglas St Victoria, BC",[LOCALITY_GARBAGE.notAllowed],R,,144,T,T
 00493-DuplicateStreetAndLocalityInBackAlley,"1175 Douglas St, Douglas St, Victoria Victoria, BC",CIVIC_NUMBER,"1175 Douglas St, Victoria, BC",[LOCALITY_GARBAGE.notAllowed],R,,144,T,T
@@ -498,3 +498,8 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00498-ACrazy,"201 A 201 A A St, Abbotsford, BC",UNIT,"UNIT 201A -- 201A A St, Abbotsford, BC","[UNIT_DESIGNATOR.missing,UNIT_NUMBER.notMatched,CIVIC_NUMBER_SUFFIX.notMatched]",R,,156,T,T
 00499-NonIntersectionOfRoadAndHwy,"trans-canada hwy  and no 1 rd abbotsford bc",INTERSECTION,"Trans-Canada Hwy and Trans-Canada Hwy, Abbotsford, BC ",[],R,,156,T,T
 00500-NoisyAddress,"Oscar the Grouch 1 Centennial Sq Felix the Cat Victoria Winnie the Pooh BC",CIVIC_NUMBER,"1 Centennial Sq, Victoria BC",[],R,,156,T,T
+00501-StreetNameCompoundWordsSeparated,"12312 Horse Shoe Way, Richmond, BC",CIVIC_NUMBER,"12312 Horseshoeway, Richmond, BC",[],R,,,T,T
+00502-StreetNameCompoundWordsSeparated,"101 Sea View St, Sayward, BC",CIVIC_NUMBER,"101 Seaview St, Sayward, BC",[],R,,,T,T
+
+
+12312 Horse Shoe Way, Richmond, BC
