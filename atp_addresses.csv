@@ -432,7 +432,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00432-NonStandardStreetTypeAbbreviation,"3458 Burlee Village Pr, Coquitlam,BC",CIVIC_NUMBER,"3458 Burlee Village Prom, Coquitlam,BC",[],R,,102,T,T
 00433-NonStandardStreetTypeAbbreviation,"3458 Burlee Village Pm, Coquitlam,BC",CIVIC_NUMBER,"3458 Burlee Village Prom, Coquitlam,BC",[],R,,102,T,T
 00434-NonStandardStreetTypeAbbreviation,"7701 Central Saanich Ro, Saanichton,BC",CIVIC_NUMBER,"7701 Central Saanich Rd, Saanichton,BC",[],R,,102,T,T
-00435-NonStandardStreetTypeAbbreviation,"3942 Coumbia Valley Roa, Cultus Lake, BC",CIVIC_NUMBER,"3942 Coumbia Valley Rd, Cultus Lake, BC",[],R,,102,T,T
+00435-NonStandardStreetTypeAbbreviation,"3942 Coumbia Valley Roa, Cultus Lake, BC",CIVIC_NUMBER,"3942 Columbia Valley Rd, Cultus Lake, BC",[],R,,102,T,T
 00436-NonStandardStreetTypeAbbreviation,"950 old hope princeton wa, Hope, BC",CIVIC_NUMBER,"950 Old Hope Princeton Way, Hope, BC",[],R,,102,T,T
 00437-NonStandardStreetTypeAbbreviation,"774 Great Northern Wa, Vancouver, BC",CIVIC_NUMBER,"774 Great Northern Way, Vancouver, BC",[],R,,102,T,T
 00438-NonStandardLocalityNameAbbreviation,"1745 Esquimalt Ave, West Van, BC",CIVIC_NUMBER,"1745 Esquimalt Ave, West Vancouver, BC",[],R,,102,T,T
