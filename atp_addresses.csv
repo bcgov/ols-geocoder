@@ -474,7 +474,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00474-StreetNameWithMultipleSpellingMistakes,"66 1930 CEADER VILLAGE CR, NORTH VANCOUVER, BC",STREET,"UNIT 66 -- 1930 CEDAR VILLAGE CRES, NORTH VANCOUVER, BC",[],R,,,T,T
 00475-StreetNameWithMultipleSpellingMistakes,"209 8611 GENERAL CURRY RD, RICHMOND, BC",STREET,"UNIT 209 -- 8611 GENERAL CURRIE RD, RICHMOND, BC",[],R,,,T,T
 00476-StreetNameWithMultipleSpellingMistakes,"305 1135 WINDSOR MUSE ST, COQUITLAM, BC",STREET,"UNIT 305 -- 1135 WINDSOR MEWS ST, COQUITLAM, BC",[],R,,,T,T
-00477-StreetNameWithOneSpellingMistakeAtFront,"106 1355 UMBERLAND, COURTENAY, BC",STREET,"106 1355 UMBERLAND, COURTENAY, BC",[],R,,,T,T
+00477-StreetNameWithOneSpellingMistakeAtFront,"106 1355 UMBERLAND, COURTENAY, BC",STREET,"UNIT 106 -- 1355 UMBERLAND, COURTENAY, BC",[],R,,,T,T
 00478-AddressInSmallCommunityUsingLocalityAlias,"352 W 14th St, North Van, BC",CIVIC_NUMBER,"352 W 14th St, North Vancouver, BC",[LOCALITY.isAlias],R,,101,T,T
 00479-AddressInSmallCommunityUsingLocalityAlias,"1745 Esquimalt Ave, West Van, BC",CIVIC_NUMBER,"1745 Esquimalt Ave, West Vancouver, BC",[LOCALITY.isAlias],R,,101,T,T
 00480-AddressInSmallCommunityUsingLocalityAlias,"223 W 7th Ave, Van, BC",CIVIC_NUMBER,"223 W 7th Ave, Vancouver, BC",[LOCALITY.isAlias],R,,101,T,T
@@ -498,5 +498,5 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00498-ACrazy,"201 A 201 A A St, Abbotsford, BC",UNIT,"UNIT 201A -- 201A A St, Abbotsford, BC","[UNIT_DESIGNATOR.missing,UNIT_NUMBER.notMatched,CIVIC_NUMBER_SUFFIX.notMatched]",R,,156,T,T
 00499-NonIntersectionOfRoadAndHwy,"trans-canada hwy  and no 1 rd abbotsford bc",INTERSECTION,"Trans-Canada Hwy and Trans-Canada Hwy, Abbotsford, BC",[],R,,156,T,T
 00500-NoisyAddress,"Oscar the Grouch 1 Centennial Sq Felix the Cat Victoria Winnie the Pooh BC",CIVIC_NUMBER,"1 Centennial Sq, Victoria BC",[],R,,156,T,T
-00501-StreetNameCompoundWordsSeparated,"12312 Horse Shoe Way, Richmond, BC",CIVIC_NUMBER,"12312 Horseshoeway, Richmond, BC",[],R,,,T,T
+00501-StreetNameCompoundWordsSeparated,"12312 Horse Shoe Way, Richmond, BC",CIVIC_NUMBER,"12312 Horseshoe Way, Richmond, BC",[],R,,,T,T
 00502-StreetNameCompoundWordsSeparated,"101 Sea View St, Sayward, BC",CIVIC_NUMBER,"101 Seaview St, Sayward, BC",[],R,,,T,T
