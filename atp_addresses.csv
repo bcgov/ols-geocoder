@@ -463,7 +463,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00463-IRAddresses,"Blueberry Reserve, Buick, BC",STREET,"Blueberry Reserve Rd, Buick, BC",[SITE_NAME:unknown],R,,,F,T
 00464-IRAddresses,"Blueberry River -- Buick, BC",SITE_LOCALITY,"Blueberry River 205 -- Buick, BC",[FRONT_GATE.missing],R,,,F,T
 00465-IRAddresses,"House 8 Blueberry River -- Buick, BC",SITE_LOCALITY,"House 8, Blueberry River 205 -- Buick, BC","[FRONT_GATE.missing, UNIT_DESIGNATOR.missing]",R,,,F,T
-00466-StreetNameWithMultipleSpellingMistakes,"15 31235 UPPR MCLUR RD, ABBOTSFORD, BC",STREET,"15 31235 UPPER MACLURE RD, ABBOTSFORD, BC",[],R,,,T,T
+00466-StreetNameWithMultipleSpellingMistakes,"15 31235 UPPR MCLUR RD, ABBOTSFORD, BC",STREET,"UNIT 15 31235 UPPER MACLURE RD, ABBOTSFORD, BC",[],R,,,T,T
 00467-StreetNameWithMultipleSpellingMistakes,"338 32830 GEORGE FERGUNSO, ABBOTSFORD, BC",STREET,"UNIT 338 -- 32830 GEORGE FERGUSON WAY, ABBOTSFORD, BC",[],R,,,T,T
 00468-StreetNameWithMultipleSpellingMistakes,"215 32850 GEORGE FERGUSSO, ABBOTSFORD, BC",STREET,"UNIT 215 -- 32850 GEORGE FERGUSON WAY, ABBOTSFORD, BC",[],R,,,T,T
 00469-StreetNameWithMultipleSpellingMistakes,"117B 34313 FORREST TERREN, ABBOTSFORD, BC",STREET,"UNIT 117B -- 34313 Forrest Terr, Abbotsford, BC",[],R,,,T,T
@@ -471,7 +471,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00471-StreetNameWithMultipleSpellingMistakes,"29 1885 TABIN NOTCH HILL, TAPPEN, BC",STREET,"UNIT 29 -- 1885 TAPPEN NOTCH HILL, TAPPEN, BC",[],F,,,T,T
 00472-StreetNameWithMultipleSpellingMistakes,"15 8400 ASHLEY MCIVOR DR, WHISTLER, BC",STREET,"UNIT 15 -- 8400 ASHLEIGH MCIVOR DR, WHISTLER, BC",[],F,,,T,T
 00473-StreetNameWithMultipleSpellingMistakes,"2204 7343 OKANAGAON LANDI, VERNON, BC",STREET,"UNIT 2204 -- 7343 OKANAGAN LANDING, VERNON, BC",[],R,,,T,T
-00474-StreetNameWithMultipleSpellingMistakes,"66 1930 CEADER VILLAGE CR, NORTH VANCOUVER, BC",STREET,"UNIT 66 -- 1930 CEDAR VILLAGE CR, NORTH VANCOUVER, BC",[],R,,,T,T
+00474-StreetNameWithMultipleSpellingMistakes,"66 1930 CEADER VILLAGE CR, NORTH VANCOUVER, BC",STREET,"UNIT 66 -- 1930 CEDAR VILLAGE CRES, NORTH VANCOUVER, BC",[],R,,,T,T
 00475-StreetNameWithMultipleSpellingMistakes,"209 8611 GENERAL CURRY RD, RICHMOND, BC",STREET,"UNIT 209 -- 8611 GENERAL CURRIE RD, RICHMOND, BC",[],R,,,T,T
 00476-StreetNameWithMultipleSpellingMistakes,"305 1135 WINDSOR MUSE ST, COQUITLAM, BC",STREET,"UNIT 305 -- 1135 WINDSOR MEWS ST, COQUITLAM, BC",[],R,,,T,T
 00477-StreetNameWithOneSpellingMistakeAtFront,"106 1355 UMBERLAND, COURTENAY, BC",STREET,"106 1355 UMBERLAND, COURTENAY, BC",[],R,,,T,T
