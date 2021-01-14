@@ -56,7 +56,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00056-CivicAddressMissingCharactersInLocality,"30 Firth Cres Mckenzie BC",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[LOCALITY.spelledWrong:2],R,,,T,T
 00057-CivicAddressWrongAbbreviationInLocality,"2908 Hwy 99 Mot Currie BC",CIVIC_NUMBER,"2908 Hwy 99, Mount Currie, BC","[UNRECOGNIZED.notAllowed:33 LOCALITY.notMatched:35]",R,,,T,T
 00058-CivicAddressWrongProvinceCode,"30 Firth Cres Mackenzie AB",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[PROVINCE.notMatched:1],R,,,T,T
-00059-CivicAddressWrongLocality,952 COMOX AVE PRINCE GEORGE BC,LOCALITY,"952 Comox Ave, Prince Rupert, BC",[LOCALITY.notMatched:35],R,,,F,F
+00059-CivicAddressWrongLocality,952 COMOX AVE PRINCE GEORGE BC,CIVIC_NUMBER,"952 Comox Ave, Prince Rupert, BC",[LOCALITY.notMatched:35],R,,,F,F
 00060-CivicAddressWrongStreetType,952 COMOX ST PRINCE RUPERT BC,CIVIC_NUMBER,"952 Comox Ave, Prince Rupert, BC",[STREET_TYPE.notMatched:3],R,,,T,T
 00061-CivicAddressWrongStreetDirection,"456 Gorge Rd W Victoria",CIVIC_NUMBER,"456 Gorge Rd E, Victoria, BC","[STREET_DIRECTION.notMatched:2 PROVINCE.missing:1]",R,,,T,T
 00062-CivicAddressMispelledStreetName,952 CLOROX AVE PRINCE RUPERT BC,CIVIC_NUMBER,"952 Comox Ave, Prince Rupert, BC","[STREET_Name.spelledWrong:3]",R,,,F,F
@@ -320,7 +320,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00320-DuplicateLocalityAfterLocality,"9917 ASHWOOD DR RICHMOND, RICHMOND, BC",CIVIC_NUMBER,"9917 Ashwood Dr, Richmond, BC",[LOCALITY.duplicated],R,,,T,T
 00321-GoodAddress,"1120 FOSTER AVE COQUITLAM, BC",CIVIC_NUMBER,"1120 Foster Ave, Coquitlam, BC",[],R,,,T,T
 00322-DuplicateLocalityAfterLocality,"1120 FOSTER AVE COQUITLAM, COQUITLAM, BC",CIVIC_NUMBER,"1120 Foster Ave, Coquitlam, BC",[LOCALITY.duplicated],R,,,T,T
-00323-GoodAddress,"1040 FRASERVIEW ST PORT COQUITLAM, BC",BLOCK,"1040 Fraserview St, Port Coquitlam, BC",[],R,,,T,T
+00323-GoodAddress,"1040 FRASERVIEW ST PORT COQUITLAM, BC",CIVIC_NUMBER,"1040 Fraserview St, Port Coquitlam, BC",[],R,,,T,T
 00324-DuplicateLocalityAfterLocality,"1040 FRASERVIEW ST PORT COQUITLAM, PORT COQUITLAM, BC",CIVIC_NUMBER,"1040 Fraserview St, Port Coquitlam, BC",[LOCALITY.duplicated],R,,,T,T
 00325-GoodAddress,"1130 KORMAN CLOSE, COOMBS, BC",CIVIC_NUMBER,"1130 Korman Close, Coombs, BC",[],R,,,T,T
 00326-NonStandardStreetTypeAbbreviation,"1130 KORMAN CLO, COOMBS, BC",CIVIC_NUMBER,"1130 Korman Close, Coombs, BC",[],R,,,T,T
@@ -470,11 +470,11 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00470-StreetNameWithMultipleSpellingMistakes,"14 43685 CHILLWACK MOUNTA ROAD, CHILLIWACK, BC",UNIT,"UNIT 14 -- 43685 Chilliwack Mountain Rd, Chilliwack, BC",[],R,,,T,T
 00471-StreetNameWithMultipleSpellingMistakes,"29 1885 TABIN NOTCH HILL, TAPPEN, BC",UNIT,"UNIT 29 -- 1885 TAPPEN NOTCH HILL, TAPPEN, BC",[],F,,,T,T
 00472-StreetNameWithMultipleSpellingMistakes,"15 8400 ASHLEY MCIVOR DR, WHISTLER, BC",UNIT,"UNIT 15 -- 8400 ASHLEIGH MCIVOR DR, WHISTLER, BC",[],F,,,T,T
-00473-StreetNameWithMultipleSpellingMistakes,"2204 7343 OKANAGAON LANDI, VERNON, BC",UNIT,"UNIT 2204 -- 7343 OKANAGAN LANDING, VERNON, BC",[],R,,,T,T
+00473-StreetNameWithMultipleSpellingMistakes,"2204 7343 OKANAGAON LANDI, VERNON, BC",UNIT,"UNIT 2204 -- 7343 Okanagan Landing Rd, Vernon, BC",[],R,,,T,T
 00474-StreetNameWithMultipleSpellingMistakes,"66 1930 CEADER VILLAGE CR, NORTH VANCOUVER, BC",UNIT,"UNIT 66 -- 1930 Cedar Village Cres, North Vancouver, BC",[],R,,,T,T
 00475-StreetNameWithMultipleSpellingMistakes,"209 8611 GENERAL CURRY RD, RICHMOND, BC",UNIT,"UNIT 209 -- 8611 General Currie Rd, Richmond, BC",[],R,,,T,T
-00476-StreetNameWithMultipleSpellingMistakes,"305 1135 WINDSOR MUSE ST, COQUITLAM, BC",UNIT,"UNIT 305 -- 1135 WINDSOR MEWS ST, COQUITLAM, BC",[],R,,,T,T
-00477-StreetNameWithOneSpellingMistakeAtFront,"106 1355 UMBERLAND, COURTENAY, BC",STREET,"UNIT 106 -- 1355 CUMBERLAND, COURTENAY, BC",[],R,,,T,T
+00476-StreetNameWithMultipleSpellingMistakes,"305 1135 WINDSOR MUSE ST, COQUITLAM, BC",UNIT,"UNIT 305 -- 1135 Windsor Mews, Coquitlam, BC",[],R,,,T,T
+00477-StreetNameWithOneSpellingMistakeAtFront,"106 1355 UMBERLAND, COURTENAY, BC",UNIT,"UNIT 106 -- 1355 Cumberland Rd, Courtenay, BC",[],R,,,T,T
 00478-AddressInSmallCommunityUsingLocalityAlias,"352 W 14th St, North Van, BC",CIVIC_NUMBER,"352 W 14th St, North Vancouver, BC",[LOCALITY.isAlias],R,,101,T,T
 00479-AddressInSmallCommunityUsingLocalityAlias,"1745 Esquimalt Ave, West Van, BC",CIVIC_NUMBER,"1745 Esquimalt Ave, West Vancouver, BC",[LOCALITY.isAlias],R,,101,T,T
 00480-AddressInSmallCommunityUsingLocalityAlias,"223 W 7th Ave, Van, BC",CIVIC_NUMBER,"223 W 7th Ave, Vancouver, BC",[LOCALITY.isAlias],R,,101,T,T
