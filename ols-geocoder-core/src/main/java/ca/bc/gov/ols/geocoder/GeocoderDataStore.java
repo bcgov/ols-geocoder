@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -1131,6 +1132,36 @@ public class GeocoderDataStore {
 				intersection.getAliasStreetNames().add(streetNameIdMap.get(it.key()));
 			}
 		}
+		
+		// remove generic street names from intersections, eg. "turning lane" "exit ramp"
+		for(StreetIntersection intersection : intersectionIdMap.valueCollection()) {
+			Set<StreetName> names = intersection.getPrimaryStreetNames();
+			List<StreetName> orderedNames = new ArrayList<StreetName>(names);
+			orderedNames.sort(new Comparator<StreetName>() {
+				@Override
+				public int compare(StreetName sn1, StreetName sn2) {
+                	return sn1.toString().compareTo(sn2.toString());
+				}
+			});
+			//int removed = 0;
+			//int removeable = 0;
+			for(int nameIdx = orderedNames.size()-1; nameIdx >= 0; nameIdx--) {
+				StreetName streetName = orderedNames.get(nameIdx);
+				// in the ITN all generic names start with a lowercase letter, while real names do not
+				// but we want to leave at least 2 names so that the intersection makes sense
+				if(Character.isLowerCase(streetName.getBody().charAt(0))) {
+					//removeable++;
+					if(names.size() > 2) {
+						names.remove(streetName);
+						//removed++;
+					}
+				}
+			}
+//			if(removed > 0 && removed < removeable) {
+//				logger.info("Intersection with many generic names: {}", orderedNames);
+//			}
+		}
+		
 		// loop over street_locality_centroid table and add centroids to the streetname
 		rr = dataSource.getStreetLocalityCentroids();
 		count = 0;

@@ -31,7 +31,7 @@ public interface WordMap {
 			new WordClassifier(WordClass.SUFFIX, new RegExMatcher(DraLexicalRules.RE_SUFFIX)),
 			new WordClassifier(WordClass.LETTER, new RegExMatcher(DraLexicalRules.RE_LETTER)),
 			new WordClassifier(WordClass.ORDINAL, new RegExMatcher(DraLexicalRules.RE_ORDINAL)),
-			new WordClassifier(WordClass.UNRECOGNIZED, n -> !n.equals(DraLexicalRules.FRONT_GATE))
+			new WordClassifier(WordClass.UNRECOGNIZED, n -> !n.equals(DraLexicalRules.FRONT_GATE) && !n.equals(DraLexicalRules.RE_AND))
 	}));
 
 	List<MisspellingOf<Word>> mapWord(String fromWord, boolean allowMisspellings);
