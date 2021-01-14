@@ -1666,7 +1666,7 @@ public class Geocoder implements IGeocoder {
 		// civic address with optional garbage first, then unit, no site name or front gate
 		parserGen.addRule(new RuleSequence("civicAddressGarbageFirst", false,
 				new RuleTerm[] {
-						new RuleTerm("initialGarbage", "UNRECOGNIZED", RuleOperator.STAR),
+						new RuleTerm("initialGarbage", "garbageWord", RuleOperator.STAR),
 						new RuleTerm("unitDescription", RuleOperator.OPTION),
 						new RuleTerm("civicNumberDescription"),
 						new RuleTerm("streetDescription"),
@@ -1716,7 +1716,7 @@ public class Geocoder implements IGeocoder {
 						new RuleTerm("unitDescription", RuleOperator.OPTION),
 						new RuleTerm("siteNameWithFrontGate"),
 						new RuleTerm("streetDescription", RuleOperator.OPTION),
-						new RuleTerm("localityTail")}));
+						new RuleTerm("optionalLocalityTailNoGarbage")}));
 		
 		parserGen.addRule(new RuleSequence("occSepNonCivicAddress", false,
 				new RuleTerm[] {
@@ -1725,12 +1725,17 @@ public class Geocoder implements IGeocoder {
 						new RuleTerm("unitDescription", RuleOperator.OPTION),
 						new RuleTerm("siteNameWithFrontGate", RuleOperator.OPTION),
 						new RuleTerm("streetDescription", RuleOperator.OPTION),
-						new RuleTerm("localityTail")}));
+						new RuleTerm("optionalLocalityTailNoGarbage")}));
 
 		parserGen.addRule(new RuleSequence("streetAddress", false,
 				new RuleTerm[] {
 						new RuleTerm("streetDescription"),
 						new RuleTerm("localityTail"),}));
+
+		parserGen.addRule(new RuleChoice("optionalLocalityTailNoGarbage", false,
+				new RuleTerm[] {
+						new RuleTerm("localityTailNoGarbage"),
+						new RuleTerm("stateProvTerr", RuleOperator.OPTION)}));
 
 		parserGen.addRule(new RuleChoice("localityTail", false,
 				new RuleTerm[] {
@@ -1927,7 +1932,12 @@ public class Geocoder implements IGeocoder {
 		parserGen.addRule(new RuleSequence("garbage", false,
 				new RuleTerm[] {
 						new RuleTerm("UNRECOGNIZED"),
-						new RuleTerm("UNRECOGNIZED", RuleOperator.STAR)}));
+						new RuleTerm("garbageWord", RuleOperator.STAR)}));
+		
+		parserGen.addRule(new RuleChoice("garbageWord", false,
+				new RuleTerm[] {
+						new RuleTerm("AND"),
+						new RuleTerm("UNRECOGNIZED")}));
 		
 		parserGen.addRule(new RuleTerm("stateProvTerr", "STATE_PROV_TERR"));
 		parserGen.addRule(new RuleTerm("postalJunk", "POSTAL_ADDRESS_ELEMENT"));
