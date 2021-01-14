@@ -417,7 +417,7 @@ public class GeocoderConfig {
 
 		matchFaultPenalties.put("POSTAL_ADDRESS_ELEMENT.notAllowed", 1);
 
-		matchFaultPenalties.put("INITIAL_GARBAGE.notAllowed", 2);
+		matchFaultPenalties.put("INITIAL_GARBAGE.notAllowed", 3);
 		matchFaultPenalties.put("LOCALITY_GARBAGE.notAllowed", 3);
 		matchFaultPenalties.put("PROVINCE_GARBAGE.notAllowed", 2);
 
