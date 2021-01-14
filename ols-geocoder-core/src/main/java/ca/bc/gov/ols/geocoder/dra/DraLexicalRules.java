@@ -80,6 +80,8 @@ public class DraLexicalRules extends LexicalRules
 			new CleanRule("ʔ", "7"),
 			// remove periods and apostrophes between letters, squish letters together
 			new CleanRule("(?<=[a-zA-Z]|^)[.'`’](?=[a-zA-Z]|$)", ""),
+			// replace "c/o" with "careof"
+			new CleanRule("\\bc\\/o\\b", "careof"),
 			// remove slashes between letters, leave a space between letters
 			new CleanRule("(?<=[a-zA-Z]|^)[\\/\\\\](?=[a-zA-Z]|$)", " "),
 			// change & into "and"
@@ -125,7 +127,8 @@ public class DraLexicalRules extends LexicalRules
 				Pattern.compile("\\b(POSTAL\\s+)?STN\\s+[^\\s]+\\b(?!.*\\/FG)", Pattern.CASE_INSENSITIVE),
 				// General Delivery
 				Pattern.compile("\\b(GD|GENERAL\\s+DELIVERY)\\b", Pattern.CASE_INSENSITIVE),
-				Pattern.compile("\\bC\\/O\\b", Pattern.CASE_INSENSITIVE)
+				Pattern.compile("\\bC\\/O\\b", Pattern.CASE_INSENSITIVE),
+				Pattern.compile("\\bcareof\\b", Pattern.CASE_INSENSITIVE)
 		};
 		
 	}
