@@ -411,9 +411,9 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00411-StreetNameWithMissingAmpersand,"189 ROD GUN RD, COURTENAY, BC",CIVIC_NUMBER,"189 Rod & Gun Rd, Courtenay, BC",[],R,,,T,T
 00412-StreetNameWithMissingAmpersand,"189 ROD GUN RD, COURTENAY, BC",CIVIC_NUMBER,"189 Rod & Gun Rd, Courtenay, BC",[],F,,,T,T
 00413-LeadingZeroInCivicNumber,"01070 Lynn Valley Rd, North Vancouver, BC",CIVIC_NUMBER,"1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
-00414-LeadingZeroInUnitNumber,"01-1070 Lynn Valley Rd, North Vancouver, BC",CIVIC_NUMBER,"UNIT 01 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
-00415-LeadingZeroInUnitNumber,"01 1070 Lynn Valley Rd, North Vancouver, BC",CIVIC_NUMBER,"UNIT 01 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
-00416-LeadingZeroInUnitNumber,"Unit 01 -- 1070 Lynn Valley Rd, North Vancouver, BC",CIVIC_NUMBER,"UNIT 01 -- 1070 Lynn Valley Rd, North Vancouver, BC",[],F,,,T,T
+00414-LeadingZeroInUnitNumber,"01-1070 Lynn Valley Rd, North Vancouver, BC",CIVIC_NUMBER,"UNIT 01 -- 1070 Lynn Valley Rd, District of North Vancouver, BC",[],F,,,T,T
+00415-LeadingZeroInUnitNumber,"01 1070 Lynn Valley Rd, North Vancouver, BC",CIVIC_NUMBER,"UNIT 01 -- 1070 Lynn Valley Rd, District of North Vancouver, BC",[],F,,,T,T
+00416-LeadingZeroInUnitNumber,"Unit 01 -- 1070 Lynn Valley Rd, North Vancouver, BC",CIVIC_NUMBER,"UNIT 01 -- 1070 Lynn Valley Rd, District of North Vancouver, BC",[],F,,,T,T
 00417-UnitNumberWithLetterPrefix,"B2 518 BEATTY ST, VANCOUVER, BC",UNIT,"UNIT B2 -- 518 Beatty St, Vancouver, BC",[],R,,,T,T
 00418-UnitNumberWithLetterPrefixGapped,"B 2 518 BEATTY ST, VANCOUVER, BC",UNIT,"UNIT B2 -- 518 Beatty St, Vancouver, BC",[],R,,,T,T
 00419-UnitNumberWithLetterPrefix,"C2 1845 WEST 10TH AVE, VANCOUVER, BC",UNIT,"UNIT C2 -- 1845 W 10th Ave, Vancouver, BC",[],R,,,T,T
