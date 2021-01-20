@@ -482,7 +482,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00482-UnitNumberAndCivicNumberSwapped,"1177 103 Howie St, Vancouver, BC",UNIT,"UNIT 103 -- 1177 Howie St, Vancouver, BC",[Faults.tooMany],F,,86,T,F
 00483-UnknownMulti-wordUnitDesignator,"APARTMENT BUILDING 221 4280 MONCTON ST, RICHMOND, BC",UNIT,"UNIT 221 -- 4280 Moncton St, Richmond, BC","[INITIAL_GARBAGE.notAllowed,UNIT_DESIGNATOR.isAlias,MAX_RESULTS.too_low_to_include_all_best_matches]",R,,86,T,T
 00484-UnknownMulti-wordUunitDesignator,"APARTMENT BUILDING 54 2938 TRAFALGAR ST, ABBOTSFORD, BC",UNIT,"UNIT 54 -- 2938 Trafalgar St, Abbotsford, BC","[INITIAL_GARBAGE.notAllowed,UNIT_DESIGNATOR.isAlias,MAX_RESULTS.too_low_to_include_all_best_matches]",R,,86,T,T
-00485-UnknownUnitNumberWithLetterPrefixGapped,"A 309 10557 150TH ST, SURREY, BC",CIVIC_NUMBER,"UNIT A309 -- 10557 150TH ST, SURREY, BC","[UNIT_DESIGNATOR.missing,UNIT_NUMBER.notMatched]",R,,86,T,T
+00485-UnknownUnitNumberWithLetterPrefixGapped,"A 309 10557 150TH ST, SURREY, BC",CIVIC_NUMBER,"UNIT A309 -- 10557 150 St, Surrey, BC","[UNIT_DESIGNATOR.missing,UNIT_NUMBER.notMatched]",R,,86,T,T
 00486-UnknownUnitNumberWithLetterPrefixGapped,"C 7 6901 W ISLAND HWY, BOWSER, BC",CIVIC_NUMBER,"UNIT C7 -- 6901 W ISLAND HWY, BOWSER, BC","[UNIT_DESIGNATOR.missing,UNIT_NUMBER.notMatched,STREET_DIRECTION.notPrefix]",R,,86,T,T
 00487-UnitNumberWithLetterPrefix,"A114-20211 66 Ave, Township of Langley, BC",UNIT,"UNIT A114 -- 20211 66 Ave, Township of Langley, BC",[UNIT_DESIGNATOR.missing],R,,86,T,T
 00488-ExtraWordAtFrontOfStreetName,"19 2100 Mount Boucherie Rd West Kelowna BC",UNIT,"UNIT 19 -- 2100 Boucherie Rd West Kelowna BC",[],F,,144,T,T
