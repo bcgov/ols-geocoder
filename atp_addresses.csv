@@ -373,7 +373,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00373-AddressInSmallCommunity,"2525 BOUCHIE LAKE RD, BOUCHIE LAKE, BC",CIVIC_NUMBER,"2525 Bouchie Lake Rd, Bouchie Lake, BC",[],R,,,T,T
 00374-AddressInSmallCommunityUsingLocalityAlias,"2525 BOUCHIE LAKE RD, QUESNEL, BC",CIVIC_NUMBER,"2525 Bouchie Lake Rd, Bouchie Lake, BC",[LOCALITY.isAlias],R,,101,T,T
 00375-AddressInSmallCommunity,"20010 COLLEYMOUNT RD, COLLEYMOUNT, BC",CIVIC_NUMBER,"20010 Colleymount Rd, Colleymount, BC",[],R,,,T,T
-00376-AddressInSmallCommunityUsingLocalityAlias,"20010 COLLEYMOUNT RD, BURNS LAKE, BC",CIVIC_NUMBER,"20010 Colleymount Rd, François Lake, BC",[LOCALITY.isAlias],R,,101,T,T
+00376-AddressInSmallCommunityUsingLocalityAlias,"20010 COLLEYMOUNT RD, bulkley-nechako, BC",CIVIC_NUMBER,"20010 Colleymount Rd, Colleymount, BC",[LOCALITY.isAlias],R,,101,T,T
 00377-AddressInSmallCommunity,"1117 LONE PRAIRIE RD, LONE PRAIRIE, BC",CIVIC_NUMBER,"1117 Lone Prairie Rd, Lone Prairie, BC",[],R,,,T,T
 00378-AddressInSmallCommunityUsingLocalityAlias,"1117 LONE PRAIRIE RD, CHETWYND, BC",CIVIC_NUMBER,"1117 Lone Prairie Rd, Lone Prairie, BC",[LOCALITY.isAlias],R,,101,T,T
 00379-AddressInSmallCommunity,"58051 LAIDLAW RD, LAIDLAW, BC",CIVIC_NUMBER,"58051 Laidlaw Rd, Laidlaw, BC",[],R,,,T,T
