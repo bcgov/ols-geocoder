@@ -441,9 +441,9 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00441-NonStandardStreetNameAbbreviation,"5450 Ok Ave, Vernon, BC",LOCALITY,"Vernon, BC",[],R,,102,T,T
 00442-NonStandardStreetNameAbbreviation,"1301 Ok Ave, Quesnel, BC",CIVIC_NUMBER,"1301 Oak Ave, Quesnel, BC",[],R,,102,T,T
 00443-NonStandardGeneralDelivery,"GD, Quesnel, BC",LOCALITY,"Quesnel, BC",[],R,,102,T,T
-00444-NonStandardGeneralDelivery,"Genral Delivery, Quesnel, BC",LOCALITY,"Quesnel, BC",[],R,,102,T,T
-00445-NonStandardGeneralDelivery,"Gerneral Delivery, Quesnel, BC",LOCALITY,"Quesnel, BC",[],R,,102,T,T
-00446-NonStandardGeneralDelivery,"General Delivry, Quesnel, BC",LOCALITY,"Quesnel, BC",[],R,,102,T,T
+00444-NonStandardGeneralDelivery,"Genral Delivery, Quesnel, BC",LOCALITY,"Quesnel, BC",[],F,,102,T,T
+00445-NonStandardGeneralDelivery,"Gerneral Delivery, Quesnel, BC",LOCALITY,"Quesnel, BC",[],F,,102,T,T
+00446-NonStandardGeneralDelivery,"General Delivry, Quesnel, BC",LOCALITY,"Quesnel, BC",[],F,,102,T,T
 00447-NonStandardGeneralDelivery,"P.O. Box 102, Quesnel, BC",LOCALITY,"Quesnel, BC",[],R,,102,T,T
 00448-CareOf,"c/o Mr Allen & Mrs Bear, PO BOX 102, Quesnel,BC",LOCALITY,"Quesnel, BC",[],F,,,T,T
 00449-CareOf,"c/o 1301 Oak Ave, Quesnel,BC",CIVIC_NUMBER,"1301 Oak Ave, Quesnel, BC",[],R,,,T,T
