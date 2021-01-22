@@ -1,7 +1,7 @@
 Here is a table of common address errors and how well they are handled in Geocoder 4.1 compared to 4.0:
 
 |Given address|Expected result|Expected score|Actual result in Geocoder 4.0|What 4.0 can't handle|Fixed in 4.1
-|---|---|---|---|---|
+|---|---|---|---|---|---|
 Oscar the Grouch 1 Centennial Sq Felix the Cat Victoria Winnie the Pooh BC|1 Centennial Sq, Victoria, BC|90+|Atlin, BC|Noise|Yes
 964 Lillooet Rd North Vancouver, North Vancouver, BC|964 Lillooet Rd North Vancouver, BC|90+|964 Lillooet Rd North Vancouver, BC and score below 90|Duplicate locality name|yes
 964 LIllooet Rd Road, North Vancouver, BC|964 Lillooet Rd, North Vancouver, BC|90+|964 Lillooet Rd, North Vancouver, BC with score below 90|Duplicate street type|yes
