@@ -9,11 +9,11 @@ This guide is aimed at developers and web masters that would like to incorporate
 
 ## Table of Contents
 
-[Introduction](#intro)
-[API Changes](#apichanges)
-[Resources](#resources)
-[Cross-Origin Resource Sharing](#cors)
-[Addresses Resource](#addresses)
+[Introduction](#intro)<br>
+[API Changes](#apichanges)<br>
+[Resources](#resources)<br>
+[Cross-Origin Resource Sharing](#cors)<br>
+[Addresses Resource](#addresses)<br>
 
 
 <a>intro</a>
