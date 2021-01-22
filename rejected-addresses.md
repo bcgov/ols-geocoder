@@ -5,7 +5,7 @@ Here is a table of common address errors and how well they are handled in Geocod
 Oscar the Grouch 1 Centennial Sq Felix the Cat Victoria Winnie the Pooh BC|1 Centennial Sq, Victoria, BC|90+|Atlin, BC|Noise|Yes
 964 Lillooet Rd North Vancouver, North Vancouver, BC|964 Lillooet Rd North Vancouver, BC|90+|964 Lillooet Rd North Vancouver, BC and score below 90|Duplicate locality name|yes
 964 LIllooet Rd Road, North Vancouver, BC|964 Lillooet Rd, North Vancouver, BC|90+|964 Lillooet Rd, North Vancouver, BC with score below 90|Duplicate street type|yes
-1413 Omenica Ave, Prince Rupert, BC|1413 Omineca Ave, Prince Rupert, BC|below 90|Rupert, BC|Multiple spelling mistakes|yes
+1413 Omenica Ave, Prince Rupert, BC|1413 Omineca Ave, Prince Rupert, BC|90+|Rupert, BC|Multiple spelling mistakes|yes
 500 helmcken rd, victoria, BC|Helmcken Alley, Victoria, BC|??|500 Helmcken St, Vancouver, BC|Locality hopping|yes
 1985 Millstream Rd, Old Mill Stream Manor, Highlands, BC|1985 Millstream Rd, Highlands,BC|??|Highlands, BC|Unknown siteName|yes
 102 A Ave, Surrey, BC|102A Ave, Surrey, BC|??|A Surrey Ave, Kamloops, BC|Numbered streetName with detached suffix|yes
