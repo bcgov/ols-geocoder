@@ -13,10 +13,12 @@ Unit910 7380 ELMBRIDGE WAY, RICHMOND, BC| Unit 910 -- 7380 ELMBRIDGE WAY, RICHMO
 2248 McAllister Ave, Poco, BC|2248 McAllister Ave, Port Coquitlam, BC|90+|2248 McAllister Ave, Port Coquitlam, BC|Abbreviated localty name which leads to a false negative (score below 90)|yes
 10381 POPKUM RD S, ROSEDALE, BC|10381 Popkum Rd S, Popkum, BC|90+|10381 Popkum Rd S, Popkum, BC with score below 90 or higher|Missing locality alias which leads to a false negative (score below 90)|yes
 105 150 21ST ST BUZZER 49, WEST VANCOUVER, BC|UNIT 105 -- 150 21st St, West Vancouver, BC|90+|UNIT 105 -- 150 21st St, West Vancouver, BC with score below 90|Unexpected info (PO Box) at front of address and between streetAddress and locality which leads to a false negative (score below 90)|yes
-58550 Wild Rose Lane Hope BC|58550 Wildrose Lane, Laidlaw, BC|90+|Hope, BC|Compound words separated|No
-3821 Cedarhill Rd, Saanich, BC|3821 Cedar hill Rd, Saanich, BC|90+|3821 Saanich Rd, Saanich, BC|Separate words glued together|No
-c/o Joe Fonebone, PO BOX 201, Quesnel, BC|Quesnel, BC|90+|BC|Care-of info|No in 4.1 Silver, maybe in Gold
-200 21st Ave, prince george, BC|Prince George, BC|??|200 21st Ave N, Cranbrook, BC|Unknown street in locality|no
-950 Hope Princeton Way, Hope, BC|Hope Railway Overhead, Hope, BC|??|950 Old Hope Princeton Way, Hope, BC|Suffix matching (first word(s) missing)|no
+58550 Wild Rose Lane Hope BC|58550 Wildrose Lane, Laidlaw, BC|90+|Hope, BC|Compound name entered as separate words|No
+3821 Cedarhill Rd, Saanich, BC|3821 Cedar hill Rd, Saanich, BC|90+|3821 Saanich Rd, Saanich, BC|Separate words entered as compound name|No
+c/o PO BOX 201, Quesnel, BC|Quesnel, BC|below 90|BC|c/o with PO BOX|Yes
+c/o 442 Kinchant St, Quesnel, BC|442 Kinchant St, Quesnel, BC|90+|442 Kinchant St, Quesnel, BC with score below 90|c/o with civic address|Yes
+c/o Joe Fonebone 442 Kinchant St, Quesnel, BC|442 Kinchant St, Quesnel, BC|90+|BC| c/o with name and civic address|Yes
+200 21st Ave, prince george, BC|Prince George, BC|below 90|200 21st Ave N, Cranbrook, BC|Unknown street in locality|no
+950 Hope Princeton Way, Hope, BC|950 Old Hope Princeton Way, Hope, BC|90+|950 Hope St, Port Moody, BC|Suffix matching|no
 
 [Here](https://github.com/bcgov/ols-geocoder/blob/gh-pages/understanding-match-scoring.md) is a detailed explanation of address match scoring.
