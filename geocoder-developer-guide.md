@@ -50,19 +50,22 @@ The following anonymous online geocoder URLs are deprecated, no longer supported
 https://apps.gov.bc.ca/pub/geocoder<br><br>
 http://apps.gov.bc.ca/pub/geocoder<br><br>
 
+<br><br>
 <a name=resources></a>
 ## Resource Overview
 The Online Geocoder offers resources for validating and geocoding an address (including public and related business occupants); finding a given site, intersection, and occupant; and finding sites, intersections, and occupants near a point or within an area. 
 The current baseUrl for the online geocoder is:<br>
 
-https://geocoder.api.gov.bc.ca/<br><br>
+https://geocoder.api.gov.bc.ca/
 
 This URL allows both public and gated access. Gated access requires an apikey. To get a sandbox apikey with a maximum rate of 1000 requests per minute, visit the [geocoder api console](https://catalogue.data.gov.bc.ca/dataset/bc-address-geocoder-web-service/resource/40d6411e-ab98-4df9-a24e-67f81c45f6fa/view/1d3c42fc-53dc-4aab-ae3b-f4d056cb00e0). You can get an unrestricted apikey for use in government applications by contacting the [DataBC Help Desk](https://forms.gov.bc.ca/databc-contact-us/)
 
+<br><br>
 <a name=cors></a>
 ## Cross-Origin Resource Sharing (CORS)
 CORS is enabled for any domain if you include an apikey with each request.
 
+<br><br>
 <a name=addresses></a>
 ## Addresses Resource
 The addresses resource represents all addresses in the geocoder. A request on this resource to find a query address will return one or more matching addresses that are standardized and geocoded (i.e., given a point location on the earth). 
@@ -123,14 +126,13 @@ https://geocoder.api.gov.bc.ca/occupants/addresses.json?addressString=Sir%20Jame
 The occupants/nearest resource represents the nearest site to a given point location
 
 19.	Find the nearest courthouse to a given point<br>
-https://geocoder.api.gov.bc.ca/occupants/nearest.geojson?point=-123.7064038,48.8498537&tags=courts<br><br>
+https://geocoder.api.gov.bc.ca/occupants/nearest.geojson?point=-123.7064038,48.8498537&tags=courts
 
 <br><br>
 <a name=resourcerepresentations></a>
 ### Resource representations in HTTP Responses
 The addresses resource will return a document in the requested format and spatial reference system.  Documents in formats that support a header record (e.g., XHTML, KML, GEOJSON, GEOJSONP, GML) will contain a single About Query representation describing the query and its execution, and one or more site address or intersection address representations. Documents in formats that don’t support a header record (e.g., CSV, SHPZ), will contain one or more site/intersection address representations.
 
-<br><br>
 <a name=aboutqueryrepresentation></a>
 #### About Query Representation
 Attribute Name |	Type
@@ -206,6 +208,7 @@ Attribute Name |	Type
 ## Occupant/addresses Resource
 The occupants/addresses resource is similar to the addresses resource. Its response will include an About Query representation plus one site representation and occupant representation for each address matched.
 
+<br><br>
 #### Occupant Representation
 Attribute Name |	Type
 ---------------------: | ---
@@ -239,7 +242,7 @@ The faults property in a resource response is a list of one or more faults. Each
 |fault|fault descriptor|notInAnyBlock
 |penalty|number of points to reduce score by|1
 
-<br<br>
+<br><br>
 <a name=implementingautocomplete></a>
 ## Implementing address autocompletion in your application
 Using the autoComplete boolean request parameter is the key to successful implementation of address autocompletion in your application. Let's assume your application input form has an address text box and a search icon. 
