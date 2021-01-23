@@ -35,7 +35,7 @@ The BC Physical Address Online Geocoder REST API lets you integrate real-time st
 ## API Changes in v4.1
 There are no breaking API changes in this release. There is one non-breaking API change:
 
-- There is a new fault property called **value** that contains the string that caused the address match fault. This is useful when figuring out why a given address didn't geocode well. For details, see [About faults](#aboutFaults)
+- There is a new fault property called **value** that contains the string that caused the address match fault. This is useful when figuring out why a given address didn't geocode well. For details, see [About faults](#aboutFaults).
 
 ## API Changes in v4.0.0
 There are no API changes in this release.
