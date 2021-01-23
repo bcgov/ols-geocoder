@@ -122,6 +122,7 @@ https://geocoder.api.gov.bc.ca/occupants/addresses.json?addressString=Sir%20Jame
 18. Find a school named Sir James Douglas Elementary in Victoria<br>
 https://geocoder.api.gov.bc.ca/occupants/addresses.json?addressString=Sir%20James%20Douglas%20Elementary%20%2A%2A%20Victoria
 
+<br><br>
 ## occupants/nearest resource
 The occupants/nearest resource represents the nearest site to a given point location
 
@@ -232,8 +233,8 @@ Attribute Name |	Type
 
 <br><br>
 <a name=aboutfaults></a>
-## About Faults
-The faults property in a resource response is a list of one or more faults. Each fault has the following sub-properties:
+## About faults
+The *faults* property in a resource response is a list of one or more address match faults. Each fault has the following sub-properties:
 
 |Fault Property|Description|Example
 |--|--|--|
