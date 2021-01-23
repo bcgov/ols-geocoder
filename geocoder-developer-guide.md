@@ -11,9 +11,10 @@ This guide is aimed at developers and web masters that would like to incorporate
 
 [Introduction](#intro)<br>
 [API Changes](#apichanges)<br>
-[Resources](#resources)<br>
+[Resource Overview](#resources)<br>
 [Cross-Origin Resource Sharing](#cors)<br>
-[Addresses Resource](#addresses)<br>
+[addresses Resource](#addresses)<br>
+[occupants\/addresses Resource](#occupantsaddresses)<br>
 
 
 <a name=intro></a>
@@ -100,6 +101,7 @@ https://geocoder.api.gov.bc.ca/addresses.xhtml?localities=richmond&addressString
 16. Geocode a Surrey address and limit address search to Surrey and Richmond.<br>
 https://geocoder.api.gov.bc.ca/addresses.xhtml?localities=richmond,surrey&addressString=13450%20104%20ave%20surrey%20bc<br><br>
 
+<a name=occupantsaddresses></a>
 ## occupants/addresses resource
 The occupants/addresses resource represents all occupant addresses in the geocoder. A request on this resource to find a query address will return one or more matching occupants and their addresses.
 
