@@ -241,7 +241,7 @@ Attribute Name |	Type
 ## About faults
 The *faults* property in a resource response is a list of one or more address match faults. Each fault has the following properties:
 
-|Fault Property|Description|Example
+|Property name|Description|Example
 |--|--|--|
 |value|string that caused the fault(new in v4.1)|7380
 |element|name of address element at fault|CIVIC_NUMBER
