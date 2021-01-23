@@ -124,12 +124,13 @@ The occupants/nearest resource represents the nearest site to a given point loca
 
 19.	Find the nearest courthouse to a given point<br>
 https://geocoder.api.gov.bc.ca/occupants/nearest.geojson?point=-123.7064038,48.8498537&tags=courts<br><br>
-<br>
 
+<br><br>
 <a name=resourcerepresentations></a>
 ### Resource representations in HTTP Responses
 The addresses resource will return a document in the requested format and spatial reference system.  Documents in formats that support a header record (e.g., XHTML, KML, GEOJSON, GEOJSONP, GML) will contain a single About Query representation describing the query and its execution, and one or more site address or intersection address representations. Documents in formats that don’t support a header record (e.g., CSV, SHPZ), will contain one or more site/intersection address representations.
 
+<br><br>
 <a name=aboutqueryrepresentation></a>
 #### About Query Representation
 Attribute Name |	Type
@@ -144,6 +145,7 @@ Attribute Name |	Type
 [outputSRS](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#outputSRS) | Integer
 [setBack](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#setBack) |Real 
 
+<br><br>
 <a name=siteaddressrepresentation></a> 
 #### Site Address Representation
 Attribute Name |	Type
@@ -180,6 +182,7 @@ Attribute Name |	Type
 [changeDate](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#changeDate) |	string
 [isOfficial](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#isOfficial) |	string
 
+<br><br>
 <a name=intersectionaddressrepresentation></a>
 #### Intersection Address Representation
 Attribute Name |	Type
@@ -198,7 +201,7 @@ Attribute Name |	Type
 [intersectionID](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#intersectionID) |	String
 [degree](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#degree) |	String
 
-
+<br><br>
 <a name=occupantaddressrepresentation></a>
 ## Occupant/addresses Resource
 The occupants/addresses resource is similar to the addresses resource. Its response will include an About Query representation plus one site representation and occupant representation for each address matched.
@@ -224,6 +227,7 @@ Attribute Name |	Type
 [custodianId](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#custodianId) |	string
 [sourceDataId](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#sourceDataId) |	string
 
+<br><br>
 <a name=aboutfaults></a>
 ## About Faults
 The faults property in a resource response is a list of one or more faults. Each fault has the following sub-properties:
@@ -235,8 +239,8 @@ The faults property in a resource response is a list of one or more faults. Each
 |fault|fault descriptor|notInAnyBlock
 |penalty|number of points to reduce score by|1
 
+<br<br>
 <a name=implementingautocomplete></a>
-<br><br>
 ## Implementing address autocompletion in your application
 Using the autoComplete boolean request parameter is the key to successful implementation of address autocompletion in your application. Let's assume your application input form has an address text box and a search icon. 
 
@@ -245,4 +249,3 @@ A user starts entering the characters of an address. After three or so character
 If the user clicks on the search icon, the application should issue a get request on the addresses resource with autocomplete set to False. This tells the geocoder to use addressString as entered when trying to find the best N matches.
 
 If you are using jQuery in your javascript app, check out our javascript code for autocompletion [here](https://github.com/bcgov/ols-devkit/tree/gh-pages/widget). To see the code in action, visit [here](https://bcgov.github.io/ols-devkit/examples/address_autocomplete.html)
-
