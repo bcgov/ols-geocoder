@@ -16,13 +16,13 @@ This guide is aimed at developers and web masters that would like to incorporate
 [Addresses Resource](#addresses)<br>
 
 
-<a name=intro/>
+<a name=intro></a>
 ## Introduction
 The BC Physical Address Online Geocoder REST API lets you integrate real-time standardization, validation, and geocoding of physical addresses into your own applications. This document defines aspects of the REST API that are not covered in the [OpenAPI definition](https://catalogue.data.gov.bc.ca/dataset/physical-address-geocoding-web-service/resource/40d6411e-ab98-4df9-a24e-67f81c45f6fa/view/1d3c42fc-53dc-4aab-ae3b-f4d056cb00e0).
 <br>
 
 
-<a name=apichanges/>
+<a name=apichanges></a>
 ## API Changes in v4.0.0
 There are no API changes in this release.
 
@@ -41,7 +41,7 @@ The following anonymous online geocoder URLs are deprecated, no longer supported
 https://apps.gov.bc.ca/pub/geocoder<br><br>
 http://apps.gov.bc.ca/pub/geocoder<br><br>
 
-<a>resources</a>
+<a name=resources></a>
 ## Resource Overview
 The Online Geocoder offers resources for validating and geocoding an address (including public and related business occupants); finding a given site, intersection, and occupant; and finding sites, intersections, and occupants near a point or within an area. 
 The current baseUrl for the online geocoder is:<br>
@@ -50,11 +50,11 @@ https://geocoder.api.gov.bc.ca/<br><br>
 
 This URL allows both public and gated access. Gated access requires an apikey. To get a sandbox apikey with a maximum rate of 1000 requests per minute, visit the [geocoder api console](https://catalogue.data.gov.bc.ca/dataset/bc-address-geocoder-web-service/resource/40d6411e-ab98-4df9-a24e-67f81c45f6fa/view/1d3c42fc-53dc-4aab-ae3b-f4d056cb00e0). You can get an unrestricted apikey for use in government applications by contacting the [DataBC Help Desk](https://forms.gov.bc.ca/databc-contact-us/)
 
-<a>cors</a>
+<a name=cors></a>
 ## Cross-Origin Resource Sharing (CORS)
 CORS is enabled for any domain if you include an apikey with each request.
 
-<a>addresses</a>
+<a name=addresses></a>
 ## Addresses Resource
 The addresses resource represents all addresses in the geocoder. A request on this resource to find a query address will return one or more matching addresses that are standardized and geocoded (i.e., given a point location on the earth). 
 
