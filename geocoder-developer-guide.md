@@ -21,7 +21,7 @@ This guide is aimed at developers and web masters that would like to incorporate
 [Site Address Representation](#siteaddressrepresentation)<br> 
 [Occupant Address Representation](#occupantaddressrepresentation)<br>
 [Intersection Address Representation](#intersectionaddressrepresentation)<br>
-[About Faults](#aboutfaults)<br>
+[About faults](#aboutfaults)<br>
 [Implementing address autocompletion in your application](#implementingautocomplete)<br>
 
 
@@ -32,6 +32,11 @@ The BC Physical Address Online Geocoder REST API lets you integrate real-time st
 
 
 <a name=apichanges></a>
+## API Changes in v4.1
+There are no breaking API changes in this release. There is one non-breaking API changes in this release:
+
+- There is a new fault property called **value** that contains the string that caused the fault. This is useful when figuring out why a given address didn't geocode well.
+
 ## API Changes in v4.0.0
 There are no API changes in this release.
 
@@ -234,7 +239,7 @@ Attribute Name |	Type
 <br><br>
 <a name=aboutfaults></a>
 ## About faults
-The *faults* property in a resource response is a list of one or more address match faults. Each fault has the following sub-properties:
+The *faults* property in a resource response is a list of one or more address match faults. Each fault has the following properties:
 
 |Fault Property|Description|Example
 |--|--|--|
