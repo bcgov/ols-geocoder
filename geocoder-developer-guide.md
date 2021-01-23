@@ -21,6 +21,7 @@ This guide is aimed at developers and web masters that would like to incorporate
 [Site Address Representation](#siteaddressrepresentation)<br> 
 [Occupant Address Representation](#occupantaddressrepresentation)<br>
 [Intersection Address Representation](#intersectionaddressrepresentation)<br>
+[About Faults](#aboutfaults)
 [Implementing address autocompletion in your application](#implementingautocomplete)<br>
 
 
@@ -222,6 +223,18 @@ Attribute Name |	Type
 [dateOccupantAdded](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#dateOccupantAdded) |	string
 [custodianId](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#custodianId) |	string
 [sourceDataId](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#sourceDataId) |	string
+<br><br>
+<a name=aboutfaults></a>
+## About Faults
+The faults property in a resource response is a list of one or more faults. Each fault has the following sub-properties:
+
+|Fault Property|Description|Example
+|--|--|--|
+|value|string that caused the fault(new in v4.1)|7380
+|element|name of address element at fault|CIVIC_NUMBER
+|fault|fault descriptor|notInAnyBlock
+|penalty|number of points to reduce score by|1
+<br><br>
 
 <a name=implementingautocomplete></a>
 <br><br>
