@@ -15,6 +15,13 @@ This guide is aimed at developers and web masters that would like to incorporate
 [Cross-Origin Resource Sharing](#cors)<br>
 [addresses Resource](#addresses)<br>
 [occupants\/addresses Resource](#occupantsaddresses)<br>
+[occupants\/nearest Resource](#occupantsnearest)<br>
+[Resource Representations](#resourcerepresentations)<br>
+[About Query Representation](#aboutqueryrepresentation)<br>
+[Site Address Representation](#siteaddressrepresentation)<br> 
+[Occupant Address Representation](#occupantaddressrepresentation)<br>
+[Intersection Address Representation](#intersectionaddressrepresentation)<br>
+[Implementing address autocompletion in your application](#implementingautocomplete)<br>
 
 
 <a name=intro></a>
@@ -118,9 +125,11 @@ The occupants/nearest resource represents the nearest site to a given point loca
 https://geocoder.api.gov.bc.ca/occupants/nearest.geojson?point=-123.7064038,48.8498537&tags=courts<br><br>
 <br>
 
+<a name=resourcerepresentations></a>
 ### Resource representations in HTTP Responses
 The addresses resource will return a document in the requested format and spatial reference system.  Documents in formats that support a header record (e.g., XHTML, KML, GEOJSON, GEOJSONP, GML) will contain a single About Query representation describing the query and its execution, and one or more site address or intersection address representations. Documents in formats that don’t support a header record (e.g., CSV, SHPZ), will contain one or more site/intersection address representations.
 
+<a name=aboutqueryrepresentation></a>
 #### About Query Representation
 Attribute Name |	Type
 ---------------------: | --- |
@@ -134,7 +143,7 @@ Attribute Name |	Type
 [outputSRS](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#outputSRS) | Integer
 [setBack](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#setBack) |Real 
 
- 
+<a name=siteaddressrepresentation></a> 
 #### Site Address Representation
 Attribute Name |	Type
 ---------------------: | ---
@@ -170,6 +179,7 @@ Attribute Name |	Type
 [changeDate](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#changeDate) |	string
 [isOfficial](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#isOfficial) |	string
 
+<a name=intersectionaddressrepresentation></a>
 #### Intersection Address Representation
 Attribute Name |	Type
 ---------------------: | ---
@@ -188,7 +198,7 @@ Attribute Name |	Type
 [degree](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#degree) |	String
 
 
-
+<a name=occupantaddressrepresentation></a>
 ## Occupant/addresses Resource
 The occupants/addresses resource is similar to the addresses resource. Its response will include an About Query representation plus one site representation and occupant representation for each address matched.
 
@@ -213,6 +223,7 @@ Attribute Name |	Type
 [custodianId](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#custodianId) |	string
 [sourceDataId](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#sourceDataId) |	string
 
+<a name=implementingautocomplete></a>
 <br><br>
 ## Implementing address autocompletion in your application
 Using the autoComplete boolean request parameter is the key to successful implementation of address autocompletion in your application. Let's assume your application input form has an address text box and a search icon. 
