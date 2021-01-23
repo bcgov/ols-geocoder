@@ -255,6 +255,6 @@ Using the autoComplete boolean request parameter is the key to successful implem
 
 A user starts entering the characters of an address. After three or so characters, the application should issue a get request on the addresses resource with autoComplete set to True every time a user enters an additional character. This tells the geocoder that addressString contains a partial address and to find the best N address prefix matches for display in a pick list below the address text box.
 
-If the user clicks on the search icon, the application should issue a get request on the addresses resource with autocomplete set to False. This tells the geocoder to use addressString as entered when trying to find the best N matches.
+If the user clicks on the search icon or presses the Enter key, the application should issue a get request on the addresses resource with autocomplete set to False. This tells the geocoder to use addressString as entered when trying to find the best N matches.
 
 If you are using jQuery in your javascript app, check out our javascript code for autocompletion [here](https://github.com/bcgov/ols-devkit/tree/gh-pages/widget). To see the code in action, visit [here](https://bcgov.github.io/ols-devkit/examples/address_autocomplete.html)
