@@ -243,7 +243,7 @@ The *faults* property in a resource response is a list of one or more address ma
 
 |Property name|Description|Example
 |--|--|--|
-|value|string that caused the fault(new in v4.1)|7380
+|value|string that caused the fault (new in v4.1)|7380
 |element|name of address element at fault|CIVIC_NUMBER
 |fault|fault descriptor|notInAnyBlock
 |penalty|number of points to reduce score by|1
