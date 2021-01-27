@@ -5,4 +5,4 @@ OLS-Geocoder is an open source project that provides APIs for address cleaning, 
 
 To find out how to integrate the BC Address Geocoder into your own application, please visit [here](https://github.com/bcgov/ols-geocoder/blob/gh-pages/README.md).
 
-To install OlS-Geocoder in your own environment, instructions are [here](https://github.com/bcgov/ols-geocoder/blob/dev/INSTALL.md).
+To install OLS-Geocoder in your own environment, instructions are [here](https://github.com/bcgov/ols-geocoder/blob/dev/INSTALL.md).
