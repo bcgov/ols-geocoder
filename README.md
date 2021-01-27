@@ -1,5 +1,6 @@
 # BC Address Geocoder
-The BC Address Geocoder provides address cleaning and standardization, correction, completion, geocoding, and reverse geocoding for government and the public at large. To see it in use by an application, visit [Location Services in Action](https://ols-demo.apps.gov.bc.ca/index.html).
+
+The BC Address Geocoder provides REST APIs for address cleaning, correction, completion, geocoding, and reverse geocoding.The BC Address Geocoder has processed over one billion addresses since its initial release in 2013. To see it in use by an application, visit [Location Services in Action](https://ols-demo.apps.gov.bc.ca/index.html).
 
 
 For more information about using the BC Address Geocoder and incorporating it into your automated workflows, please consult the following documents:
