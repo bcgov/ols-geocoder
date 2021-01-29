@@ -27,8 +27,6 @@ Here Geocoder|||||29 (97%)||1 (3%)
 ##Table 2: Rural address matches by Issue
 |Name|No match|No street|No civic number|Wrong civic number|Full match|Wrong street|Wrong locality|No locality
 |---|---|---|---|---|---|---|---|---|
-Geocoder	No match 	No 
-street	No civic num	Wrong civic number	Full match	Wrong street	Wrong locality	No locality
 Bing Maps|16 (53%)|16 (53%)|26 (87%)|2 (7%)|1 (3%)|2 (7%)|5 (17%)|16 (53%)
 ESRI Geocoder|1 (3%)|9 (30%)|22 (73%)|0|1 (3%)|4(13%)|14 (47%)|1 (3%)
 Google Maps Geocoder|3 (10%)|3 (10%)|19 (63%)|1 (3%)|3 (10%)|8 (27%)|15 (50%)|3 (10%)
