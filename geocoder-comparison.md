@@ -151,4 +151,4 @@ Two sets of samples of the BC Address Geocoder civic addresses were taken:
         1.	Wrong locality
         1.	No locality - no address returned or address returned had no locality
     
-Ignore any additional administration areas such as regional district or community.
+    1. Ignore any additional administration areas such as regional district or community.
