@@ -1,4 +1,4 @@
-# Geocoder Address Match Accuracy Comparison Study
+# Comparative Geocoder Address Match Accuracy Study
 
 April 4, 2018
 
