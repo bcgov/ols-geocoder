@@ -114,7 +114,8 @@ Two sets of samples of the BC Address Geocoder civic addresses were taken:
 1.	Thirty urban street addresses
 2.	Thirty rural street addresses
 
-Urban street address samples were taken as follows:
+### How to create urban street address samples
+
 1.	Select thirty urban localities at random.
 2.	For each urban locality, repeat steps 3 to 6.
 3.	Enter locality into address tab of Location Services demo app then click search icon. 
@@ -122,13 +123,15 @@ Urban street address samples were taken as follows:
 5.	Click Jump at Random icon and system will select and display a civic address chosen randomly from current map extent.
 6.	Record civic address in an urban addresses spreadsheet.
 
-Rural street address samples were taken as follows:
+### How to create rural street address samples
+
 1.	Zoom map to full provincial extent
 2.	In address tab, click Jump at Random icon. The system will select and display a civic address chosen randomly from the current map extent.
 3.	Record civic address in a rural addresses spreadsheet.
 4.	Repeat steps 1 to 4 until 30 civic addresses have been found.
 
-Evaluating geocoder results
+### How to evaluate geocoder results
+
 1.	Open an HTML5 compatible web browser.
 2.	Open each geocoder in a separate tab. 
 a.	Bing Maps is located at https://www.bing.com/maps
