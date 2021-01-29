@@ -69,7 +69,6 @@ Here Geocoder|2 (7%)|3 (10%)|19 (63%)|1 (3%)|0|11 (37%)|26 (87%)|	2 (7%)
 ## Table 4 : Rural Addresses Geocoded
 |Address|
 |---|
-
 1312 Meadow Lane, Savary Island, BC
 14022 203 Rd, Goodlow, BC
 1800 Demorest Rd Spallumcheen, BC
