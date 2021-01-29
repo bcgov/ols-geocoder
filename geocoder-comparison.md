@@ -142,12 +142,13 @@ Two sets of samples of the BC Address Geocoder civic addresses were taken:
 3.	For each sample civic address and for each geocoder, do the following:
 4.	Select the tab of the appropriate geocoder (e.g., Bing ESRI, Google, Here).
 5.	Geocode the civic address and assess the quality of the response using the following criteria:
-a.	No match - no address returned; no match also means no street, civic number, etc
-b.	No street - no address returned or address returned had no street
-c.	No civic number - no address returned or address returned had no civic number
-d.	Wrong civic number
-e.	Full match
-f.	Wrong street 
-g.	Wrong locality
-h.	No locality - no address returned or address returned had no locality
+    5.	No match - no address returned; no match also means no street, civic number, etc
+    5.	No street - no address returned or address returned had no street
+    5.	No civic number - no address returned or address returned had no civic number
+    5.	Wrong civic number
+    5.	Full match
+    5.	Wrong street 
+    5.	Wrong locality
+    5.	No locality - no address returned or address returned had no locality
+    
 Ignore any additional administration areas such as regional district or community.
