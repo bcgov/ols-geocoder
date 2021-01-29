@@ -23,7 +23,7 @@ All geocoders did very poorly in rural areas. Google achieved 10% full match acc
 Bing Maps|||||30 (100%)|			
 ESRI Geocoder|||||30 (100%)|			
 Google Maps Geocoder|||||29 (97%)||1 (3%)	
-Here Geocoder|||||29 (97%)|1 (3%)	
+Here Geocoder|||||29 (97%)||1 (3%)	
 
 Table 2: Rural address matches by Issue
 Geocoder	No match 	No 
