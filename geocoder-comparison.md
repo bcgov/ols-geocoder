@@ -24,7 +24,7 @@ ESRI Geocoder|||||30 (100%)|
 Google Maps Geocoder|||||29 (97%)||1 (3%)	
 Here Geocoder|||||29 (97%)||1 (3%)	
 
-##Table 2: Rural address matches by Issue
+## Table 2: Rural address matches by Issue
 |Name|No match|No street|No civic number|Wrong civic number|Full match|Wrong street|Wrong locality|No locality
 |---|---|---|---|---|---|---|---|---|
 Bing Maps|16 (53%)|16 (53%)|26 (87%)|2 (7%)|1 (3%)|2 (7%)|5 (17%)|16 (53%)
@@ -32,38 +32,39 @@ ESRI Geocoder|1 (3%)|9 (30%)|22 (73%)|0|1 (3%)|4(13%)|14 (47%)|1 (3%)
 Google Maps Geocoder|3 (10%)|3 (10%)|19 (63%)|1 (3%)|3 (10%)|8 (27%)|15 (50%)|3 (10%)
 Here Geocoder|2 (7%)|3 (10%)|19 (63%)|1 (3%)|0|11 (37%)|26 (87%)|	2 (7%)
 
-Table 3: Civic Addresses Geocoded
-Urban	Rural
-10400 Algonquin Dr, Richmond, BC	1312 Meadow Lane, Savary Island, BC
-1125 Seafield Cres, Nanaimo, BC	14022 203 Rd, Goodlow, BC
-1471 Driftwood Cres, Smithers, BC	1800 Demorest Rd Spallumcheen, BC
-1590 Cliffe Ave, Courtenay, BC	18370 Viewpoint Rd, Mount Robson, BC
-20461 Deniza Ave, Maple Ridge, BC	19670 E Fritton Rd, Kelly Lake, BC
-2200 Willis Rd, Campbell River, BC	21239 Milligan Creek Rd Peejay, BC
-231 Heron Rd, Prince Rupert, BC	27 Kelly Lake Rd, Kelly Lake, BC
-679 Victoria Dr, Penticton, BC	2850 Likely Rd, 150 Mile House, BC
-2725 E 48th Ave, Vancouver, BC	3047 Reeves Rd, Donald, BC
-2819 Fairlane St, Abbotsford, BC	3630 Sharptail Rd, Jesmond, BC
-301 9th Ave S, Cranbrook, BC	3712 Skookumchuck River Rd, Skookumchuck, BC
-313 Edward St, Victoria, BC	3720 Gavin Lake Rd, Big Lake Ranch, BC
-3199 Beach Ave, Roberts Creek, BC	385 Alaska Hwy, Tetsa River, BC
-3725 Thomas St, Terrace, BC	397 Alaska Hwy, Stone Mountain Park, BC
-393 George St, Prince George, BC	4120 201 Rd, Doe River, BC
-428 Hickey Dr, Coquitlam, BC	43031 Hwy 16 W, Rose Lake, BC
-433 Queensway, Prince George, BC	4400 Dog Creek Rd, Alkali Lake, BC
-528 3rd Ave, Castlegar, BC	5410 Hwy 93, Roosville, BC
-660 Southborough Dr, West Vancouver, BC	5495 Flathead-Lower Sage FSR, Flathead,BC
-709 Vernon St, Nelson, BC	5550 Hwy 93, Roosville, BC
-730 11 St SE, Salmon Arm, BC	6 3rd Ave, Holberg, BC
-7304 Buller Ave, Burnaby, BC	6100 Hwy 5, Blue River, BC
-824 Farrell Rd, Revelstoke, BC	737 Fording Hwy, Elkford, BC
-8782 Chilliwack Mountain Rd, Chilliwack, BC	7762 Orchard Rd, Robson, BC
-907 7th Ave N, Creston, BC	8395 Kinney Lake Rd, Mount Robson, BC
-917 Douglas St, Kamloops, BC	9011 Airport Dr, Fort Nelson, BC
-924 Glen St, Kelowna, BC	9137 Planet Mine Rd, Quilchena, BC
-950 munro St, Kamloops, BC	4637 Kispiox Valley Rd, Kispiox Valley, BC
-951 Beach Dr, Oak Bay, BC	100 Little Nimmo Bay, Sullivan Bay, BC
-9939 158A St, Surrey, BC	2673 K P Rd, Vavenby, BC
+## Table 3: Civic Addresses Geocoded
+|Address|Category|
+|---|---|
+10400 Algonquin Dr, Richmond, BC|Urban
+1125 Seafield Cres, Nanaimo, BC|Urban
+1471 Driftwood Cres, Smithers, BC|Urban
+1590 Cliffe Ave, Courtenay, BC|Urban
+20461 Deniza Ave, Maple Ridge, BC|Urban
+2200 Willis Rd, Campbell River, BC|Urban
+231 Heron Rd, Prince Rupert, BC|Urban
+679 Victoria Dr, Penticton, BC|Urban
+2725 E 48th Ave, Vancouver, BC|Urban
+2819 Fairlane St, Abbotsford, BC|Urban
+301 9th Ave S, Cranbrook, BC|Urban
+313 Edward St, Victoria, BC|Urban
+3199 Beach Ave, Roberts Creek, BC|Urban
+3725 Thomas St, Terrace, BC|Urban
+393 George St, Prince George, BC|Urban
+428 Hickey Dr, Coquitlam, BC|Urban
+433 Queensway, Prince George, BC|Urban
+528 3rd Ave, Castlegar, BC|Urban
+660 Southborough Dr, West Vancouver, BC|Urban
+709 Vernon St, Nelson, BC|Urban
+730 11 St SE, Salmon Arm, BC|Urban
+7304 Buller Ave, Burnaby, BC|Urban
+824 Farrell Rd, Revelstoke, BC|Urban
+8782 Chilliwack Mountain Rd, Chilliwack, BC|Urban
+907 7th Ave N, Creston, BC|Urban
+917 Douglas St, Kamloops, BC|Urban
+924 Glen St, Kelowna, BC|Urban
+950 munro St, Kamloops, BC|Urban
+951 Beach Dr, Oak Bay, BC|Urban
+9939 158A St, Surrey, BC|Urban
 
 
  
