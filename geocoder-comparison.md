@@ -17,50 +17,22 @@ All geocoders did very well in urban areas. Bing and ESRI both achieved 100% ful
 All geocoders did very poorly in rural areas. Google achieved 10% full match accuracy, Bing and ESRI 3%, and Here 0%.
 
 ## Table 1: Urban address matches by Issue
-|Name|No match|No street|No civic num|Wrong civic number|Full match|Wrong street|Wrong locality|No locality
+|Name|No match|No street|No civic number|Wrong civic number|Full match|Wrong street|Wrong locality|No locality
 |---|---|---|---|---|---|---|---|---|
 Bing Maps|||||30 (100%)|			
 ESRI Geocoder|||||30 (100%)|			
 Google Maps Geocoder|||||29 (97%)||1 (3%)	
 Here Geocoder|||||29 (97%)||1 (3%)	
 
-Table 2: Rural address matches by Issue
+##Table 2: Rural address matches by Issue
+|Name|No match|No street|No civic number|Wrong civic number|Full match|Wrong street|Wrong locality|No locality
+|---|---|---|---|---|---|---|---|---|
 Geocoder	No match 	No 
 street	No civic num	Wrong civic number	Full match	Wrong street	Wrong locality	No locality
-Bing Maps	16
-(53%)	16
-(53%)	26
-(87%)	2
-(7%)	1
-(3%)	2
-(7%)	5
-(17%)	16
-(53%)
-ESRI Geocoder	1
-(3%)	9
-(30%)	22
-(73%)	0	1
-(3%)	4
-(13%)	14
-(47%)	1
-(3%)
-Google Maps Geocoder	3
-(10%)	3
-(10%)	19
-(63%)	1
-(3%)	3
-(10%)	8
-(27%)	15
-(50%)	3
-(10%)
-Here Geocoder	2
-(7%)	3
-(10%)	19
-(63%)	1
-(3%)	0	11
-(37%)	26
-(87%)	2
-(7%)
+Bing Maps|16 (53%)|16 (53%)|26 (87%)|2 (7%)|1 (3%)|2 (7%)|5 (17%)|16 (53%)
+ESRI Geocoder|1 (3%)|9 (30%)|22 (73%)|0|1 (3%)|4(13%)|14 (47%)|1 (3%)
+Google Maps Geocoder|3 (10%)|3 (10%)|19 (63%)|1 (3%)|3 (10%)|8 (27%)|15 (50%)|3 (10%)
+Here Geocoder|2 (7%)|3 (10%)|19 (63%)|1 (3%)|0|11 (37%)|26 (87%)|	2 (7%)
 
 Table 3: Civic Addresses Geocoded
 Urban	Rural
