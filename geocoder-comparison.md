@@ -134,11 +134,11 @@ Two sets of samples of the BC Address Geocoder civic addresses were taken:
 
 1.	Open an HTML5 compatible web browser.
 1.	Open each geocoder in a separate tab. 
-   1.	Bing Maps is located at https://www.bing.com/maps
-   1.	ESRI geocoder is located at https://governmentofbc.maps.arcgis.com/home/webmap/viewer.html?webmap=b8ea19982bd74db3bd968d3c7f038e43
-   1.	Google Maps is located at https://www.google.ca/maps
-   1.	Here is located at: https://wego.here.com
-   1.	The BC Geocoder is not being evaluated but can be used for QA purposes and can be found in the Location Services in Action application located at: https://ols-demo.apps.gov.bc.ca/index.html?
+    1.	Bing Maps is located at https://www.bing.com/maps
+    1.	ESRI geocoder is located at https://governmentofbc.maps.arcgis.com/home/webmap/viewer.html?webmap=b8ea19982bd74db3bd968d3c7f038e43
+    1.	Google Maps is located at https://www.google.ca/maps
+    1.	Here is located at: https://wego.here.com
+    1.	The BC Geocoder is not being evaluated but can be used for QA purposes and can be found in the Location Services in Action application located at: https://ols-demo.apps.gov.bc.ca/index.html?
 3.	For each sample civic address and for each geocoder, do the following:
 4.	Select the tab of the appropriate geocoder (e.g., Bing ESRI, Google, Here).
 5.	Geocode the civic address and assess the quality of the response using the following criteria:
