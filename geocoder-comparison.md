@@ -1,6 +1,5 @@
 # Geocoder Address Match Accuracy Study
 
-Michael Ross, DataBC
 April 4, 2018
 
 # Introduction
