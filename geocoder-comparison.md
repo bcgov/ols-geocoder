@@ -101,16 +101,19 @@ Here Geocoder|2 (7%)|3 (10%)|19 (63%)|1 (3%)|0|11 (37%)|26 (87%)|	2 (7%)
 2673 K P Rd, Vavenby, BC
 
  
+# Methodology
 
-Methodology
 The set of random addresses generated in the BC StreetMap Comparison were used in this study. For completeness, the following defines how to generate new sets of random addresses suitable for this comparison.
  
-Creating sets of random urban and rural addresses
+## Creating sets of random urban and rural addresses
+
 The Location Services in Action (LSIA) application was used to generate sample addresses and to analyse all street maps. The app runs in any HTML5-compatible browser and is located at:
 https://ols-demo.apps.gov.bc.ca/index.html
+
 Two sets of samples of the BC Address Geocoder civic addresses were taken:
 1.	Thirty urban street addresses
 2.	Thirty rural street addresses
+
 Urban street address samples were taken as follows:
 1.	Select thirty urban localities at random.
 2.	For each urban locality, repeat steps 3 to 6.
@@ -118,6 +121,7 @@ Urban street address samples were taken as follows:
 4.	Zoom out until full extent of urban core is visible.
 5.	Click Jump at Random icon and system will select and display a civic address chosen randomly from current map extent.
 6.	Record civic address in an urban addresses spreadsheet.
+
 Rural street address samples were taken as follows:
 1.	Zoom map to full provincial extent
 2.	In address tab, click Jump at Random icon. The system will select and display a civic address chosen randomly from the current map extent.
