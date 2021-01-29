@@ -25,6 +25,7 @@ Document|Description|Audience
 [BC Physical Address Exchange Schema](https://github.com/bcgov/ols-geocoder/blob/gh-pages/BCAddressExchangeSchema.md)|Defines a schema for the exchange of reference addresses between address authorities and geocoding service providers|Address authorities, app developers, geocoder developers and operators
 [Draft BC Physical Address Conceptual Model v2](https://github.com/bcgov/ols-geocoder/blob/gh-pages/physical-address-conceptual-model.md)|Defines what a physical address is and how it differs from a mailing address|Address authorities, address data suppliers, app developers, geocoder clients
 [Geocoder Data Integration Pipeline Architecture](https://github.com/bcgov/ols-geocoder/blob/gh-pages/address-data-pipeline.md)|An overview of the geocoder reference data integration pipeline|Geocoder developers
+[Comparative Address Geocoder Match Accuracy Study](https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-comparison.md)| A comparison between Bing Maps, ESRI Geocoder, Google Maps, and Here
 [OpenStreetMap Suitability Study](https://github.com/bcgov/ols-geocoder/blob/gh-pages/osm-suitability.md)|Is OSM a suitable base map to display addresses from the BC Address Geocoder?|App developers
 [OpenStreetMap Suitability Addresses](https://github.com/bcgov/ols-geocoder/blob/gh-pages/itn-osm-comparison.csv)|Random addresses selected for use in the OSM suitability study|App developers
 [Geocoder Roadmap](https://github.com/bcgov/ols-geocoder/blob/gh-pages/roadmap.md)|Planned major enhancements to the geocoder|Everyone
