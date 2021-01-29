@@ -127,8 +127,12 @@ public class GmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 						+ "<bgeo:baseDataDate>"
 						+ escape(results.getProcessingDate())
 						+ "</bgeo:baseDataDate>\n"
-						+ "<bgeo:disclaimer>http://www2.gov.bc.ca/gov/admin/disclaimer.page</bgeo:disclaimer>\n"
-						+ "<bgeo:privacyStatement>http://www2.gov.bc.ca/gov/admin/privacy.page</bgeo:privacyStatement>\n"
+						+ "<bgeo:disclaimer>"
+						+ escape(config.getDisclaimer())
+						+ "</bgeo:disclaimer>\n"
+						+ "<bgeo:privacyStatement>"
+						+ escape(config.getPrivacyStatement())
+						+ "</bgeo:privacyStatement>\n"
 						+ "<bgeo:copyrightNotice>"
 						+ escape(config.getCopyrightNotice())
 						+ "</bgeo:copyrightNotice>\n"

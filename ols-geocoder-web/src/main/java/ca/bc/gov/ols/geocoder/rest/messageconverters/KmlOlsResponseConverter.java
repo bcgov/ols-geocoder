@@ -124,9 +124,9 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 				+ "<Data name=\"version\"><value>" + escape(GeocoderConfig.VERSION)
 				+ "</value></Data>\r\n"
 				+ "<Data name=\"disclaimer\"><value>"
-				+ escape("http://www2.gov.bc.ca/gov/admin/disclaimer.page") + "</value></Data>\r\n"
+				+ escape(config.getDisclaimer()) + "</value></Data>\r\n"
 				+ "<Data name=\"privacyStatement\"><value>"
-				+ escape("http://www2.gov.bc.ca/gov/admin/privacy.page") + "</value></Data>\r\n"
+				+ escape(config.getPrivacyStatement()) + "</value></Data>\r\n"
 				+ "<Data name=\"copyrightNotice\"><value>"
 				+ escape(config.getCopyrightNotice())
 				+ "</value></Data>\r\n"
@@ -155,9 +155,9 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 				+ "<Data name=\"maxDegree\"><value>" + response.getExtraInfo("maxDegree")
 				+ "</value></Data>\r\n"
 				+ "<Data name=\"disclaimer\"><value>"
-				+ escape("http://www2.gov.bc.ca/gov/admin/disclaimer.page") + "</value></Data>\r\n"
+				+ escape(config.getDisclaimer()) + "</value></Data>\r\n"
 				+ "<Data name=\"privacyStatement\"><value>"
-				+ escape("http://www2.gov.bc.ca/gov/admin/privacy.page") + "</value></Data>\r\n"
+				+ escape(config.getPrivacyStatement()) + "</value></Data>\r\n"
 				+ "<Data name=\"copyrightNotice\"><value>"
 				+ escape(config.getCopyrightNotice())
 				+ "</value></Data>\r\n"
@@ -199,9 +199,9 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 				+ "</value></Data>\r\n"
 				+ (response.getExtraInfo("occupantQuery").equals("true") ? results.getTags() : "")
 				+ "<Data name=\"disclaimer\"><value>"
-				+ escape("http://www2.gov.bc.ca/gov/admin/disclaimer.page") + "</value></Data>\r\n"
+				+ escape(config.getDisclaimer()) + "</value></Data>\r\n"
 				+ "<Data name=\"privacyStatement\"><value>"
-				+ escape("http://www2.gov.bc.ca/gov/admin/privacy.page") + "</value></Data>\r\n"
+				+ escape(config.getPrivacyStatement()) + "</value></Data>\r\n"
 				+ "<Data name=\"copyrightNotice\"><value>"
 				+ escape(config.getCopyrightNotice())
 				+ "</value></Data>\r\n"
@@ -452,9 +452,9 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 				+ "</value></Data>\r\n"
 				+ (response.getExtraInfo("tags").isEmpty() ? "" : "<Data name=\"tags\"><value>" 
 						+ response.getExtraInfo("tags") + "</value></Data>\r\n")
-				+ "<Data name=\"disclaimer\"><value>"
-				+ escape("http://www2.gov.bc.ca/gov/admin/disclaimer.page") + "</value></Data>\r\n"
+				+ escape(config.getDisclaimer()) + "</value></Data>\r\n"
 				+ "<Data name=\"privacyStatement\"><value>"
+				+ escape(config.getPrivacyStatement()) + "</value></Data>\r\n"
 				+ escape("http://www2.gov.bc.ca/gov/admin/privacy.page") + "</value></Data>\r\n"
 				+ "<Data name=\"copyrightNotice\"><value>"
 				+ escape(config.getCopyrightNotice())
@@ -599,9 +599,9 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 				+ "<Data name=\"maxDegree\"><value>" + response.getExtraInfo("maxDegree")
 				+ "</value></Data>\r\n"
 				+ "<Data name=\"disclaimer\"><value>"
-				+ escape("http://www2.gov.bc.ca/gov/admin/disclaimer.page") + "</value></Data>\r\n"
+				+ escape(config.getDisclaimer()) + "</value></Data>\r\n"
 				+ "<Data name=\"privacyStatement\"><value>"
-				+ escape("http://www2.gov.bc.ca/gov/admin/privacy.page") + "</value></Data>\r\n"
+				+ escape(config.getPrivacyStatement()) + "</value></Data>\r\n"
 				+ "<Data name=\"copyrightNotice\"><value>"
 				+ escape(config.getCopyrightNotice())
 				+ "</value></Data>\r\n"
