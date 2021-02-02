@@ -20,6 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -34,12 +35,12 @@ import ca.bc.gov.ols.config.ConfigurationParameter;
 import ca.bc.gov.ols.enums.DividerType;
 import ca.bc.gov.ols.enums.RoadClass;
 import ca.bc.gov.ols.geocoder.api.data.MatchFault;
+import ca.bc.gov.ols.geocoder.api.data.MatchFault.MatchElement;
 import ca.bc.gov.ols.geocoder.data.enumTypes.MatchPrecision;
 import ca.bc.gov.ols.util.GeomParseUtil;
-import gnu.trove.map.hash.THashMap;
 
 public class GeocoderConfig {
-	public static final String VERSION = "4.0.2";
+	public static final String VERSION = "4.1.0";
 	public static final String LOGGER_PREFIX = "BGEO.";
 	public static final PrecisionModel BASE_PRECISION_MODEL = new PrecisionModel(1000);
 	private static final Logger logger = LoggerFactory.getLogger(LOGGER_PREFIX
@@ -48,7 +49,7 @@ public class GeocoderConfig {
 	public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	public static final LocalDate NOT_RETIRED_DATE = LocalDate.parse("9999-12-31", DATE_FORMATTER);
-
+	
 	protected GeocoderConfigurationStore configStore;
 	protected int baseSrsCode = -1;
 	protected Polygon baseSrsBounds;
@@ -65,7 +66,7 @@ public class GeocoderConfig {
 	protected String kmlStylesUrl;
 	protected String occupantCategoryKmlStyleUrl;
 	protected String occupantCustomKmlStyleUrl;
-	protected Map<String, MatchFault> matchFaultPenalties = new THashMap<String, MatchFault>();
+	protected Map<String, Integer> matchFaultPenalties = new HashMap<String, Integer>();
 	protected EnumMap<MatchPrecision, Integer> matchPrecisionPoints =
 			new EnumMap<MatchPrecision, Integer>(MatchPrecision.class);
 	protected int maxWithinResults;
@@ -133,9 +134,7 @@ public class GeocoderConfig {
 				} else if(name.startsWith("fault.")) {
 					// Example: fault.LOCALITY.notMatched
 					String[] nameParts = name.split("\\.");
-					matchFaultPenalties.put(nameParts[1] + "." + nameParts[2],
-							new MatchFault(MatchFault.MatchElement.valueOf(nameParts[1]),
-									nameParts[2], Integer.parseInt(value)));
+					matchFaultPenalties.put(nameParts[1] + "." + nameParts[2], Integer.parseInt(value));
 				} else if(name.startsWith("precision.")) {
 					matchPrecisionPoints.put(MatchPrecision.convert(name.substring(10)),
 							Integer.parseInt(value));
@@ -239,37 +238,30 @@ public class GeocoderConfig {
 		return occupantCustomKmlStyleUrl;
 	}
 
-	public MatchFault getLocalityAliasFault(int confidence) {
-		return new MatchFault(
+	public MatchFault getLocalityAliasFault(String text, int confidence) {
+		return new MatchFault(text,
 				MatchFault.MatchElement.LOCALITY, "isAlias",
-				getMatchFault("LOCALITY.isAlias").getPenalty() * (100 - confidence) / 100);
+				matchFaultPenalties.get("LOCALITY.isAlias") * (100 - confidence) / 100);
 	}
 
-	public MatchFault getSiteNamePartialMatchFault(double coefficient) {
-		return new MatchFault(
+	public MatchFault getSiteNamePartialMatchFault(String text, double coefficient) {
+		return new MatchFault(text,
 				MatchFault.MatchElement.SITE_NAME, "partialMatch",
-				(int)Math.round(getMatchFault("SITE_NAME.partialMatch").getPenalty() * coefficient));
+				(int)Math.round(matchFaultPenalties.get("SITE_NAME.partialMatch") * coefficient));
 	}
 
-	public MatchFault getOccupantNamePartialMatchFault(double coefficient) {
-		return new MatchFault(
+	public MatchFault getOccupantNamePartialMatchFault(String text, double coefficient) {
+		return new MatchFault(text,
 				MatchFault.MatchElement.OCCUPANT_NAME, "partialMatch",
-				(int)Math.round(getMatchFault("OCCUPANT_NAME.partialMatch").getPenalty() * coefficient));
+				(int)Math.round(matchFaultPenalties.get("OCCUPANT_NAME.partialMatch") * coefficient));
 	}
 
-	public MatchFault getUnrecognizedMatchFault(List<String> nonWords) {
-		// penalty value is the base penalty plus 10% for each word
-		return new MatchFault(MatchFault.MatchElement.UNRECOGNIZED, "notAllowed",
-				(int)Math.round(getMatchFault("UNRECOGNIZED.notAllowed").getPenalty()
-						* (1 + (0.1 * nonWords.size()))));
-	}
-
-	public MatchFault getMatchFault(String faultName) {
-		MatchFault fault = matchFaultPenalties.get(faultName);
-		if(fault != null) {
-			return fault;
+	public MatchFault getMatchFault(String text, MatchElement element, String fault) {
+		Integer penalty = matchFaultPenalties.get(element.toString() + "." + fault);
+		if(penalty != null) {
+			return new MatchFault(text, element, fault, penalty);
 		}
-		logger.warn("No Match Fault Penalty set for '{}'.", faultName);
+		logger.warn("No Match Fault Penalty set for '{}'.", element.toString() + "." + fault);
 		return null;
 	}
 
@@ -361,121 +353,80 @@ public class GeocoderConfig {
 		matchPrecisionPoints.put(MatchPrecision.NONE, 1);
 
 
-		matchFaultPenalties.put("OCCUPANT_NAME.partialMatch", new MatchFault(
-				MatchFault.MatchElement.OCCUPANT_NAME, "partialMatch", 10));
-		matchFaultPenalties.put("OCCUPANT_NAME.notMatched", new MatchFault(
-				MatchFault.MatchElement.OCCUPANT_NAME, "notMatched", 10));
+		matchFaultPenalties.put("OCCUPANT_NAME.partialMatch", 10);
+		matchFaultPenalties.put("OCCUPANT_NAME.notMatched", 10);
 
 		// note that notMatched should be equal to or higher than partialMatch
 		// otherwise partial matches could score lower than non-matches
-		matchFaultPenalties.put("SITE_NAME.partialMatch", new MatchFault(
-				MatchFault.MatchElement.SITE_NAME, "partialMatch", 10));
-		matchFaultPenalties.put("SITE_NAME.notMatched", new MatchFault(
-				MatchFault.MatchElement.SITE_NAME, "notMatched", 10));
-		matchFaultPenalties.put("SITE_NAME.missing", new MatchFault(
-				MatchFault.MatchElement.SITE_NAME, "missing", 0));
-		matchFaultPenalties.put("SITE_NAME.spelledWrong", new MatchFault(
-				MatchFault.MatchElement.SITE_NAME, "spelledWrong", 1));
+		matchFaultPenalties.put("SITE_NAME.partialMatch", 10);
+		matchFaultPenalties.put("SITE_NAME.notMatched", 10);
+		matchFaultPenalties.put("SITE_NAME.missing", 0);
+		matchFaultPenalties.put("SITE_NAME.spelledWrong", 1);
 
-		matchFaultPenalties.put("UNIT_DESIGNATOR.missing", new MatchFault(
-				MatchFault.MatchElement.UNIT_DESIGNATOR, "missing", 1));
-		matchFaultPenalties.put("UNIT_DESIGNATOR.isAlias", new MatchFault(
-				MatchFault.MatchElement.UNIT_DESIGNATOR, "isAlias", 1));
-		matchFaultPenalties.put("UNIT_DESIGNATOR.notMatched", new MatchFault(
-				MatchFault.MatchElement.UNIT_DESIGNATOR, "notMatched", 1));
-		matchFaultPenalties.put("UNIT_DESIGNATOR.spelledWrong", new MatchFault(
-				MatchFault.MatchElement.UNIT_DESIGNATOR, "spelledWrong", 1));
+		matchFaultPenalties.put("UNIT_DESIGNATOR.missing", 1);
+		matchFaultPenalties.put("UNIT_DESIGNATOR.isAlias", 1);
+		matchFaultPenalties.put("UNIT_DESIGNATOR.notMatched", 1);
+		matchFaultPenalties.put("UNIT_DESIGNATOR.spelledWrong", 1);
 
-		matchFaultPenalties.put("UNIT_NUMBER.missing", new MatchFault(
-				MatchFault.MatchElement.UNIT_NUMBER, "missing", 1));
-		matchFaultPenalties.put("UNIT_NUMBER.notMatched", new MatchFault(
-				MatchFault.MatchElement.UNIT_NUMBER, "notMatched", 1));
-		matchFaultPenalties.put("UNIT_NUMBER.spelledWrong", new MatchFault(
-				MatchFault.MatchElement.UNIT_NUMBER, "spelledWrong", 1));
+		matchFaultPenalties.put("UNIT_NUMBER.missing", 1);
+		matchFaultPenalties.put("UNIT_NUMBER.notMatched", 1);
+		matchFaultPenalties.put("UNIT_NUMBER.spelledWrong", 1);
 
-		matchFaultPenalties.put("UNIT_NUMBER_SUFFIX.missing", new MatchFault(
-				MatchFault.MatchElement.UNIT_NUMBER_SUFFIX, "missing", 1));
-		matchFaultPenalties.put("UNIT_NUMBER_SUFFIX.notMatched", new MatchFault(
-				MatchFault.MatchElement.UNIT_NUMBER_SUFFIX, "notMatched", 1));
+//		matchFaultPenalties.put("UNIT_NUMBER_SUFFIX.missing", 1);
+//		matchFaultPenalties.put("UNIT_NUMBER_SUFFIX.notMatched", 1);
 
-		matchFaultPenalties.put("CIVIC_NUMBER.notInAnyBlock", new MatchFault(
-				MatchFault.MatchElement.CIVIC_NUMBER, "notInAnyBlock", 10));
-		matchFaultPenalties.put("CIVIC_NUMBER.missing", new MatchFault(
-				MatchFault.MatchElement.CIVIC_NUMBER, "missing", 10));
-		matchFaultPenalties.put("CIVIC_NUMBER_SUFFIX.notMatched", new MatchFault(
-				MatchFault.MatchElement.CIVIC_NUMBER_SUFFIX, "notMatched", 1));
+		matchFaultPenalties.put("CIVIC_NUMBER.notInAnyBlock", 10);
+		matchFaultPenalties.put("CIVIC_NUMBER.missing", 10);
+		matchFaultPenalties.put("CIVIC_NUMBER_SUFFIX.notMatched", 1);
 
 		// for CIVIC sites matches using SITE NAME (because no street name/civic number input)
-		matchFaultPenalties.put("STREET.missing", new MatchFault(
-				MatchFault.MatchElement.STREET, "missing", 0));
+		matchFaultPenalties.put("STREET.missing", 0);
 
 		// STREET_NAME.notMatched is used for extra intersection streets that don't match, and for
 		// locality fall-backs
-		matchFaultPenalties.put("STREET_NAME.missing", new MatchFault(
-				MatchFault.MatchElement.STREET_NAME, "missing", 10));
-		matchFaultPenalties.put("STREET_NAME.notMatched", new MatchFault(
-				MatchFault.MatchElement.STREET_NAME, "notMatched", 12));
-		matchFaultPenalties.put("STREET_NAME.spelledWrong", new MatchFault(
-				MatchFault.MatchElement.STREET_NAME, "spelledWrong", 2));
-		matchFaultPenalties.put("STREET_NAME.isAlias", new MatchFault(
-				MatchFault.MatchElement.STREET_NAME, "isAlias", 1));
-		matchFaultPenalties.put("STREET_NAME.isHighwayAlias", new MatchFault(
-				MatchFault.MatchElement.STREET_NAME, "isHighwayAlias", 1));
-		matchFaultPenalties.put("STREET_NAME.partialMatch", new MatchFault(
-				MatchFault.MatchElement.STREET_NAME, "partialMatch", 1));
+		matchFaultPenalties.put("STREET_NAME.missing", 10);
+		matchFaultPenalties.put("STREET_NAME.notMatched", 12);
+		matchFaultPenalties.put("STREET_NAME.spelledWrong", 2);
+		matchFaultPenalties.put("STREET_NAME.isAlias", 1);
+		matchFaultPenalties.put("STREET_NAME.isHighwayAlias", 1);
+		matchFaultPenalties.put("STREET_NAME.partialMatch", 1);
 
-		matchFaultPenalties.put("STREET_DIRECTION.missing", new MatchFault(
-				MatchFault.MatchElement.STREET_DIRECTION, "missing", 2));
-		matchFaultPenalties.put("STREET_DIRECTION.notMatched", new MatchFault(
-				MatchFault.MatchElement.STREET_DIRECTION, "notMatched", 2));
-		matchFaultPenalties.put("STREET_DIRECTION.spelledWrong", new MatchFault(
-				MatchFault.MatchElement.STREET_DIRECTION, "spelledWrong", 1));
-		matchFaultPenalties.put("STREET_DIRECTION.notMatchedInHighway", new MatchFault(
-				MatchFault.MatchElement.STREET_DIRECTION, "notMatchedInHighway", 1));
+		matchFaultPenalties.put("STREET_DIRECTION.missing", 2);
+		matchFaultPenalties.put("STREET_DIRECTION.notMatched", 2);
+		matchFaultPenalties.put("STREET_DIRECTION.spelledWrong", 1);
+		matchFaultPenalties.put("STREET_DIRECTION.notMatchedInHighway", 1);
 
-		matchFaultPenalties.put("STREET_TYPE.missing", new MatchFault(
-				MatchFault.MatchElement.STREET_TYPE, "missing", 6));
-		matchFaultPenalties.put("STREET_TYPE.notMatched", new MatchFault(
-				MatchFault.MatchElement.STREET_TYPE, "notMatched", 3));
-		matchFaultPenalties.put("STREET_TYPE.spelledWrong", new MatchFault(
-				MatchFault.MatchElement.STREET_TYPE, "spelledWrong", 1));
+		matchFaultPenalties.put("STREET_TYPE.missing", 6);
+		matchFaultPenalties.put("STREET_TYPE.notMatched", 3);
+		matchFaultPenalties.put("STREET_TYPE.spelledWrong", 1);
 
-		matchFaultPenalties.put("STREET_QUALIFIER.missing", new MatchFault(
-				MatchFault.MatchElement.STREET_QUALIFIER, "missing", 1));
-		matchFaultPenalties.put("STREET_QUALIFIER.notMatched", new MatchFault(
-				MatchFault.MatchElement.STREET_QUALIFIER, "notMatched", 1));
-		matchFaultPenalties.put("STREET_QUALIFIER.spelledWrong", new MatchFault(
-				MatchFault.MatchElement.STREET_QUALIFIER, "spelledWrong", 1));
+		matchFaultPenalties.put("STREET_QUALIFIER.missing", 1);
+		matchFaultPenalties.put("STREET_QUALIFIER.notMatched", 1);
+		matchFaultPenalties.put("STREET_QUALIFIER.spelledWrong", 1);
 
-		matchFaultPenalties.put("LOCALITY.isAlias", new MatchFault(
-				MatchFault.MatchElement.LOCALITY, "isAlias", 20));
-		matchFaultPenalties.put("LOCALITY.notMatched", new MatchFault(
-				MatchFault.MatchElement.LOCALITY, "notMatched", 35));
-		matchFaultPenalties.put("LOCALITY.missing", new MatchFault(
-				MatchFault.MatchElement.LOCALITY, "missing", 10));
-		matchFaultPenalties.put("LOCALITY.spelledWrong", new MatchFault(
-				MatchFault.MatchElement.LOCALITY, "spelledWrong", 2));
-		matchFaultPenalties.put("LOCALITY.partialMatch", new MatchFault(
-				MatchFault.MatchElement.LOCALITY, "partialMatch", 1));
+		matchFaultPenalties.put("LOCALITY.isAlias", 20);
+		matchFaultPenalties.put("LOCALITY.notMatched", 35);
+		matchFaultPenalties.put("LOCALITY.missing", 10);
+		matchFaultPenalties.put("LOCALITY.spelledWrong", 2);
+		matchFaultPenalties.put("LOCALITY.partialMatch", 1);
+		matchFaultPenalties.put("LOCALITY.partialMatchToAlias", 30);
 
-		matchFaultPenalties.put("PROVINCE.notMatched", new MatchFault(
-				MatchFault.MatchElement.PROVINCE, "notMatched", 1));
-		matchFaultPenalties.put("PROVINCE.missing", new MatchFault(
-				MatchFault.MatchElement.PROVINCE, "missing", 1));
-		matchFaultPenalties.put("PROVINCE.spelledWrong", new MatchFault(
-				MatchFault.MatchElement.PROVINCE, "spelledWrong", 2));
+		matchFaultPenalties.put("PROVINCE.notMatched", 1);
+		matchFaultPenalties.put("PROVINCE.missing", 1);
+		matchFaultPenalties.put("PROVINCE.spelledWrong", 2);
 
-		matchFaultPenalties.put("POSTAL_ADDRESS_ELEMENT.notAllowed", new MatchFault(
-				MatchFault.MatchElement.POSTAL_ADDRESS_ELEMENT, "notAllowed", 1));
+		matchFaultPenalties.put("POSTAL_ADDRESS_ELEMENT.notAllowed", 1);
 
-		matchFaultPenalties.put("UNRECOGNIZED.notAllowed", new MatchFault(
-				MatchFault.MatchElement.UNRECOGNIZED, "notAllowed", 30));
+		matchFaultPenalties.put("INITIAL_GARBAGE.notAllowed", 3);
+		matchFaultPenalties.put("LOCALITY_GARBAGE.notAllowed", 3);
+		matchFaultPenalties.put("PROVINCE_GARBAGE.notAllowed", 2);
 
-		matchFaultPenalties.put("MAX_RESULTS.too_low_to_include_all_best_matches", new MatchFault(
-				MatchFault.MatchElement.MAX_RESULTS, "too_low_to_include_all_best_matches", 0));
+		matchFaultPenalties.put("FAULTS.tooMany", 6);
 
-		matchFaultPenalties.put("ADDRESS.missing", new MatchFault(
-				MatchFault.MatchElement.ADDRESS, "missing", 12));
+		matchFaultPenalties.put("MAX_RESULTS.too_low_to_include_all_best_matches", 0);
+
+		matchFaultPenalties.put("ADDRESS.autoCompleted", 5);
+		matchFaultPenalties.put("ADDRESS.missing", 12);
 
 		// default all roadClasses to 3m per lane + 1m base
 		for(RoadClass rc : RoadClass.values()) {

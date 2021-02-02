@@ -131,7 +131,7 @@ public class NameLookupTrie<T> {
 
 	public List<MisspellingOf<T>> query(String query, int error, boolean autoComplete) {
 		List<MisspellingOf<T>> results = new ArrayList<MisspellingOf<T>>();
-		query(query.toUpperCase().toCharArray(), 0, error, error, autoComplete, results, -1, false);
+		query(query.toUpperCase().toCharArray(), query, 0, error, error, autoComplete, results, -1, false);
 		return results;
 	}
 	
@@ -164,7 +164,7 @@ public class NameLookupTrie<T> {
 		List<MisspellingOf<T>> results = new ArrayList<MisspellingOf<T>>();
 		if(trie.storedValues != null) {
 			for(T value : trie.storedValues) {
-				results.add(new MisspellingOf<T>(value, 0));
+				results.add(new MisspellingOf<T>(value, 0, query));
 			}
 		}
 		// now look for any further matches after a space character
@@ -173,7 +173,7 @@ public class NameLookupTrie<T> {
 			List<T> partialMatches = new ArrayList<T>();
 			trie.findAllChildren(partialMatches);
 			for(T partialMatch : partialMatches) {
-				results.add(new MisspellingOf<T>(partialMatch, 1));
+				results.add(new MisspellingOf<T>(partialMatch, 1, query));
 			}
 		}
 		
@@ -196,12 +196,12 @@ public class NameLookupTrie<T> {
 	// to prevent us from accidentally calling that same character a "deletion error" later
 	// we have to remember the character for as long as the same character is repeated to prevent similar problems 
 	@SuppressWarnings("unchecked")
-	private void query(char[] str, int pos, int remainingError, int maxError, boolean autoComplete,
+	private void query(char[] str, String s, int pos, int remainingError, int maxError, boolean autoComplete,
 			List<MisspellingOf<T>> results, int lastInserted, boolean justDeleted) {
 		
 		// if next character exists
 		if(pos < str.length && branches[table[str[pos]]] != null) {
-			((NameLookupTrie<T>)branches[table[str[pos]]]).query(str, pos + 1, remainingError,
+			((NameLookupTrie<T>)branches[table[str[pos]]]).query(str, s, pos + 1, remainingError,
 					maxError, autoComplete, results, lastInserted == table[str[pos]] ? lastInserted : -1, false);
 		}
 		
@@ -209,7 +209,7 @@ public class NameLookupTrie<T> {
 		if(pos == str.length) {
 			if(storedValues != null) {
 				for(T storedValue : storedValues) {
-					results.add(new MisspellingOf<T>(storedValue, (maxError - remainingError)));
+					results.add(new MisspellingOf<T>(storedValue, (maxError - remainingError), s));
 				}
 			}
 			// if autoComplete is enabled and we are at the end of a perfect match
@@ -218,8 +218,8 @@ public class NameLookupTrie<T> {
 				List<T> children = new ArrayList<T>();
 				findAllChildren(children);
 				for(T child : children) {
-					// add them to the results list, with a maxError
-					results.add(new MisspellingOf<T>(child, maxError));					
+					// add them to the results list, with a -1 to indicate autocomplete
+					results.add(new MisspellingOf<T>(child, -1, s));					
 				}
 			}
 		}
@@ -229,7 +229,7 @@ public class NameLookupTrie<T> {
 			// allow for a deletion error
 			for(int i = 0; i < branches.length; i++) {
 				if(lastInserted == -1 && branches[i] != null && (pos >= str.length || (i != table[str[pos]]))) {
-					((NameLookupTrie<T>)branches[i]).query(str, pos, remainingError - 1, maxError,
+					((NameLookupTrie<T>)branches[i]).query(str, s, pos, remainingError - 1, maxError,
 							autoComplete, results, lastInserted, true);
 				}
 			}
@@ -238,14 +238,14 @@ public class NameLookupTrie<T> {
 				// allow for an incorrect character
 				for(int i = 0; i < branches.length; i++) {
 					if(i != lastInserted && branches[i] != null && i != table[str[pos]]) {
-						((NameLookupTrie<T>)branches[i]).query(str, pos + 1, remainingError - 1,
+						((NameLookupTrie<T>)branches[i]).query(str, s, pos + 1, remainingError - 1,
 								maxError, autoComplete, results, -1, false);
 					}
 				}
 				// allow for an insertion error
 				// but not immediately after a deletion; that is handled as an incorrect character
 				if(!justDeleted) {
-					query(str, pos + 1, remainingError - 1, maxError, autoComplete, results, table[str[pos]], false);
+					query(str, s, pos + 1, remainingError - 1, maxError, autoComplete, results, table[str[pos]], false);
 				}
 //				if(pos + 1 < str.length && branches[table[str[pos + 1]]] != null) {
 //					((NameLookupTrie<T>)branches[table[str[pos + 1]]]).query(str, pos + 2, remainingError - 1,
@@ -257,7 +257,7 @@ public class NameLookupTrie<T> {
 					if(branches[table[str[pos + 1]]] != null) {
 						NameLookupTrie<T> b = (NameLookupTrie<T>)branches[table[str[pos + 1]]];
 						if(b.branches[table[str[pos]]] != null) {
-							((NameLookupTrie<T>)b.branches[table[str[pos]]]).query(str, pos + 2,
+							((NameLookupTrie<T>)b.branches[table[str[pos]]]).query(str, s, pos + 2,
 									remainingError - 1, maxError, autoComplete, results, -1, false);
 						}
 					}

@@ -17,6 +17,7 @@ package ca.bc.gov.ols.geocoder.data.indexing;
 
 import gnu.trove.map.hash.THashMap;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -129,19 +130,27 @@ public class WordMapBuilder {
 		if(wordSet == null) {
 			wordSet = new CopyOnWriteArraySet<Word>();
 			wordMap.put(fromWord, wordSet);
-		}
+		} 
 		wordSet.add(toWord);
 	}
 	
-	/**
-	 * Builds the final wordMap trie based on all the words and mappings that have been added.
-	 * 
-	 * @return the final wordMap trie structure
-	 */
-	public WordMap build() {
-		return new WordMap(new NameLookupTrie<Word>(wordMap));
-	}
 	
+	/**
+	 * Gets the wordMap structure. Intended to be used once after all words are added, to pass into the WordMap constructor
+	 * @return the wordMap structure based on the words added to the map
+	 */
+	public Map<String, Set<Word>> getWordMap() {
+		return wordMap;
+	}
+
+	/**
+	 * Gets the wordList structure. Intended to be used once after all words are added, to pass into the WordMap constructor
+	 * @return the wordList structure based on the words added to the map
+	 */
+	public Map<String, Word> getWordList() {
+		return wordList;
+	}
+
 	public static void main(String[] args) {
 		WordMapBuilder db = new WordMapBuilder();
 		db.addPhrase("Saint Andrews", WordClass.STREET_NAME_BODY);

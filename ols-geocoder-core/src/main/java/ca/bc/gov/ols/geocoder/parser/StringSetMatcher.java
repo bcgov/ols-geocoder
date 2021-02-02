@@ -18,15 +18,15 @@ package ca.bc.gov.ols.geocoder.parser;
 import gnu.trove.set.hash.THashSet;
 
 import java.util.Set;
+import java.util.function.Predicate;
 
 /**
- * A StringSetMatcher is a Matcher which identifies Strings belonging to a specified set of strings.
+ * A StringSetMatcher is a Predicate which identifies Strings belonging to a specified set of strings.
  * 
  * @author chodgson
  *
  */
-public class StringSetMatcher implements Matcher
-{
+public class StringSetMatcher implements Predicate<String> {
 	Set<String> valueSet = new THashSet<String>();
 	
 	public StringSetMatcher(String value)
@@ -55,7 +55,7 @@ public class StringSetMatcher implements Matcher
 		}
 	}
 	
-	public boolean matches(String value)
+	public boolean test(String value)
 	{
 		return valueSet.contains(value);
 	}

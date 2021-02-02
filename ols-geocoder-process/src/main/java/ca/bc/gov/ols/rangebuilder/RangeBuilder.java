@@ -143,6 +143,7 @@ public class RangeBuilder {
 
 		GeocoderConfig config = new GeocoderConfig(configStore, geometryFactory);
 		dataSource = GeocoderDataSourceFactory.getGeocoderDataSource(config, geometryFactory);
+		configStore.close();
 	}
 	
 	public void buildRanges() {

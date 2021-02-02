@@ -38,6 +38,7 @@ import ca.bc.gov.ols.geocoder.api.data.AddressMatch;
 import ca.bc.gov.ols.geocoder.api.data.GeocodeMatch;
 import ca.bc.gov.ols.geocoder.api.data.IntersectionMatch;
 import ca.bc.gov.ols.geocoder.api.data.MatchFault;
+import ca.bc.gov.ols.geocoder.api.data.MatchFault.MatchElement;
 import ca.bc.gov.ols.geocoder.api.data.OccupantAddress;
 import ca.bc.gov.ols.geocoder.api.data.SearchResults;
 import ca.bc.gov.ols.geocoder.api.data.SiteAddress;
@@ -180,7 +181,7 @@ public class Geocoder implements IGeocoder {
 			addressWords.addAll(lexer.lexField(query.getUnitDesignator(),
 					EnumSet.of(WordClass.UNIT_DESIGNATOR)));
 			addressWords.addAll(lexer.lexField(query.getUnitNumber(),
-					EnumSet.of(WordClass.NUMBER, WordClass.UNIT_NUMBER_WORD)));
+					EnumSet.of(WordClass.NUMBER, WordClass.LETTER)));
 			addressWords.addAll(lexer.lexField(query.getUnitNumberSuffix(),
 					EnumSet.of(WordClass.SUFFIX)));
 			List<List<MisspellingOf<Word>>> siteWords = lexer.lexField(query.getSiteName(),
@@ -245,43 +246,43 @@ public class Geocoder implements IGeocoder {
 			}
 		}
 		
-		logger.debug("matches.size() before duplicate filter: {}", matches.size());
-		
-		// filter out any duplicate results, keep the one with the highest score
-		// sort by AddressString,Location first
-		Collections.sort(matches, GeocodeMatch.ADDRESS_LOCATION_COMPARATOR);
-		
-		List<GeocodeMatch> newMatches = new ArrayList<GeocodeMatch>();
-		for(int i = 0; i < matches.size();) {
-			GeocodeMatch a = matches.get(i);
-			// loop over matches following match[i] aka. "a"
-			int next = 1;
-			while(i + next < matches.size()) {
-				GeocodeMatch b = matches.get(i + next);
-				if(((a.getLocation() == null && b.getLocation() == null)
-						|| (a.getLocation() != null && b.getLocation() != null
-						&& a.getLocation().getX() == b.getLocation().getX()
-						&& a.getLocation().getY() == b.getLocation().getY()))
-						&& a.getAddressString().equals(b.getAddressString())) {
-					if(b.getScore() > a.getScore()) {
-						// if b is better, move a up to b
-						i = i + next;
-						a = b;
-						next = 1;
-					} else {
-						next++;
-					}
-				} else {
-					// we've run out of duplicates for "a"
-					break;
-				}
-			}
-			i = i + next;
-			newMatches.add(a);
-		}
-		matches = newMatches;
-		
-		logger.debug("matches.size() after duplicate filter: {}", matches.size());
+//		logger.debug("matches.size() before duplicate filter: {}", matches.size());
+//		
+//		// filter out any duplicate results, keep the one with the highest score
+//		// sort by AddressString,Location first
+//		Collections.sort(matches, GeocodeMatch.ADDRESS_LOCATION_COMPARATOR);
+//		
+//		List<GeocodeMatch> newMatches = new ArrayList<GeocodeMatch>();
+//		for(int i = 0; i < matches.size();) {
+//			GeocodeMatch a = matches.get(i);
+//			// loop over matches following match[i] aka. "a"
+//			int next = 1;
+//			while(i + next < matches.size()) {
+//				GeocodeMatch b = matches.get(i + next);
+//				if(((a.getLocation() == null && b.getLocation() == null)
+//						|| (a.getLocation() != null && b.getLocation() != null
+//						&& a.getLocation().getX() == b.getLocation().getX()
+//						&& a.getLocation().getY() == b.getLocation().getY()))
+//						&& a.getAddressString().equals(b.getAddressString())) {
+//					if(b.getScore() > a.getScore()) {
+//						// if b is better, move a up to b
+//						i = i + next;
+//						a = b;
+//						next = 1;
+//					} else {
+//						next++;
+//					}
+//				} else {
+//					// we've run out of duplicates for "a"
+//					break;
+//				}
+//			}
+//			i = i + next;
+//			newMatches.add(a);
+//		}
+//		matches = newMatches;
+//		
+//		logger.debug("matches.size() after duplicate filter: {}", matches.size());
 		
 		/*
 		 * // filter by centre/maxDistance spatial filter if(query.getCentre() != null &&
@@ -298,7 +299,7 @@ public class Geocoder implements IGeocoder {
 		 * logger.debug("matches.size() after spatial filters: {}", matches.size());
 		 */
 		// sort the list by score
-		Collections.sort(matches, GeocodeMatch.SCORE_COMPARATOR);
+		//Collections.sort(matches, GeocodeMatch.SCORE_COMPARATOR);
 		
 		// filter the list down to the maxResults limit from the query
 		List<GeocodeMatch> limitedMatches = matches;
@@ -306,8 +307,8 @@ public class Geocoder implements IGeocoder {
 			if(matches.size() > query.getMaxResults()) {
 				if(matches.get(0).getScore() == matches.get(query.getMaxResults()).getScore()) {
 					matches.get(0).addFault(
-							datastore.getConfig().getMatchFault(
-									"MAX_RESULTS.too_low_to_include_all_best_matches"));
+							datastore.getConfig().getMatchFault(null,
+									MatchElement.MAX_RESULTS, "too_low_to_include_all_best_matches"));
 					if(query.getParcelPoint() != null) {
 						// sort all equally-top-scored results by their distance from specified
 						// parcelPoint
@@ -386,7 +387,7 @@ public class Geocoder implements IGeocoder {
 				if(address.getCivicNumber() != null) {
 					// look for matching blocks on those street names
 					faces = name.getBlocks(address.getCivicNumber());
-					prioritizeBlocks(faces, address.getLocalityName());
+					faces = prioritizeBlocks(faces, address.getLocalityName());
 					for(BlockFace face : faces) {
 						// look for a matching Access Point on the block, or
 						// interpolate the location
@@ -421,9 +422,10 @@ public class Geocoder implements IGeocoder {
 							
 							match.addFaults(incomingFaults);
 							if(nameMatch.getError() > 0) {
-								match.addFault(datastore.getConfig().getMatchFault("STREET_NAME.partialMatch"));
+								match.addFault(datastore.getConfig().getMatchFault(nameMatch.getMisspelling(), MatchElement.STREET_NAME, "partialMatch"));
 							}
 							score(address, match, name, misspellings, query);
+							globalScoring(match, misspellings);
 							if(query.pass(match)) {
 								if(canShortCircuit(query, match)) {
 									// lets short-circuit outta here!
@@ -495,8 +497,9 @@ public class Geocoder implements IGeocoder {
 								match.addFaults(incomingFaults);
 								score(address, match, name, misspellings, query);
 								if(nameMatch.getError() > 0) {
-									match.addFault(datastore.getConfig().getMatchFault("STREET_NAME.partialMatch"));
+									match.addFault(datastore.getConfig().getMatchFault(nameMatch.getMisspelling(), MatchElement.STREET_NAME, "partialMatch"));
 								}
+								globalScoring(match, misspellings);
 								if(query.pass(match)) {
 									if(canShortCircuit(query, match)) {
 										// lets short-circuit outta here!
@@ -554,9 +557,10 @@ public class Geocoder implements IGeocoder {
 									
 									match.addFaults(incomingFaults);
 									if(nameMatch.getError() > 0) {
-										match.addFault(datastore.getConfig().getMatchFault("STREET_NAME.partialMatch"));
+										match.addFault(datastore.getConfig().getMatchFault(nameMatch.getMisspelling(), MatchElement.STREET_NAME, "partialMatch"));
 									}
 									score(address, match, name, misspellings, query);
+									globalScoring(match,misspellings);
 									if(query.pass(match)) {
 										if(canShortCircuit(query, match)) {
 											// lets short-circuit outta here!
@@ -590,9 +594,10 @@ public class Geocoder implements IGeocoder {
 									MatchPrecision.STREET));
 					match.addFaults(incomingFaults);
 					if(nameMatch.getError() > 0) {
-						match.addFault(datastore.getConfig().getMatchFault("STREET_NAME.partialMatch"));
+						match.addFault(datastore.getConfig().getMatchFault(nameMatch.getMisspelling(), MatchElement.STREET_NAME, "partialMatch"));
 					}
 					score(address, match, name, misspellings, query);
+					globalScoring(match, misspellings);
 					if(query.pass(match)) {
 						matches.add(match);
 					}
@@ -614,8 +619,9 @@ public class Geocoder implements IGeocoder {
 							datastore.getConfig().getMatchPrecisionPoints(
 									MatchPrecision.LOCALITY));
 					match.addFaults(incomingFaults);
-					match.addFault(datastore.getConfig().getMatchFault("STREET_NAME.notMatched"));
+					match.addFault(datastore.getConfig().getMatchFault(streetName, MatchElement.STREET_NAME, "notMatched"));
 					scoreLocalityMatch(address, lm, match, misspellings, query);
+					globalScoring(match, misspellings);
 					if(query.pass(match)) {
 						matches.add(match);
 					}
@@ -643,6 +649,7 @@ public class Geocoder implements IGeocoder {
 					
 					match.addFaults(incomingFaults);
 					scoreSiteNameMatch(address, match, misspellings, query);
+					globalScoring(match, misspellings);
 					if(query.pass(match)) {
 						if(canShortCircuit(query, match)) {
 							// lets short-circuit outta here!
@@ -669,6 +676,7 @@ public class Geocoder implements IGeocoder {
 					// TODO possibly need different scoring for NCAPs
 					//score(address, match, null, misspellings, query);
 					scoreSiteNameMatch(address, match, misspellings, query);
+					globalScoring(match, misspellings);
 					// we don't want to accept unit-number only matches
 					if(match.containsFault(MatchFault.MatchElement.SITE_NAME, "notMatched") ||
 							match.containsFault(MatchFault.MatchElement.SITE_NAME, "missing")) {
@@ -710,6 +718,7 @@ public class Geocoder implements IGeocoder {
 							match.addFaults(incomingFaults);
 							// match.addFault(datastore.getConfig().getMatchFault("SITE_NAME.notMatched"));
 							scoreLocalityMatch(address, lm, match, misspellings, query);
+							globalScoring(match, misspellings);
 							if(query.pass(match)) {
 								matches.add(match);
 							}
@@ -740,6 +749,7 @@ public class Geocoder implements IGeocoder {
 									match.containsFault(MatchFault.MatchElement.SITE_NAME, "missing")) {
 								continue;
 							}
+							globalScoring(match, misspellings);
 							if(query.pass(match)) {
 								if(canShortCircuit(query, match)) {
 									// lets short-circuit outta here!
@@ -772,6 +782,7 @@ public class Geocoder implements IGeocoder {
 									match.containsFault(MatchFault.MatchElement.SITE_NAME, "missing")) {
 								continue;
 							}
+							globalScoring(match, misspellings);
 							if(query.pass(match)) {
 								if(canShortCircuit(query, match)) {
 									// lets short-circuit outta here!
@@ -802,9 +813,10 @@ public class Geocoder implements IGeocoder {
 								MatchPrecision.LOCALITY));
 				match.addFaults(incomingFaults);
 				if(mlm.getError() > 0) {
-					match.addFault(datastore.getConfig().getMatchFault("LOCALITY.partialMatch"));
+					match.addFault(datastore.getConfig().getMatchFault(address.getLocalityName(), MatchElement.LOCALITY, "partialMatch"));
 				}
 				scoreLocalityMatch(address, lm, match, misspellings, query);
+				globalScoring(match, misspellings);
 				if(query.pass(match)) {
 					matches.add(match);
 				}
@@ -824,6 +836,7 @@ public class Geocoder implements IGeocoder {
 								MatchPrecision.PROVINCE));
 				match.addFaults(incomingFaults);
 				scoreStateProvTerr(address, match, misspellings);
+				globalScoring(match, misspellings);
 				if(query.pass(match)) {
 					matches.add(match);
 				}
@@ -862,25 +875,33 @@ public class Geocoder implements IGeocoder {
 		return false;
 	}
 	
-	private void prioritizeBlocks(List<BlockFace> faces, String localityName) {
-		if(localityName == null) {
-			return;
+	private List<BlockFace> prioritizeBlocks(List<BlockFace> faces, String localityName) {
+		if(faces.isEmpty() || localityName == null) {
+			return faces;
 		}
-		LocalityMapTarget lm = datastore.getBestLocalityMapping(localityName);
-		if(lm == null) {
-			return;
+		
+		List<MisspellingOf<LocalityMapTarget>> lms = datastore.getLocalities(localityName);
+		if(lms.isEmpty()) {
+			return faces;
 		}
-		Locality locality = lm.getLocality();
-		int front = 0;
-		BlockFace temp;
+		List<BlockFace> newFaces = new ArrayList<BlockFace>();
 		for(int i = 0; i < faces.size(); i++) {
-			if(faces.get(i).getLocality() == locality) {
-				temp = faces.get(front);
-				faces.set(front, faces.get(i));
-				faces.set(i, temp);
-				front++;
+//			if(faces.get(i).getLocality().getName().equalsIgnoreCase("Vancouver")) {
+//				System.out.println("foo");
+//			}
+			for(MisspellingOf<LocalityMapTarget> mlm : lms) {
+				LocalityMapTarget lm = mlm.get();
+				if(lm.getLocality().equals(faces.get(i).getLocality())) {
+					if(lm.getConfidence() < 100) {
+						newFaces.add(faces.get(i));
+					} else {
+						newFaces.add(0,faces.get(i));
+					}
+					break;
+				}
 			}
 		}
+		return newFaces;
 	}
 	
 	private void scoreLocalityMatch(OccupantAddress input, LocalityMapTarget lm, AddressMatch match,
@@ -890,12 +911,12 @@ public class Geocoder implements IGeocoder {
 			if(lm.getConfidence() < 100) {
 				// the penalty for an alias is variable based on
 				// the confidence of the alias
-				match.addFault(datastore.getConfig().getLocalityAliasFault(
+				match.addFault(datastore.getConfig().getLocalityAliasFault(input.getLocalityName(),
 						lm.getConfidence()));
 			}
 		}
-		if(misspellings.getLocalityMS() > 0) {
-			match.addFault(datastore.getConfig().getMatchFault("LOCALITY.spelledWrong"));
+		if(misspellings.getLocalityMSError() > 0) {
+			match.addFault(datastore.getConfig().getMatchFault(misspellings.getLocalityMSString(), MatchElement.LOCALITY, "spelledWrong"));
 		}
 		scoreStateProvTerr(input, match, misspellings);
 	}
@@ -929,7 +950,7 @@ public class Geocoder implements IGeocoder {
 				
 				if(intersectingSiteWordSet.size() == 0) {
 					if(!matchFullSiteName.isEmpty()) {
-						match.addFault(datastore.getConfig().getMatchFault("SITE_NAME.missing"));
+						match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.SITE_NAME, "missing"));
 					}
 				} else if(!intersectingSiteWordSet.equals(siteMatchWordSet)) {
 					// 	partial match
@@ -938,7 +959,7 @@ public class Geocoder implements IGeocoder {
 							/ (double)(intersectingSiteWordSet.size() + leftoverWordCount 
 									+ siteMatchWordSet.size()));
 					leftoverWordCount = 0;
-					match.addFault(datastore.getConfig().getSiteNamePartialMatchFault(siteDiceDistance));
+					match.addFault(datastore.getConfig().getSiteNamePartialMatchFault(String.join(" ", intersectingSiteWordSet), siteDiceDistance));
 				}	
 			}
 
@@ -948,13 +969,13 @@ public class Geocoder implements IGeocoder {
 					/ (double)(intersectingOccWordSet.size() + leftoverWordCount 
 							+ occMatchWordSet.size()));
 			if(occDiceDistance > 0) {
-				match.addFault(datastore.getConfig().getOccupantNamePartialMatchFault(occDiceDistance));
+				match.addFault(datastore.getConfig().getOccupantNamePartialMatchFault(String.join(" ", intersectingOccWordSet), occDiceDistance));
 			}
 		} else {
 			if(!GeocoderUtil.equalsIgnoreCaseNullSafe(input.getSiteName(),
 					matchFullSiteName)) {
 				if(input.getSiteName() == null || input.getSiteName().isEmpty()) {
-					match.addFault(datastore.getConfig().getMatchFault("SITE_NAME.missing"));
+					match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.SITE_NAME, "missing"));
 				} else {
 					String[] inputWords = GeocoderUtil.wordSplit(input.getSiteName());
 					Set<String> inputWordsSet = new THashSet<String>(Arrays.asList(inputWords));
@@ -969,19 +990,19 @@ public class Geocoder implements IGeocoder {
 							/ (double)(inputWordsSet.size() + matchWordsSet.size()));
 					if(diceDistance == 1) {
 						// no intersecting words at all
-						match.addFault(datastore.getConfig().getMatchFault("SITE_NAME.notMatched"));
+						match.addFault(datastore.getConfig().getMatchFault(input.getSiteName(), MatchElement.SITE_NAME, "notMatched"));
 						if((matchFullSiteName == null || matchFullSiteName.isEmpty()) && query.isEcho()) {
 							match.getAddress().setSiteName(input.getSiteName());
 						}
 					} else if(diceDistance > 0) {
 						// some intersecting words
-						match.addFault(datastore.getConfig().getSiteNamePartialMatchFault(diceDistance));
+						match.addFault(datastore.getConfig().getSiteNamePartialMatchFault(input.getSiteName(), diceDistance));
 					}
 				}
 			}
 		}
-		if(misspellings.getSiteNameMS() > 0) {
-			match.addFault(datastore.getConfig().getMatchFault("SITE_NAME.spelledWrong"));
+		if(misspellings.getSiteNameMSError() > 0) {
+			match.addFault(datastore.getConfig().getMatchFault(misspellings.getSiteNameMSString(), MatchElement.SITE_NAME, "spelledWrong"));
 		}
 	}
 	
@@ -997,7 +1018,7 @@ public class Geocoder implements IGeocoder {
 				&& (input.getLocalityName() == null || input.getLocalityName().isEmpty())
 				&& (input.getStateProvTerr() == null || input.getStateProvTerr().isEmpty())
 				&& input.getCivicNumber() == null) {
-			match.addFault(datastore.getConfig().getMatchFault("ADDRESS.missing"));
+			match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.ADDRESS, "missing"));
 			return;
 		}
 		
@@ -1016,9 +1037,9 @@ public class Geocoder implements IGeocoder {
 					if(aliasPenalty >= 0 && (aliasPenalty <= penalty || penalty < 0)) {
 						if("hwy".equalsIgnoreCase(match.getSegment().getPrimaryStreetName().getType())
 								|| "hwy".equalsIgnoreCase(((StreetName)aliasName).getType())) {
-							aliasFaults.add(datastore.getConfig().getMatchFault("STREET_NAME.isHighwayAlias"));
+							aliasFaults.add(datastore.getConfig().getMatchFault(inputSn.toString(), MatchElement.STREET_NAME, "isHighwayAlias"));
 						} else {
-							aliasFaults.add(datastore.getConfig().getMatchFault("STREET_NAME.isAlias"));
+							aliasFaults.add(datastore.getConfig().getMatchFault(inputSn.toString(), MatchElement.STREET_NAME, "isAlias"));
 						}
 						faults = aliasFaults;
 						penalty = aliasPenalty;
@@ -1028,25 +1049,25 @@ public class Geocoder implements IGeocoder {
 			if(penalty >= 0) {
 				match.addFaults(faults);
 			} else {
-				match.addFault(datastore.getConfig().getMatchFault("STREET_NAME.notMatched"));
+				match.addFault(datastore.getConfig().getMatchFault(inputSn.toString(), MatchElement.STREET_NAME, "notMatched"));
 			}
 		} else if(input.getStreetName() != null && !input.getStreetName().isEmpty()) {
-			match.addFault(datastore.getConfig().getMatchFault("STREET_NAME.notMatched"));
+			match.addFault(datastore.getConfig().getMatchFault(input.getStreetName(), MatchElement.STREET_NAME, "notMatched"));
 		}
 		
 		if(!GeocoderUtil.equalsNullSafe(input.getCivicNumber(), match.getAddress().getCivicNumber())) {
 			if(input.getCivicNumber() == null) {
-				match.addFault(datastore.getConfig().getMatchFault("CIVIC_NUMBER.missing"));
+				match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.CIVIC_NUMBER, "missing"));
 			} else {
-				match.addFault(datastore.getConfig().getMatchFault("CIVIC_NUMBER.notMatched"));
+				match.addFault(datastore.getConfig().getMatchFault(input.getCivicNumber().toString(), MatchElement.CIVIC_NUMBER, "notMatched"));
 			}
 		}
 
 		if(input.getLocalityName() == null || input.getLocalityName().isEmpty()) {
-			match.addFault(datastore.getConfig().getMatchFault("LOCALITY.missing"));
+			match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.LOCALITY, "missing"));
 		} else {
-			if(misspellings.getLocalityMS() > 0) {
-				match.addFault(datastore.getConfig().getMatchFault("LOCALITY.spelledWrong"));
+			if(misspellings.getLocalityMSError() > 0) {
+				match.addFault(datastore.getConfig().getMatchFault(misspellings.getLocalityMSString(), MatchElement.LOCALITY, "spelledWrong"));
 			}
 			// check to see if the input locality name maps to the locality
 			// of the match
@@ -1059,11 +1080,10 @@ public class Geocoder implements IGeocoder {
 					if(lm.getConfidence() < 100) {
 						// the penalty for an alias is variable based on the
 						// confidence of the alias
-						match.addFault(datastore.getConfig().getLocalityAliasFault(
-								lm.getConfidence()));
+						match.addFault(datastore.getConfig().getLocalityAliasFault(input.getLocalityName(), lm.getConfidence()));
 					}
 					if(mlm.getError() > 0) {
-						match.addFault(datastore.getConfig().getMatchFault("LOCALITY.partialMatch"));
+						match.addFault(datastore.getConfig().getMatchFault(input.getLocalityName(), MatchElement.LOCALITY, "partialMatch"));
 					}
 					matched = true;
 					break;
@@ -1071,7 +1091,7 @@ public class Geocoder implements IGeocoder {
 			}
 			if(!matched) {
 				// no mapping matches
-				match.addFault(datastore.getConfig().getMatchFault("LOCALITY.notMatched"));
+				match.addFault(datastore.getConfig().getMatchFault(input.getLocalityName(), MatchElement.LOCALITY, "notMatched"));
 			}
 		}
 		
@@ -1092,10 +1112,10 @@ public class Geocoder implements IGeocoder {
 		// }
 		
 		if(input.getLocalityName() == null || input.getLocalityName().isEmpty()) {
-			match.addFault(datastore.getConfig().getMatchFault("LOCALITY.missing"));
+			match.addFault(datastore.getConfig().getMatchFault(input.getLocalityName(), MatchElement.LOCALITY, "missing"));
 		} else {
-			if(misspellings.getLocalityMS() > 0) {
-				match.addFault(datastore.getConfig().getMatchFault("LOCALITY.spelledWrong"));
+			if(misspellings.getLocalityMSError() > 0) {
+				match.addFault(datastore.getConfig().getMatchFault(misspellings.getLocalityMSString(), MatchElement.LOCALITY, "spelledWrong"));
 			}
 			// check to see if the input locality name maps to the locality
 			// of the match
@@ -1108,11 +1128,14 @@ public class Geocoder implements IGeocoder {
 					if(lm.getConfidence() < 100) {
 						// the penalty for an alias is variable based on the
 						// confidence of the alias
-						match.addFault(datastore.getConfig().getLocalityAliasFault(
+						match.addFault(datastore.getConfig().getLocalityAliasFault(input.getLocalityName(),
 								lm.getConfidence()));
 					}
 					if(mlm.getError() > 0) {
-						match.addFault(datastore.getConfig().getMatchFault("LOCALITY.partialMatch"));
+						match.addFault(datastore.getConfig().getMatchFault(input.getLocalityName(), MatchElement.LOCALITY, "partialMatch"));
+						if(lm.getConfidence() < 100) {
+							match.addFault(datastore.getConfig().getMatchFault(input.getLocalityName(), MatchElement.LOCALITY, "partialMatchToAlias"));
+						}
 					}
 					matched = true;
 					break;
@@ -1120,56 +1143,57 @@ public class Geocoder implements IGeocoder {
 			}
 			if(!matched) {
 				// no mapping matches
-				match.addFault(datastore.getConfig().getMatchFault("LOCALITY.notMatched"));
+				match.addFault(datastore.getConfig().getMatchFault(input.getLocalityName(), MatchElement.LOCALITY, "notMatched"));
 			}
 		}
 		
 		// if this match references a segment (ie. at least block level)
 		//if((match.getSegment()) != null) {
 		if(match.getAddress().getStreetName() != null) {
-			if(misspellings.getStreetNameMS() > 0) {
-				match.addFault(datastore.getConfig().getMatchFault("STREET_NAME.spelledWrong"));
+			if(misspellings.getStreetNameMSError() > 0) {
+				match.addFault(datastore.getConfig().getMatchFault(misspellings.getStreetNameMSString(), MatchElement.STREET_NAME, "spelledWrong"));
 			}
 			
 			if(input.getStreetName() == null || input.getStreetName().isEmpty()) {
 				// there was no streetname in the input, so penalize
-				match.addFault(datastore.getConfig().getMatchFault(
-						"STREET_NAME.missing"));
-			} else if(aliasStreetName == null) {
+				match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.STREET_NAME, "missing"));
+			} else {
 				StreetName inputSn = new StreetName(input.getStreetName(), input.getStreetType(), 
 						input.getStreetDirection(), input.getStreetQualifier(), 
 						input.isStreetTypePrefix(), input.isStreetDirectionPrefix(), null);
-				List<MatchFault> faults = new ArrayList<MatchFault>();
-				int penalty = compareStreetNames(inputSn, match.getSegment().getPrimaryStreetName(), faults);
-				if(penalty < 0 && match.getSegment().getAliasNames().size() > 0) {
-					// try the aliases
-					for(Object aliasName : match.getSegment().getAliasNames()) {
-						List<MatchFault> aliasFaults = new ArrayList<MatchFault>();
-						int aliasPenalty = compareStreetNames(inputSn, (StreetName)aliasName, aliasFaults);
-						if(aliasPenalty >= 0 && (aliasPenalty <= penalty || penalty < 0)) {
-							if("hwy".equalsIgnoreCase(match.getSegment().getPrimaryStreetName().getType())
-									|| "hwy".equalsIgnoreCase(((StreetName)aliasName).getType())) {
-								aliasFaults.add(datastore.getConfig().getMatchFault("STREET_NAME.isHighwayAlias"));
-							} else {
-								aliasFaults.add(datastore.getConfig().getMatchFault("STREET_NAME.isAlias"));
+				if(aliasStreetName == null) {
+					List<MatchFault> faults = new ArrayList<MatchFault>();
+					int penalty = compareStreetNames(inputSn, match.getSegment().getPrimaryStreetName(), faults);
+					if(penalty < 0 && match.getSegment().getAliasNames().size() > 0) {
+						// try the aliases
+						for(Object aliasName : match.getSegment().getAliasNames()) {
+							List<MatchFault> aliasFaults = new ArrayList<MatchFault>();
+							int aliasPenalty = compareStreetNames(inputSn, (StreetName)aliasName, aliasFaults);
+							if(aliasPenalty >= 0 && (aliasPenalty <= penalty || penalty < 0)) {
+								if("hwy".equalsIgnoreCase(match.getSegment().getPrimaryStreetName().getType())
+										|| "hwy".equalsIgnoreCase(((StreetName)aliasName).getType())) {
+									aliasFaults.add(datastore.getConfig().getMatchFault(inputSn.toString(), MatchElement.STREET_NAME, "isHighwayAlias"));
+								} else {
+									aliasFaults.add(datastore.getConfig().getMatchFault(inputSn.toString(), MatchElement.STREET_NAME, "isAlias"));
+								}
+								faults = aliasFaults;
+								penalty = aliasPenalty;
 							}
-							faults = aliasFaults;
-							penalty = aliasPenalty;
 						}
 					}
-				}
-				if(penalty >= 0) {
-					match.addFaults(faults);
-				} else {
-					match.addFault(datastore.getConfig().getMatchFault("STREET_NAME.notMatched"));
-				}
-			} else if(match.getSegment() != null && match.getSegment().getPrimaryStreetName() != aliasStreetName) {
-				// it must be an alias
-				if("hwy".equalsIgnoreCase(match.getSegment().getPrimaryStreetName().getType())
-						|| "hwy".equalsIgnoreCase(aliasStreetName.getType())) {
-					match.addFault(datastore.getConfig().getMatchFault("STREET_NAME.isHighwayAlias"));
-				} else {
-					match.addFault(datastore.getConfig().getMatchFault("STREET_NAME.isAlias"));
+					if(penalty >= 0) {
+						match.addFaults(faults);
+					} else {
+						match.addFault(datastore.getConfig().getMatchFault(inputSn.toString(), MatchElement.STREET_NAME, "notMatched"));
+					}
+				} else if(match.getSegment() != null && match.getSegment().getPrimaryStreetName() != aliasStreetName) {
+					// it must be an alias
+					if("hwy".equalsIgnoreCase(match.getSegment().getPrimaryStreetName().getType())
+							|| "hwy".equalsIgnoreCase(aliasStreetName.getType())) {
+						match.addFault(datastore.getConfig().getMatchFault(inputSn.toString(), MatchElement.STREET_NAME, "isHighwayAlias"));
+					} else {
+						match.addFault(datastore.getConfig().getMatchFault(inputSn.toString(), MatchElement.STREET_NAME, "isAlias"));
+					}
 				}
 			}
 		}
@@ -1182,25 +1206,25 @@ public class Geocoder implements IGeocoder {
 		}
 		if(!GeocoderUtil.equalsIgnoreCaseNullSafe(input.getStreetDirection(), matchStreetDirection)) {
 			if(input.getStreetDirection() == null || input.getStreetDirection().isEmpty()) {
-				match.addFault(datastore.getConfig().getMatchFault("STREET_DIRECTION.missing"));
+				match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.STREET_DIRECTION, "missing"));
 			} else {
 				if((match.getSegment() != null && "hwy".equalsIgnoreCase(match.getSegment().getPrimaryStreetName().getType()))
 						|| "hwy".equalsIgnoreCase(match.getAddress().getStreetType())
 						|| (aliasStreetName != null && "hwy".equalsIgnoreCase(aliasStreetName.getType()))) {
-					match.addFault(datastore.getConfig().getMatchFault("STREET_DIRECTION.notMatchedInHighway"));
+					match.addFault(datastore.getConfig().getMatchFault(misspellings.getStreetDirectionMSString(), MatchElement.STREET_DIRECTION, "notMatchedInHighway"));
 				} else {
-					match.addFault(datastore.getConfig().getMatchFault("STREET_DIRECTION.notMatched"));
+					match.addFault(datastore.getConfig().getMatchFault(misspellings.getStreetDirectionMSString(), MatchElement.STREET_DIRECTION, "notMatched"));
 				}
 			}
 		}
-		if(misspellings.getStreetDirectionMS() > 0) {
-			match.addFault(datastore.getConfig().getMatchFault("STREET_DIRECTION.spelledWrong"));
+		if(misspellings.getStreetDirectionMSError() > 0) {
+			match.addFault(datastore.getConfig().getMatchFault(misspellings.getStreetDirectionMSString(), MatchElement.STREET_DIRECTION, "spelledWrong"));
 		}
 		if(matchStreetDirIsPrefix != null) {
 			if(input.isStreetDirectionPrefix() && !matchStreetDirIsPrefix) {
-				match.addFault(datastore.getConfig().getMatchFault("STREET_DIRECTION.notPrefix"));
+				match.addFault(datastore.getConfig().getMatchFault(misspellings.getStreetDirectionMSString(), MatchElement.STREET_DIRECTION, "notPrefix"));
 			} else if(!input.isStreetDirectionPrefix() && matchStreetDirIsPrefix) {
-				match.addFault(datastore.getConfig().getMatchFault("STREET_DIRECTION.notSuffix"));
+				match.addFault(datastore.getConfig().getMatchFault(misspellings.getStreetDirectionMSString(), MatchElement.STREET_DIRECTION, "notSuffix"));
 			}
 		}
 
@@ -1212,19 +1236,19 @@ public class Geocoder implements IGeocoder {
 		}
 		if(!GeocoderUtil.equalsIgnoreCaseNullSafe(input.getStreetType(), matchStreetType)) {
 			if(input.getStreetType() == null || input.getStreetType().isEmpty()) {
-				match.addFault(datastore.getConfig().getMatchFault("STREET_TYPE.missing"));
+				match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.STREET_TYPE, "missing"));
 			} else {
-				match.addFault(datastore.getConfig().getMatchFault("STREET_TYPE.notMatched"));
+				match.addFault(datastore.getConfig().getMatchFault(misspellings.getStreetTypeMSString(), MatchElement.STREET_TYPE, "notMatched"));
 			}
 		}
-		if(misspellings.getStreetTypeMS() > 0) {
-			match.addFault(datastore.getConfig().getMatchFault("STREET_TYPE.spelledWrong"));
+		if(misspellings.getStreetTypeMSError() > 0) {
+			match.addFault(datastore.getConfig().getMatchFault(misspellings.getStreetTypeMSString(), MatchElement.STREET_TYPE, "spelledWrong"));
 		}
 		if(matchStreetTypeIsPrefix != null) {
 			if(input.isStreetTypePrefix() && !matchStreetTypeIsPrefix) {
-				match.addFault(datastore.getConfig().getMatchFault("STREET_TYPE.notPrefix"));
+				match.addFault(datastore.getConfig().getMatchFault(misspellings.getStreetTypeMSString(), MatchElement.STREET_TYPE, "notPrefix"));
 			} else if(!input.isStreetTypePrefix() && matchStreetTypeIsPrefix) {
-				match.addFault(datastore.getConfig().getMatchFault("STREET_TYPE.notSuffix"));
+				match.addFault(datastore.getConfig().getMatchFault(misspellings.getStreetTypeMSString(), MatchElement.STREET_TYPE, "notSuffix"));
 			}
 		}
 		
@@ -1234,21 +1258,21 @@ public class Geocoder implements IGeocoder {
 		}
 		if(!GeocoderUtil.equalsIgnoreCaseNullSafe(input.getStreetQualifier(), matchStreetQualifier)) {
 			if(input.getStreetQualifier() == null || input.getStreetQualifier().isEmpty()) {
-				match.addFault(datastore.getConfig().getMatchFault("STREET_QUALIFIER.missing"));
+				match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.STREET_QUALIFIER, "missing"));
 			} else {
-				match.addFault(datastore.getConfig().getMatchFault("STREET_QUALIFIER.notMatched"));
+				match.addFault(datastore.getConfig().getMatchFault(misspellings.getStreetQualifierMSString(), MatchElement.STREET_QUALIFIER, "notMatched"));
 			}
 		}
-		if(misspellings.getStreetQualifierMS() > 0) {
-			match.addFault(datastore.getConfig().getMatchFault("STREET_QUALIFIER.spelledWrong"));
+		if(misspellings.getStreetQualifierMSError() > 0) {
+			match.addFault(datastore.getConfig().getMatchFault(misspellings.getStreetQualifierMSString(), MatchElement.STREET_QUALIFIER, "spelledWrong"));
 		}
 		
 		if(!GeocoderUtil
 				.equalsNullSafe(input.getCivicNumber(), match.getAddress().getCivicNumber())) {
 			if(input.getCivicNumber() == null) {
-				match.addFault(datastore.getConfig().getMatchFault("CIVIC_NUMBER.missing"));
+				match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.CIVIC_NUMBER, "missing"));
 			} else {
-				match.addFault(datastore.getConfig().getMatchFault("CIVIC_NUMBER.notInAnyBlock"));
+				match.addFault(datastore.getConfig().getMatchFault(input.getCivicNumber().toString(), MatchElement.CIVIC_NUMBER, "notInAnyBlock"));
 			}
 		}
 		
@@ -1256,10 +1280,9 @@ public class Geocoder implements IGeocoder {
 		if(!GeocoderUtil.equalsIgnoreCaseNullSafe(input.getCivicNumberSuffix(),
 				match.getAddress().getCivicNumberSuffix())) {
 			if(input.getCivicNumberSuffix() == null || input.getCivicNumberSuffix().isEmpty()) {
-				match.addFault(datastore.getConfig().getMatchFault("CIVIC_NUMBER_SUFFIX.missing"));
+				match.addFault(datastore.getConfig().getMatchFault(input.getCivicNumberSuffix(), MatchElement.CIVIC_NUMBER_SUFFIX, "missing"));
 			} else {
-				match.addFault(datastore.getConfig()
-						.getMatchFault("CIVIC_NUMBER_SUFFIX.notMatched"));
+				match.addFault(datastore.getConfig().getMatchFault(input.getCivicNumberSuffix(),MatchElement.CIVIC_NUMBER_SUFFIX, "notMatched"));
 				if(query.isEcho()) {
 					match.getAddress().setCivicNumberSuffix(input.getCivicNumberSuffix());
 				}
@@ -1272,14 +1295,14 @@ public class Geocoder implements IGeocoder {
 	private void scoreStateProvTerr(SiteAddress input, AddressMatch match,
 			AddressComponentMisspellings misspellings) {
 		if(input.getStateProvTerr() == null || input.getStateProvTerr().isEmpty()) {
-			match.addFault(datastore.getConfig().getMatchFault("PROVINCE.missing"));
+			match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.PROVINCE, "missing"));
 		} else {
-			if(misspellings.getStateProvTerrMS() > 0) {
-				match.addFault(datastore.getConfig().getMatchFault("PROVINCE.spelledWrong"));
+			if(misspellings.getStateProvTerrMSError() > 0) {
+				match.addFault(datastore.getConfig().getMatchFault(misspellings.getStateProvTerrMSString(), MatchElement.PROVINCE, "spelledWrong"));
 			}
 			if(!GeocoderUtil.equalsIgnoreCaseNullSafe(input.getStateProvTerr(),
 					datastore.mapWords(match.getAddress().getStateProvTerr()))) {
-				match.addFault(datastore.getConfig().getMatchFault("PROVINCE.notMatched"));
+				match.addFault(datastore.getConfig().getMatchFault(input.getStateProvTerr(), MatchElement.PROVINCE, "notMatched"));
 			}
 		}
 	}
@@ -1296,54 +1319,62 @@ public class Geocoder implements IGeocoder {
 				matchAddress.getUnitDesignator())
 				|| (input.getUnitDesignator() == null && input.getUnitNumber() != null)) {
 			if(input.getUnitDesignator() == null || input.getUnitDesignator().isEmpty()) {
-				match.addFault(datastore.getConfig().getMatchFault("UNIT_DESIGNATOR.missing"));
+				match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.UNIT_DESIGNATOR, "missing"));
 			} else {
 				if(matchAddress.getUnitDesignator() == null
 						|| matchAddress.getUnitDesignator().isEmpty()) {
 					match.addFault(datastore.getConfig()
-							.getMatchFault("UNIT_DESIGNATOR.notMatched"));
+							.getMatchFault(input.getUnitDesignator(), MatchElement.UNIT_DESIGNATOR, "notMatched"));
 					if(query.isEcho()) {
 						matchAddress.setUnitDesignator(input.getUnitDesignator().toUpperCase());
 					}
 				} else {
-					match.addFault(datastore.getConfig().getMatchFault("UNIT_DESIGNATOR.isAlias"));
+					match.addFault(datastore.getConfig().getMatchFault(input.getUnitDesignator(), MatchElement.UNIT_DESIGNATOR, "isAlias"));
 				}
 			}
 		}
-		if(misspellings.getUnitDesignatorMS() > 0) {
-			match.addFault(datastore.getConfig().getMatchFault("UNIT_DESIGNATOR.spelledWrong"));
+		if(misspellings.getUnitDesignatorMSError() > 0) {
+			match.addFault(datastore.getConfig().getMatchFault(misspellings.getUnitDesignatorMSString(), MatchElement.UNIT_DESIGNATOR, "spelledWrong"));
 		}
-		// score unitNumber
-		if(!GeocoderUtil.equalsIgnoreCaseNullSafe(input.getUnitNumber(),
-				matchAddress.getUnitNumber())) {
+		// score unitNumber and suffix
+		if(!GeocoderUtil.equalsIgnoreCaseNullSafe(input.getUnitNumber(), matchAddress.getUnitNumber())
+				|| !GeocoderUtil.equalsIgnoreCaseNullSafe(input.getUnitNumberSuffix(), matchAddress.getUnitNumberSuffix())) {
 			if(input.getUnitNumber() == null || input.getUnitNumber().isEmpty()) {
-				match.addFault(datastore.getConfig().getMatchFault("UNIT_NUMBER.missing"));
+				match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.UNIT_NUMBER, "missing"));
 			} else {
-				match.addFault(datastore.getConfig().getMatchFault("UNIT_NUMBER.notMatched"));
+				StringBuilder sb = new StringBuilder();
+				if(input.getUnitNumber() != null) {
+					sb.append(input.getUnitNumber());
+				}
+				if(input.getUnitNumberSuffix() != null) {
+					sb.append(input.getUnitNumberSuffix());
+				}
+				match.addFault(datastore.getConfig().getMatchFault(sb.toString(), MatchElement.UNIT_NUMBER, "notMatched"));
 				if(query.isEcho()) {
 					matchAddress.setUnitNumber(input.getUnitNumber());
+					matchAddress.setUnitNumberSuffix(input.getUnitNumberSuffix());
 				}
 			}
 		}
-		if(misspellings.getUnitNumberMS() > 0) {
-			match.addFault(datastore.getConfig().getMatchFault("UNIT_NUMBER.spelledWrong"));
+		if(misspellings.getUnitNumberMSError() > 0) {
+			match.addFault(datastore.getConfig().getMatchFault(misspellings.getUnitNumberMSString(), MatchElement.UNIT_NUMBER, "spelledWrong"));
 		}
 		// add the default unitDesignator if we don't have one but do have a unit number
 		if(matchAddress.getUnitDesignator() == null && matchAddress.getUnitNumber() != null) {
 			matchAddress.setUnitDesignator(datastore.getConfig().getDefaultUnitDesignator());
 		}
 		// score the unit number suffix
-		if(!GeocoderUtil.equalsIgnoreCaseNullSafe(input.getUnitNumberSuffix(),
-				matchAddress.getUnitNumberSuffix())) {
-			if(input.getUnitNumberSuffix() == null || input.getUnitNumberSuffix().isEmpty()) {
-				match.addFault(datastore.getConfig().getMatchFault("UNIT_NUMBER_SUFFIX.missing"));
-			} else {
-				match.addFault(datastore.getConfig().getMatchFault("UNIT_NUMBER_SUFFIX.notMatched"));
-				if(query.isEcho()) {
-					matchAddress.setUnitNumberSuffix(input.getUnitNumberSuffix());
-				}
-			}
-		}
+//		if(!GeocoderUtil.equalsIgnoreCaseNullSafe(input.getUnitNumberSuffix(),
+//				matchAddress.getUnitNumberSuffix())) {
+//			if(input.getUnitNumberSuffix() == null || input.getUnitNumberSuffix().isEmpty()) {
+//				match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.UNIT_NUMBER_SUFFIX, "missing"));
+//			} else {
+//				match.addFault(datastore.getConfig().getMatchFault(input.getUnitNumberSuffix(), MatchElement.UNIT_NUMBER_SUFFIX, "notMatched"));
+//				if(query.isEcho()) {
+//					matchAddress.setUnitNumberSuffix(input.getUnitNumberSuffix());
+//				}
+//			}
+//		}
 	}
 	
 	/**
@@ -1375,22 +1406,20 @@ public class Geocoder implements IGeocoder {
 				if(penalty >= 0) {
 					// add a fault if the name is an alias
 					if(intersection.getAliasStreetNames().contains(matchSn)) {
-						faults.add(datastore.getConfig().getMatchFault("STREET_NAME.isAlias"));
+						faults.add(datastore.getConfig().getMatchFault(inputSn.toString(), MatchElement.STREET_NAME, "isAlias"));
 					}
 					// add faults for misspellings
-					if(misspellings.getStreetNameMS() > 0) {
-						faults.add(datastore.getConfig().getMatchFault("STREET_NAME.spelledWrong"));
+					if(misspellings.getStreetNameMSError(i) > 0) {
+						faults.add(datastore.getConfig().getMatchFault(misspellings.getStreetNameMSString(i), MatchElement.STREET_NAME, "spelledWrong"));
 					}
-					if(misspellings.getStreetTypeMS(i) > 0) {
-						faults.add(datastore.getConfig().getMatchFault("STREET_TYPE.spelledWrong"));
+					if(misspellings.getStreetTypeMSError(i) > 0) {
+						faults.add(datastore.getConfig().getMatchFault(misspellings.getStreetTypeMSString(i), MatchElement.STREET_TYPE, "spelledWrong"));
 					}
-					if(misspellings.getStreetDirectionMS() > 0) {
-						faults.add(datastore.getConfig().getMatchFault(
-								"STREET_DIRECTION.spelledWrong"));
+					if(misspellings.getStreetDirectionMSError(i) > 0) {
+						faults.add(datastore.getConfig().getMatchFault(misspellings.getStreetDirectionMSString(i), MatchElement.STREET_DIRECTION, "spelledWrong"));
 					}
-					if(misspellings.getStreetQualifierMS() > 0) {
-						faults.add(datastore.getConfig().getMatchFault(
-								"STREET_QUALIFIER.spelledWrong"));
+					if(misspellings.getStreetQualifierMSError(i) > 0) {
+						faults.add(datastore.getConfig().getMatchFault(misspellings.getStreetQualifierMSString(i), MatchElement.STREET_QUALIFIER, "spelledWrong"));
 					}
 					
 					streetNameMatches[i].add(new StreetNameMatch(matchSn, penalty, faults));
@@ -1418,10 +1447,11 @@ public class Geocoder implements IGeocoder {
 			match.addFaults(nameMatch.faults);
 		}
 		for(int missingNames = 0; missingNames < (intersection.getPrimaryStreetNames().size() - streetNames.length); missingNames++) {
-			match.addFault(datastore.getConfig().getMatchFault("STREET_NAME.notMatched"));
+			// TODO: figure out which names didn't match
+			match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.STREET_NAME, "notMatched"));
 		}
 		if(input.getLocalityName() == null || input.getLocalityName().isEmpty()) {
-			match.addFault(datastore.getConfig().getMatchFault("LOCALITY.missing"));
+			match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.LOCALITY, "missing"));
 		} else {
 			// check to see if the input locality name maps to the locality
 			// of the match
@@ -1440,23 +1470,22 @@ public class Geocoder implements IGeocoder {
 				if(bestMlm.get().getConfidence() < 100) {
 					// the penalty for an alias is variable based on
 					// the confidence of the alias
-					match.addFault(datastore.getConfig().getLocalityAliasFault(
-							bestMlm.get().getConfidence()));
+					match.addFault(datastore.getConfig().getLocalityAliasFault(input.getLocalityName(), bestMlm.get().getConfidence()));
 				}
 				if(bestMlm.getError() > 0) {
-					match.addFault(datastore.getConfig().getMatchFault("LOCALITY.partialMatch"));
+					match.addFault(datastore.getConfig().getMatchFault(input.getLocalityName(), MatchElement.LOCALITY, "partialMatch"));
 				}
 			} else {
 				// no locality matches at all
-				match.addFault(datastore.getConfig().getMatchFault("LOCALITY.notMatched"));
+				match.addFault(datastore.getConfig().getMatchFault(input.getLocalityName(), MatchElement.LOCALITY, "notMatched"));
 			}
 		}
 		
 		if(input.getStateProvTerr() == null || input.getStateProvTerr().isEmpty()) {
-			match.addFault(datastore.getConfig().getMatchFault("PROVINCE.missing"));
+			match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.PROVINCE, "missing"));
 		} else if(!GeocoderUtil.equalsIgnoreCaseNullSafe(input.getStateProvTerr(), match
 				.getAddress().getStateProvTerr())) {
-			match.addFault(datastore.getConfig().getMatchFault("PROVINCE.notMatched"));
+			match.addFault(datastore.getConfig().getMatchFault(input.getStateProvTerr(), MatchElement.PROVINCE, "notMatched"));
 		}
 	}
 	
@@ -1470,7 +1499,7 @@ public class Geocoder implements IGeocoder {
 			bodyMatched = true;
 		} else if(StringUtils.OSADistanceWithLimit(inputSn.getBody(),
 				matchSn.getBody(), 1) <= 1) {
-			faults.add(datastore.getConfig().getMatchFault("STREET_NAME.spelledWrong"));
+			faults.add(datastore.getConfig().getMatchFault(inputSn.getBody(), MatchElement.STREET_NAME, "spelledWrong"));
 			bodyMatched = true;
 		}
 		
@@ -1481,44 +1510,44 @@ public class Geocoder implements IGeocoder {
 		// name body matched, now lets check the direction, type and qualifier
 		if(!GeocoderUtil.equalsIgnoreCaseNullSafe(inputSn.getDir(), matchSn.getDir())) {
 			if(inputSn.getDir() == null || inputSn.getDir().isEmpty()) {
-				faults.add(datastore.getConfig().getMatchFault("STREET_DIRECTION.missing"));
+				faults.add(datastore.getConfig().getMatchFault(null, MatchElement.STREET_DIRECTION, "missing"));
 			} else {
 				if("hwy".equalsIgnoreCase(matchSn.getType())) {
-					faults.add(datastore.getConfig().getMatchFault("STREET_DIRECTION.notMatchedInHighway"));
+					faults.add(datastore.getConfig().getMatchFault(inputSn.getDir(), MatchElement.STREET_DIRECTION, "notMatchedInHighway"));
 				} else {
-					faults.add(datastore.getConfig().getMatchFault("STREET_DIRECTION.notMatched"));
+					faults.add(datastore.getConfig().getMatchFault(inputSn.getDir(), MatchElement.STREET_DIRECTION, "notMatched"));
 				}
 			}
 		}
 		if(matchSn.getIsStreetDirPrefix() != null) {
 			if(inputSn.getIsStreetDirPrefix() && !matchSn.getIsStreetDirPrefix()) {
-				faults.add(datastore.getConfig().getMatchFault("STREET_DIRECTION.notPrefix"));
+				faults.add(datastore.getConfig().getMatchFault(inputSn.getDir(), MatchElement.STREET_DIRECTION, "notPrefix"));
 			} else if(!inputSn.getIsStreetDirPrefix() && matchSn.getIsStreetDirPrefix()) {
-				faults.add(datastore.getConfig().getMatchFault("STREET_DIRECTION.notSuffix"));
+				faults.add(datastore.getConfig().getMatchFault(inputSn.getDir(), MatchElement.STREET_DIRECTION, "notSuffix"));
 			}
 		}
 
 		if(!GeocoderUtil.equalsIgnoreCaseNullSafe(inputSn.getType(), matchSn.getType())) {
 			if(inputSn.getType() == null || inputSn.getType().isEmpty()) {
-				faults.add(datastore.getConfig().getMatchFault("STREET_TYPE.missing"));
+				faults.add(datastore.getConfig().getMatchFault(inputSn.getType(), MatchElement.STREET_TYPE, "missing"));
 			} else {
-				faults.add(datastore.getConfig().getMatchFault("STREET_TYPE.notMatched"));
+				faults.add(datastore.getConfig().getMatchFault(inputSn.getType(), MatchElement.STREET_TYPE, "notMatched"));
 			}
 		}
 		if(matchSn.getIsStreetTypePrefix() != null) {
 			if(inputSn.getIsStreetTypePrefix() && !matchSn.getIsStreetTypePrefix()) {
-				faults.add(datastore.getConfig().getMatchFault("STREET_TYPE.notPrefix"));
+				faults.add(datastore.getConfig().getMatchFault(inputSn.getType(), MatchElement.STREET_TYPE, "notPrefix"));
 			} else if(!inputSn.getIsStreetTypePrefix() && matchSn.getIsStreetTypePrefix()) {
-				faults.add(datastore.getConfig().getMatchFault("STREET_TYPE.notSuffix"));
+				faults.add(datastore.getConfig().getMatchFault(inputSn.getType(), MatchElement.STREET_TYPE, "notSuffix"));
 			}
 		}
 
 		if(!GeocoderUtil.equalsIgnoreCaseNullSafe(inputSn.getQual(),
 				matchSn.getQual())) {
 			if(inputSn.getQual() == null || inputSn.getQual().isEmpty()) {
-				faults.add(datastore.getConfig().getMatchFault("STREET_QUALIFIER.missing"));
+				faults.add(datastore.getConfig().getMatchFault(null, MatchElement.STREET_QUALIFIER, "missing"));
 			} else {
-				faults.add(datastore.getConfig().getMatchFault("STREET_QUALIFIER.notMatched"));
+				faults.add(datastore.getConfig().getMatchFault(inputSn.getQual(), MatchElement.STREET_QUALIFIER, "notMatched"));
 			}
 		}
 		int penalty = 0;
@@ -1554,9 +1583,10 @@ public class Geocoder implements IGeocoder {
 				}
 				// if we didn't find a selection
 				if(selections[i] == null) {
+					// TODO: figure out which name didn't match
 					// No unused name for this one, assign it a "no-match"
 					selections[i] = new StreetNameMatch(datastore.getConfig().getMatchFault(
-							"STREET_NAME.notMatched"));
+							null, MatchElement.STREET_NAME, "notMatched"));
 				}
 				StreetNameMatchCombination combo = findBestStreetNameMatchCombo(streetNameMatches,
 						selections);
@@ -1578,6 +1608,24 @@ public class Geocoder implements IGeocoder {
 			totalPenalty += match.penalty;
 		}
 		return new StreetNameMatchCombination(selections.clone(), totalPenalty);
+	}
+	
+	private void globalScoring(GeocodeMatch match, AddressComponentMisspellings misspellings) {
+		// check for autoComplete
+		String misspelling = misspellings.wasAutoCompleted();
+		if(misspelling != null) {
+			match.addFault(datastore.getConfig().getMatchFault(misspelling, MatchElement.ADDRESS, "autoCompleted"));
+		}
+		// check for too many faults
+		int faultCount = 0;
+		for(MatchFault fault : match.getFaults()) {
+			if(fault.getPenalty() > 0) {
+				faultCount++;
+			}
+		}
+		if(faultCount >= 5) {
+			match.addFault(datastore.getConfig().getMatchFault(null, MatchElement.FAULTS, "tooMany"));
+		}
 	}
 	
 	private AddressParser createParser(Lexer lexer) {
@@ -1603,6 +1651,7 @@ public class Geocoder implements IGeocoder {
 		
 		parserGen.addRule(new RuleChoice("civicAddress", false,
 				new RuleTerm[] {
+						new RuleTerm("civicAddressGarbageFirst"),
 						new RuleTerm("civicAddressUnitFirst"),
 						new RuleTerm("civicAddressUnitFirstNoSiteName"),
 						new RuleTerm("civicAddressUnitAfterSiteName"),
@@ -1614,15 +1663,23 @@ public class Geocoder implements IGeocoder {
 						new RuleTerm("OCCUPANT_SEPARATOR"),
 						new RuleTerm("civicAddress")}));
 
-		// civic address with unit first, site name optional
+		// civic address with optional garbage first, then unit, no site name or front gate
+		parserGen.addRule(new RuleSequence("civicAddressGarbageFirst", false,
+				new RuleTerm[] {
+						new RuleTerm("initialGarbage", "garbageWord", RuleOperator.STAR),
+						new RuleTerm("unitDescription", RuleOperator.OPTION),
+						new RuleTerm("civicNumberDescription"),
+						new RuleTerm("streetDescription"),
+						new RuleTerm("localityTail")}));
+
+		// civic address with unit first, then site name and front gate
 		parserGen.addRule(new RuleSequence("civicAddressUnitFirst", false,
 				new RuleTerm[] {
 						new RuleTerm("unitDescription"),
-						new RuleTerm("siteNameWithFrontGate", RuleOperator.OPTION),
+						new RuleTerm("siteNameWithFrontGate"),
 						new RuleTerm("civicNumberDescription"),
 						new RuleTerm("streetDescription"),
-						new RuleTerm("locality", RuleOperator.OPTION),
-						new RuleTerm("stateProvTerr", RuleOperator.OPTION)}));
+						new RuleTerm("localityTail")}));
 		
 		// civic address with unit and front gate first, no site name
 		parserGen.addRule(new RuleSequence("civicAddressUnitFirstNoSiteName", false,
@@ -1652,16 +1709,14 @@ public class Geocoder implements IGeocoder {
 						new RuleTerm("civicNumberDescription"),
 						new RuleTerm("streetDescription"),
 						new RuleTerm("unitDescriptionWithDesignator", RuleOperator.OPTION),
-						new RuleTerm("locality", RuleOperator.OPTION),
-						new RuleTerm("stateProvTerr", RuleOperator.OPTION)}));
+						new RuleTerm("localityTail")}));
 		
 		parserGen.addRule(new RuleSequence("nonCivicAddress", false,
 				new RuleTerm[] {
 						new RuleTerm("unitDescription", RuleOperator.OPTION),
 						new RuleTerm("siteNameWithFrontGate"),
 						new RuleTerm("streetDescription", RuleOperator.OPTION),
-						new RuleTerm("locality", RuleOperator.OPTION),
-						new RuleTerm("stateProvTerr", RuleOperator.OPTION)}));
+						new RuleTerm("optionalLocalityTailNoGarbage")}));
 		
 		parserGen.addRule(new RuleSequence("occSepNonCivicAddress", false,
 				new RuleTerm[] {
@@ -1670,20 +1725,50 @@ public class Geocoder implements IGeocoder {
 						new RuleTerm("unitDescription", RuleOperator.OPTION),
 						new RuleTerm("siteNameWithFrontGate", RuleOperator.OPTION),
 						new RuleTerm("streetDescription", RuleOperator.OPTION),
-						new RuleTerm("locality", RuleOperator.OPTION),
-						new RuleTerm("stateProvTerr", RuleOperator.OPTION)}));
+						new RuleTerm("optionalLocalityTailNoGarbage")}));
 
 		parserGen.addRule(new RuleSequence("streetAddress", false,
 				new RuleTerm[] {
 						new RuleTerm("streetDescription"),
-						new RuleTerm("locality", RuleOperator.OPTION),
+						new RuleTerm("localityTail"),}));
+
+		parserGen.addRule(new RuleChoice("optionalLocalityTailNoGarbage", false,
+				new RuleTerm[] {
+						new RuleTerm("localityTailNoGarbage"),
 						new RuleTerm("stateProvTerr", RuleOperator.OPTION)}));
+
+		parserGen.addRule(new RuleChoice("localityTail", false,
+				new RuleTerm[] {
+						new RuleTerm("localityTailNoGarbage"),
+						new RuleTerm("localityTailWithGarbage"),
+						new RuleTerm("stateProvTerr", RuleOperator.OPTION)}));
+
+		parserGen.addRule(new RuleSequence("localityTailNoGarbage", false,
+				new RuleTerm[] {
+						new RuleTerm("locality"),
+						new RuleTerm("sptTail")}));
+
+		parserGen.addRule(new RuleSequence("localityTailWithGarbage", false,
+				new RuleTerm[] {
+						new RuleTerm("localityGarbage", "garbage"),
+						new RuleTerm("locality"),
+						new RuleTerm("sptTail")}));
 		
+		parserGen.addRule(new RuleChoice("sptTail", false,
+				new RuleTerm[] {
+						new RuleTerm("stateProvTerr", RuleOperator.OPTION),
+						new RuleTerm("sptTailWithGarbage")}));
+
+		parserGen.addRule(new RuleSequence("sptTailWithGarbage", false,
+				new RuleTerm[] {
+						new RuleTerm("provinceGarbage", "garbage"),
+						new RuleTerm("stateProvTerr")}));
+
 		parserGen.addRule(new RuleSequence("localityAddress", false,
 				new RuleTerm[] {
 						new RuleTerm("locality"),
-						new RuleTerm("stateProvTerr", RuleOperator.OPTION)}));
-		
+						new RuleTerm("stateProvTerr", RuleOperator.OPTION)}));		
+
 		parserGen.addRule(new RuleSequence("intersectionAddress", false,
 				new RuleTerm[] {
 						new RuleTerm("streetDescription"),
@@ -1717,22 +1802,22 @@ public class Geocoder implements IGeocoder {
 						new RuleTerm("unitNumberDescription"),
 						new RuleTerm("floor")}));
 		
-		parserGen.addRule(new RuleChoice("unitNumberDescription", false,
+		parserGen.addRule(new RuleSequence("unitNumberDescription", false,
 				new RuleTerm[] {
 						new RuleTerm("unitNumber"),
-						new RuleTerm("unitNumberWithSuffix")}));
-		
-		parserGen.addRule(new RuleSequence("unitNumberWithSuffix", false,
+						new RuleTerm("unitNumberSuffix", RuleOperator.OPTION)}));
+
+		parserGen.addRule(new RuleChoice("unitNumber", true,
 				new RuleTerm[] {
-						new RuleTerm("unitNumber"),
-						new RuleTerm("unitNumberSuffix")}));
-		
-		parserGen.addRule(new RuleChoice("civicNumberDescription", false,
+						new RuleTerm("unitNumberLetterFirst"),
+						new RuleTerm("NUMBER")}));
+
+		parserGen.addRule(new RuleSequence("unitNumberLetterFirst", false,
 				new RuleTerm[] {
-						new RuleTerm("civicNumberWithAttachedSuffix"),
-						new RuleTerm("civicNumberWithOptionalSuffix")}));
-		
-		parserGen.addRule(new RuleSequence("civicNumberWithOptionalSuffix", false,
+						new RuleTerm("LETTER"),
+						new RuleTerm("NUMBER", RuleOperator.OPTION)}));
+
+		parserGen.addRule(new RuleSequence("civicNumberDescription", false,
 				new RuleTerm[] {
 						new RuleTerm("civicNumber"),
 						new RuleTerm("civicNumberSuffix", RuleOperator.OPTION)}));
@@ -1788,19 +1873,10 @@ public class Geocoder implements IGeocoder {
 						new RuleTerm("streetPostType", RuleOperator.OPTION)}));
 		
 		// Base Symbols - refer to wordClasses
-		// parserGen.addRule(new RuleTerm("unitDesignatorNoNum", "UNIT_DESIGNATOR_NO_NUM"));
-		// parserGen.addRule(new RuleTerm("unitDesignatorWithNum", "UNIT_DESIGNATOR_WITH_NUM"));
 		parserGen.addRule(new RuleTerm("unitDesignator", "UNIT_DESIGNATOR"));
 		
-		// parserGen.addRule(new RuleChoice("unitNumber", true,
-		// new RuleTerm[] {
-		// new RuleTerm("NUMBER"),
-		// new RuleTerm("UNIT_NUMBER_WORD")}));
-		// parserGen.addRule(new RuleTerm("unitNumberWithAttachedSuffix", "NUMBER_WITH_SUFFIX"));
-		parserGen.addRule(new RuleTerm("unitNumberSuffix", "SUFFIX"));
-		parserGen.addRule(new RuleTerm("unitNumber", "UNIT_NUMBER_WORD"));
+		parserGen.addRule(new RuleTerm("unitNumberSuffix", "LETTER"));
 		parserGen.addRule(new RuleTerm("civicNumber", "NUMBER"));
-		parserGen.addRule(new RuleTerm("civicNumberWithAttachedSuffix", "NUMBER_WITH_SUFFIX"));
 		parserGen.addRule(new RuleTerm("civicNumberSuffix", "SUFFIX"));
 		parserGen.addRule(new RuleTerm("streetPreType", "STREET_TYPE"));
 		parserGen.addRule(new RuleTerm("streetPostType", "STREET_TYPE"));
@@ -1853,6 +1929,16 @@ public class Geocoder implements IGeocoder {
 						new RuleTerm("NAME"),
 						new RuleTerm("NAME", RuleOperator.STAR)}));
 
+		parserGen.addRule(new RuleSequence("garbage", false,
+				new RuleTerm[] {
+						new RuleTerm("UNRECOGNIZED"),
+						new RuleTerm("garbageWord", RuleOperator.STAR)}));
+		
+		parserGen.addRule(new RuleChoice("garbageWord", false,
+				new RuleTerm[] {
+						new RuleTerm("AND"),
+						new RuleTerm("UNRECOGNIZED")}));
+		
 		parserGen.addRule(new RuleTerm("stateProvTerr", "STATE_PROV_TERR"));
 		parserGen.addRule(new RuleTerm("postalJunk", "POSTAL_ADDRESS_ELEMENT"));
 		
