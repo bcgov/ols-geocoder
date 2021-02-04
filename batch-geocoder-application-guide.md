@@ -14,12 +14,12 @@ You will also need a list of addresses in a format and schema the batch geocoder
 
 ![image](https://user-images.githubusercontent.com/11318574/106337878-60654780-62cd-11eb-9ee7-fa20b5c1cdab.png)
 
-1. Enter you BCeID or IDIR login and password. If successfully logged in, you will see the following page:
+2. Enter you BCeID or IDIR login and password. If successfully logged in, you will see the following page:
 
 ![image](https://user-images.githubusercontent.com/11318574/106338032-c81b9280-62cd-11eb-82dd-30f6b12e4367.png)
 
 
-2. Click on the tab named Submit multi-request job
+3. Click on the tab named Submit multi-request job
 
 ![image](https://user-images.githubusercontent.com/11318574/106338121-f4371380-62cd-11eb-9f24-c4553ea9c92f.png)
   
@@ -27,29 +27,29 @@ The system will display the following form:
 
 ![image](https://user-images.githubusercontent.com/11318574/106338197-29436600-62ce-11eb-90aa-f58edada19b9.png)
 
-3. Enter the name of a file or a file URL. A file URL must be a public URL or a URL that is accessible within BC government network.
+4. Enter the name of a file or a file URL. A file URL must be a public URL or a URL that is accessible within BC government network.
 
 ![image](https://user-images.githubusercontent.com/11318574/106338415-c3a3a980-62ce-11eb-806d-7545e0fda5dd.png)
 
 The URL entered here is a list of addresses, one for every incorporated municipality in BC.
 
-1. Close the Input Data and Application parameters sections of the form by clicking on their section names. The Result format section will then be visible.
+5. Close the Input Data and Application parameters sections of the form by clicking on their section names. The Result format section will then be visible.
 
 ![image](https://user-images.githubusercontent.com/11318574/106338675-59d7cf80-62cf-11eb-80ad-5adb8116f5eb.png)
 
 If you don't know what a map projection is, leave it unchanged. The default projection called WGS84 (longitude, latitude) is what all mapping apps understand.
 
-1. Choose your Result data content type, otherwise known as output format. Let's leave the default of CSV for now since it is easy to view in a spreadsheet. 
+6. Choose your Result data content type, otherwise known as output format. Let's leave the default of CSV for now since it is easy to view in a spreadsheet. 
 
 ![image](https://user-images.githubusercontent.com/11318574/106339855-caccb680-62d2-11eb-8186-139bb9f18304.png)
 
-1. Click on the Result format section name to close it. You will now see a Create Job button at the bottom of the form.
+7. Click on the Result format section name to close it. You will now see a Create Job button at the bottom of the form.
 
 ![image](https://user-images.githubusercontent.com/11318574/106339936-154e3300-62d3-11eb-84c7-8823851f6556.png)
 
 The batch geocoder calls a submitted address list a job. 
 
-1. Click on the Create Job button. The system will tell you it is creating geocoding requests, one for each address in your list.
+8. Click on the Create Job button. The system will tell you it is creating geocoding requests, one for each address in your list.
 
 ![image](https://user-images.githubusercontent.com/11318574/106340033-69591780-62d3-11eb-9525-7ed62fb24f44.png)
 
