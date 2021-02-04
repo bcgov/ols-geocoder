@@ -11,6 +11,7 @@ Document|Description|Audience
 [License](https://github.com/bcgov/ols-geocoder/blob/gh-pages/LICENSE)|License under which all documents and source code in this repository are released under|Everyone
 [Copyright Notices](https://github.com/bcgov/ols-geocoder/blob/gh-pages/notice.md)|Copyright notices of all software packaged used by this repository|Everyone
 [What's New](https://github.com/bcgov/ols-geocoder/blob/gh-pages/whats-new.md)|What's new in latest release of Geocoder|Everyone
+[FAQ](https://github.com/bcgov/ols-geocoder/blob/gh-pages/faq.md)|Frequently Asked Questions|Everyone
 [Geocoder Developer Guide](https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md)|Learn the online geocoder API through series of examples|App developers
 [Batch Geocoder Application Guide](https://github.com/bcgov/ols-geocoder/blob/gh-pages/batch-geocoder-application-guide.md)|Step by step tutorial on submitting your address list to the batch geocoder|Everyone
 [Single-line Address Format](https://github.com/bcgov/ols-geocoder/blob/gh-pages/singleLineAddressFormat.md)|The single-string format of addresses supported by the geocoder|Geocoder clients, app developers, address data suppliers
