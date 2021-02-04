@@ -3,7 +3,7 @@
 Check out the Geocoder release [roadmap](https://github.com/bcgov/ols-geocoder/blob/gh-pages/roadmap.md)
 For detailed API release notes, see the [BC Geocoder Developer Guide](https://github.com/bcgov/api-specs/blob/master/geocoder/geocoder-developer-guide.md)
 
-## Jan 26, 2021
+## February 2, 2021
 - BC Address Geocoder Version 4.1.0 released (both online and batch geocoders)
 - Improved address match accuracy
    - The address list match accuracy of a government list of 13 million addresses went from 58% in version 4.0 to 75% in version 4.1, a 17% improvement
