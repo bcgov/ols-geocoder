@@ -35,4 +35,4 @@ To be granted access to create your own developer Geocoder API keys please [cont
 
 Once you have logged into GWA, and following our team granting access, you should see the BC Address Geocoder listed on the right side of your screen. By expanding each item, you will see the associated rate limit.
 
-You can generate and delete as many API keys as required on the left side of the screen. Please note that these API keys expire every 90 days. Your account access will remain, but the API key will need to be renewed from within GWA. Screen captures that illustrate this process are available in the [GWA user guide](https://github.com/bcgov/gwa/wiki/Developer-Guide).
+You can generate and delete as many API keys as required on the left side of the screen. Please note that unlike production API keys, developer API keys expire every 90 days. Your account access will remain, but the API key will need to be renewed from within GWA. Screen captures that illustrate this process are available in the [GWA user guide](https://github.com/bcgov/gwa/wiki/Developer-Guide).
