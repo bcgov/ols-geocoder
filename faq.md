@@ -18,3 +18,7 @@ The Geocoder does not use or provide postal codes as they are not part of a phys
 #### Q: Does the Geocoder use postal code to determine an address location?
 
 The Geocoder does not use postal codes to determine address location. Address location is determined by looking up the input address, down to the civic number, in the set of known addresses in the Geocoder’s reference dataset. If no civic number match is found, the road network is searched for the block face containing the input address and a location is interpolated along the matching block face.
+
+#### Q: How do I get a Geocoder API key for use in a production BC Government application?
+
+To request a production Geocoder API key [contact DataBC](https://forms.gov.bc.ca/databc-contact-us/) and include a description of the intended usage and consuming application name.
