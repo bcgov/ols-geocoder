@@ -116,10 +116,10 @@ A site's location is defined by its sitePoint and accessPoint. If sites are nest
 
 |Element Name|Data Type|Description
 |--|--|--|
-sitePointLat|Real|Latitude of site location
-sitePointLon|Real|Longitude of site location
-accessPointLat|latitude of accessPoint
-accessPointLon|longitude of accessPoint
+sitePointLat|Real|Latitude of sitePoint
+sitePointLon|Real|Longitude of sitePoint
+accessPointLat|Real|latitude of accessPoint
+accessPointLon|Real|longitude of accessPoint
 
 ### Topics to do
 fullAddress as business unique identifier, addresses in the real world, adding a sense of history, how are sites and parcels related, how are sites related spatially to the earth,
