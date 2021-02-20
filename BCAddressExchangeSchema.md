@@ -54,7 +54,7 @@ ACCESS_POINT_LON| (aReal)
 FOOTPRINT_DESCRIPTOR|building
 FOOTPRINT| (aPolygon)
 
-<a=ex2></a>
+<a name=ex2> </a>
 ## Example 2 - A single apartment building with multiple floors and units
 740 Gorge Rd W, Saanich, BC has three floors with 4 units each numbered, 101-104, 201-204, and 301-304. Site and access points of building, not units, are known.
 
