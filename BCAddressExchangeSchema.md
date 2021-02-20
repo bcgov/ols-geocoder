@@ -1,7 +1,6 @@
 # BC Physical Address Exchange Schema Draft v0.7
 ### Change history 
-v0.7 Feb 20, 2021 - removed SITE_POINT_DESCRIPTOR as it is rarely provided by address authorities
-                  - added TOC
+v0.7 Feb 20, 2021 - removed SITE_POINT_DESCRIPTOR as it is rarely provided by address authorities, added TOC
 v0.6 Jul 28, 2020 - improved Example 6 (Special entrances) 
 
 v0.5 Jun 15, 2020 - eliminated option to use ExtraPoints to define an unlimited number of additional coordinate locations for a given site. Extra site and access points can be added to a given site using subsites; added uses cases to handle emergency entrances, etc. as subsites, each with its own sitePoint and accessPoint.
@@ -55,7 +54,7 @@ ACCESS_POINT_LON| (aReal)
 FOOTPRINT_DESCRIPTOR|building
 FOOTPRINT| (aPolygon)
 
-<a=ex 2></a>
+<a=ex2></a>
 ## Example 2 - A single apartment building with multiple floors and units
 740 Gorge Rd W, Saanich, BC has three floors with 4 units each numbered, 101-104, 201-204, and 301-304. Site and access points of building, not units, are known.
 
