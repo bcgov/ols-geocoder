@@ -115,7 +115,7 @@ A subSite like a unit within a building or a townhouse within a complex can have
 A site's location is defined by its sitePoint and accessPoint. If sites are nested, sitePoint and accessPoint values may be inherited from their superSites.
 
 |Element Name|Data Type|Description
-|--|--|--|--|
+|--|--|--|
 sitePointLat|Real|Latitude of site location
 sitePointLon|Real|Longitude of site location
 accessPointLat|latitude of accessPoint
