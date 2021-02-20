@@ -1,10 +1,11 @@
 # BC Physical Address Exchange Schema Draft v0.6
 ### Change history 
-v0.6 July 28, 2020 - improved Example 6 (Special entrances) 
+v0.7 Feb 20, 2021 - removed SITE_POINT_DESCRIPTOR as it is rarely provided by address authorities
+v0.6 Jul 28, 2020 - improved Example 6 (Special entrances) 
 
-v0.5 June 15, 2020 - eliminated option to use ExtraPoints to define an unlimited number of additional coordinate locations for a given site. Extra site and access points can be added to a given site using subsites; added uses cases to handle emergency entrances, etc. as subsites, each with its own sitePoint and accessPoint.
+v0.5 Jun 15, 2020 - eliminated option to use ExtraPoints to define an unlimited number of additional coordinate locations for a given site. Extra site and access points can be added to a given site using subsites; added uses cases to handle emergency entrances, etc. as subsites, each with its own sitePoint and accessPoint.
 
-v0.4 June, 2019 - added SUPER_SITE_YOURID to schema, changed schema to allow any number of extra points, improved examples, added example of single apartment building, improved readability, fixed formatting of schema definition table.
+v0.4 Jun, 2019 - added SUPER_SITE_YOURID to schema, changed schema to allow any number of extra points, improved examples, added example of single apartment building, improved readability, fixed formatting of schema definition table.
 
 ## Introduction
 The Physical Address Exchange Schema can be used to exchange reference physical addresses between government agencies such as address authorities, emergency response agencies, geocoder service providers, etc. The schema supports the exchange of the following types of address situations:
@@ -34,7 +35,6 @@ STREET_NAME|Olympia
 STREET_TYPE|Ave
 LOCALITY|Victoria
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|site
 SITE_LAT| (aReal)
 SITE_LON| (aReal)
 ACCESS_POINT_LAT| (aReal)
@@ -56,7 +56,6 @@ STREET_TYPE|Rd
 STREET_DIRECTION|W
 LOCALITY|Saanich
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|site
 SITE_LAT| (aReal)
 SITE_LON| (aReal)
 ACCESS_POINT_LAT|(aReal)
@@ -119,7 +118,6 @@ STREET_NAME|Esquimalt
 STREET_TYPE|Rd
 LOCALITY|Esquimalt
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|site
 SITE_LAT| (aReal)
 SITE_LON| (aReal)
 ACCESS_POINT_LAT|(aReal)
@@ -138,7 +136,6 @@ STREET_NAME|Esquimalt
 STREET_TYPE|Rd
 LOCALITY|Esquimalt
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|site
 SITE_LAT|(aReal)| lat of building A parcel point
 SITE_LON|(aReal)| lon of building A parcel point
 ACCESS_POINT_LAT|(aReal)|lat of building A access point
@@ -154,7 +151,6 @@ STREET_NAME|Esquimalt
 STREET_TYPE|Rd
 LOCALITY|Esquimalt
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|site
 SITE_LAT|(aReal)| lat of building B parcel point 
 SITE_LON|(aReal)| lon of building B parcel point
 ACCESS_POINT_LAT|(aReal)|lat of building B access point
@@ -189,7 +185,6 @@ STREET_NAME|Grant McConnachie
 STREET_TYPE|Way
 LOCALITY|Richmond
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|site
 SITE_LAT|(aReal)
 SITE_LON|(aReal)
 ACCESS_POINT_LAT|(aReal)
@@ -207,7 +202,6 @@ STREET_NAME|Grant McConnachie
 STREET_TYPE|Way
 LOCALITY|Richmond
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|frontDoor
 SITE_LAT|(aReal)
 SITE_LON|(aReal)
 FOOTPRINT_DESCRIPTOR|building
@@ -223,7 +217,6 @@ STREET_NAME|Grant McConnachie
 STREET_TYPE|Way
 LOCALITY|Richmond
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|frontDoor
 SITE_LAT|(aReal)
 SITE_LON|(aReal)
 FOOTPRINT_DESCRIPTOR|building
@@ -239,7 +232,6 @@ STREET_NAME|Grant McConnachie
 STREET_TYPE|Way
 LOCALITY|Richmond
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|frontDoor
 SITE_LAT|(aReal)
 SITE_LON|(aReal)
 FOOTPRINT_DESCRIPTOR|building
@@ -256,7 +248,6 @@ STREET_NAME|Grant McConnachie
 STREET_TYPE|Way
 LOCALITY|Richmond
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|frontDoor
 SITE_LAT|(aReal) 
 SITE_LON|(aReal)
 
@@ -293,7 +284,6 @@ STREET_NAME|Finnerty
 STREET_TYPE|Rd
 LOCALITY|Victoria
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|site
 SITE_LAT|(aReal) 
 SITE_LON|(aReal)
 ACCESS_POINT_LAT|(aReal)
@@ -310,7 +300,6 @@ STREET_NAME|Finnerty
 STREET_TYPE|Rd
 LOCALITY|Saanich
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|frontDoor
 SITE_LAT|(aReal) 
 SITE_LON|(aReal)
 ACCESS_POINT_LAT|(aReal)
@@ -327,7 +316,6 @@ STREET_NAME|Finnerty
 STREET_TYPE|Rd
 LOCALITY|Saanich
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|frontDoor
 SITE_LAT|(aReal) 
 SITE_LON|(aReal)
 ACCESS_POINT_LAT|(aReal)
@@ -344,7 +332,6 @@ STREET_NAME|Finnerty
 STREET_TYPE|Rd
 LOCALITY|Saanich
 PROVINCE_CODE|BC
-SITE_POINT_DESCRIPTOR|frontDoor
 SITE_LAT|(aReal)
 SITE_LON|(aReal)
 ACCESS_POINT_LAT|(aReal)
