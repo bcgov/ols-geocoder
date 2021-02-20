@@ -1,4 +1,4 @@
-# BC Physical Address Exchange Schema Draft v0.6
+# BC Physical Address Exchange Schema Draft v0.7
 ### Change history 
 v0.7 Feb 20, 2021 - removed SITE_POINT_DESCRIPTOR as it is rarely provided by address authorities
 v0.6 Jul 28, 2020 - improved Example 6 (Special entrances) 
@@ -7,6 +7,10 @@ v0.5 Jun 15, 2020 - eliminated option to use ExtraPoints to define an unlimited 
 
 v0.4 Jun, 2019 - added SUPER_SITE_YOURID to schema, changed schema to allow any number of extra points, improved examples, added example of single apartment building, improved readability, fixed formatting of schema definition table.
 
+[Introduction](#intro)
+[Example 1 - A house with a single civic number and no units](#ex1)
+
+<a name=intro></a>
 ## Introduction
 The Physical Address Exchange Schema can be used to exchange reference physical addresses between government agencies such as address authorities, emergency response agencies, geocoder service providers, etc. The schema supports the exchange of the following types of address situations:
 
@@ -25,6 +29,7 @@ Buildings, complexes, outdoor areas, and any other site that can be assigned an 
 In all examples, attributes that are null are not shown. The full address exchange schema is the last section in this document.
 References such as (aReal), (aMultiPolygon), and (aPolygon) represent an arbitrary value that conforms to the named type (e.g., Real, Multipolygon, Polygon)
 
+<a name=ex1> </a>
 ## Example 1 - A house with a single civic number and no units
 37 Olympia Ave, Victoria, BC
 
