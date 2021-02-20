@@ -1,14 +1,22 @@
 # BC Physical Address Exchange Schema Draft v0.7
 ### Change history 
 v0.7 Feb 20, 2021 - removed SITE_POINT_DESCRIPTOR as it is rarely provided by address authorities
+                  - added TOC
 v0.6 Jul 28, 2020 - improved Example 6 (Special entrances) 
 
 v0.5 Jun 15, 2020 - eliminated option to use ExtraPoints to define an unlimited number of additional coordinate locations for a given site. Extra site and access points can be added to a given site using subsites; added uses cases to handle emergency entrances, etc. as subsites, each with its own sitePoint and accessPoint.
 
 v0.4 Jun, 2019 - added SUPER_SITE_YOURID to schema, changed schema to allow any number of extra points, improved examples, added example of single apartment building, improved readability, fixed formatting of schema definition table.
 
-[Introduction](#intro)
-[Example 1 - A house with a single civic number and no units](#ex1)
+[Introduction](#intro)<br>
+[Example 1 - A house with a single civic number and no units](#ex1)<br>
+[Example 2 - A single apartment building with multiple floors and units](#ex2)<br>
+[Example 3 - An apartment complex with buildings distinguished by unit number prefix](#ex3)<br>
+[Example 4 - A complex with multiple levels of units](#ex4)<br>
+[Example 5 - A complex of buildings](#ex5)<br>
+[Example 6 - A building with an emergency lane and door](#ex6)<br>
+[Schema definition](#schema)<br><br>
+
 
 <a name=intro></a>
 ## Introduction
@@ -47,7 +55,7 @@ ACCESS_POINT_LON| (aReal)
 FOOTPRINT_DESCRIPTOR|building
 FOOTPRINT| (aPolygon)
 
-
+<a=ex 2></a>
 ## Example 2 - A single apartment building with multiple floors and units
 740 Gorge Rd W, Saanich, BC has three floors with 4 units each numbered, 101-104, 201-204, and 301-304. Site and access points of building, not units, are known.
 
@@ -107,7 +115,7 @@ Unit 304, 740 Gorge Rd W, Saanich, BC
 
 All addresses will be assigned the site and accessPoint locations assigned to 740 Gorge Rd W, Saanich, BC
 
-
+<a name=ex3></a>
 ## Example 3 - An apartment complex with buildings distinguished by unit number prefix
 
 Here is a common situation where a complex has building names that are single letters embedded in a unit number as in APT A105.
@@ -169,7 +177,7 @@ APT A100, 810 Esquimalt Rd,Esquimalt,BC
 APT B407, 810 Esquimalt Rd,Esquimalt,BC
 
 APT B210, 810 Esquimalt Rd,Esquimalt,BC
-
+<a name=ex4></a>
 ## Example 4 - A complex with multiple levels of units
 
 Vancouver International Airport, 3211 Grant McConachie Way, Richmond, BC has the following terminals and gates:
@@ -270,6 +278,7 @@ Gate 7, Terminal B, Vancouver International Airport -- 3211 Grant McConnachie Wa
 
 Each Terminal and Gate can have its own site and access locations
 
+<a name=ex5></a>
 ## Example 5 - A complex of buildings
 
 Given the following addresses for UVIC:
@@ -355,8 +364,8 @@ STREET_TYPE|Rd
 LOCALITY|Saanich
 PROVINCE_CODE|BC
 
-
-## Example #6 - A building with an emergency lane and door
+<a name=ex6></a>
+## Example 6 - A building with an emergency lane and door
 
 Buildings may have special entrances for emergency access or service staff. These can be treated as subsites of the main building. For example, assume the HR MacMillan Space Centre in Vancouver has an emergency entrance with an adjacent emergency access lane that runs to Chestnut St, here are the site and subsite addresses to be exchanged:
 
@@ -390,7 +399,7 @@ ACCESS_POINT_LAT|(aReal) ;location of intersection of emergency access lane and 
 ACCESS_POINT_LON|(aReal)
 
 
-
+<a name=schema></a>
 ## Schema Definition
 This schema can be used in any common text format that supports named properties including CSV,TSV,JSON, and XML
 
