@@ -104,5 +104,22 @@ Mailing service addresses such as PO Boxes, Rural Routes, General Delivery are e
 
 Another difference is that Canada Post doesn't care if a street type or street direction is a predirectional or postdirectional in a mailing address; just that there is a streetDirection, a streetType or both. Again this is very important when trying to find a physical address so there are isStreetTypePrefix and isStreetDirectionPrefix flags included in physical address.
 
+### How site location is defined
+
+A site can be represented spatially by two locations: a sitePoint and an accessPoint. A sitePoint is chosen so that it guides people in and out of the site. In the case of a house or building, a point on its rooftop just above an entrance or exit would be ideal. If there are no structures on the site, a location known to be within the site's parcel (e.g., a parcel centroid) will do. An accessPoint is the point at which the site's driveway or walkway hits the road. An accessPoint should be used to represent the location of a site when you are routing to or from the site.
+
+A subSite like a unit within a building or a townhouse within a complex can have its own sitePoint and accessPoint. If not specified, a subsite inherits its locations from its superSite. For example, if the location of individual units within a building are not known, it is sufficient to define the sitePoint and accessPoint of the building and all units within the building will inherit these locations. In the case of service or emergency entrances to a building, these can be represented as subsites of the building with each subSite having its own name, sitePoint, and accessPoint. For example, an emergency entrance can be assigned the siteName "Emergency Entrance" with its sitePoint set to the location of the entrance door. Its accessPoint should be set to where the associated emergency lane meets the road.
+
+
+#### Anatomy of Site Location
+A site's location is defined by its sitePoint and accessPoint. If sites are nested, sitePoint and accessPoint values may be inherited from their superSites.
+
+|Element|Data Type|Description|Required
+|--|--|--|--|
+sitePointLat|Real|Latitude of site location|yes
+sitePointLon|Real|Longitude of site location|yes
+accessPointLat|latitude of accessPoint|no
+accessPointLon|longitude of accessPoint|no
+
 ### Topics to do
-fullAddress as business unique identifier, addresses in the real world, adding a sense of history, how is site location defined, how are sites and parcels related, how are sites related spatially to the earth,
+fullAddress as business unique identifier, addresses in the real world, adding a sense of history, how are sites and parcels related, how are sites related spatially to the earth,
