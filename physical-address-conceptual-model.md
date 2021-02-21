@@ -106,18 +106,18 @@ Another difference is that Canada Post doesn't care if a street type or street d
 
 ### How site location is defined
 
-A site can be represented spatially by two locations: a sitePoint and an accessPoint. A sitePoint should be chosen so that it guides people in and out of the site. In the case of a house or building, a point on its rooftop just above an entrance or exit would be ideal. If there are no structures on the site, a location known to be within the site's parcel (e.g., a parcel centroid) will do. An accessPoint is the point at which the site's driveway or walkway hits the road. An accessPoint should be used to represent the location of a site when you are routing to or from the site.
+A site can be represented spatially by two locations: a site point and an access point. A site point should be chosen so that it guides people in and out of the site. In the case of a house or building, a point on its rooftop just above an entrance or exit would be ideal. If there are no structures on the site, a location known to be within the site's parcel (e.g., a parcel centroid) will do. An access point is the point at which the site's driveway or walkway hits the road. An access point should be used to represent the location of a site when you are routing to or from the site.
 
-A subSite like a unit within a building or a townhouse within a complex can have its own sitePoint and accessPoint. If not specified, a subsite inherits its locations from its superSite. For example, if the location of individual units within a building are not known, it is sufficient to define the sitePoint and accessPoint of the building and all units within the building will inherit these locations. In the case of service or emergency entrances to a building, these can be represented as subsites of the building with each subSite having its own name, sitePoint, and accessPoint. For example, an emergency entrance can be assigned the siteName "Emergency Entrance" with its sitePoint set to the location of the entrance door. Its accessPoint should be set to where the associated emergency lane meets the road.
+A subSite like a unit within a building or a townhouse within a complex can have its own site point and access point. If not specified, a subsite inherits its locations from its superSite. For example, if the location of individual units within a building are not known, it is sufficient to define the site point and access point of the building and all units within the building will inherit these locations. In the case of service or emergency entrances to a building, these can be represented as subsites of the building with each subSite having its own name, site point, and access point. For example, an emergency entrance can be assigned the siteName "Emergency Entrance" with its site point set to the location of the entrance door. Its access point should be set to where the associated emergency lane meets the road.
 
 
 #### Anatomy of Site Location
-A site's location is defined by its sitePoint and accessPoint. If sites are nested, sitePoint and accessPoint values may be inherited from their superSites.
+A site's location is defined by its site point and access point. If sites are nested, site point and access point values may be inherited from their superSites.
 
 |Element Name|Data Type|Description
 |--|--|--|
-sitePointLat|Real|Latitude of sitePoint
-sitePointLon|Real|Longitude of sitePoint
+siteLat|Real|Latitude of site
+siteLon|Real|Longitude of site
 accessPointLat|Real|latitude of accessPoint
 accessPointLon|Real|longitude of accessPoint
 
