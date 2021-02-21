@@ -6,9 +6,9 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
 ## February 2, 2021
 - BC Address Geocoder Version 4.1.0 released (both online and batch geocoders)
 - Improved address match accuracy
-   - The address list match accuracy of a government list of 13 million addresses went from 58% in version 4.0 to 80% in version 4.1, a 17% improvement
+   - The address list match accuracy of a government list of 13 million addresses went from 58% in version 4.0 to 78% in version 4.1, a 20% improvement
    - 2% improvement is due to additional address ranges (from GeoBC Integrated Transportation Network), additional locality aliases (e.g., all neighbouring localities, abbreviations such as Poco for Port Coquitlam), and additional non-standard abbreviations in common usage (e.g., Bu for Boulevard, Cre for Crescent, Dri for Drive).
-    - 20% improvement is due to smarter address parsing
+    - 18% improvement is due to smarter address parsing
     - [Here](https://github.com/bcgov/ols-geocoder/blob/gh-pages/rejected-addresses.md) is a list of typical bad addresses and how v4.1 handles them compared to v4.0    
     - [Here](https://github.com/bcgov/ols-geocoder/issues/102) is the complete list of added abbreviations.
    
