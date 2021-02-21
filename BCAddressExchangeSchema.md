@@ -425,7 +425,6 @@ provinceCode|String|Canada Post two-character province code|Yes|Yes
 isNonCivicAddress|Boolean|True if address has no assigned civic number|Yes|Yes
 isOfficialAddress|Boolean|True if address is official; False if unofficial (e.g., former address)|Yes|Yes
 relativeLocation|String|Relative geographic location of a non-civic address (e.g., Lonely Cabins - 43 km west of Stui on N side of Hwy 20)|No|Yes	
-sitePointDescriptor|String|one of site (somewhere on the site or the parcel containing the site), rooftop, frontDoor, internalDoor, entrance, frontGate|No|No
 siteLat|Number|site latitude|Yes|Yes
 siteLon|Number)|site longitude|Yes|Yes
 siteTags|String| Comma-separated list of descriptive tags (e.g. stadium)|No|No
