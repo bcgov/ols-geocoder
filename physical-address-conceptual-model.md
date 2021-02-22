@@ -106,9 +106,13 @@ Another difference is that Canada Post doesn't care if a street type or street d
 
 ### How site location is defined
 
-A site can be represented spatially by two locations: a site point and an access point. A site point should be chosen so that it guides people in and out of the site. In the case of a house or building, a point on its rooftop just above an entrance or exit would be ideal. If there are no structures on the site, a location known to be within the site's parcel (e.g., a parcel centroid) will do. An access point is the point at which the site's driveway or walkway hits the road. An access point should be used to represent the location of a site when you are routing to or from the site.
+The two major uses of the geography of a physical address are:
+- to determine the location of a site for display on a map and 
+- to determine the location of a road access point to the site for use in finding a route to or from the site. 
 
-A subSite like a unit within a building or a townhouse within a complex can have its own site point and access point. If not specified, a subsite inherits its locations from its superSite. For example, if the location of individual units within a building are not known, it is sufficient to define the site point and access point of the building and all units within the building will inherit these locations. In the case of service or emergency entrances to a building, these can be represented as subsites of the building with each subSite having its own name, site point, and access point. For example, an emergency entrance can be assigned the siteName "Emergency Entrance" with its site point set to the location of the entrance door. Its access point should be set to where the associated emergency lane meets the road.
+Address authorities should choose a site location that best guides people in and out of the site and that lies within the correct parcel. For a site that is a house or building, a point on its rooftop just above an entrance or exit would be ideal. If there are no structures on the site's parcel, a location known to be within parcel (e.g., a parcel centroid) will do. An access point is the point at which the site's driveway or walkway meets the road.
+
+A subSite like a unit within a building or a townhouse within a complex can have its own site location and access point. If not specified, a subsite inherits its locations from its superSite. For example, if the location of individual units within a building are not known, it is sufficient to define the site location and access point of the building and all units within the building will inherit these locations. In the case of service or emergency entrances to a building, these can be represented as subsites of the building with each subSite having its own name, site location, and access point. For example, an emergency entrance can be assigned the siteName "Emergency Entrance" with its site location set to the location of the entrance door. Its access point should be set to where the associated emergency lane meets the road.
 
 
 #### Anatomy of Site Location
@@ -116,10 +120,10 @@ A site's location is defined by its site point and access point. If sites are ne
 
 |Element Name|Data Type|Description
 |--|--|--|
-siteLat|Real|Latitude of site
-siteLon|Real|Longitude of site
-accessPointLat|Real|latitude of accessPoint
-accessPointLon|Real|longitude of accessPoint
+siteLocation|Point|(x,y) coordinate location of a site; by default, coordinates are defined in lon,lat format; other Spatial Reference Systems may be used
+accessPoint|Point| (x,y) coordinate location of a site's access point; 
+
+Coordinates are assumed to be in lon,lat format (e.g., EPGS code 4326)
 
 ### Topics to do
 fullAddress as business unique identifier, addresses in the real world, adding a sense of history, how are sites and parcels related, how are sites related spatially to the earth,
