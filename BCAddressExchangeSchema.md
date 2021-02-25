@@ -493,3 +493,33 @@ accessPointLat|Number|Only needed if access point is different than site point o
 accessPointLon|Number|Only needed if access point is different than site point or super site point|No|Yes
 footprintDescriptor|String| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)|No|No
 footprint|OGC WKT|geometry of site footprint in OGC Well-Known Text format. Can use other geometry standards in other formats (e.g., GML GeoJson)|No|No
+
+
+Unit Designators
+Here is the list of standard unit designators. Any designator can also have an associated unit number.
+
+|Name|Description|Canada Post Standard|
+|--|--|
+APT|Apartment|Yes
+BERTH|No
+BSMT|Basement|Yes
+BLDG|Building|Yes
+CONDO|Condominium unit within a building|No
+FLR|Floor|Yes
+HOUSE|House within a complex|No
+LOBBY|Lobby|Yes
+LWR |Lower floor of building|Yes
+MEZZ|Mezzanine|Yes
+PAD|RV or mobile home Pad|No
+PH|Penthouse|Yes
+REAR|Rear of building|Yes
+RM|Room|Yes
+SIDE|Side of building|Yes
+SITE|Site|Yes
+SUITE|Suite|Yes
+TH|Townhouse|Yes
+UNIT|Unit|Yes
+UPPR|Upper floor of building|Yes
+
+
+|--|--|
