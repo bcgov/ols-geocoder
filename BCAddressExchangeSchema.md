@@ -14,7 +14,7 @@ v0.4 Jun, 2019 - added SUPER_SITE_YOURID to schema, changed schema to allow any 
 [Example 3 - An apartment complex with buildings distinguished by unit number prefix](#ex3)<br>
 [Example 4 - A complex with multiple levels of units](#ex4)<br>
 [Example 5 - A complex of buildings](#ex5)<br>
-[Example 6 - A building with an emergency lane and door](#ex6)<br>
+[Example 6 - A building with an emergency responder entrance and emergency lane](#ex6)<br>
 [Schema definition](#schema)<br><br>
 
 
@@ -365,7 +365,7 @@ LOCALITY|Saanich
 PROVINCE_CODE|BC
 
 <a name=ex6></a>
-## Example 6 - A building with an emergency lane and door
+## Example 6 - A building with an emergency responder entrance and emergency lane
 
 Buildings may have special entrances for emergency access or service staff. These are represented as units (subsites) within the main building. For example, assume the HR MacMillan Space Centre in Vancouver has an emergency responder entrance with an adjacent emergency access lane that runs to Chestnut St, here are the site and subsite addresses to be exchanged:
 
