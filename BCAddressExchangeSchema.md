@@ -434,7 +434,7 @@ unitDesignator|String|unit designator (e.g., APT, UNIT); includes Canada Post un
 unitNumberPrefix|String|a single letter or sequence of letter ranges separated by commas (e.g., A-D,J,M-P)|No|No
 unitNumber|String|unit number or letter or sequence of unit number/letter ranges separated by commas (e.g., 100-119, 200-219)|No|No
 unitNumberSuffix|String|Canada Post unit number suffix (e.g., C)|No|No
-siteName|String|building or landmark name (e.g., Centennial Candle)|yes|yes
+siteName|String|building or landmark name (e.g., Centennial Candle)|no|yes
 superFullsiteDescriptor|String|names of all units and sites in parent site hierarchy separated by double-dash (e.g., Student Union Building -- University of Victoria)|No|No
 superSiteYourId|Sting|Unique identifier of super site|No|No
 civicNumber|Number| civic number, usually a positive integer (e.g., 1321)|Yes|No
