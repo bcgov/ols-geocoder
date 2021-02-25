@@ -370,6 +370,7 @@ PROVINCE_CODE|BC
 Buildings may have special entrances for emergency access or service staff. These are represented as units (subsites) within the main building. For example, assume the HR MacMillan Space Centre in Vancouver has an emergency responder entrance with an adjacent emergency access lane that runs to Chestnut St, here are the site and subsite addresses to be exchanged:
 
 1100 Chestnut St, Vancouver, BC
+
 EMENT -- 1100 Chestnut St, Vancouver, BC
 
 The following exchange data records will represent the above addresses:
