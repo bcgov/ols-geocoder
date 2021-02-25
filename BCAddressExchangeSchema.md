@@ -502,7 +502,7 @@ Here is the list of standard unit designators. Any designator can also have an a
 |Name|Description|Canada Post Standard|
 |--|--|--|
 APT|Apartment|Yes
-BERTH|No
+BERTH|Berth on a dock|No
 BSMT|Basement|Yes
 BLDG|Building|Yes
 CONDO|Condominium unit within a building|No
@@ -521,6 +521,3 @@ SUITE|Suite|Yes
 TH|Townhouse|Yes
 UNIT|Unit|Yes
 UPPR|Upper floor of building|Yes
-
-
-|--|--|
