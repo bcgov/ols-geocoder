@@ -369,7 +369,7 @@ PROVINCE_CODE|BC
 <a name=ex6></a>
 ## Example 6 - A building with special entrances
 
-Buildings may have special entrances for emergency access or service staff. These are represented as units (subsites) within the main building. For example, assume the HR MacMillan Space Centre in Vancouver has two numbered emergency exits and an emergency responder entrance with an adjacent emergency access lane that runs to Chestnut St. Here are the site and subsite addresses to be exchanged:
+Buildings may have special entrances for emergency access or service staff. These are represented as units (subsites) within the building. For example, assume the HR MacMillan Space Centre in Vancouver has two numbered emergency exits and an emergency responder entrance with an adjacent emergency access lane that runs to Chestnut St. Here are the site and subsite addresses to be exchanged:
 
 1100 Chestnut St, Vancouver, BC
 
