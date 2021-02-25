@@ -1,5 +1,6 @@
 # BC Physical Address Exchange Schema Draft v0.7
-### Change history 
+### Change history
+v0.8 Feb 25, 2021 - added support for entrances as units within a building
 v0.7 Feb 20, 2021 - removed SITE_POINT_DESCRIPTOR as it is rarely provided by address authorities, added TOC
 v0.6 Jul 28, 2020 - improved Example 6 (Special entrances) 
 
@@ -366,16 +367,15 @@ PROVINCE_CODE|BC
 <a name=ex6></a>
 ## Example 6 - A building with an emergency lane and door
 
-Buildings may have special entrances for emergency access or service staff. These can be treated as subsites of the main building. For example, assume the HR MacMillan Space Centre in Vancouver has an emergency entrance with an adjacent emergency access lane that runs to Chestnut St, here are the site and subsite addresses to be exchanged:
+Buildings may have special entrances for emergency access or service staff. These are represented as units (subsites) within the main building. For example, assume the HR MacMillan Space Centre in Vancouver has an emergency responder entrance with an adjacent emergency access lane that runs to Chestnut St, here are the site and subsite addresses to be exchanged:
 
-HR MacMillan Space Centre -- 1100 Chestnut St, Vancouver, BC
-Emergency Entrance, HR MacMillan Space Centre -- 1100 Chestnut St, Vancouver, BC
+1100 Chestnut St, Vancouver, BC
+EMENT -- 1100 Chestnut St, Vancouver, BC
 
 The following exchange data records will represent the above addresses:
 
 Field | Value
 ----:|----
-SITE_NAME|HR MacMillan Space Centre
 CIVIC_NUMBER|1100
 STREET_NAME|Chestnut
 STREET_TYPE|St
@@ -385,17 +385,42 @@ PROVINCE_CODE|BC
 
 Field | Value
 ----:|----
-SITE_NAME|Emergency Entrance
-SUPER_FULL_SITE_DESCRIPTOR|HR MacMillan Space Centre
+SITE_NAME|EMENT
+SUPER_FULL_SITE_DESCRIPTOR|
 CIVIC_NUMBER|1100
 STREET_NAME|Chestnut
 STREET_TYPE|St
 LOCALITY|Vancouver
 PROVINCE_CODE|BC
-SITE_LAT|(aReal)
+SITE_LAT|(aReal); location of emergency entrance doors on building
 SITE_LON|(aReal)
 ACCESS_POINT_LAT|(aReal) ;location of intersection of emergency access lane and Chestnut St
 ACCESS_POINT_LON|(aReal)
+
+The following entrance unit designators are proposed to handle the common types of entrances in a standard way:
+
+|unitDesignator|Description|
+|--|--|
+ENTRANCE|Entrance
+EMENT|Emergency responder entrance
+EMEXT|Emergency exit
+SVCENT| Service entrance
+UTLENT| Utility entrance
+DLVENT | Delivery entrance
+
+Like any unitDesignator, entrances may be numbered (eg., ENTRANCE 1, EMEXT 4)
+
+The following Canada Post unit designators define other building parts and are also supported:
+
+|unitDesignator|Description|
+|--|--|
+LOBBY| Lobby
+MEZZ|Mezzanine
+UPPR|Upper floor
+LWR|Lower floor
+REAR|Rear of building
+BSMNT|Basement
+FLR| Floor
 
 
 <a name=schema></a>
@@ -405,7 +430,7 @@ This schema can be used in any common text format that supports named properties
 Field Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
 ---: | --- | --- | ---| ---
 yourId|String|Unique identifier in your local address management system (e.g., X0233212)|No|No
-unitDesignator|String|Canada Post unit designator (e.g., APT)|No|No
+unitDesignator|String|unit designator (e.g., APT, UNIT); includes Canada Post unit designators plus standard entrance designators (e.g., ement,emext,svcent)|No|No
 unitNumberPrefix|String|a single letter or sequence of letter ranges separated by commas (e.g., A-D,J,M-P)|No|No
 unitNumber|String|unit number or letter or sequence of unit number/letter ranges separated by commas (e.g., 100-119, 200-219)|No|No
 unitNumberSuffix|String|Canada Post unit number suffix (e.g., C)|No|No
