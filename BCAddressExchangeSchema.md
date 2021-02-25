@@ -18,6 +18,7 @@ v0.4 Jun, 2019 - added SUPER_SITE_YOURID to schema, changed schema to allow any 
 [Example 5 - A complex of buildings](#ex5)<br>
 [Example 6 - A building with special entrances](#ex6)<br>
 [Schema definition](#schema)<br><br>
+[Unit designators](#unitDesignators)<br><br>
 
 
 <a name=intro></a>
@@ -494,12 +495,12 @@ accessPointLon|Number|Only needed if access point is different than site point o
 footprintDescriptor|String| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)|No|No
 footprint|OGC WKT|geometry of site footprint in OGC Well-Known Text format. Can use other geometry standards in other formats (e.g., GML GeoJson)|No|No
 
-
-Unit Designators
+<a name=unitDesignators></a>
+## Unit Designators
 Here is the list of standard unit designators. Any designator can also have an associated unit number.
 
 |Name|Description|Canada Post Standard|
-|--|--|
+|--|--|--|
 APT|Apartment|Yes
 BERTH|No
 BSMT|Basement|Yes
