@@ -506,6 +506,10 @@ BERTH|Berth on a dock|No
 BSMT|Basement|No
 BLDG|Building|No
 CONDO|Condominium unit within a building|No
+DLVENT | Delivery entrance|No
+ENTRANCE|Entrance|No
+EMENT|Emergency responder entrance|No
+EMEXT|Emergency exit|No
 FLR|Floor|No
 HOUSE|House within a complex|No
 LOBBY|Lobby|No
@@ -518,6 +522,8 @@ RM|Room|No
 SIDE|Side of building|No
 SITE|Site|No
 SUITE|Suite|Yes
+SVCENT|Service entrance|no
 TH|Townhouse|No
 UNIT|Unit|Yes
 UPPR|Upper floor of building|No
+UTLENT| Utility entrance|No
