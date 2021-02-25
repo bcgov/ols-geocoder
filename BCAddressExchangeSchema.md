@@ -1,9 +1,13 @@
 # BC Physical Address Exchange Schema Draft v0.8
 ### Change history
 v0.8 Feb 25, 2021 - added support for entrances as units within a building<br>
+
 v0.7 Feb 20, 2021 - removed SITE_POINT_DESCRIPTOR as it is rarely provided by address authorities, added TOC<br>
+
 v0.6 Jul 28, 2020 - improved Example 6 (Special entrances)<br> 
+
 v0.5 Jun 15, 2020 - eliminated option to use ExtraPoints to define an unlimited number of additional coordinate locations for a given site. Extra site and access points can be added to a given site using subsites; added uses cases to handle emergency entrances, etc. as subsites, each with its own sitePoint and accessPoint.<br>
+
 v0.4 Jun, 2019 - added SUPER_SITE_YOURID to schema, changed schema to allow any number of extra points, improved examples, added example of single apartment building, improved readability, fixed formatting of schema definition table.
 
 [Introduction](#intro)<br>
