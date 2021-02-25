@@ -430,7 +430,7 @@ This schema can be used in any common text format that supports named properties
 Field Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
 ---: | --- | --- | ---| ---
 yourId|String|Unique identifier in your local address management system (e.g., X0233212)|No|No
-unitDesignator|String|unit designator (e.g., APT, UNIT); includes Canada Post unit designators plus standard entrance designators (e.g., ement,emext,svcent)|No|No
+unitDesignator|String|unit designator (e.g., APT, UNIT); includes Canada Post unit designators plus standard entrance designators (e.g., ENTRANCE A, EMENT, EMEXT, SVCENT,  UTLENT)|No|No
 unitNumberPrefix|String|a single letter or sequence of letter ranges separated by commas (e.g., A-D,J,M-P)|No|No
 unitNumber|String|unit number or letter or sequence of unit number/letter ranges separated by commas (e.g., 100-119, 200-219)|No|No
 unitNumberSuffix|String|Canada Post unit number suffix (e.g., C)|No|No
