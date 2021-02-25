@@ -1,6 +1,6 @@
 # BC Physical Address Exchange Schema Draft v0.8
 ### Change history
-v0.8 Feb 25, 2021 - added support for entrances as units within a building<br>
+v0.8 Feb 25, 2021 - added support for entrances as units within a building; sites no longer have to be named to have special entrances<br>
 
 v0.7 Feb 20, 2021 - removed SITE_POINT_DESCRIPTOR as it is rarely provided by address authorities, added TOC<br>
 
