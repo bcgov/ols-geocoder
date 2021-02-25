@@ -14,7 +14,7 @@ v0.4 Jun, 2019 - added SUPER_SITE_YOURID to schema, changed schema to allow any 
 [Example 3 - An apartment complex with buildings distinguished by unit number prefix](#ex3)<br>
 [Example 4 - A complex with multiple levels of units](#ex4)<br>
 [Example 5 - A complex of buildings](#ex5)<br>
-[Example 6 - A building with an emergency responder entrance and emergency lane](#ex6)<br>
+[Example 6 - A building with special entrances](#ex6)<br>
 [Schema definition](#schema)<br><br>
 
 
@@ -365,13 +365,18 @@ LOCALITY|Saanich
 PROVINCE_CODE|BC
 
 <a name=ex6></a>
-## Example 6 - A building with an emergency responder entrance and emergency lane
+## Example 6 - A building with special entrances
 
-Buildings may have special entrances for emergency access or service staff. These are represented as units (subsites) within the main building. For example, assume the HR MacMillan Space Centre in Vancouver has an emergency responder entrance with an adjacent emergency access lane that runs to Chestnut St, here are the site and subsite addresses to be exchanged:
+Buildings may have special entrances for emergency access or service staff. These are represented as units (subsites) within the main building. For example, assume the HR MacMillan Space Centre in Vancouver has two numbered emergency exits and an emergency responder entrance with an adjacent emergency access lane that runs to Chestnut St. Here are the site and subsite addresses to be exchanged:
 
 1100 Chestnut St, Vancouver, BC
 
 EMENT -- 1100 Chestnut St, Vancouver, BC
+
+EMEXT 1 -- 1100 Chestnut St, Vancouver BC
+
+EMEXT 2 -- 1100 Chestnut St, Vancouver BC
+
 
 The following exchange data records will represent the above addresses:
 
@@ -386,16 +391,44 @@ PROVINCE_CODE|BC
 
 Field | Value
 ----:|----
-SITE_NAME|EMENT
-SUPER_FULL_SITE_DESCRIPTOR|
+UNIT_DESIGNATOR|EMENT
 CIVIC_NUMBER|1100
 STREET_NAME|Chestnut
 STREET_TYPE|St
 LOCALITY|Vancouver
 PROVINCE_CODE|BC
-SITE_LAT|(aReal); location of emergency entrance doors on building
+SITE_LAT|(aReal); location of emergency entrance on building
 SITE_LON|(aReal)
 ACCESS_POINT_LAT|(aReal) ;location of intersection of emergency access lane and Chestnut St
+ACCESS_POINT_LON|(aReal)
+
+
+Field | Value
+----:|----
+UNIT_DESIGNATOR|EMEXT
+UNIT_NUMBER|1
+CIVIC_NUMBER|1100
+STREET_NAME|Chestnut
+STREET_TYPE|St
+LOCALITY|Vancouver
+PROVINCE_CODE|BC
+SITE_LAT|(aReal); location of emergency exit on building
+SITE_LON|(aReal)
+ACCESS_POINT_LAT|(aReal) ;location of intersection of access road and Chestnut St if different from primary site access point
+ACCESS_POINT_LON|(aReal)
+
+Field | Value
+----:|----
+UNIT_DESIGNATOR|EMEXT
+UNIT_NUMBER|2
+CIVIC_NUMBER|1100
+STREET_NAME|Chestnut
+STREET_TYPE|St
+LOCALITY|Vancouver
+PROVINCE_CODE|BC
+SITE_LAT|(aReal); location of emergency exit on building
+SITE_LON|(aReal)
+ACCESS_POINT_LAT|(aReal) ;location of intersection of access road and Chestnut St if different from primary site access point
 ACCESS_POINT_LON|(aReal)
 
 The following entrance unit designators are proposed to handle the common types of entrances in a standard way:
