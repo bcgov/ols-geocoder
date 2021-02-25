@@ -503,21 +503,21 @@ Here is the list of standard unit designators. Any designator can also have an a
 |--|--|--|
 APT|Apartment|Yes
 BERTH|Berth on a dock|No
-BSMT|Basement|Yes
-BLDG|Building|Yes
+BSMT|Basement|No
+BLDG|Building|No
 CONDO|Condominium unit within a building|No
-FLR|Floor|Yes
+FLR|Floor|No
 HOUSE|House within a complex|No
-LOBBY|Lobby|Yes
-LWR |Lower floor of building|Yes
-MEZZ|Mezzanine|Yes
+LOBBY|Lobby|No
+LWR |Lower floor of building|No
+MEZZ|Mezzanine|No
 PAD|RV or mobile home Pad|No
 PH|Penthouse|Yes
-REAR|Rear of building|Yes
-RM|Room|Yes
-SIDE|Side of building|Yes
-SITE|Site|Yes
+REAR|Rear of building|No
+RM|Room|No
+SIDE|Side of building|No
+SITE|Site|No
 SUITE|Suite|Yes
-TH|Townhouse|Yes
+TH|Townhouse|No
 UNIT|Unit|Yes
-UPPR|Upper floor of building|Yes
+UPPR|Upper floor of building|No
