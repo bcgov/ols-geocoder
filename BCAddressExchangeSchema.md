@@ -415,7 +415,7 @@ STREET_NAME|Chestnut
 STREET_TYPE|St
 LOCALITY|Vancouver
 PROVINCE_CODE|BC
-SITE_LAT|(aReal); location of emergency exit on building
+SITE_LAT|(aReal); location of emergency exit 1 on building
 SITE_LON|(aReal)
 ACCESS_POINT_LAT|(aReal) ;location of intersection of access road and Chestnut St if different from primary site access point
 ACCESS_POINT_LON|(aReal)
@@ -429,7 +429,7 @@ STREET_NAME|Chestnut
 STREET_TYPE|St
 LOCALITY|Vancouver
 PROVINCE_CODE|BC
-SITE_LAT|(aReal); location of emergency exit on building
+SITE_LAT|(aReal); location of emergency exit 2 on building
 SITE_LON|(aReal)
 ACCESS_POINT_LAT|(aReal) ;location of intersection of access road and Chestnut St if different from primary site access point
 ACCESS_POINT_LON|(aReal)
