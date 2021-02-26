@@ -376,9 +376,9 @@ Buildings may have special entrances for emergency access or service staff. Thes
 
 EMENT -- 1100 Chestnut St, Vancouver, BC
 
-EMXIT 1 -- 1100 Chestnut St, Vancouver BC
+EXIT 1 -- 1100 Chestnut St, Vancouver BC
 
-EMXIT 2 -- 1100 Chestnut St, Vancouver BC
+EXIT 2 -- 1100 Chestnut St, Vancouver BC
 
 
 The following exchange data records will represent the above addresses:
@@ -408,7 +408,7 @@ ACCESS_POINT_LON|(aReal)
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|EMXIT
+UNIT_DESIGNATOR|EXIT
 UNIT_NUMBER|1
 CIVIC_NUMBER|1100
 STREET_NAME|Chestnut
@@ -422,7 +422,7 @@ ACCESS_POINT_LON|(aReal)
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|EMXIT
+UNIT_DESIGNATOR|EXIT
 UNIT_NUMBER|2
 CIVIC_NUMBER|1100
 STREET_NAME|Chestnut
@@ -440,12 +440,12 @@ The following entrance unit designators are proposed to handle the common types 
 |--|--|
 ENTRANCE|Entrance
 EMENT|Emergency responder entrance
-EMXIT|Emergency exit
+EXIT|Emergency exit
 SVCENT| Service entrance
 UTLENT| Utility entrance
 DLVENT | Delivery entrance
 
-Like any unitDesignator, entrances may be numbered (eg., ENTRANCE 1, EMXIT 4)
+Like any unitDesignator, entrances may be numbered (eg., ENTRANCE 1, EXIT 4)
 
 The following Canada Post unit designators define other building parts and are also supported:
 
@@ -467,7 +467,7 @@ This schema can be used in any common text format that supports named properties
 Field Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
 ---: | --- | --- | ---| ---
 yourId|String|Unique identifier in your local address management system (e.g., X0233212)|No|No
-unitDesignator|String|unit designator (e.g., APT, UNIT); includes Canada Post unit designators plus standard entrance designators (e.g., ENTRANCE A, EMENT, EMXIT, SVCENT,  UTLENT)|No|No
+unitDesignator|String|unit designator (e.g., APT, UNIT); includes Canada Post unit designators plus standard entrance designators (e.g., ENTRANCE A, EMENT, EXIT, SVCENT,  UTLENT)|No|No
 unitNumberPrefix|String|a single letter or sequence of letter ranges separated by commas (e.g., A-D,J,M-P)|No|No
 unitNumber|String|unit number or letter or sequence of unit number/letter ranges separated by commas (e.g., 100-119, 200-219)|No|No
 unitNumberSuffix|String|Canada Post unit number suffix (e.g., C)|No|No
@@ -509,7 +509,7 @@ CONDO|Condominium unit within a building|No
 DLVENT | Delivery entrance|No
 ENTRANCE|Entrance|No
 EMENT|Emergency responder entrance|No
-EMXIT|Emergency exit|No
+EXIT|Emergency exit|No
 FLR|Floor|No
 HOUSE|House within a complex|No
 LOBBY|Lobby|No
