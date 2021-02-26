@@ -376,9 +376,9 @@ Buildings may have special entrances for emergency access or service staff. Thes
 
 EMENT -- 1100 Chestnut St, Vancouver, BC
 
-EXIT 1 -- 1100 Chestnut St, Vancouver BC
+EMEXIT 1 -- 1100 Chestnut St, Vancouver BC
 
-EXIT 2 -- 1100 Chestnut St, Vancouver BC
+EMEXIT 2 -- 1100 Chestnut St, Vancouver BC
 
 
 The following exchange data records will represent the above addresses:
@@ -408,7 +408,7 @@ ACCESS_POINT_LON|(aReal)
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|EXIT
+UNIT_DESIGNATOR|EMEXIT
 UNIT_NUMBER|1
 CIVIC_NUMBER|1100
 STREET_NAME|Chestnut
@@ -422,7 +422,7 @@ ACCESS_POINT_LON|(aReal)
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|EXIT
+UNIT_DESIGNATOR|EMEXIT
 UNIT_NUMBER|2
 CIVIC_NUMBER|1100
 STREET_NAME|Chestnut
@@ -440,7 +440,8 @@ The following entrance unit designators are proposed to handle the common types 
 |--|--|
 ENTRANCE|Entrance
 EMENT|Emergency responder entrance
-EXIT|Emergency exit
+EMEXIT|Emergency exit (sounds the alarm)
+EXIT|Exit
 SVCENT| Service entrance
 UTLENT| Utility entrance
 DLVENT | Delivery entrance
@@ -509,20 +510,24 @@ CONDO|Condominium unit within a building|No
 DLVENT | Delivery entrance|No
 ENTRANCE|Entrance|No
 EMENT|Emergency responder entrance|No
-EXIT|Emergency exit|No
+EXIT|Exit only|No
+EMEXIT|Emergency exit (sounds alarm)|No
 FLR|Floor|No
+GATE|Gate|No
 HOUSE|House within a complex|No
 LOBBY|Lobby|No
 LWR |Lower floor of building|No
 MEZZ|Mezzanine|No
 PAD|RV or mobile home Pad|No
 PH|Penthouse|Yes
+PLATFORM|Platform|No
 REAR|Rear of building|No
 RM|Room|No
 SIDE|Side of building|No
 SITE|Site|No
 SUITE|Suite|Yes
 SVCENT|Service entrance|no
+TERMINAL|Terminal|No
 TH|Townhouse|No
 UNIT|Unit|Yes
 UPPR|Upper floor of building|No
