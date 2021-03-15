@@ -1,67 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>ca.bc.gov.ols</groupId>
-		<artifactId>ols-geocoder</artifactId>
-		<version>4.1.0-RC</version>
-	</parent>
-	<artifactId>ols-geocoder-process</artifactId>
-	<name>OLS Geocoder Process</name>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.5.0</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<executable>java</executable>
-					<arguments>
-						<argument>-Xmx3000M</argument>
-						<argument>-classpath</argument>
-						<!-- automatically creates the classpath using all project dependencies,
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>ca.bc.gov.ols</groupId>
+    <artifactId>ols-geocoder</artifactId>
+    <version>4.1.0-RC</version>
+  </parent>
+  <artifactId>ols-geocoder-process</artifactId>
+  <name>OLS Geocoder Process</name>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.5.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <executable>java</executable>
+          <arguments>
+            <argument>-Xmx3000M</argument>
+            <argument>-classpath</argument>
+            <!-- automatically creates the classpath using all project dependencies,
 							also adding the project build directory -->
-						<classpath />
-						<argument>ca.bc.gov.ols.rangebuilder.RangeBuilder</argument>
-						<argument>C:/apps/bgeo/data/</argument>
-					</arguments>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.vintage</groupId>
-			<artifactId>junit-vintage-engine</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>ca.bc.gov.ols</groupId>
-			<artifactId>ols-geocoder-core</artifactId>
-			<version>${project.version}</version>
-			<type>jar</type>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>1.1.7</version>
-		</dependency>
-	</dependencies>
-
+            <classpath/>
+            <argument>ca.bc.gov.ols.rangebuilder.RangeBuilder</argument>
+            <argument>C:/apps/bgeo/data/</argument>
+          </arguments>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <repositories>
+    <repository>
+      <id>databc</id>
+      <name>DataBC Artifactory Server</name>
+      <url>http://artifactory.pathfinder.bcgov/artifactory/repo/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+  </repositories>
+  <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.vintage</groupId>
+      <artifactId>junit-vintage-engine</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>ca.bc.gov.ols</groupId>
+      <artifactId>ols-geocoder-core</artifactId>
+      <version>${project.version}</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.1.7</version>
+    </dependency>
+  </dependencies>
 </project>
