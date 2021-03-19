@@ -176,26 +176,26 @@ public class RangeBuilder {
 					localityLeftId, localityRightId, eaLeftId, eaRightId, roadClass, laneRestriction, travelDir,
 					dividerType, numLanesLeft, numLanesRight);
 			if(true) {//dataSource.getConfig().getGenerateUsingExistingRanges() > 0) {
-				if(rr.getObject("first_address_left") != null) {
+				if(rr.getInteger("first_address_left") != null) {
 					segment.getSites(Side.LEFT).add(
 							new PseudoSite(rr.getInt("first_address_left"), segment,
 									segment.getCenterLine().getStartPoint(), 0));
 					existingRangeAnchorPointCount++;
 				}
-				if(rr.getObject("last_address_left") != null) {
+				if(rr.getInteger("last_address_left") != null) {
 					segment.getSites(Side.LEFT).add(
 							new PseudoSite(rr.getInt("last_address_left"), segment,
 									segment.getCenterLine().getEndPoint(),
 									segment.getCenterLine().getLength()));
 					existingRangeAnchorPointCount++;
 				}
-				if(rr.getObject("first_address_right") != null) {
+				if(rr.getInteger("first_address_right") != null) {
 					segment.getSites(Side.RIGHT).add(
 							new PseudoSite(rr.getInt("first_address_right"), segment,
 									segment.getCenterLine().getStartPoint(), 0));
 					existingRangeAnchorPointCount++;
 				}
-				if(rr.getObject("last_address_right") != null) {
+				if(rr.getInteger("last_address_right") != null) {
 					segment.getSites(Side.RIGHT).add(
 							new PseudoSite(rr.getInt("last_address_right"), segment,
 									segment.getCenterLine().getEndPoint(),
