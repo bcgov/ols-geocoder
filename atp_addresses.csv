@@ -180,7 +180,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00180-UnknownSiteNameWithoutFrontGate,"Old Mill Stream Manor 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",R,,,T,T
 00181-UnknownUnitwithUnknownSiteNameWithFrontGate,"APT 101 Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"APT 101 OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],R,,,T,T
 00182-UnknownUnitwithUnknownSiteNameWithoutFrontGate,"APT 101 Old Mill Stream Manor 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],R,,,T,T
-00183-UnknownUnitAfterStreetWithUnknownSiteNameWithFrontGate,"APT 101, Old Mill Stream Manor -- 1985 Millstream Rd APT 101, Highlands, BC",CIVIC_NUMBER,"APT 101,OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,UNIT_DESIGNATOR.notMatched,UNIT_NUMBER.notMatched]",R,,,T,T
+00183-UnknownUnitAfterStreetWithUnknownSiteNameWithFrontGate,"APT 101, Old Mill Stream Manor -- 1985 Millstream Rd APT 101, Highlands, BC",CIVIC_NUMBER,"APT 101,OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,UNIT_DESIGNATOR.notMatched,UNIT_NUMBER.notMatched]",F,,,T,T
 00184-UnknownUnitAfterStreetWithUnknownSiteNameWithoutFrontGate,"APT 101, Old Mill Stream Manor 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,FRONT_GATE.missing,UNIT_DESIGNATOR.notMatched,UNIT_NUMBER.notMatched]",R,,,T,T
 00185-UnknownSiteNameAfterStreetWithoutFrontGate,"1985 Millstream Rd Old Mill Stream Manor, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],R,,,T,T
 00186-UnknownUnitWithUnknownSiteNameAfterStreetWithoutFrontGate,"1985 Millstream Rd APT 101 Old Mill Stream Manor, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,FRONT_GATE.missing,UNIT_DESIGNATOR.notMatched,UNIT_NUMBER.notMatched]",R,,,T,T
@@ -291,7 +291,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00291-UnknownSiteNameWithoutFrontGate,"LILLOET BLDG 2016 FULLERTON AVE, NORTH VANCOUVER, BC",UNIT,"2016 Fullerton Ave, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing:0, LOCALITY.isAlias:1,FRONT_GATE.missing]",R,,,T,T
 00292-UnknownSiteNameAfterStreetWithoutFrontGate,"410 2016 FULLERTON AVE LILLOET BLDG, NORTH VANCOUVER, BC",UNIT,"UNIT 410 -- 2016 Fullerton Ave, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing:0, LOCALITY.isAlias:1,FRONT_GATE.missing]",R,,,T,T
 00293-UnknownSiteNameWithFrontGate,"UNIT 205 CONDOMINIUMS -- 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 CONDOMINIUMS -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched]",R,,,T,T
-00294-UnknownSiteNameWithoutFrontGate,"CONDOMINIUMS 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",R,,,T,T
+00294-UnknownSiteNameWithoutFrontGate,"CONDOMINIUMS 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"UNIT 205 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",F,,,T,T
 00295-UnknownSiteNameAfterStreetWithoutFrontGate,"205 7555 120A ST CONDOMINIUMS, SURREY, BC",CIVIC_NUMBER,"UNIT 205 -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",R,,,T,T
 00296-UnknownSiteNameWithFrontGate,"CONDO 205 -- 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"CONDO 205 -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched]",R,,,T,T
 00297-UnknownSiteNameWithoutFrontGate,"CONDO 205 7555 120A ST, SURREY, BC",CIVIC_NUMBER,"CONDO 205 -- 7555 120A St, Surrey, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,FRONT_GATE.missing]",R,,,T,T
@@ -457,7 +457,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00457-NonStandardLocalityNAmeAbbreviation,"2248 McAllister Ave, Poco, BC",CIVIC_NUMBER,"2248 McAllister Ave, Port Coquitlam, BC",[],R,,102,T,T
 00458-civicAddressWithUnitandUnknownSiteName,"UNIT 170 Doogie University -- 22470 Dewdney Trunk Rd, Maple Ridge,BC",UNIT,"UNIT 170 DOOGIE UNIVERSITY -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched MAX_RESULTS.too_low_to_include_all_best_matches],R,,,T,T
 00459-LocalityHopping,"BOX 188, KALEDEN, BC",LOCALITY,"Kaleden, BC",[POSTAL_ELEMENT.notAllowed],R,,,F,T
-00460-LocalityHopping,"200 21st Ave, prince george, BC",LOCALITY,"Prince George,BC",[STREET.notFound],R,,,F,T
+00460-LocalityHopping,"200 21st Ave, prince george, BC",LOCALITY,"Prince George,BC",[STREET.notFound],F,,,F,T
 00461-LocalityHopping,"500 helmcken rd, victoria, BC",STREET,"Helmcken Alley, Victoria, BC","[CIVIC_NUMBER.notInAnyBlock, STREET_TYPE.notMatched]",R,,,F,T
 00462-IRAddresses,"1901 LUST RD RED BLUFF RESERVE QUESNEL,BC",BLOCK,"1901 Lust Rd, Quesnel, BC",[SITE_NAME:unknown],R,,,F,T
 00463-IRAddresses,"Blueberry Reserve, Buick, BC",STREET,"Blueberry Reserve Rd, Buick, BC",[SITE_NAME:unknown],R,,,F,T
@@ -498,5 +498,5 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00498-ACrazy,"201 A 201 A A St, Abbotsford, BC",BLOCK,"UNIT 201A -- 201A A St, Abbotsford, BC","[UNIT_DESIGNATOR.missing,UNIT_NUMBER.notMatched,CIVIC_NUMBER_SUFFIX.notMatched]",R,,156,T,T
 00499-NonIntersectionOfRoadAndHwy,"trans-canada hwy  and no 1 rd abbotsford bc",INTERSECTION,"Trans-Canada Hwy and Trans-Canada Hwy, Abbotsford, BC",[],R,,156,T,T
 00500-NoisyAddress,"Oscar the Grouch 1 Centennial Sq Felix the Cat Victoria Winnie the Pooh BC",CIVIC_NUMBER,"1 Centennial Sq, Victoria, BC",[],R,,156,T,T
-00501-StreetNameCompoundWordsSeparated,"12312 Horse Shoe Way, Richmond, BC",BLOCK,"12312 Horseshoe Way, Richmond, BC",[],R,,,T,T
-00502-StreetNameCompoundWordsSeparated,"101 Sea View St, Sayward, BC",CIVIC_NUMBER,"101 Seaview St, Sayward, BC",[],R,,,T,T
+00501-StreetNameCompoundWordsSeparated,"12312 Horse Shoe Way, Richmond, BC",BLOCK,"12312 Horseshoe Way, Richmond, BC",[],F,,,T,T
+00502-StreetNameCompoundWordsSeparated,"101 Sea View St, Sayward, BC",CIVIC_NUMBER,"101 Seaview St, Sayward, BC",[],F,,,T,T
