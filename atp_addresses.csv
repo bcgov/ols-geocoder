@@ -461,7 +461,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00461-LocalityHopping,"500 helmcken rd, victoria, BC",STREET,"Helmcken Alley, Victoria, BC","[CIVIC_NUMBER.notInAnyBlock, STREET_TYPE.notMatched]",R,,,F,T
 00462-IRAddresses,"1901 LUST RD RED BLUFF RESERVE QUESNEL,BC",BLOCK,"1901 Lust Rd, Quesnel, BC",[SITE_NAME:unknown],R,,,F,T
 00463-IRAddresses,"Blueberry Reserve, Buick, BC",STREET,"Blueberry Reserve Rd, Buick, BC",[SITE_NAME:unknown],R,,,F,T
-00464-IRAddresses,"Blueberry River IR, BC",SITE,"Blueberry River IR, BC",[],R,,,F,T
+00464-IRAddresses,"Blueberry River 205, BC",SITE,"Blueberry River 205 near Buick, BC",[],F,,,F,T
 00465-IRAddresses,"House 8 Blueberry River 205, BC",SITE,"House 8, Blueberry River 205 -- Buick, BC","[FRONT_GATE.missing, UNIT_DESIGNATOR.missing]",F,,,F,T
 00466-StreetNameWithMultipleSpellingMistakes,"15 31235 UPPR MCLUR RD, ABBOTSFORD, BC",UNIT,"UNIT 15 -- 31235 Upper MacLure Rd, Abbotsford, BC",[],R,,,T,T
 00467-StreetNameWithMultipleSpellingMistakes,"338 32830 GEORGE FERGUNSO, ABBOTSFORD, BC",UNIT,"UNIT 338 -- 32830 George Ferguson Way, Abbotsford, BC",[],R,,,T,T
