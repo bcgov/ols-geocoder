@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ca.bc.gov.ols.geocoder.rest.batch;
+package ca.bc.gov.ols.geocoder.rest.bulk;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -32,22 +32,23 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
 import ca.bc.gov.ols.geocoder.IGeocoder;
 import ca.bc.gov.ols.geocoder.api.data.GeocodeMatch;
 import ca.bc.gov.ols.geocoder.api.data.SearchResults;
+import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 import ca.bc.gov.ols.geocoder.rest.LocationReprojector;
 
 // For Instant Batch
-public abstract class AbstractBatchResponseWriter extends AbstractHttpMessageConverter<GeocoderBatchProcessor> {
+public abstract class AbstractBulkResponseWriter extends AbstractHttpMessageConverter<BulkGeocodeProcessor> {
 
 	@Autowired
 	protected IGeocoder geocoder;
 	
 
-	public AbstractBatchResponseWriter(MediaType mediaType) {
+	public AbstractBulkResponseWriter(MediaType mediaType) {
 		super(mediaType);
 	}
 
 	@Override
 	protected boolean supports(Class<?> clazz) {
-		return GeocoderBatchProcessor.class.isAssignableFrom(clazz);
+		return BulkGeocodeProcessor.class.isAssignableFrom(clazz);
 	}
 	
 	@Override
@@ -56,31 +57,39 @@ public abstract class AbstractBatchResponseWriter extends AbstractHttpMessageCon
 	}
 
 	@Override
-	protected GeocoderBatchProcessor readInternal(Class<? extends GeocoderBatchProcessor> clazz,
+	protected BulkGeocodeProcessor readInternal(Class<? extends BulkGeocodeProcessor> clazz,
 			HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
 		return null;
 	}
 	
 	@Override
-	protected void writeInternal(GeocoderBatchProcessor proc, HttpOutputMessage outputMessage)
+	protected void writeInternal(BulkGeocodeProcessor proc, HttpOutputMessage outputMessage)
 			throws IOException, HttpMessageNotWritableException {
-		//GeocoderConfig config = geocoder.getDatastore().getConfig();
+		GeocoderConfig config = geocoder.getDatastore().getConfig();
 		Writer out = new OutputStreamWriter(outputMessage.getBody(), "UTF-8");
 		//response.reproject(config.getBaseSrsCode(), response.getOutputSRS());
 		// output header
 		writeHeader(out, proc);
-		proc.start();
+		BulkStatsCalculator statsCalc = new BulkStatsCalculator();
+		proc.start(statsCalc);
+		int maxRequests = clampMax(config.getBulkMaxRequests(), proc.getParams().getMaxRequests()); 
+		int maxTime = clampMax(config.getBulkTimeLimit(), proc.getParams().getMaxTime()) * 1000; 
 		SearchResults results = proc.next();
-		int seqNum = 0;
+		int seqNum = proc.getStartSeqNum();
 		while(results != null) {
-			seqNum++;
-			int resultNum = 0;
+			int resultNum = 1;
 			// reproject the results
 			//reprojectResults(results, results.getSrsCode());
 			for(GeocodeMatch match : results.getMatches()) {
-				resultNum++;
 				// output the result match
 				writeMatch(out, match, seqNum, resultNum, results.getExecutionTime());
+				resultNum++;
+			}
+			seqNum++;
+			// break out if we've hit either limit
+			if((maxRequests != 0 && statsCalc.getProcessedCount() >= maxRequests)
+					|| (maxTime != 0 && statsCalc.getElapsedTime() >= maxTime)) {
+				break;
 			}
 			results = proc.next();
 		}
@@ -88,8 +97,15 @@ public abstract class AbstractBatchResponseWriter extends AbstractHttpMessageCon
 		proc.stop();
 		writeFooter(out, proc);
 		out.flush();
+		//logger.info("Stats: " + proc.getStats().toString());
 	}
 
+	private int clampMax(int configMax, int paramMax) {
+		if(configMax <= 0) return paramMax;
+		if(paramMax <= 0) return configMax;
+		return Math.min(configMax, paramMax);
+	}
+	
 	public void reprojectResults(SearchResults results, Integer srsCode) {
 		LocationReprojector lr = new LocationReprojector(geocoder.getConfig().getBaseSrsCode(), srsCode);
 		if(srsCode != geocoder.getDatastore().getConfig().getBaseSrsCode()) {
@@ -103,11 +119,11 @@ public abstract class AbstractBatchResponseWriter extends AbstractHttpMessageCon
 		}
 	}
 
-	protected abstract void writeHeader(Writer out, GeocoderBatchProcessor proc) throws IOException;
+	protected abstract void writeHeader(Writer out, BulkGeocodeProcessor proc) throws IOException;
 
 	protected abstract void writeMatch(Writer out, GeocodeMatch match, int seqNum, int resultNum, 
 			BigDecimal executionTime) throws IOException;
 
-	protected abstract void writeFooter(Writer out, GeocoderBatchProcessor proc) throws IOException;
+	protected abstract void writeFooter(Writer out, BulkGeocodeProcessor proc) throws IOException;
 
 }

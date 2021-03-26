@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ca.bc.gov.ols.geocoder.rest.batch;
+package ca.bc.gov.ols.geocoder.rest.bulk;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -33,15 +33,15 @@ import ca.bc.gov.ols.geocoder.api.data.StreetIntersectionAddress;
 
 // For Instant Batch
 @Component
-public class CSVBatchResponseConverter extends AbstractBatchResponseWriter {
-	private static final Logger logger = LoggerFactory.getLogger(CSVBatchResponseConverter.class);
+public class CSVBulkResponseConverter extends AbstractBulkResponseWriter {
+	private static final Logger logger = LoggerFactory.getLogger(CSVBulkResponseConverter.class);
 
-	public CSVBatchResponseConverter() {
+	public CSVBulkResponseConverter() {
 		super(new MediaType("text", "csv", Charset.forName("UTF-8")));
 	}
 
 	@Override
-	protected void writeHeader(Writer out, GeocoderBatchProcessor proc) throws IOException {
+	protected void writeHeader(Writer out, BulkGeocodeProcessor proc) throws IOException {
 		out.write("\"sequenceNumber\"," +
 				"\"resultNumber\"," +
 				"\"yourId\"," +
@@ -65,6 +65,7 @@ public class CSVBatchResponseConverter extends AbstractBatchResponseWriter {
 				"\"streetQualifier\"," +
 				"\"localityName\"," +
 				"\"localityType\"," +
+				"\"electoralArea\"," +
 				"\"provinceCode\"," +
 				"\"X\"," +
 				"\"Y\"," +
@@ -75,11 +76,12 @@ public class CSVBatchResponseConverter extends AbstractBatchResponseWriter {
 				"\"blockID\"," +
 				"\"intersectionID\"," +
 				"\"fullSiteDescriptor\"," +
-				"\"narrativeLocation\"," +
+				"\"accessNotes\"," +
 				"\"siteStatus\"," +
 				"\"siteRetireDate\"," +
 				"\"changeDate\"," +
-				"\"isPrimary\"," +
+				"\"isOfficial\"," +
+				"\"degree\"," +
 				"\"executionTime\"\n");
 	}
 	
@@ -111,6 +113,7 @@ public class CSVBatchResponseConverter extends AbstractBatchResponseWriter {
 							+ escape(addr.getStreetQualifier()) + ","
 							+ escape(addr.getLocalityName()) + ","
 							+ escape(addr.getLocalityType()) + ","
+							+ escape(addr.getElectoralArea()) + ","
 							+ escape(addr.getStateProvTerr()) + ","
 							+ (addr.getLocation() == null ? ",," :
 									(addr.getLocation().getX() + ","
@@ -127,7 +130,9 @@ public class CSVBatchResponseConverter extends AbstractBatchResponseWriter {
 							+ escape(addr.getSiteStatus()) + ","
 							+ escape(addr.getSiteRetireDate()) + ","
 							+ escape(addr.getSiteChangeDate()) + ","
-							+ (addr.isPrimary() ? "\"Y\"" : "\"N\"") + ",");
+							+ (addr.isPrimary() ? "\"Y\"" : "\"N\"") + ","
+							//intersection degree
+							+ "," );
 			
 		} else if(match instanceof IntersectionMatch) {
 			StreetIntersectionAddress addr = ((IntersectionMatch)match).getAddress();
@@ -143,6 +148,7 @@ public class CSVBatchResponseConverter extends AbstractBatchResponseWriter {
 							+ ",,,,,,,,,,,,"
 							+ escape(addr.getLocalityName()) + ","
 							+ escape(addr.getLocalityType()) + ","
+							+ escape(addr.getElectoralArea()) + ","
 							+ escape(addr.getStateProvTerr()) + ","
 							+ (addr.getLocation() == null ? ",," :
 									(addr.getLocation().getX() + ","
@@ -154,15 +160,14 @@ public class CSVBatchResponseConverter extends AbstractBatchResponseWriter {
 							+ ",,"
 							+ escape(addr.getID()) + ","
 							// fullsitedesc,narrativeloc,sitestatus,steretiredte,chngdate,isprimary
-							+ ",,,,,,");
+							+ ",,,,,,"
+							+ addr.getDegree());
 		}
 		out.write(executionTime + "\n");
 	}
 	
 	@Override
-	protected void writeFooter(Writer out, GeocoderBatchProcessor proc) throws IOException {
-		logger.info("Stats: " + proc.getStats().toString());
-		out.write("totalElapsedTime," + proc.getStats().getElapsedTime() + "\n");
+	protected void writeFooter(Writer out, BulkGeocodeProcessor proc) throws IOException {
 	}
 
 	/**

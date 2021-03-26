@@ -13,34 +13,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ca.bc.gov.ols.geocoder.rest.batch;
+package ca.bc.gov.ols.geocoder.rest.bulk;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import ca.bc.gov.ols.rowreader.CsvRowReader;
 import ca.bc.gov.ols.geocoder.GeocoderDataStore;
 import ca.bc.gov.ols.geocoder.IGeocoder;
 import ca.bc.gov.ols.geocoder.api.GeocodeQuery;
+import ca.bc.gov.ols.geocoder.api.data.ModifiableLocation;
 import ca.bc.gov.ols.geocoder.api.data.SearchResults;
-import ca.bc.gov.ols.geocoder.rest.controllers.GeocodeParameters;
+import ca.bc.gov.ols.geocoder.rest.LocationReprojector;
+import ca.bc.gov.ols.geocoder.rest.controllers.BulkGeocodeParameters;
 
-// For Instant Batch
-public class GeocoderBatchProcessor {
+public class BulkGeocodeProcessor {
 
 	private IGeocoder geocoder;
-	private GeocodeParameters params;
+	private BulkGeocodeParameters params;
 	private CsvRowReader rr;
-	private BatchStatsCalculator stats;
+	private BulkStatsCalculator stats;
+	private int fromSrsCode;
+	private int toSrsCode;
+	private LocationReprojector lr;
 
-	public GeocoderBatchProcessor(GeocodeParameters params, IGeocoder geocoder) {
+	public BulkGeocodeProcessor(BulkGeocodeParameters params, IGeocoder geocoder) {
 		this.params = params;
 		this.geocoder = geocoder;
+		fromSrsCode =  geocoder.getConfig().getBaseSrsCode();
+		toSrsCode = params.getOutputSRS();
+		lr = new LocationReprojector(fromSrsCode, toSrsCode);
 	}
 	
-	public void start() throws IOException {
+	public void start(BulkStatsCalculator statsCalc) throws IOException {
 		rr = new CsvRowReader(params.getFile().getInputStream(), GeocoderDataStore.getGeometryFactory());
-		stats = new BatchStatsCalculator();
+		stats = statsCalc;
 		stats.start();
+		
 	}
 	
 	public SearchResults next() {
@@ -68,31 +77,48 @@ public class GeocoderBatchProcessor {
 			qry.setStateProvTerr(rr.getString("province"));
 		}
 
+		String yourId = rr.getString("yourId");
+		if(yourId != null) {
+			qry.setYourId(yourId);
+		}
 		// handle additional query parameters
-//		qry.setMaxResults(params.getmaxResults);
-//		qry.setSetBack(setBack);
-//		qry.setMinScore(minScore);
-//		qry.setQuickMatch(quickMatch);
-//		qry.setEcho(echo);
-//		qry.setInterpolation(interpolation);
-//		qry.setLocationDescriptor(locationDescriptor);
-//
-//
-//		qry.setEcho(echo);
+		qry.setMaxResults(params.getMaxResults());
+		qry.setSetBack(params.getSetBack());
+		qry.setMinScore(params.getMinScore());
+		qry.setEcho(params.isEcho());
+		qry.setInterpolation(params.getInterpolation());
+		qry.setLocationDescriptor(params.getLocationDescriptor());
+		qry.setOutputSRS(params.getOutputSRS());
+
 		SearchResults results = geocoder.geocode(qry);
-//		results.setInterpolation(qry.getInterpolation());
-//		results.setSrsCode(outputSRS);
+		if(toSrsCode != fromSrsCode) {
+			lr.reproject(results.getMatches());
+			lr.reprecision(results.getMatches());
+		} else {
+			lr.reprecision(results.getMatches());
+		}
+		
+		results.setInterpolation(qry.getInterpolation());
+		results.setSrsCode(params.getOutputSRS());
 		
 		stats.record(results.getExecutionTime().doubleValue(), results.getBestScore());
 		return results;
 	}
 	
-	public BatchStatsCalculator stop() {
+	public int getStartSeqNum() {
+		return params.getStartSeqNum();
+	}
+	
+	public BulkStatsCalculator stop() {
 		stats.stop();
 		return stats;
 	}
 	
-	public BatchStatsCalculator getStats() {
+	public BulkStatsCalculator getStats() {
 		return stats;
+	}
+
+	public BulkGeocodeParameters getParams() {
+		return params;
 	}
 }

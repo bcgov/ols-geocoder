@@ -70,6 +70,8 @@ public class GeocoderConfig {
 	protected EnumMap<MatchPrecision, Integer> matchPrecisionPoints =
 			new EnumMap<MatchPrecision, Integer>(MatchPrecision.class);
 	protected int maxWithinResults;
+	protected int bulkMaxRequests = 0;
+	protected int bulkTimeLimit = 0;
 	protected double blockFaceOffset;
 	protected String moreInfoUrl;
 	protected String privacyStatement;
@@ -140,6 +142,10 @@ public class GeocoderConfig {
 							Integer.parseInt(value));
 				} else if("maxWithinResults".equals(name)) {
 					maxWithinResults = Integer.parseInt(value);
+				} else if("bulkMaxRequests".equals(name)) {
+					bulkMaxRequests = Integer.parseInt(value);
+				} else if("bulkTimeLimit".equals(name)) {
+					bulkTimeLimit = Integer.parseInt(value);
 				} else if("blockFaceOffset".equals(name)) {
 					blockFaceOffset = Double.parseDouble(value);
 				} else if("moreInfoUrl".equals(name)) {
@@ -508,6 +514,14 @@ public class GeocoderConfig {
 
 	public String getDataSourceClassName() {
 		return dataSourceClassName;
+	}
+
+	public int getBulkMaxRequests() {
+		return bulkMaxRequests;
+	}
+
+	public int getBulkTimeLimit() {
+		return bulkTimeLimit;
 	}
 
 }
