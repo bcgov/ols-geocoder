@@ -6,6 +6,8 @@ BGEO,occupantCustomKmlStyleUrl,"http://openmaps.gov.bc.ca/kml/occupant_custom_st
 BGEO,copyrightLicenseURI,"http://www.data.gov.bc.ca/local/dbc/docs/license/OGL-vbc2.0.pdf"
 BGEO,copyrightNotice,"Copyright 2015 Province of British Columbia - Open Government License"
 BGEO,maxWithinResults,"200"
+BGEO,bulkMaxRequests,"1"
+BGEO,bulkTimeLimit,"10"
 BGEO,blockFaceOffset,"0.5"
 BGEO,baseSrsCode,"3005"
 BGEO,baseSrsBounds,"200000,300000,1900000,1800000"

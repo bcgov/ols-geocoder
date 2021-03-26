@@ -25,6 +25,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -32,6 +33,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import ca.bc.gov.ols.geocoder.IGeocoder;
+import ca.bc.gov.ols.geocoder.rest.bulk.CSVBulkResponseConverter;
 import ca.bc.gov.ols.geocoder.rest.converters.BooleanConverter;
 import ca.bc.gov.ols.geocoder.rest.converters.InterpolationConverter;
 import ca.bc.gov.ols.geocoder.rest.converters.LocationDescriptorConverter;
@@ -82,7 +84,7 @@ public class WebConfig implements WebMvcConfigurer {
 		converters.add(htmlErrorMessageConverter());
 		converters.add(kmlErrorMessageConverter());
 		converters.add(csvStringConverter());
-		//converters.add(csvBatchResponseConverter());
+		converters.add(csvBulkResponseConverter());
 		converters.add(jsonStringListConverter());
 		//super.configureMessageConverters(converters);
 	}
@@ -142,18 +144,17 @@ public class WebConfig implements WebMvcConfigurer {
 		return new CsvStringConverter();
 	}
 	
-//  For Instant Batch
-//	@Bean
-//	public CSVBatchResponseConverter csvBatchResponseConverter() {
-//		return new CSVBatchResponseConverter();
-//	}
-//	
-//	@Bean
-//	public CommonsMultipartResolver multipartResolver() {
-//	    CommonsMultipartResolver resolver=new CommonsMultipartResolver();
-//	    resolver.setDefaultEncoding("utf-8");
-//	    return resolver;
-//	}
+	@Bean
+	public CSVBulkResponseConverter csvBulkResponseConverter() {
+		return new CSVBulkResponseConverter();
+	}
+	
+	@Bean
+	public CommonsMultipartResolver multipartResolver() {
+	    CommonsMultipartResolver resolver=new CommonsMultipartResolver();
+	    resolver.setDefaultEncoding("utf-8");
+	    return resolver;
+	}
 
 	@Bean
 	public JsonStringListConverter jsonStringListConverter() {

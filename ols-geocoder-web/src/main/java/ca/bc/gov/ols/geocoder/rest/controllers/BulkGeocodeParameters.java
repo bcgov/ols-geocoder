@@ -19,9 +19,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import ca.bc.gov.ols.geocoder.api.GeocodeQuery;
 
-// For Instant Batch
-public class GeocodeParameters extends GeocodeQuery {
+public class BulkGeocodeParameters extends GeocodeQuery {
 	private MultipartFile file;
+	private int startSeqNum = 1;
+	private int maxRequests = 0;
+	private int maxTime = 0;
 
 	public MultipartFile getFile() {
 		return file;
@@ -30,5 +32,29 @@ public class GeocodeParameters extends GeocodeQuery {
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
+	
+	public int getStartSeqNum() {
+		return startSeqNum;
+	}
 
+	public void setStartSeqNum(int startSeqNum) {
+		this.startSeqNum = startSeqNum;
+	}
+
+	public int getMaxRequests() {
+		return maxRequests;
+	}
+	
+	public void setMaxRequests(int maxRequests) {
+		this.maxRequests = maxRequests;
+	}
+
+	public int getMaxTime() {
+		return maxTime;
+	}
+
+	public void setMaxTime(int maxTime) {
+		this.maxTime = maxTime;
+	}
+	
 }

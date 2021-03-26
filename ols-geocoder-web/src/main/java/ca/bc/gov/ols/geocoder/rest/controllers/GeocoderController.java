@@ -15,6 +15,8 @@
  */
 package ca.bc.gov.ols.geocoder.rest.controllers;
 
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.PrecisionModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +35,8 @@ import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 import ca.bc.gov.ols.geocoder.data.enumTypes.Interpolation;
 import ca.bc.gov.ols.geocoder.rest.GeotoolsGeometryReprojector;
 import ca.bc.gov.ols.geocoder.rest.OlsResponse;
+import ca.bc.gov.ols.geocoder.rest.bulk.BulkGeocodeProcessor;
 import ca.bc.gov.ols.geocoder.rest.exceptions.InvalidParameterException;
-
-import org.locationtech.jts.geom.GeometryFactory;
-import org.locationtech.jts.geom.PrecisionModel;
 
 @RestController
 @CrossOrigin
@@ -90,19 +90,18 @@ public class GeocoderController {
 		return response;
 	}
 
-// For Instant Batch	
-//	@RequestMapping(value = "/batch", method = RequestMethod.POST)
-//	public GeocoderBatchProcessor batch(GeocodeParameters params, BindingResult bindingResult) {
-//			if(bindingResult.hasErrors()) {
-//				throw new InvalidParameterException(bindingResult);
-//			}
-//			params.setIncludeOccupants(false);
-//			GeocoderConfig config = geocoder.getDatastore().getConfig();
-//			params.resolveAndValidate(config,
-//					new GeometryFactory(new PrecisionModel(), params.getOutputSRS()),
-//					new GeotoolsGeometryReprojector());
-//		GeocoderBatchProcessor proc = new GeocoderBatchProcessor(params, geocoder);
-//		return proc;
-//	}
+	@RequestMapping(value = "/addresses/bulk", method = RequestMethod.POST)
+	public BulkGeocodeProcessor bulkGeocode(BulkGeocodeParameters params, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			throw new InvalidParameterException(bindingResult);
+		}
+		params.setIncludeOccupants(false);
+		GeocoderConfig config = geocoder.getDatastore().getConfig();
+		params.resolveAndValidate(config,
+				new GeometryFactory(new PrecisionModel(), params.getOutputSRS()),
+				new GeotoolsGeometryReprojector());
+		BulkGeocodeProcessor proc = new BulkGeocodeProcessor(params, geocoder);
+		return proc;
+	}
 		
 }

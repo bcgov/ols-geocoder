@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ca.bc.gov.ols.geocoder.rest.batch;
+package ca.bc.gov.ols.geocoder.rest.bulk;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,8 +21,7 @@ import java.util.List;
 
 import ca.bc.gov.ols.util.StopWatch;
 
-//For Instant Batch
-public class BatchStatsCalculator {
+public class BulkStatsCalculator {
 
 		List<Double> times = new ArrayList<Double>();
 		List<Integer> scores = new ArrayList<Integer>();
@@ -75,6 +74,10 @@ public class BatchStatsCalculator {
 			stdDevTime = Math.sqrt(varianceTime);
 			stdDevScore = Math.sqrt(varianceScore);
 			
+		}
+		
+		public int getProcessedCount() {
+			return times.size();
 		}
 		
 		public long getElapsedTime() {
