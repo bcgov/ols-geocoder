@@ -8,4 +8,3 @@ Version | Release Date | Features
 |||Indian Reserves have names that relate to the nearest DRA locality (e.g., ***Boston Bar 8 near Boston Bar***)
 4.2|Jan 2022|Higher service availability through elimination of downtime during batch geocoder upgrades
 4.3|Mar 2022|More frequent address data update|
-|||Better occupant data management tools|
