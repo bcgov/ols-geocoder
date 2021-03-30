@@ -5,7 +5,7 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
 
 ## April 13, 2021
 - BC Address Geocoder Version 4.1.1 released (both online and batch geocoders)
-- Geocoder startup process updated to handle null values in Integer properties. These null values were introduced by a new version of our main data integration tool which is called FME.
+- Geocoder startup process updated to handle null values in Integer properties. These null values were introduced by a new version of our main data integration tool which is called FME Workbench 2020.2.3.0 (64 Bit).
 
 
 ## February 2, 2021
