@@ -6,6 +6,6 @@ Version | Release Date | Features
 |||Make all locality names unique to avoid user-confusion in autocompletion mode
 |||Unincorporated places and communities that aren't known to the BC Digital Road Atlas have names that relate to the appropriate DRA locality (e.g., ***Brentwood Bay in Central Saanich***, ***Fairfield in Victoria***)
 |||Indian Reserves have names that relate to the nearest DRA locality (e.g., ***Boston Bar 8 near Boston Bar***)
-4.2|Jan 2022|Higher service availability through auto-scaling and cloud-ready architecture
-4.3|Mar 2022|Frequent address data update|
+4.2|Jan 2022|Higher service availability through elimination of downtime during software upgrades
+4.3|Mar 2022|More frequent address data update|
 |||Better occupant data management tools|
