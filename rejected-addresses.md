@@ -5,7 +5,7 @@ Here is a table of common address errors and how well they are handled in Geocod
 [Oscar the Grouch 525 Superior St Felix the Cat Victoria Winnie the Pooh BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=Oscar%20the%20Grouch%20525%20Superior%20St%20Felix%20the%20Cat%20Victoria%20Winnie%20the%20Pooh%20BC)|525 Superior St, Victoria, BC|90+|BC|Noise|Yes
 [964 Lillooet Rd North Vancouver, North Vancouver, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=964%20Lillooet%20Rd%20North%20Vancouver,%20North%20Vancouver,%20BC)|964 Lillooet Rd North Vancouver, BC|90+|964 Lillooet Rd North Vancouver, BC and score below 90|Duplicate locality name|yes
 [964 LIllooet Rd Road, North Vancouver, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=964%20LIllooet%20Rd%20Road,%20North%20Vancouver,%20BC)|964 Lillooet Rd, North Vancouver, BC|90+|964 Lillooet Rd, North Vancouver, BC with score below 90|Duplicate street type|yes
-1413 Omenica Ave, Prince Rupert, BC|1413 Omineca Ave, Prince Rupert, BC|90+|Rupert, BC with score below 90|Multiple spelling mistakes|yes
+[1413 Omenica Ave, Prince Rupert, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=1413%20Omenica%20Ave,%20Prince%20Rupert,%20BC)|1413 Omineca Ave, Prince Rupert, BC|90+|Rupert, BC with score below 90|Multiple spelling mistakes|yes
 500 helmcken rd, victoria, BC|Helmcken Alley, Victoria, BC|below 90|500 Helmcken St, Vancouver, BC|Locality hopping|yes
 1985 Millstream Rd, Old Mill Stream Manor, Highlands, BC|1985 Millstream Rd, Highlands,BC|90+|Highlands, BC with score below 90|Unknown siteName|yes
 102 A Ave, Surrey, BC|102A Ave, Surrey, BC|below 90|A Surrey Ave, Kamloops, BC with score below 90|Numbered streetName with detached suffix|yes
@@ -20,5 +20,6 @@ c/o PO BOX 201, Quesnel, BC|Quesnel, BC|below 90|BC|c/o with PO BOX|Yes
 c/o Joe Fonebone 442 Kinchant St, Quesnel, BC|442 Kinchant St, Quesnel, BC|90+|BC| c/o with name and civic address|Yes
 200 21st Ave, prince george, BC|Prince George, BC|below 90|200 21st Ave N, Cranbrook, BC|Unknown street in locality|no
 950 Hope Princeton Way, Hope, BC|950 Old Hope Princeton Way, Hope, BC|90+|950 Hope St, Port Moody, BC|Suffix matching|no
+[964 Lillooet Rd St, Lillooet St,  Rd,  North Vancouver, Squamish, BC](964 Lillooet Rd St, Lillooet St,  Rd,  North Vancouver, Squamish, BC)|964 Lilloet Rd, North Vancouver, BC|?|Redundant, conflicting, address elements|Yes
 
 [Here](https://github.com/bcgov/ols-geocoder/blob/gh-pages/understanding-match-scoring.md) is a detailed explanation of address match scoring.
