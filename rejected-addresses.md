@@ -16,7 +16,7 @@ Unit910 7380 ELMBRIDGE WAY, RICHMOND, BC| Unit 910 -- 7380 ELMBRIDGE WAY, RICHMO
 58550 Wild Rose Lane Hope BC|58550 Wildrose Lane, Laidlaw, BC|90+|Hope, BC with score below 90|Compound name entered as separate words|No
 3821 Cedarhill Rd, Saanich, BC|3821 Cedar hill Rd, Saanich, BC|90+|3821 Saanich Rd, Saanich, BC|Separate words entered as compound name|No
 c/o PO BOX 201, Quesnel, BC|Quesnel, BC|below 90|BC|c/o with PO BOX|Yes
-c/o 442 Kinchant St, Quesnel, BC|442 Kinchant St, Quesnel, BC|90+|442 Kinchant St, Quesnel, BC with score below 90|c/o with civic address|Yes
+[c/o 442 Kinchant St, Quesnel, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=c/o%20Joe%20Fonebone%20442%20Kinchant%20St,%20Quesnel,%20BC)|442 Kinchant St, Quesnel, BC|90+|442 Kinchant St, Quesnel, BC with score below 90|c/o with civic address|Yes
 c/o Joe Fonebone 442 Kinchant St, Quesnel, BC|442 Kinchant St, Quesnel, BC|90+|BC| c/o with name and civic address|Yes
 200 21st Ave, prince george, BC|Prince George, BC|below 90|200 21st Ave N, Cranbrook, BC|Unknown street in locality|no
 950 Hope Princeton Way, Hope, BC|950 Old Hope Princeton Way, Hope, BC|90+|950 Hope St, Port Moody, BC|Suffix matching|no
