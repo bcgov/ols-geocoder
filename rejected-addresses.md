@@ -2,9 +2,9 @@ Here is a table of common address errors and how well they are handled in Geocod
 
 |Given address|Expected result|Expected score|Actual result in Geocoder 4.0|What 4.0 can't handle|Fixed in 4.1
 |---|---|---|---|---|---|
-Oscar the Grouch 525 Superior St Felix the Cat Victoria Winnie the Pooh BC|525 Superior St, Victoria, BC|90+|BC|Noise|Yes
-964 Lillooet Rd North Vancouver, North Vancouver, BC|964 Lillooet Rd North Vancouver, BC|90+|964 Lillooet Rd North Vancouver, BC and score below 90|Duplicate locality name|yes
-964 LIllooet Rd Road, North Vancouver, BC|964 Lillooet Rd, North Vancouver, BC|90+|964 Lillooet Rd, North Vancouver, BC with score below 90|Duplicate street type|yes
+[Oscar the Grouch 525 Superior St Felix the Cat Victoria Winnie the Pooh BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=Oscar%20the%20Grouch%20525%20Superior%20St%20Felix%20the%20Cat%20Victoria%20Winnie%20the%20Pooh%20BC)|525 Superior St, Victoria, BC|90+|BC|Noise|Yes
+[964 Lillooet Rd North Vancouver, North Vancouver, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=964%20Lillooet%20Rd%20North%20Vancouver,%20North%20Vancouver,%20BC)|964 Lillooet Rd North Vancouver, BC|90+|964 Lillooet Rd North Vancouver, BC and score below 90|Duplicate locality name|yes
+[964 LIllooet Rd Road, North Vancouver, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=964%20LIllooet%20Rd%20Road,%20North%20Vancouver,%20BC)|964 Lillooet Rd, North Vancouver, BC|90+|964 Lillooet Rd, North Vancouver, BC with score below 90|Duplicate street type|yes
 1413 Omenica Ave, Prince Rupert, BC|1413 Omineca Ave, Prince Rupert, BC|90+|Rupert, BC with score below 90|Multiple spelling mistakes|yes
 500 helmcken rd, victoria, BC|Helmcken Alley, Victoria, BC|below 90|500 Helmcken St, Vancouver, BC|Locality hopping|yes
 1985 Millstream Rd, Old Mill Stream Manor, Highlands, BC|1985 Millstream Rd, Highlands,BC|90+|Highlands, BC with score below 90|Unknown siteName|yes
