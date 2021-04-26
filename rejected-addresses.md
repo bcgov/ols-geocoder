@@ -20,6 +20,6 @@ c/o PO BOX 201, Quesnel, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.h
 [c/o Joe Fonebone 442 Kinchant St, Quesnel, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=c/o%20Joe%20Fonebone%20442%20Kinchant%20St,%20Quesnel,%20BC)|442 Kinchant St, Quesnel, BC|90+|BC| c/o with name and civic address|Yes
 [200 21st Ave, prince george, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=200%2021st%20Ave,%20prince%20george,%20BC)|Prince George, BC|below 90|200 21st Ave N, Cranbrook, BC|Unknown street in locality|no
 [950 Hope Princeton Way, Hope, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=950%20Hope%20Princeton%20Way,%20Hope,%20BC)|950 Old Hope Princeton Way, Hope, BC|90+|950 Hope St, Port Moody, BC|Suffix matching|no
-[964 Lillooet Rd St, Lillooet St,  Rd,  North Vancouver, Squamish, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=964%20Lillooet%20Rd%20St,%20Lillooet%20St,%20%20Rd,%20%20North%20Vancouver,%20Squamish,%20BC)|964 Lilloet Rd, North Vancouver, BC|?|Redundant, conflicting, address elements|Yes
+[964 Lillooet Rd St, Lillooet St,  Rd,  North Vancouver, Squamish, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=964%20Lillooet%20Rd%20St,%20Lillooet%20St,%20%20Rd,%20%20North%20Vancouver,%20Squamish,%20BC)|964 Lilloet Rd, North Vancouver, BC|90+|?|Redundant, conflicting, address elements|Yes
 
 [Here](https://github.com/bcgov/ols-geocoder/blob/gh-pages/understanding-match-scoring.md) is a detailed explanation of address match scoring.
