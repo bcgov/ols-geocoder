@@ -14,12 +14,12 @@ Here is a table of common address errors and how well they are handled in Geocod
 [10381 POPKUM RD S, ROSEDALE, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=10381%20POPKUM%20RD%20S,%20ROSEDALE,%20BC)|10381 Popkum Rd S, Popkum, BC|90+|10381 Popkum Rd S, Popkum, BC with score below 90 or higher|Missing locality alias which leads to a false negative (score below 90)|yes
 [105 150 21ST ST BUZZER 49, WEST VANCOUVER, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=105%20150%2021ST%20ST%20BUZZER%2049,%20WEST%20VANCOUVER,%20BC)|UNIT 105 -- 150 21st St, West Vancouver, BC|90+|UNIT 105 -- 150 21st St, West Vancouver, BC with score below 90|Unexpected info (PO Box) at front of address and between streetAddress and locality which leads to a false negative (score below 90)|yes
 [58550 Wild Rose Lane Hope BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=58550%20Wild%20Rose%20Lane%20Hope%20BC)|58550 Wildrose Lane, Laidlaw, BC|90+|Hope, BC with score below 90|Compound name entered as separate words|No
-3821 Cedarhill Rd, Saanich, BC|3821 Cedar hill Rd, Saanich, BC|90+|3821 Saanich Rd, Saanich, BC|Separate words entered as compound name|No
-c/o PO BOX 201, Quesnel, BC|Quesnel, BC|below 90|BC|c/o with PO BOX|Yes
+[3821 Cedarhill Rd, Saanich, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=3821%20Cedarhill%20Rd,%20Saanich,%20BC)|3821 Cedar hill Rd, Saanich, BC|90+|3821 Saanich Rd, Saanich, BC|Separate words entered as compound name|No
+c/o PO BOX 201, Quesnel, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=c/o%20PO%20BOX%20201,%20Quesnel,%20BC)|Quesnel, BC|below 90|BC|c/o with PO BOX|Yes
 [c/o 442 Kinchant St, Quesnel, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=c/o%20Joe%20Fonebone%20442%20Kinchant%20St,%20Quesnel,%20BC)|442 Kinchant St, Quesnel, BC|90+|442 Kinchant St, Quesnel, BC with score below 90|c/o with civic address|Yes
-c/o Joe Fonebone 442 Kinchant St, Quesnel, BC|442 Kinchant St, Quesnel, BC|90+|BC| c/o with name and civic address|Yes
-200 21st Ave, prince george, BC|Prince George, BC|below 90|200 21st Ave N, Cranbrook, BC|Unknown street in locality|no
-950 Hope Princeton Way, Hope, BC|950 Old Hope Princeton Way, Hope, BC|90+|950 Hope St, Port Moody, BC|Suffix matching|no
-[964 Lillooet Rd St, Lillooet St,  Rd,  North Vancouver, Squamish, BC](964 Lillooet Rd St, Lillooet St,  Rd,  North Vancouver, Squamish, BC)|964 Lilloet Rd, North Vancouver, BC|?|Redundant, conflicting, address elements|Yes
+[c/o Joe Fonebone 442 Kinchant St, Quesnel, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=c/o%20Joe%20Fonebone%20442%20Kinchant%20St,%20Quesnel,%20BC)|442 Kinchant St, Quesnel, BC|90+|BC| c/o with name and civic address|Yes
+[200 21st Ave, prince george, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=200%2021st%20Ave,%20prince%20george,%20BC)|Prince George, BC|below 90|200 21st Ave N, Cranbrook, BC|Unknown street in locality|no
+[950 Hope Princeton Way, Hope, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=950%20Hope%20Princeton%20Way,%20Hope,%20BC)|950 Old Hope Princeton Way, Hope, BC|90+|950 Hope St, Port Moody, BC|Suffix matching|no
+[964 Lillooet Rd St, Lillooet St,  Rd,  North Vancouver, Squamish, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=964%20Lillooet%20Rd%20St,%20Lillooet%20St,%20%20Rd,%20%20North%20Vancouver,%20Squamish,%20BC)|964 Lilloet Rd, North Vancouver, BC|?|Redundant, conflicting, address elements|Yes
 
 [Here](https://github.com/bcgov/ols-geocoder/blob/gh-pages/understanding-match-scoring.md) is a detailed explanation of address match scoring.
