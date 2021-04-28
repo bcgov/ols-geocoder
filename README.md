@@ -32,3 +32,4 @@ Document|Description|Audience
 [OpenStreetMap Suitability Addresses](https://github.com/bcgov/ols-geocoder/blob/gh-pages/itn-osm-comparison.csv)|Random addresses selected for use in the OSM suitability study|App developers
 [Geocoder Roadmap](https://github.com/bcgov/ols-geocoder/blob/gh-pages/roadmap.md)|Planned major enhancements to the geocoder|Everyone
 [Geocoder Standards Roadmap](https://github.com/bcgov/ols-geocoder/blob/gh-pages/standards-roadmap.md)|Planned standards and updates to existing standards|Data administrators, geocoder clients,app developers,address authorities, address data suppliers
+[OLS Geocoder Installation Instructions](https://github.com/bcgov/ols-geocoder/blob/dev/INSTALL.md)|Instructions for installing OLS-Geocoder in your own environment|Developers|
