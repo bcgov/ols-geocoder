@@ -1,0 +1,465 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+labels:
+  template: geocoder-template
+metadata:
+  name: geocoder-template
+
+parameters:
+  - name: "DEPLOY_NAMESPACE"
+    description: "ocp namespace to be deployed"
+    value: namespace
+  - name: "APP_NAME"
+    description: "name of app"
+    value: geocoder
+  - name: "ENV"
+    description: "environment"
+    value: dev
+  - name: "TOOLS_NAMESPACE"
+    description: "tools namespace where build will be"
+    value: tools_namespace
+ 
+objects:
+  - kind: Route
+    apiVersion: route.openshift.io/v1
+    metadata:
+      name: ${APP_NAME}-${ENV}-admin-route
+      labels:
+        app: ${APP_NAME}-${ENV}-admin
+    spec:
+      host: ${APP_NAME}-admin-${ENV}.apps.silver.devops.gov.bc.ca
+      to:
+        kind: Service
+        name: ${APP_NAME}-${ENV}-admin-service
+        weight: 100
+      port:
+        targetPort: ${APP_NAME}-${ENV}-admin
+      tls:
+        termination: edge
+        insecureEdgeTerminationPolicy: Redirect
+      wildcardPolicy: None
+
+  - kind: Route
+    apiVersion: route.openshift.io/v1
+    metadata:
+      name: ${APP_NAME}-${ENV}-web-route
+      labels:
+        app: ${APP_NAME}-${ENV}-web
+    spec:
+      host: ${APP_NAME}-${ENV}.apps.silver.devops.gov.bc.ca
+      to:
+        kind: Service
+        name: ${APP_NAME}-${ENV}-web-service
+        weight: 100
+      port:
+        targetPort: ${APP_NAME}-${ENV}-web
+      tls:
+        termination: edge
+        insecureEdgeTerminationPolicy: Redirect
+      wildcardPolicy: None
+
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      labels:
+        app: ${APP_NAME}-${ENV}-web
+      name: ${APP_NAME}-${ENV}-web-service
+    spec:
+      ports:
+        - name: ${APP_NAME}-${ENV}-web
+          port: 8080
+          protocol: TCP
+          targetPort: 8080
+      selector:
+        app: ${APP_NAME}-${ENV}-web
+      sessionAffinity: None
+      type: ClusterIP
+
+
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      labels:
+        app: ${APP_NAME}-${ENV}-admin
+      name: ${APP_NAME}-${ENV}-admin-service
+    spec:
+      ports:
+        - name: ${APP_NAME}-${ENV}-admin
+          port: 8080
+          protocol: TCP
+          targetPort: 8080
+      selector:
+        app: ${APP_NAME}-${ENV}-admin
+      sessionAffinity: None
+      type: ClusterIP
+      
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      labels:
+        app: cassandra
+      name: cassandra
+    spec:
+      clusterIP: None
+      ports:
+        - port: 9042
+          protocol: TCP
+          targetPort: 9042
+      selector:
+        app: cassandra
+      sessionAffinity: None
+      type: ClusterIP
+  
+  - apiVersion: apps/v1
+    kind: StatefulSet
+    metadata:
+      labels:
+        app: cassandra
+        statefulset: cassandra
+      name: cassandra
+    spec:
+      podManagementPolicy: OrderedReady
+      replicas: 3
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          statefulset: cassandra
+      serviceName: cassandra
+      template:
+        metadata:
+          labels:
+            app: cassandra
+            statefulset: cassandra
+        spec:
+          affinity:
+            podAntiAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                  - key: statefulset
+                    operator: In
+                    values:
+                    - cassandra
+                topologyKey: kubernetes.io/hostname
+          containers:
+          - command:
+            - /docker-entrypoint.sh
+            - -R
+            env:
+            - name: MAX_HEAP_SIZE
+              value: 2500M
+            - name: HEAP_NEWSIZE
+              value: 100M
+            - name: CASSANDRA_LISTEN_ADDRESS
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.podIP
+            - name: CASSANDRA_SEEDS
+              value: cassandra-0.cassandra
+            - name: CASSANDRA_CLUSTER_NAME
+              value: k8s
+            - name: CASSANDRA_DC
+              value: DC1
+            - name: CASSANDRA_RACK
+              value: Rack1
+            - name: CASSANDRA_ENDPOINT_SNITCH
+              value: GossipingPropertyFileSnitch
+            image: docker-remote.artifacts.developer.gov.bc.ca/cassandra:3.11.2
+            pullSecret:
+              name: artifactory-creds 
+            imagePullPolicy: Always
+            lifecycle:
+              preStop:
+                exec:
+                  command:
+                  - /bin/sh
+                  - -c
+                  - nodetool drain
+            name: cassandra
+            ports:
+            - containerPort: 7000
+              name: intra-node
+              protocol: TCP
+            - containerPort: 7001
+              name: tls-intra-node
+              protocol: TCP
+            - containerPort: 7199
+              name: jmx
+              protocol: TCP
+            - containerPort: 9042
+              name: cql
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 500m
+                memory: 4Gi
+              requests:
+                cpu: 250m
+                memory: 1Gi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /var/lib/cassandra
+              name: cassandra-data
+            - mountPath: /var/log/cassandra
+              name: cassandra-logs
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - emptyDir: {}
+            name: cassandra-logs
+      updateStrategy:
+        rollingUpdate:
+          partition: 0
+        type: RollingUpdate
+      volumeClaimTemplates:
+      - metadata:
+          name: cassandra-data
+        spec:
+          accessModes:
+          - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
+          storageClassName: netapp-block-standard
+
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      annotations:
+      labels:
+        app: ${APP_NAME}-${ENV}-web
+      name: ${APP_NAME}-${ENV}-web
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: ${APP_NAME}-${ENV}-web
+      template:
+        metadata:
+          labels:
+            app: ${APP_NAME}-${ENV}-web
+        spec:
+          containers:
+            - command:
+                - catalina.sh
+                - run
+              env:
+                - name: CATALINA_BASE
+                  value: /usr/local/tomcat
+                - name: LogFilePath
+                  value: /usr/local/tomcat/logs/bgeo.log
+                - name: OLS_CASSANDRA_LOCAL_DATACENTER
+                  value: DC1
+              image: 'docker-remote.artifacts.developer.gov.bc.ca/tomcat:9-jre11-slim'
+              pullSecret:
+                name: artifactory-creds
+              imagePullPolicy: IfNotPresent
+              resources:
+                limits:
+                  cpu: "2"
+                  memory: 6Gi
+              livenessProbe:
+                failureThreshold: 3
+                initialDelaySeconds: 45
+                periodSeconds: 10
+                successThreshold: 1
+                tcpSocket:
+                  port: 8080
+                timeoutSeconds: 1
+              name: api
+              ports:
+                - containerPort: 8080
+                  name: catalina-http
+                  protocol: TCP
+              readinessProbe:
+                failureThreshold: 3
+                httpGet:
+                  path: /ping
+                  port: 8080
+                  scheme: HTTP
+                initialDelaySeconds: 255
+                periodSeconds: 10
+                successThreshold: 1
+                timeoutSeconds: 1
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              volumeMounts:
+                - mountPath: /usr/local/tomcat/logs
+                  name: tc-work
+                - mountPath: /usr/local/tomcat/work
+                  name: tc-work
+                - mountPath: /usr/local/tomcat/temp
+                  name: tc-work
+                - mountPath: /usr/local/tomcat/conf/Catalina
+                  name: tc-conf
+                - mountPath: /usr/local/tomcat/webapps
+                  name: app-volume
+          dnsPolicy: ClusterFirst
+          initContainers:
+            - command:
+                - cp
+                - /geocoder.war
+                - /app/ROOT.war
+              image: image-registry.openshift-image-registry.svc:5000/${TOOLS_NAMESPACE}/geocoder-sidecar:latest
+              imagePullPolicy: Always
+              name: war
+              resources: {}
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              volumeMounts:
+                - mountPath: /app
+                  name: app-volume
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+            - emptyDir: {}
+              name: tc-work
+            - emptyDir: {}
+              name: tc-conf
+            - emptyDir: {}
+              name: app-volume
+
+  - apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      labels:
+        app: ${APP_NAME}-${ENV}-admin
+      name: ${APP_NAME}-${ENV}-admin
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: ${APP_NAME}-${ENV}-admin
+          name: ${APP_NAME}-${ENV}-admin
+      template:
+        metadata:
+          labels:
+            app: ${APP_NAME}-${ENV}-admin
+            name: ${APP_NAME}-${ENV}-admin
+        spec:
+          containers:
+            - command:
+                - catalina.sh
+                - run
+              env:
+                - name: CATALINA_BASE
+                  value: /usr/local/tomcat
+                - name: LogFilePath
+                  value: /usr/local/tomcat/logs/bgeo.log
+                - name: OLS_CASSANDRA_LOCAL_DATACENTER
+                  value: DC1
+              image: 'docker-remote.artifacts.developer.gov.bc.ca/tomcat:9-jre11-slim'  ##change
+              pullSecret:
+                name: artifactory-creds
+              imagePullPolicy: IfNotPresent
+              livenessProbe:
+                failureThreshold: 3
+                initialDelaySeconds: 45
+                periodSeconds: 10
+                successThreshold: 1
+                tcpSocket:
+                  port: 8080
+                timeoutSeconds: 1
+              name: geocoder-admin
+              ports:
+                - containerPort: 8080
+                  name: catalina-http
+                  protocol: TCP
+              readinessProbe:
+                failureThreshold: 3
+                httpGet:
+                  path: /css/styles.css
+                  port: 8080
+                  scheme: HTTP
+                initialDelaySeconds: 55
+                periodSeconds: 10
+                successThreshold: 1
+                timeoutSeconds: 1
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              volumeMounts:
+                - mountPath: /usr/local/tomcat/logs
+                  name: tc-work
+                - mountPath: /usr/local/tomcat/work
+                  name: tc-work
+                - mountPath: /usr/local/tomcat/temp
+                  name: tc-work
+                - mountPath: /usr/local/tomcat/conf/Catalina
+                  name: tc-conf
+                - mountPath: /usr/local/tomcat/webapps
+                  name: app-volume
+          dnsPolicy: ClusterFirst
+          initContainers:
+            - command:
+                - cp
+                - /ols-admin.war
+                - /app/ROOT.war
+              image: image-registry.openshift-image-registry.svc:5000/${TOOLS_NAMESPACE}/ols-admin-sidecar:latest
+              imagePullPolicy: Always
+              name: war
+              resources: {}
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              volumeMounts:
+                - mountPath: /app
+                  name: app-volume
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+            - emptyDir: {}
+              name: tc-work
+            - emptyDir: {}
+              name: tc-conf
+            - emptyDir: {}
+              name: app-volume
+
+  - kind: NetworkPolicy
+    apiVersion: networking.k8s.io/v1
+    metadata:
+      name: deny-by-default
+    spec:
+      # The default posture for a security first namespace is to
+      # deny all traffic. If not added this rule will be added
+      # by Platform Services during environment cut-over.
+      podSelector: {}
+      ingress: []
+
+  - apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+    metadata:
+      name: allow-from-openshift-ingress
+    spec:
+      # This policy allows any pod with a route & service combination
+      # to accept traffic from the OpenShift router pods. This is
+      # required for things outside of OpenShift (like the Internet)
+      # to reach your pods.
+      ingress:
+        - from:
+            - namespaceSelector:
+                matchLabels:
+                  network.openshift.io/policy-group: ingress
+      podSelector: {}
+      policyTypes:
+        - Ingress
+
+  - kind: NetworkPolicy
+    apiVersion: networking.k8s.io/v1
+    metadata:
+      name: allow-same-namespace
+    spec:
+      # Allow all pods within the current namespace to communicate
+      # to one another.
+      podSelector:
+      ingress:
+      - from:
+        - podSelector: {}
+

@@ -1,0 +1,39 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: geocoder-sidecar
+  name: geocoder-sidecar
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'geocoder-sidecar:latest'
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    dockerfile: >
+      FROM docker-remote.artifacts.developer.gov.bc.ca/busybox:latest
+
+      RUN echo wget -O geocoder.war
+      http://$ARTIFACTORY_URL/ols-geocoder-web/$APP_VERSION/ols-geocoder-web-$APP_VERSION.war
+
+      RUN wget -S -O geocoder.war
+      http://$ARTIFACTORY_URL/ols-geocoder-web/$APP_VERSION/ols-geocoder-web-$APP_VERSION.war
+
+      CMD ["tail", "-f", "/dev/null"]
+    type: Dockerfile
+  strategy:
+    dockerStrategy:
+      env:
+        - name: ARTIFACTORY_URL
+          value: delivery.apps.gov.bc.ca/artifactory/libs-release-local/ca/bc/gov/ols
+        - name: APP_VERSION
+          value: 4.1.0-RC
+      pullSecret:
+        name: artifactory-creds
+    type: Docker
+  successfulBuildsHistoryLimit: 5
