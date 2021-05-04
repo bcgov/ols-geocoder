@@ -374,11 +374,11 @@ Buildings may have special entrances for emergency access or service staff, and 
 
 1100 Chestnut St, Vancouver, BC
 
-EMENT -- 1100 Chestnut St, Vancouver, BC
+EMERGENCY.ENTRANCE -- 1100 Chestnut St, Vancouver, BC
 
-EMEXIT 1 -- 1100 Chestnut St, Vancouver BC
+EMERGENCY.EXIT 1 -- 1100 Chestnut St, Vancouver BC
 
-EMEXIT 2 -- 1100 Chestnut St, Vancouver BC
+EMERGENCY.EXIT 2 -- 1100 Chestnut St, Vancouver BC
 
 
 The following exchange data records will represent the above addresses:
@@ -394,7 +394,7 @@ PROVINCE_CODE|BC
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|EMENT
+UNIT_DESIGNATOR|EMERGENCY.ENTRANCE
 CIVIC_NUMBER|1100
 STREET_NAME|Chestnut
 STREET_TYPE|St
@@ -408,7 +408,7 @@ ACCESS_POINT_LON|(aReal)
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|EMEXIT
+UNIT_DESIGNATOR|EMERGENCY.EXIT
 UNIT_NUMBER|1
 CIVIC_NUMBER|1100
 STREET_NAME|Chestnut
@@ -422,7 +422,7 @@ ACCESS_POINT_LON|(aReal)
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|EMEXIT
+UNIT_DESIGNATOR|EMERGENCY.EXIT
 UNIT_NUMBER|2
 CIVIC_NUMBER|1100
 STREET_NAME|Chestnut
@@ -439,12 +439,13 @@ The following entrance unit designators are proposed to handle the common types 
 |unitDesignator|Description|
 |--|--|
 ENTRANCE|Entrance
-EMENT|Emergency responder entrance
-EMEXIT|Emergency exit (sounds the alarm)
+EMERGENCY.ENTRANCE|Emergency responder entrance
+EMERGENCY.EXIT|Emergency exit (sounds the alarm)
 EXIT|Exit
-SVCENT| Service entrance
-UTLENT| Utility entrance
-DLVENT | Delivery entrance
+SERVICE.ENTRANCE| Service entrance
+UTILITY.ENTRANCE| Utility entrance
+DELIVERY.ENTRANCE|Delivery entrance
+PARKING.ENTRANCE| Parking entrance
 
 Like any unitDesignator, entrances may be numbered (eg., ENTRANCE 1, EXIT 4)
 
@@ -502,16 +503,45 @@ Here is the list of standard unit designators. Any designator can also have an a
 
 |Name|Description|Canada Post Standard|
 |--|--|--|
+ACCESS.IN|Access to site from road; only required if access road is one-way|No
+ACCESS.OUT|Access from site to road; only required if access road is one-way|No
+ACCESS.BUS| Access to and from site by bus|No
+ACCESS.BUS.IN| Access to site from road by bus|No
+ACCESS.BUS.OUT| Access from site to road by bus|No
+ACCESS.PARKING|Access to and from parking|No
+ACCESS.PARKING.BUS|Access to and from bus parking|No
+ACCESS.PARKING.IN|Access to parking|No
+ACCESS.PARKING.OUT|Access from parking|No
+ACCESS.PARKING.TRUCK|Access to and from truck parking|No
+ACCESS.PARKING.BUS|Access to and from bus parking|No
+ACCESS.DELIVERY|Access to and from delivery entrance|No
+ACCESS.EMERGENCY|Access to and from emergency entrance by emergency vehicle|No
+ACCESS.EMERGENCY.IN|Access to emergency entrance from road by emergency vehicle|No
+ACCESS.EMERGENCY.OUT|Access from emergency entrance to road by emergency vehicle|No
+ACCESS.IN|Access to site from road|No
+ACCESS.SERVICE|Access to and from service entrance|No
+ACCESS.TRUCK|Access to and from site by truck|No
+ACCESS.TRUCK.IN|Access to site from road by truck|No
+ACCESS.TRUCK.IN|Access from site to road by truck|No
 APT|Apartment|Yes
 BERTH|Berth on a dock|No
 BSMT|Basement|No
 BLDG|Building|No
 CONDO|Condominium unit within a building|No
-DLVENT | Delivery entrance|No
 ENTRANCE|Entrance|No
-EMENT|Emergency responder entrance|No
+ENTRANCE.BUS|BUS Entrance|No
+ENTRANCE.DELIVERY| Delivery entrance|No
+ENTRANCE.EMERGENCY|Emergency responder entrance|No
+ENTRANCE.PARKING|Parking entrance|No
+ENTRANCE.PARKING.BUS|Bus parking entrance|No
+ENTRANCE.PARKING.TRUCK|Truck parking entrance|No
+ENTRANCE.SERVICE|Service entrance|No
+ENTRANCE.TRUCK|TRUCK entrance|No
 EXIT|Exit only|No
-EMEXIT|Emergency exit (sounds alarm)|No
+EXIT.EMERGENCY|Emergency exit (sounds alarm)|No
+EXIT.PARKING|Parking exit|No
+EXIT.PARKING.BUS|Bus parking exit|No
+EXIT.PARKING.TRUCK|Truck parking exit|No
 FLR|Floor|No
 GATE|Gate|No
 HOUSE|House within a complex|No
@@ -526,9 +556,7 @@ RM|Room|No
 SIDE|Side of building|No
 SITE|Site|No
 SUITE|Suite|Yes
-SVCENT|Service entrance|no
 TERMINAL|Terminal|No
 TH|Townhouse|No
 UNIT|Unit|Yes
 UPPR|Upper floor of building|No
-UTLENT| Utility entrance|No
