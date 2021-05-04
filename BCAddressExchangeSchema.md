@@ -1,5 +1,7 @@
 # BC Physical Address Exchange Schema Draft v0.8
 ### Change history
+v0.9 May 3, 2021 - updated support for entrances and exits as units within a building; added concept of special access points as units
+
 v0.8 Feb 25, 2021 - added support for entrances and exits as units within a building; sites no longer have to be named to have special entrances<br>
 
 v0.7 Feb 20, 2021 - removed SITE_POINT_DESCRIPTOR as it is rarely provided by address authorities, added TOC<br>
@@ -374,11 +376,11 @@ Buildings may have special entrances for emergency access or service staff, and 
 
 1100 Chestnut St, Vancouver, BC
 
-EMERGENCY.ENTRANCE -- 1100 Chestnut St, Vancouver, BC
+ENTRANCE.EMERGENCY -- 1100 Chestnut St, Vancouver, BC
 
-EMERGENCY.EXIT 1 -- 1100 Chestnut St, Vancouver BC
+EXIT.EMERGENCY 1 -- 1100 Chestnut St, Vancouver BC
 
-EMERGENCY.EXIT 2 -- 1100 Chestnut St, Vancouver BC
+EXIT.EMERGENCY 2 -- 1100 Chestnut St, Vancouver BC
 
 
 The following exchange data records will represent the above addresses:
@@ -394,7 +396,7 @@ PROVINCE_CODE|BC
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|EMERGENCY.ENTRANCE
+UNIT_DESIGNATOR|ENTRANCE.EMERGENCY
 CIVIC_NUMBER|1100
 STREET_NAME|Chestnut
 STREET_TYPE|St
@@ -408,7 +410,7 @@ ACCESS_POINT_LON|(aReal)
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|EMERGENCY.EXIT
+UNIT_DESIGNATOR|EXIT.EMERGENCY
 UNIT_NUMBER|1
 CIVIC_NUMBER|1100
 STREET_NAME|Chestnut
@@ -422,7 +424,7 @@ ACCESS_POINT_LON|(aReal)
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|EMERGENCY.EXIT
+UNIT_DESIGNATOR|EXIT.EMERGENCY
 UNIT_NUMBER|2
 CIVIC_NUMBER|1100
 STREET_NAME|Chestnut
@@ -439,13 +441,12 @@ The following entrance unit designators are proposed to handle the common types 
 |unitDesignator|Description|
 |--|--|
 ENTRANCE|Entrance
-EMERGENCY.ENTRANCE|Emergency responder entrance
-EMERGENCY.EXIT|Emergency exit (sounds the alarm)
+ENTRANCE.DELIVERY|Delivery entrance
+ENTRANCE.EMERGENCY|Emergency responder entrance
+ENTRANCE.SERVICE| Service entrance
+ENTRANCE.PARKING| Parking entrance
 EXIT|Exit
-SERVICE.ENTRANCE| Service entrance
-UTILITY.ENTRANCE| Utility entrance
-DELIVERY.ENTRANCE|Delivery entrance
-PARKING.ENTRANCE| Parking entrance
+EXIT.EMERGENCY|Emergency exit (sounds the alarm)
 
 Like any unitDesignator, entrances may be numbered (eg., ENTRANCE 1, EXIT 4)
 
@@ -508,21 +509,24 @@ ACCESS.OUT|Access from site to road; only required if access road is one-way|No
 ACCESS.BUS| Access to and from site by bus|No
 ACCESS.BUS.IN| Access to site from road by bus|No
 ACCESS.BUS.OUT| Access from site to road by bus|No
+ACCESS.DELIVERY|Access to and from delivery entrance|No
+ACCESS.DELIVERY.IN| Access to delivery entrance from road|No
+ACCESS.DELIVERY.OUT| Access from delivery entrance to road|No
 ACCESS.PARKING|Access to and from parking|No
 ACCESS.PARKING.BUS|Access to and from bus parking|No
 ACCESS.PARKING.IN|Access to parking|No
 ACCESS.PARKING.OUT|Access from parking|No
 ACCESS.PARKING.TRUCK|Access to and from truck parking|No
 ACCESS.PARKING.BUS|Access to and from bus parking|No
-ACCESS.DELIVERY|Access to and from delivery entrance|No
 ACCESS.EMERGENCY|Access to and from emergency entrance by emergency vehicle|No
 ACCESS.EMERGENCY.IN|Access to emergency entrance from road by emergency vehicle|No
 ACCESS.EMERGENCY.OUT|Access from emergency entrance to road by emergency vehicle|No
-ACCESS.IN|Access to site from road|No
 ACCESS.SERVICE|Access to and from service entrance|No
+ACCESS.SERVICE.IN|Access to service entrance from road|No
+ACCESS.SERVICE.OUT|Access from service entrance to road|No
 ACCESS.TRUCK|Access to and from site by truck|No
 ACCESS.TRUCK.IN|Access to site from road by truck|No
-ACCESS.TRUCK.IN|Access from site to road by truck|No
+ACCESS.TRUCK.OUT|Access from site to road by truck|No
 APT|Apartment|Yes
 BERTH|Berth on a dock|No
 BSMT|Basement|No
