@@ -1,4 +1,4 @@
-addressString,roadGeometry,roadName,conflictsWithParcelmapbc
+addressString,roadGeometry,roadName,conflictsWithParcelMapBC
 "3242 Hwy 23, Nakusp, BC",usable (offset),great,no
 "621 Beech Rd, Nakusp, BC",great,great,no
 "391 Crescent Bay Rd, Nakusp, BC",great,great,no
@@ -7,13 +7,13 @@ addressString,roadGeometry,roadName,conflictsWithParcelmapbc
 "2745 Hwy 23, Nakusp, BC",good,great,no
 "862 Alexander Rd, Nakusp, BC",usable (offset),great,no
 "243 Island View Rd, Nakusp, BC",great,great,no
-"2203 Allshouse Rd, Nakusp, BC",great,great,no
+"2203 Allshouse Rd, Nakusp, BC",great,great,yes (both maps)
 "4010 Spring Creek Ave, Terrace, BC",good,great,no
 "25049 Hwy 16 W, Smithers, BC",great,usable (missing W),no
 "23891 Taman Creek Rd, Rose Lake, BC",great,great,no
 "760 Campbell Rd, Hazelton Rural, BC",usable (some offset),great,no
 "5414 Morris Rd, Telkwa, BC",great,great,no
-"50033 Owen Lake Rd, Noralee, BC",great,poor (Owen E Forset Service Rd),no
+"50033 Owen Lake Rd, Noralee, BC",great,poor (Owen E Forset Service Rd),yes (both maps)
 "17512 Hutter Rd, Palling, BC",great,great,no
 "79A Abbey Rd, Rosswood, BC",great,great,no
 "3128A Ziegler Rd, Thornhill, BC",great,great,no
@@ -29,9 +29,9 @@ addressString,roadGeometry,roadName,conflictsWithParcelmapbc
 "544 Maple Dr, Quesnel, BC",great,great,no
 "692 Westland Close, Quesnel, BC",usable (offset),great,no
 "1302 Maple Dr, Quesnel, BC",great,great,no
-"1311 Borregard Rd, Quesnel, BC",usable (offset),great,no
+"1311 Borregard Rd, Quesnel, BC",usable (offset),great,yes (both maps)
 "3593 Hwy 97 S, Chetwynd, BC",usable (offset),usable (missing S),no
-"4701 Airport Rd SE, Chetwynd, BC",great,great,no
+"4701 Airport Rd SE, Chetwynd, BC",great,great,yes
 "3441 Campbell Way, Chetwynd, BC",great,great,no
 "3598 West Fraser Rd, Chetwynd, BC",usable (offset),great,no
 "4701 Hwy 29 N, Chetwynd, BC",usable (offset),usable( missing N),no
