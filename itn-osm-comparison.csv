@@ -41,10 +41,10 @@ addressString,roadGeometry,roadName,conflictsWithParcelMapBC
 "5000 50 Ave NW, Chetwynd, BC",great,usable (50th Ave instead of 50 Ave),no
 "3593 Hwy 97 S, Chetwynd, BC",usable (offset),usable (missing S),no
 "1106 Downie St, Revelstoke, BC",great,great,no
-"795 Cedar St, Revelstoke, BC",usable (short),great,no
+"795 Cedar St, Revelstoke, BC",usable (short),great,yes (both)
 "800 Trans-Canada Hwy E, Revelstoke, BC",great,great,no
-"1916 Forest Dr, Revelstoke, BC",usable (offset),great,no
-"1082 Cashato Cres, Revelstoke, BC",usable (offset),great,no
+"1916 Forest Dr, Revelstoke, BC",usable (offset),great,yes (whole area is offset)
+"1082 Cashato Cres, Revelstoke, BC",usable (offset),great,yes (whole area is offset)
 "354 Leoffler Rd, Canyon Hot Springs, BC",great,great,no
 "2457 KOA Rd, Revelstoke, BC",usable (offset),great,no
 "108 7th St W, Revelstoke, BC",usable (offset),great,no
