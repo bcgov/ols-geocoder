@@ -3,8 +3,6 @@ The Geocoder Data Integration Pipeline takes road data from GeoBC and address da
 
 Here are the processing stages of the pipeline:
 
-Gather | Transform | Integrate | Verify | Deploy
-
 Stage name|Description|
 |--|--|
 |Gather|Gather reference road and address data from authoritative sources. Each source dataset may have a different access method (e.g. download, API), data schema, and update schedule.
