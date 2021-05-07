@@ -20,8 +20,7 @@ Deploy| Make new reference road network and address list accessible to online an
           - address parcel points
       3. BCA
          -  derivation of parcel points from ParcelMap BC and address=>jurol=>pid table
-      4. StatsCanRNF
-          - anchor points only 
+         -  derivation of address parcel ids from address=>jurol=>pid table
  
 
 derivation of access points, address ranges
