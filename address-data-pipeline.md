@@ -8,7 +8,11 @@ Stage name|Description|
 |Gather|Gather reference road and address data from authoritative sources. Each source dataset may have a different access method (e.g. download, API), data schema, and update schedule.
 |Transform|Transform each reference address dataset into a single, standard format called Physical Address Exchange (PAX) Format
 |Integrate| Integrate reference addresses into reference road segments (blocks)|
-|Verify|Verify that the new reference address dataset is globally valid. Globally valid means the dataset is complete (e.g. has addresses from every locality), correct (e.g., every reference address geocodes perfectly and all test addresses geocode as expected), spatially-consistent (e.g., address locations on every block increase in the same direction as their civic numbers, blockface address ranges don't overlap and increase in the same direction), and version-consistent (e.g. locality address counts are higher than the previous version of reference data) 
+|Verify|Verify that the new reference address dataset is globally valid. Globally valid means the dataset is
+- complete (e.g. has addresses from every locality)
+- correct (e.g., every reference address geocodes perfectly and all test addresses geocode as expected)
+- spatially-consistent (e.g., address locations on every block increase in the same direction as their civic numbers, blockface address ranges don't overlap and increase in the same direction), and 
+- version-consistent (e.g. locality address counts are higher than the previous version of reference data) 
 Deploy|deploy
 
 
