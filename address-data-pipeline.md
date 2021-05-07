@@ -5,7 +5,8 @@ Here are the processing stages of the pipeline:
 
 Stage name|Description|Implementation
 |--|--|--|
-|Gather|Gather reference road and address data from authoritative sources. Each source dataset may have a different access method (e.g. download, API), data schema, and update schedule|Manual download from websites run by Integrated Cadastral Initiative Society, BC Assessment, GeoBC, and municipalities that have addresses on their open data websites but are not members of the ICI Society.
+|Gather|Gather reference road and address data from authoritative sources.|Manual download from websites run by Integrated Cadastral Initiative Society, BC Assessment, GeoBC, and municipalities that have addresses on their open data websites but are not members of the ICI Society.
+||Each source dataset may have a different access method (e.g. download, API), data schema, and update schedule|
 |Transform|Transform each reference address dataset into a single, standard format called Physical Address Exchange (PAX) Format|One ETL script (in any language) for each source data format (e.g., AddressBC, BC Assessment)
 |Integrate|Integrate reference addresses (in PAX format) into reference road segments (blocks) and generate block ranges, access points, and address parcel ids.|A standalone Java application (e.g., WAR file) called Geocodable BC Maker which contains an embedded instance of the geocoder.
 ||A reference address is rejected if:<br>* it doesn't conform to the PAX schema<br>* the given street doesn't exist in the given locality in the road network.<br>* the given address location is too far from the given street in the road network.<br>* the address is a duplicate of an address that came from a higher-ranked data source.||Data sources are ranked as follows:<br>1. AddressBC<br>2. Open data munis<br>3. BC Assessment<br>
