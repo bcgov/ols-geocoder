@@ -14,17 +14,3 @@ Stage name|Description|Implementation
 |Verify|Verify that the new reference address dataset is globally valid.|Geocodable BC Maker| 
 ||Globally valid means the dataset is <br> * complete (e.g. has addresses from every locality) <br> * correct (e.g., every reference address geocodes perfectly and all test addresses geocode as expected) <br> * spatially-consistent (e.g., address locations on every block increase in the same direction as their civic numbers, blockface address ranges don't overlap and increase in the same direction), and <br>  * version-consistent (e.g. locality address counts are higher than the previous version of reference data)|
 Deploy| Make new reference road network and address list accessible to online and batch geocoders and restart them|Manually trigger online geocoder restart script and restart batch geocoder using  batch geocoder admin application.
-
-
-
-   - data source ranking from highest to lowest is as follows:
-      1. AddressBC
-          - address parcel points plus anchor points (from unsigned munis)
-      2. Open Address Data
-          - address parcel points
-      3. BCA
-         -  derivation of parcel points from ParcelMap BC and address=>jurol=>pid table
-         -  derivation of address parcel ids from address=>jurol=>pid table
- 
-
-derivation of access points, address ranges
