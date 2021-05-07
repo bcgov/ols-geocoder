@@ -1,4 +1,4 @@
-# Geocoder Data Integration Pipeline Architecture
+# Geocoder Data Integration Pipeline Architecture (Proposed)
 The Geocoder Data Integration Pipeline takes road data from GeoBC and address data from various authoritative sources across BC and produces a master list of addresses in a form and file location that is easily consumable by the OLS-Geocoder. 
 
 Here are the processing stages of the pipeline:
