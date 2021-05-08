@@ -1,5 +1,7 @@
 # Geocoder Data Integration Process (Proposed)
-The Geocoder Data Integration Process takes road data from GeoBC and address data from various authoritative sources across BC and produces a reference road network and reference list of addresses in a form and file location that is easily consumable by the OLS-Geocoder. 
+The Geocoder Data Integration Process takes road data from GeoBC and address data from various authoritative sources across BC and produces a reference road network and reference list of addresses in a form and file location that is easily consumable by the OLS-Geocoder.
+
+## The new process
 
 Here are the major stages of the new process:
 
@@ -14,3 +16,8 @@ Stage name|Description|Implementation
 |Verify|Verify that the new reference address dataset is globally valid.|Geocodable BC Maker| 
 ||Globally valid means the dataset is <br> * locality-complete (e.g. has addresses from every locality) <br> * correct (e.g., every reference address geocodes perfectly and all test addresses geocode as expected) <br> * spatially-consistent (e.g., address locations on every block increase in the same direction as their civic numbers, blockface address ranges don't overlap and increase in the same direction), and <br>  * version-consistent (e.g. locality address counts are higher than the previous version of reference data)|
 Deploy| Make new reference road network and address list accessible to online and batch geocoder|Manually trigger online geocoder restart script and restart batch geocoder plugin in CPF using CPF admin application.
+
+## What's different?
+
+The biggest change from the current data integration process is that the initial part of the integration stage, which requires geocoding all addresses twice, first at the street-level, and then at the block-level; are moved from FME scripts that call out to the batch geocoder, to a single Java application called Geocodable BC Maker that has an embedded geocoder. This simplifies the data integration architecture by eliminating the need for an external batch geocoder, speeds up the integration process, localizes all integration algorithms into a single component for easier understanding and maintenance, and leaves the task of keeping up with constantly changing data source schemas and formats to easily-updated scripts.
+This unifies all the complex integration algorithms into a single, open source component. This also has the effect of separatin 
