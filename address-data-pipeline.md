@@ -4,7 +4,7 @@ The Geocoder Data Integration Pipeline takes road data from GeoBC and address da
 Here are the processing stages of the pipeline:
 
 Stage name|Description|Implementation
-|--|--|--|
+|:--:|--|--|
 |Gather|Gather reference road and address data from authoritative sources.|Manual download from websites run by Integrated Cadastral Initiative Society, BC Assessment, GeoBC, and municipalities that have addresses on their open data websites but are not members of the ICI Society.
 ||Each source dataset may have a different access method (e.g. download, API), data schema, and update schedule|
 |Transform|Transform each reference address dataset from its local format to a single, standard format called Physical Address Exchange (PAX) Format|One ETL script (in any language) for each source data format (e.g., AddressBC, BC Assessment). Existing ETL scripts are written in FME.
