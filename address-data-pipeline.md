@@ -19,6 +19,12 @@ Deploy| Make new reference road network and address list accessible to online an
 
 ## What's different?
 
-The biggest change from the current data integration process is that the initial part of the integration stage, which requires geocoding all addresses twice, first at the street-level and then at the block-level, are moved from FME scripts that call out to the batch geocoder, to a single Java application called Geocodable BC Maker which has an embedded geocoder. This simplifies the data integration architecture by eliminating the need for an external batch geocoder, speeds up the integration process, localizes all integration algorithms into a single component for easier understanding and maintenance, and leaves the task of keeping up with constantly changing data source schemas and formats to easily-updated scripts
+The current geocoder data integration process requires a dedicated, standalone, batch geocoder that must be loaded with reference road and address data three times in the course of the integration process as follows:
+
+* Load 1 requires the latest road network and no addresses to confirm candidate addresses have valid streets within localities.
+* Load 2 requires the latest road network and latest addresses to confirm candidate occupants have valid addresses.
+* Load 3 requires the latest road network and latest addresses and occupants to confirm correct handling of test addresses.
+
+In the new process, all integration and verification steps are moved from separate FME scripts that call out to the batch geocoder, to a single Java application called Geocodable BC Maker which has an embedded geocoder. This simplifies the data integration architecture by eliminating the need for an external batch geocoder, speeds up the integration process, localizes all integration algorithms into a single component for easier understanding and maintenance, and leaves the task of keeping up with constantly changing data source schemas and formats to easily-updated scripts
 
 Detailed data flow diagrams of the current Geocoder data integration process are available [here](https://github.com/bcgov/ols-geocoder/issues/243)
