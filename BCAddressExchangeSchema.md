@@ -1,4 +1,4 @@
-# BC Physical Address Exchange Schema Draft v0.8
+# Physical Address Exchange Standard Draft v0.8
 ### Change history
 v0.9 May 3, 2021 - updated support for entrances and exits as units within a building; added concept of special access points as units
 
