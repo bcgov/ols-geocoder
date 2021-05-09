@@ -7,7 +7,7 @@ Here are the major stages of the new process:
 
 Stage name|Description|Implementation
 |:--:|--|--|
-|Gather|Gather reference road and address data from authoritative sources.|Manual download from websites run by Integrated Cadastral Initiative Society, BC Assessment, GeoBC, and municipalities that have addresses on their open data websites but are not members of the ICI Society.
+|Gather|Gather reference road, address, and occupant data from authoritative sources.|Manual download from websites run by Integrated Cadastral Initiative Society, BC Assessment, GeoBC, and municipalities that have addresses on their open data websites but are not members of the ICI Society.
 ||Each source dataset may have a different access method (e.g. download, API), data schema, and update schedule|
 |Transform|Transform each reference address dataset from its local schema and format to a single, standard schema and format called the [Physical Address Exchange (PAX) Standard](https://github.com/bcgov/ols-geocoder/blob/gh-pages/BCAddressExchangeSchema.md)|One ETL script (in any language) for each source data format (e.g., AddressBC, BC Assessment). We use FME for existing ETL scripts.
 |Integrate|Integrate reference addresses (in PAX format) into reference road segments (blocks) and generate block ranges, block anchor points, address access points, and address parcel ids.|A standalone Java application (e.g., WAR file) called Geocodable BC Maker which contains an embedded instance of the geocoder.
