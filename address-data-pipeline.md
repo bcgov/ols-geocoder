@@ -19,7 +19,7 @@ Deploy| Make new reference road network and address list accessible to online an
 
 ## What's different?
 
-The current geocoder data integration process requires a dedicated, standalone, batch geocoder that must be loaded with reference road and address data three times in the course of the integration process as follows:
+The current geocoder data integration process requires a dedicated, standalone, batch geocoder that must be loaded with reference road and address data three times during the integration process as follows:
 
 * Load 1 requires the latest road network and no addresses to confirm candidate reference addresses have valid streets within localities.
 * Load 2 requires the latest road network and new reference addresses to confirm candidate reference occupants have valid addresses.
