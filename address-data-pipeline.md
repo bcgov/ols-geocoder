@@ -1,5 +1,5 @@
 # Geocoder Data Integration Process (Proposed)
-The Geocoder Data Integration Process takes road data from GeoBC and address data from various authoritative sources across BC and produces a reference road network and reference list of addresses in a form and file location that is easily consumable by the OLS-Geocoder.
+The proposed Geocoder Data Integration Process will take road data from GeoBC and address data from various authoritative sources across BC and produce a reference road network and reference list of addresses in a form and file location that is easily consumable by the OLS-Geocoder.
 
 ## The new process
 
