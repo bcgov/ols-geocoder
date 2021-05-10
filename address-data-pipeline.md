@@ -26,6 +26,8 @@ The current geocoder data integration process requires a dedicated, standalone, 
 * Load 2 requires the latest road network and new reference addresses to confirm candidate reference occupants have valid addresses.
 * Load 3 requires the latest road network and new reference addresses and occupants to confirm correct handling of test addresses.
 
-In the new process, all integration and verification steps are moved from separate FME scripts that call out to the batch geocoder, to a single Java application called Geocodable BC Maker which has an embedded geocoder. This simplifies the data integration architecture by eliminating the need for an external batch geocoder, speeds up the integration process, localizes all integration algorithms into a single component for easier understanding and maintenance, and leaves the task of keeping up with constantly changing data source schemas and formats to easily-updated scripts
+The geocoder is written in Java. There is also a standalone Java application which handles address range generation and appropriately named the Batch Address Range Generator (BARG)
+
+In the new process, all integration and verification steps will be moved from separate FME scripts that call out to the batch geocoder, to a single Java application called Geocodable BC Maker which will have an embedded geocoder. Geocodable BC Maker will also incorporate a modified version of the BARG. This simplifies the data integration architecture by eliminating the need for an external batch geocoder, speeds up the integration process, localizes all integration algorithms into a single component for easier understanding and maintenance, and leaves the task of keeping up with constantly changing data source schemas and formats to easily-updated scripts.
 
 Detailed data flow diagrams of the current Geocoder data integration process are available [here](https://github.com/bcgov/ols-geocoder/issues/243)
