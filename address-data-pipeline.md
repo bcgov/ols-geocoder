@@ -28,8 +28,8 @@ The current geocoder data integration process needs a dedicated, standalone, bat
 
 The geocoder is written in Java. 
 
-The current process also needs a standalone Java application which handles address block assignment and range generation and is appropriately named the *Batch Address Assignment and Range Generator* (BAARG).
+The current process also needs a standalone Java application which handles address block assignment and range generation and is appropriately named the *Block  Assignment and Address Range Generator* (BAARG).
 
-In the new process, all integration and verification steps will be moved from separate FME scripts that call out to the batch geocoder, to a single Java application called Geocodable BC Maker which will have an embedded geocoder. Geocodable BC Maker will also incorporate a modified version of the BARG. This simplifies the data integration architecture by eliminating the need for an external batch geocoder, speeds up the integration process, localizes all integration algorithms into a single component for easier understanding and maintenance, and leaves the task of keeping up with constantly changing data source schemas and formats to easily-updated scripts.
+In the new process, all integration and verification steps will be moved from separate FME scripts that call out to the batch geocoder, to a single Java application called Geocodable BC Maker which will have an embedded geocoder. Geocodable BC Maker will also incorporate a modified version of the BAARG. This simplifies the data integration architecture by eliminating the need for an external batch geocoder, speeds up the integration process, localizes all integration algorithms into a single component for easier understanding and maintenance, and leaves the task of keeping up with constantly changing data source schemas and formats to easily-updated scripts.
 
 Detailed data flow diagrams of the current Geocoder data integration process are available [here](https://github.com/bcgov/ols-geocoder/issues/243)
