@@ -125,7 +125,7 @@ The current implementation is on the left; the proposed implementation on the ri
 ## Data flow diagrams of current implementation
 
 ### Gather and Transform Steps
-Here is the data flow for the current implementation of the gather and transform steps. In the proposed implementation, the gather step is stay the same but the transform step must be changed to support the new target Physical Address Exchange Standard.
+Here is the data flow for the current implementation of the gather and transform steps. In the proposed implementation, the gather step is the same but the transform step must be changed to support the new target Physical Address Exchange Standard.
 
 ![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/a714c132-e764-41c7-983c-67fa952465c0)
 
