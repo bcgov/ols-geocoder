@@ -111,6 +111,10 @@ In the new implementation, all integration and verification steps will be moved 
 
 ### Proposed implementation
 
+![image](https://user-images.githubusercontent.com/11318574/119588246-402e2c80-bd85-11eb-9074-c14466fb5d16.png)
+
+
+
 ![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/b92f2b1a-2bb0-4277-911d-43245b1cd07c)
 <br><br>
 
