@@ -1,8 +1,7 @@
-# A new to integration geocoder data
+# A New Way to Integration Geocoder Data
 This document outlines a proposal to simplify and speed up the geocoder data integration process. We first look at the integration process, how it can be improved, and contrast the proposed implementation with the current one.
 
 ## What is Geocoder Data Integration?
-
 Here's an overview of the geocoder data integration process:
 
 | Gather | Transform | _**Integrate**_ | Validate | Deploy
@@ -21,7 +20,6 @@ The Integrate step lies at the heart of the process and our change proposal most
 
 
 ### Tying addresses to block-faces
-
 Geocoder data integration is primarily about tying the latest candidate reference addresses to the latest version of the reference road network (e.g.,  BC Digital Road Atlas) and deriving address ranges. Here is a small portion of the latest DRA and the latest candidate reference addresses:
 
 ![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/9a80391a-d380-4f4e-a018-1a8bb3d6dcfa)
@@ -45,7 +43,6 @@ The address block assignment process is repeated for all remaining candidate ref
 ![image](https://user-images.githubusercontent.com/11318574/119048628-58144380-b974-11eb-9913-f973ae75a52d.png)
 
 ### Address Range Generation
-
 Address ranges are derived from the minimum and maximum civic numbers assigned to each block face. Here's a hypothetical example of civic numbers assigned to three consecutive blocks:
 
 Block 1|Block 2|Block 3|
@@ -78,7 +75,6 @@ Block 1|Block 2|Block 3|
 The proposed Geocoder Data Integration Process will take road data from GeoBC and address data from various authoritative sources across BC and produce a reference road network and reference list of addresses in a form and file location that is easily consumable by the OLS-Geocoder. It will then validate the new data, and if valid, deploy to production.
 
 ## The proposed data integration process
-
 Here are the major stages of the new process:
 
 Stage name|Description|Implementation
@@ -114,4 +110,5 @@ In the new process, all integration and verification steps will be moved from se
 
 
 
-Detailed data flow diagrams of the current Geocoder data integration process are available [here](https://github.com/bcgov/ols-geocoder/issues/243)
+## Detailed data flow diagrams of the current Geocoder data integration process
+are available [here](https://github.com/bcgov/ols-geocoder/issues/243)
