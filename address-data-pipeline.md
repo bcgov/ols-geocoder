@@ -1,5 +1,5 @@
 # A Proposal For A Simpler, Faster, and More Robust Implementation of the Geocoder Data Integration Process
-This document outlines a proposal for a new implementation of the geocoder data integration process that is simpler to operate, faster to run, and more supportive of complex reference addresses. We first look at the integration process itself, describe how it can be improved, and contrast the proposed implementation with the current one.
+This document outlines a proposal for a new implementation of the geocoder data integration process that is simpler to operate, faster to run, and more supportive of complex addressing scenarios. We first look at the integration process itself, describe how it can be improved, and contrast the proposed implementation with the current one.
 
 ## What is Geocoder Data Integration?
 Here's an overview of the geocoder data integration process:
