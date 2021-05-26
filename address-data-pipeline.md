@@ -50,7 +50,14 @@ Block 1|Block 2|Block 3|
 7  11 17 43 99 |                      | 207 217 243 297
 4 10 18 48 96 |                       |  210 220 240 280
 
-Here are the address ranges expressed as minimum and maximum civic numbers in bold in each block:
+Here are the address ranges expressed as anchor points which are minimum and maximum civic numbers in bold in each block:
+
+Block 1|Block 2|Block 3|
+|--|--|--|
+**7** 7  11 17 43 99 **99** |                      | **207** 207 217 243 297 **297** |
+**4** 4 10 18 48 96 **96** |                       | **210** 210 220 240 280 **280** |
+
+The address range generator will stretch the anchor points to the theoretical minimum and maximum as follows:
 
 Block 1|Block 2|Block 3|
 |--|--|--|
