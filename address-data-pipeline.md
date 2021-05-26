@@ -117,6 +117,8 @@ In the new implementation, all integration and verification steps will be moved 
 
 ## Architecture Diagrams of current and proposed implementations
 
+The current implementation is on the left; the proposed implementation on the right:
+
 ![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/082b65d9-cc15-43af-9b39-dd0dc6b68215)
 
 <br><br>
