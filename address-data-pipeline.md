@@ -120,9 +120,14 @@ In the new implementation, all integration and verification steps will be moved 
 ![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/082b65d9-cc15-43af-9b39-dd0dc6b68215)
 
 
+## Data flow diagrams
 
-Data Gathering
+### Gather and Transform Steps
+The gather step in the proposed implementation can stay the same. The transform step must be changed to support the new target Physical Address Exchange Standard.
+
 ![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/a714c132-e764-41c7-983c-67fa952465c0)
 
-## Data flow diagrams of the current implementation of Geocoder data integration process
+
+### Current implementation of Geocoder data integration process
+
 Data flow diagrams of current implementation of geocoder data integration process are available [here](https://github.com/bcgov/ols-geocoder/issues/243)
