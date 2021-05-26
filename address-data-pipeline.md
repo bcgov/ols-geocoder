@@ -92,7 +92,7 @@ Deploy| Make new reference road network and address list accessible to online an
 
 ### What's different?
 
-The current geocoder data integration process needs a dedicated, standalone, batch geocoder that must be loaded with reference data three times during the integration process as follows:
+The current implementation of the geocoder data integration process needs a dedicated, standalone, batch geocoder that must be loaded with reference data three times during the integration process as follows:
 
 * Load 1 requires the latest road network and no addresses to confirm candidate reference addresses have valid streets within localities.
 * Load 2 requires the latest road network and new reference addresses to confirm candidate reference occupants have valid addresses.
@@ -100,13 +100,20 @@ The current geocoder data integration process needs a dedicated, standalone, bat
 
 The geocoder is written in Java. 
 
-The current process also needs a standalone Java application which handles address block assignment and range generation and is appropriately named the *Block  Assignment and Address Range Generator* (BAARG).
+The current implementation also needs a standalone Java application which handles address block assignment and range generation and is appropriately named the *Block  Assignment and Address Range Generator* (BAARG).
 
-In the new process, all integration and verification steps will be moved from separate FME scripts that call out to the batch geocoder, to a single Java application called Geocodable BC Maker which will have an embedded geocoder. Geocodable BC Maker will also incorporate an enhanced version of the BAARG. This simplifies the data integration architecture by eliminating the need for an external batch geocoder, speeds up the integration process, localizes all integration algorithms into a single component for easier understanding and maintenance, and leaves the task of keeping up with constantly changing data source schemas and formats to easily-updated scripts.
+In the new implementation, all integration and verification steps will be moved from separate FME scripts that call out to the batch geocoder, to a single Java application called Geocodable BC Maker which will have an embedded geocoder. Geocodable BC Maker will also incorporate an enhanced version of the BAARG. This simplifies the data integration architecture by eliminating the need for an external batch geocoder, speeds up the integration process, localizes all integration algorithms into a single component for easier understanding and maintenance, and leaves the task of keeping up with constantly changing data source schemas and formats to easily-updated scripts.
 
-## A comparison between the current and proposed processes
+## A comparison between the current and proposed implementation of geocoder data integration process
+
+### Current implementation
+
+![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/d19ba328-5612-404b-a364-6b0216817c9a)
 
 
+### Proposed implementation
+
+![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/b92f2b1a-2bb0-4277-911d-43245b1cd07c)
 
 
 
