@@ -1,5 +1,5 @@
-# A New Way to Integration Geocoder Data
-This document outlines a proposal to simplify and speed up the geocoder data integration process. We first look at the integration process, how it can be improved, and contrast the proposed implementation with the current one.
+# A New Way to Integrate Geocoder Data
+This document outlines a proposal to simplify and speed up the implementation of the geocoder data integration process. We first look at the integration process itself, how it can be improved, and contrast the proposed implementation with the current one.
 
 ## What is Geocoder Data Integration?
 Here's an overview of the geocoder data integration process:
@@ -71,24 +71,22 @@ Block 1|Block 2|Block 3|
 **1** 7  11 17 43 97 **99** | **101** **199** | **201** 207 217 243 297 **299**
 **2** 4 10 18 48 96 **98** |**100** **198** |  **200** 210 220 240 280 **298**
 
-# Proposed Geocoder Data Integration Process
-The proposed Geocoder Data Integration Process will take road data from GeoBC and address data from various authoritative sources across BC and produce a reference road network and reference list of addresses in a form and file location that is easily consumable by the OLS-Geocoder. It will then validate the new data, and if valid, deploy to production.
+# Proposed Implementation  of the Geocoder Data Integration
 
-## The proposed data integration process
-Here are the major stages of the new process:
+Here is the proposed implementation of the geocoder data integration process:
 
 Stage name|Description|Implementation
 |:--:|--|--|
-|Gather|Gather reference road, address, and occupant data from authoritative sources.|Manual download from websites run by Integrated Cadastral Initiative Society, BC Assessment, GeoBC, and municipalities that have addresses on their open data websites but are not members of the ICI Society.
+|Gather|Gather reference road, address, and occupant data from authoritative sources.|Manual download from websites run by Integrated Cadastral Initiative Society, BC Assessment, GeoBC, and municipalities that have addresses on their open data websites but are not members of the ICI Society. This stage is unchanged.
 ||Each source dataset may have a different access method (e.g. download, API), data schema, and update schedule| For the latest occupants, manually initiate the occupant export function of the Geographic Site Registry in the BC Geographic Warehouse.
-|Transform|Transform each reference address dataset from its local schema and format to a single, standard schema and format called the [*Physical Address Exchange* (PAX) Standard](https://github.com/bcgov/ols-geocoder/blob/gh-pages/BCAddressExchangeSchema.md)|One ETL script (in any language) for each source data format (e.g., AddressBC, BC Assessment). We use FME for existing ETL scripts.
+|Transform|Transform each reference address dataset from its local schema and format to a single, standard schema and format called the [*Physical Address Exchange* (PAX) Standard](https://github.com/bcgov/ols-geocoder/blob/gh-pages/BCAddressExchangeSchema.md)|One ETL script (doesn't have to be FME) for each source data format (e.g., AddressBC, BC Assessment). We use FME for existing ETL scripts.
 |Integrate|Integrate reference addresses (in PAX format) into reference road segments (blocks) and generate block ranges, block anchor points, address access points, and address parcel ids.|A standalone Java application (e.g., WAR file) called Geocodable BC Maker which contains an embedded instance of the geocoder.
 ||A reference address is rejected if:<br>* it doesn't conform to the PAX schema<br>* the given street doesn't exist in the given locality in the reference road network.<br>* the given address location is too far from the correct blockface on the given street in the reference road network.<br>* the address is a duplicate of an address that came from a higher-ranked data source.|The geocoder embedded in Geocodable BC Maker is configured with its own deployment of the Geocoder Admin App|Data sources are ranked as follows:<br>1. AddressBC<br>2. Open data munis<br>3. BC Assessment<br>
 ||After reference addresses have been integrated, associate candidate occupants with reference addresses; reject occupants whose address is not a valid reference address.
 ||Also generate locality aliases, qualified locality names from official populated place names, street name indexes, and other indexes necessary for speedy address matching|
-|Validate|Verify that the new reference address dataset is globally valid.|Geocodable BC Maker| 
+|Validate|Verify that the new reference address dataset is globally valid.|The embedded geocoder in Geocodable BC Maker will be loaded with the new data and used to geocode test addresses.| 
 ||Globally valid means the dataset is <br> * locality-complete (e.g. has addresses from every locality) <br> * match-correct (e.g., all test addresses geocode as expected) <br> * spatially-consistent (e.g., address locations on every block increase in the same direction as their civic numbers, blockface address ranges don't overlap and increase in the same direction), and <br>  * version-consistent (e.g. locality address counts are higher than the previous version of reference data)|
-Deploy| Make new reference road network and address list accessible to online and batch geocoder|Manually trigger online geocoder restart script and restart batch geocoder plugin in CPF using CPF admin application.
+Deploy| If validation is successful, make new reference road network and address list accessible to online and batch geocoder|Manually trigger online geocoder restart script and restart batch geocoder plugin in CPF using CPF admin application.
 
 ### What's different?
 
