@@ -1,4 +1,4 @@
-# A New Way to Integrate Geocoder Data
+# Proposed Implementation of Geocoder Data Integration Process
 This document outlines a proposal to simplify and speed up the implementation of the geocoder data integration process. We first look at the integration process itself, how it can be improved, and contrast the proposed implementation with the current one.
 
 ## What is Geocoder Data Integration?
@@ -107,7 +107,7 @@ In the new implementation, all integration and verification steps will be moved 
 ### Current implementation
 
 ![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/d19ba328-5612-404b-a364-6b0216817c9a)
-
+<br><br><br>
 
 ### Proposed implementation
 
