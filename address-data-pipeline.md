@@ -112,8 +112,7 @@ In the new implementation, all integration and verification steps will be moved 
 ### Proposed implementation
 
 ![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/b92f2b1a-2bb0-4277-911d-43245b1cd07c)
+<br><br>
 
-
-
-## Detailed data flow diagrams of the current Geocoder data integration process
-are available [here](https://github.com/bcgov/ols-geocoder/issues/243)
+## Data flow diagrams of the current implementation of Geocoder data integration process
+Data flow diagrams of current implementation of geocoder data integration process are available [here](https://github.com/bcgov/ols-geocoder/issues/243)
