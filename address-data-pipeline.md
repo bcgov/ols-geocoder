@@ -8,6 +8,7 @@ Here's an overview of the geocoder data integration process:
 | Gather | Transform | _**Integrate**_ | Validate | Deploy
 
 <br>
+
 In Gather, we manually download source road network and address data.
 
 In Transform, we transform all source data into standard schemas and formats.
