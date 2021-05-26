@@ -27,7 +27,7 @@ Geocoder data integration is primarily about tying the latest candidate referenc
 
 ![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/9a80391a-d380-4f4e-a018-1a8bb3d6dcfa)
 
-Each candidate reference address must refer to a road segment in the DRA and that road segment must have a left or right locality name that is identical to the locality name in the candidate reference address. For 2201 Kaslo Creek South Fork Rd, Kaslo, BC, the DRA must have a road segment named Kaslo Creek South Fork Rd_ and the left or right locality name for that road segment must be _Kaslo_
+Each candidate reference address must refer to a road segment in the DRA and that road segment must have a left or right locality name that is identical to the locality name in the candidate reference address. For 2201 Kaslo Creek South Fork Rd, Kaslo, BC, the DRA must have a road segment named _Kaslo Creek South Fork Rd_ and the left or right locality name for that road segment must be _Kaslo_
 
 ![image](https://user-images.githubusercontent.com/11318574/119045191-fc47bb80-b96f-11eb-80f8-0d08928a5677.png)
 
