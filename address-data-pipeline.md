@@ -1,7 +1,83 @@
-# Geocoder Data Integration Process (Proposed)
-The proposed Geocoder Data Integration Process will take road data from GeoBC and address data from various authoritative sources across BC and produce a reference road network and reference list of addresses in a form and file location that is easily consumable by the OLS-Geocoder.
+# A new to integration geocoder data
+This document outlines a proposal to simplify and speed up the geocoder data integration process. We first look at the integration process, how it can be improved, and contrast the proposed implementation with the current one.
 
-## The new process
+## What is Geocoder Data Integration?
+
+Here's an overview of the geocoder data integration process:
+
+| Gather | Transform | _**Integrate**_ | Validate | Deploy
+
+In Gather, we manually download source road network and address data.
+
+In Transform, we transform all source data into standard schemas and format.
+
+In Integrate, we tie addresses to the road network and generate address ranges.
+
+In Validate, we geocode our test address data using the integrated data.
+
+In Deploy,  if the validation was successful, we Deploy the latest data to production.
+
+The Integrate step lies at the heart of the process and our change proposal mostly affects this step so let's take a closer look.  
+
+
+### Tying addresses to block-faces
+
+Geocoder data integration is primarily about tying the latest candidate reference addresses to the latest version of the reference road network (e.g.,  BC Digital Road Atlas) and deriving address ranges. Here is a small portion of the latest DRA and the latest candidate reference addresses:
+
+![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/9a80391a-d380-4f4e-a018-1a8bb3d6dcfa)
+
+Each candidate reference address must refer to a road segment in the DRA and that road segment must have a left or right locality name that is identical to the locality name in the candidate reference address. For 2201 Kaslo Creek South Fork Rd, Kaslo, BC, the DRA must have a road segment named Kaslo Creek South Fork Rd_ and the left or right locality name for that road segment must be _Kaslo_
+
+![image](https://user-images.githubusercontent.com/11318574/119045191-fc47bb80-b96f-11eb-80f8-0d08928a5677.png)
+
+The address block assignment process finds the DRA road segment with the same street and locality names as our candidate reference address then creates an access point along the curb of the road segment at the nearest point to the site point.
+
+![image](https://user-images.githubusercontent.com/11318574/119048092-9826f680-b973-11eb-8bd2-4aa4d2c96f25.png)
+
+A candidate reference address is rejected for any of the following reasons:
+
+1. The DRA has no road segment that contains matching street and locality names.
+2. There is no matching road segment within 2km of the candidate reference address point.
+3. The access line (e.g., a line between the site location and access point) crosses one or more roads.
+
+The address block assignment process is repeated for all remaining candidate reference addresses.
+
+![image](https://user-images.githubusercontent.com/11318574/119048628-58144380-b974-11eb-9913-f973ae75a52d.png)
+
+### Address Range Generation
+
+Address ranges are derived from the minimum and maximum civic numbers assigned to each block face. Here's a hypothetical example of civic numbers assigned to three consecutive blocks:
+
+Block 1|Block 2|Block 3|
+|--|--|--|
+7  11 17 43 99 |                      | 207 217 243 297
+4 10 18 48 96 |                       |  210 220 240 280
+
+Here are the address ranges expressed as minimum and maximum civic numbers in bold in each block:
+
+Block 1|Block 2|Block 3|
+|--|--|--|
+**1** 7  11 17 43 97 **99** |                      | **201** 207 217 243 297 **299**
+**2** 4 10 18 48 96 **98** |                       |  **200** 210 220 240 280 **298**
+
+The range generator will also fill in gaps in the address fabric as follows:
+
+Block 1|Block 2|Block 3|
+|--|--|--|
+**1** 7  11 17 43 97 **99** | **101** **199** | **201** 207 217 243 297 **299**
+**2** 4 10 18 48 96 **98** |                       |  **200** 210 220 240 280 **298**
+
+If a block has even numbers on one side and odd numbers on the other, and one of the sides has no civic numbers, the range generator will fill in the missing side appropriately as follows:
+
+Block 1|Block 2|Block 3|
+|--|--|--|
+**1** 7  11 17 43 97 **99** | **101** **199** | **201** 207 217 243 297 **299**
+**2** 4 10 18 48 96 **98** |**100** **198** |  **200** 210 220 240 280 **298**
+
+# Proposed Geocoder Data Integration Process
+The proposed Geocoder Data Integration Process will take road data from GeoBC and address data from various authoritative sources across BC and produce a reference road network and reference list of addresses in a form and file location that is easily consumable by the OLS-Geocoder. It will then validate the new data, and if valid, deploy to production.
+
+## The proposed data integration process
 
 Here are the major stages of the new process:
 
@@ -18,7 +94,7 @@ Stage name|Description|Implementation
 ||Globally valid means the dataset is <br> * locality-complete (e.g. has addresses from every locality) <br> * match-correct (e.g., all test addresses geocode as expected) <br> * spatially-consistent (e.g., address locations on every block increase in the same direction as their civic numbers, blockface address ranges don't overlap and increase in the same direction), and <br>  * version-consistent (e.g. locality address counts are higher than the previous version of reference data)|
 Deploy| Make new reference road network and address list accessible to online and batch geocoder|Manually trigger online geocoder restart script and restart batch geocoder plugin in CPF using CPF admin application.
 
-## What's different?
+### What's different?
 
 The current geocoder data integration process needs a dedicated, standalone, batch geocoder that must be loaded with reference data three times during the integration process as follows:
 
@@ -31,5 +107,11 @@ The geocoder is written in Java.
 The current process also needs a standalone Java application which handles address block assignment and range generation and is appropriately named the *Block  Assignment and Address Range Generator* (BAARG).
 
 In the new process, all integration and verification steps will be moved from separate FME scripts that call out to the batch geocoder, to a single Java application called Geocodable BC Maker which will have an embedded geocoder. Geocodable BC Maker will also incorporate an enhanced version of the BAARG. This simplifies the data integration architecture by eliminating the need for an external batch geocoder, speeds up the integration process, localizes all integration algorithms into a single component for easier understanding and maintenance, and leaves the task of keeping up with constantly changing data source schemas and formats to easily-updated scripts.
+
+## A comparison between the current and proposed processes
+
+
+
+
 
 Detailed data flow diagrams of the current Geocoder data integration process are available [here](https://github.com/bcgov/ols-geocoder/issues/243)
