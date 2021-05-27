@@ -102,7 +102,7 @@ Block 1|Block 2|Block 3|
 
 <br><br>
 
-<a name=proposed-implementation><\a>
+<a name=proposed-implementation></a>
 ## Proposed Implementation of the Geocoder Data Integration Process
 
 Here is the proposed implementation of the geocoder data integration process:
