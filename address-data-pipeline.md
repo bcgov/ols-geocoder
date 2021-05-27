@@ -11,7 +11,7 @@ Integrating addresses and their occupants into a road network requires geocoding
 [Proposed Implementation of the Geocoder Data Integration Process](#proposed-implementation)<br>
 [What's different?](#difference)<br>
 [Activity diagrams of current and proposed implementations](#activity)<br>
-[Architecture Diagrams of current and proposed implementations](#architecture><br>
+[Architecture Diagrams of current and proposed implementations](#architecture)<br>
 [Data Flow Diagrams of current implementation](#data-flow)<br>
 
 <a name=intro></a>
@@ -158,8 +158,7 @@ The current implementation is on the left; the proposed implementation on the ri
 
 <br><br>
 
-<a name=data-flow></a>
-  
+<a name=data-flow></a>  
 ## Data flow diagrams of current implementation
 
 ### Gather and Transform Steps
