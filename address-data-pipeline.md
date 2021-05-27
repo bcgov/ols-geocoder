@@ -6,8 +6,8 @@ Integrating addresses and their occupants into a road network requires geocoding
 ## Table of Contents
 [Introduction](#intro)<br>
 [What is geocoder data integration?](#integration-defined)<br>
-[Tying addresses to blocks](#tying)<br>
-[Address Range Generation](#address-range)<br>
+[Integration Step 1: Tying addresses to blocks](#tying)<br>
+[Integration Step 2: Address Range Generation](#address-range)<br>
 [Proposed Implementation of the Geocoder Data Integration Process](#proposed-implementation)<br>
 [What's different?](#difference)<br>
 [Activity diagrams of current and proposed implementations](#activity)<br>
@@ -40,7 +40,7 @@ In Deploy,  if the validation was successful, we Deploy the integrated data to a
 The Integrate stage lies at the heart of the process and our change proposal mostly affects this stage so let's take a closer look.  
 
 <a name=tying></a>
-### Tying addresses to blocks
+### Integration Step 1: Tying addresses to blocks
 Geocoder data integration is primarily about tying the latest candidate reference addresses to the latest version of the reference road network (e.g.,  BC Digital Road Atlas) and deriving address ranges. Here is a small portion of the latest DRA and the latest candidate reference addresses:
 
 ![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/9a80391a-d380-4f4e-a018-1a8bb3d6dcfa)
@@ -64,7 +64,7 @@ The address block assignment process is repeated for all remaining candidate ref
 ![image](https://user-images.githubusercontent.com/11318574/119048628-58144380-b974-11eb-9913-f973ae75a52d.png)
 
 <a name=address-range></a>
-### Address Range Generation
+### Integration Step 2: Address Range Generation
 Address ranges are derived from the minimum and maximum civic numbers assigned to each block face. Here's a hypothetical example of civic numbers assigned to three consecutive blocks:
 
 Block 1|Block 2|Block 3|
