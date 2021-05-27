@@ -5,14 +5,16 @@ Integrating addresses and their occupants into a road network requires geocoding
 
 ## Table of Contents
 [Introduction](#intro)<br>
-[what is geocoder data integration?](#what is geocoder data integration)<br>
-[Data Flow Diagrams](#data flow diagrams)<br>
+[what is geocoder data integration?](#integration-defined)<br>
+[Data Flow Diagrams](#data-flow)<br>
 
-<a name=intro> <\a>
+<a name=intro><\a>
+  
 ## Introduction
 This document outlines a proposal for a new implementation of the geocoder data integration process that is simpler to operate, easier to maintain, faster to run, and more supportive of complex addressing scenarios. We first look at the integration process itself, describe how it can be improved, and contrast the proposed implementation with the current one.
 
-<a name=what is geocoder data integration><\a>
+<a name=integration-defined><\a>
+  
 ## What is Geocoder Data Integration?
 Here's an overview of the geocoder data integration process:
 <br><br>
@@ -151,7 +153,8 @@ The current implementation is on the left; the proposed implementation on the ri
 
 <br><br>
 
-<a name=data flow diagrams><\a>
+<a name=data-flow><\a>
+  
 ## Data flow diagrams of current implementation
 
 ### Gather and Transform Steps
