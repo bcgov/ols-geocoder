@@ -1,4 +1,9 @@
 # A Proposal For A Better Implementation of the Geocoder Data Integration Process
+
+## Executive Summary
+Integrating addresses and their occupants into a road network requires geocoding the addresses twice. Validating this integration requires an additional geocoding of test addresses. Currently, the integrator and geocoder are separately deployed components. We propose to combine the two into a single application, called Geocodable BC Maker, to simplify administration and maintenance, and dramatically reduce processing time to allow more frequent geocoder data updates with less effort.
+
+## Introduction
 This document outlines a proposal for a new implementation of the geocoder data integration process that is simpler to operate, easier to maintain, faster to run, and more supportive of complex addressing scenarios. We first look at the integration process itself, describe how it can be improved, and contrast the proposed implementation with the current one.
 
 ## What is Geocoder Data Integration?
