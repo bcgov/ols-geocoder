@@ -8,7 +8,7 @@ Integrating addresses and their occupants into a road network requires geocoding
 [What is geocoder data integration?](#integration-defined)<br>
 [Integration Step 1: Tying addresses to blocks](#tying)<br>
 [Integration Step 2: Address Range Generation](#address-range)<br>
-[Proposed Implementation of the Geocoder Data Integration Process](#proposed-implementation)<br>
+[Proposed Implementation of the Geocoder Data Integration Process](#proposedimplementation)<br>
 [What's different?](#difference)<br>
 [Activity diagrams of current and proposed implementations](#activity)<br>
 [Architecture Diagrams of current and proposed implementations](#architecture)<br>
@@ -102,7 +102,7 @@ Block 1|Block 2|Block 3|
 
 <br><br>
 
-<a name=proposed-implementation></a>
+<a name=proposedimplementation></a>
 ## Proposed Implementation of the Geocoder Data Integration Process
 
 Here is the proposed implementation of the geocoder data integration process:
