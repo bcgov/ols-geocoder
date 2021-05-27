@@ -19,7 +19,7 @@ In Validate, we geocode our test address data using the integrated data.
 
 In Deploy,  if the validation was successful, we Deploy the integrated data to a given geocoder environment.
 
-The Integrate step lies at the heart of the process and our change proposal mostly affects this step so let's take a closer look.  
+The Integrate stage lies at the heart of the process and our change proposal mostly affects this stage so let's take a closer look.  
 
 
 ### Tying addresses to block-faces
