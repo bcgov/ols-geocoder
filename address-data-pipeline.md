@@ -6,15 +6,19 @@ Integrating addresses and their occupants into a road network requires geocoding
 ## Table of Contents
 [Introduction](#intro)<br>
 [What is geocoder data integration?](#integration-defined)<br>
-[Data Flow Diagrams](#data-flow)<br>
+[Tying addresses to blocks](#tying)<br>
+[Address Range Generation](#address-range)<br>
+[Proposed Implementation of the Geocoder Data Integration Process](#proposed-implementation)<br>
+[What's different?](#difference)<br>
+[Activity diagrams of current and proposed implementations](#activity)<br>
+[Architecture Diagrams of current and proposed implementations](#architecture><br>
+[Data Flow Diagrams of current implementation](#data-flow)<br>
 
-<a name=intro><\a>
-  
+<a name=intro></a>
 ## Introduction
 This document outlines a proposal for a new implementation of the geocoder data integration process that is simpler to operate, easier to maintain, faster to run, and more supportive of complex addressing scenarios. We first look at the integration process itself, describe how it can be improved, and contrast the proposed implementation with the current one.
 
-<a name=integration-defined><\a>
-  
+<a name=integration-defined></a>  
 ## What is Geocoder Data Integration?
 Here's an overview of the geocoder data integration process:
 <br><br>
@@ -35,13 +39,13 @@ In Deploy,  if the validation was successful, we Deploy the integrated data to a
 
 The Integrate stage lies at the heart of the process and our change proposal mostly affects this stage so let's take a closer look.  
 
-<a name=tying addresses to block-faces><\a>
-### Tying addresses to block-faces
+<a name=tying-addresses></a>
+### Tying addresses to blocks
 Geocoder data integration is primarily about tying the latest candidate reference addresses to the latest version of the reference road network (e.g.,  BC Digital Road Atlas) and deriving address ranges. Here is a small portion of the latest DRA and the latest candidate reference addresses:
 
 ![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/9a80391a-d380-4f4e-a018-1a8bb3d6dcfa)
 
-Each candidate reference address must refer to a road segment in the DRA and that road segment must have a left or right locality name that is identical to the locality name in the candidate reference address. For _2201 Kaslo Creek South Fork Rd, Kaslo, BC_, the DRA must have a road segment named _Kaslo Creek South Fork Rd_ and the left or right locality name for that road segment must be _Kaslo_
+Each candidate reference address must refer to a road segment (or block) in the DRA and that road segment must have a left or right locality name that is identical to the locality name in the candidate reference address. For _2201 Kaslo Creek South Fork Rd, Kaslo, BC_, the DRA must have a road segment named _Kaslo Creek South Fork Rd_ and the left or right locality name for that road segment must be _Kaslo_
 
 ![image](https://user-images.githubusercontent.com/11318574/119045191-fc47bb80-b96f-11eb-80f8-0d08928a5677.png)
 
@@ -59,6 +63,7 @@ The address block assignment process is repeated for all remaining candidate ref
 
 ![image](https://user-images.githubusercontent.com/11318574/119048628-58144380-b974-11eb-9913-f973ae75a52d.png)
 
+<a name=address-range></a>
 ### Address Range Generation
 Address ranges are derived from the minimum and maximum civic numbers assigned to each block face. Here's a hypothetical example of civic numbers assigned to three consecutive blocks:
 
@@ -97,7 +102,7 @@ Block 1|Block 2|Block 3|
 
 <br><br>
 
-<a name=proposed implementation><\a>
+<a name=proposed-implementation><\a>
 ## Proposed Implementation of the Geocoder Data Integration Process
 
 Here is the proposed implementation of the geocoder data integration process:
@@ -115,7 +120,7 @@ Stage name|Description|Implementation
 ||Globally valid means the dataset is <br> * locality-complete (e.g. has addresses from every locality) <br> * match-correct (e.g., all test addresses geocode as expected) <br> * spatially-consistent (e.g., address locations on every block increase in the same direction as their civic numbers, blockface address ranges don't overlap and increase in the same direction), and <br>  * version-consistent (e.g. locality address counts are higher than the previous version of reference data)|
 Deploy| If validation is successful, make new reference road network and address list accessible to online and batch geocoder|Manually trigger online geocoder restart script and restart batch geocoder plugin in CPF using CPF admin application.
 
-<a name=whats different><\a>
+<a name=difference><\a>
 ### What's different?
 
 The current implementation of the geocoder data integration process needs a dedicated, standalone, batch geocoder that must be loaded with reference data three times during the integration process as follows:
@@ -130,7 +135,7 @@ The current implementation also needs a standalone Java application which handle
 
 In the new implementation, all integration and verification steps will be moved from separate FME scripts that call out to the batch geocoder, to a single Java application called Geocodable BC Maker which will have an embedded geocoder. Geocodable BC Maker will also incorporate an enhanced version of the BAARG. This simplifies the data integration architecture by eliminating the need for an external batch geocoder, speeds up the integration process, localizes all integration algorithms into a single component for easier understanding and maintenance, and leaves the task of keeping up with constantly changing data source schemas and formats to easily-updated scripts.
 
-<a name=activity diagrams><\a>
+<a name=activity></a>
 ## Activity diagrams of current and proposed implementations
 
 ### Current implementation
@@ -144,7 +149,7 @@ In the new implementation, all integration and verification steps will be moved 
 
 <br><br>
 
-<a name=architecture diagrams><\a>
+<a name=architecture></a>
 ## Architecture Diagrams of current and proposed implementations
 
 The current implementation is on the left; the proposed implementation on the right:
@@ -153,7 +158,7 @@ The current implementation is on the left; the proposed implementation on the ri
 
 <br><br>
 
-<a name=data-flow><\a>
+<a name=data-flow></a>
   
 ## Data flow diagrams of current implementation
 
