@@ -5,7 +5,7 @@ Integrating addresses and their occupants into a road network requires geocoding
 
 ## Table of Contents
 [Introduction](#intro)<br>
-[what is geocoder data integration?](#integration-defined)<br>
+[What is geocoder data integration?](#integration-defined)<br>
 [Data Flow Diagrams](#data-flow)<br>
 
 <a name=intro><\a>
