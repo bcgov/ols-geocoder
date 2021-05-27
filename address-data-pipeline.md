@@ -3,9 +3,17 @@
 ## Executive Summary
 Integrating addresses and their occupants into a road network requires geocoding the addresses twice. Validating this integration requires an additional geocoding of test addresses. Currently, the integrator and geocoder are separately deployed components. We propose to combine the two into a single application, called Geocodable BC Maker, to simplify administration and maintenance, and dramatically reduce processing time. This will allow more frequent geocoder data updates with less effort.
 
+## Table of Contents
+[Introduction](#intro)
+[what is geocoder data integration?](#what is geocoder data integration)
+  
+<a name=data flow diagrams><\a>
+
+<a name=intro><\a>
 ## Introduction
 This document outlines a proposal for a new implementation of the geocoder data integration process that is simpler to operate, easier to maintain, faster to run, and more supportive of complex addressing scenarios. We first look at the integration process itself, describe how it can be improved, and contrast the proposed implementation with the current one.
 
+<a name=what is geocoder data integration><\a>
 ## What is Geocoder Data Integration?
 Here's an overview of the geocoder data integration process:
 <br><br>
@@ -26,7 +34,7 @@ In Deploy,  if the validation was successful, we Deploy the integrated data to a
 
 The Integrate stage lies at the heart of the process and our change proposal mostly affects this stage so let's take a closer look.  
 
-
+<a name=tying addresses to block-faces><\a>
 ### Tying addresses to block-faces
 Geocoder data integration is primarily about tying the latest candidate reference addresses to the latest version of the reference road network (e.g.,  BC Digital Road Atlas) and deriving address ranges. Here is a small portion of the latest DRA and the latest candidate reference addresses:
 
@@ -87,6 +95,8 @@ Block 1|Block 2|Block 3|
 **2** 4 10 18 48 96 **98** |**100** **198** |  **200** 210 220 240 280 **298**
 
 <br><br>
+
+<a name=proposed implementation><\a>
 ## Proposed Implementation of the Geocoder Data Integration Process
 
 Here is the proposed implementation of the geocoder data integration process:
@@ -104,6 +114,7 @@ Stage name|Description|Implementation
 ||Globally valid means the dataset is <br> * locality-complete (e.g. has addresses from every locality) <br> * match-correct (e.g., all test addresses geocode as expected) <br> * spatially-consistent (e.g., address locations on every block increase in the same direction as their civic numbers, blockface address ranges don't overlap and increase in the same direction), and <br>  * version-consistent (e.g. locality address counts are higher than the previous version of reference data)|
 Deploy| If validation is successful, make new reference road network and address list accessible to online and batch geocoder|Manually trigger online geocoder restart script and restart batch geocoder plugin in CPF using CPF admin application.
 
+<a name=whats different><\a>
 ### What's different?
 
 The current implementation of the geocoder data integration process needs a dedicated, standalone, batch geocoder that must be loaded with reference data three times during the integration process as follows:
@@ -118,6 +129,7 @@ The current implementation also needs a standalone Java application which handle
 
 In the new implementation, all integration and verification steps will be moved from separate FME scripts that call out to the batch geocoder, to a single Java application called Geocodable BC Maker which will have an embedded geocoder. Geocodable BC Maker will also incorporate an enhanced version of the BAARG. This simplifies the data integration architecture by eliminating the need for an external batch geocoder, speeds up the integration process, localizes all integration algorithms into a single component for easier understanding and maintenance, and leaves the task of keeping up with constantly changing data source schemas and formats to easily-updated scripts.
 
+<a name=activity diagrams><\a>
 ## Activity diagrams of current and proposed implementations
 
 ### Current implementation
@@ -131,6 +143,7 @@ In the new implementation, all integration and verification steps will be moved 
 
 <br><br>
 
+<a name=architecture diagrams><\a>
 ## Architecture Diagrams of current and proposed implementations
 
 The current implementation is on the left; the proposed implementation on the right:
@@ -138,6 +151,8 @@ The current implementation is on the left; the proposed implementation on the ri
 ![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/082b65d9-cc15-43af-9b39-dd0dc6b68215)
 
 <br><br>
+
+<a name=data flow diagrams><\a>
 ## Data flow diagrams of current implementation
 
 ### Gather and Transform Steps
