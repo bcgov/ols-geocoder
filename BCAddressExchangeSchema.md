@@ -446,23 +446,23 @@ The following entrance unit designators are proposed to handle the special types
 
 |unitDesignator|Description|
 |--|--|
-BUS-ENTRANCE|BUS Entrance
+BUS-ENTRANCE|BUS Entrance/exit
 BUS-EXIT|BUS Exit only
-BUS-PARKING-ENTRANCE|Bus parking entrance
+BUS-PARKING-ENTRANCE|Bus parking entrance/exit
 BUS-PARKING-EXIT|Bus parking exit only
-DELIVERY-ENTRANCE| Delivery entrance
+DELIVERY-ENTRANCE| Delivery entrance/exit
 DELIVERY-EXIT| Delivery exit only
-EMERGENCY-ENTRANCE|Emergency responder entrance
+EMERGENCY-ENTRANCE|Emergency responder entrance/exit
 EMERGENCY-EXIT|Emergency exit only (sounds alarm)
-ENTRANCE|Entrance
+ENTRANCE|Entrance/exit
 EXIT|Exit only
-PARKING-ENTRANCE|Parking entrance
+PARKING-ENTRANCE|Parking entrance/exit
 PARKING-EXIT|Parking exit only
-SERVICE-ENTRANCE|Service entrance
+SERVICE-ENTRANCE|Service entrance/exit
 SERVICE-EXIT|Service exit only
-TRUCK-ENTRANCE|TRUCK entrance
+TRUCK-ENTRANCE|TRUCK entrance/exit
 TRUCK-EXIT|TRUCK exit only
-TRUCK-PARKING-ENTRANCE|Truck parking entrance
+TRUCK-PARKING-ENTRANCE|Truck parking entrance/exit
 TRUCK-PARKING-EXIT|Truck parking exit only
 
 Like any unitDesignator, entrances may be numbered (eg., ENTRANCE 1, EXIT 4)
@@ -525,16 +525,16 @@ APT|Apartment|Yes|Yes
 BERTH|Berth on a dock|No|Yes
 BSMT|Basement|No
 BLDG|Building|No
-BUS-ENTRANCE|BUS Entrance|No
+BUS-ENTRANCE|BUS entrance/exit|No
 BUS-EXIT|BUS Exit only|No
-BUS-PARKING-ENTRANCE|Bus parking entrance|No
+BUS-PARKING-ENTRANCE|Bus parking entrance/exit|No
 BUS-PARKING-EXIT|Bus parking exit|No
 CONDO|Condominium unit within a building|No
-DELIVERY-ENTRANCE| Delivery entrance|No
+DELIVERY-ENTRANCE| Delivery entrance/exit|No
 DELIVERY-EXIT| Delivery exit only|No
-EMERGENCY-ENTRANCE|Emergency responder entrance|No
+EMERGENCY-ENTRANCE|Emergency responder entrance/exit|No
 EMERGENCY-EXIT|Emergency exit (sounds alarm)|No
-ENTRANCE|Entrance|No
+ENTRANCE|Entrance/exit|No
 EXIT|Exit only|No
 FLR|Floor|No
 GATE|Gate|No
@@ -543,22 +543,22 @@ LOBBY|Lobby|No
 LWR |Lower floor of building|No
 MEZZ|Mezzanine|No
 PAD|RV or mobile home Pad|No
-PARKING-ENTRANCE|Parking entrance|No
+PARKING-ENTRANCE|Parking entrance/exit|No
 PARKING-EXIT|Parking exit only|No
 PH|Penthouse|Yes
 PLATFORM|Platform|No
 REAR|Rear of building|No
 RM|Room|No
-SERVICE-ENTRANCE|Service entrance|No
+SERVICE-ENTRANCE|Service entrance/exit|No
 SERVICE-EXIT|Service exit only|No
 SIDE|Side of building|No
 SITE|Site|No
 SUITE|Suite|Yes
 TERMINAL|Terminal|No
 TH|Townhouse|No
-TRUCK-ENTRANCE|TRUCK entrance|No
+TRUCK-ENTRANCE|TRUCK entrance/exit|No
 TRUCK-EXIT|TRUCK exit only|No
-TRUCK-PARKING-ENTRANCE|Truck parking entrance|No
+TRUCK-PARKING-ENTRANCE|Truck parking entrance/exit|No
 TRUCK-PARKING-EXIT|Truck parking exit only|No
 UNIT|Unit|Yes
 UPPR|Upper floor of building|No
