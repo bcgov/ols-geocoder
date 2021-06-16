@@ -376,11 +376,11 @@ Buildings may have special entrances for emergency access or service staff, and 
 
 1100 Chestnut St, Vancouver, BC
 
-ENTRANCE.EMERGENCY -- 1100 Chestnut St, Vancouver, BC
+EMERGENCY-ENTRANCE -- 1100 Chestnut St, Vancouver, BC
 
-EXIT.EMERGENCY 1 -- 1100 Chestnut St, Vancouver BC
+EMERGENCY-EXIT 1 -- 1100 Chestnut St, Vancouver BC
 
-EXIT.EMERGENCY 2 -- 1100 Chestnut St, Vancouver BC
+EMERGENCY-EXIT 2 -- 1100 Chestnut St, Vancouver BC
 
 
 The following exchange data records will represent the above addresses:
@@ -396,7 +396,7 @@ PROVINCE_CODE|BC
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|ENTRANCE.EMERGENCY
+UNIT_DESIGNATOR|EMERGENCY-ENTRANCE
 CIVIC_NUMBER|1100
 STREET_NAME|Chestnut
 STREET_TYPE|St
@@ -410,7 +410,7 @@ ACCESS_POINT_LON|(aReal)
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|EXIT.EMERGENCY
+UNIT_DESIGNATOR|EMERGENCY-EXIT
 UNIT_NUMBER|1
 CIVIC_NUMBER|1100
 STREET_NAME|Chestnut
@@ -424,7 +424,7 @@ ACCESS_POINT_LON|(aReal)
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|EXIT.EMERGENCY
+UNIT_DESIGNATOR|EMERGENCY-EXIT
 UNIT_NUMBER|2
 CIVIC_NUMBER|1100
 STREET_NAME|Chestnut
@@ -440,13 +440,24 @@ The following entrance unit designators are proposed to handle the common types 
 
 |unitDesignator|Description|
 |--|--|
+BUS-ENTRANCE|BUS Entrance
+BUS-EXIT|BUS Exit only
+BUS-PARKING-ENTRANCE|Bus parking entrance
+BUS-PARKING-EXIT|Bus parking exit
+DELIVERY-ENTRANCE| Delivery entrance
+DELIVERY-EXIT| Delivery exit only
+EMERGENCY-ENTRANCE|Emergency responder entrance
+EMERGENCY-EXIT|Emergency exit (sounds alarm)
 ENTRANCE|Entrance
-ENTRANCE.DELIVERY|Delivery entrance
-ENTRANCE.EMERGENCY|Emergency responder entrance
-ENTRANCE.SERVICE| Service entrance
-ENTRANCE.PARKING| Parking entrance
-EXIT|Exit
-EXIT.EMERGENCY|Emergency exit (sounds the alarm)
+EXIT|Exit only
+PARKING-ENTRANCE|Parking entrance
+PARKING-EXIT|Parking exit only
+SERVICE-ENTRANCE|Service entrance
+SERVICE-EXIT|Service exit only
+TRUCK-ENTRANCE|TRUCK entrance
+TRUCK-EXIT|TRUCK exit only
+TRUCK-PARKING-ENTRANCE|Truck parking entrance
+TRUCK-PARKING-EXIT|Truck parking exit only
 
 Like any unitDesignator, entrances may be numbered (eg., ENTRANCE 1, EXIT 4)
 
@@ -504,48 +515,21 @@ Here is the list of standard unit designators. Any designator can also have an a
 
 |Name|Description|Canada Post Standard|
 |--|--|--|
-ACCESS.IN|Access to site from road; only required if access road is one-way|No
-ACCESS.OUT|Access from site to road; only required if access road is one-way|No
-ACCESS.BUS| Access to and from site by bus|No
-ACCESS.BUS.IN| Access to site from road by bus|No
-ACCESS.BUS.OUT| Access from site to road by bus|No
-ACCESS.DELIVERY|Access to and from delivery entrance|No
-ACCESS.DELIVERY.IN| Access to delivery entrance from road|No
-ACCESS.DELIVERY.OUT| Access from delivery entrance to road|No
-ACCESS.PARKING|Access to and from parking|No
-ACCESS.PARKING.BUS|Access to and from bus parking|No
-ACCESS.PARKING.IN|Access to parking|No
-ACCESS.PARKING.OUT|Access from parking|No
-ACCESS.PARKING.TRUCK|Access to and from truck parking|No
-ACCESS.PARKING.BUS|Access to and from bus parking|No
-ACCESS.EMERGENCY|Access to and from emergency entrance by emergency vehicle|No
-ACCESS.EMERGENCY.IN|Access to emergency entrance from road by emergency vehicle|No
-ACCESS.EMERGENCY.OUT|Access from emergency entrance to road by emergency vehicle|No
-ACCESS.SERVICE|Access to and from service entrance|No
-ACCESS.SERVICE.IN|Access to service entrance from road|No
-ACCESS.SERVICE.OUT|Access from service entrance to road|No
-ACCESS.TRUCK|Access to and from site by truck|No
-ACCESS.TRUCK.IN|Access to site from road by truck|No
-ACCESS.TRUCK.OUT|Access from site to road by truck|No
-APT|Apartment|Yes
-BERTH|Berth on a dock|No
+APT|Apartment|Yes|Yes
+BERTH|Berth on a dock|No|Yes
 BSMT|Basement|No
 BLDG|Building|No
+BUS-ENTRANCE|BUS Entrance|No
+BUS-EXIT|BUS Exit only|No
+BUS-PARKING-ENTRANCE|Bus parking entrance|No
+BUS-PARKING-EXIT|Bus parking exit|No
 CONDO|Condominium unit within a building|No
+DELIVERY-ENTRANCE| Delivery entrance|No
+DELIVERY-EXIT| Delivery exit only|No
+EMERGENCY-ENTRANCE|Emergency responder entrance|No
+EMERGENCY-EXIT|Emergency exit (sounds alarm)|No
 ENTRANCE|Entrance|No
-ENTRANCE.BUS|BUS Entrance|No
-ENTRANCE.DELIVERY| Delivery entrance|No
-ENTRANCE.EMERGENCY|Emergency responder entrance|No
-ENTRANCE.PARKING|Parking entrance|No
-ENTRANCE.PARKING.BUS|Bus parking entrance|No
-ENTRANCE.PARKING.TRUCK|Truck parking entrance|No
-ENTRANCE.SERVICE|Service entrance|No
-ENTRANCE.TRUCK|TRUCK entrance|No
 EXIT|Exit only|No
-EXIT.EMERGENCY|Emergency exit (sounds alarm)|No
-EXIT.PARKING|Parking exit|No
-EXIT.PARKING.BUS|Bus parking exit|No
-EXIT.PARKING.TRUCK|Truck parking exit|No
 FLR|Floor|No
 GATE|Gate|No
 HOUSE|House within a complex|No
@@ -553,14 +537,22 @@ LOBBY|Lobby|No
 LWR |Lower floor of building|No
 MEZZ|Mezzanine|No
 PAD|RV or mobile home Pad|No
+PARKING-ENTRANCE|Parking entrance|No
+PARKING-EXIT|Parking exit only|No
 PH|Penthouse|Yes
 PLATFORM|Platform|No
 REAR|Rear of building|No
 RM|Room|No
+SERVICE-ENTRANCE|Service entrance|No
+SERVICE-EXIT|Service exit only|No
 SIDE|Side of building|No
 SITE|Site|No
 SUITE|Suite|Yes
 TERMINAL|Terminal|No
 TH|Townhouse|No
+TRUCK-ENTRANCE|TRUCK entrance|No
+TRUCK-EXIT|TRUCK exit only|No
+TRUCK-PARKING-ENTRANCE|Truck parking entrance|No
+TRUCK-PARKING-EXIT|Truck parking exit only|No
 UNIT|Unit|Yes
 UPPR|Upper floor of building|No
