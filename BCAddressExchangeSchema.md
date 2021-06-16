@@ -1,7 +1,7 @@
 # Physical Address Exchange Standard Draft v0.10
 ### Change history
-v0.10 June 16, 2021 - made special entrance/exit unitDesignators more readable
-v0.9 May 3, 2021 - updated support for entrances and exits as units within a building; added concept of special access points as units
+v0.10 June 16, 2021 - made special entrance/exit unitDesignators more readable<br>
+v0.9 May 3, 2021 - updated support for entrances and exits as units within a building; added concept of special access points as units<br>
 
 v0.8 Feb 25, 2021 - added support for entrances and exits as units within a building; sites no longer have to be named to have special entrances<br>
 
