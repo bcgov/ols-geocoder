@@ -20,7 +20,7 @@ v0.4 Jun, 2019 - added SUPER_SITE_YOURID to schema, changed schema to allow any 
 [Example 4 - A complex with multiple levels of units](#ex4)<br>
 [Example 5 - A complex of buildings](#ex5)<br>
 [Example 6 - A building with special entrances and exits](#ex6)<br>
-[Unit Designators of entrances, exits, and other building parts](#specialUnitDesignators)
+[Unit Designators of entrances, exits, and other building parts](#specialUnitDesignators)<br>
 [Schema definition](#schema)<br>
 [Unit designators](#unitDesignators)<br><br>
 
