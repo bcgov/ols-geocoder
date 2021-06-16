@@ -20,6 +20,7 @@ v0.4 Jun, 2019 - added SUPER_SITE_YOURID to schema, changed schema to allow any 
 [Example 4 - A complex with multiple levels of units](#ex4)<br>
 [Example 5 - A complex of buildings](#ex5)<br>
 [Example 6 - A building with special entrances and exits](#ex6)<br>
+[Unit Designators of entrances, exits, and other building parts](#specialUnitDesignators)
 [Schema definition](#schema)<br>
 [Unit designators](#unitDesignators)<br><br>
 
@@ -436,19 +437,22 @@ SITE_LAT|(aReal); location of emergency exit 2 on building
 SITE_LON|(aReal)
 ACCESS_POINT_LAT|(aReal) ;location of intersection of access road and Chestnut St if different from primary site access point
 ACCESS_POINT_LON|(aReal)
+<br>
 
-The following entrance unit designators are proposed to handle the common types of entrances in a standard way:
+<a name=specialUnitDesignators></a>
+## Unit Designators of entrances, exits, and other building parts
+The following entrance unit designators are proposed to handle the special types of entrances and exits in a standard way:
 
 |unitDesignator|Description|
 |--|--|
 BUS-ENTRANCE|BUS Entrance
 BUS-EXIT|BUS Exit only
 BUS-PARKING-ENTRANCE|Bus parking entrance
-BUS-PARKING-EXIT|Bus parking exit
+BUS-PARKING-EXIT|Bus parking exit only
 DELIVERY-ENTRANCE| Delivery entrance
 DELIVERY-EXIT| Delivery exit only
 EMERGENCY-ENTRANCE|Emergency responder entrance
-EMERGENCY-EXIT|Emergency exit (sounds alarm)
+EMERGENCY-EXIT|Emergency exit only (sounds alarm)
 ENTRANCE|Entrance
 EXIT|Exit only
 PARKING-ENTRANCE|Parking entrance
