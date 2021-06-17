@@ -25,8 +25,8 @@ v0.4 Jun, 2019 - added SUPER_SITE_YOURID to schema, changed schema to allow any 
 [Example 6 - A building with special entrances and exits](#ex6)<br>
 [Unit Designators of entrances, exits, and other building parts](#specialUnitDesignators)<br>
 [Schema definition](#schema)<br>
-[Unit designators](#unitDesignators)<br><br>
-[Street qualifiers](#streetQualifiers>)<br><br>
+[Unit designators](#unitDesignators)<br>
+[Street qualifiers](#streetQualifiers)<br><br>
 
 
 <a name=intro></a>
@@ -570,8 +570,8 @@ UPPR|Upper floor of building|No
 ## Street Qualifiers
 Here is the list of standard street qualifiers
 
-|Name|Description
-|--|
+|Name|Description|
+|--|--|
 Airport|
 Airstrip|
 Arm|
