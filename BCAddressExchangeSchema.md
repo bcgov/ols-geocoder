@@ -1,5 +1,7 @@
 # Physical Address Exchange Standard Draft v0.10
 ### Change history
+v0.11 June 17, 2021 - changed fields in all examples to camel-case; deleted localityDescriptor, 
+
 v0.10 June 16, 2021 - made special entrance/exit unitDesignators more readable<br>
 
 v0.9 May 3, 2021 - updated support for entrances and exits as units within a building; added concept of special access points as units<br>
@@ -24,6 +26,7 @@ v0.4 Jun, 2019 - added SUPER_SITE_YOURID to schema, changed schema to allow any 
 [Unit Designators of entrances, exits, and other building parts](#specialUnitDesignators)<br>
 [Schema definition](#schema)<br>
 [Unit designators](#unitDesignators)<br><br>
+[Street qualifiers](#streetQualifiers>)<br><br>
 
 
 <a name=intro></a>
@@ -501,6 +504,7 @@ streetType|String|Street type( e.g., Rd) |No|No
 isStreetTypePrefix|Boolean| true if street type appears before street name as in HWY 17; false otherwise|No|No
 streetDirection|String|Canada Post street direction; one of C, E, N, NE, NW, SE, SW, or W (e.g., NW); Canada Post does not allow prefix and suffix street direction in same address as in: 103 N 52 St SW|No|No
 isStreetDirectionPrefix|Boolean|true if street direction appears before street name as in SW Marine Dr; false otherwise|No|No
+streetQualifier|The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge)|No|No
 localityName|String|Locality name (e.g., Victoria)|Yes|Yes
 provinceCode|String|Canada Post two-character province code|Yes|Yes
 isNonCivic|Boolean|true if address has no assigned civic number; false otherwise|Yes|Yes
@@ -561,3 +565,68 @@ TRUCK-PARKING-ENTRANCE|Truck parking entrance/exit|No
 TRUCK-PARKING-EXIT|Truck parking exit only|No
 UNIT|Unit|Yes
 UPPR|Upper floor of building|No
+<br><br>
+<a name=streetQualifiers></a>
+## Street Qualifiers
+Here is the list of standard street qualifiers
+
+|Name|Description
+|--|
+Airport|
+Airstrip|
+Arm|
+Bay|
+Beach|
+Boardwalk|
+Boatlaunch|
+Brakecheck|
+Bridge|
+Campground|
+Causeway|
+Chainoff|
+Chainup|
+Channel|
+Conn|Connector
+Creek|
+Dam|
+Day Use Area|
+Diversion|
+Extension|
+Falls|
+Ferry|
+Flyover|
+Frtg|Frontage
+Hill|
+Hospital|
+Island|
+Lake|
+Marina|
+MHP|
+Offramp|
+Onramp|
+Overhead|
+Overpass|
+Parkinglot|
+Passage|
+Picnicarea|
+Pk|Park
+Point|
+Pullout|
+Ramp|
+Recsite|
+Restarea|
+River|
+School|
+Seabus|
+Shoreline|
+Snowshed|
+Station|
+Stub|
+Terminal|
+TrailerCrt|
+Trailhead|
+Trestle|
+Tunnel|
+Underpass|
+Viaduct|
+WeighScale
