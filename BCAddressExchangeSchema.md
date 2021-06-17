@@ -519,7 +519,7 @@ footprintDescriptor|String| one of building, complex, parcel, outdoorArea, indoo
 footprint|OGC WKT|geometry of site footprint in OGC Well-Known Text format. Can use other geometry standards in other formats (e.g., GML GeoJson)|No|No
 
 
-Here's the same schema with the most common fields at the front:
+Here's another version of the above schema but with the most common fields at the front:
 
 Field Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
 ---: | --- | --- | ---| ---
@@ -539,6 +539,7 @@ unitDesignator|String|unit designator (e.g., APT, UNIT); includes Canada Post un
 unitNumberPrefix|String|a single letter or sequence of letter ranges separated by commas (e.g., A-D,J,M-P)|No|No
 unitNumberSuffix|String|Canada Post unit number suffix (e.g., C)|No|No
 siteName|String|building or landmark name (e.g., Centennial Candle)|no|yes
+isNonCivic|Boolean|true if address has a sitename and no assigned civic number; false otherwise|Yes|Yes
 siteTags|String| Comma-separated list of descriptive tags (e.g. stadium)|No|No
 superFullsiteDescriptor|String|names of all units and sites in parent site hierarchy separated by double-dash (e.g., Student Union Building -- University of Victoria)|No|No
 superYourId|Sting|Unique identifier of super site|No|No
@@ -546,7 +547,6 @@ civicNumberSuffix|String|Canada Post civic number suffix (e.g., A)|No|No
 accessPointLat|Number|Only needed if access point is different than site point or super site point|No|Yes
 accessPointLon|Number|Only needed if access point is different than site point or super site point|No|Yes
 streetQualifier|The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge)|No|No
-isNonCivic|Boolean|true if address has no assigned civic number; false otherwise|Yes|Yes
 isAlias|Boolean|true if address is not an official address (e.g., a former address); false if address is official|Yes|Yes
 relativeLocation|String|Relative geographic location of a non-civic address (e.g., Lonely Cabins - 43 km west of Stui on N side of Hwy 20)|No|Yes	
 footprintDescriptor|String| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)|No|No
