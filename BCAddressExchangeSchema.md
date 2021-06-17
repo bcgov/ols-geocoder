@@ -498,14 +498,13 @@ civicNumber|Number| civic number, usually a positive integer (e.g., 1321)|Yes|No
 civicNumberSuffix|String|Canada Post civic number suffix (e.g., A)|No|No
 streetName|String|Street name (e.g., Dallas)|Yes|No
 streetType|String|Street type( e.g., Rd) |No|No
-isStreetTypePrefix|Boolean| True if street type appears before street name as in HWY 17|No|No
+isStreetTypePrefix|Boolean| true if street type appears before street name as in HWY 17; false otherwise|No|No
 streetDirection|String|Canada Post street direction; one of C, E, N, NE, NW, SE, SW, or W (e.g., NW); Canada Post does not allow prefix and suffix street direction in same address as in: 103 N 52 St SW|No|No
-isStreetDirectionPrefix|Boolean|true if street direction appears before street name as in SW Marine Dr|No|No
+isStreetDirectionPrefix|Boolean|true if street direction appears before street name as in SW Marine Dr; false otherwise|No|No
 localityName|String|Locality name (e.g., Victoria)|Yes|Yes
-localityDescriptor|String|type of locality|(e.g., Municipality)|Yes|Yes
 provinceCode|String|Canada Post two-character province code|Yes|Yes
-isNonCivicAddress|Boolean|True if address has no assigned civic number|Yes|Yes
-isOfficialAddress|Boolean|True if address is official; False if unofficial (e.g., former address)|Yes|Yes
+isNonCivic|Boolean|true if address has no assigned civic number; false otherwise|Yes|Yes
+isOfficial|Boolean|true if address is official; false if unofficial (e.g., former address)|Yes|Yes
 relativeLocation|String|Relative geographic location of a non-civic address (e.g., Lonely Cabins - 43 km west of Stui on N side of Hwy 20)|No|Yes	
 siteLat|Number|site latitude|Yes|Yes
 siteLon|Number)|site longitude|Yes|Yes
