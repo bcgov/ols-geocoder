@@ -1,4 +1,4 @@
-# Physical Address Exchange Standard Draft v0.10
+# Physical Address Exchange Standard Draft v0.11
 ### Change history
 v0.11 June 17, 2021 - changed fields in all examples to camel-case; deleted localityDescriptor, renamed siteLat and siteLon latitude and longitude, replaced isOfficialAddress with isAlias so that default could be false which simplifies input, renamed isNonCivicAddress isNonCivic, renamed superSiteYourId superYourId
 
