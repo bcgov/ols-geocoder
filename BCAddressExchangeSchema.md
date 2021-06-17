@@ -1,6 +1,6 @@
 # Physical Address Exchange Standard Draft v0.11
 ### Change history
-v0.11 June 17, 2021 - changed fields in all examples to camel-case; deleted localityDescriptor, renamed siteLat and siteLon latitude and longitude, replaced isOfficialAddress with isAlias so that default could be false which simplifies input, renamed isNonCivicAddress isNonCivic, renamed superSiteYourId superYourId
+v0.11 June 17, 2021 - changed fields in all examples to camel-case; deleted localityDescriptor, replaced isOfficialAddress with isAlias so that default could be false which simplifies input, renamed isNonCivicAddress isNonCivic, renamed superSiteYourId superYourId
 
 v0.10 June 16, 2021 - made special entrance/exit unitDesignators more readable<br>
 
@@ -524,8 +524,8 @@ Here's another version of the above schema but with the most common fields at th
 Field Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
 ---: | --- | --- | ---| ---
 yourId|String|Unique identifier in your local address management system (e.g., X0233212)|No|No
-latitude|Number|Site latitude|Yes|Yes
-longitude|Number|Site longitude|Yes|Yes
+siteLatitude|Number|Site latitude|Yes|Yes
+siteLongitude|Number|Site longitude|Yes|Yes
 unitNumber|String|unit number or letter or sequence of unit number/letter ranges separated by commas (e.g., 100-119, 200-219)|No|No
 civicNumber|Number| civic number, usually a positive integer (e.g., 1321)|Yes|No
 streetName|String|Street name (e.g., Dallas)|Yes|No
