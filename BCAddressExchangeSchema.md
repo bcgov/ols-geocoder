@@ -496,10 +496,10 @@ superFullsiteDescriptor|String|names of all units and sites in parent site hiera
 superSiteYourId|Sting|Unique identifier of super site|No|No
 civicNumber|Number| civic number, usually a positive integer (e.g., 1321)|Yes|No
 civicNumberSuffix|String|Canada Post civic number suffix (e.g., A)|No|No
-streetName|String|Street name|Yes|No
-streetType|String|Street type|No|No
+streetName|String|Street name (e.g., Dallas)|Yes|No
+streetType|String|Street type( e.g., Rd) |No|No
 isStreetTypePrefix|Boolean| True if street type appears before street name as in HWY 17|No|No
-streetDirection|String|Canada Post street direction (e.g., NW); Note Canada Post does not allow prefix and suffix street direction in same address as in: 103 N 52 St SW|No|No
+streetDirection|String|Canada Post street direction; one of C, E, N, NE, NW, SE, SW, or W (e.g., NW); Canada Post does not allow prefix and suffix street direction in same address as in: 103 N 52 St SW|No|No
 isStreetDirectionPrefix|Boolean|true if street direction appears before street name as in SW Marine Dr|No|No
 localityName|String|Locality name (e.g., Victoria)|Yes|Yes
 localityDescriptor|String|type of locality|(e.g., Municipality)|Yes|Yes
