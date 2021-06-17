@@ -51,17 +51,17 @@ References such as (aReal), (aMultiPolygon), and (aPolygon) represent an arbitra
 
 Field | Value
 -----: | ------
-CIVIC_NUMBER|37
-STREET_NAME|Olympia
-STREET_TYPE|Ave
-LOCALITY|Victoria
-PROVINCE_CODE|BC
-SITE_LAT| (aReal)
-SITE_LON| (aReal)
-ACCESS_POINT_LAT| (aReal)
-ACCESS_POINT_LON| (aReal)
-FOOTPRINT_DESCRIPTOR|building
-FOOTPRINT| (aPolygon)
+civicNumber|37
+streetName|Olympia
+streetType|Ave
+localityName|Victoria
+provinceCode|BC
+siteLat| (aReal)
+siteLon| (aReal)
+accessPointLat| (aReal)
+accessPointLon| (aReal)
+footprintDescriptor|building
+footprint| (aPolygon)
 
 <a name=ex2> </a>
 ## Example 2 - A single apartment building with multiple floors and units
@@ -71,29 +71,29 @@ The following exchange data records will represent the above addresses:
 
 Field | Value
 -----: | ------
-CIVIC_NUMBER|740
-STREET_NAME|Gorge
-STREET_TYPE|Rd
-STREET_DIRECTION|W
-LOCALITY|Saanich
-PROVINCE_CODE|BC
-SITE_LAT| (aReal)
-SITE_LON| (aReal)
-ACCESS_POINT_LAT|(aReal)
-ACCESS_POINT_LON|(aReal)
-FOOTPRINT_DESCRIPTOR|building
-FOOTPRINT|(aMultiPolygon)
+civicNumber|740
+streetName|Gorge
+streetType|Rd
+streetDirection|W
+localityName|Saanich
+provinceCode|BC
+siteLat| (aReal)
+siteLon| (aReal)
+accessPointLat|(aReal)
+accessPointLon|(aReal)
+footprintDescriptor|building
+footprint|(aMultiPolygon)
 
 Field | Value
 -----: | ------
-UNIT_DESIGNATOR|APT
-UNIT_NUMBER|101-104,201-204,301-304
-CIVIC_NUMBER|740
-STREET_NAME|Gorge
-STREET_TYPE|Rd
-STREET_DIRECTION|W
-LOCALITY|Saanich
-PROVINCE_CODE|BC
+unitDesignator|APT
+unitNumber|101-104,201-204,301-304
+civicNumber|740
+streetName|Gorge
+streetType|Rd
+streetDirection|W
+localityName|Saanich
+provinceCode|BC
 
 If this example was provided as reference data to the BC Address Geocoder, the Geocoder would derive full addresses such as:
 
@@ -134,48 +134,48 @@ The following exchange data records will represent the above addresses:
 
 Field | Value | Comment
 -----: | ------ | -----
-CIVIC_NUMBER|810
-STREET_NAME|Esquimalt
-STREET_TYPE|Rd
-LOCALITY|Esquimalt
-PROVINCE_CODE|BC
-SITE_LAT| (aReal)
-SITE_LON| (aReal)
-ACCESS_POINT_LAT|(aReal)
-ACCESS_POINT_LON|(aReal)
-FOOTPRINT_DESCRIPTOR|building
-FOOTPRINT|(aMultiPolygon) | shape of complex
+civicNumber|810
+streetName|Esquimalt
+streetType|Rd
+localityName|Esquimalt
+provinceCode|BC
+siteLat| (aReal)
+siteLon| (aReal)
+accessPointLat|(aReal)
+accessPointLon|(aReal)
+footprintDescriptor|building
+footprint|(aMultiPolygon) | shape of complex
 
 
 Field | Value | Comment
 -----: | ------ | -----
-UNIT_DESIGNATOR| APT
-UNIT_NUMBER_PREFIX|A|represents Building A
-UNIT_NUMBER|100-110,200-210,300-310,400-410
-CIVIC_NUMBER|810
-STREET_NAME|Esquimalt
-STREET_TYPE|Rd
-LOCALITY|Esquimalt
-PROVINCE_CODE|BC
-SITE_LAT|(aReal)| lat of building A parcel point
-SITE_LON|(aReal)| lon of building A parcel point
-ACCESS_POINT_LAT|(aReal)|lat of building A access point
-ACCESS_POINT_LON|(aReal)|lon of building A access point 
+unitDesignator| APT
+unitNumber_PREFIX|A|represents Building A
+unitNumber|100-110,200-210,300-310,400-410
+civicNumber|810
+streetName|Esquimalt
+streetType|Rd
+localityName|Esquimalt
+provinceCode|BC
+siteLat|(aReal)| lat of building A parcel point
+siteLon|(aReal)| lon of building A parcel point
+accessPointLat|(aReal)|lat of building A access point
+accessPointLon|(aReal)|lon of building A access point 
 
 Field | Value | Comment
 -----: | ------ | -----
-UNIT_DESIGNATOR| APT
-UNIT_NUMBER_PREFIX|B|represents Building B
-UNIT_NUMBER|100-110,200-210,300-310,400-410
-CIVIC_NUMBER|810
-STREET_NAME|Esquimalt
-STREET_TYPE|Rd
-LOCALITY|Esquimalt
-PROVINCE_CODE|BC
-SITE_LAT|(aReal)| lat of building B parcel point 
-SITE_LON|(aReal)| lon of building B parcel point
-ACCESS_POINT_LAT|(aReal)|lat of building B access point
-ACCESS_POINT_LON|(aReal)|lon of building B access point 
+unitDesignator| APT
+unitNumber_PREFIX|B|represents Building B
+unitNumber|100-110,200-210,300-310,400-410
+civicNumber|810
+streetName|Esquimalt
+streetType|Rd
+localityName|Esquimalt
+provinceCode|BC
+siteLat|(aReal)| lat of building B parcel point 
+siteLon|(aReal)| lon of building B parcel point
+accessPointLat|(aReal)|lat of building B access point
+accessPointLon|(aReal)|lon of building B access point 
 
 
 If this example was provided as reference data to the BC Address Geocoder, the Geocoder would derive full addresses such as:
@@ -200,77 +200,77 @@ The following data exchange records will represent the above addresses:
 
 Field | Value
 ----:|----
-SITE_NAME|Vancouver International Airport
-CIVIC_NUMBER|3211
-STREET_NAME|Grant McConnachie
-STREET_TYPE|Way
-LOCALITY|Richmond
-PROVINCE_CODE|BC
-SITE_LAT|(aReal)
-SITE_LON|(aReal)
-ACCESS_POINT_LAT|(aReal)
-ACCESS_POINT_LON|(aReal)
-FOOTPRINT_DESCRIPTOR|complex
-FOOTPRINT|(aMultiPolygon)
+siteName|Vancouver International Airport
+civicNumber|3211
+streetName|Grant McConnachie
+streetType|Way
+localityName|Richmond
+provinceCode|BC
+siteLat|(aReal)
+siteLon|(aReal)
+accessPointLat|(aReal)
+accessPointLon|(aReal)
+footprintDescriptor|complex
+footprint|(aMultiPolygon)
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|Terminal
-UNIT_NUMBER|A
-SUPER_FULL_SITE_DESCRIPTOR|Vancouver International Airport
-CIVIC_NUMBER|3211
-STREET_NAME|Grant McConnachie
-STREET_TYPE|Way
-LOCALITY|Richmond
-PROVINCE_CODE|BC
-SITE_LAT|(aReal)
-SITE_LON|(aReal)
-FOOTPRINT_DESCRIPTOR|building
-FOOTPRINT|(polygon)
+unitDesignator|Terminal
+unitNumber|A
+superFullSiteDescriptor|Vancouver International Airport
+civicNumber|3211
+streetName|Grant McConnachie
+streetType|Way
+localityName|Richmond
+provinceCode|BC
+siteLat|(aReal)
+siteLon|(aReal)
+footprintDescriptor|building
+footprint|(polygon)
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|Terminal
-UNIT_NUMBER|B
-SUPER_FULL_SITE_DESCRIPTOR|Vancouver International Airport
-CIVIC_NUMBER|3211
-STREET_NAME|Grant McConnachie
-STREET_TYPE|Way
-LOCALITY|Richmond
-PROVINCE_CODE|BC
-SITE_LAT|(aReal)
-SITE_LON|(aReal)
-FOOTPRINT_DESCRIPTOR|building
-FOOTPRINT|(polygon)
+unitDesignator|Terminal
+unitNumber|B
+superFullSiteDescriptor|Vancouver International Airport
+civicNumber|3211
+streetName|Grant McConnachie
+streetType|Way
+localityName|Richmond
+provinceCode|BC
+siteLat|(aReal)
+siteLon|(aReal)
+footprintDescriptor|building
+footprint|(polygon)
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|Terminal
-UNIT_NUMBER|C
-SUPER_FULL_SITE_DESCRIPTOR|Vancouver International Airport
-CIVIC_NUMBER|3211
-STREET_NAME|Grant McConnachie
-STREET_TYPE|Way
-LOCALITY|Richmond
-PROVINCE_CODE|BC
-SITE_LAT|(aReal)
-SITE_LON|(aReal)
-FOOTPRINT_DESCRIPTOR|building
-FOOTPRINT|(polygon)
+unitDesignator|Terminal
+unitNumber|C
+superFullSiteDescriptor|Vancouver International Airport
+civicNumber|3211
+streetName|Grant McConnachie
+streetType|Way
+localityName|Richmond
+provinceCode|BC
+siteLat|(aReal)
+siteLon|(aReal)
+footprintDescriptor|building
+footprint|(polygon)
 
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|Gate
-UNIT_NUMBER|1-35
-SUPER_FULL_SITE_DESCRIPTOR|Terminal A -- Vancouver International Airport
-CIVIC_NUMBER|3211
-STREET_NAME|Grant McConnachie
-STREET_TYPE|Way
-LOCALITY|Richmond
-PROVINCE_CODE|BC
-SITE_LAT|(aReal) 
-SITE_LON|(aReal)
+unitDesignator|Gate
+unitNumber|1-35
+superFullSiteDescriptor|Terminal A -- Vancouver International Airport
+civicNumber|3211
+streetName|Grant McConnachie
+streetType|Way
+localityName|Richmond
+provinceCode|BC
+siteLat|(aReal) 
+siteLon|(aReal)
 
 The gates of terminals B and C are represented similarly.
 
@@ -300,77 +300,77 @@ The following exchange data records will represent the above addresses:
 
 Field | Value
 ----:|----
-SITE_NAME|University of Victoria
-CIVIC_NUMBER|3800
-STREET_NAME|Finnerty
-STREET_TYPE|Rd
-LOCALITY|Victoria
-PROVINCE_CODE|BC
-SITE_LAT|(aReal) 
-SITE_LON|(aReal)
-ACCESS_POINT_LAT|(aReal)
-ACCESS_POINT_LON|(aReal)
-FOOTPRINT_DESCRIPTOR|complex
-FOOTPRINT|(aMultiPolygon)
+siteName|University of Victoria
+civicNumber|3800
+streetName|Finnerty
+streetType|Rd
+localityName|Victoria
+provinceCode|BC
+siteLat|(aReal) 
+siteLon|(aReal)
+accessPointLat|(aReal)
+accessPointLon|(aReal)
+footprintDescriptor|complex
+footprint|(aMultiPolygon)
 
 Field | Value
 ----:|----
-SITE_NAME|Student Union Building
-SUPER_FULL_SITE_DESCRIPTOR|University of Victoria
-CIVIC_NUMBER|3800
-STREET_NAME|Finnerty
-STREET_TYPE|Rd
-LOCALITY|Saanich
-PROVINCE_CODE|BC
-SITE_LAT|(aReal) 
-SITE_LON|(aReal)
-ACCESS_POINT_LAT|(aReal)
-ACCESS_POINT_LON|(aReal)
-FOOTPRINT_DESCRIPTOR|building
-FOOTPRINT|(polygon)
+siteName|Student Union Building
+superFullSiteDescriptor|University of Victoria
+civicNumber|3800
+streetName|Finnerty
+streetType|Rd
+localityName|Saanich
+provinceCode|BC
+siteLat|(aReal) 
+siteLon|(aReal)
+accessPointLat|(aReal)
+accessPointLon|(aReal)
+footprintDescriptor|building
+footprint|(polygon)
 
 Field | Value
 ----:|----
-SITE_NAME|Clearihue Building
-SUPER_FULL_SITE_DESCRIPTOR|University of Victoria
-CIVIC_NUMBER|3800
-STREET_NAME|Finnerty
-STREET_TYPE|Rd
-LOCALITY|Saanich
-PROVINCE_CODE|BC
-SITE_LAT|(aReal) 
-SITE_LON|(aReal)
-ACCESS_POINT_LAT|(aReal)
-ACCESS_POINT_LON|(aReal)
-FOOTPRINT_DESCRIPTOR|building
-FOOTPRINT|(polygon)
+siteName|Clearihue Building
+superFullSiteDescriptor|University of Victoria
+civicNumber|3800
+streetName|Finnerty
+streetType|Rd
+localityName|Saanich
+provinceCode|BC
+siteLat|(aReal) 
+siteLon|(aReal)
+accessPointLat|(aReal)
+accessPointLon|(aReal)
+footprintDescriptor|building
+footprint|(polygon)
 
 Field | Value
 ----:|----
-SITE_NAME|Michele Pujol Room
-SUPER_FULL_SITE_DESCRIPTOR|Student Union Building -- University of Victoria
-CIVIC_NUMBER|3800
-STREET_NAME|Finnerty
-STREET_TYPE|Rd
-LOCALITY|Saanich
-PROVINCE_CODE|BC
-SITE_LAT|(aReal)
-SITE_LON|(aReal)
-ACCESS_POINT_LAT|(aReal)
-ACCESS_POINT_LON|(aReal)
-FOOTPRINT_DESCRIPTOR|indoorArea
-FOOTPRINT|(polygon)
+siteName|Michele Pujol Room
+superFullSiteDescriptor|Student Union Building -- University of Victoria
+civicNumber|3800
+streetName|Finnerty
+streetType|Rd
+localityName|Saanich
+provinceCode|BC
+siteLat|(aReal)
+siteLon|(aReal)
+accessPointLat|(aReal)
+accessPointLon|(aReal)
+footprintDescriptor|indoorArea
+footprint|(polygon)
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|Room
-UNIT_NUMBER|100-110
-SUPER_FULL_SITE_DESCRIPTOR|Clearhue Building -- University of Victoria
-CIVIC_NUMBER|3800
-STREET_NAME|Finnerty
-STREET_TYPE|Rd
-LOCALITY|Saanich
-PROVINCE_CODE|BC
+unitDesignator|Room
+unitNumber|100-110
+superFullSiteDescriptor|Clearhue Building -- University of Victoria
+civicNumber|3800
+streetName|Finnerty
+streetType|Rd
+localityName|Saanich
+provinceCode|BC
 
 <a name=ex6></a>
 ## Example 6 - A building with special entrances and exits
@@ -390,54 +390,54 @@ The following exchange data records will represent the above addresses:
 
 Field | Value
 ----:|----
-CIVIC_NUMBER|1100
-STREET_NAME|Chestnut
-STREET_TYPE|St
-LOCALITY|Vancouver
-PROVINCE_CODE|BC
+civicNumber|1100
+streetName|Chestnut
+streetType|St
+localityName|Vancouver
+provinceCode|BC
 
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|EMERGENCY-ENTRANCE
-CIVIC_NUMBER|1100
-STREET_NAME|Chestnut
-STREET_TYPE|St
-LOCALITY|Vancouver
-PROVINCE_CODE|BC
-SITE_LAT|(aReal); location of emergency entrance on building
-SITE_LON|(aReal)
-ACCESS_POINT_LAT|(aReal) ;location of intersection of emergency access lane and Chestnut St
-ACCESS_POINT_LON|(aReal)
+unitDesignator|EMERGENCY-ENTRANCE
+civicNumber|1100
+streetName|Chestnut
+streetType|St
+localityName|Vancouver
+provinceCode|BC
+siteLat|(aReal); location of emergency entrance on building
+siteLon|(aReal)
+accessPointLat|(aReal) ;location of intersection of emergency access lane and Chestnut St
+accessPointLon|(aReal)
 
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|EMERGENCY-EXIT
-UNIT_NUMBER|1
-CIVIC_NUMBER|1100
-STREET_NAME|Chestnut
-STREET_TYPE|St
-LOCALITY|Vancouver
-PROVINCE_CODE|BC
-SITE_LAT|(aReal); location of emergency exit 1 on building
-SITE_LON|(aReal)
-ACCESS_POINT_LAT|(aReal) ;location of intersection of access road and Chestnut St if different from primary site access point
-ACCESS_POINT_LON|(aReal)
+unitDesignator|EMERGENCY-EXIT
+unitNumber|1
+civicNumber|1100
+streetName|Chestnut
+streetType|St
+localityName|Vancouver
+provinceCode|BC
+siteLat|(aReal); location of emergency exit 1 on building
+siteLon|(aReal)
+accessPointLat|(aReal) ;location of intersection of access road and Chestnut St if different from primary site access point
+accessPointLon|(aReal)
 
 Field | Value
 ----:|----
-UNIT_DESIGNATOR|EMERGENCY-EXIT
-UNIT_NUMBER|2
-CIVIC_NUMBER|1100
-STREET_NAME|Chestnut
-STREET_TYPE|St
-LOCALITY|Vancouver
-PROVINCE_CODE|BC
-SITE_LAT|(aReal); location of emergency exit 2 on building
-SITE_LON|(aReal)
-ACCESS_POINT_LAT|(aReal) ;location of intersection of access road and Chestnut St if different from primary site access point
-ACCESS_POINT_LON|(aReal)
+unitDesignator|EMERGENCY-EXIT
+unitNumber|2
+civicNumber|1100
+streetName|Chestnut
+streetType|St
+localityName|Vancouver
+provinceCode|BC
+siteLat|(aReal); location of emergency exit 2 on building
+siteLon|(aReal)
+accessPointLat|(aReal) ;location of intersection of access road and Chestnut St if different from primary site access point
+accessPointLon|(aReal)
 <br>
 
 <a name=specialUnitDesignators></a>
@@ -501,7 +501,7 @@ streetType|String|Street type|No|No
 isStreetTypePrefix|Boolean| True if street type appears before street name as in HWY 17|No|No
 streetDirection|String|Canada Post street direction (e.g., NW); Note Canada Post does not allow prefix and suffix street direction in same address as in: 103 N 52 St SW|No|No
 isStreetDirectionPrefix|Boolean|true if street direction appears before street name as in SW Marine Dr|No|No
-locality|String|Locality (e.g., Victoria)|Yes|Yes
+localityName|String|Locality name (e.g., Victoria)|Yes|Yes
 localityDescriptor|String|type of locality|(e.g., Municipality)|Yes|Yes
 provinceCode|String|Canada Post two-character province code|Yes|Yes
 isNonCivicAddress|Boolean|True if address has no assigned civic number|Yes|Yes
