@@ -1,6 +1,6 @@
 # Physical Address Exchange Standard Draft v0.10
 ### Change history
-v0.11 June 17, 2021 - changed fields in all examples to camel-case; deleted localityDescriptor, 
+v0.11 June 17, 2021 - changed fields in all examples to camel-case; deleted localityDescriptor, renamed siteLat and siteLon latitude and longitude, renamed isOfficialAddress isOfficial, renamed isNonCivicAddress isNonCivic
 
 v0.10 June 16, 2021 - made special entrance/exit unitDesignators more readable<br>
 
@@ -59,8 +59,8 @@ streetName|Olympia
 streetType|Ave
 localityName|Victoria
 provinceCode|BC
-siteLat| (aReal)
-siteLon| (aReal)
+latitude| (aReal)
+longitude| (aReal)
 accessPointLat| (aReal)
 accessPointLon| (aReal)
 footprintDescriptor|building
@@ -80,8 +80,8 @@ streetType|Rd
 streetDirection|W
 localityName|Saanich
 provinceCode|BC
-siteLat| (aReal)
-siteLon| (aReal)
+latitude| (aReal)
+longitude| (aReal)
 accessPointLat|(aReal)
 accessPointLon|(aReal)
 footprintDescriptor|building
@@ -142,8 +142,8 @@ streetName|Esquimalt
 streetType|Rd
 localityName|Esquimalt
 provinceCode|BC
-siteLat| (aReal)
-siteLon| (aReal)
+latitude| (aReal)
+longitude| (aReal)
 accessPointLat|(aReal)
 accessPointLon|(aReal)
 footprintDescriptor|building
@@ -160,8 +160,8 @@ streetName|Esquimalt
 streetType|Rd
 localityName|Esquimalt
 provinceCode|BC
-siteLat|(aReal)| lat of building A parcel point
-siteLon|(aReal)| lon of building A parcel point
+latitude|(aReal)| lat of building A parcel point
+longitude|(aReal)| lon of building A parcel point
 accessPointLat|(aReal)|lat of building A access point
 accessPointLon|(aReal)|lon of building A access point 
 
@@ -175,8 +175,8 @@ streetName|Esquimalt
 streetType|Rd
 localityName|Esquimalt
 provinceCode|BC
-siteLat|(aReal)| lat of building B parcel point 
-siteLon|(aReal)| lon of building B parcel point
+latitude|(aReal)| lat of building B parcel point 
+longitude|(aReal)| lon of building B parcel point
 accessPointLat|(aReal)|lat of building B access point
 accessPointLon|(aReal)|lon of building B access point 
 
@@ -209,8 +209,8 @@ streetName|Grant McConnachie
 streetType|Way
 localityName|Richmond
 provinceCode|BC
-siteLat|(aReal)
-siteLon|(aReal)
+latitude|(aReal)
+longitude|(aReal)
 accessPointLat|(aReal)
 accessPointLon|(aReal)
 footprintDescriptor|complex
@@ -226,8 +226,8 @@ streetName|Grant McConnachie
 streetType|Way
 localityName|Richmond
 provinceCode|BC
-siteLat|(aReal)
-siteLon|(aReal)
+latitude|(aReal)
+longitude|(aReal)
 footprintDescriptor|building
 footprint|(polygon)
 
@@ -241,8 +241,8 @@ streetName|Grant McConnachie
 streetType|Way
 localityName|Richmond
 provinceCode|BC
-siteLat|(aReal)
-siteLon|(aReal)
+latitude|(aReal)
+longitude|(aReal)
 footprintDescriptor|building
 footprint|(polygon)
 
@@ -256,8 +256,8 @@ streetName|Grant McConnachie
 streetType|Way
 localityName|Richmond
 provinceCode|BC
-siteLat|(aReal)
-siteLon|(aReal)
+latitude|(aReal)
+longitude|(aReal)
 footprintDescriptor|building
 footprint|(polygon)
 
@@ -272,8 +272,8 @@ streetName|Grant McConnachie
 streetType|Way
 localityName|Richmond
 provinceCode|BC
-siteLat|(aReal) 
-siteLon|(aReal)
+latitude|(aReal) 
+longitude|(aReal)
 
 The gates of terminals B and C are represented similarly.
 
@@ -309,8 +309,8 @@ streetName|Finnerty
 streetType|Rd
 localityName|Victoria
 provinceCode|BC
-siteLat|(aReal) 
-siteLon|(aReal)
+latitude|(aReal) 
+longitude|(aReal)
 accessPointLat|(aReal)
 accessPointLon|(aReal)
 footprintDescriptor|complex
@@ -325,8 +325,8 @@ streetName|Finnerty
 streetType|Rd
 localityName|Saanich
 provinceCode|BC
-siteLat|(aReal) 
-siteLon|(aReal)
+latitude|(aReal) 
+longitude|(aReal)
 accessPointLat|(aReal)
 accessPointLon|(aReal)
 footprintDescriptor|building
@@ -341,8 +341,8 @@ streetName|Finnerty
 streetType|Rd
 localityName|Saanich
 provinceCode|BC
-siteLat|(aReal) 
-siteLon|(aReal)
+latitude|(aReal) 
+longitude|(aReal)
 accessPointLat|(aReal)
 accessPointLon|(aReal)
 footprintDescriptor|building
@@ -357,8 +357,8 @@ streetName|Finnerty
 streetType|Rd
 localityName|Saanich
 provinceCode|BC
-siteLat|(aReal)
-siteLon|(aReal)
+latitude|(aReal)
+longitude|(aReal)
 accessPointLat|(aReal)
 accessPointLon|(aReal)
 footprintDescriptor|indoorArea
@@ -408,8 +408,8 @@ streetName|Chestnut
 streetType|St
 localityName|Vancouver
 provinceCode|BC
-siteLat|(aReal); location of emergency entrance on building
-siteLon|(aReal)
+latitude|(aReal); location of emergency entrance on building
+longitude|(aReal)
 accessPointLat|(aReal) ;location of intersection of emergency access lane and Chestnut St
 accessPointLon|(aReal)
 
@@ -423,8 +423,8 @@ streetName|Chestnut
 streetType|St
 localityName|Vancouver
 provinceCode|BC
-siteLat|(aReal); location of emergency exit 1 on building
-siteLon|(aReal)
+latitude|(aReal); location of emergency exit 1 on building
+longitude|(aReal)
 accessPointLat|(aReal) ;location of intersection of access road and Chestnut St if different from primary site access point
 accessPointLon|(aReal)
 
@@ -437,8 +437,8 @@ streetName|Chestnut
 streetType|St
 localityName|Vancouver
 provinceCode|BC
-siteLat|(aReal); location of emergency exit 2 on building
-siteLon|(aReal)
+latitude|(aReal); location of emergency exit 2 on building
+longitude|(aReal)
 accessPointLat|(aReal) ;location of intersection of access road and Chestnut St if different from primary site access point
 accessPointLon|(aReal)
 <br>
@@ -510,8 +510,8 @@ provinceCode|String|Canada Post two-character province code|Yes|Yes
 isNonCivic|Boolean|true if address has no assigned civic number; false otherwise|Yes|Yes
 isOfficial|Boolean|true if address is official; false if unofficial (e.g., former address)|Yes|Yes
 relativeLocation|String|Relative geographic location of a non-civic address (e.g., Lonely Cabins - 43 km west of Stui on N side of Hwy 20)|No|Yes	
-siteLat|Number|site latitude|Yes|Yes
-siteLon|Number)|site longitude|Yes|Yes
+latitude|Number|Site latitude|Yes|Yes
+longitude|Number)|Site longitude|Yes|Yes
 siteTags|String| Comma-separated list of descriptive tags (e.g. stadium)|No|No
 accessPointLat|Number|Only needed if access point is different than site point or super site point|No|Yes
 accessPointLon|Number|Only needed if access point is different than site point or super site point|No|Yes
