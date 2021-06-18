@@ -501,14 +501,14 @@ civicNumber|Number| civic number, usually a positive integer (e.g., 1321)|Yes|No
 civicNumberSuffix|String|Canada Post civic number suffix (e.g., A)|No|No
 streetName|String|Street name (e.g., Dallas)|Yes|No
 streetType|String|Street type( e.g., Rd) |No|No
-isStreetTypePrefix|Boolean| true if street type appears before street name as in HWY 17; false otherwise|No|No
+isStreetTypePrefix|YesNo| Y if street type appears before street name as in HWY 17; N otherwise|No|No
 streetDirection|String|Canada Post street direction; one of C, E, N, NE, NW, SE, SW, or W (e.g., NW); Canada Post does not allow prefix and suffix street direction in same address as in: 103 N 52 St SW|No|No
-isStreetDirectionPrefix|Boolean|true if street direction appears before street name as in SW Marine Dr; false otherwise|No|No
+isStreetDirectionPrefix|YesNo|Y if street direction appears before street name as in SW Marine Dr; N otherwise|No|No
 streetQualifier|The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge)|No|No
 localityName|String|Locality name (e.g., Victoria)|Yes|Yes
 provinceCode|String|Canada Post two-character province code|Yes|Yes
-isNonCivic|Boolean|true if address has no assigned civic number; false otherwise|Yes|Yes
-isAlias|Boolean|true if address is not official (e.g., a former address); false otherwise|Yes|Yes
+isNonCivic|YesNo|Y if address has no assigned civic number; N otherwise|Yes|Yes
+isAlias|YesNo|Y if address is not official (e.g., a former address); N otherwise|Yes|Yes
 relativeLocation|String|Relative geographic location of a non-civic address (e.g., Lonely Cabins - 43 km west of Stui on N side of Hwy 20)|No|Yes	
 latitude|Number|Site latitude|Yes|Yes
 longitude|Number|Site longitude|Yes|Yes
@@ -530,24 +530,24 @@ unitNumber|String|unit number or letter or sequence of unit number/letter ranges
 civicNumber|Number| civic number, usually a positive integer (e.g., 1321)|Yes|No
 streetName|String|Street name (e.g., Dallas)|Yes|No
 streetType|String|Street type suffix( e.g., the Rd in Herd Rd) |No|No
-isStreetTypePrefix|Boolean| true if street type appears before street name as in HWY 17; false otherwise|No|No
+isStreetTypePrefix|YesNo| Y if street type appears before street name as in HWY 17; N otherwise|No|No
 streetDirection|String|Canada Post street direction suffix (the W in Burnside Ave W); one of C, E, N, NE, NW, SE, SW, or W (e.g., NW); Canada Post does not allow prefix and suffix street direction in same address as in: 103 N 52 St SW|No|No
-isStreetDirectionPrefix|Boolean|true if street direction appears before street name as in SW Marine Dr; false otherwise|No|No
+isStreetDirectionPrefix|YesNo|Y if street direction appears before street name as in SW Marine Dr; N otherwise|No|No
 localityName|String|Locality name (e.g., Victoria)|Yes|Yes
 provinceCode|String|Canada Post two-character province code|Yes|Yes
 unitDesignator|String|unit designator (e.g., APT, UNIT); includes Canada Post unit designators plus standard entrance designators (e.g., ENTRANCE A, EMERGENCY-ENTRANCE, EMERGENCY-EXIT, EXIT, SERVICE-ENTRANCE)|No|No
 unitNumberPrefix|String|a single letter or sequence of letter ranges separated by commas (e.g., A-D,J,M-P)|No|No
 unitNumberSuffix|String|Canada Post unit number suffix (e.g., C)|No|No
 siteName|String|building or landmark name (e.g., Centennial Candle)|no|yes
-isNonCivic|Boolean|true if address has a sitename and no assigned civic number; false otherwise|Yes|Yes
+isNonCivic|YesNo|Y if address has a sitename and no assigned civic number; N otherwise|Yes|Yes
 siteTags|String| Comma-separated list of descriptive tags (e.g. stadium)|No|No
 superFullsiteDescriptor|String|names of all units and sites in parent site hierarchy separated by double-dash (e.g., Student Union Building -- University of Victoria)|No|No
 superYourId|Sting|Unique identifier of super site|No|No
 civicNumberSuffix|String|Canada Post civic number suffix (e.g., A)|No|No
 accessPointLat|Number|Only needed if access point is different than site point or super site point|No|Yes
 accessPointLon|Number|Only needed if access point is different than site point or super site point|No|Yes
-streetQualifier|The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge)|No|No
-isAlias|Boolean|true if address is not an official address (e.g., a former address); false if address is official|Yes|Yes
+streetQualifier|String|The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge)|No|No
+isAlias|YesNo|Y if address is not an official address (e.g., a former address); N if address is official|Yes|Yes
 relativeLocation|String|Relative geographic location of a non-civic address (e.g., Lonely Cabins - 43 km west of Stui on N side of Hwy 20)|No|Yes	
 footprintDescriptor|String| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)|No|No
 footprint|OGC WKT|geometry of site footprint in OGC Well-Known Text format. Can use other geometry standards in other formats (e.g., GML GeoJson)|No|No
