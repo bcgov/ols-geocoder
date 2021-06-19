@@ -1,6 +1,6 @@
-# Physical Address Exchange Standard Draft v0.11
+# Physical Address Exchange Standard Draft v0.12
 ### Change history
-v0.12 June 18, 2021 - added notes, siteLat, and siteLon fields<br>
+v0.12 June 18, 2021 - added notes, siteLat, and siteLon fields; removed isAlias because unofficial addresses are out of scope of this standard<br>
 
 v0.11 June 17, 2021 - changed fields in all examples to camel-case; deleted localityDescriptor; replaced isOfficialAddress with isAlias so that default could be false which simplifies input; renamed isNonCivicAddress isNonCivic; renamed superSiteYourId superYourId; deleted unitNumberPrefix since a prefix is allowed by Canada Post in a unitNumber<br>
 
@@ -486,14 +486,14 @@ FLR| Floor
 
 
 <a name=schema></a>
-## Schema Definition
+## Schema definition (aka Data Dictionary)
 This schema can be used in any common text format that supports named properties including CSV,TSV,JSON, and XML. The most commonly populated fields appear at the front of the list.
 
 Field Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
 ---: | --- | --- | ---| ---
 yourId|String|Unique identifier in your local address management system (e.g., X0233212)|No|No
 siteLatLon|Number|Site latitude and longitude separated by a comma (e.g., 54.98457,-123.04504); not required if siteLat and siteLon populated|Yes|Yes
-unitNumber|String|unit number or letter or sequence of unit number/letter ranges separated by commas (e.g., 100-119, 200-219); a unit number may contain a leading alphabetic character as in A100 which can participate in unit number ranges such as A100-119|No|No
+unitNumber|String|unit number or letter or sequence of unit number/letter ranges separated by commas (e.g., 100-119, 200-219); a unit number may contain a leading alphabetic character as in A100 which can participate in unit number ranges such as A100-A119|No|No
 unitNumberSuffix|String|Canada Post unit number suffix (e.g., C)|No|No
 civicNumber|Number| civic number, usually a positive integer (e.g., 1321)|Yes|No
 streetName|String|Street name (e.g., Dallas)|Yes|No
@@ -502,6 +502,7 @@ streetDirection|String|Canada Post street direction suffix (the W in Burnside Av
 localityName|String|Locality name (e.g., Victoria)|Yes|Yes
 provinceCode|String|Canada Post two-character province code|Yes|Yes
 notes|String|additional info about address (e.g., narrow driveway, enter in back of house, grey house, siteLatLon is rooftop above front door)|No|no|
+dataOwner|String|Name of address authority (e.g., McLeod Lake Indian Band)
 siteLat|Number|Site latitude (e.g., 54.98457); not required if siteLatLon populated|Yes|Yes
 siteLon|Number|Site longitude (e.g.,-123.04504); not required if siteLatLon populated|Yes|Yes
 isStreetTypePrefix|Boolean| true if street type appears before street name as in HWY 17; false otherwise|No|No
@@ -516,7 +517,6 @@ civicNumberSuffix|String|Canada Post civic number suffix (e.g., A)|No|No
 accessPointLat|Number|Only needed if access point is different than site point or super site point|No|Yes
 accessPointLon|Number|Only needed if access point is different than site point or super site point|No|Yes
 streetQualifier|String|The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge)|No|No
-isAlias|Boolean|true if address is not an official address (e.g., a former address); false if address is official|Yes|Yes
 relativeLocation|String|Relative geographic location of a non-civic address (e.g., Lonely Cabins - 43 km west of Stui on N side of Hwy 20)|No|Yes	
 footprintDescriptor|String| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)|No|No
 footprint|OGC WKT|geometry of site footprint in OGC Well-Known Text format for CSV files, other geometry standards for other formats (e.g., GML GeoJson)|No|No
