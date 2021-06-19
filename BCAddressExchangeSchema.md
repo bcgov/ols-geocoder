@@ -1,5 +1,6 @@
 # Physical Address Exchange Standard Draft v0.11
 ### Change history
+v0.12 June 18, 2021 - added notes, siteLat, and siteLon fields
 v0.11 June 17, 2021 - changed fields in all examples to camel-case; deleted localityDescriptor; replaced isOfficialAddress with isAlias so that default could be false which simplifies input; renamed isNonCivicAddress isNonCivic; renamed superSiteYourId superYourId; deleted unitNumberPrefix since a prefix is allowed by Canada Post in a unitNumber;
 
 v0.10 June 16, 2021 - made special entrance/exit unitDesignators more readable<br>
