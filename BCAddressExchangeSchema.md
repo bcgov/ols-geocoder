@@ -490,7 +490,7 @@ This schema can be used in any common text format that supports named properties
 Field Name | Data Type |	Description | Required for Civic Address|Required for Non-civic address
 ---: | --- | --- | ---| ---
 yourId|String|Unique identifier in your local address management system (e.g., X0233212)|No|No
-siteLatLon|Number|Site latitude and longitude separated by a comma (e.g., 54.98457,-123.04504)|Yes|Yes
+siteLatLon|Number|Site latitude and longitude separated by a comma (e.g., 54.98457,-123.04504); not required if siteLat and siteLon populated|Yes|Yes
 unitNumber|String|unit number or letter or sequence of unit number/letter ranges separated by commas (e.g., 100-119, 200-219); a unit number may contain a leading alphabetic character as in A100 which can participate in unit number ranges such as A100-119|No|No
 unitNumberSuffix|String|Canada Post unit number suffix (e.g., C)|No|No
 civicNumber|Number| civic number, usually a positive integer (e.g., 1321)|Yes|No
@@ -499,6 +499,9 @@ streetType|String|Street type suffix( e.g., the Rd in Herd Rd) |No|No
 streetDirection|String|Canada Post street direction suffix (the W in Burnside Ave W); one of C, E, N, NE, NW, SE, SW, or W (e.g., NW); Canada Post does not allow prefix and suffix street direction in same address as in: 103 N 52 St SW|No|No
 localityName|String|Locality name (e.g., Victoria)|Yes|Yes
 provinceCode|String|Canada Post two-character province code|Yes|Yes
+notes|String|additional info about address (e.g., narrow driveway, enter in back of house, grey house, siteLatLon is rooftop above front door)|No|no|
+siteLat|Number|Site latitude (e.g., 54.98457); not required if siteLatLon populated|Yes|Yes
+siteLon|Number|Site longitude (e.g.,-123.04504); not required if siteLatLon populated|Yes|Yes
 isStreetTypePrefix|Boolean| true if street type appears before street name as in HWY 17; false otherwise|No|No
 isStreetDirectionPrefix|Boolean|true if street direction appears before street name as in SW Marine Dr; false otherwise|No|No
 unitDesignator|String|unit designator (e.g., APT, UNIT); includes Canada Post unit designators plus standard entrance designators (e.g., ENTRANCE 1, EXIT)|No|No
