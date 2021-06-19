@@ -1,6 +1,6 @@
 # Physical Address Exchange Standard Draft v0.12
 ### Change history
-v0.12 June 18, 2021 - added dataOwner, notes, siteLat, and siteLon fields; removed isAlias because unofficial addresses are out of scope of this standard<br>
+v0.12 June 18, 2021 - added dataOwner, notes, latitude, and longitude fields; removed isAlias because unofficial addresses are out of scope of this standard<br>
 
 v0.11 June 17, 2021 - changed fields in all examples to camel-case; deleted localityDescriptor; replaced isOfficialAddress with isAlias so that default could be false which simplifies input; renamed isNonCivicAddress isNonCivic; renamed superSiteYourId superYourId; deleted unitNumberPrefix since a prefix is allowed by Canada Post in a unitNumber<br>
 
@@ -503,8 +503,8 @@ localityName|String|Locality name (e.g., Victoria)|Yes|Yes
 provinceCode|String|Canada Post two-character province code|Yes|Yes
 notes|String|additional info about address (e.g., narrow driveway, enter in back of house, grey house, siteLatLon is rooftop above front door)|No|no|
 dataOwner|String|Name of address authority (e.g., McLeod Lake Indian Band)
-siteLat|Number|Site latitude (e.g., 54.98457); not required if siteLatLon populated|Yes|Yes
-siteLon|Number|Site longitude (e.g.,-123.04504); not required if siteLatLon populated|Yes|Yes
+latitude|Number|Site latitude (e.g., 54.98457); not required if siteLatLon populated|Yes|Yes
+longitude|Number|Site longitude (e.g.,-123.04504); not required if siteLatLon populated|Yes|Yes
 isStreetTypePrefix|Boolean| true if street type appears before street name as in HWY 17; false otherwise|No|No
 isStreetDirectionPrefix|Boolean|true if street direction appears before street name as in SW Marine Dr; false otherwise|No|No
 unitDesignator|String|unit designator (e.g., APT, UNIT); includes Canada Post unit designators plus standard entrance designators (e.g., ENTRANCE 1, EXIT)|No|No
