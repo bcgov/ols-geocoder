@@ -92,7 +92,29 @@ footprintDescriptor|building
 footprint| (aPolygon)
 
 <a name=ex1b> </a>
-## Example 1b - A house on a street with a streetDirection before civicNumber
+## Example 1b - A house on a street with a streetDirection and a streetType before streetName
+6678 Hwy 97 N, Baldonnel, BC
+
+Field | Value
+-----: | ------
+siteLatLon|56.20911,-120.71146
+civicNumber|6678
+streetName|97
+streetType|Hwy
+isStreetTypePrefix|true
+streetDirection|N
+localityName|Baldonnel
+provinceCode|BC
+accessPointLatLon|56.20947,-120.71045
+footprintDescriptor|building
+footprint| (aPolygon)
+
+6678 Hwy 97 N, Baldonnel, BC
+
+
+
+<a name=ex1c> </a>
+## Example 1c - A house on a street with a streetDirection before streetName
 48160 Hwy 97, McLeod Lake, BC
 
 Field | Value
@@ -108,8 +130,8 @@ accessPointLatLon|
 footprintDescriptor|building
 footprint| (aPolygon)
 
-<a name=ex1c> </a>
-## Example 1c - A house on a street with a streetDirection and streetType before civicNumber
+<a name=ex1d> </a>
+## Example 1d - A house on a street with a streetDirection and streetType before civicNumber
 37 Olympia Ave, Victoria, BC
 
 Field | Value
