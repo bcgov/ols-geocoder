@@ -504,7 +504,7 @@ streetDirection|String|Canada Post street direction suffix (the W in Burnside Av
 isStreetDirectionPrefix|Boolean|true if street direction appears before street name as in SW Marine Dr; false otherwise|No|No
 localityName|String|Locality name (e.g., Victoria)|Yes|Yes
 provinceCode|String|Canada Post two-character province code|Yes|Yes
-notes|String|additional info about address (e.g., narrow driveway, enter in back of house, grey house, siteLatLon is rooftop above front door)|No|no|
+notes|String|additional info about address (e.g., at top of hill, narrow driveway, enter in back of house, grey house, siteLatLon is rooftop above front door)|No|no|
 dataOwner|String|Name of address authority (e.g., McLeod Lake Indian Band)
 latitude|Number|Site latitude (e.g., 54.98457); not required if siteLatLon populated|Yes|Yes
 longitude|Number|Site longitude (e.g.,-123.04504); not required if siteLatLon populated|Yes|Yes
