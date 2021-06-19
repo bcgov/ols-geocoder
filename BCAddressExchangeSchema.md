@@ -1,4 +1,4 @@
-# Physical Address Exchange Standard Draft v0.12
+# Physical Address Exchange Standard Draft v0.13
 ### Change history
 v0.13 June 19, 2021 - added streetNamePhonetic and localityNamePhonetic<br>
 
@@ -22,10 +22,10 @@ v0.4 Jun, 2019 - added SUPER_SITE_YOURID to schema, changed schema to allow any 
 
 [Introduction](#intro)<br>
 [Example 1 - A house with a single civic number and no units](#ex1)<br>
-[Example 1a - A house on a street with a streetDirection](#ex1a)<br>
-[Example 1b - A house on a street with a streetDirection before civicNumber](#ex1b)<br>
-[Example 1c - A house on a street with a streetDirection and streetType before civicNumber](#ex1c)<br>
-
+[Example 1a - A house on a named highway](#ex1a)<br>
+[Example 1b - A house on a numbered highway](#ex1b)<br>
+[Example 1c - A house on a street with a streetDirection following streetName](#ex1c)<br>
+[Example 1d - A house on a street with a streetDirection preceding streetName](#ex1d)<br>
 [Example 2 - A single apartment building with multiple floors and units](#ex2)<br>
 [Example 3 - An apartment complex with buildings distinguished by unit number prefix](#ex3)<br>
 [Example 4 - A complex with multiple levels of units](#ex4)<br>
@@ -58,19 +58,17 @@ References such as (aReal), (aMultiPolygon), and (aPolygon) represent an arbitra
 
 <a name=ex1> </a>
 ## Example 1 - A house with a single civic number and no units
-37 Olympia Ave, Victoria, BC
+35 Olympia Ave, Victoria, BC
 
 Field | Value
 -----: | ------
-civicNumber|37
+siteLatLon|48.40995,-123.37032
+civicNumber|35
 streetName|Olympia
 streetType|Ave
 localityName|Victoria
 provinceCode|BC
-latitude| (aReal)
-longitude| (aReal)
-accessPointLat| (aReal)
-accessPointLon| (aReal)
+accessPointLatLon|48.40987,-123.37043
 footprintDescriptor|building
 footprint| (aPolygon)
 
@@ -125,9 +123,6 @@ accessPointLatLon|48.44940,-123.39094
 footprintDescriptor|building
 footprint| (aPolygon)
 
-
-
-
 <a name=ex1d> </a>
 ## Example 1d - A house on a street with a streetDirection preceding streetName
 3290 SW Marine Dr, Vancouver, BC
@@ -143,24 +138,6 @@ isStreetDirectionPrefix|true
 localityName|Vancouver
 provinceCode|BC
 accessPointLatLon|49.22985,-123.17813
-footprintDescriptor|building
-footprint| (aPolygon)
-
-<a name=ex1e> </a>
-## Example 1e - A house on a street with a streetDirection and streetType before civicNumber
-37 Olympia Ave, Victoria, BC
-
-Field | Value
------: | ------
-civicNumber|37
-streetName|Olympia
-streetType|Ave
-localityName|Victoria
-provinceCode|BC
-latitude| (aReal)
-longitude| (aReal)
-accessPointLat| (aReal)
-accessPointLon| (aReal)
 footprintDescriptor|building
 footprint| (aPolygon)
 
