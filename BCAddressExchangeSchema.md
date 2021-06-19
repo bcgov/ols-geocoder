@@ -496,24 +496,24 @@ siteLatLon|Number|Site latitude and longitude separated by a comma (e.g., 54.984
 unitNumber|String|unit number or letter or sequence of unit number/letter ranges separated by commas (e.g., 100-119, 200-219); a unit number may contain a leading alphabetic character as in A100 which can participate in unit number ranges such as A100-A119|No|No
 unitNumberSuffix|String|Canada Post unit number suffix (e.g., C)|No|No
 civicNumber|Number| civic number, usually a positive integer (e.g., 1321)|Yes|No
+civicNumberSuffix|String|Canada Post civic number suffix (e.g., A)|No|No
 streetName|String|Street name (e.g., Dallas)|Yes|No
 streetType|String|Street type suffix( e.g., the Rd in Herd Rd) |No|No
+isStreetTypePrefix|Boolean| true if street type appears before street name as in HWY 17; false otherwise|No|No
 streetDirection|String|Canada Post street direction suffix (the W in Burnside Ave W); one of C, E, N, NE, NW, SE, SW, or W (e.g., NW); Canada Post does not allow prefix and suffix street direction in same address as in: 103 N 52 St SW|No|No
+isStreetDirectionPrefix|Boolean|true if street direction appears before street name as in SW Marine Dr; false otherwise|No|No
 localityName|String|Locality name (e.g., Victoria)|Yes|Yes
 provinceCode|String|Canada Post two-character province code|Yes|Yes
 notes|String|additional info about address (e.g., narrow driveway, enter in back of house, grey house, siteLatLon is rooftop above front door)|No|no|
 dataOwner|String|Name of address authority (e.g., McLeod Lake Indian Band)
 latitude|Number|Site latitude (e.g., 54.98457); not required if siteLatLon populated|Yes|Yes
 longitude|Number|Site longitude (e.g.,-123.04504); not required if siteLatLon populated|Yes|Yes
-isStreetTypePrefix|Boolean| true if street type appears before street name as in HWY 17; false otherwise|No|No
-isStreetDirectionPrefix|Boolean|true if street direction appears before street name as in SW Marine Dr; false otherwise|No|No
 unitDesignator|String|unit designator (e.g., APT, UNIT); includes Canada Post unit designators plus standard entrance designators (e.g., ENTRANCE 1, EXIT)|No|No
 siteName|String|building or landmark name (e.g., Centennial Candle)|no|yes
 isNonCivic|Boolean|true if address has a sitename and no assigned civic number; false otherwise|Yes|Yes
 siteTags|String| Comma-separated list of descriptive tags (e.g. stadium)|No|No
 superFullsiteDescriptor|String|names of all units and sites in parent site hierarchy separated by double-dash (e.g., Student Union Building -- University of Victoria)|No|No
 superYourId|Sting|Unique identifier of super site|No|No
-civicNumberSuffix|String|Canada Post civic number suffix (e.g., A)|No|No
 accessPointLat|Number|Only needed if access point is different than site point or super site point|No|Yes
 accessPointLon|Number|Only needed if access point is different than site point or super site point|No|Yes
 streetQualifier|String|The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge)|No|No
