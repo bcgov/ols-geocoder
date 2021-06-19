@@ -1,6 +1,6 @@
 # Physical Address Exchange Standard Draft v0.12
 ### Change history
-v0.12 June 18, 2021 - added dataOwner, notes, latitude, and longitude fields; removed isAlias because unofficial addresses are out of scope of this standard<br>
+v0.12 June 18, 2021 - added dataOwner, notes, accessPointLatLon, latitude, and longitude fields; removed isAlias because unofficial addresses are out of scope of this standard<br>
 
 v0.11 June 17, 2021 - changed fields in all examples to camel-case; deleted localityDescriptor; replaced isOfficialAddress with isAlias so that default could be false which simplifies input; renamed isNonCivicAddress isNonCivic; renamed superSiteYourId superYourId; deleted unitNumberPrefix since a prefix is allowed by Canada Post in a unitNumber<br>
 
@@ -514,8 +514,9 @@ isNonCivic|Boolean|true if address has a sitename and no assigned civic number; 
 siteTags|String| Comma-separated list of descriptive tags (e.g. stadium)|No|No
 superFullsiteDescriptor|String|names of all units and sites in parent site hierarchy separated by double-dash (e.g., Student Union Building -- University of Victoria)|No|No
 superYourId|Sting|Unique identifier of super site|No|No
-accessPointLat|Number|Only needed if access point is different than site point or super site point|No|Yes
-accessPointLon|Number|Only needed if access point is different than site point or super site point|No|Yes
+accessPointLatLon|Number|Only needed if access point is different than site point or super site point; also not needed if accessPointLat and accessPointLon populated|No|Yes
+accessPointLat|Number|Only needed if access point is different than site point or super site point; also not needed if accessPointLatLon populated|No|Yes
+accessPointLon|Number|Only needed if access point is different than site point or super site point; also not needed if accessPointLatLon populated|No|Yes
 streetQualifier|String|The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge)|No|No
 relativeLocation|String|Relative geographic location of a non-civic address (e.g., Lonely Cabins - 43 km west of Stui on N side of Hwy 20)|No|Yes	
 footprintDescriptor|String| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)|No|No
