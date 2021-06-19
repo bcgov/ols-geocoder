@@ -75,24 +75,23 @@ footprintDescriptor|building
 footprint| (aPolygon)
 
 <a name=ex1a> </a>
-## Example 1a - A house on a street with a streetDirection
-149 Maddock Ave W, Saanich, BC
+## Example 1a - A house on a named highway
+47209 Hart Hwy, McLeod Lake, BC
 
 Field | Value
 -----: | ------
-siteLatLon|48.44930,-123.39098
-civicNumber|149
-streetName|Maddock
-streetType|Ave
-streetDirection|W
+siteLatLon|54.98534,-123.03376
+civicNumber|47209
+streetName|Hart
+streetType|Hwy
 localityName|Saanich
 provinceCode|BC
-accessPointLatLon|48.44940,-123.39094
+accessPointLatLon|54.98535,-123.03323
 footprintDescriptor|building
 footprint| (aPolygon)
 
 <a name=ex1b> </a>
-## Example 1b - A house on a street with a streetDirection and a streetType before streetName
+## Example 1b - A house on a numbered highway
 6678 Hwy 97 N, Baldonnel, BC
 
 Field | Value
@@ -109,29 +108,46 @@ accessPointLatLon|56.20947,-120.71045
 footprintDescriptor|building
 footprint| (aPolygon)
 
-6678 Hwy 97 N, Baldonnel, BC
-
-
-
 <a name=ex1c> </a>
-## Example 1c - A house on a street with a streetDirection before streetName
-48160 Hwy 97, McLeod Lake, BC
+## Example 1c - A house on a street with a streetDirection following streetName
+149 Maddock Ave W, Saanich, BC
 
 Field | Value
 -----: | ------
-siteLatLon|
-civicNumber|48160
-streetName|97
-streetType|Hwy
-isStreetTypePrefix|true
-localityName|McLeod Lake
+siteLatLon|48.44930,-123.39098
+civicNumber|149
+streetName|Maddock
+streetType|Ave
+streetDirection|W
+localityName|Saanich
 provinceCode|BC
-accessPointLatLon|
+accessPointLatLon|48.44940,-123.39094
 footprintDescriptor|building
 footprint| (aPolygon)
 
+
+
+
 <a name=ex1d> </a>
-## Example 1d - A house on a street with a streetDirection and streetType before civicNumber
+## Example 1d - A house on a street with a streetDirection preceding streetName
+3290 SW Marine Dr, Vancouver, BC
+
+Field | Value
+-----: | ------
+siteLatLon|49.22985,-123.17838
+civicNumber|3290
+streetName|Marine
+streetType|Hwy
+streetDirection|SW
+isStreetDirectionPrefix|true
+localityName|Vancouver
+provinceCode|BC
+accessPointLatLon|49.22985,-123.17813
+footprintDescriptor|building
+footprint| (aPolygon)
+
+<a name=ex1e> </a>
+## Example 1e - A house on a street with a streetDirection and streetType before civicNumber
 37 Olympia Ave, Victoria, BC
 
 Field | Value
