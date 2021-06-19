@@ -1,5 +1,7 @@
 # Physical Address Exchange Standard Draft v0.12
 ### Change history
+v0.13 June 19, 2021 - added streetNamePhonetic and localityNamePhonetic<br>
+
 v0.12 June 18, 2021 - added dataOwner, notes, accessPointLatLon, latitude, and longitude fields; removed isAlias because unofficial addresses are out of scope of this standard<br>
 
 v0.11 June 17, 2021 - changed fields in all examples to camel-case; deleted localityDescriptor; replaced isOfficialAddress with isAlias so that default could be false which simplifies input; renamed isNonCivicAddress isNonCivic; renamed superSiteYourId superYourId; deleted unitNumberPrefix since a prefix is allowed by Canada Post in a unitNumber<br>
@@ -20,6 +22,10 @@ v0.4 Jun, 2019 - added SUPER_SITE_YOURID to schema, changed schema to allow any 
 
 [Introduction](#intro)<br>
 [Example 1 - A house with a single civic number and no units](#ex1)<br>
+[Example 1a - A house on a street with a streetDirection](#ex1a)<br>
+[Example 1b - A house on a street with a streetDirection before civicNumber](#ex1b)<br>
+[Example 1c - A house on a street with a streetDirection and streetType before civicNumber](#ex1c)<br>
+
 [Example 2 - A single apartment building with multiple floors and units](#ex2)<br>
 [Example 3 - An apartment complex with buildings distinguished by unit number prefix](#ex3)<br>
 [Example 4 - A complex with multiple levels of units](#ex4)<br>
@@ -52,6 +58,58 @@ References such as (aReal), (aMultiPolygon), and (aPolygon) represent an arbitra
 
 <a name=ex1> </a>
 ## Example 1 - A house with a single civic number and no units
+37 Olympia Ave, Victoria, BC
+
+Field | Value
+-----: | ------
+civicNumber|37
+streetName|Olympia
+streetType|Ave
+localityName|Victoria
+provinceCode|BC
+latitude| (aReal)
+longitude| (aReal)
+accessPointLat| (aReal)
+accessPointLon| (aReal)
+footprintDescriptor|building
+footprint| (aPolygon)
+
+<a name=ex1a> </a>
+## Example 1a - A house on a street with a streetDirection
+149 Maddock Ave W, Saanich, BC
+
+Field | Value
+-----: | ------
+siteLatLon|48.44930,-123.39098
+civicNumber|149
+streetName|Maddock
+streetType|Ave
+streetDirection|W
+localityName|Saanich
+provinceCode|BC
+accessPointLatLon|48.44940,-123.39094
+footprintDescriptor|building
+footprint| (aPolygon)
+
+<a name=ex1b> </a>
+## Example 1b - A house on a street with a streetDirection before civicNumber
+48160 Hwy 97, McLeod Lake, BC
+
+Field | Value
+-----: | ------
+siteLatLon|
+civicNumber|48160
+streetName|97
+streetType|Hwy
+isStreetTypePrefix|true
+localityName|McLeod Lake
+provinceCode|BC
+accessPointLatLon|
+footprintDescriptor|building
+footprint| (aPolygon)
+
+<a name=ex1c> </a>
+## Example 1c - A house on a street with a streetDirection and streetType before civicNumber
 37 Olympia Ave, Victoria, BC
 
 Field | Value
@@ -498,11 +556,13 @@ unitNumberSuffix|String|Canada Post unit number suffix (e.g., C)|No|No
 civicNumber|Number| civic number, usually a positive integer (e.g., 1321)|Yes|No
 civicNumberSuffix|String|Canada Post civic number suffix (e.g., A)|No|No
 streetName|String|Street name (e.g., Dallas)|Yes|No
+streetNamePhonetic|String|Phonetic spelling of streetName|No|No
 streetType|String|Street type suffix( e.g., the Rd in Herd Rd) |No|No
 isStreetTypePrefix|Boolean| true if street type appears before street name as in HWY 17; false otherwise|No|No
 streetDirection|String|Canada Post street direction suffix (the W in Burnside Ave W); one of C, E, N, NE, NW, SE, SW, or W (e.g., NW); Canada Post does not allow prefix and suffix street direction in same address as in: 103 N 52 St SW|No|No
 isStreetDirectionPrefix|Boolean|true if street direction appears before street name as in SW Marine Dr; false otherwise|No|No
 localityName|String|Locality name (e.g., Victoria)|Yes|Yes
+localityNamePhonetic|String|Phonetic spelling of streetName|No|No
 provinceCode|String|Canada Post two-character province code|Yes|Yes
 notes|String|additional info about address (e.g., at top of hill, narrow driveway, enter in back of house, grey house, siteLatLon is rooftop above front door)|No|no|
 dataOwner|String|Name of address authority (e.g., McLeod Lake Indian Band)
