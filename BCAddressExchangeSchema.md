@@ -210,15 +210,13 @@ The following exchange data records will represent the above addresses:
 
 Field | Value | Comment
 -----: | ------ | -----
+siteLatLon|(aReal),(aReal)
 civicNumber|810
 streetName|Esquimalt
 streetType|Rd
 localityName|Esquimalt
 provinceCode|BC
-latitude| (aReal)
-longitude| (aReal)
-accessPointLat|(aReal)
-accessPointLon|(aReal)
+accessPointLatLon|(aReal),(aReal)
 footprintDescriptor|building
 footprint|(aMultiPolygon) | shape of complex
 
@@ -226,32 +224,22 @@ footprint|(aMultiPolygon) | shape of complex
 Field | Value | Comment
 -----: | ------ | -----
 unitDesignator| APT
-unitNumber_PREFIX|A|represents Building A
-unitNumber|100-110,200-210,300-310,400-410
+unitNumber|A100-110,200-210,300-310,400-410|The letter A at the beginning of the unitNumber expression represents Building A
 civicNumber|810
 streetName|Esquimalt
 streetType|Rd
 localityName|Esquimalt
 provinceCode|BC
-latitude|(aReal)| lat of building A parcel point
-longitude|(aReal)| lon of building A parcel point
-accessPointLat|(aReal)|lat of building A access point
-accessPointLon|(aReal)|lon of building A access point 
 
 Field | Value | Comment
 -----: | ------ | -----
 unitDesignator| APT
-unitNumber_PREFIX|B|represents Building B
-unitNumber|100-110,200-210,300-310,400-410
+unitNumber|B100-110,200-210,300-310,400-410|The letter B at the beginning of the unitNumber expression represents Building B
 civicNumber|810
 streetName|Esquimalt
 streetType|Rd
 localityName|Esquimalt
-provinceCode|BC
-latitude|(aReal)| lat of building B parcel point 
-longitude|(aReal)| lon of building B parcel point
-accessPointLat|(aReal)|lat of building B access point
-accessPointLon|(aReal)|lon of building B access point 
+provinceCode|BC 
 
 
 If this example was provided as reference data to the BC Address Geocoder, the Geocoder would derive full addresses such as:
@@ -261,6 +249,7 @@ APT A100, 810 Esquimalt Rd,Esquimalt,BC
 APT B407, 810 Esquimalt Rd,Esquimalt,BC
 
 APT B210, 810 Esquimalt Rd,Esquimalt,BC
+
 <a name=ex4></a>
 ## Example 4 - A complex with multiple levels of units
 
@@ -276,77 +265,71 @@ The following data exchange records will represent the above addresses:
 
 Field | Value
 ----:|----
-siteName|Vancouver International Airport
+siteLatLon|(aReal),(aReal)
 civicNumber|3211
 streetName|Grant McConnachie
 streetType|Way
 localityName|Richmond
 provinceCode|BC
-latitude|(aReal)
-longitude|(aReal)
-accessPointLat|(aReal)
-accessPointLon|(aReal)
+siteName|Vancouver International Airport
+accessPointLatLon|(aReal),(aReal)
 footprintDescriptor|complex
 footprint|(aMultiPolygon)
 
 Field | Value
 ----:|----
+siteLatLon|(aReal),(aReal)
 unitDesignator|Terminal
 unitNumber|A
-superFullSiteDescriptor|Vancouver International Airport
 civicNumber|3211
 streetName|Grant McConnachie
 streetType|Way
 localityName|Richmond
 provinceCode|BC
-latitude|(aReal)
-longitude|(aReal)
+superFullSiteDescriptor|Vancouver International Airport
 footprintDescriptor|building
 footprint|(polygon)
 
 Field | Value
 ----:|----
+siteLatLon|(aReal),(aReal)
 unitDesignator|Terminal
 unitNumber|B
-superFullSiteDescriptor|Vancouver International Airport
 civicNumber|3211
 streetName|Grant McConnachie
 streetType|Way
 localityName|Richmond
 provinceCode|BC
-latitude|(aReal)
-longitude|(aReal)
+superFullSiteDescriptor|Vancouver International Airport
 footprintDescriptor|building
 footprint|(polygon)
 
 Field | Value
 ----:|----
+siteLatLon|(aReal),(aReal)
 unitDesignator|Terminal
 unitNumber|C
-superFullSiteDescriptor|Vancouver International Airport
 civicNumber|3211
 streetName|Grant McConnachie
 streetType|Way
 localityName|Richmond
 provinceCode|BC
-latitude|(aReal)
-longitude|(aReal)
+superFullSiteDescriptor|Vancouver International Airport
 footprintDescriptor|building
 footprint|(polygon)
 
 
 Field | Value
 ----:|----
+siteLatLon|(aReal),(aReal)
 unitDesignator|Gate
 unitNumber|1-35
-superFullSiteDescriptor|Terminal A -- Vancouver International Airport
 civicNumber|3211
 streetName|Grant McConnachie
 streetType|Way
 localityName|Richmond
 provinceCode|BC
-latitude|(aReal) 
-longitude|(aReal)
+superFullSiteDescriptor|Terminal A -- Vancouver International Airport
 
 The gates of terminals B and C are represented similarly.
 
@@ -360,7 +343,7 @@ Gate 23, Terminal A, Vancouver International Airport -- 3211 Grant McConnachie W
 
 Gate 7, Terminal B, Vancouver International Airport -- 3211 Grant McConnachie Way,Richmond,BC 
 
-Each Terminal and Gate can have its own site and access locations
+In this example, each Terminal and Gate has its own site location and inherits access location from Vancouver International Airport. You could give each terminal and gate its own accessPoint location by populating the accessPointLatLon field for each terminal and gate.
 
 <a name=ex5></a>
 ## Example 5 - A complex of buildings
@@ -391,17 +374,15 @@ footprint|(aMultiPolygon)
 
 Field | Value
 ----:|----
-siteName|Student Union Building
-superFullSiteDescriptor|University of Victoria
+siteLatLon|(aReal),(aReal) 
 civicNumber|3800
 streetName|Finnerty
 streetType|Rd
 localityName|Saanich
 provinceCode|BC
-latitude|(aReal) 
-longitude|(aReal)
-accessPointLat|(aReal)
-accessPointLon|(aReal)
+siteName|Student Union Building
+superFullSiteDescriptor|University of Victoria
+accessPointLatLon|(aReal),(aReal)
 footprintDescriptor|building
 footprint|(polygon)
 
