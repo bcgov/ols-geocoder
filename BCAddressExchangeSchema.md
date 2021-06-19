@@ -561,7 +561,7 @@ FLR| Floor
 This schema can be used in any common text format that supports named properties including CSV, TSV, JSON, and XML. The most commonly populated fields appear at the front of the list.
 
 Field Name | Data Type |Default|Description | Required for Civic Address|Required for Non-civic address
----: | --- | --- | ---| ---
+|---:|--|--|--|--|--|
 yourId|String||Unique identifier in your local address management system (e.g., X0233212)|No|No
 siteLatLon|Number||Site latitude and longitude separated by a comma (e.g., 54.98457,-123.04504); not required if siteLat and siteLon populated|Yes|Yes
 unitDesignator|String|UNIT|unit designator (e.g., APT, UNIT); includes Canada Post unit designators plus standard entrance designators (e.g., ENTRANCE 1, EXIT)|No|No
