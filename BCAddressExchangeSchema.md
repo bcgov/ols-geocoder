@@ -1,6 +1,6 @@
 # Physical Address Exchange Standard Draft v0.13
 ### Change history
-v0.13 June 19, 2021 - added streetNamePhonetic and localityNamePhonetic<br>
+v0.13 June 19, 2021 - added streetNamePhonetic and localityNamePhonetic; added examples 1a-1d<br>
 
 v0.12 June 18, 2021 - added dataOwner, notes, accessPointLatLon, latitude, and longitude fields; removed isAlias because unofficial addresses are out of scope of this standard<br>
 
@@ -359,22 +359,19 @@ The following exchange data records will represent the above addresses:
 
 Field | Value
 ----:|----
-siteName|University of Victoria
+siteLatLon|48.44727,-123.39594
 civicNumber|3800
 streetName|Finnerty
 streetType|Rd
 localityName|Victoria
 provinceCode|BC
-latitude|(aReal) 
-longitude|(aReal)
-accessPointLat|(aReal)
-accessPointLon|(aReal)
+siteName|University of Victoria
 footprintDescriptor|complex
 footprint|(aMultiPolygon)
 
 Field | Value
 ----:|----
-siteLatLon|(aReal),(aReal) 
+siteLatLon|48.46529,-123.30848 
 civicNumber|3800
 streetName|Finnerty
 streetType|Rd
@@ -382,52 +379,50 @@ localityName|Saanich
 provinceCode|BC
 siteName|Student Union Building
 superFullSiteDescriptor|University of Victoria
+accessPointLatLon|48.46494,-123.30895
+footprintDescriptor|building
+footprint|(polygon)
+
+Field | Value
+----:|----
+siteLatLon|(aReal),(aReal)
+civicNumber|3800
+streetName|Finnerty
+streetType|Rd
+localityName|Saanich
+provinceCode|BC
+siteName|Clearihue Building
+superFullSiteDescriptor|University of Victoria
 accessPointLatLon|(aReal),(aReal)
 footprintDescriptor|building
 footprint|(polygon)
 
 Field | Value
 ----:|----
-siteName|Clearihue Building
-superFullSiteDescriptor|University of Victoria
+siteLatLon|(aReal),(aReal)
 civicNumber|3800
 streetName|Finnerty
 streetType|Rd
 localityName|Saanich
 provinceCode|BC
-latitude|(aReal) 
-longitude|(aReal)
-accessPointLat|(aReal)
-accessPointLon|(aReal)
-footprintDescriptor|building
-footprint|(polygon)
-
-Field | Value
-----:|----
 siteName|Michele Pujol Room
 superFullSiteDescriptor|Student Union Building -- University of Victoria
-civicNumber|3800
-streetName|Finnerty
-streetType|Rd
-localityName|Saanich
-provinceCode|BC
-latitude|(aReal)
-longitude|(aReal)
-accessPointLat|(aReal)
-accessPointLon|(aReal)
+accessPointLatLon|(aReal),(aReal)
 footprintDescriptor|indoorArea
 footprint|(polygon)
 
 Field | Value
 ----:|----
+siteLatLon|(aReal),(aReal)
 unitDesignator|Room
 unitNumber|100-110
-superFullSiteDescriptor|Clearhue Building -- University of Victoria
 civicNumber|3800
 streetName|Finnerty
 streetType|Rd
 localityName|Saanich
 provinceCode|BC
+superFullSiteDescriptor|Clearhue Building -- University of Victoria
+accessPointLatLon|(aReal),(aReal)
 
 <a name=ex6></a>
 ## Example 6 - A building with special entrances and exits
