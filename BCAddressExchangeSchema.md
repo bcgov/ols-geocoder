@@ -442,6 +442,7 @@ The following exchange data records will represent the above addresses:
 
 Field | Value
 ----:|----
+siteLatLon|(aReal),(aReal)
 civicNumber|1100
 streetName|Chestnut
 streetType|St
@@ -451,20 +452,19 @@ provinceCode|BC
 
 Field | Value
 ----:|----
+siteLatLon|(aReal),(aReal); location of emergency entrance on building
 unitDesignator|EMERGENCY-ENTRANCE
 civicNumber|1100
 streetName|Chestnut
 streetType|St
 localityName|Vancouver
 provinceCode|BC
-latitude|(aReal); location of emergency entrance on building
-longitude|(aReal)
-accessPointLat|(aReal) ;location of intersection of emergency access lane and Chestnut St
-accessPointLon|(aReal)
+accessPointLatLon|(aReal),(aReal) ;location of intersection of emergency access lane and Chestnut St
 
 
 Field | Value
 ----:|----
+siteLatLon|(aReal,(aReal); location of emergency exit 1 on building
 unitDesignator|EMERGENCY-EXIT
 unitNumber|1
 civicNumber|1100
@@ -474,11 +474,11 @@ localityName|Vancouver
 provinceCode|BC
 latitude|(aReal); location of emergency exit 1 on building
 longitude|(aReal)
-accessPointLat|(aReal) ;location of intersection of access road and Chestnut St if different from primary site access point
-accessPointLon|(aReal)
+accessPointLatLon|(aReal) ;location of intersection of access road and Chestnut St if different from primary site access point
 
 Field | Value
 ----:|----
+siteLatLon|(aReal,(aReal); location of emergency exit 2 on building
 unitDesignator|EMERGENCY-EXIT
 unitNumber|2
 civicNumber|1100
@@ -486,15 +486,12 @@ streetName|Chestnut
 streetType|St
 localityName|Vancouver
 provinceCode|BC
-latitude|(aReal); location of emergency exit 2 on building
-longitude|(aReal)
-accessPointLat|(aReal) ;location of intersection of access road and Chestnut St if different from primary site access point
-accessPointLon|(aReal)
+accessPointLatLon|(aReal) ;location of intersection of access road and Chestnut St if different from primary site access point
 <br>
 
 <a name=specialUnitDesignators></a>
 ## Unit Designators of entrances, exits, and other building parts
-The following entrance unit designators are proposed to handle the special types of entrances and exits in a standard way:
+The following entrance unit designators are proposed to handle the special types of entrances and exits in a standard way. Like any unitDesignator, entrances may be numbered (eg., ENTRANCE 1, EXIT 4)
 
 |unitDesignator|Description|
 |--|--|
@@ -517,7 +514,6 @@ TRUCK-EXIT|TRUCK exit only
 TRUCK-PARKING-ENTRANCE|Truck parking entrance/exit
 TRUCK-PARKING-EXIT|Truck parking exit only
 
-Like any unitDesignator, entrances may be numbered (eg., ENTRANCE 1, EXIT 4)
 
 The following Canada Post unit designators define other building parts and are also supported:
 
@@ -536,7 +532,7 @@ FLR| Floor
 ## Schema definition (aka Data Dictionary)
 This schema can be used in any common text format that supports named properties including CSV, TSV, JSON, and XML. The most commonly populated fields appear at the front of the list. The Default column specifies the value assigned to the field if none is supplied or the field is missing from the data file.
 
-Field Name | Data Type |Default|Description | Required for Civic Address|Required for Non-civic address
+Field Name|Data Type|Default|Description|Required for Civic Address|Required for Non-civic address
 |---:|--|--|--|--|--|
 yourId|String||Unique identifier in your local address management system (e.g., X0233212)|No|No
 siteLatLon|Number||Site latitude and longitude separated by a comma (e.g., 54.98457,-123.04504); not required if siteLat and siteLon populated|Yes|Yes
