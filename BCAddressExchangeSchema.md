@@ -535,12 +535,12 @@ This schema can be used in any common text format that supports named properties
 Field Name|Data Type|Default|Description|Required for Civic Address|Required for Non-civic address
 |---:|--|--|--|--|--|
 yourId|String||Unique identifier in your local address management system (e.g., X0233212)|No|No
-siteLatLon|Number||Site latitude and longitude separated by a comma (e.g., 54.98457,-123.04504); not required if siteLat and siteLon populated|Yes|Yes
+siteLatLon|Number||Site latitude and longitude separated by a comma (e.g., 54.98457,-123.04504); ideally building coordinates reflect a point on the roof directly above the front entrance; not required if siteLat and siteLon populated|Yes|Yes
 unitDesignator|String|UNIT|unit designator (e.g., APT, UNIT); includes Canada Post unit designators plus standard entrance designators (e.g., ENTRANCE 1, EXIT)|No|No
 unitNumber|String||unit number or letter or sequence of unit number/letter ranges separated by commas (e.g., 100-119, 200-219); a unit number may contain a leading alphabetic character as in A100 which can participate in unit number ranges such as A100-A119|No|No
 unitNumberSuffix|String||Canada Post unit number suffix (e.g., C)|No|No
 civicNumber|Number|| civic number, usually a positive integer (e.g., 1321)|Yes|No
-civicNumberSuffix||String|Canada Post civic number suffix (e.g., A)|No|No
+civicNumberSuffix|String||Canada Post civic number suffix (e.g., A)|No|No
 streetName|String||Street name (e.g., Dallas)|Yes|No
 streetNamePhonetic|String||Phonetic spelling of streetName|No|No
 streetType|String||Street type suffix( e.g., the Rd in Herd Rd) |No|No
@@ -559,7 +559,7 @@ isNonCivic|Boolean|false|true if address has a sitename and no assigned civic nu
 siteTags|String|| Comma-separated list of descriptive tags (e.g. stadium)|No|No
 superFullsiteDescriptor|String||names of all units and sites in parent site hierarchy separated by double-dash (e.g., Student Union Building -- University of Victoria)|No|No
 superYourId|String||Unique identifier of super site|No|No
-accessPointLatLon|String||Lat and lon of accessPoint separated by a comma; Only needed if access point is different than site point or super site point; also not needed if accessPointLat and accessPointLon populated|No|Yes
+accessPointLatLon|String||Lat and lon of accessPoint separated by a comma; Ideally point represents a point on a driveway or walkway just before the sidewalk or roadway; Only needed if access point is different than site point or super site point; also not needed if accessPointLat and accessPointLon populated|No|Yes
 accessPointLat|Number||Only needed if access point is different than site point or super site point; also not needed if accessPointLatLon populated|No|Yes
 accessPointLon|Number||Only needed if access point is different than site point or super site point; also not needed if accessPointLatLon populated|No|Yes
 streetQualifier|String||The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge)|No|No
