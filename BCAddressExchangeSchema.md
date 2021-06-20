@@ -1,6 +1,6 @@
 # Physical Address Exchange Standard Draft v0.13
 ### Change history
-v0.13 June 19, 2021 - added streetNamePhonetic and localityNamePhonetic; added examples 1a-1d<br>
+v0.13 June 19, 2021 - added streetNamePhonetic and localityNamePhonetic; updated all examples to reflect recent schema changes; added examples 1a-1d<br>
 
 v0.12 June 18, 2021 - added dataOwner, notes, accessPointLatLon, latitude, and longitude fields; removed isAlias because unofficial addresses are out of scope of this standard<br>
 
