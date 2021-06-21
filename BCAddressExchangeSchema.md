@@ -533,7 +533,7 @@ FLR| Floor
 ## Schema definition (aka Data Dictionary)
 This schema can be used in any common text format that supports named properties including CSV, TSV, JSON, and XML. The most commonly populated fields appear at the front of the list. The Default column specifies the value assigned to the field if none is supplied or the field is missing from the data file.
 
-Field Name|Data Type|Default|Description|Required for Civic Address|Required for Non-civic address
+Field Name|Data Type|Default|Description|Required for Civic Address|Required for Non Civic Address
 |---:|--|--|--|--|--|
 siteLatLon|Number||Site latitude and longitude separated by a comma (e.g., 54.98457,-123.04504); ideally building coordinates reflect a point on the roof directly above the front entrance; not required if siteLat and siteLon populated|Yes|Yes
 unitDesignator|String|UNIT|unit designator (e.g., APT, UNIT); includes Canada Post unit designators plus standard entrance designators (e.g., ENTRANCE 1, EXIT)|No|No
