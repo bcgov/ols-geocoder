@@ -560,7 +560,7 @@ longitude|Number||Site longitude (e.g.,-123.04504); not required if siteLatLon p
 siteName|String||building or landmark name (e.g., Centennial Candle)|no|yes
 isNonCivic|Boolean|false|true if address has a sitename and no assigned civic number; false otherwise|Yes|Yes
 siteTags|String|| Comma-separated list of descriptive tags (e.g. stadium)|No|No
-superFullsiteDescriptor|String||names of all units and sites in parent site hierarchy separated by double-dash (e.g., Student Union Building -- University of Victoria)|No|No
+superFullSiteDescriptor|String||names of all units and sites in parent site hierarchy separated by double-dash (e.g., Student Union Building -- University of Victoria)|No|No
 yourId|String||Unique identifier in your local address management system (e.g., X0233212)|No|No
 superYourId|String||Unique identifier of super site|No|No
 accessPointLatLon|String||Lat and lon of accessPoint separated by a comma; Ideally point represents a point on a driveway or walkway just before the sidewalk or roadway; Only needed if access point is different than site point or super site point; also not needed if accessPointLat and accessPointLon populated|No|Yes
