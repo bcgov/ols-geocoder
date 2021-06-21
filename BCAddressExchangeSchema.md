@@ -547,7 +547,7 @@ streetName|String||Street name (e.g., Dallas)|Yes|No
 streetNamePhonetic|String||Phonetic spelling of streetName|No|No
 streetType|String||Street type suffix( e.g., the Rd in Herd Rd) |No|No
 isStreetTypePrefix|Boolean|false|true if street type appears before street name as in HWY 17; false otherwise|No|No
-streetDirection|String||Canada Post street direction suffix (the W in Burnside Ave W); one of C, E, N, NE, NW, SE, SW, or W (e.g., NW); Canada Post does not allow prefix and suffix street direction in same address as in: 103 N 52 St SW|No|No
+streetDirection|String||Canada Post street direction (the W in Burnside Ave W); one of C, E, N, NE, NW, SE, SW, or W (e.g., NW); Canada Post does not allow both prefix and suffix street directions in the same address as in: 103 N 52 St SW|No|No
 isStreetDirectionPrefix|Boolean|false|true if street direction appears before street name as in SW Marine Dr; false otherwise|No|No
 localityName|String||Locality name (e.g., Victoria)|Yes|Yes
 localityNamePhonetic|String||Phonetic spelling of streetName|No|No
