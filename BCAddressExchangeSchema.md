@@ -552,8 +552,8 @@ localityName|String||Locality name (e.g., Victoria)|Yes|Yes
 localityNamePhonetic|String||Phonetic spelling of streetName|No|No
 provinceCode|String||Canada Post two-character province code|Yes|Yes
 notes|String||Additional info about address (e.g., at top of hill, narrow driveway, enter in back of house, grey house, siteLatLon is rooftop above front door)|No|no|
-dataOwner|String||Name of address authority (e.g., MLIB)
-changeDate|String| Date this address data was last changed by the dataOwner; in format YYYYDDMM
+dataOwner|String||Name of address authority (e.g., MLIB)|Yes|Yes
+changeDate|String|| Date this address data was last changed by the dataOwner; in format YYYYDDMM|Yes|Yes
 latitude|Number||Site latitude (e.g., 54.98457); not required if siteLatLon populated|Yes|Yes
 longitude|Number||Site longitude (e.g.,-123.04504); not required if siteLatLon populated|Yes|Yes
 siteName|String||building or landmark name (e.g., Centennial Candle)|no|yes
