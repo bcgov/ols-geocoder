@@ -532,7 +532,7 @@ FLR| Floor
 
 <a name=schema></a>
 ## Schema definition (aka Data Dictionary)
-This schema can be used in any common text format that supports named properties including CSV, TSV, JSON, and XML. The most commonly populated fields appear at the front of the list. The Default column specifies the value assigned to the field if none is supplied or the field is missing from the data file.
+This schema can be used in any common text format that supports named properties including CSV, TSV, JSON, and XML. The most commonly populated fields appear at the front of the list. The Default column specifies the value that will be assigned to the field if none is supplied or the field is missing from the data file.
 
 Field Name|Data Type|Default|Description|Required for Civic Address|Required for Non Civic Address
 |---:|--|--|--|--|--|
