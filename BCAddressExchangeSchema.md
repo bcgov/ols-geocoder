@@ -555,8 +555,8 @@ provinceCode|String||Canada Post two-character province code|Yes|Yes
 dataOwner|String||Name of address authority (e.g., MLIB)|Yes|Yes
 changeDate|String|| Date this address data was last changed by the dataOwner; in format YYYYDDMM|Yes|Yes
 notes|String||Additional info about address (e.g., at top of hill, narrow driveway, enter in back of house, grey house, siteLatLon is rooftop above front door)|No|no|
-latitude|Number||Site latitude (e.g., 54.98457); not required if siteLatLon populated|Yes|Yes
-longitude|Number||Site longitude (e.g.,-123.04504); not required if siteLatLon populated|Yes|Yes
+latitude|Number||Site latitude (e.g., 54.98457); required if siteLatLon not populated|No|No
+longitude|Number||Site longitude (e.g.,-123.04504); required if siteLatLon not populated|No|No
 siteName|String||building or landmark name (e.g., Centennial Candle)|no|yes
 isNonCivic|Boolean|false|true if address has a sitename and no assigned civic number; false otherwise|Yes|Yes
 siteTags|String|| Comma-separated list of descriptive tags (e.g. stadium)|No|No
@@ -564,9 +564,9 @@ superFullSiteDescriptor|String||names of all units and sites in parent site hier
 yourId|String||Unique identifier in your local address management system (e.g., X0233212)|No|No
 superYourId|String||Unique identifier of super site|No|No
 accessPointLatLon|String||Lat and lon of accessPoint separated by a comma; Ideally point represents a point on a driveway or walkway just before the sidewalk or roadway; Only needed if access point is different than site point or super site point; also not needed if accessPointLat and accessPointLon populated|No|Yes
-accessPointLat|Number||Only needed if access point is different than site point or super site point; also not needed if accessPointLatLon populated|No|Yes
-accessPointLon|Number||Only needed if access point is different than site point or super site point; also not needed if accessPointLatLon populated|No|Yes
-streetQualifier|String||The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge); see [here](#streetQualifiers)|No|No
+accessPointLat|Number||Only needed if access point is different than site point or super site point; also not needed if accessPointLatLon populated|No|No
+accessPointLon|Number||Only needed if access point is different than site point or super site point; also not needed if accessPointLatLon populated|No|No
+streetQualifier|String||The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge); [here](#streetQualifiers) is a complete list of streetQualifiers|No|No
 footprintDescriptor|String|| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)|No|No
 footprint|OGC Well Known Text||geometry of site footprint in OGC Well-Known Text format for CSV files, other geometry standards for other formats (e.g., GML GeoJson)|No|No
 
