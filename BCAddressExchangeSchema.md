@@ -566,7 +566,7 @@ superYourId|String||Unique identifier of super site|No|No
 accessPointLatLon|String||Lat and lon of accessPoint separated by a comma; Ideally point represents a point on a driveway or walkway just before the sidewalk or roadway; Only needed if access point is different than site point or super site point; also not needed if accessPointLat and accessPointLon populated|No|Yes
 accessPointLat|Number||Only needed if access point is different than site point or super site point; also not needed if accessPointLatLon populated|No|Yes
 accessPointLon|Number||Only needed if access point is different than site point or super site point; also not needed if accessPointLatLon populated|No|Yes
-streetQualifier|String||The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge)|No|No
+streetQualifier|String||The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge); see [here](#streetQualifiers)|No|No
 footprintDescriptor|String|| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)|No|No
 footprint|OGC Well Known Text||geometry of site footprint in OGC Well-Known Text format for CSV files, other geometry standards for other formats (e.g., GML GeoJson)|No|No
 
