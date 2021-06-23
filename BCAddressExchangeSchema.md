@@ -538,7 +538,7 @@ This schema can be used in any common text format that supports named properties
 Field Name|Data Type|Default|Description|Required for Civic Address|Required for Non Civic Address
 |---:|--|--|--|--|--|
 siteLatLon|Number||Site latitude and longitude separated by a comma (e.g., 54.98457,-123.04504); ideally building coordinates represent a point on the roof directly above the front door; not required if siteLat and siteLon populated|Yes|Yes
-unitDesignator|String|UNIT|unit designator (e.g., APT, UNIT); includes Canada Post unit designators plus standard entrance designators (e.g., ENTRANCE 1, EXIT); [here](#unitDesignators) is a complete list|No|No
+unitDesignator|String|UNIT|unit designator (e.g., APT, UNIT); includes Canada Post unit designators plus standard entrance designators (e.g., ENTRANCE 1, EXIT); [here](#unitDesignators) is a complete list of unit designators|No|No
 unitNumber|String||unit number or letter or sequence of unit number/letter ranges separated by commas (e.g., 100-119, 200-219); a unit number may contain a leading alphabetic character as in A100 which can participate in unit number ranges such as A100-A119|No|No
 unitNumberSuffix|String||Canada Post unit number suffix (e.g., C)|No|No
 civicNumber|Number|| civic number, usually a positive integer (e.g., 1321)|Yes|No
