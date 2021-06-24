@@ -46,7 +46,7 @@ The app will display a list of layers grouped into background layers and foregro
 ![image](https://user-images.githubusercontent.com/11318574/123139617-427ab980-d40b-11eb-9c03-851704463c85.png)
 
 
-9. Put the cursor on the roof, just above the front door of the building getting the new address and click on the map. If there is no existing building, click on a parcel centroid or a point within the parcel where the roof is likely to be.
+9. Put the cursor on the roof, just above the front door of the building getting the new address and click on the map. If there is no existing building, click on a parcel centroid or a point within the parcel where the roof is likely to be. In this example, we are going to click on the centroid of the parcel just below 47202 Homewood Rd. This location is going to be 47186 Homewood Rd.
 
 ![image](https://user-images.githubusercontent.com/11318574/123141141-ea44b700-d40c-11eb-86ef-45cefc07d0a2.png)
 
