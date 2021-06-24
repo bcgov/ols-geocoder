@@ -61,7 +61,7 @@ The app stores and displays the lat/lon of the digitized point in the *Add waypo
 
 ![image](https://user-images.githubusercontent.com/11318574/123144977-2712ad00-d411-11eb-93ea-064e9d1d91d0.png)
 
-12.  Enter all the elements of the new civic address into the other columns of the same row.  Columns are defined in the [BC Physical Address eXchange (PAX) Standard](https://github.com/bcgov/ols-geocoder/blob/gh-pages/BCAddressExchangeSchema.md#schema). Less frequently used columns appear to the right of the notes column. *If you were defining a range of unitNumbers associated with an address, as in row 3, you wouldn't need to put any coordinates into siteLatLon. It will be assumed that all units share the same location as the associated building address (e.g., row 2). If there are some units at a civic number that are separate buildings (e.g., townhouses, cabins), feel free to add a separate row for each such unit and its siteLatLon.*
+12.  Enter all the elements of the new civic address into the other columns of the same row.  Columns are defined in the [BC Physical Address eXchange (PAX) Standard](https://github.com/bcgov/ols-geocoder/blob/gh-pages/BCAddressExchangeSchema.md#schema). Less frequently used columns appear to the right of the notes column. *If you were defining a range of unitNumbers associated with an address, as in row 3, you wouldn't need to put any coordinates into siteLatLon. It would be assumed that all units share the same location as the associated building address (e.g., row 2). If there are some units at a civic number that are separate buildings (e.g., townhouses, cabins), feel free to add a separate row for each such unit and its siteLatLon.*
 
 13. Digitize the remaining new civic addresses on your list.
 
