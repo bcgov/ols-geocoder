@@ -30,7 +30,7 @@ v0.4 Jun, 2019 - added SUPER_SITE_YOURID to schema, changed schema to allow any 
 [Example 1c - A house on a street with a streetDirection following streetName](#ex1c)<br>
 [Example 1d - A house on a street with a streetDirection preceding streetName](#ex1d)<br>
 [Example 2 - A single apartment building with multiple floors and units](#ex2)<br>
-[Example 3 - An apartment complex with buildings distinguished by unit number prefix](#ex3)<br>
+[Example 3 - An apartment complex with two buildings named A and B](#ex3)<br>
 [Example 4 - A complex with multiple levels of units](#ex4)<br>
 [Example 5 - A complex of buildings](#ex5)<br>
 [Example 6 - A building with special entrances and exits](#ex6)<br>
@@ -207,7 +207,7 @@ Unit 304, 200 Gorge Rd W, Saanich, BC
 All addresses will be assigned the site and accessPoint locations that are assigned to 200 Gorge Rd W, Saanich, BC
 
 <a name=ex3></a>
-## Example 3 - An apartment complex with buildings distinguished by unit number prefix
+## Example 3 - An apartment complex with two buildings named A and B
 
 Here is a common situation where a complex has building names that are single letters embedded in a unit number as in APT A105.
 
