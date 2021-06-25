@@ -227,7 +227,7 @@ footprint|(aMultiPolygon) | shape of complex
 Field | Value | Comment
 -----: | ------ | -----
 unitDesignator| APT
-unitNumber|A100-110,200-210,300-310,400-410|The letter A at the beginning of the unitNumber expression represents Building A
+unitNumber|A100-110,A200-210,A300-310,A400-410|The letter A at the beginning of each unitNumber range represents Building A
 civicNumber|810
 streetName|Esquimalt
 streetType|Rd
@@ -237,7 +237,7 @@ provinceCode|BC
 Field | Value | Comment
 -----: | ------ | -----
 unitDesignator| APT
-unitNumber|B100-110,200-210,300-310,400-410|The letter B at the beginning of the unitNumber expression represents Building B
+unitNumber|B100-110,B200-210,B300-310,B400-410|The letter B at the beginning of each unitNumber range represents Building B
 civicNumber|810
 streetName|Esquimalt
 streetType|Rd
