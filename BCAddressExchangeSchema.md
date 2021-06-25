@@ -177,7 +177,7 @@ provinceCode|BC
 Field | Value
 -----: | ------
 unitDesignator|APT
-unitNumber|101,201,301,401
+unitNumber|101,201,301
 unitNumberSuffix|A
 civicNumber|740
 streetName|Gorge
@@ -203,12 +203,8 @@ Unit 301A, 200 Gorge Rd W, Saanich, BC
 Unit 302, 200 Gorge Rd W, Saanich, BC
 Unit 303, 200 Gorge Rd W, Saanich, BC
 Unit 304, 200 Gorge Rd W, Saanich, BC
-Unit 401A, 200 Gorge Rd W, Saanich, BC
-Unit 402, 200 Gorge Rd W, Saanich, BC
-Unit 403, 200 Gorge Rd W, Saanich, BC
-Unit 404, 200 Gorge Rd W, Saanich, BC
 
-All addresses will be assigned the site and accessPoint locations assigned to 200 Gorge Rd W, Saanich, BC
+All addresses will be assigned the site and accessPoint locations that are assigned to 200 Gorge Rd W, Saanich, BC
 
 <a name=ex3></a>
 ## Example 3 - An apartment complex with buildings distinguished by unit number prefix
