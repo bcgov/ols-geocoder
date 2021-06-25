@@ -167,7 +167,7 @@ Field | Value
 -----: | ------
 unitDesignator|APT
 unitNumber|101-104,201-204,301-304
-civicNumber|740
+civicNumber|200
 streetName|Gorge
 streetType|Rd
 streetDirection|W
@@ -179,7 +179,7 @@ Field | Value
 unitDesignator|APT
 unitNumber|101,201,301
 unitNumberSuffix|A
-civicNumber|740
+civicNumber|200
 streetName|Gorge
 streetType|Rd
 streetDirection|W
