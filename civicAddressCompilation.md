@@ -88,7 +88,7 @@ The application will store and display the lat/lon of the digitized point in the
 
 16.  Enter all the elements of the new civic address into the other columns of the same row.  
 
-- Columns are defined in the [BC Physical Address eXchange (PAX) Schema](https://github.com/bcgov/ols-geocoder/blob/gh-pages/BCAddressExchangeSchema.md#schema). 
+- Columns are defined in the [Physical Address eXchange (PAX) Schema](https://github.com/bcgov/ols-geocoder/blob/gh-pages/BCAddressExchangeSchema.md#schema). 
 
 - Less frequently used columns appear to the right of the notes column.
 
