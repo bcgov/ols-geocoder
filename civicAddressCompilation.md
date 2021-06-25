@@ -41,7 +41,7 @@ The app will display a list of layers grouped into background layers and foregro
 
 ![image](https://user-images.githubusercontent.com/11318574/123313916-d2d5fe80-d4de-11eb-981f-51b46beb470c.png)
 <br><br>
-8.  Take a screenshot of the map.
+8.  Take a screenshot of the map and open up the side panel again.
 
 9.  Print the screenshot or load it up into your favourite paint program.
 
