@@ -153,7 +153,7 @@ The following exchange data records will represent the above addresses:
 Field | Value
 -----: | ------
 siteLatLon|48.44741,-123.39670
-civicNumber|740
+civicNumber|200
 streetName|Gorge
 streetType|Rd
 streetDirection|W
