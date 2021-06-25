@@ -1,4 +1,4 @@
-# Physical Address eXchange (PAX) Standard Draft v0.14
+# Physical Address eXchange (PAX) Schema Draft v0.14
 ### Change history
 
 v0.14 June 21, 2021 - added changeDate; moved yourId to middle of list of schema fields since it is never populated manually<br>
