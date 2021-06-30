@@ -146,7 +146,7 @@ footprint| (aPolygon)
 
 <a name=ex2> </a>
 ## Example 2 - A single apartment building with multiple floors and units
-200 Gorge Rd W, Saanich, BC has three floors with 4 units each numbered, 101-104,101A,201-204, 201A, 301-304, and 301A. Site and access points of building, not units, are known.
+200 Gorge Rd W, Saanich, BC has three floors with 4 units each numbered, 101-104,101A,201-204, 301-304. Site and access points of building, not units, are known.
 
 The following exchange data records will represent the above addresses:
 
@@ -166,7 +166,7 @@ footprint|(aMultiPolygon)
 Field | Value
 -----: | ------
 unitDesignator|APT
-unitNumber|101-104,201-204,301-304
+unitNumber|101-104,201-204,301-304,101A
 civicNumber|200
 streetName|Gorge
 streetType|Rd
@@ -174,10 +174,12 @@ streetDirection|W
 localityName|Saanich
 provinceCode|BC
 
+Note that unit 101A can appear in a unitNumber expression to avoid having to create the following additional record to handle the unitNumberSuffix:
+
 Field | Value
 -----: | ------
 unitDesignator|APT
-unitNumber|101,201,301
+unitNumber|101
 unitNumberSuffix|A
 civicNumber|200
 streetName|Gorge
@@ -194,12 +196,10 @@ Unit 102, 200 Gorge Rd W, Saanich, BC
 Unit 103, 200 Gorge Rd W, Saanich, BC
 Unit 104, 200 Gorge Rd W, Saanich, BC
 Unit 201, 200 Gorge Rd W, Saanich, BC
-Unit 201A, 200 Gorge Rd W, Saanich, BC
 Unit 202, 200 Gorge Rd W, Saanich, BC
 Unit 203, 200 Gorge Rd W, Saanich, BC
 Unit 204, 200 Gorge Rd W, Saanich, BC
 Unit 301, 200 Gorge Rd W, Saanich, BC
-Unit 301A, 200 Gorge Rd W, Saanich, BC
 Unit 302, 200 Gorge Rd W, Saanich, BC
 Unit 303, 200 Gorge Rd W, Saanich, BC
 Unit 304, 200 Gorge Rd W, Saanich, BC
