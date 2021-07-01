@@ -72,7 +72,7 @@ When you're happy with your address fabric, its time to digitize each civic addr
 ![image](https://user-images.githubusercontent.com/11318574/123139617-427ab980-d40b-11eb-9c03-851704463c85.png)
 <br><br>
 
-13. Put the cursor on the roof, just above the front door of the building getting the new address and click on the map. If there is no existing building, click on a parcel centroid or a point within the parcel where the roof is likely to be.  In this tutorial, we are going to click on the centroid of the parcel just below 47202 Homewood Rd. This location is going to be 47186 Homewood Rd.
+13. Put the cursor on the roof, just above the front door of the building getting the new address and click on the map. If there is no existing building, click on a parcel centroid or a point within the parcel where the roof is likely to be.  In this tutorial, we are going to click on the centroid of the parcel just below 47202 Homewood Rd (e.g. in the centre of the yellow ellipse shown below). This location is going to be 47186 Homewood Rd.
 
 ![image](https://user-images.githubusercontent.com/11318574/124089844-24174e00-da09-11eb-9eff-c4fac0272a99.png)
 <br><br>
