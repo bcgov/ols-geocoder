@@ -59,6 +59,8 @@ For more design tips see the powerpoint presentation called  address_fabric_desi
 
 When you're happy with your address fabric, its time to digitize each civic address.
 
+![image](https://user-images.githubusercontent.com/11318574/123883273-8be07280-d8fd-11eb-95b5-6c1a297a538a.png)
+
 11. In Location Services in Action, select the Route tab next to the Address tab
 
 ![image](https://user-images.githubusercontent.com/11318574/123138920-75707d80-d40a-11eb-8f27-eb6d4cb89484.png)
