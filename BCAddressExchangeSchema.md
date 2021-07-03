@@ -70,7 +70,6 @@ civicNumber|35
 streetName|Olympia
 streetType|Ave
 localityName|Victoria
-provinceCode|BC
 accessPointLatLon|48.40987,-123.37043
 footprintDescriptor|building
 footprint| (aPolygon)
@@ -86,7 +85,6 @@ civicNumber|47209
 streetName|Hart
 streetType|Hwy
 localityName|Saanich
-provinceCode|BC
 accessPointLatLon|54.98535,-123.03323
 footprintDescriptor|building
 footprint| (aPolygon)
@@ -104,7 +102,6 @@ streetType|Hwy
 isStreetTypePrefix|true
 streetDirection|N
 localityName|Baldonnel
-provinceCode|BC
 accessPointLatLon|56.20947,-120.71045
 footprintDescriptor|building
 footprint| (aPolygon)
@@ -121,7 +118,6 @@ streetName|Maddock
 streetType|Ave
 streetDirection|W
 localityName|Saanich
-provinceCode|BC
 accessPointLatLon|48.44940,-123.39094
 footprintDescriptor|building
 footprint| (aPolygon)
@@ -139,7 +135,6 @@ streetType|Hwy
 streetDirection|SW
 isStreetDirectionPrefix|true
 localityName|Vancouver
-provinceCode|BC
 accessPointLatLon|49.22985,-123.17813
 footprintDescriptor|building
 footprint| (aPolygon)
@@ -158,7 +153,6 @@ streetName|Gorge
 streetType|Rd
 streetDirection|W
 localityName|Saanich
-provinceCode|BC
 accessPointLatLon|48.44727,-123.39594
 footprintDescriptor|building
 footprint|(aMultiPolygon)
@@ -172,7 +166,6 @@ streetName|Gorge
 streetType|Rd
 streetDirection|W
 localityName|Saanich
-provinceCode|BC
 
 Note that unit 101A can appear in a unitNumber expression to avoid having to create the following additional record to handle the unitNumberSuffix:
 
@@ -186,7 +179,6 @@ streetName|Gorge
 streetType|Rd
 streetDirection|W
 localityName|Saanich
-provinceCode|BC
 
 If this example was provided as reference data to the BC Address Geocoder, the Geocoder would derive full addresses such as:
 
@@ -222,7 +214,6 @@ civicNumber|810
 streetName|Esquimalt
 streetType|Rd
 localityName|Esquimalt
-provinceCode|BC
 accessPointLatLon|(aReal),(aReal)
 footprintDescriptor|building
 footprint|(aMultiPolygon) | shape of complex
@@ -236,7 +227,6 @@ civicNumber|810
 streetName|Esquimalt
 streetType|Rd
 localityName|Esquimalt
-provinceCode|BC
 
 Field | Value | Comment
 -----: | ------ | -----
@@ -246,7 +236,6 @@ civicNumber|810
 streetName|Esquimalt
 streetType|Rd
 localityName|Esquimalt
-provinceCode|BC 
 
 
 If this example was provided as reference data to the BC Address Geocoder, the Geocoder would derive full addresses such as:
@@ -277,7 +266,6 @@ civicNumber|3211
 streetName|Grant McConnachie
 streetType|Way
 localityName|Richmond
-provinceCode|BC
 siteName|Vancouver International Airport
 accessPointLatLon|(aReal),(aReal)
 footprintDescriptor|complex
@@ -292,7 +280,6 @@ civicNumber|3211
 streetName|Grant McConnachie
 streetType|Way
 localityName|Richmond
-provinceCode|BC
 superFullSiteDescriptor|Vancouver International Airport
 footprintDescriptor|building
 footprint|(polygon)
@@ -306,7 +293,6 @@ civicNumber|3211
 streetName|Grant McConnachie
 streetType|Way
 localityName|Richmond
-provinceCode|BC
 superFullSiteDescriptor|Vancouver International Airport
 footprintDescriptor|building
 footprint|(polygon)
@@ -320,7 +306,6 @@ civicNumber|3211
 streetName|Grant McConnachie
 streetType|Way
 localityName|Richmond
-provinceCode|BC
 superFullSiteDescriptor|Vancouver International Airport
 footprintDescriptor|building
 footprint|(polygon)
@@ -335,7 +320,6 @@ civicNumber|3211
 streetName|Grant McConnachie
 streetType|Way
 localityName|Richmond
-provinceCode|BC
 superFullSiteDescriptor|Terminal A -- Vancouver International Airport
 
 The gates of terminals B and C are represented similarly.
@@ -371,7 +355,6 @@ civicNumber|3800
 streetName|Finnerty
 streetType|Rd
 localityName|Victoria
-provinceCode|BC
 siteName|University of Victoria
 footprintDescriptor|complex
 footprint|(aMultiPolygon)
@@ -383,7 +366,6 @@ civicNumber|3800
 streetName|Finnerty
 streetType|Rd
 localityName|Saanich
-provinceCode|BC
 siteName|Student Union Building
 superFullSiteDescriptor|University of Victoria
 accessPointLatLon|48.46494,-123.30895
@@ -397,7 +379,6 @@ civicNumber|3800
 streetName|Finnerty
 streetType|Rd
 localityName|Saanich
-provinceCode|BC
 siteName|Clearihue Building
 superFullSiteDescriptor|University of Victoria
 accessPointLatLon|(aReal),(aReal)
@@ -411,7 +392,6 @@ civicNumber|3800
 streetName|Finnerty
 streetType|Rd
 localityName|Saanich
-provinceCode|BC
 siteName|Michele Pujol Room
 superFullSiteDescriptor|Student Union Building -- University of Victoria
 accessPointLatLon|(aReal),(aReal)
@@ -427,7 +407,6 @@ civicNumber|3800
 streetName|Finnerty
 streetType|Rd
 localityName|Saanich
-provinceCode|BC
 superFullSiteDescriptor|Clearhue Building -- University of Victoria
 accessPointLatLon|(aReal),(aReal)
 
@@ -454,7 +433,6 @@ civicNumber|1100
 streetName|Chestnut
 streetType|St
 localityName|Vancouver
-provinceCode|BC
 
 
 Field | Value
@@ -465,7 +443,6 @@ civicNumber|1100
 streetName|Chestnut
 streetType|St
 localityName|Vancouver
-provinceCode|BC
 accessPointLatLon|(aReal),(aReal) ;location of intersection of emergency access lane and Chestnut St
 
 
@@ -478,7 +455,6 @@ civicNumber|1100
 streetName|Chestnut
 streetType|St
 localityName|Vancouver
-provinceCode|BC
 latitude|(aReal); location of emergency exit 1 on building
 longitude|(aReal)
 accessPointLatLon|(aReal) ;location of intersection of access road and Chestnut St if different from primary site access point
@@ -492,7 +468,6 @@ civicNumber|1100
 streetName|Chestnut
 streetType|St
 localityName|Vancouver
-provinceCode|BC
 accessPointLatLon|(aReal) ;location of intersection of access road and Chestnut St if different from primary site access point
 <br>
 
@@ -555,7 +530,7 @@ streetDirection|String||Canada Post street direction (the W in Burnside Ave W); 
 isStreetDirectionPrefix|Boolean|false|true if street direction appears before street name as in SW Marine Dr; false otherwise|No|No
 localityName|String||Locality name (e.g., Victoria)|Yes|Yes
 localityNamePhonetic|String||Phonetic spelling of streetName; only needed if a first-language English speaker would have difficultly pronouncing localityName|No|No
-provinceCode|String||Canada Post two-character province code|Yes|Yes
+subCountryCode|String|BC|ISO 3166-2 two-character subCountry code; OLS-Geocoder can be configured to default to any subCountryCode. The default configured for the BC Address Geocoder is BC|No|No
 dataOwner|String||Name of address authority (e.g., MLIB)|Yes|Yes
 changeDate|String|| Date this address data was last changed by the dataOwner; in format YYYYDDMM|Yes|Yes
 notes|String||Additional info about address (e.g., at top of hill, narrow driveway, enter in back of house, grey house, siteLatLon is rooftop above front door)|No|no|
