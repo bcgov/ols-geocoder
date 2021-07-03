@@ -553,7 +553,7 @@ streetDirection|String||Canada Post street direction (the W in Burnside Ave W); 
 isStreetDirectionPrefix|Boolean|false|true if street direction appears before street name as in SW Marine Dr; false otherwise|No|No
 localityName|String||Locality name (e.g., Victoria)|Yes|Yes
 localityNamePhonetic|String||Phonetic spelling of streetName; only needed if a first-language English speaker would have difficultly pronouncing localityName|No|No
-subCountryCode|String||ISO 3166-2 two-character subCountry code (e.g., BC for British Columbia)|No|No
+subCountryCode|String||ISO 3166-2 two-character subCountry code (e.g., BC for British Columbia)|Yes|Yes
 dataOwner|String||Name of address authority (e.g., MLIB)|Yes|Yes
 changeDate|String|| Date this address data was last changed by the dataOwner; in format YYYYDDMM|Yes|Yes
 notes|String||Additional info about address (e.g., at top of hill, narrow driveway, enter in back of house, grey house, siteLatLon is rooftop above front door)|No|no|
