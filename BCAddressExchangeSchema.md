@@ -1,7 +1,7 @@
 # Physical Address eXchange (PAX) Schema Draft v0.15
 ### Change history
 
-v0.15 July  3, 2021 - generalized provinceCode to subCountryCode to comply with ISO 3166-2 standard<br>
+v0.15 July  3, 2021 - generalized provinceCode to subCountryCode to comply with ISO 3166-2 standard; removed localityPhonetic and localitySpoken fields from Address Schema<br>
 
 v0.14 June 21, 2021 - added changeDate; moved yourId to middle of list of schema fields since it is never populated manually<br>
 
@@ -536,7 +536,7 @@ FLR| Floor
 
 
 <a name=schema></a>
-## Schema definition (aka Data Dictionary)
+## Address Schema definition (aka Data Dictionary)
 This schema can be used in any common text format that supports named properties including CSV, TSV, JSON, and XML. The most commonly populated fields appear at the front of the list. The Default column specifies the value that will be assigned to the field if none is supplied or the field is missing from the data file.
 
 Field Name|Data Type|Default|Description|Required for Civic Address|Required for Non Civic Address
