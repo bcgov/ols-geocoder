@@ -3,7 +3,7 @@
 
 v0.16 July 4, 2021 - added optional parcel geometry field which can be used to check the quality of the lat/lon coordinates of a site that has an associated parcel
 
-v0.15 July  3, 2021 - generalized provinceCode to subCountryCode to comply with ISO 3166-2 standard; removed localityPhonetic and localitySpoken fields from Address Schema<br>
+v0.15 July  3, 2021 - generalized provinceCode to subCountryCode to comply with ISO 3166-2 standard; removed localityPhonetic and localitySpoken fields from Address Schema since they are facts about a locality, not an address<br>
 
 v0.14 June 21, 2021 - added changeDate; moved yourId to middle of list of schema fields since it is never populated manually<br>
 
