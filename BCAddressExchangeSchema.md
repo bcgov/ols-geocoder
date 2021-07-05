@@ -1,7 +1,5 @@
-# Physical Address eXchange (PAX) Schema Draft v0.16
+# Physical Address eXchange (PAX) Schema Draft v0.15
 ### Change history
-
-v0.16 July 4, 2021 - added optional parcel geometry field that can be used to check the quality of the lat/lon coordinates of a site that has an associated parcel
 
 v0.15 July  3, 2021 - generalized provinceCode to subCountryCode to comply with ISO 3166-2 standard; removed localityPhonetic and localitySpoken fields from Address Schema since they are facts about a locality, not an address<br>
 
@@ -575,7 +573,6 @@ accessPointLon|Number||Only needed if access point is different than site point 
 streetQualifier|String||The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge); [here](#streetQualifiers) is a complete list of streetQualifiers|No|No
 footprintDescriptor|String|| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)|No|No
 footprint|String||Geometry,in OGC Well Known Text format, of site footprint in OGC Well-Known Text format for CSV files, other geometry standards for other formats (e.g., GML GeoJson)|No|No
-parcel|String||If site has an associated parcel, the geometry,in OGC Well Known Text format, of that parcel; if provided, site lat/lon must lie inside or on parcel boundary|No|No
 
 <a name=unitDesignators></a>
 ## Unit Designators
