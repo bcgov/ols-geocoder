@@ -33,9 +33,9 @@ In Transform, we transform all source data into standard schemas and formats.
 
 In Integrate, we tie addresses to the road network and generate address ranges.
 
-In Validate, we geocode our test address data using the integrated data.
+In Validate, we geocode our Acceptance Test addresses against the integrated data.
 
-In Deploy,  if the validation was successful, we Deploy the integrated data to a given geocoder environment.
+In Deploy,  if the validation was successful, we deploy the integrated data to a given geocoder environment.
 
 The Integrate stage lies at the heart of the process and our change proposal mostly affects this stage so let's take a closer look.  
 
