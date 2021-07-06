@@ -12,7 +12,9 @@ Document|Description|Audience
 [Copyright Notices](https://github.com/bcgov/ols-geocoder/blob/gh-pages/notice.md)|Copyright notices of all software packaged used by this repository|Everyone
 [What's New](https://github.com/bcgov/ols-geocoder/blob/gh-pages/whats-new.md)|What's new in latest release of Geocoder|Everyone
 [FAQ](https://github.com/bcgov/ols-geocoder/blob/gh-pages/faq.md)|Frequently Asked Questions|Everyone
+[Preparing your Address File for Batch Geocoding](https://www2.gov.bc.ca/assets/gov/data/geographic/location-services/geocoder/batch_address_data_prep.pdf)|An example-driven introduction to the input formats supported by the Address List Editor and the batch geocoder|Everyone
 [Batch Geocoder Application Guide](https://github.com/bcgov/ols-geocoder/blob/gh-pages/batch-geocoder-application-guide.md)|Step by step tutorial on submitting your address list to the batch geocoder|Everyone
+[Understanding Batch Geocoder Output](https://www2.gov.bc.ca/assets/gov/data/geographic/location-services/geocoder/understanding_geocoder_results.pdf)|An example-driven introduction to the geocoder scoring system and the many fault messages that can help you pinpoint data issues.|Everyone
 [Geocoder Developer Guide](https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md)|Learn the online geocoder API through series of examples|App developers
 [Single-line Address Format](https://github.com/bcgov/ols-geocoder/blob/gh-pages/singleLineAddressFormat.md)|The single-string format of addresses supported by the geocoder|Geocoder clients, app developers, address data suppliers
 [Glossary of Geocoder Terms](https://github.com/bcgov/ols-geocoder/blob/gh-pages/glossary.md)|Defines all technical terms used by the geocoder|geocoder clients, app developers, address data suppliers|
