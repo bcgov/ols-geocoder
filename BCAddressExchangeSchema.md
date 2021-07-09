@@ -37,9 +37,10 @@ v0.4 Jun, 2019 - added SUPER_SITE_YOURID to schema, changed schema to allow any 
 [Example 5 - A complex of buildings](#ex5)<br>
 [Example 6 - A building with special entrances and exits](#ex6)<br>
 [Unit Designators of entrances, exits, and other building parts](#specialUnitDesignators)<br>
-[Schema definition (aka Data dictionary)](#schema)<br>
+[Address Schema Definition](#addressSchema)<br>
 [Unit designators](#unitDesignators)<br>
 [Street qualifiers](#streetQualifiers)<br><br>
+[Street Schema Definition](#streetSchema)
 
 
 <a name=intro></a>
@@ -534,9 +535,11 @@ REAR|Rear of building
 BSMNT|Basement
 FLR| Floor
 
+<a name=dataDictionary>
+## Data Dictionary
 
-<a name=schema></a>
-## Address Schema definition (aka Data Dictionary)
+<a name=addressSchema></a>
+### Address Schema Definition
 This schema can be used in any common text format that supports named properties including CSV, TSV, JSON, and XML. The most commonly populated fields appear at the front of the list. The Default column specifies the value that will be assigned to the field if none is supplied or the field is missing from the data file.
 
 Field Name|Data Type|Default|Description|Required for Civic Address|Required for Non Civic Address
@@ -548,13 +551,11 @@ unitNumberSuffix|String||Canada Post unit number suffix (e.g., C)|No|No
 civicNumber|Number|| civic number, usually a positive integer (e.g., 1321)|Yes|No
 civicNumberSuffix|String||Canada Post civic number suffix (e.g., A)|No|No
 streetName|String||Street name (e.g., Dallas)|Yes|No
-streetNamePhonetic|String||Phonetic spelling of streetName; only needed if a first-language English speaker would have difficultly pronouncing streetName|No|No
 streetType|String||Street type suffix( e.g., the Rd in Herd Rd); an address usually has a streetType |No|No
 isStreetTypePrefix|Boolean|false|true if street type appears before street name as in HWY 17; false otherwise|No|No
 streetDirection|String||Canada Post street direction (the W in Burnside Ave W); one of C, E, N, NE, NW, SE, SW, or W (e.g., NW); Canada Post does not allow both prefix and suffix street directions in the same address as in: 103 N 52 St SW|No|No
 isStreetDirectionPrefix|Boolean|false|true if street direction appears before street name as in SW Marine Dr; false otherwise|No|No
 localityName|String||Locality name (e.g., Victoria)|Yes|Yes
-localityNamePhonetic|String||Phonetic spelling of streetName; only needed if a first-language English speaker would have difficultly pronouncing localityName|No|No
 subCountryCode|String||ISO 3166-2 two-character subCountry code (e.g., BC for British Columbia, Canada)|Yes|Yes
 dataOwner|String||Name of address authority (e.g., MLIB)|Yes|Yes
 changeDate|String|| Date this address data was last changed by the dataOwner; in format YYYYDDMM|Yes|Yes
@@ -575,7 +576,7 @@ footprintDescriptor|String|| one of building, complex, parcel, outdoorArea, indo
 footprint|String||Geometry,in OGC Well Known Text format, of site footprint in OGC Well-Known Text format for CSV files, other geometry standards for other formats (e.g., GML GeoJson)|No|No
 
 <a name=unitDesignators></a>
-## Unit Designators
+### Unit Designators
 Here is the list of standard unit designators. Any designator can also have an associated unit number.
 
 |Name|Description|Canada Post Standard|
@@ -623,7 +624,7 @@ UNIT|Unit|Yes
 UPPR|Upper floor of building|No
 <br><br>
 <a name=streetQualifiers></a>
-## Street Qualifiers
+### Street Qualifiers
 Here is the list of standard street qualifiers
 
 |Name|Description|
@@ -686,3 +687,24 @@ Tunnel|
 Underpass|
 Viaduct|
 WeighScale
+<br><br>
+
+<a name=streetSchema></a>
+## Street Schema
+Here is the definition of the Street Schema
+
+Field Name|Data Type|Required|Default|Description|
+|---:|--|--|--|--|
+streetName|String|Yes||Official spelling of street name (e.g., Dallas)
+streetNamePhonetic|String|No||Phonetic spelling of streetName; only needed if a first-language English speaker would have difficultly pronouncing streetName
+streetNameSpoken|URL|No|| A link to a .WAV file containing the streetName spoken by a person proficient in the language.
+streetType|String|No||Street type suffix( e.g., the Rd in Herd Rd); an address usually has a streetType 
+isStreetTypePrefix|Boolean|No|false|true if street type appears before street name as in HWY 17; false otherwise
+streetDirection|String|No||Canada Post street direction (the W in Burnside Ave W); one of C, E, N, NE, NW, SE, SW, or W (e.g., NW); Canada Post does not allow both prefix and suffix street directions in the same address as in: 103 N 52 St SW
+isStreetDirectionPrefix|Boolean|No|false|true if street direction appears before street name as in SW Marine Dr; false otherwise
+streetQualifier|String|No||The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge); [here](https://github.com/bcgov/ols-geocoder/blob/gh-pages/BCAddressExchangeSchema.md#streetQualifiers) is a complete list of streetQualifiers
+localityName|String|Yes||Locality name (e.g., Victoria)
+subCountryCode|String|Yes||ISO 3166-2 two-character subCountry code (e.g., BC for British Columbia, Canada)
+dataOwner|String|Yes||Name of address authority (e.g., MLIB)
+changeDate|String|Yes||Date this address data was last changed by the dataOwner; in format YYYYDDMM
+notes|String|No||Additional info about the street
