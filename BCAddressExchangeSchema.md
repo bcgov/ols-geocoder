@@ -1,7 +1,8 @@
 # Physical Address eXchange (PAX) Schema Draft v0.16
 ### Change history
 
-v0.16 July  9, 2021 - added street schema; still need to add section describing its use
+v0.16 July  9, 2021 - added street schema; still need to add examples describing its use<br>
+
 v0.15 July  3, 2021 - generalized provinceCode to subCountryCode to comply with ISO 3166-2 standard; removed localityPhonetic and localitySpoken fields from Address Schema since they are facts about a locality, not an address<br>
 
 v0.14 June 21, 2021 - added changeDate; moved yourId to middle of list of schema fields since it is never populated manually<br>
