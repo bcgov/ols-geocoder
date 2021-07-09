@@ -536,8 +536,10 @@ REAR|Rear of building
 BSMNT|Basement
 FLR| Floor
 
-<a name=dataDictionary>
+<a name=dataDictionary></a>
 ## Data Dictionary
+  
+The following schemas and code tables make up the PAX Data Dictionary<br><br>
 
 <a name=addressSchema></a>
 ### Address Schema Definition
@@ -691,7 +693,7 @@ WeighScale
 <br><br>
 
 <a name=streetSchema></a>
-## Street Schema
+## Street Schema Definition
 Here is the definition of the Street Schema
 
 Field Name|Data Type|Required|Default|Description|
