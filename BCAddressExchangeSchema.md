@@ -37,10 +37,11 @@ v0.4 Jun, 2019 - added SUPER_SITE_YOURID to schema, changed schema to allow any 
 [Example 5 - A complex of buildings](#ex5)<br>
 [Example 6 - A building with special entrances and exits](#ex6)<br>
 [Unit Designators of entrances, exits, and other building parts](#specialUnitDesignators)<br>
+[Data Dictionary](#dataDictionary)<br>
 [Address Schema Definition](#addressSchema)<br>
 [Unit designators](#unitDesignators)<br>
-[Street qualifiers](#streetQualifiers)<br><br>
-[Street Schema Definition](#streetSchema)
+[Street qualifiers](#streetQualifiers)<br>
+[Street Schema Definition](#streetSchema)<br><br>
 
 
 <a name=intro></a>
