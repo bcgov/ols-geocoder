@@ -694,7 +694,7 @@ WeighScale|
 
 <a name=streetSchema></a>
 ## Street Schema Definition
-The Street Schema defines the fields of a single street within a locality. It is used to QA the street fields in civic addresses. The collection of all street definitions forms a Street Index.
+The Street Schema defines the fields of a single street within a locality. It is used to QA the street fields in both civic and non-civic addresses. The collection of all street definitions forms a Street Index.
 
 Field Name|Data Type|Required|Default|Description|
 |---:|--|--|--|--|
