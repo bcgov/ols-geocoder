@@ -188,4 +188,3 @@ Here is the data flow for the current implementation of the gather and transform
 ![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/f6e0cc51-366d-4847-9373-f47189aed3d8)
 <br><br>
 
-Data flow diagrams of current implementation of geocoder data integration process are available [here](https://github.com/bcgov/ols-geocoder/issues/243)
