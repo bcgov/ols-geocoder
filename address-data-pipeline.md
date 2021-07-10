@@ -173,4 +173,13 @@ Here is the data flow for the current implementation of the gather and transform
 
 ### Current implementation of Geocoder data integration process
 
+Data Flow 1: Shared Geocoder and Route Planner data integration
+![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/c875e03b-e01d-4244-948d-f60edb9a948b)
+
+Data Flow 2 - Geocoder data integration
+![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/e9202169-36b8-4748-acf8-eef1555fbb72)
+
+Data Flow 3 - Route Planner data integration
+![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/f6e0cc51-366d-4847-9373-f47189aed3d8)
+
 Data flow diagrams of current implementation of geocoder data integration process are available [here](https://github.com/bcgov/ols-geocoder/issues/243)
