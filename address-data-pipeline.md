@@ -40,7 +40,7 @@ In Deploy,  if the validation was successful, we deploy the integrated data to a
 The Integrate stage lies at the heart of the process and our change proposal mostly affects this stage so let's take a closer look.  
 
 <a name=tying></a>
-### Into the Heart of Integrate: Tying addresses to blocks
+### Into the Heart of Integrate: Block Assignment
 Geocoder data integration is primarily about tying the latest candidate reference addresses to the latest version of the reference road network (e.g.,  BC Digital Road Atlas) and deriving address ranges. Here is a small portion of the latest DRA and the latest candidate reference addresses:
 
 ![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/9a80391a-d380-4f4e-a018-1a8bb3d6dcfa)
