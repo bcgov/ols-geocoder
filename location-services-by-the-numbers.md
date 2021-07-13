@@ -1,5 +1,5 @@
 |Service|Number|Significance|
-|--|--|--|
+|--|--:|--|
 Geocoder|15|Ministries served
 ||30|Public bodies served by
 ||6|Major sector data warehouse that use the geocoder to standardize their addresses; AEST, AG, Elections BC, Education, Health Ideas, MCFD
