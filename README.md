@@ -8,7 +8,7 @@ For more information about using the BC Address Geocoder and incorporating it in
 Document|Description|Audience
 |---:|---|---|
 [Open Location Services Product Vision](https://github.com/bcgov/ols-geocoder/blob/gh-pages/product-vision.md)|Explains why BC built a geocoder and other products in its Open Location Services product line|Everyone
-[Location Services By The Numbers](https://github.com/bcgov/ols-geocoder/blob/gh-pages/location-services-by-the-numbers.md)Usage and adoption statistics
+[Location Services By The Numbers](https://github.com/bcgov/ols-geocoder/blob/gh-pages/location-services-by-the-numbers.md)|Usage and adoption statistics
 [License](https://github.com/bcgov/ols-geocoder/blob/gh-pages/LICENSE)|License under which all documents and source code in this repository are released under|Everyone
 [Copyright Notices](https://github.com/bcgov/ols-geocoder/blob/gh-pages/notice.md)|Copyright notices of all software packaged used by this repository|Everyone
 [What's New](https://github.com/bcgov/ols-geocoder/blob/gh-pages/whats-new.md)|What's new in latest release of Geocoder|Everyone
