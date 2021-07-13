@@ -25,7 +25,7 @@ Reverse geocoding finds the nearest address to a given point. Address cleaning a
 
 #### History at the Province of British Columbia
 
-Established in 2013 by the Province of British Columbia and released under the Apache 2.0 open source license in 2019, the BC Address Geocoder is the reference deployment of the OLS Address Geocoder. The BC Address Geocoder, is used by over two dozen government ministries and agencies in dozens of government digital services. As of June, 2020, the BC Address Geocoder has processed over one billion addresses.
+Established in 2013 by the Province of British Columbia and released under the Apache 2.0 open source license in 2019, the BC Address Geocoder is the reference deployment of the OLS Address Geocoder. The BC Address Geocoder, is used by over two dozen government ministries and agencies in dozens of government digital services. As of June, 2021, the BC Address Geocoder has processed over 1.5 billion addresses.
 
 Major clients include Elections BC, BC Ministry of Transportation and Infrastructure, BC Ministry of Health Health Ideas Warehouse, BC Ministry of Social Development and Poverty Reduction, Land Title and Survey Authority, Ministry of Advanced Education Business Intelligence Warehouse, BC Centre for Disease Control, BC Oil and Gas Commission, BC Ministry of Children and Family Development, BC Ministry of Forests, Land, and Natural Resource Operations and Rural Development, most BC Health Authorities, City of Vancouver, BC Wildfire Service, BC Emergency Health Services, and WildSafe BC.
 
