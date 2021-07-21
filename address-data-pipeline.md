@@ -1,4 +1,4 @@
-# A Proposal For A Better Implementation of the Geocoder Data Integration Process
+# Geocoder Data Integration Process
 
 ## Executive Summary
 Integrating addresses and their occupants into a road network requires geocoding the addresses twice. Validating this integration requires an additional geocoding of test addresses. Currently, the integrator and geocoder are separately deployed components. We propose to combine the two into a single application, called Geocodable BC Maker, to simplify administration and maintenance, and dramatically reduce processing time. This will allow more frequent geocoder data updates with less effort.
@@ -29,7 +29,7 @@ Here's an overview of the geocoder data integration process:
 
 In Gather, we manually download source road network and address data.
 
-In Transform, we transform all source data into standard schemas and formats.
+In Transform, we transform all source data into standard schemas and formats and do field-level validation.
 
 In Integrate, we tie addresses to the road network and generate address ranges.
 
