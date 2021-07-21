@@ -23,7 +23,7 @@ This document outlines a proposal for a new implementation of the geocoder data 
 Here's an overview of the geocoder data integration process:
 <br><br>
 
-| Gather | Transform | _**Integrate**_ | Validate | Deploy
+| Gather | Transform | _**Integrate**_ | Verify | Deploy
 
 <br>
 
@@ -33,7 +33,7 @@ In Transform, we transform all source data into standard schemas and formats and
 
 In Integrate, we tie addresses to the road network and generate address ranges.
 
-In Validate, we geocode our Acceptance Test addresses against the integrated data.
+In Verify, we verify the quality of the integrated data by geocoding our Acceptance Test addresses.
 
 In Deploy,  if the validation was successful, we deploy the integrated data to a given geocoder environment.
 
@@ -118,7 +118,7 @@ Stage name|Description|Implementation
 ||After reference addresses have been integrated, associate candidate occupants with reference addresses. Reject occupants whose address is not a valid reference address. To confirm validity of an occupant's address, the Integrate stage needs to perform a geocode of the address using a geocoder that is loaded with the latest reference road network and reference addresses.
 ||Also generate locality aliases, qualified locality names from official populated place names, street name indexes, and other indexes necessary for speedy address matching|
 ||All rejected addresses and occupants are saved for QA analysis by the appropriate data authorities.|
-|Validate|Verify that the new reference address dataset is globally valid.|The embedded geocoder in Geocodable BC Maker will be loaded with the new data and used to geocode test addresses.| 
+|Verify|Verify that the new reference address dataset is globally valid.|The embedded geocoder in Geocodable BC Maker will be loaded with the new data and used to geocode test addresses.| 
 ||Globally valid means the dataset is <br> * locality-complete (e.g. has addresses from every locality) <br> * match-correct (e.g., all test addresses geocode as expected) <br> * spatially-consistent (e.g., address locations on every block increase in the same direction as their civic numbers, blockface address ranges don't overlap and increase in the same direction), and <br>  * version-consistent (e.g. locality address counts are higher than the previous version of reference data)|
 Deploy| If validation is successful, make new reference road network and address list accessible to online and batch geocoder|Manually trigger online geocoder restart script and restart batch geocoder plugin in CPF using CPF admin application.
 
