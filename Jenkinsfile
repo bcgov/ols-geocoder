@@ -54,8 +54,9 @@ node ('master'){
     } */
 	
     stage ('Maven Install'){
-		env.JAVA_HOME = "${tool 'ojdk'}"
-        rtMaven.run pom: 'pom.xml', goals: 'clean install -Dmaven.test.skip=true', buildInfo: buildInfo
+	env.JAVA_HOME = "${tool 'ojdk'}"
+	// with `clean`, mvn rebuilds the package.  this causes the subsequent deply to fail.
+        rtMaven.run pom: 'pom.xml', goals: 'install -Dmaven.test.skip=true', buildInfo: buildInfo
     }
     
     stage ('Artifactory Deploy'){
