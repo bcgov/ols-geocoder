@@ -35,9 +35,13 @@ node ('master'){
         }
          withSonarQubeEnv('CODEQA') {
 	   env.JAVA_HOME = "${tool 'ojdk'}"
+           // this didn't work - it used repo.maven.apache.org and not the specified artifactory repo
+	   /*
            withMaven(maven:'m3') {
               sh 'mvn clean package sonar:sonar -Dsonar.java.source=11'
            }
+	   */
+          rtMaven.run pom: 'pom.xml', goals: 'clean package sonar:sonar -Dsonar.java.soruce=11 -Dmaven.test.skip=true', buildInfo: buildInfo
         }
     }
 
