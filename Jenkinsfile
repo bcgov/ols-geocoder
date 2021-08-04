@@ -29,6 +29,26 @@ node ('master'){
         buildInfo = Artifactory.newBuildInfo()
     }
 
+    stage('SonarQube Analysis') {
+        environment {
+           scannerHome = tool 'appqa'
+        }
+         withSonarQubeEnv('CODEQA') {
+	   env.JAVA_HOME = "${tool 'ojdk'}"
+           withMaven(maven:'m3') {
+              sh 'mvn clean package sonar:sonar -Dsonar.java.source=11'
+           }
+        }
+    }
+
+    /* stage("Quality Gate") {
+        steps {
+          timeout(time: 1, unit: 'MINUTES') {
+            waitForQualityGate abortPipeline: false
+          }
+        }
+    } */
+	
     stage ('Maven Install'){
 		env.JAVA_HOME = "${tool 'ojdk'}"
         rtMaven.run pom: 'pom.xml', goals: 'clean install -Dmaven.test.skip=true', buildInfo: buildInfo
