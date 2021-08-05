@@ -18,7 +18,7 @@ parameters:
   - name: "TOOLS_NAMESPACE"
     description: "tools namespace where build will be"
     value: tools_namespace
- 
+
 objects:
   - kind: Route
     apiVersion: route.openshift.io/v1
@@ -58,8 +58,8 @@ objects:
         insecureEdgeTerminationPolicy: Redirect
       wildcardPolicy: None
 
-  - apiVersion: v1
-    kind: Service
+  - kind: Service
+    apiVersion: v1
     metadata:
       labels:
         app: ${APP_NAME}-${ENV}-web
@@ -76,8 +76,8 @@ objects:
       type: ClusterIP
 
 
-  - apiVersion: v1
-    kind: Service
+  - kind: Service
+    apiVersion: v1
     metadata:
       labels:
         app: ${APP_NAME}-${ENV}-admin
@@ -92,9 +92,9 @@ objects:
         app: ${APP_NAME}-${ENV}-admin
       sessionAffinity: None
       type: ClusterIP
-      
-  - apiVersion: v1
-    kind: Service
+
+  - kind: Service
+    apiVersion: v1
     metadata:
       labels:
         app: cassandra
@@ -109,9 +109,9 @@ objects:
         app: cassandra
       sessionAffinity: None
       type: ClusterIP
-  
-  - apiVersion: apps/v1
-    kind: StatefulSet
+
+  - kind: StatefulSet
+    apiVersion: apps/v1
     metadata:
       labels:
         app: cassandra
@@ -167,7 +167,7 @@ objects:
               value: GossipingPropertyFileSnitch
             image: docker-remote.artifacts.developer.gov.bc.ca/cassandra:3.11.2
             pullSecret:
-              name: artifactory-creds 
+              name: artifactory-creds
             imagePullPolicy: Always
             lifecycle:
               preStop:
@@ -227,8 +227,8 @@ objects:
               storage: 1Gi
           storageClassName: netapp-block-standard
 
-  - apiVersion: apps/v1
-    kind: ReplicaSet
+  - kind: ReplicaSet
+    apiVersion: apps/v1
     metadata:
       annotations:
       labels:
@@ -326,8 +326,8 @@ objects:
             - emptyDir: {}
               name: app-volume
 
-  - apiVersion: apps/v1
-    kind: ReplicaSet
+  - kind: ReplicaSet
+    apiVersion: apps/v1
     metadata:
       labels:
         app: ${APP_NAME}-${ENV}-admin
@@ -433,8 +433,8 @@ objects:
       podSelector: {}
       ingress: []
 
-  - apiVersion: networking.k8s.io/v1
-    kind: NetworkPolicy
+  - kind: NetworkPolicy
+    apiVersion: networking.k8s.io/v1
     metadata:
       name: allow-from-openshift-ingress
     spec:
@@ -463,3 +463,24 @@ objects:
       - from:
         - podSelector: {}
 
+  - kind: NetworkPolicy
+    apiVersion: networking.k8s.io/v1
+    metadata:
+      name: allow-traffic-from-gateway-to-geocoder-${ENV}
+    spec:
+      # Allow all ingress from the namesapce hosting the Kong API gateway
+      # to the geocoder pods - 264e6f is the namespace hosting Kong
+      podSelector:
+        matchLabels:
+          app: geocoder-${ENV}-web
+      ingress:
+        - from:
+            - namespaceSelector:
+                matchLabels:
+                  environment: test
+                  name: 264e6f
+        - from:
+            - namespaceSelector:
+                matchLabels:
+                  environment: prod
+                  name: 264e6f
