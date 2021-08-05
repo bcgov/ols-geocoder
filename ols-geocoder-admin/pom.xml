@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>ca.bc.gov.ols</groupId>
 		<artifactId>ols-geocoder</artifactId>
-		<version>4.1.0-RC</version>
+		<version>4.1.1-SNAPSHOT</version>
 	</parent>
 
 	<name>OLS Geocoder Admin</name>
