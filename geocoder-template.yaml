@@ -39,25 +39,25 @@ objects:
         insecureEdgeTerminationPolicy: Redirect
       wildcardPolicy: None
 
-  - kind: Route
-    apiVersion: route.openshift.io/v1
-    metadata:
-      name: ${APP_NAME}-${ENV}-web-route
-      labels:
-        app: ${APP_NAME}-${ENV}-web
-    spec:
-      host: ${APP_NAME}-${ENV}.apps.silver.devops.gov.bc.ca
-      to:
-        kind: Service
-        name: ${APP_NAME}-${ENV}-web-service
-        weight: 100
-      port:
-        targetPort: ${APP_NAME}-${ENV}-web
-      tls:
-        termination: edge
-        insecureEdgeTerminationPolicy: Redirect
-      wildcardPolicy: None
-
+  #- kind: Route
+  #  apiVersion: route.openshift.io/v1
+  #  metadata:
+  #    name: ${APP_NAME}-${ENV}-web-route
+  #    labels:
+  #      app: ${APP_NAME}-${ENV}-web
+  #  spec:
+  #    host: ${APP_NAME}-${ENV}.apps.silver.devops.gov.bc.ca
+  #    to:
+  #      kind: Service
+  #      name: ${APP_NAME}-${ENV}-web-service
+  #      weight: 100
+  #    port:
+  #      targetPort: ${APP_NAME}-${ENV}-web
+  #    tls:
+  #      termination: edge
+  #      insecureEdgeTerminationPolicy: Redirect
+  #    wildcardPolicy: None
+#
   - kind: Service
     apiVersion: v1
     metadata:
