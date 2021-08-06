@@ -6,9 +6,9 @@ metadata:
   name: geocoder-template
 
 parameters:
-  - name: "DEPLOY_NAMESPACE"
-    description: "ocp namespace to be deployed"
-    value: namespace
+  #- name: "DEPLOY_NAMESPACE"
+  #  description: "ocp namespace to be deployed"
+  #  value: namespace
   - name: "APP_NAME"
     description: "name of app"
     value: geocoder
@@ -56,7 +56,6 @@ objects:
       sessionAffinity: None
       type: ClusterIP
 
-
   - kind: Service
     apiVersion: v1
     metadata:
@@ -78,8 +77,8 @@ objects:
     apiVersion: v1
     metadata:
       labels:
-        app: cassandra
-      name: cassandra
+        app: cassandra-${APP_NAME}
+      name: cassandra-${APP_NAME}
     spec:
       clusterIP: None
       ports:
@@ -87,7 +86,7 @@ objects:
           protocol: TCP
           targetPort: 9042
       selector:
-        app: cassandra
+        app: cassandra-${APP_NAME}
       sessionAffinity: None
       type: ClusterIP
 
@@ -95,22 +94,22 @@ objects:
     apiVersion: apps/v1
     metadata:
       labels:
-        app: cassandra
-        statefulset: cassandra
-      name: cassandra
+        app: cassandra-${APP_NAME}
+        statefulset: cassandra-${APP_NAME}
+      name: cassandra-${APP_NAME}
     spec:
       podManagementPolicy: OrderedReady
       replicas: 3
       revisionHistoryLimit: 10
       selector:
         matchLabels:
-          statefulset: cassandra
-      serviceName: cassandra
+          statefulset: cassandra-${APP_NAME}
+      serviceName: cassandra-${APP_NAME}
       template:
         metadata:
           labels:
-            app: cassandra
-            statefulset: cassandra
+            app: cassandra-${APP_NAME}
+            statefulset: cassandra-${APP_NAME}
         spec:
           affinity:
             podAntiAffinity:
@@ -120,7 +119,7 @@ objects:
                   - key: statefulset
                     operator: In
                     values:
-                    - cassandra
+                    - cassandra-${APP_NAME}
                 topologyKey: kubernetes.io/hostname
           containers:
           - command:
@@ -137,7 +136,7 @@ objects:
                   apiVersion: v1
                   fieldPath: status.podIP
             - name: CASSANDRA_SEEDS
-              value: cassandra-0.cassandra
+              value: cassandra-${APP_NAME}-0.cassandra-${APP_NAME}
             - name: CASSANDRA_CLUSTER_NAME
               value: k8s
             - name: CASSANDRA_DC
@@ -157,7 +156,7 @@ objects:
                   - /bin/sh
                   - -c
                   - nodetool drain
-            name: cassandra
+            name: cassandra-${APP_NAME}
             ports:
             - containerPort: 7000
               name: intra-node
@@ -236,6 +235,8 @@ objects:
                   value: /usr/local/tomcat/logs/bgeo.log
                 - name: OLS_CASSANDRA_LOCAL_DATACENTER
                   value: DC1
+                - name: OLS_CASSANDRA_CONTACT_POINT
+                  value: cassandra-bcarg
               image: 'docker-remote.artifacts.developer.gov.bc.ca/tomcat:9-jre11-slim'
               pullSecret:
                 name: artifactory-creds
@@ -336,6 +337,8 @@ objects:
                   value: /usr/local/tomcat/logs/bgeo.log
                 - name: OLS_CASSANDRA_LOCAL_DATACENTER
                   value: DC1
+                - name: OLS_CASSANDRA_CONTACT_POINT
+                  value: cassandra-bcarg
               image: 'docker-remote.artifacts.developer.gov.bc.ca/tomcat:9-jre11-slim'  ##change
               pullSecret:
                 name: artifactory-creds
@@ -447,13 +450,13 @@ objects:
   - kind: NetworkPolicy
     apiVersion: networking.k8s.io/v1
     metadata:
-      name: allow-traffic-from-gateway-to-geocoder-${ENV}
+      name: allow-traffic-from-gateway-to-${APP_NAME}-${ENV}
     spec:
       # Allow all ingress from the namesapce hosting the Kong API gateway
       # to the geocoder pods - 264e6f is the namespace hosting Kong
       podSelector:
         matchLabels:
-          app: geocoder-${ENV}-web
+          app: ${APP_NAME}-${ENV}-web
       ingress:
         - from:
             - namespaceSelector:
