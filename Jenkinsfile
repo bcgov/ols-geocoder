@@ -41,7 +41,8 @@ node ('master'){
               sh 'mvn clean package sonar:sonar -Dsonar.java.source=11'
            }
 	   */
-          rtMaven.run pom: 'pom.xml', goals: 'clean package sonar:sonar -Dsonar.java.soruce=11 -Dmaven.test.skip=true', buildInfo: buildInfo
+          //rtMaven.run pom: 'pom.xml', goals: 'clean package sonar:sonar -Dsonar.java.soruce=11 -Dmaven.test.skip=true', buildInfo: buildInfo
+	  rtMaven.run pom: 'pom.xml', goals: 'clean compile sonar:sonar -Dsonar.java.soruce=11 -Dmaven.test.skip=true', buildInfo: buildInfo
         }
     }
 
@@ -53,7 +54,7 @@ node ('master'){
         }
     } */
 
-/* 
+//* 
    // May not be necessary to install the artifacts on the build server.
    
     stage ('Maven Install'){
@@ -61,7 +62,7 @@ node ('master'){
 	// with `clean`, mvn rebuilds the package.  this causes the subsequent deply to fail.
         rtMaven.run pom: 'pom.xml', goals: 'install -Dmaven.test.skip=true', buildInfo: buildInfo
     }
- */
+// */
     
     stage ('Artifactory Deploy'){
         rtMaven.deployer.deployArtifacts buildInfo
