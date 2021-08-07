@@ -40,7 +40,7 @@
     <repository>
       <id>databc</id>
       <name>DataBC Artifactory Server</name>
-      <url>http://artifactory.pathfinder.bcgov/artifactory/repo/</url>
+      <url>http://delivery.apps.gov.bc.ca/artifactory/repo/</url>
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
