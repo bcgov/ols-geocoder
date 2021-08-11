@@ -18,9 +18,11 @@ spec:
     dockerfile: >
       FROM docker-remote.artifacts.developer.gov.bc.ca/busybox:latest
 
-      RUN echo wget -O geocoder.war http://$ARTIFACTORY_URL/ols-geocoder-web/$APP_VERSION/ols-geocoder-web-$APP_VERSION.war
+      #RUN echo wget -O geocoder.war http://$ARTIFACTORY_URL/ols-geocoder-web/$APP_VERSION/ols-geocoder-web-$APP_VERSION.war
+      RUN echo wget -O geocoder.war http://$ARTIFACTORY_URL/ols-geocoder-web/$APP_VERSION/ols-geocoder-web-$SNAPSHOT_VERSION.war
 
-      RUN wget -S -O geocoder.war http://$ARTIFACTORY_URL/ols-geocoder-web/$APP_VERSION/ols-geocoder-web-$APP_VERSION.war
+      #RUN wget -S -O geocoder.war http://$ARTIFACTORY_URL/ols-geocoder-web/$APP_VERSION/ols-geocoder-web-$APP_VERSION.war
+      RUN wget -S -O geocoder.war http://$ARTIFACTORY_URL/ols-geocoder-web/$APP_VERSION/ols-geocoder-web-$SNAPSHOT_VERSION.war
 
       CMD ["tail", "-f", "/dev/null"]
     type: Dockerfile
@@ -28,9 +30,16 @@ spec:
     dockerStrategy:
       env:
         - name: ARTIFACTORY_URL
+
+          # Snapshot versions
           value: delivery.apps.gov.bc.ca/artifactory/libs-snapshot-local/ca/bc/gov/ols
+
+          # Release versions
           #value: delivery.apps.gov.bc.ca/artifactory/libs-release-local/ca/bc/gov/ols
+          
         - name: APP_VERSION
+          value: 4.1.1-SNAPSHOT
+        - name: SNAPSHOT_VERSION
           value: 4.1.1-20210811.182939-4
       pullSecret:
         name: artifactory-creds
