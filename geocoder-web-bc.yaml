@@ -18,11 +18,11 @@ spec:
     dockerfile: >
       FROM docker-remote.artifacts.developer.gov.bc.ca/busybox:latest
 
-      #RUN echo wget -O geocoder.war http://$ARTIFACTORY_URL/ols-geocoder-web/$APP_VERSION/ols-geocoder-web-$APP_VERSION.war
-
       RUN echo wget -O geocoder.war http://$ARTIFACTORY_URL/ols-geocoder-web/$APP_VERSION/ols-geocoder-web-$APP_VERSION.war
 
-      #RUN wget -S -O geocoder.war http://$ARTIFACTORY_URL/ols-geocoder-web/$APP_VERSION/ols-geocoder-web-$SNAPSHOT_VERSION.war
+      RUN wget -O geocoder.war http://$ARTIFACTORY_URL/ols-geocoder-web/$APP_VERSION/ols-geocoder-web-$APP_VERSION.war
+
+      #RUN echo wget -S -O geocoder.war http://$ARTIFACTORY_URL/ols-geocoder-web/$APP_VERSION/ols-geocoder-web-$SNAPSHOT_VERSION.war
 
       #RUN wget -S -O geocoder.war http://$ARTIFACTORY_URL/ols-geocoder-web/$APP_VERSION/ols-geocoder-web-$SNAPSHOT_VERSION.war
 
