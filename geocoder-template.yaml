@@ -12,12 +12,22 @@ parameters:
   - name: "APP_NAME"
     description: "name of app"
     value: geocoder
+    required: true
   - name: "ENV"
     description: "environment"
     value: dev
+    required: true
   - name: "TOOLS_NAMESPACE"
     description: "tools namespace where build will be"
     value: tools_namespace
+    required: true
+
+  - name: "GEOCODER_IS_TAG"
+    description: "The image stream tag to use for the geocoder-sidecar"
+    required: true
+  - name: "DATA_ADMIN_APP_IS_TAG"
+    description: "The image stream tag to use for the ols-admin-sidecar"
+    required: true
 
 objects:
   - kind: Route
@@ -236,7 +246,7 @@ objects:
                 - name: OLS_CASSANDRA_LOCAL_DATACENTER
                   value: DC1
                 - name: OLS_CASSANDRA_CONTACT_POINT
-                  value: cassandra-bcarg
+                  value: cassandra-${APP_NAME}
               image: 'docker-remote.artifacts.developer.gov.bc.ca/tomcat:9-jre11-slim'
               pullSecret:
                 name: artifactory-creds
@@ -287,7 +297,7 @@ objects:
                 - cp
                 - /geocoder.war
                 - /app/ROOT.war
-              image: image-registry.openshift-image-registry.svc:5000/${TOOLS_NAMESPACE}/geocoder-sidecar:latest
+              image: image-registry.openshift-image-registry.svc:5000/${TOOLS_NAMESPACE}/geocoder-sidecar:${GEOCODER_IS_TAG}
               imagePullPolicy: Always
               name: war
               resources: {}
@@ -338,7 +348,7 @@ objects:
                 - name: OLS_CASSANDRA_LOCAL_DATACENTER
                   value: DC1
                 - name: OLS_CASSANDRA_CONTACT_POINT
-                  value: cassandra-bcarg
+                  value: cassandra-${APP_NAME}
               image: 'docker-remote.artifacts.developer.gov.bc.ca/tomcat:9-jre11-slim'  ##change
               pullSecret:
                 name: artifactory-creds
@@ -385,7 +395,7 @@ objects:
                 - cp
                 - /ols-admin.war
                 - /app/ROOT.war
-              image: image-registry.openshift-image-registry.svc:5000/${TOOLS_NAMESPACE}/ols-admin-sidecar:latest
+              image: image-registry.openshift-image-registry.svc:5000/${TOOLS_NAMESPACE}/ols-admin-sidecar:${DATA_ADMIN_APP_IS_TAG}
               imagePullPolicy: Always
               name: war
               resources: {}
