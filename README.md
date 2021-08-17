@@ -13,6 +13,7 @@ Document|Description|Audience
 [Copyright Notices](https://github.com/bcgov/ols-geocoder/blob/gh-pages/notice.md)|Copyright notices of all software packaged used by this repository|Everyone
 [What's New](https://github.com/bcgov/ols-geocoder/blob/gh-pages/whats-new.md)|What's new in latest release of Geocoder|Everyone
 [FAQ](https://github.com/bcgov/ols-geocoder/blob/gh-pages/faq.md)|Frequently Asked Questions|Everyone
+[How to Register to Use the Batch Geocoder](https://github.com/bcgov/ols-geocoder/blob/gh-pages/bc-location-services/batch-geocoder-registration.md)||Anyone in government, Crown agencies, or university
 [Preparing your Address File for Batch Geocoding](https://www2.gov.bc.ca/assets/gov/data/geographic/location-services/geocoder/batch_address_data_prep.pdf)|An example-driven introduction to the input formats supported by the Address List Editor and the batch geocoder|Everyone
 [Batch Geocoder Application Guide](https://github.com/bcgov/ols-geocoder/blob/gh-pages/batch-geocoder-application-guide.md)|Step by step tutorial on submitting your address list to the batch geocoder|Everyone
 [Understanding Batch Geocoder Output](https://www2.gov.bc.ca/assets/gov/data/geographic/location-services/geocoder/understanding_geocoder_results.pdf)|An example-driven introduction to the geocoder scoring system and the many fault messages that can help you pinpoint data issues.|Everyone
