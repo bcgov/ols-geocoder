@@ -5,10 +5,61 @@ labels:
 metadata:
   name: geocoder-template
 
+  annotations:
+    openshift.io/display-name: "DataBC Geocoder API"
+    description: >-
+      An example Geocoder API application with a Cassandra cluster,
+      a Data Admin WebApp and a Geocoder API. For more information
+      about using this template, including OpenShift considerations, see
+      https://docs.openshift.com/container-platform/4.6/openshift_images/using-templates.html.
+
+
+      WARNING: Any data stored will be lost upon pod destruction. Only use this
+      template for testing."
+    openshift.io/long-description: >-
+      This template defines resources needed to develop a Geoccoder API
+      application, including a build configuration, application DeploymentConfig, and
+      configuration database DeploymentConfig.  The database is stored in
+      persistent storage.
+
+    tags: "geocoder,java,gis,location"
+    iconClass: icon-spring
+    openshift.io/provider-display-name: "Data Systems and Services, DataBC"
+    openshift.io/documentation-url: "https://github.com/bcgov/ols-geocoder"
+    openshift.io/support-url: "https://access.redhat.com"
+message: |-
+  Your admin credentials are ${ADMIN_USERNAME}:${ADMIN_PASSWORD}
+  The following objects have been created in you project:
+
+  StatefulSet
+    cassandra-${APP_NAME} - Cassandra cluster
+
+  ReplicaSet
+    ${APP_NAME}-${ENV}-web   - Geocoder Web API
+    ${APP_NAME}-${ENV}-admin - Admin WebApp
+
+  Service
+    cassandra-${APP_NAME} - Cassandra
+    ${APP_NAME}-${ENV}-web   - Geocoder Web API
+    ${APP_NAME}-${ENV}-admin - Admin WebApp
+
+  Route
+    N/A - Routes are configured with the Kong Gateway
+
+  DeploymentConfig
+    N/A
+
+  Deployment
+    N/A
+
+  NetworkPolicy
+    allow-from-openshift-ingress
+    allow-same-namespace
+    deny-by-default
+    allow-traffic-from-gateway-to-${APP_NAME}-${ENV}
+
 parameters:
-  #- name: "DEPLOY_NAMESPACE"
-  #  description: "ocp namespace to be deployed"
-  #  value: namespace
+
   - name: "APP_NAME"
     description: "name of app"
     value: geocoder
