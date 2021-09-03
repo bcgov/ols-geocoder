@@ -40,7 +40,7 @@ spec:
           value: delivery.apps.gov.bc.ca/artifactory/libs-release-local/ca/bc/gov/ols
 
         - name: APP_VERSION
-          value: 4.1.1-RC
+          value: 4.1.1
         - name: SNAPSHOT_VERSION
           value: 4.1.1-20210811.182939-4
       pullSecret:

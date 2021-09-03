@@ -17,9 +17,9 @@ spec:
     dockerfile: >
       FROM docker-remote.artifacts.developer.gov.bc.ca/busybox:latest
 
-      RUN pwd && echo wget -O ols-admin.war http://$ARTIFACTORY_URL/ols-geocoder-admin/$APP_VERSION/ols-geocoder-admin-$APP_VERSION.war
+      RUN echo wget -O ols-admin.war http://$ARTIFACTORY_URL/ols-geocoder-admin/$APP_VERSION/ols-geocoder-admin-$APP_VERSION.war
 
-      RUN pwd && wget -O ols-admin.war http://$ARTIFACTORY_URL/ols-geocoder-admin/$APP_VERSION/ols-geocoder-admin-$APP_VERSION.war
+      RUN wget -O ols-admin.war http://$ARTIFACTORY_URL/ols-geocoder-admin/$APP_VERSION/ols-geocoder-admin-$APP_VERSION.war
 
       CMD ["tail", "-f", "/dev/null"]
     type: Dockerfile
@@ -31,6 +31,6 @@ spec:
         - name: ARTIFACTORY_URL
           value: delivery.apps.gov.bc.ca/artifactory/libs-release-local/ca/bc/gov/ols
         - name: APP_VERSION
-          value: 4.1.1-RC
+          value: 4.1.1
     type: Docker
   successfulBuildsHistoryLimit: 5

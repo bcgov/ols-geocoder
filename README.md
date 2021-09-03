@@ -130,16 +130,21 @@ This provision all the objects relevant to the Geocoder API.  This includes
 #!/bin/bash
 
 NS=988040-dev
+APP_NAME=geocoder
+ENV=dev
 TOOLS=988040-tools
-DOCKER_CFG_SECRET=default-dockercfg-XXXXX
+GEOCODER_IS_TAG=latest
+DATA_ADMIN_IS_TAG=latest
 
 # oc get all -l app=ols-geocoderr-web -n ${NS}
 # oc delete  all -l app=ols-geocoderr-web -n ${NS}
 
-oc process -f geocoderr-template.yaml \
+oc process -f geocoder-template.yaml \
+    -p APP_NAME=${APP_NAME} \
+    -p ENV=${ENV} \
     -p TOOLS_NAMESPACE=${TOOLS} \
-    -p ENV=dev \
-    -p DEFAULT_DOCKERCFG=${DOCKER_CFG_SECRET} \
+    -p GEOCODER_IS_TAG=${GEOCODER_IS_TAG} \
+    -p DATA_ADMIN_IS_TAG=${DATA_ADMIN_IS_TAG} \
     -o yaml \
     | oc apply -f - -n ${NS} #\
     #--dry-run=client
@@ -149,15 +154,15 @@ oc process -f geocoderr-template.yaml \
 Copy or rename `example.env` to `dev.env` for this example to work. _make changes as required
 ```bash
 $ cat dev.env
-TOOLS_NAMESPACE=988040-tools
+NS=988040-dev
+APP_NAME=geocoder
 ENV=dev
-# change this to your configured secret
-DEFAULT_DOCKERCFG=default-dockercfg-XXXXX
-ROUTER_IS_TAG=latest
+TOOLS=988040-tools
+GEOCODER_IS_TAG=latest
 DATA_ADMIN_IS_TAG=latest
 $
 $
-$ oc process -f geocoderr.template.yaml --param-file=dev.env -o yaml
+$ oc process -f geocoder.template.yaml --param-file=dev.env -o yaml
 
 ```
 

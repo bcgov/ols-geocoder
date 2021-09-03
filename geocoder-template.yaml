@@ -76,7 +76,7 @@ parameters:
   - name: "GEOCODER_IS_TAG"
     description: "The image stream tag to use for the geocoder-sidecar"
     required: true
-  - name: "DATA_ADMIN_APP_IS_TAG"
+  - name: "DATA_ADMIN_IS_TAG"
     description: "The image stream tag to use for the ols-admin-sidecar"
     required: true
 
@@ -446,7 +446,7 @@ objects:
                 - cp
                 - /ols-admin.war
                 - /app/ROOT.war
-              image: image-registry.openshift-image-registry.svc:5000/${TOOLS_NAMESPACE}/ols-admin-sidecar:${DATA_ADMIN_APP_IS_TAG}
+              image: image-registry.openshift-image-registry.svc:5000/${TOOLS_NAMESPACE}/ols-admin-sidecar:${DATA_ADMIN_IS_TAG}
               imagePullPolicy: Always
               name: war
               resources: {}
