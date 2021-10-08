@@ -23,7 +23,7 @@ This document outlines a proposal for a new implementation of the geocoder data 
 Here's an overview of the geocoder data integration process:
 <br><br>
 
-| Gather | Transform | _**Integrate**_ | Verify | Deploy
+### | **Gather** | **Transform** | _**Integrate**_ | **Verify** | **Deploy**|
 
 <br>
 
