@@ -99,7 +99,7 @@ Block 1|Block 2|Block 3|
 <br><br>
 
 <a name=weaknesses></a>
-### Weaknesses of current implementation?
+### Weaknesses of current implementation
 
 The current implementation of the geocoder data integration process needs a dedicated, standalone, batch geocoder that must be loaded with reference data three times during the integration process as follows:
 
