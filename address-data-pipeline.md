@@ -7,9 +7,9 @@
 [Into the Heart of Integrate: Address Range Generation](#address-range)<br>
 [Weaknesses of current implementation](#weaknesses)<br>
 [Requirements of a new implementation](#requirements)<br>
+[Data Flow Diagrams](#data-flow)<br>
 [Activity diagrams](#activity)<br>
 [Architecture Diagrams](#architecture)<br>
-[Data Flow Diagrams](#data-flow)<br>
 
 <a name=intro></a>
 ## Introduction
@@ -155,31 +155,10 @@ In the new implementation, all integration and verification steps will be moved 
 
 It will be a major challenge to design a parallel architecture for the embedded geocoder so it can process six million addresses (two million reference addresses three times) as fast as the current batch geocoder (e.g., one hour at six million per hour).
 
-<a name=activity></a>
-## Activity diagrams
-
-### Current implementation
-
-![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/d19ba328-5612-404b-a364-6b0216817c9a)
-<br><br><br>
-
-### Proposed implementation
-
-![image](https://user-images.githubusercontent.com/11318574/119588557-ea0db900-bd85-11eb-9e3f-6e6880570b9d.png)
-
-<br><br>
-
-<a name=architecture></a>
-## Architecture Diagrams
-
-The current implementation is on the left; one possible implementation on the right:
-
-![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/082b65d9-cc15-43af-9b39-dd0dc6b68215)
-
 <br><br>
 
 <a name=data-flow></a>  
-## Data flow diagrams of current implementation
+## Data flow diagrams
 
 ### Gather and Transform Steps
 Here is the data flow for the current implementation of the gather and transform steps.
@@ -204,4 +183,22 @@ Here is the data flow for the current implementation of the gather and transform
 
 ![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/f6e0cc51-366d-4847-9373-f47189aed3d8)
 <br><br>
+
+<a name=activity></a>
+## Activity diagram
+
+Here is the activity diagram of the current implementation
+
+![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/d19ba328-5612-404b-a364-6b0216817c9a)
+<br><br><br>
+
+<a name=architecture></a>
+## Architecture Diagrams
+
+The current implementation is on the left; one possible implementation on the right:
+
+![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/082b65d9-cc15-43af-9b39-dd0dc6b68215)
+
+<br><br>
+
 
