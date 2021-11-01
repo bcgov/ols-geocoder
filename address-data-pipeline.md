@@ -101,20 +101,11 @@ Block 1|Block 2|Block 3|
 <a name=weaknesses></a>
 ### Weaknesses of current implementation
 
-The current implementation of the geocoder data integration process needs a dedicated, standalone, batch geocoder that must be loaded with reference data three times during the integration process as follows:
+The current geocoder data integration process has three main weaknesses:
 
-* Load 1 requires the latest road network and no addresses to confirm candidate reference addresses have valid streets within localities.
-* Load 2 requires the latest road network and new reference addresses to confirm candidate reference occupants have valid addresses.
-* Load 3 requires the latest road network and new reference addresses and occupants to confirm correct handling of test addresses.
-
-The geocoder is written in Java. 
-
-The current implementation also needs a standalone Java application which handles address block assignment and range generation and is appropriately named the *Block  Assignment and Address Range Generator* (BAARG).
-
-In the new implementation, all integration and verification steps will be moved from separate FME scripts that call out to the batch geocoder, to a single Java application called Geocodable BC Maker which will have an embedded geocoder. Geocodable BC Maker will also incorporate an enhanced version of the BAARG. This simplifies the data integration architecture by eliminating the need for an external batch geocoder, speeds up the integration process, localizes all integration algorithms into a single component for easier understanding and maintenance, and leaves the task of keeping up with constantly changing data source schemas and formats to easily-updated scripts.
-
-It will be a major challenge to design a parallel architecture for the embedded geocoder so it can process six million addresses (two million reference addresses three times) as fast as the current batch geocoder (e.g., one hour at six million per hour).
-
+- It is too fussy. The current process requires many manual steps that require careful typing and lots of visual confirmation.
+- It takes too long. It takes approximately three business days to complete.
+- It ties up our delivery and test environments; conversely, delivery and testing of code fixes and enhancements often blocks the data integration process. We rarely keep to our stated monthly data update schedule.
 <br><br>
 
 <a name=requirements></a>
