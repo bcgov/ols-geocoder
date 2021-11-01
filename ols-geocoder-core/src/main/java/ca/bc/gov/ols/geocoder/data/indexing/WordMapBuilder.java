@@ -17,7 +17,6 @@ package ca.bc.gov.ols.geocoder.data.indexing;
 
 import gnu.trove.map.hash.THashMap;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -28,7 +27,7 @@ import ca.bc.gov.ols.geocoder.dra.DraLexicalRules;
 
 public class WordMapBuilder {
 	
-	/* used to store the mappings use to eventually build the overall wordMap trie */
+	/* used to store the mappings used to eventually build the overall wordMap trie */
 	private Map<String, Set<Word>> wordMap;
 	
 	private Map<String, Word> wordList;

@@ -23,6 +23,7 @@ public class GeocoderUtil {
 	private static final Pattern NUMBER_WITH_ORDINAL_PATTERN = Pattern
 			.compile("(?i)(\\d{1,8})(ST|TH|RD|ND|E|ER|RE|EME|ERE|IEME|IERE)");
 	private static final Pattern WORD_SPLIT_PATTERN = Pattern.compile("[\\s,]+");
+	private static final Pattern ALPHA_PATTERN = Pattern.compile("[a-zA-Z]+");
 	
 	public static boolean equalsIgnoreCaseNullSafe(String a, String b) {
 		if(a == null && b == null) {
@@ -53,6 +54,11 @@ public class GeocoderUtil {
 			return new String[0];
 		}
 		return WORD_SPLIT_PATTERN.split(in);
+	}
+	
+	public static boolean isAlpha(String in) {
+		Matcher m = ALPHA_PATTERN.matcher(in);
+		return m.matches();
 	}
 	
 	public static Boolean charToBoolean(String in) {
