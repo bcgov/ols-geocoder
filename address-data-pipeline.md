@@ -1,22 +1,19 @@
 # Geocoder Data Integration Process
 
-## Executive Summary
-Integrating addresses and their occupants into a road network requires geocoding the addresses twice. Validating this integration requires an additional geocoding of test addresses. Currently, the integrator and geocoder are separately deployed components. We propose to combine the two into a single application, called Geocodable BC Maker, to simplify administration and maintenance, and dramatically reduce processing time. This will allow more frequent geocoder data updates with less effort.
-
 ## Table of Contents
 [Introduction](#intro)<br>
 [What is geocoder data integration?](#integration-defined)<br>
 [Into the Heart of Integrate: Tying addresses to blocks](#tying)<br>
 [Into the Heart of Integrate: Address Range Generation](#address-range)<br>
-[Proposed Implementation of the Geocoder Data Integration Process](#proposedimplementation)<br>
-[What's different?](#difference)<br>
-[Activity diagrams of current and proposed implementations](#activity)<br>
-[Architecture Diagrams of current and proposed implementations](#architecture)<br>
-[Data Flow Diagrams of current implementation](#data-flow)<br>
+[Weaknesses of current implementation](#weaknesses)<br>
+[Requirements of a new implementation](#requirements)<br>
+[Activity diagrams](#activity)<br>
+[Architecture Diagrams](#architecture)<br>
+[Data Flow Diagrams](#data-flow)<br>
 
 <a name=intro></a>
 ## Introduction
-This document outlines a proposal for a new implementation of the geocoder data integration process that is simpler to operate, easier to maintain, faster to run, and more supportive of complex addressing scenarios. We first look at the integration process itself, describe how it can be improved, and contrast the proposed implementation with the current one.
+This document describes the current geocoder data integration process and how it can be improved.
 
 <a name=integration-defined></a>  
 ## What is Geocoder Data Integration?
@@ -101,10 +98,29 @@ Block 1|Block 2|Block 3|
 
 <br><br>
 
-<a name=proposedimplementation></a>
-## Proposed Implementation of the Geocoder Data Integration Process
+<a name=weaknesses></a>
+### Weaknesses of current implementation?
 
-Here is the proposed implementation of the geocoder data integration process:
+The current implementation of the geocoder data integration process needs a dedicated, standalone, batch geocoder that must be loaded with reference data three times during the integration process as follows:
+
+* Load 1 requires the latest road network and no addresses to confirm candidate reference addresses have valid streets within localities.
+* Load 2 requires the latest road network and new reference addresses to confirm candidate reference occupants have valid addresses.
+* Load 3 requires the latest road network and new reference addresses and occupants to confirm correct handling of test addresses.
+
+The geocoder is written in Java. 
+
+The current implementation also needs a standalone Java application which handles address block assignment and range generation and is appropriately named the *Block  Assignment and Address Range Generator* (BAARG).
+
+In the new implementation, all integration and verification steps will be moved from separate FME scripts that call out to the batch geocoder, to a single Java application called Geocodable BC Maker which will have an embedded geocoder. Geocodable BC Maker will also incorporate an enhanced version of the BAARG. This simplifies the data integration architecture by eliminating the need for an external batch geocoder, speeds up the integration process, localizes all integration algorithms into a single component for easier understanding and maintenance, and leaves the task of keeping up with constantly changing data source schemas and formats to easily-updated scripts.
+
+It will be a major challenge to design a parallel architecture for the embedded geocoder so it can process six million addresses (two million reference addresses three times) as fast as the current batch geocoder (e.g., one hour at six million per hour).
+
+<br><br>
+
+<a name=requirements></a>
+## Requirements of a new Geocoder Data Integration Process
+
+Here are the requirements of a new geocoder data integration process:
 
 Stage name|Description|Implementation
 |:--:|--|--|
@@ -122,8 +138,8 @@ Stage name|Description|Implementation
 ||Globally valid means the dataset is <br> * locality-complete (e.g. has addresses from every locality) <br> * match-correct (e.g., all test addresses geocode as expected) <br> * spatially-consistent (e.g., address locations on every block increase in the same direction as their civic numbers, blockface address ranges don't overlap and increase in the same direction), and <br>  * version-consistent (e.g. locality address counts are higher than the previous version of reference data)|
 Deploy| If validation is successful, make new reference road network and address list accessible to online and batch geocoder|Manually trigger online geocoder restart script and restart batch geocoder plugin in CPF using CPF admin application.
 
-<a name=difference></a>
-### What's different?
+<a name=weaknesses></a>
+### Weaknesses of current implementation?
 
 The current implementation of the geocoder data integration process needs a dedicated, standalone, batch geocoder that must be loaded with reference data three times during the integration process as follows:
 
@@ -140,7 +156,7 @@ In the new implementation, all integration and verification steps will be moved 
 It will be a major challenge to design a parallel architecture for the embedded geocoder so it can process six million addresses (two million reference addresses three times) as fast as the current batch geocoder (e.g., one hour at six million per hour).
 
 <a name=activity></a>
-## Activity diagrams of current and proposed implementations
+## Activity diagrams
 
 ### Current implementation
 
@@ -154,9 +170,9 @@ It will be a major challenge to design a parallel architecture for the embedded 
 <br><br>
 
 <a name=architecture></a>
-## Architecture Diagrams of current and proposed implementations
+## Architecture Diagrams
 
-The current implementation is on the left; the proposed implementation on the right:
+The current implementation is on the left; one possible implementation on the right:
 
 ![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/082b65d9-cc15-43af-9b39-dd0dc6b68215)
 
@@ -166,7 +182,7 @@ The current implementation is on the left; the proposed implementation on the ri
 ## Data flow diagrams of current implementation
 
 ### Gather and Transform Steps
-Here is the data flow for the current implementation of the gather and transform steps. In the proposed implementation, the gather step is the same but the transform step must be changed to support the new target Physical Address Exchange Standard.
+Here is the data flow for the current implementation of the gather and transform steps.
 
 ![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/a714c132-e764-41c7-983c-67fa952465c0)
 
