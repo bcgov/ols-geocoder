@@ -24,7 +24,7 @@ Here's an overview of the geocoder data integration process:
 
 <br>
 
-In Gather, we manually download source road network and address data.
+In Gather, we download source road network and address data.
 
 In Transform, we transform all source data into standard schemas and formats and do field-level validation.
 
@@ -32,7 +32,7 @@ In Integrate, we tie addresses to the road network and generate address ranges.
 
 In Verify, we verify the quality of the integrated data by geocoding our Acceptance Test addresses.
 
-In Deploy,  if the validation was successful, we deploy the integrated data to a given geocoder environment.
+In Deploy, if the validation was successful, we deploy the integrated data to a given geocoder environment.
 
 The Integrate stage lies at the heart of the process and our change proposal mostly affects this stage so let's take a closer look.  
 
