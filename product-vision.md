@@ -32,17 +32,17 @@ Major clients include:
 - BC Ministry of Transportation and Infrastructure
 - BC Ministry of Health Health Ideas Warehouse
 - BC Ministry of Social Development and Poverty Reduction
-- Land Title and Survey Authority
 - Ministry of Advanced Education Business Intelligence Warehouse
-- BC Centre for Disease Control
-- BC Oil and Gas Commission
 - BC Ministry of Children and Family Development
 - BC Ministry of Forests, Land, and Natural Resource Operations and Rural Development
+- BC Centre for Disease Control
+- BC Oil and Gas Commission
+- BC Land Title and Survey Authority
 - BC Health Authorities
-- City of Vancouver
-- City of Nelson
 - BC Wildfire Service
 - BC Emergency Health Services
+- City of Vancouver
+- City of Nelson
 - WildSafe BC
 
 The BC Address Geocoder is based on authoritative address data provided by BC municipalities and BC Assessment. It also uses the BC Integrated Road Network which is the authoritative source for road network data in BC. In two independent studies, the BC Geocoder was found to be more accurate than commercial products.
