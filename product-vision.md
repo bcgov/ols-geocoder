@@ -37,11 +37,11 @@ Major clients include:
 - BC Ministry of Social Development and Poverty Reduction
 - BC Ministry of Transportation and Infrastructure
 - BC Centre for Disease Control
-- BC Oil and Gas Commission
-- BC Land Title and Survey Authority
-- BC Health Authorities
-- BC Wildfire Service
 - BC Emergency Health Services
+- BC Health Authorities
+- BC Land Title and Survey Authority
+- BC Oil and Gas Commission
+- BC Wildfire Service
 - City of Vancouver
 - City of Nelson
 - WildSafe BC
