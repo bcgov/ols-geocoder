@@ -29,12 +29,13 @@ Established in 2013 by the Province of British Columbia and released under the A
 
 Major clients include:
 - Elections BC
-- BC Ministry of Transportation and Infrastructure
+- BC Ministry of Advanced Education Business Intelligence Warehouse
+- BC Ministry of Children and Family Development
+- BC Ministry of Education
+- BC Ministry of Forests, Land, and Natural Resource Operations and Rural Development
 - BC Ministry of Health Health Ideas Warehouse
 - BC Ministry of Social Development and Poverty Reduction
-- Ministry of Advanced Education Business Intelligence Warehouse
-- BC Ministry of Children and Family Development
-- BC Ministry of Forests, Land, and Natural Resource Operations and Rural Development
+- BC Ministry of Transportation and Infrastructure
 - BC Centre for Disease Control
 - BC Oil and Gas Commission
 - BC Land Title and Survey Authority
