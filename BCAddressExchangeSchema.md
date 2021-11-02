@@ -581,7 +581,7 @@ accessPointLon|Number||Only needed if access point is different than site point 
 streetQualifier|String||The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge); [here](#streetQualifiers) is a complete list of streetQualifiers|No|No
 footprintDescriptor|String|| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)|No|No
 footprint|String||Geometry,in OGC Well Known Text format, of site footprint in OGC Well-Known Text format for CSV files, other geometry standards for other formats (e.g., GML GeoJson)|No|No
-locationDescriptor|String|parcelPoint|Describes the nature of the siteLatLon location. Values include parcelPoint (e.g., any point guaranteed to lie within a parcel associated with the site; ideally, this observation should be taken on the roof immediately above the front door), frontDoorPoint, and rooftopPoint|No|No
+locationDescriptor|String|parcelPoint|Describes the nature of the siteLatLon location. Values include parcelPoint (e.g., any point guaranteed to lie within a parcel associated with the site; ideally, a parcelPoint should represent a point on the roof immediately above the front door), frontDoorPoint, and rooftopPoint|No|No
 
 <a name=unitDesignators></a>
 ### Unit Designators
