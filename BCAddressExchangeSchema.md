@@ -1,6 +1,8 @@
 # Physical Address eXchange (PAX) Schema Draft v0.16
 ### Change history
 
+v0.17 Nov 2, 2021 - added locationDescriptor by request of GeoBC<br>
+
 v0.16 July  9, 2021 - added street schema; still need to add examples describing its use<br>
 
 v0.15 July  3, 2021 - generalized provinceCode to subCountryCode to comply with ISO 3166-2 standard; removed localityPhonetic and localitySpoken fields from Address Schema since they are facts about a locality, not an address<br>
@@ -579,7 +581,7 @@ accessPointLon|Number||Only needed if access point is different than site point 
 streetQualifier|String||The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge); [here](#streetQualifiers) is a complete list of streetQualifiers|No|No
 footprintDescriptor|String|| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)|No|No
 footprint|String||Geometry,in OGC Well Known Text format, of site footprint in OGC Well-Known Text format for CSV files, other geometry standards for other formats (e.g., GML GeoJson)|No|No
-locationDescriptor|String|parcelPoint|Describes the nature of the siteLatLon location. Values include accessPoint, frontDoorPoint, parcelPoint, rooftopPoint, and routingPoint|No|No
+locationDescriptor|String|parcelPoint|Describes the nature of the siteLatLon location. Values include parcelPoint (e.g., any point guaranteed to lie within a parcel associated with the site; ideally, this observation should be taken on the roof immediately above the front door), frontDoorPoint, and rooftopPoint|No|No
 
 <a name=unitDesignators></a>
 ### Unit Designators
