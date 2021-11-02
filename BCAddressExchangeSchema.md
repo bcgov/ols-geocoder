@@ -1,4 +1,4 @@
-# Physical Address eXchange (PAX) Schema Draft v0.16
+# Physical Address eXchange (PAX) Schema Draft v0.17
 ### Change history
 
 v0.17 Nov 2, 2021 - added locationDescriptor by request of GeoBC<br>
