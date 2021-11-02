@@ -550,7 +550,6 @@ This schema can be used in any common text format that supports named properties
 Field Name|Data Type|Default|Description|Required for Civic Address|Required for Non Civic Address
 |---:|--|--|--|--|--|
 siteLatLon|Number||Site latitude and longitude separated by a comma (e.g., 54.98457,-123.04504); ideally building coordinates represent a point on the roof directly above the front door; not required for units or if siteLat and siteLon populated|No|No
-locationDescriptor|String|parcelPoint|Describes the nature of the siteLatLon location. Values include accessPoint, frontDoorPoint, parcelPoint, rooftopPoint, and routingPoint|No|No 
 unitDesignator|String|UNIT|unit designator (e.g., APT, UNIT); includes Canada Post unit designators plus standard entrance designators (e.g., ENTRANCE 1, EXIT); [here](#unitDesignators) is a complete list of unit designators|No|No
 unitNumber|String||unit number or letter or sequence of unit number/letter ranges separated by commas (e.g., 100-119, 200-219); a unit number may contain a leading alphabetic character as in A100 which can participate in unit number ranges such as A100-A119|No|No
 unitNumberSuffix|String||Canada Post unit number suffix (e.g., C)|No|No
@@ -580,6 +579,7 @@ accessPointLon|Number||Only needed if access point is different than site point 
 streetQualifier|String||The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge); [here](#streetQualifiers) is a complete list of streetQualifiers|No|No
 footprintDescriptor|String|| one of building, complex, parcel, outdoorArea, indoorArea, secureOutdoorArea (e.g., inner courtyard, football field associated with a stadium)|No|No
 footprint|String||Geometry,in OGC Well Known Text format, of site footprint in OGC Well-Known Text format for CSV files, other geometry standards for other formats (e.g., GML GeoJson)|No|No
+locationDescriptor|String|parcelPoint|Describes the nature of the siteLatLon location. Values include accessPoint, frontDoorPoint, parcelPoint, rooftopPoint, and routingPoint|No|No
 
 <a name=unitDesignators></a>
 ### Unit Designators
