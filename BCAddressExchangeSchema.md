@@ -142,7 +142,7 @@ Field | Value
 siteLatLon|49.22985,-123.17838
 civicNumber|3290
 streetName|Marine
-streetType|Hwy
+streetType|Dr
 streetDirection|SW
 isStreetDirectionPrefix|true
 localityName|Vancouver
@@ -216,7 +216,7 @@ All addresses will be assigned the site and accessPoint locations that are assig
 <a name=ex3></a>
 ## Example 3 - An apartment complex with two buildings named A and B
 
-Here is a common situation where a complex has building names that are single letters embedded in a unit number as in APT A105.
+Here is a common situation where a complex has building names that are single letter prefixes in a unit number as in APT A105. This pattern is compliant with Canada Post addressing specifications.
 
 810 Esquimalt Rd, Esquimalt, BC has two buildings: A and B. Each building has four floors with 10 units each numbered 100-110, 200-210, 300-310, and 400-410. Each building has its own site location and footprint but share a single access point. Unit locations are assigned the site and accessPoints of their respective buildings. 
 
@@ -258,9 +258,7 @@ subCountryCode|BC
 If this example was provided as reference data to the BC Address Geocoder, the Geocoder would derive full addresses such as:
 
 APT A100, 810 Esquimalt Rd,Esquimalt,BC
-
 APT B407, 810 Esquimalt Rd,Esquimalt,BC
-
 APT B210, 810 Esquimalt Rd,Esquimalt,BC
 
 <a name=ex4></a>
@@ -344,7 +342,7 @@ localityName|Richmond
 subCountryCode|BC
 superFullSiteDescriptor|Terminal A -- Vancouver International Airport
 
-The gates of terminals B and C are represented similarly.
+The gates of Terminals B and C are represented similarly.
 
 If this example was provided as reference data to the BC Address Geocoder, the Geocoder would derive full addresses such as:
 
@@ -356,7 +354,7 @@ Gate 23, Terminal A, Vancouver International Airport -- 3211 Grant McConnachie W
 
 Gate 7, Terminal B, Vancouver International Airport -- 3211 Grant McConnachie Way,Richmond,BC 
 
-In this example, each Terminal and Gate has its own site location and inherits access location from Vancouver International Airport. You could give each terminal and gate its own accessPoint location by populating the accessPointLatLon field for each terminal and gate.
+In this example, each Terminal and Gate has its own site location and inherits access location from Vancouver International Airport. You could also give each terminal and gate its own accessPoint location by populating the accessPointLatLon field for each terminal and gate.
 
 <a name=ex5></a>
 ## Example 5 - A complex of buildings
@@ -528,7 +526,7 @@ TRUCK-PARKING-ENTRANCE|Truck parking entrance/exit
 TRUCK-PARKING-EXIT|Truck parking exit only
 
 
-The following Canada Post unit designators define other building parts and are also supported:
+The following Canada Post Unit Designators define other building parts and are also supported:
 
 |unitDesignator|Description|
 |--|--|
