@@ -5,7 +5,6 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
 
 ## Coming soon (early 2022)
 - BC Address Geocoder version 4.2.0
-- A more robust Geocoder start-up process.
 - Improved recognition of street and locality names containing missing or extra blank spaces.
 - Improved handling of unitNumberSuffix in structured address requests.
 
