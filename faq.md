@@ -21,17 +21,17 @@ The Geocoder does not use postal codes to determine address location. Address lo
 
 #### Q: How do I get a Geocoder API key for use in a production BC Government application?
 
-To request a production Geocoder API key [contact DataBC](https://forms.gov.bc.ca/databc-contact-us/) and include a description of the intended usage and consuming application name.
+To request a production Geocoder API key [contact DataBC](https://dpdd.atlassian.net/servicedesk/customer/portal/1/group/7/create/15) and include a description of the intended usage and consuming application name.
 
 #### Q: How do I get Geocoder API keys for use by a developer?
 
 There are two steps involved:
 
-Step 1 (one time only): 
-Launch the [API Gateway administration (GWA)](https://gwa.apps.gov.bc.ca/ui/apiKeys) application and login with your GitHub account. This will register you as a developer with the API gateway.
+Step 1: 
+Launch the [API Services Portal](https://api.gov.bc.ca/) application and login with your GitHub account. This will register you as a developer with the API gateway.
 
 Step 2 (per API): 
-To be granted access to create your own developer Geocoder API keys please [contact DataBC](https://forms.gov.bc.ca/databc-contact-us/) and include your GitHub account name as well as confirmation that you have logged into GWA.
+To be granted access to create your own developer Geocoder API keys please [contact DataBC](https://dpdd.atlassian.net/servicedesk/customer/portal/1/group/7/create/15) and include your GitHub account name as well as confirmation that you have logged into GWA.
 
 Once you have logged into GWA, and following our team granting access, you should see the BC Address Geocoder listed on the right side of your screen. By expanding each item, you will see the associated rate limit.
 
