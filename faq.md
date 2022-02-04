@@ -3,7 +3,7 @@
 #### Q: What are the system requirements for using the Geocoder?
 A web browser is required to use the Geocoder web application and Address List Editor.
 To use the Geocoder in Google Earth, Google Earth 6.1 or higher needs to be installed on the user’s computer.
-The Batch Geocoder is not generally available to the public.  To request access please [contact DataBC](https://forms.gov.bc.ca/databc-contact-us/).
+The Batch Geocoder is not generally available to the public.  To request access please [contact DataBC](https://dpdd.atlassian.net/servicedesk/customer/portal/1/group/7/create/15).
 Addresses to be geocoded should be physical addresses and not mailing addresses.
 Postal codes are not supported and will be ignored.
 
