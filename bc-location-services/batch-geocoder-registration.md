@@ -6,7 +6,7 @@ If you have a BC IDIR account, you don't need to register to access the Batch Ge
 
 If you don't have a BC IDIR account and are in an agency outside of core goverment (e.g., crown corporation, local or federal government, local health authority, university), here are the steps to registration and access:
 
-1. Request access using the [Data Services Client Hub](https://dpdd.atlassian.net/servicedesk/customer/portal/1/group/7/create/15) 
+1. Request access by opening a ticket with the [Data Systems & Services request system](https://dpdd.atlassian.net/servicedesk/customer/portal/1/group/7/create/15) 
  
 2. If you don't have an active bceid account, please register for a basic BCeID account at https://www.bceid.ca/
 
