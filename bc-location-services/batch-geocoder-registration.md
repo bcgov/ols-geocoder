@@ -6,16 +6,12 @@ If you have a BC IDIR account, you don't need to register to access the Batch Ge
 
 If you don't have a BC IDIR account and are in an agency outside of core goverment (e.g., crown corporation, local or federal government, local health authority, university), here are the steps to registration and access:
 
-1. Provide us (e.g., IDDDBCLS@Victoria1.gov.bc.ca) with answers to the following questions:
-
-     - What is the nature of your business?
-     - How do you propose to use the geocoder?
-     - What business outcomes do you hope the geocoder will help you achieve? 
+1. Request access by opening a ticket with the [Data Systems & Services request system](https://dpdd.atlassian.net/servicedesk/customer/portal/1/group/7/create/15) 
  
 2. If you don't have an active bceid account, please register for a basic BCeID account at https://www.bceid.ca/
 
 3.	Using your bceid account, try to log in to the batch geocoder located at https://apps.gov.bc.ca/pub/cpf/secure/ws/apps/geocoder/
-You will be rejected but don’t take it hard. Just email your bceid account name to us and we will complete the registration process and notify you when your registered. 
+You will be rejected but don’t take it hard. This process registers your account with the system. Once we see your account listed we will grant access to the batch geocoder and send a confirmation email.
 
 Whether you are a BC IDIR user or a BCeID user, you need to learn how to prepare your address list for batch geocoding, submit your list to the batch geocoder, and understand geocoder output. Here are some links to get your started:
 
