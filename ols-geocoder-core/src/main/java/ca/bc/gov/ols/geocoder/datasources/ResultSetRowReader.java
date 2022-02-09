@@ -131,6 +131,22 @@ public class ResultSetRowReader implements RowReader {
 	}
 	
 	@Override
+	public Boolean getBoolean(String column) {
+		try {
+			return rs.getBoolean(column);
+		} catch(SQLException sqle) {
+			try {
+				rs.getStatement().close();
+			} catch(SQLException e) {
+				// we are already handling a exception, so ignore this one
+			} finally {
+				ds.releaseConnection(conn);
+			}
+			throw new RuntimeException(sqle);
+		}
+	}
+	
+	@Override
 	public LocalDate getDate(String column) {
 		try {
 			return rs.getObject(column, LocalDate.class);
