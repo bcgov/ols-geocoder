@@ -16,7 +16,6 @@
 package ca.bc.gov.ols.rangebuilder;
 
 import java.io.File;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -114,8 +113,8 @@ public class RangeBuilder {
 	private Set<RbBlockFace> deletedFaces;
 	private List<IRbSite> unallocatableSites;
 	private RowWriter logWriter;
-
-	public static void main(String[] args) throws SQLException {
+	
+	public static void main(String[] args) {
 		if(args.length != 1) {
 			logger.error("Data directory parameter is required.");
 			System.exit(-1);
