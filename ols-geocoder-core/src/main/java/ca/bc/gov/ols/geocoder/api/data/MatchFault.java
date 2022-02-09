@@ -36,7 +36,7 @@ public class MatchFault {
 		CIVIC_NUMBER, CIVIC_NUMBER_SUFFIX, STREET,
 		STREET_NAME, STREET_TYPE, STREET_DIRECTION, STREET_QUALIFIER,
 		LOCALITY, PROVINCE, POSTAL_ADDRESS_ELEMENT, MAX_RESULTS, ADDRESS,
-		INITIAL_GARBAGE, LOCALITY_GARBAGE, PROVINCE_GARBAGE, FAULTS
+		INITIAL_GARBAGE, LOCALITY_GARBAGE, PROVINCE_GARBAGE, UNRECOGNIZED, FAULTS
 	}
 	
 	private String value;
@@ -53,6 +53,17 @@ public class MatchFault {
 		this.element = element;
 		this.fault = fault;
 		this.penalty = penalty;
+	}
+	
+	public MatchFault(String str) {
+		int dot = str.indexOf(".");
+		int colon = str.indexOf(":");
+		if(dot < 0 || colon < 0 || colon < dot) {
+			throw new RuntimeException("Unable to parse MatchFault string: " + str);
+		}
+		element = MatchElement.valueOf(str.substring(0,dot));
+		fault = str.substring(dot+1, colon);
+		penalty = Integer.parseInt(str.substring(colon+1));
 	}
 	
 	public String getValue() {
@@ -76,4 +87,5 @@ public class MatchFault {
 		return element + "." + fault + ":" + penalty;
 	}
 	
+
 }
