@@ -37,8 +37,6 @@ import gnu.trove.map.hash.THashMap;
 
 
 public class SiteLoaderPrep {
-	private static final String STREET_LOAD_STREET_NAMES_FILE = "street_load_street_names.json";
-
 	private static final Logger logger = LoggerFactory.getLogger(SiteLoaderPrep.class.getCanonicalName());
 
 	// TEST PARAMS
@@ -68,15 +66,19 @@ public class SiteLoaderPrep {
 	private static final double ORPHAN_SUBSITE_GROUP_TOLERANCE = 1000;
 	public static final int FIRST_GENERATED_PARENT_ID = 8000000;
 	
-	// filenames
-	private static final String SITE_HYBRID_FILE = "site_Hybrid.tsv";
-	private static final String LOG_FILE = "site_loader_prep_log.csv";
+	// input filenames
 	private static final String ITN_ANCHOR_POINT_FILE = "site_ITN_anchor_points.tsv";
+	private static final String STREET_LOAD_STREET_NAMES_FILE = "street_load_street_names.json";
 	private static final String LOCALITIES_FILE = "street_load_localities.json";
 	private static final String GEOCODE_HYBRID_NAMES_FILE = "geocode_Hybrid_names.csv";
 	private static final String GEOCODE_HYBRID_FILE = "geocode_Hybrid.csv";
 	private static final String RESULT_HYBRID_NAMES_FILE = "result_Hybrid_names.csv";
-	//private static final String VBC_PID_FILE = "VBC_PID_EXTRACT_20200801.csv";
+	private static final String VBC_PID_FILE = "VBC_PID_EXTRACT_20200801.csv";
+
+	// output filenames
+	private static final String SITE_HYBRID_FILE = "site_Hybrid.tsv";
+	private static final String LOG_FILE = "site_loader_prep_log.csv";
+	private static final String SID2PID_FILE = "sid2pid.csv";
 	
 	private static final Map<MatchFault.MatchElement,List<String>> ALLOWED_CAP_FAULTS;
 	static {
@@ -129,7 +131,7 @@ public class SiteLoaderPrep {
 
 	private GeometryFactory geometryFactory;
 	private RowWriter rejectWriter;
-	Map<String, LocalityPrep> localityMap;
+	Map<String, Integer> localityMap;
 	
 	public static void main(String[] args) {
 		if(args.length < 1) {
@@ -184,11 +186,13 @@ public class SiteLoaderPrep {
 			Map<String, GeocodeResult> addressStringMap = readGeocodeNames(streetNameMap);
 			List<InputSite> pseudoSites = new ArrayList<InputSite>();
 			Map<String, List<InputSite>> siteMap = readGeocodeHybrid(addressStringMap, pseudoSites);
-			List<InputSite> dedupedSites = deduplicateSites(siteMap);
+			List<InputSite> additionalBcaSids = new ArrayList<InputSite>();
+			List<InputSite> dedupedSites = deduplicateSites(siteMap, additionalBcaSids);
 			siteMap = null;
 			assignParents(dedupedSites);
 			List<OutputSite> anchorPoints = readSitesHybrid(inputDir + ITN_ANCHOR_POINT_FILE);
 			writeOutput(dedupedSites, pseudoSites, anchorPoints);
+			writeSid2Pids(dedupedSites, additionalBcaSids);
 			dedupedSites = null;
 		} finally {
 			rejectWriter.close();
@@ -206,24 +210,44 @@ public class SiteLoaderPrep {
 		return new XsvRowWriter(logFile, ',', siteSchema, true);
 	}
 	
-	private Map<String, LocalityPrep> readLocalities() {
-		Map<String, LocalityPrep> localityMap = new THashMap<String, LocalityPrep>();
+	private Map<String, Integer> readLocalities() {
+		Map<String, Integer> localityMap = new THashMap<String, Integer>();
 		try(RowReader rr = new JsonRowReader(inputDir + LOCALITIES_FILE, geometryFactory)) {
 			while(rr.next()) {
-				LocalityPrep loc = new LocalityPrep();
-				loc.id = rr.getInt("locality_id");
-				loc.name = rr.getString("locality_name");
+				int id = rr.getInt("locality_id");
+				String name = rr.getString("locality_name");
 				// loc.type = LocalityType.convert(rr.getInteger("locality_type_id"));
 				// loc.ea = rr.getInt("electoral_area_id");
 				int stateProvTerrId = rr.getInt("state_prov_terr_id");
 				// Point point = rr.getPoint();
 				// only load localities in BC and only from ITN (not BCGNIS)
 				if(stateProvTerrId == 1 ) { //&& loc.id < 10000) {
-					localityMap.put(simplifyLocalityName(loc.name), loc);
+					localityMap.put(simplifyLocalityName(name), id);
 				}
 			}
 		}
 		return localityMap;
+	}
+	
+	private Map<String, List<String>> readPids() {
+		Map<String, List<String>> jurolMap = new THashMap<String, List<String>>();
+		try(RowReader rr = new CsvRowReader(inputDir + VBC_PID_FILE, geometryFactory)) {
+			while(rr.next()) {
+				String jur = rr.getString("JURISDICTION");
+				String roll = rr.getString("ROLL_NUM");
+				String pid = rr.getString("PID");
+				List<String> pids = jurolMap.get(jur+roll);
+				if(pids == null) {
+					pids = new ArrayList<String>();
+					jurolMap.put(jur+roll, pids);
+				}
+				pids.add(pid);
+			}
+		}
+		for(List<String> pids : jurolMap.values()) {
+			Collections.sort(pids);
+		}
+		return jurolMap;
 	}
 
 	private Map<String, StreetNamePrep> readStreetNames() {
@@ -468,7 +492,7 @@ public class SiteLoaderPrep {
 		return siteMap;
 	}
 	
-	private List<InputSite> deduplicateSites(Map<String, List<InputSite>> siteMap) {
+	private List<InputSite> deduplicateSites(Map<String, List<InputSite>> siteMap, List<InputSite> additionalBcaSids) {
 		List<InputSite> deduped = new ArrayList<InputSite>(siteMap.size());
 		for(Map.Entry<String,List<InputSite>> entry: siteMap.entrySet()) {
 			String key = entry.getKey();
@@ -484,6 +508,10 @@ public class SiteLoaderPrep {
 			for(int i = 1; i < siteList.size(); i++) {
 				InputSite rejectedSite = siteList.get(i);
 				logReject(rejectedSite, "REPEAT " + rejectedSite.apType + " ADDRESS DROPPED");
+				if("BCA".equals(rejectedSite.inputName)) {
+					rejectedSite.uuid = site.uuid;
+					additionalBcaSids.add(rejectedSite);
+				}
 			}
 			// FME: GSRtester
 			if(site.inputName.equals("GSR") 
@@ -691,7 +719,7 @@ public class SiteLoaderPrep {
 	}
 	
 	private RowWriter openSiteOutputWriter() {
-		File logFile = new File(outputDir + SITE_HYBRID_FILE);
+		File outFile = new File(outputDir + SITE_HYBRID_FILE);
 		List<String> siteSchema = Arrays.asList(
 				"GID",
 				"INPUT_NAME",
@@ -724,7 +752,7 @@ public class SiteLoaderPrep {
 				"RANGE_TYPE",
 				"SITE_CHANGE_DATE"
 			);
-		return new XsvRowWriter(logFile, '\t', siteSchema, true);
+		return new XsvRowWriter(outFile, '\t', siteSchema, true);
 	}
 	
 	private void writeOutput(List<InputSite> sitesToOutput, List<InputSite> pseudoSites, List<OutputSite> anchorPoints) {
@@ -787,6 +815,37 @@ public class SiteLoaderPrep {
 		siteOutputWriter.writeRow(row);
 	}
 	
+	private void writeSid2Pids(List<InputSite> outputSites, List<InputSite> additionalBcaSids) {
+		Map<String, List<String>> jurolMap = readPids();
+		try(RowWriter sid2pidWriter = openSid2PidWriter()) {
+			for(InputSite site : outputSites) {
+				writeSid2Pid(sid2pidWriter, site, jurolMap.get(site.yourId));
+			}
+			for(InputSite site : additionalBcaSids) {
+				writeSid2Pid(sid2pidWriter, site, jurolMap.get(site.yourId));
+			}
+		}
+	}
+	
+	private void writeSid2Pid(RowWriter sid2pidWriter, InputSite site, List<String> pids) {
+		if("BCA".equals(site.inputName) && (site.yourId != null && !site.yourId.isEmpty())) {
+			if(pids != null) {
+				Map<String,Object> row = new HashMap<String,Object>();
+				row.put("SID", site.uuid);
+				row.put("PID", String.join("|", pids));
+				sid2pidWriter.writeRow(row);
+			} else {
+				logReject(site,"NO XREF");
+			}
+		}
+	}
+	
+	private RowWriter openSid2PidWriter() {
+		File sid2pidFile = new File(outputDir + SID2PID_FILE);
+		List<String> siteSchema = Arrays.asList("SID","PID");
+		return new XsvRowWriter(sid2pidFile, ',', siteSchema, true);
+	}
+	
 	private int calculateFaultAllowance(List<MatchFault> faults, Map<MatchElement, List<String>> allowedFaultMap) {
 		int faultAllowance = 0;
 		for(MatchFault fault : faults) {
@@ -807,9 +866,9 @@ public class SiteLoaderPrep {
 
 	private Integer getLocalityId(String localityName) {
 		if(localityName != null) {
-			LocalityPrep loc = localityMap.get(simplifyLocalityName(localityName));
-			if(loc != null) {
-				return loc.id;
+			Integer id = localityMap.get(simplifyLocalityName(localityName));
+			if(id != null) {
+				return id;
 			} else {
 				logger.error("Unknown Locality Name: '{}' could not find in 'street_load_localities.json', possibly out of province", localityName );
 			}
