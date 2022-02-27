@@ -31,7 +31,7 @@ test_input=[
     scope="class",
     params=test_input,
 )
-def n(request):
+def n(request, pytestconfig):
     # print('setup once per each param', request.param)
     api_url = pytestconfig.getoption("api_url")
     quoted_query = urllib.parse.quote_plus(request.param[QUERY])
