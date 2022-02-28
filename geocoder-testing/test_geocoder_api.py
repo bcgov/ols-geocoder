@@ -1,7 +1,6 @@
 import csv
 import json
 import requests
-import sys
 import urllib.parse
 import pytest
 
