@@ -388,7 +388,7 @@ pipelines:
         params:
         - name: GIT_SCRIPT
           value: |
-            git reset --hard && git clean -f && git fetch origin && git checkout -b tools origin/tools-tekton
+            git reset --hard && git clean -f && git fetch origin && git checkout -b tools origin/tools
       - name: run-tests
         ref:
           name: tests-helm
