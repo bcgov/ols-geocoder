@@ -282,6 +282,10 @@ pipelines:
       - name: route-url
         type: string
         description: test query to check that the app is alive
+        default: https://geocoder-test.apps.silver.devops.gov.bc.ca/
+      - name: health-check-url
+        type: string
+        description: test query to check that the app is alive
         default: https://geocoder-test.apps.silver.devops.gov.bc.ca/addresses.json?addressString=525+Superior+St%09+Victoria%09+BC
       - name: git-auth-token
         description: machine account auth token used for pushing content
@@ -371,7 +375,7 @@ pipelines:
           - name: image-tag
             value: $(params.image-tag)
           - name: route-url
-            value: $(params.route-url)
+            value: $(params.health-check-url)
           - name: ns
             value: $(params.ns)
       - name: pull-tests
