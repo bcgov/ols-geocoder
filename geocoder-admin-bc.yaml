@@ -14,23 +14,16 @@ spec:
   resources: {}
   runPolicy: Serial
   source:
-    dockerfile: >
-      FROM docker-remote.artifacts.developer.gov.bc.ca/busybox:latest
-
-      RUN echo wget -O ols-admin.war http://$ARTIFACTORY_URL/ols-geocoder-admin/$APP_VERSION/ols-geocoder-admin-$APP_VERSION.war
-
-      RUN wget -O ols-admin.war http://$ARTIFACTORY_URL/ols-geocoder-admin/$APP_VERSION/ols-geocoder-admin-$APP_VERSION.war
-
-      CMD ["tail", "-f", "/dev/null"]
+    dockerfile: |
+      FROM tomcat:9-jdk11-openjdk-slim-bullseye
+      RUN mkdir /usr/local/tomcat/webapps/ROOT
+      WORKDIR "/usr/local/tomcat/webapps/ROOT"
+      COPY ols-admin.war /usr/local/tomcat/webapps/ROOT/ROOT.war
+      RUN jar -xvf ROOT.war
+      WORKDIR "/usr/local/tomcat/"
+      RUN mv /usr/local/tomcat/webapps/ROOT/ROOT.war /usr/local/tomcat/webapps/
     type: Dockerfile
   strategy:
-    dockerStrategy:
-      pullSecret:
-        name: artifactory-creds
-      env:
-        - name: ARTIFACTORY_URL
-          value: delivery.apps.gov.bc.ca/artifactory/libs-release-local/ca/bc/gov/ols
-        - name: APP_VERSION
-          value: 4.1.1
     type: Docker
+    dockerStrategy: {}
   successfulBuildsHistoryLimit: 5

@@ -61,25 +61,18 @@ oc \
 This contains the build config for:  
 `ols-geocoder-sidecar`
 
-This template provides a parameterized BuildConfig for the geocoder sidedar container.
-The resulting BuildConfig, when run, created an imageStream containing the indicated version of the ols-geocoder-web WAR file.
-
-  * When the associated Deployment runs, this imageStream is used as an initContainer in a pod.
-  * It's purpose is to "copy the ols-geocoder-web.war to /app/ROOT.war"
-  * The long-running container then launches tomcat which subsequently loads the WAR, thus starting the application.
-
-For details on the pattern being used see:
-  https://github.com/kubernetes/examples/tree/master/staging/javaweb-tomcat-sidecar
+This file provides a BuildConfig object for the geocoder container.
+The resulting BuildConfig take ols-geocoder-web WAR file as input and when run, creates an imageStream for the geocoder app.
 
 ### Example  
 ```bash
-oc process -f geocoder-web.bc.yaml -o yaml \
- | oc apply -f - -n 988040-tools
+oc create -f geocoder-admin-bc.yaml -o yam -n 988040-tools
 ```
 #### Remove
 ```bash
 # use get first to check
-oc get all -l app=geocoder-sidecar -n 988040-tools
+oc get all -l app=geocoder-sidecar -n 988040-tools \
+ | oc apply -f - -n 988040-tools
 ...
 # use delete
 oc delete all -l app=geocoder-sidecar -n 988040-tools
@@ -88,17 +81,10 @@ oc delete all -l app=geocoder-sidecar -n 988040-tools
 ## `geocoder-admin-bc.yaml`
 
 This contains the build config for:  
-`ols-geocoderr-admin-sidecar`  
+`ols-geocoderr-admin-sidecar`
 
-This template provides a parameterized BuildConfig for the `ols-geocoder-admin` sidedar containers.
-The resulting BuildConfig, when run, created an imageStream containing the indicated version of the ols-geocoderr-admin WAR file.
-
-  * When the associated Deployment runs, this imageStream is used as an initContainer in a pod.
-  * It's purpose is to "copy the ols-geocoderr-admin.war to /app/ROOT.war"
-  * The long-running container then launches tomcat which subsequently loads the WAR, thus starting the application.
-
-For details on the pattern being used see:
-  https://github.com/kubernetes/examples/tree/master/staging/javaweb-tomcat-sidecar
+This file provides a BuildConfig object for the `ols-geocoder-admin` container.
+The resulting BuildConfig take `ols-geocoder-admin` WAR file as input and when run, creates an imageStream for the ols-geocoderr-admin app.
 
 ### Example  
 ```bash
@@ -108,13 +94,13 @@ oc process -f geocoderr-admin.bc.yaml -o yaml \
 #### Remove
 ```bash
 # use get first to check
-oc get all -l template=geocoder-admin-sidecar -n 988040-tools
+oc get all -l app=geocoder-admin-sidecar -n 988040-tools
 ...
 # use delete
-oc delete all -l template=geocoder-admin-sidecar -n 988040-tools
+oc delete all -l app=geocoder-admin-sidecar -n 988040-tools
 ```
 
-## `geocoderr.template.yaml`
+## `geocoder-template.yaml`
 
 This provision all the objects relevant to the Geocoder API.  This includes
 
@@ -142,7 +128,6 @@ DATA_ADMIN_IS_TAG=latest
 oc process -f geocoder-template.yaml \
     -p APP_NAME=${APP_NAME} \
     -p ENV=${ENV} \
-    -p TOOLS_NAMESPACE=${TOOLS} \
     -p GEOCODER_IS_TAG=${GEOCODER_IS_TAG} \
     -p DATA_ADMIN_IS_TAG=${DATA_ADMIN_IS_TAG} \
     -o yaml \
@@ -154,15 +139,13 @@ oc process -f geocoder-template.yaml \
 Copy or rename `example.env` to `dev.env` for this example to work. _make changes as required
 ```bash
 $ cat dev.env
-NS=988040-dev
 APP_NAME=geocoder
 ENV=dev
-TOOLS=988040-tools
 GEOCODER_IS_TAG=latest
 DATA_ADMIN_IS_TAG=latest
 $
 $
-$ oc process -f geocoder.template.yaml --param-file=dev.env -o yaml
+$ oc process -f geocoder-template.yaml --param-file=dev.env -o yaml
 
 ```
 
