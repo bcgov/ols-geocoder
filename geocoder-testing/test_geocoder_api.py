@@ -5,53 +5,60 @@ import urllib.parse
 import pytest
 
 api = "addresses.json?addressString=%s"
-
 ID = 0
 QUERY = 1
 EXPECTED_MATCH_PRECISION = 2
-EXPECTTED_FULL_ADDRESS = 3
+EXPECTED_FULL_ADDRESS = 3
 EXPECTED_FAULTS = 4
+STATUS = 5
+
+'''
+test input: https://bcgov.github.io/ols-geocoder/atp_addresses.csv
+header and first row as an example:
+yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,status,parcelPoint,issue,expectedAccuracyHigh,expectedConfidenceHigh
+00002-civicAddressWithCivicNumber,"525 Superior St Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[],R,SRID=4326;POINT(-123.370780 48.417926),,T,T
+'''
+
+def is_regression_test(row):
+    return row[STATUS] == 'R'
+
+def is_future_test(row):
+    return row[STATUS] == 'F'
+
+def is_unit_test(row):
+    return row[STATUS] == 'U'
 
 test_input = list()
-with open('atp_addresses.csv', encoding = "ISO-8859-1") as atp_file:
+with open('/workspace/file/atp_addresses.csv', encoding = "UTF-8") as atp_file:
     atp_tests = csv.reader(atp_file, delimiter=',', quotechar='"')
     headder_row = next(atp_tests)
     test_input = list(atp_tests)
 
-'''
-test_input=[
-   ['civicAddressWithCivicNumber',	"525 Superior St	 Victoria	 BC", 'CIVIC_NUMBER', '525 Superior St, Victoria, BC', '[]'],
-   ['civicAddressWithCivicNumberSuffix', "4251A Rockbank Pl	 West Vancouver	 BC", 'CIVIC_NUMBER', '4251A Rockbank Pl, West Vancouver, BC', '[]'],
-   ['civicAddressWithOrdinalCivicNumberSuffix', "749E Lakeview Arrow Creek Rd	 Wynndel	 BC", 'CIVIC_NUMBER', '749E Lakeview Arrow Creek Rd, Wynndel, BC', '[]']
-           ]
-           '''
 
 @pytest.fixture(
     scope="class",
     params=test_input,
 )
 def n(request, pytestconfig):
-    # print('setup once per each param', request.param)
     api_url = pytestconfig.getoption("api_url")
-    quoted_query = urllib.parse.quote_plus(request.param[QUERY])
+    quoted_query = urllib.parse.quote(request.param[QUERY])
     resp = requests.get(api_url + api % quoted_query)
     parsed = json.loads(resp.text)
-
     return request.param, parsed
 
 class TestClass:
 
-    def test_expected_match_precision(self, n):
-        (row, resp) = n
-
-        assert resp['features'][0]['properties']['matchPrecision'] == row[EXPECTED_MATCH_PRECISION]
+    '''
+    To quote Brian Kelsey: Testing for matchPrecision is a nice way to spot cases where we have lost a specific address (known parcel point = CIVIC_NUMBER)
+    and the Geocoder is now interpolating it based on known address points or block ranges from the road network (BLOCK or STREET level).
+    This also helps to identify cases where a site name is no longer in the source data (such as with “Building name – 123 main street, Vancouver, BC”).
+    Any additional tests beyond checking the fullAddress is extending the scope of our previous tests.
+    Staying with fullAddress tests will mean that often the ATP test will yield zero failures and can provide a pass/fail flag.
+    Adding matchPrecision and faults will provide a deeper analysis but potentially a more manual review as there may be slight variations in source data from address authorities from month to month.
+    '''
 
     def test_expected_full_address(self, n):
         (row, resp) = n
 
-        assert resp['features'][0]['properties']['fullAddress'] == row[EXPECTTED_FULL_ADDRESS]
-
-    def test_expected_faults(self, n):
-        (row, resp) = n
-
-        assert str(resp['features'][0]['properties']['faults']) == row[EXPECTED_FAULTS]
+        if is_regression_test(row):
+            assert resp['features'][0]['properties']['fullAddress'] == row[EXPECTED_FULL_ADDRESS]
