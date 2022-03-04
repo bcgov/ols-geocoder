@@ -438,7 +438,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00438-NonStandardLocalityNameAbbreviation,"1745 Esquimalt Ave, West Van, BC",CIVIC_NUMBER,"1745 Esquimalt Ave, West Vancouver, BC",[],R,,102,T,T
 00439-NonStandardLocalityNameAbbreviation,"352 W 14th St, North Vanc, BC",CIVIC_NUMBER,"352 W 14th St, North Vancouver, BC",[],R,,102,T,T
 00440-NonStandardLocalityNameAbbreviation,"569 Hody Dr, Ok Falls, BC",CIVIC_NUMBER,"569 Hody Dr, Okanagan Falls, BC",[],R,,102,T,T
-00441-NonStandardStreetNameAbbreviation,"5450 Ok Ave, Vernon, BC",LOCALITY,"5450 Oak St, Vancouver, BC",[],R,,102,T,T
+00441-NonStandardStreetNameAbbreviation,"5450 Ok Ave, Vernon, BC",LOCALITY,"Vernon, BC",[],R,,102,T,T
 00442-NonStandardStreetNameAbbreviation,"1301 Ok Ave, Quesnel, BC",CIVIC_NUMBER,"1301 Oak Ave, Quesnel, BC",[],R,,102,T,T
 00443-NonStandardGeneralDelivery,"GD, Quesnel, BC",LOCALITY,"Quesnel, BC",[],R,,102,T,T
 00444-NonStandardGeneralDelivery,"Genral Delivery, Quesnel, BC",LOCALITY,"Quesnel, BC",[],F,,102,T,T
