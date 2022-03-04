@@ -46,6 +46,17 @@ configMaps:
 
 
 tasks:
+
+  - name: copy-file
+    workspaces:
+    - name: source
+    - name: file
+    steps:
+      - image: ubuntu:latest
+        name: copy-file
+        script: |
+          #!/usr/bin/env sh
+          cp /workspace/source/atp_addresses.csv /workspace/file/atp_addresses.csv
   - name: acquire-mutex
     workspaces:
     - name: source
@@ -81,6 +92,7 @@ tasks:
     workspaces:
     - name: source
     - name: pr
+    - name: file
     steps:
       - image: registry.fedoraproject.org/f33/python3:latest
         name: pytest
@@ -258,6 +270,8 @@ pipelines:
         taskServiceAccountName: git-bot
       - pipelineTaskName: maven-build
         taskServiceAccountName: pipeline
+      - pipelineTaskName: pull-groundtruth
+        taskServiceAccountName: git-bot
       - pipelineTaskName: pull-tests
         taskServiceAccountName: git-bot
       - pipelineTaskName: run-tests
@@ -303,6 +317,8 @@ pipelines:
       - name: shared-workspace
         volumeClaimTemplate: 2Gi
       - name: input
+      - name: test-file
+        volumeClaimTemplate: 200Mi
       - name: pr-content
         volumeClaimTemplate: 50Mi
     podTemplate:
@@ -378,7 +394,7 @@ pipelines:
             value: $(params.health-check-url)
           - name: ns
             value: $(params.ns)
-      - name: pull-tests
+      - name: pull-groundtruth
         ref:
           name: git-cli
           kind: ClusterTask
@@ -392,13 +408,40 @@ pipelines:
         params:
         - name: GIT_SCRIPT
           value: |
-            git reset --hard && git clean -f && git fetch origin && git checkout -b tools origin/tools
+            git reset --hard && git clean -f && git fetch origin && git checkout -b gh-pages origin/gh-pages
+      - name: copy-groundtruth
+        ref:
+          name: copy-file
+        runAfter:
+          - pull-groundtruth
+        workspaces:
+        - name: source
+          workspace: shared-workspace
+        - name: file
+          workspace: test-file
+      - name: pull-tests
+        ref:
+          name: git-cli
+          kind: ClusterTask
+        runAfter:
+          - copy-groundtruth
+        workspaces:
+        - name: source
+          workspace: shared-workspace
+        - name: input
+          workspace: input
+        params:
+        - name: GIT_SCRIPT
+          value: |
+            git reset --hard && git clean -f && git fetch origin && git checkout -b tools origin/tools-test
       - name: run-tests
         ref:
           name: tests-helm
         runAfter:
           - pull-tests
         workspaces:
+        - name: file
+          workspace: test-file
         - name: source
           workspace: shared-workspace
         - name: pr
