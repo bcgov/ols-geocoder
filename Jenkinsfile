@@ -40,10 +40,11 @@ node ('master'){
            withMaven(maven:'m3') {
               sh 'mvn clean package sonar:sonar -Dsonar.java.source=11'
            }
-	   */
+	  
           //rtMaven.run pom: 'pom.xml', goals: 'clean package sonar:sonar -Dsonar.java.soruce=11 -Dmaven.test.skip=true', buildInfo: buildInfo
 	  rtMaven.run pom: 'pom.xml', goals: 'clean compile sonar:sonar -Dsonar.java.soruce=11 -Dmaven.test.skip=true', buildInfo: buildInfo
         }
+	    */
     }
 
     /* stage("Quality Gate") {
