@@ -224,10 +224,10 @@ pipelines:
         description: image deployment trigger tag
         type: string
         default: dev
-      - name: route-url
+      - name: health-check-url
         type: string
-        description: api url subject to testing
-        default: https://geomark-tomcat-f8d638-dev.apps.silver.devops.gov.bc.ca/pub/geomark/geomarks/
+        description: test query to check that the app is alive
+        default: https://geocoder-test.apps.silver.devops.gov.bc.ca/addresses.json?addressString=525+Superior+St%09+Victoria%09+BC
     workspaces:
       - name: shared-workspace
         volumeClaimTemplate: 2Gi
@@ -252,7 +252,7 @@ pipelines:
           - name: image-tag
             value: $(params.image-tag)
           - name: route-url
-            value: $(params.route-url)
+            value: $(params.health-check-url)
           - name: ns
             value: 988040-dev
     finally:
