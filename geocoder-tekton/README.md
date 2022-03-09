@@ -2,7 +2,7 @@
 
 ## Running
 
-Checkout PR https://github.com/bcgov/helm-charts/pull/26
+Checkout https://github.com/bcgov-dss/loc-tools/tree/main/helm/tekton-pipelines
 
 From tekton-pipelines/ run (where geocoder-helm-1s is a chart name)
 
