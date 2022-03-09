@@ -487,6 +487,8 @@ events:
                 - name: pull_request
               secretName: github-secret
             - name: cel
+              filter: "body.pull_request.base.ref in ['dev']"
+            - name: cel
               filter: "body.action in ['opened', 'reopened']"
         - name: pr-merge-trigger
           trigger: geocoder-trigger-pr-merged
@@ -496,6 +498,8 @@ events:
               eventTypes:
                 - name: pull_request
               secretName: github-secret
+            - name: cel
+              filter: "body.pull_request.base.ref in ['dev']"
             - name: cel
               filter: "body.action in ['closed']"
             - name: cel
