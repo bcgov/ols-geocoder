@@ -68,16 +68,16 @@ import gnu.trove.set.hash.THashSet;
 
 public class RangeBuilder {
 	private final static Logger logger = LoggerFactory.getLogger(RangeBuilder.class.getCanonicalName());
-	
+
 	public static final int NULL_ADDR = Integer.MIN_VALUE;
 
 	private static final double DISTANCE_TOLERANCE = 1500;
-	
+
 	GeocoderDataSource dataSource;
 	static GeometryFactory geometryFactory;
-	
+
 	private static String outputDataDir = "C:/apps/bgeo/data/";
-	
+
 	private boolean emptySid2Pid = false;
 	private int sideSwapCount = 0;
 	private int tooFarFromNearestSegCount = 0;
@@ -110,11 +110,11 @@ public class RangeBuilder {
 	private int unallocatablePseudoSiteCount = 0;
 	int unforceableParityCount = 0;
 	int maxSiteId = 0;
-	
+
 	private Set<RbBlockFace> deletedFaces;
 	private List<IRbSite> unallocatableSites;
 	private RowWriter logWriter;
-	
+
 	public static void main(String[] args) throws SQLException {
 		if(args.length != 1) {
 			logger.error("Data directory parameter is required.");
@@ -145,11 +145,11 @@ public class RangeBuilder {
 		dataSource = GeocoderDataSourceFactory.getGeocoderDataSource(config, geometryFactory);
 		configStore.close();
 	}
-	
+
 	public void buildRanges() {
 		openLogWriter();
 		RowReader rr;
-		
+
 		// load street segments into a lookup table
 		logger.info("Loading Street Segments");
 		TIntObjectHashMap<RbStreetSegment> segmentIdMap = new TIntObjectHashMap<RbStreetSegment>();
@@ -171,7 +171,7 @@ public class RangeBuilder {
 					rr.getString("travel_direction"));
 			DividerType dividerType = DividerType.convert(rr.getString("divider_type"));
 			LineString centerLine = rr.getLineString();
-			RbStreetSegment segment = new RbStreetSegment(segmentId, 
+			RbStreetSegment segment = new RbStreetSegment(segmentId,
 					startIntersectionId, endIntersectionId, centerLine,
 					localityLeftId, localityRightId, eaLeftId, eaRightId, roadClass, laneRestriction, travelDir,
 					dividerType, numLanesLeft, numLanesRight);
@@ -210,7 +210,7 @@ public class RangeBuilder {
 			logger.error("No street segments found - cannot continue!");
 			return;
 		}
-		
+
 		// read the street names in
 		logger.info("Loading Street Names");
 		TIntObjectHashMap<String> streetTypesById = new TIntObjectHashMap<String>();
@@ -228,7 +228,7 @@ public class RangeBuilder {
 			streetTypesById.put(streetNameId, type);
 		}
 		rr.close();
-		
+
 		// use street name cross references to build lookup tables
 		logger.info("Loading Street Name XRefs");
 		TIntObjectHashMap<List<RbStreetSegment>> primaryStreetNameIdToSegmentListMap = new TIntObjectHashMap<List<RbStreetSegment>>();
@@ -268,7 +268,7 @@ public class RangeBuilder {
 			}
 		}
 		rr.close();
-		
+
 		// load sid2pid data into a lookup table
 		logger.info("Loading sid2pid data.");
 		Map<UUID,String> sid2pidMap = new HashMap<UUID, String>();
@@ -299,7 +299,7 @@ public class RangeBuilder {
 				regularSiteCount++;
 			} else if(rangeType == -1) {
 				// this accessPoint is for address range generation only
-				// and is not to be used as a "real" site 
+				// and is not to be used as a "real" site
 				site = new PseudoSite();
 				pseudoSiteAnchorPointCount++;
 			} else {
@@ -341,7 +341,7 @@ public class RangeBuilder {
 			site.setStreetSegmentId(rr.getInt("BLOCK_ID"));
 			site.setLocalityId(rr.getInt("LOCALITY_ID"));
 			site.setInterimStreetNameId(rr.getInt("INTERIM_STREET_NAME_ID"));
-			
+
 			if(site.getLocalityId() == 507 && site.getInterimStreetNameId() == 55771) {
 				site.setInterimStreetNameId(30280);
 			}
@@ -357,21 +357,21 @@ public class RangeBuilder {
 				extraSites.add(site);
 				subSiteCount++;
 				continue;
-			}				
-			
+			}
+
 			if("NCAP".equalsIgnoreCase(site.getApType()) && site.getInterimStreetNameId() == RowReader.NULL_INT_VALUE) {
 				// this is a locality-based ncap, they just pass through
 				extraSites.add(site);
 				localityNCAPCount++;
 				continue;
 			}
-			
+
 			List<RbStreetSegment> candidateSegs = primaryStreetNameIdToSegmentListMap.get(site.getInterimStreetNameId());
 			List<RbStreetSegment> aliasCandidateSegs = aliasStreetNameIdToSegmentListMap.get(site.getInterimStreetNameId());
 
 //			// null/empty candidateSegs - should only happen if the streetName is only used as an alias
 //			if(candidateSegs == null || candidateSegs.isEmpty()) {
-//				logger.debug("No candidate streetSegments for siteId: " + site.getSiteId() 
+//				logger.debug("No candidate streetSegments for siteId: " + site.getSiteId()
 //						+ " based on interimStreetNameId: " + interimStreetNameId);
 //				if(site instanceof PseudoSite) {
 //					noCandidatesPseudoCount++;
@@ -380,7 +380,7 @@ public class RangeBuilder {
 //				}
 //				continue;
 //			}
-			
+
 			// loop over the segments and find the closest one in the right locality
 			RbStreetSegment closestSeg = null;
 			double closestDist = Double.MAX_VALUE;
@@ -392,7 +392,7 @@ public class RangeBuilder {
 			if(candidateSegs != null) {
 				for(RbStreetSegment seg : candidateSegs) {
 					double dist = computeMinDistance(siteLocation, seg.getCenterLine(), DISTANCE_TOLERANCE);
-					if(dist < closestDist 
+					if(dist < closestDist
 							&& (localitiesEquivalent(site.getLocalityId(), seg.getLocalityId(Side.LEFT))
 								|| localitiesEquivalent(site.getLocalityId(), seg.getLocalityId(Side.RIGHT)))) {
 						closestSeg = seg;
@@ -401,14 +401,14 @@ public class RangeBuilder {
 				}
 			}
 			boolean notFound = closestSeg == null;
-				
+
 			boolean highwayAlias = false;
 			if(aliasCandidateSegs != null) {
 				for(RbStreetSegment seg : aliasCandidateSegs) {
-					if(notFound || "hwy".equalsIgnoreCase(streetTypesById.get(seg.getPrimaryStreetNameId())) 
+					if(notFound || "hwy".equalsIgnoreCase(streetTypesById.get(seg.getPrimaryStreetNameId()))
 							|| "hwy".equalsIgnoreCase(streetTypesById.get(site.getInterimStreetNameId()))) {
 						double dist = computeMinDistance(siteLocation, seg.getCenterLine(), DISTANCE_TOLERANCE);
-						if(dist < closestDist 
+						if(dist < closestDist
 								&& (localitiesEquivalent(site.getLocalityId(), seg.getLocalityId(Side.LEFT))
 										|| localitiesEquivalent(site.getLocalityId(), seg.getLocalityId(Side.RIGHT)))) {
 							closestSeg = seg;
@@ -418,9 +418,9 @@ public class RangeBuilder {
 							}
 						}
 					}
-				}				
+				}
 			}
-			
+
 			// if the closestSeg is still too far away, we will drop this site
 			// may need to reduce the minimum acceptable distance value
 			if(closestDist > DISTANCE_TOLERANCE) {
@@ -443,7 +443,7 @@ public class RangeBuilder {
 			placeSite(site, closestSeg, null);
 		}
 		rr.close();
-		
+
 		// loop over all segments and determine which side should be odd and even
 		// and also pick the mins and maxes
 		logger.info("Forcing sites to consistent even/odd sides of segment");
@@ -454,22 +454,22 @@ public class RangeBuilder {
 			sideSwapCount += seg.forceParity(this);
 			seg.setRangesFromSites();
 		}
-				
-		// stretch ranges 
+
+		// stretch ranges
 		stretchAddresses(primaryStreetNameIdToSegmentListMap);
-		
+
 		// output the results so far for investigation/testing/QA
 		//dataSource.loadRanges(segmentIdMap, maxApId, "_rb");
-		
+
 		// clean up overlapping ranges by shifting sites to other segments as required
 		Map<String, List<RbBlockFace>> streetFaces = destroyOverlaps(primaryStreetNameIdToSegmentListMap);
 
-		// smooth ranges 
+		// smooth ranges
 		smoothAddresses(primaryStreetNameIdToSegmentListMap);
 
 		// Mirror one-sided segments as per MirrorSingleSide.java
 		mirrorSingleSided(streetFaces);
-		
+
 		// log stats
 		calcStats(segmentIdMap);
 		if(emptySid2Pid) {
@@ -479,16 +479,16 @@ public class RangeBuilder {
 			logger.error("---------------------------------------------------------------");
 		}
 		logWriter.close();
-		
+
 		logger.info("Writing output segments/sites");
 		writeRanges(segmentIdMap, extraSites, outputDataDir, dataSource.getDates(), "");
 
 		dataSource.close();
 	}
-	
+
 	// check for equality of locality ids, allowing for
 	// City of Langley(1518) to be equal to Township of Langley(518) and
-	// City of North Vancouver (1519) to be equal to District of North Vancouver(519) 
+	// City of North Vancouver (1519) to be equal to District of North Vancouver(519)
 	private boolean localitiesEquivalent(int a, int b) {
 		if(a == b
 				|| (a == 518 && b == 1518)
@@ -499,10 +499,10 @@ public class RangeBuilder {
 		}
 		return false;
 	}
-	
+
 	private void placeSite(IRbSite site, RbStreetSegment streetSegment, Side side) {
 		// determine which segment of the lineString is closest to the site point
-		
+
 		LineSegment closest = null; // the closest segment so far to the site point
 		double closestSegDist = Double.MAX_VALUE; // the distance from the site point to the closest
 										// segment so far
@@ -511,7 +511,7 @@ public class RangeBuilder {
 									// segment so far
 		CoordinateSequence coords = streetSegment.getCenterLine().getCoordinateSequence();
 		Coordinate previousCoordinate = coords.getCoordinate(0);
-		
+
 		Point siteLocation = site.getSiteLocation();
 		if(site.isOriginalAP()) {
 			siteLocation = site.getAccessLocation();
@@ -529,7 +529,7 @@ public class RangeBuilder {
 			previousCoordinate = coordinate;
 			measure = measure + segment.getLength();
 		}
-		
+
 		// if we don't already know which side it should be on
 		if(side == null) {
 			// determine which side of the segment the site point is on
@@ -539,9 +539,9 @@ public class RangeBuilder {
 				side = Side.RIGHT;
 			}
 		}
-		
+
 		Coordinate nearestCoord = closest.closestPoint(siteCoordinate);
-		
+
 		// calculate the measure value (distance along linestring)
 		if(nearestCoord.equals(coords.getCoordinate(0))) {
 			// we matched the start of the lineString
@@ -554,7 +554,7 @@ public class RangeBuilder {
 			closestMeasure += nearestCoord.distance(closest.p0);
 		}
 		site.setMeasure(closestMeasure);
-		
+
 		if(!site.isOriginalAP()) {
 			// offset the accessPoint to the curb
 			double curbOffset = getWidth(streetSegment.getFace(side), dataSource.getConfig());
@@ -564,7 +564,7 @@ public class RangeBuilder {
 			site.setAccessX(offsetPoint.getX());
 			site.setAccessY(offsetPoint.getY());
 		}
-		
+
 		// add the site/accessPoint to a list for the side of the segment it is on
 		if(site.getCivicNumber() == RowReader.NULL_INT_VALUE) {
 			streetSegment.getNCAPs().add(site);
@@ -572,7 +572,7 @@ public class RangeBuilder {
 			streetSegment.getSites(side).add(site);
 		}
 	}
-	
+
 	public void smoothAddresses(TIntObjectHashMap<List<RbStreetSegment>> streetNameIdToSegmentListMap) {
 		logger.info("Smoothing address ranges");
 		// use street name index to group ITN segments into block groups
@@ -586,7 +586,7 @@ public class RangeBuilder {
 				addToMapList(intersectionMap, ls.getStartPoint(), seg);
 				addToMapList(intersectionMap, ls.getEndPoint(), seg);
 			}
-			
+
 			// smooth segments that are part of a continuous chain
 			for(RbStreetSegment seg : segs) {
 				LineString ls = seg.getCenterLine();
@@ -622,8 +622,8 @@ public class RangeBuilder {
 					if(endSeg.getCenterLine().getEndPoint().equals(ls.getEndPoint())) {
 						endSegSide1 = Side.RIGHT;
 					}
-					
-					if(startSeg.getParity(startSegSide1.toChar()) != null 
+
+					if(startSeg.getParity(startSegSide1.toChar()) != null
 							&& startSeg.getParity(startSegSide1.toChar()) == endSeg.getParity(endSegSide1.toChar())
 							&& startSeg.getParity(startSegSide1.toChar()) != seg.getParity("l")
 							&& seg.getFromLeft() != NULL_ADDR) {
@@ -632,7 +632,7 @@ public class RangeBuilder {
 					}
 					int startSegMed = startSeg.getMedianAddr(startSegSide1);
 					int endSegMed = endSeg.getMedianAddr(endSegSide1);
-					if(startSegMed != NULL_ADDR && endSegMed != NULL_ADDR 
+					if(startSegMed != NULL_ADDR && endSegMed != NULL_ADDR
 							&& startSegMed < endSegMed
 							&& !seg.isIncreasing(Side.LEFT)
 							&& seg.getFromLeft() != NULL_ADDR) {
@@ -641,22 +641,22 @@ public class RangeBuilder {
 					}
 					startSegMed = startSeg.getMedianAddr(startSegSide1.opposite());
 					endSegMed = endSeg.getMedianAddr(endSegSide1.opposite());
-					if(startSegMed != NULL_ADDR && endSegMed != NULL_ADDR 
+					if(startSegMed != NULL_ADDR && endSegMed != NULL_ADDR
 							&& startSegMed < endSegMed
 							&& !seg.isIncreasing(Side.RIGHT)
 							&& seg.getFromLeft() != NULL_ADDR) {
 						seg.getFace(Side.RIGHT).flip();
 						increasingSmoothedCount++;
 					}
-				}				
+				}
 			}
 		}
 	}
-	
+
 	public void stretchAddresses(
 			TIntObjectHashMap<List<RbStreetSegment>> streetNameIdToSegmentListMap) {
 		logger.info("Stretching address ranges");
-		
+
 		// use street name index to group ITN segments into block groups
 		for(TIntObjectIterator<List<RbStreetSegment>> it = streetNameIdToSegmentListMap.iterator(); it.hasNext(); ) {
 			it.advance();
@@ -668,8 +668,8 @@ public class RangeBuilder {
 				LineString ls = seg.getCenterLine();
 				addToMapList(intersectionMap, ls.getStartPoint(), seg);
 				addToMapList(intersectionMap, ls.getEndPoint(), seg);
-			}			
-			
+			}
+
 			// stretch address from/to values within block groups to cover complete ranges
 			// and split at "nice" values (hundred blocks or similar)
 			for(Entry<Point, List<RbStreetSegment>> intEntry : intersectionMap.entrySet()) {
@@ -749,18 +749,18 @@ public class RangeBuilder {
 							+ ") incident at intersection: " + intPoint);
 					continue;
 				}
-				
+
 			}
 		}
 	}
-	
+
 	private static boolean parityEqual(AddressScheme par1, AddressScheme par2) {
 		if(par1 == null || par2 == null) {
 			return false;
 		}
 		return par1.equals(par2);
 	}
-	
+
 	private void deadEndStretch(RbStreetSegment seg, Point end) {
 		LineString segLine = seg.getCenterLine();
 		if(end.equals(segLine.getStartPoint())) {
@@ -772,7 +772,7 @@ public class RangeBuilder {
 			deadEndStretchSide(seg, "r", "fromr", "tor");
 		}
 	}
-	
+
 	private void deadEndStretchSide(RbStreetSegment seg, String side, String outerName,
 			String innerName) {
 		// the inner is the "dead end"
@@ -783,7 +783,7 @@ public class RangeBuilder {
 			missingAddrCount++;
 			return;
 		}
-		
+
 		AddressScheme par = seg.getParity(side);
 		// in the case where outer == inner, we stretch "to" upwards and "from" downwards
 		if(outer < inner || (outer == inner && innerName.startsWith("to"))) {
@@ -815,16 +815,16 @@ public class RangeBuilder {
 		} // all cases should be covered above
 		successfulDeadEndStretchCount++;
 	}
-	
+
 	private void stretch(RbStreetSegment seg1, String seg1Side, String seg1OuterName,
 			String seg1InnerName,
 			RbStreetSegment seg2, String seg2Side, String seg2InnerName, String seg2OuterName) {
-		
+
 		int seg1outer = seg1.getAddr(seg1OuterName);
 		int seg1inner = seg1.getAddr(seg1InnerName);
 		int seg2inner = seg2.getAddr(seg2InnerName);
 		int seg2outer = seg2.getAddr(seg2OuterName);
-		
+
 		if(seg1outer == NULL_ADDR || seg1inner == NULL_ADDR
 				|| seg2inner == NULL_ADDR || seg2outer == NULL_ADDR) {
 			// something is null, we can't do the "nice" stretching
@@ -864,7 +864,7 @@ public class RangeBuilder {
 			int[] middles = findSplit(seg1inner, par, seg2inner, par);
 			int split = Math.max(middles[0], middles[1]);
 			int otherSplit = Math.min(middles[0], middles[1]);
-			
+
 			/*
 			 * old way // average the middle values int split = (seg1inner + seg2inner)/2; // fix
 			 * the parity if(("E".equals(par)) && (split % 2 != 0) || "O".equals(par) && (split % 2
@@ -872,7 +872,7 @@ public class RangeBuilder {
 			 * if(par.equalsIgnoreCase("O") || par.equalsIgnoreCase("E")) { otherSplit = split - 2;
 			 * } else { otherSplit = split - 1; }
 			 */
-			
+
 			if(seg1outer < seg2outer) {
 				seg1.setAddr(seg1InnerName, otherSplit);
 				// seg1.setAddr(seg1InnerName + "stretched", otherSplit - seg1inner);
@@ -909,7 +909,7 @@ public class RangeBuilder {
 			deadEndStretchSide(seg2, seg2Side, seg2OuterName, seg2InnerName);
 		}
 	}
-	
+
 	private static <T, K> void addToMapList(Map<T, List<K>> map, T key, K streetSeg) {
 		List<K> list = map.get(key);
 		if(list == null) {
@@ -918,7 +918,7 @@ public class RangeBuilder {
 		}
 		list.add(streetSeg);
 	}
-	
+
 	private static int[] findSplit(int a, AddressScheme para, int b, AddressScheme parb) {
 		int[] result = new int[2];
 		int mid = (a + b) / 2;
@@ -956,22 +956,22 @@ public class RangeBuilder {
 		// should never get here unless a=b or parities are messed up
 		return null;
 	}
-	
+
 	public Map<String, List<RbBlockFace>> destroyOverlaps(
 			TIntObjectHashMap<List<RbStreetSegment>> streetNameIdToSegmentListMap) {
 		logger.info("Destroying overlaps");
-		
+
 		deletedFaces = new THashSet<RbBlockFace>();
 		unallocatableSites = new ArrayList<IRbSite>();
-		
+
 		Map<String, List<RbBlockFace>> streetFaces = new THashMap<String, List<RbBlockFace>>();
 		List<RbBlockFace> faces = new ArrayList<RbBlockFace>();
-		
+
 		for(TIntObjectIterator<List<RbStreetSegment>> it = streetNameIdToSegmentListMap.iterator(); it.hasNext(); ) {
 			it.advance();
 			int streetNameId = it.key();
 			List<RbStreetSegment> segs = it.value();
-			
+
 			for(RbStreetSegment seg : segs) {
 				for(Side side : Side.values()) {
 					RbBlockFace face = seg.getFace(side);
@@ -985,7 +985,7 @@ public class RangeBuilder {
 				} // end for each side
 			} // end for each segment
 		} // end for each entry
-		
+
 		// loop over all the faces and check if they overlap other faces
 		logger.info("Destroying BlockFace overlaps");
 		while(!faces.isEmpty()) {
@@ -1004,13 +1004,13 @@ public class RangeBuilder {
 							continue;
 						}
 						if(face != otherFace && face.overlaps(otherFace)) {
-							logger.debug("Faces with overlapping addressing on segments {} and {}", 
+							logger.debug("Faces with overlapping addressing on segments {} and {}",
 									face.toLongString(), otherFace.toLongString());
 							// here is where the destruction comes in
 							shrink(face, otherFace);
 							retryFaces.add(face);
 							retryFaces.add(otherFace);
-							logger.debug("overlaps resolved to {} and {}", 
+							logger.debug("overlaps resolved to {} and {}",
 									face.toLongString(), otherFace.toLongString());
 						}
 					}
@@ -1021,11 +1021,11 @@ public class RangeBuilder {
 		}
 		return streetFaces;
 	}
-	
+
 	private void shrink(RbBlockFace face1, RbBlockFace face2) {
 		RbStreetSegment seg1 = face1.getSegment();
 		RbStreetSegment seg2 = face2.getSegment();
-		
+
 		// determine the best place to divide the overlaps
 		int pos1 = 0;
 		int pos2 = 0;
@@ -1055,7 +1055,7 @@ public class RangeBuilder {
 				pos2++;
 			}
 		}
-		
+
 		// determine which side to keep
 		if(best1 == 0 && best2 == 0) {
 			// we're throwing out one side's sites entirely
@@ -1101,12 +1101,12 @@ public class RangeBuilder {
 		// reallocate sites to the correct segment
 		reallocateSites(face1, face2);
 	}
-	
+
 	private void recoverOrDelete(RbBlockFace face1, RbBlockFace face2) {
 		// face1 is the keeper
 		// see what is left of face2, if any
 		//List<RbSite> addrs2 = face2.getSegment().getSites(face2.getSide());
-		
+
 		int lowLeftOver = face1.getMin() - face2.getMin();
 		int highLeftOver = face2.getMax() - face1.getMax();
 		if(lowLeftOver > 0 && lowLeftOver > highLeftOver) {
@@ -1123,14 +1123,14 @@ public class RangeBuilder {
 			deletedFaces.add(face2);
 		}
 	}
-	
+
 	public void mirrorSingleSided(Map<String, List<RbBlockFace>> streetFaces) {
 		logger.info("Mirroring single-sided segments");
-		
+
 		// loop over all the groups of faces with the same street name in the same locality
 		for(Entry<String, List<RbBlockFace>> entry : streetFaces.entrySet()) {
 			List<RbBlockFace> streetLocFaces = entry.getValue();
-			
+
 			// loop over each face in the group
 			for(int faceIndex = 0; faceIndex < streetLocFaces.size(); faceIndex++) {
 				RbBlockFace face = streetLocFaces.get(faceIndex);
@@ -1155,7 +1155,7 @@ public class RangeBuilder {
 					par = AddressScheme.EVEN;
 				}
 				Side side = face.getSide().opposite();
-				
+
 				int first, last;
 				if(face.getFirst() < face.getLast()) {
 					first = face.getFirst() - 1;
@@ -1180,7 +1180,7 @@ public class RangeBuilder {
 					continue;
 				}
 				RbBlockFace newFace = new RbBlockFace(face.getSegment(), side, par, first, last);
-				
+
 				// check it for overlaps with other segments and trim as necessary
 				for(String streetFaceRef : seg.getStreetFaceRefs()) {
 					for(RbBlockFace otherFace : streetFaces.get(streetFaceRef)) {
@@ -1195,7 +1195,7 @@ public class RangeBuilder {
 						}
 					}
 				}
-				
+
 				// if there is still some range left after cleaning up overlaps
 				if(newFace.isValid()) {
 					// it's a keeper
@@ -1206,9 +1206,9 @@ public class RangeBuilder {
 				}
 			} // end for each face
 		} // end for each street/locality group
-		
+
 	}
-	
+
 	/*
 	 * Shrink face1's range down to no longer overlap with face2
 	 */
@@ -1228,7 +1228,7 @@ public class RangeBuilder {
 			}
 		}
 	}
-	
+
 	private void reallocateSites(RbBlockFace face1, RbBlockFace face2) {
 		List<IRbSite> face1Sites = face1.getSegment().getSites(face1.getSide());
 		List<IRbSite> face2Sites = face2.getSegment().getSites(face2.getSide());
@@ -1273,13 +1273,13 @@ public class RangeBuilder {
 		Collections.sort(face1Sites, IRbSite.ADDRESS_COMPARATOR);
 		Collections.sort(face2Sites, IRbSite.ADDRESS_COMPARATOR);
 	}
-	
+
 	private void calcStats(TIntObjectHashMap<RbStreetSegment> segmentIdMap) {
 		int totalAddressCoverage = 0;
 		int addressedBlockFaceCount = 0;
 		int unAddressedBlockFaceCount = 0;
 		int faceWithIllegalRangeCount = 0;
-		
+
 		for(TIntObjectIterator<RbStreetSegment> it = segmentIdMap.iterator(); it.hasNext(); ) {
 			it.advance();
 			RbStreetSegment seg = it.value();
@@ -1336,7 +1336,7 @@ public class RangeBuilder {
 		logger.info("3-way count: " + threeWayCount);
 		logger.info("4-way count: " + fourWayCount);
 		logger.info("5+-way count: " + manyWayCount);
-		
+
 		logger.info("");
 		logger.info("Address Range Summary Stats");
 		logger.info("-----------------------------------------------------------------");
@@ -1382,15 +1382,15 @@ public class RangeBuilder {
 		logger.info(String.format("Sub-Sites:                                    %9d", subSiteCount));
 		logger.info(String.format("Regular Sites/CAPs:                           %9d", regularCAPSiteCount));
 		logger.info("-----------------------------------------------------------------");
-		int totalOutputs = tooFarFromNearestSegCount + unallocatableSites.size() + segmentNCAPCount 
-				+ localityNCAPCount + subSiteCount + regularCAPSiteCount; 
+		int totalOutputs = tooFarFromNearestSegCount + unallocatableSites.size() + segmentNCAPCount
+				+ localityNCAPCount + subSiteCount + regularCAPSiteCount;
 		if(regularSiteCount == totalOutputs) {
 			logger.info("Results balance correctly.");
 		} else {
 			logger.error("Results do not balance! difference: " + (regularSiteCount - totalOutputs));
 		}
 	}
-	
+
 	private static float getWidth(RbBlockFace face, GeocoderConfig config) {
 		RbStreetSegment seg = face.getSegment();
 		float laneWidth = config.getRoadLaneWidth(seg.getRoadClass());
@@ -1407,8 +1407,8 @@ public class RangeBuilder {
 					+ (dividerWidth / 2);
 		}
 	}
-	
-	public void writeRanges(TIntObjectHashMap<RbStreetSegment> segmentIdMap, List<IRbSite> extraSites, 
+
+	public void writeRanges(TIntObjectHashMap<RbStreetSegment> segmentIdMap, List<IRbSite> extraSites,
 			String baseFilePathString, Map<DateType, LocalDate> dates, String tableSuffix) {
 		File streetsFile = new File(baseFilePathString + "street_load_street_segments_geocoder.json");
 		RowWriter streetWriter = new JsonRowWriter(streetsFile, "bgeo_street_segments", dates);
@@ -1480,7 +1480,7 @@ public class RangeBuilder {
 			// only output RbSites, not PseudoSites/AnchorPoints
 			// and is either not a child site or the parent has been written
 			if(site instanceof RbSite &&
-					(site.getParentSiteId() == RowReader.NULL_INT_VALUE 
+					(site.getParentSiteId() == RowReader.NULL_INT_VALUE
 							|| writtenSites.get(site.getParentSiteId()))) {
 				Map<String, Object> siteRow = makeSiteRow(site, site.getLocalityId(), RowReader.NULL_INT_VALUE);
 				siteWriter.writeRow(siteRow);
@@ -1533,7 +1533,7 @@ public class RangeBuilder {
 		siteRow.put("INPUT_NAME", site.getInputName());
 		return siteRow;
 	}
-	
+
 	private void openLogWriter() {
 		File logFile = new File(outputDataDir + "rangebuilder_log.csv");
 		List<String> siteSchema = Arrays.asList("SITE_ID","SITE_UUID","PARENT_SITE_ID",
@@ -1545,18 +1545,18 @@ public class RangeBuilder {
 				"LOCALITY_ID","INTERIM_STREET_NAME_ID","INPUT_NAME","MESSAGE");
 		logWriter = new XsvRowWriter(logFile, ',', siteSchema, true);
 	}
-	
+
 	private void logSite(IRbSite site, String message) {
 		Map<String, Object> row = makeSiteRow(site, site.getLocalityId(), RowReader.NULL_INT_VALUE);
 		row.put("INTERIM_STREET_NAME_ID", site.getInterimStreetNameId());
 		row.put("MESSAGE", message);
 		logWriter.writeRow(row);
 	}
-	
+
 	static Integer convertNull(int i) {
 		if(i == RowReader.NULL_INT_VALUE) {
 			return null;
-		} 
+		}
 		return i;
 	}
 
