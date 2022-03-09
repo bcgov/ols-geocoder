@@ -102,8 +102,8 @@ public class OlsResponseReader {
 		writer.field("setBack", results.getSetBack());
 		writer.field("minScore", results.getMinScore());
 		writer.field("maxResults", results.getMaxResults());
-		writer.field("disclaimer", "http://www2.gov.bc.ca/gov/admin/disclaimer.page");
-		writer.field("privacyStatement", "http://www2.gov.bc.ca/gov/admin/privacy.page");
+		writer.field("disclaimer", config.getDisclaimer());
+		writer.field("privacyStatement", config.getPrivacyStatement());
 		writer.field("copyrightNotice", config.getCopyrightNotice());
 		writer.field("copyrightLicense", config.getCopyrightLicense());
 		
