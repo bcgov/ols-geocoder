@@ -40,7 +40,7 @@ import ca.bc.gov.ols.geocoder.data.enumTypes.MatchPrecision;
 import ca.bc.gov.ols.util.GeomParseUtil;
 
 public class GeocoderConfig {
-	public static final String VERSION = "4.1.0";
+	public static final String VERSION = "4.2.0-SNAPSHOT";
 	public static final String LOGGER_PREFIX = "BGEO.";
 	public static final PrecisionModel BASE_PRECISION_MODEL = new PrecisionModel(1000);
 	private static final Logger logger = LoggerFactory.getLogger(LOGGER_PREFIX
