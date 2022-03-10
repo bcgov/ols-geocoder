@@ -88,7 +88,7 @@ The resulting BuildConfig take `ols-geocoder-admin` WAR file as input and when r
 
 ### Example  
 ```bash
-oc process -f geocoderr-admin.bc.yaml -o yaml \
+oc process -f geocoder-admin.bc.yaml -o yaml \
  | oc apply -f - -n 988040-tools
 ```
 #### Remove
@@ -145,7 +145,7 @@ GEOCODER_IS_TAG=latest
 DATA_ADMIN_IS_TAG=latest
 $
 $
-$ oc process -f geocoder-template.yaml --param-file=dev.env -o yaml
+$ oc process -f geocoder-template.yaml --param-file=dev.env -o yaml | oc apply -f - -n 988040-dev
 
 ```
 
