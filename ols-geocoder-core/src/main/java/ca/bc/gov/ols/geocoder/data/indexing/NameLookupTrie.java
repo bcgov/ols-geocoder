@@ -27,7 +27,6 @@ import java.util.Set;
 public class NameLookupTrie<T> {
 	
 	private static final int[] table = new int[128];
-	private static final char[] reverse = new char[128];
 	static int nextTableId = 0;
 	
 	static {
@@ -71,10 +70,8 @@ public class NameLookupTrie<T> {
 		addToTable(' ');
 	}
 	
-	private static void addToTable(char letter) {
-		table[letter] = nextTableId;
-		reverse[nextTableId] = letter;
-		nextTableId++;
+	private static void addToTable(int letter) {
+		table[letter] = nextTableId++;
 	}
 	
 	private Set<T> storedValues;
@@ -111,10 +108,6 @@ public class NameLookupTrie<T> {
 	}
 	
 	private NameLookupTrie() {
-	}
-	
-	public void add(String str, Set<T> items) {
-		add(str.toUpperCase().toCharArray(), 0, items);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -185,24 +178,6 @@ public class NameLookupTrie<T> {
 		}
 		
 		return results;
-	}
-
-	public List<String> findAllStrings() {
-		List<String> list = new ArrayList<String>();
-		findAllStrings("", list);
-		return list;
-	}
-	
-	@SuppressWarnings("unchecked")
-	private void findAllStrings(String prefix, List<String> words) {
-		if(storedValues != null) {
-			words.add(prefix);
-		}
-		for(int i = 0; i < branches.length; i++) {
-			if(branches[i] != null) {
-				((NameLookupTrie<T>)branches[i]).findAllStrings(prefix + reverse[i], words);
-			}
-		}	
 	}
 	
 	@SuppressWarnings("unchecked")

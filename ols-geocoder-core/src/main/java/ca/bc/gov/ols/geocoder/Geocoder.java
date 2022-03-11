@@ -183,7 +183,7 @@ public class Geocoder implements IGeocoder {
 			addressWords.addAll(lexer.lexField(query.getUnitNumber(),
 					EnumSet.of(WordClass.NUMBER, WordClass.LETTER)));
 			addressWords.addAll(lexer.lexField(query.getUnitNumberSuffix(),
-					EnumSet.of(WordClass.SUFFIX, WordClass.LETTER)));
+					EnumSet.of(WordClass.SUFFIX)));
 			List<List<MisspellingOf<Word>>> siteWords = lexer.lexField(query.getSiteName(),
 					EnumSet.of(WordClass.NAME));
 			if(siteWords.size() > 0) {
@@ -194,7 +194,7 @@ public class Geocoder implements IGeocoder {
 					query.getCivicNumber() == null ? "" : query.getCivicNumber().toString(),
 					EnumSet.of(WordClass.NUMBER)));
 			addressWords.addAll(lexer.lexField(query.getCivicNumberSuffix(),
-					EnumSet.of(WordClass.SUFFIX, WordClass.LETTER)));
+					EnumSet.of(WordClass.SUFFIX)));
 			addressWords.addAll(lexer.lexField(query.getStreetName(),
 					EnumSet.of(WordClass.STREET_NAME_BODY)));
 			addressWords.addAll(lexer.lexField(query.getStreetType(),

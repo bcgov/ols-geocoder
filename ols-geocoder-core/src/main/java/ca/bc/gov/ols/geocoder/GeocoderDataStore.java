@@ -105,7 +105,6 @@ import ca.bc.gov.ols.geocoder.data.indexing.NameLookupTrie;
 import ca.bc.gov.ols.geocoder.data.indexing.PartialTagIndex;
 import ca.bc.gov.ols.geocoder.data.indexing.TagIndex;
 import ca.bc.gov.ols.geocoder.data.indexing.TrieWordMap;
-import ca.bc.gov.ols.geocoder.data.indexing.Word;
 import ca.bc.gov.ols.geocoder.data.indexing.WordClass;
 import ca.bc.gov.ols.geocoder.data.indexing.WordMap;
 import ca.bc.gov.ols.geocoder.data.indexing.WordMapBuilder;
@@ -387,36 +386,8 @@ public class GeocoderDataStore {
 		} else {
 			occupantKDTree = new KDTree<IOccupant>(new ArrayList<IOccupant>(occupantsByUuid.values()));
 		}
-		
-		Map<String, Set<Word>> initialWordMap = wordMapBuilder.getWordMap();
-		Map<String,String> compoundWordMap = buildCompoundWordMap(initialWordMap.keySet());
-		
-		// add trie entries to map from compound words to the split version and vice-versa
-		// first for streetNames
-		for(String name : streetNameTrie.findAllStrings()) {
-			List<String> compoundWordPhrases = createCompoundWordPhrases(name, compoundWordMap);
-			Set<StreetNameBody> result = streetNameTrie.queryExact(name);
-			for(String compoundWordPhrase : compoundWordPhrases) {
-				streetNameTrie.add(compoundWordPhrase, result);
-				// we also need to add these (possibly previously unknown) compound words to our wordmap
-				wordMapBuilder.addPhrase(compoundWordPhrase, WordClass.STREET_NAME_BODY);
-			}
-		}
-		
-		// then for localities
-		for(String name : localityNameTrie.findAllStrings()) {
-			List<String> compoundWordPhrases = createCompoundWordPhrases(name, compoundWordMap);
-			Set<LocalityMapTarget> result = localityNameTrie.queryExact(name);
-			for(String compoundWordPhrase : compoundWordPhrases) {
-				localityNameTrie.add(compoundWordPhrase, result);
-				// we also need to add these (possibly previously unknown) compound words to our wordmap
-				wordMapBuilder.addPhrase(compoundWordPhrase, WordClass.LOCALITY_NAME);
-			}
-		}
-		
 		wordMap = new TrieWordMap(wordMapBuilder.getWordMap());
 		//wordMap = new LuceneWordMap(wordMapBuilder.getWordList(), wordMapBuilder.getWordMap());
-		
 		wordMapBuilder = null;
 		dateMap = null;
 		siteIdMap = null;
@@ -434,71 +405,6 @@ public class GeocoderDataStore {
 			logger.info("Data file dates are consistent.");
 		}
 		//buildLuceneIndex(accessPointMap, localityMappings);
-	}
-	
-	private Map<String,String> buildCompoundWordMap(Set<String> wordSet) {
-		Map<String,String> compoundWordMap = new THashMap<String,String>();
-		for(String word : wordSet) {
-			if(word.length() >= 6) {
-				for(int split = 3; split < word.length()-3; split++) {
-					String a = word.substring(0, split);
-					String b = word.substring(split);
-					if(wordSet.contains(a) && wordSet.contains(b)) {
-						// we found a compound word
-						compoundWordMap.put(word, a + " " + b );
-						logger.debug("CompoundWordMap: {} + {} = {}", a, b, word);
-					}
-				}
-			}
-		}
-		return compoundWordMap;
-	}
-	
-	private List<String> createCompoundWordPhrases(String name, Map<String,String> compoundWordMap) {
-		List<String> newPhrases = new ArrayList<String>();
-		String[] nameWords = GeocoderUtil.wordSplit(name);
-		// loop over the words that make up the name
-		for(int i = 0; i < nameWords.length; i++) {
-			// check if the word is a compound word
-			String splitWords = compoundWordMap.get(nameWords[i]);
-			if(splitWords != null) {
-				// build a new name phrase with the two words split
-				StringBuilder sb = new StringBuilder(name.length());
-				for(int j = 0; j < nameWords.length; j++) {
-					if( j == i ) {
-						sb.append(splitWords);
-					} else {
-						sb.append(nameWords[j]);
-					}
-					// no space at the end
-					if(j != nameWords.length) {
-						sb.append(" ");
-					}
-				}
-				logger.debug("Split Compound Word Phrase:" + sb.toString());
-				newPhrases.add(sb.toString());				
-			}
-			// if there is another word after this one
-			if(i + 1 < nameWords.length) {
-				// if both words are alphabetic (no numbers), not "NEAR", and at least 3 character long
-				if(nameWords[i].length() > 2 && !nameWords[i].equals("NEAR") && GeocoderUtil.isAlpha(nameWords[i]) 
-						&& nameWords[i+1].length() > 2 && !nameWords[i+1].equals("NEAR") && GeocoderUtil.isAlpha(nameWords[i+1])) {
-					logger.debug("Created Compound Word: " + nameWords[i] + " + " + nameWords[i+1] + " = " + nameWords[i] + nameWords[i+1] );
-					// build a new name phrase that combines the two words
-					StringBuilder sb = new StringBuilder(name.length());
-					for(int j = 0; j < nameWords.length; j++) {
-						sb.append(nameWords[j]);
-						// no space after the first combined word or at the end
-						if(j != i && j != nameWords.length) {
-							sb.append(" ");
-						}
-					}
-					logger.debug("Combined Compound Word Phrase:" + sb.toString());
-					newPhrases.add(sb.toString());
-				}
-			}
-		}
-		return newPhrases;
 	}
 	
 	private void buildLuceneIndex(TIntObjectHashMap<List<AccessPoint>> accessPointMap, Map<String, Set<LocalityMapTarget>> localityMappings) {
@@ -1159,7 +1065,6 @@ public class GeocoderDataStore {
 		Map<String, StreetNameBody> nameBodyMap = new THashMap<String, StreetNameBody>();
 		RowReader rr = dataSource.getStreetNames();
 		int count = 0;
-		// TODO read the street names twice - first time to build a dictionary of words to split into, second to build the trie but with words split where possible
 		while(rr.next()) {
 			count++;
 			int streetNameId = rr.getInt("street_name_id");
@@ -1171,7 +1076,6 @@ public class GeocoderDataStore {
 					rr.getString("street_type_is_prefix_ind"));
 			Boolean dirIsPrefix = GeocoderUtil.charToBoolean(
 					rr.getString("street_direction_is_prefix_ind"));
-			//todo should mapwords do the splitting?
 			String mappedBody = mapWords(unMappedBody).toUpperCase();
 			wordMapBuilder.addPhrase(mappedBody, WordClass.STREET_NAME_BODY);
 			BlockFaceIntervalTree blockTree = null;

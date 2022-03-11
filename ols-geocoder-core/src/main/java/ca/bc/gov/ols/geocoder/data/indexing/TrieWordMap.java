@@ -22,6 +22,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import ca.bc.gov.ols.geocoder.dra.DraLexicalRules;
+import ca.bc.gov.ols.geocoder.util.GeocoderUtil;
 
 public class TrieWordMap implements WordMap {
 	private static final int MAX_ALLOWABLE_SPELLING_DISTANCE = 1;
@@ -32,7 +33,6 @@ public class TrieWordMap implements WordMap {
 		this.trie = new NameLookupTrie<Word>(map);
 		numberPattern = Pattern.compile(DraLexicalRules.RE_NUMBER);
 	}
-
 	
 	// unused
 	// public List<List<Word>> mapWords(String text, int error) {
