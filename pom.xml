@@ -251,4 +251,16 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<distributionManagement>
+		<repository>
+			<id>central</id>
+			<name>artifactory-ha-primary-0-releases</name>
+			<url>https://artifacts.developer.gov.bc.ca/artifactory/gf8d-release</url>
+		</repository>
+			<snapshotRepository>
+			<id>snapshots</id>
+			<name>artifactory-ha-primary-0-snapshots</name>
+			<url>https://artifacts.developer.gov.bc.ca/artifactory/gf8d-snapshot</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
