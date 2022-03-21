@@ -174,13 +174,13 @@ objects:
       spec:
         containers:
         - env:
-          - name: MINIO_ACCESS_KEY
+          - name: MINIO_ROOT_USER
             valueFrom:
               secretKeyRef:
                 key: minioAccessKey
                 name: ${MINIO_SERVICE_NAME}-${APPLICATION_NAME}
                 #name: minio
-          - name: MINIO_SECRET_KEY
+          - name: MINIO_ROOT_PASSWORD
             valueFrom:
               secretKeyRef:
                 key: minioSecretKey
@@ -188,12 +188,17 @@ objects:
                 #name: minio
           - name: MINIO_CONFIG_DIR
             value: /tmp
-          - name: MINIO_DATA_DIR
-            value: /data
-          image: docker-registry.default.svc:5000/openshift/minio
+          image: minio/minio
+          args:
+            - server
+            - /data
+            - --console-address
+            - :9001
           imagePullPolicy: Always
           name: minio
           ports:
+          - containerPort: 9001
+            protocol: TCP
           - containerPort: 9000
             protocol: TCP
           resources: {}
@@ -224,6 +229,10 @@ objects:
     #name: ${APPLICATION_NAME}
   spec:
     ports:
+    - name: 9001-tcp
+      port: 9001
+      protocol: TCP
+      targetPort: 9001
     - name: 9000-tcp
       port: 9000
       protocol: TCP
@@ -273,6 +282,23 @@ objects:
       kind: Service
       name: ${MINIO_SERVICE_NAME}-${APPLICATION_NAME}
       #name: ${MINIO_SERVICE_NAME}-${APPLICATION_NAME}
+      weight: 100
+    wildcardPolicy: None
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    labels:
+      app: ${APPLICATION_NAME}
+    name: ${MINIO_SERVICE_NAME}-${APPLICATION_NAME}-admin
+  spec:
+    host: ${MINIO_SERVICE_NAME}-${APPLICATION_NAME}-admin.${ROUTE_SUBDOMAIN}
+    port:
+      targetPort: 9001-tcp
+    tls:
+      termination: edge
+    to:
+      kind: Service
+      name: ${MINIO_SERVICE_NAME}-${APPLICATION_NAME}
       weight: 100
     wildcardPolicy: None
 - apiVersion: route.openshift.io/v1
@@ -343,7 +369,7 @@ objects:
     name: ${APPLICATION_NAME}-pv
   spec:
     accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
     resources:
       requests:
         storage: 5Gi
