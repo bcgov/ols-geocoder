@@ -102,7 +102,7 @@ if [ "$verify_ssl" = false ]; then
     options="$options -k"
 fi
 
-curl $options \
+echo curl $options \
     -H "Content-Type: $CONTENT_TYPE" \
     -H "User-Agent: GitHub-Hookshot/760256b" \
     -H "X-Hub-Signature: sha1=$WEBHOOK_SIGNATURE" \
