@@ -10,7 +10,7 @@ inputs:
     required: true
   webhook_auth:
     description: 'Credentials to be used for BASIC authentication (optional)'
-  webhook_type: 
+  webhook_type:
     description: 'json | form-urlencoded | json-extended'
   verbose:
     description: 'Optional, set to true to enable verbose output. Warning: this might lead to domain and IP leaking, as well as other security issues as the logs are public.'
@@ -21,12 +21,7 @@ inputs:
     default: true
   data:
     description: 'Optional additional data to include in the payload'
-    
+
 runs:
   using: 'docker'
-  # image: 'Dockerfile'
-  image: 'docker://ghcr.io/distributhor/workflow-webhook-container:v2.0.3'
-
-branding:
-  icon: 'terminal'
-  color: 'gray-dark'
+  image: 'Dockerfile'
