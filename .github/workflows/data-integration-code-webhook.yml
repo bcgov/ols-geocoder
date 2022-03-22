@@ -16,6 +16,7 @@ jobs:
    - name: debug
      run: |
        echo "${{ steps.files.outputs.all }}"
+   - uses: actions/checkout@v1
    - name: send-webhook
      uses: ./.github/actions/webhook
      env:
