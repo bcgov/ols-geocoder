@@ -16,3 +16,10 @@ jobs:
    - name: debug
      run: |
        echo "${{ steps.files.outputs.all }}"
+   - name: send-webhook
+     uses: ./.github/actions/webhook
+     env:
+       webhook_url: ${{ secrets.WEBHOOK_URL }}
+       webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
+       data: |
+         { "filesChanged": ${{steps.files.outputs.all}} }
