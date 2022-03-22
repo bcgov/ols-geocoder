@@ -30,7 +30,7 @@ if [ -z "$webhook_secret" ]; then
 fi
 
 #
-# This method does not require additional package installation (of util-linux) 
+# This method does not require additional package installation (of util-linux)
 # on docker image, resulting in a slightly smaller image file
 #
 # REQUEST_ID=$(cat /dev/urandom | tr -dc '0-9a-f' | fold -w 32 | head -n 1)
@@ -38,7 +38,7 @@ fi
 #
 # This method is cleaner, but requires util-linux to be installed on Alpine image,
 # resuling in a slightly larger image file
-# 
+#
 REQUEST_ID=$(uuidgen)
 
 if [ "$silent" != true ]; then
@@ -71,7 +71,7 @@ else
     else
         WEBHOOK_DATA="{\"event\":\"$GITHUB_EVENT_NAME\",\"repository\":\"$GITHUB_REPOSITORY\",\"commit\":\"$GITHUB_SHA\",\"ref\":\"$GITHUB_REF\",\"head\":\"$GITHUB_HEAD_REF\",\"workflow\":\"$GITHUB_WORKFLOW\"}"
     fi
-    
+
     JSON_WITH_OPEN_CLOSE_BRACKETS_STRIPPED=`echo "$WEBHOOK_DATA" | sed 's/^{\(.*\)}$/\1/'`
     if [ -n "$data" ]; then
         CUSTOM_JSON_DATA=$(echo -n "$data" | jq -c '')
@@ -81,7 +81,6 @@ else
     fi
 
 fi
-echo $WEBHOOK_DATA
 
 WEBHOOK_SIGNATURE=$(echo -n "$WEBHOOK_DATA" | openssl sha1 -hmac "$webhook_secret" -binary | xxd -p)
 WEBHOOK_SIGNATURE_256=$(echo -n "$WEBHOOK_DATA" | openssl dgst -sha256 -hmac "$webhook_secret" -binary | xxd -p |tr -d '\n')
@@ -103,7 +102,9 @@ if [ "$verify_ssl" = false ]; then
     options="$options -k"
 fi
 
-echo curl $options \
+echo $WEBHOOK_DATA
+
+curl $options \
     -H "Content-Type: $CONTENT_TYPE" \
     -H "User-Agent: GitHub-Hookshot/760256b" \
     -H "X-Hub-Signature: sha1=$WEBHOOK_SIGNATURE" \
