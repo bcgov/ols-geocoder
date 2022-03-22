@@ -1,0 +1,27 @@
+name: data-integration-code-webhook
+
+on:
+ pull_request:
+   branches: [ git-action-webhook ]
+
+jobs:
+ send-webhook:
+   runs-on: ubuntu-latest
+   steps:
+   - id: files
+     name: get-file-list
+     uses: jitterbit/get-changed-files@v1
+     with:
+       format: 'json'
+   - name: debug
+     run: |
+       echo "${{ steps.files.outputs.all }}"
+   - uses: actions/checkout@v1
+   - name: send-webhook
+     uses: ./.github/actions/webhook
+     env:
+       webhook_type: 'json-extended'
+       webhook_url: ${{ secrets.WEBHOOK_URL }}
+       webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
+       data: |
+         { "filesChanged": ${{steps.files.outputs.all}} }
