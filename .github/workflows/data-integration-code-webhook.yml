@@ -1,0 +1,18 @@
+name: data-integration-code-webhook
+
+on:
+ pull_request:
+   branches: [ dev ]
+
+jobs:
+ send-webhook:
+   runs-on: ubuntu-latest
+   steps:
+   - id: files
+     name: get-file-list
+     uses: jitterbit/get-changed-files@v1
+     with:
+       format: 'json'
+   - name: debug
+     run: |
+       echo "${{ steps.files.outputs.all }}"
