@@ -2,7 +2,7 @@ name: data-integration-code-webhook
 
 on:
  pull_request:
-   branches: [ dev ]
+   branches: [ git-action-webhook ]
 
 jobs:
  send-webhook:
