@@ -1,3 +1,4 @@
+.DS_Store
 # ---> Java
 *.class
 
@@ -43,3 +44,4 @@ local.properties
 
 # IntelliJ
 .idea/
+
