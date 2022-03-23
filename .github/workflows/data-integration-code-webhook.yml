@@ -1,0 +1,23 @@
+name: data-integration-code-webhook
+
+on:
+ pull_request:
+   branches: [ git-act-web ]
+
+jobs:
+ send-webhook:
+   runs-on: ubuntu-latest
+   steps:
+   - id: files
+     name: get-file-list
+     uses: jitterbit/get-changed-files@v1
+     with:
+       format: 'json'
+   - name: send-webhook
+     uses: distributhor/workflow-webhook@v2
+     env:
+       webhook_type: 'json-extended'
+       webhook_url: ${{ secrets.WEBHOOK_URL }}
+       webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
+       data: |
+         { "filesChanged": ${{steps.files.outputs.all}} }
