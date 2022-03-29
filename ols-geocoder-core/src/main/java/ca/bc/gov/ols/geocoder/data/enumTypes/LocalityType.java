@@ -84,10 +84,18 @@ public enum LocalityType {
 	}
 
 	/**
+	 * @return the integer ID of this LocalityType object
+	 */
+	public int getId() {
+		return id;
+	}
+	
+	/**
 	 * @return the string representation of this LocalityType object
 	 */
 	@Override
 	public String toString() {
 		return label;
 	}
+	
 }

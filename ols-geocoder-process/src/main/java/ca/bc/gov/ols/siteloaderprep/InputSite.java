@@ -1,4 +1,4 @@
-package ca.bc.gov.siteloaderprep;
+package ca.bc.gov.ols.siteloaderprep;
 
 import java.time.LocalDate;
 import java.util.UUID;

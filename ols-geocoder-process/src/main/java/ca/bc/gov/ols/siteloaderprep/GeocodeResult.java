@@ -1,4 +1,4 @@
-package ca.bc.gov.siteloaderprep;
+package ca.bc.gov.ols.siteloaderprep;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class GeocodeResult {
 	MatchPrecision matchPrecision;
 	int precisionPoints;
 	List<MatchFault> faults;
-	StreetNamePrep name;
+	RawStreetName name;
 	Integer localityId;
 	double executionTime;
 }

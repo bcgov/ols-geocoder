@@ -24,8 +24,10 @@ import ca.bc.gov.ols.geocoder.GeocoderDataStore;
 import ca.bc.gov.ols.rowreader.RowReader;
 
 import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.Polygon;
 import org.locationtech.jts.io.ParseException;
 import org.locationtech.jts.io.WKBReader;
 
@@ -182,37 +184,40 @@ public class ResultSetRowReader implements RowReader {
 	
 	@Override
 	public Point getPoint(String column) {
-		try {
-			WKBReader reader = new WKBReader(GeocoderDataStore.getGeometryFactory());
-			Point p = (Point)reader.read(rs.getBytes("geom"));
-			return p;
-		} catch(SQLException sqle) {
-			try {
-				rs.getStatement().close();
-			} catch(SQLException e) {
-				// we are already handling a exception, so ignore this one
-			} finally {
-				ds.releaseConnection(conn);
-			}
-			throw new RuntimeException(sqle);
-		} catch(ParseException pe) {
-			try {
-				rs.getStatement().close();
-			} catch(SQLException e) {
-				// we are already handling a exception, so ignore this one
-			} finally {
-				ds.releaseConnection(conn);
-			}
-			throw new RuntimeException("ParseException while parsing Point WKB", pe);
-		}
+		return (Point)getGeometry(column);
 	}
 	
 	@Override
 	public LineString getLineString() {
+		return (LineString)getGeometry("geom");
+	}
+	
+	@Override
+	public LineString getLineString(String column) {
+		return (LineString)getGeometry(column);
+	}
+	
+	@Override
+	public Polygon getPolygon() {
+		return (Polygon)getGeometry("geom");
+	}
+	
+	@Override
+	public Polygon getPolygon(String column) {
+		return (Polygon)getGeometry(column);
+	}
+	
+	@Override
+	public Geometry getGeometry() {
+		return getGeometry("geom");
+	}
+	
+	@Override
+	public Geometry getGeometry(String column) {
 		try {
 			WKBReader reader = new WKBReader(GeocoderDataStore.getGeometryFactory());
-			LineString ls = (LineString)reader.read(rs.getBytes("geom"));
-			return ls;
+			Geometry geom = reader.read(rs.getBytes(column));
+			return geom;
 		} catch(SQLException sqle) {
 			try {
 				rs.getStatement().close();
@@ -230,7 +235,7 @@ public class ResultSetRowReader implements RowReader {
 			} finally {
 				ds.releaseConnection(conn);
 			}
-			throw new RuntimeException("ParseException while parsing LineString WKB", pe);
+			throw new RuntimeException("ParseException while parsing geometry WKB", pe);
 		}
 	}
 	
