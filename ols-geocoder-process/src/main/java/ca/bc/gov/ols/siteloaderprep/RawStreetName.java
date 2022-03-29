@@ -1,13 +1,13 @@
-package ca.bc.gov.siteloaderprep;
+package ca.bc.gov.ols.siteloaderprep;
 
-public class StreetNamePrep {
-	int id;
-	String body; // store the punctuated body here
-	String type;
-	String dir;
-	String qual;
-	Boolean typeIsPrefix;
-	Boolean dirIsPrefix;
+public class RawStreetName {
+	public int id;
+	public String body; // store the punctuated body here
+	public String type;
+	public String dir;
+	public String qual;
+	public Boolean typeIsPrefix;
+	public Boolean dirIsPrefix;
 	
 	@Override
 	public String toString() {

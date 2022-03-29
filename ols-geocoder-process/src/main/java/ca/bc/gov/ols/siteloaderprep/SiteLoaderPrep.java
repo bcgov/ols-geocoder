@@ -1,4 +1,4 @@
-package ca.bc.gov.siteloaderprep;
+package ca.bc.gov.ols.siteloaderprep;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -73,7 +73,7 @@ public class SiteLoaderPrep {
 	private static final String GEOCODE_HYBRID_NAMES_FILE = "geocode_Hybrid_names.csv";
 	private static final String GEOCODE_HYBRID_FILE = "geocode_Hybrid.csv";
 	private static final String RESULT_HYBRID_NAMES_FILE = "result_Hybrid_names.csv";
-	private static final String VBC_PID_FILE = "VBC_PID_EXTRACT_20200801.csv";
+	private static final String VBC_PID_FILE = "VBC_PID_EXTRACT.csv";
 
 	// output filenames
 	private static final String SITE_HYBRID_FILE = "site_Hybrid.tsv";
@@ -182,7 +182,7 @@ public class SiteLoaderPrep {
 		try {
 			rejectWriter = openRejectWriter();
 			localityMap = readLocalities();
-			Map<String, StreetNamePrep> streetNameMap = readStreetNames();
+			Map<String, RawStreetName> streetNameMap = readStreetNames();
 			Map<String, GeocodeResult> addressStringMap = readGeocodeNames(streetNameMap);
 			List<InputSite> pseudoSites = new ArrayList<InputSite>();
 			Map<String, List<InputSite>> siteMap = readGeocodeHybrid(addressStringMap, pseudoSites);
@@ -250,11 +250,11 @@ public class SiteLoaderPrep {
 		return jurolMap;
 	}
 
-	private Map<String, StreetNamePrep> readStreetNames() {
-		Map<String, StreetNamePrep> nameMap = new THashMap<String, StreetNamePrep>();
+	private Map<String, RawStreetName> readStreetNames() {
+		Map<String, RawStreetName> nameMap = new THashMap<String, RawStreetName>();
 		try(RowReader rr = new JsonRowReader(inputDir + STREET_LOAD_STREET_NAMES_FILE, geometryFactory)) {
 			while(rr.next()) {
-				StreetNamePrep name = new StreetNamePrep();
+				RawStreetName name = new RawStreetName();
 				name.id = rr.getInt("street_name_id");
 				name.body = rr.getString("name_body");
 				name.type = rr.getString("street_type");
@@ -268,7 +268,7 @@ public class SiteLoaderPrep {
 		return nameMap;
 	}
 	
-	private Map<String, GeocodeResult> readGeocodeNames(Map<String, StreetNamePrep> streetNameMap) {
+	private Map<String, GeocodeResult> readGeocodeNames(Map<String, RawStreetName> streetNameMap) {
 		ArrayList<GeocodeResult> inputNames = new ArrayList<GeocodeResult>(10000);
 		// read in the geocoder input names
 		try(RowReader rr = new CsvRowReader(inputDir + GEOCODE_HYBRID_NAMES_FILE, geometryFactory)) {
@@ -315,7 +315,7 @@ public class SiteLoaderPrep {
 				gr.executionTime = rr.getDouble("executionTime");			
 				
 				// build a street name string out of the result street name components
-				StreetNamePrep n = new StreetNamePrep();
+				RawStreetName n = new RawStreetName();
 				n.body = rr.getString("streetName");
 				n.type = rr.getString("streetType");
 				n.typeIsPrefix = rr.getBoolean("isStreetTypePrefix");
@@ -475,6 +475,7 @@ public class SiteLoaderPrep {
 				// separate pseudo-sites into their own list
 				// FME: PseudoTest
 				if(site.isPseudoSite) {
+					site.uuid = UUID.randomUUID();
 					pseudoSites.add(site);
 				} else {
 					// group the addresses based on the the hashString which is essentially the full address string
