@@ -3,7 +3,7 @@
 
 	<groupId>ca.bc.gov.ols</groupId>
 	<artifactId>ols-geocoder</artifactId>
-	<version>4.1.0-SNAPSHOT</version>
+	<version>4.2.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>OLS Geocoder</name>
 	<url>https://bcgov.github.io/ols-geocoder/</url>
@@ -226,7 +226,7 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-	
+
 	<repositories>
 		<repository>
 			<id>osgeo</id>
@@ -251,4 +251,16 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<distributionManagement>
+		<repository>
+			<id>central</id>
+			<name>artifactory-ha-primary-0-releases</name>
+			<url>https://artifacts.developer.gov.bc.ca/artifactory/g988-release</url>
+		</repository>
+			<snapshotRepository>
+			<id>snapshots</id>
+			<name>artifactory-ha-primary-0-snapshots</name>
+			<url>https://artifacts.developer.gov.bc.ca/artifactory/g988-snapshot</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>

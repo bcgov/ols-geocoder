@@ -40,10 +40,12 @@ node ('master'){
            withMaven(maven:'m3') {
               sh 'mvn clean package sonar:sonar -Dsonar.java.source=11'
            }
-	   */
+	  
           //rtMaven.run pom: 'pom.xml', goals: 'clean package sonar:sonar -Dsonar.java.soruce=11 -Dmaven.test.skip=true', buildInfo: buildInfo
 	  rtMaven.run pom: 'pom.xml', goals: 'clean compile sonar:sonar -Dsonar.java.soruce=11 -Dmaven.test.skip=true', buildInfo: buildInfo
+	  */
         }
+	    
     }
 
     /* stage("Quality Gate") {
@@ -61,6 +63,7 @@ node ('master'){
 	env.JAVA_HOME = "${tool 'ojdk'}"
 	// with `clean`, mvn rebuilds the package.  this causes the subsequent deply to fail.
         rtMaven.run pom: 'pom.xml', goals: 'install -Dmaven.test.skip=true', buildInfo: buildInfo
+	    
     }
 // */
     
