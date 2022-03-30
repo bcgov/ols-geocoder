@@ -2,7 +2,6 @@ name: data-integration-code-webhook
 
 on:
  pull_request:
-   branches: [ main master dev ]
 
 jobs:
  send-webhook:
