@@ -49,7 +49,7 @@ public class GeocoderConfig {
 	public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	public static final LocalDate NOT_RETIRED_DATE = LocalDate.parse("9999-12-31", DATE_FORMATTER);
-	
+
 	protected GeocoderConfigurationStore configStore;
 	protected int baseSrsCode = -1;
 	protected Polygon baseSrsBounds;
