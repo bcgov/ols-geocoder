@@ -2,7 +2,7 @@ name: data-integration-code-webhook
 
 on:
  pull_request:
-
+  branches: [ main ]
 jobs:
  send-webhook:
    runs-on: ubuntu-latest
