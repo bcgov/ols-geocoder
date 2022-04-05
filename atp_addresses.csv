@@ -166,7 +166,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00166-CivicAddressWithUTF-8FractionalCivicNumberSuffix,"535 1/2 Fisgard Street, Victoria, BC",CIVIC_NUMBER,"535 1/2 Fisgard St, Victoria, BC",[CIVIC_NUMBER_SUFFIX.notMatched:1],R,,,T,T
 00167-NumberedStreetName,"857 E 45th Ave Vancouver BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],R,,,T,T
 00168-NumberedStreetNameWithEmbeddedBlanks,"857 E 45 th Ave, Vancouver, BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],R,,,T,T
-00169-StreetNameWithGluedWords,"2845 Cedar Hill Rd, Victoria, BC",CIVIC_NUMBER,"2845 Cedar Hill Rd, Victoria, BC",[],F,,,T,T
+00169-StreetNameWithGluedWords,"2845 CedarHill Rd, Victoria, BC",CIVIC_NUMBER,"2845 Cedar Hill Rd, Victoria, BC",[STREET_NAME.partialMatch],R,,,T,T
 00170-LocalityNameWithGluedWords,"206 E 15th St, Northvancouver, BC",CIVIC_NUMBER,"206 E 15th St, North Vancouver, BC",[],F,,,T,T
 00171-SiteNameWithGluedWords,"AnahimLake Airport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],F,,,T,T
 00172-StreetNameWithMultipleSpellingMistakes,"Omineca St, Kitimat, BC",STREET,"Omenica St, Kitimat, BC",[],R,,,T,T
@@ -174,8 +174,8 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00174-SiteNameWithMultipleSpellingMistakes,"Anahyme Lak Arport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],R,,,T,T
 00175-NumberedStreetName,"857 E 45th Ave, Vancouver, BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],R,,,T,T
 00176-NumberedStreetNameWithEmbeddedBlanks,"857 E 45 th Ave, Vancouver, BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],R,,,T,T
-00177-StreetNameWithTwoWordsGluedTogether,"2845 Cedarhill Rd, Victoria, BC",CIVIC_NUMBER,"2845 Cedar Hill Rd, Victoria, BC",[],F,,,T,T
-00178-StreetNameWithSplitWords,"1985 Mill Stream Rd, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC",[],F,,,T,T
+00177-StreetNameWithTwoWordsGluedTogether,"2845 Cedarhill Rd, Victoria, BC",CIVIC_NUMBER,"2845 Cedar Hill Rd, Victoria, BC",[STREET_NAME.partialMatch],R,,,T,T
+00178-StreetNameWithSplitWords,"1985 Mill Stream Rd, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC",[STREET_NAME.partialMatch],R,,,T,T
 00179-UnknownSiteNameWithFrontGate,"Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],R,,,T,T
 00180-UnknownSiteNameWithoutFrontGate,"Old Mill Stream Manor 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",R,,,T,T
 00181-UnknownUnitwithUnknownSiteNameWithFrontGate,"APT 101 Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"APT 101 OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],R,,,T,T
@@ -278,8 +278,8 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00278-POBoxAtFrontOfUnitAddresssWithBUZZERNumber,"105 150 21ST ST BUZZER 49, WEST VANCOUVER, BC",CIVIC_NUMBER,"UNIT 105 -- 150 21st St, West Vancouver, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,INTERCOM_NUMBER.notAllowed]",R,,,T,T
 00279-POBoxAtFrontOfUnitAddressWithBUZZNumber,"105 150 21ST ST BUZZ 49, WEST VANCOUVER, BC",CIVIC_NUMBER,"UNIT 105 -- 150 21st St, West Vancouver, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,INTERCOM_NUMBER.notAllowed]",R,,,T,T
 00280-POBoxAtFrontOfUnitAddressWithINTERCOMNumber,"105 150 21ST ST INTERCOM 49, WEST VANCOUVER, BC",CIVIC_NUMBER,"UNIT 105 -- 150 21st St, West Vancouver, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,INTERCOM_NUMBER.notAllowed]",R,,,T,T
-00281-StreetNameWithApostrophe,"250 SMUGGLER'S COVE RD, BOWEN ISLAND, BC",CIVIC_NUMBER,"250 Smuggler's Cove Rd, Bowen Island, BC",[],R,,,T,T
-00282-StreetNameWithSpaceInsteadOfApostrophe,"250 SMUGGLER S COVE RD, BOWEN ISLAND, BC",CIVIC_NUMBER,"250 Smuggler's Cove Rd, Bowen Island, BC",[STREET_NAME.spelledWrong],R,,,T,T
+00281-StreetNameWithApostrophe,"907 LAMEY'S MILL ROAD, VANCOUVER, BC",CIVIC_NUMBER,"907 Lamey's Mill Rd, Vancouver, BC",[],R,,,T,T
+00282-StreetNameWithSpaceInsteadOfApostrophe,"907 LAMEY S MILL ROAD, VANCOUVER, BC",CIVIC_NUMBER,"907 Lamey's Mill Rd, Vancouver, BC",[LOCALITY_GARBAGE.notAllowed,STREET_NAME.spelledWrong,STREET_TYPE.missing,STREET_NAME.partialMatch],R,,,T,T
 00283-GoodAddress,"1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"1110 Cardero St, Vancouver, BC",[],R,,,T,T
 00284-UnknownSiteNameWithFrontGate,"PATRICIA APTS -- 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"PATRICIA APTS -- 1110 Cardero St, Vancouver, BC",[SITE_NAME.notMatched],R,,,T,T
 00285-UnknownSiteNameWithoutFrontGate,"PATRICIA APTS 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",R,,,T,T
@@ -299,9 +299,9 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00299-UnknownSiteNameWithFrontGate,"FRASERVIEW CARE LODGE -- 9580 WILLIAMS RD, RICHMOND, BC",CIVIC_NUMBER,"FRASERVIEW CARE LODGE -- 9580 Williams Rd, Richmond, BC",[SITE_NAME.notMatched],R,,,T,T
 00300-UnknownSiteNameWithoutFrontGate,"FRASERVIEW CARE LODGE 9580 WILLIAMS RD, RICHMOND, BC",CIVIC_NUMBER,"9580 Williams Rd, Richmond, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",R,,,T,T
 00301-UnknownSiteNameAfterStreetWithoutFrontGate,"9580 WILLIAMS RD FRASERVIEW CARE LODGE, RICHMOND, BC",CIVIC_NUMBER,"9580 Williams Rd, Richmond, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",R,,,T,T
-00302-UnknownSiteNameWithFrontGate,"UNIT 1 LYNN VALLEY CARE CENTRE -- 1070 LYNN VALLEY RD, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 LYNN VLY CARE CTR -- 1070 Lynn Valley Rd, District of North Vancouver, BC","[[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched]",R,,,T,T
-00303-UnknownSiteNameWithoutFrontGate,"UNIT 1 LYNN VALLEY CARE CENTRE 1070 LYNN VALLEY RD, NORTH VANCOUVER, BC",CIVIC_NUMBER,"1070 Lynn Valley Rd, District of North Vancouver, BC","[[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched,FRONT_GATE.missing]",R,,,T,T
-00304-UnknownSiteNameAfterStreetWithoutFrontGate,"1 1070 LYNN VALLEY RD LYNN VALLEY CARE CENTRE, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 -- 1070 Lynn Valley Rd, District of North Vancouver, BC","[[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched,FRONT_GATE.missing]",R,,,T,T
+00302-UnknownSiteNameWithFrontGate,"UNIT 1 LYNN VALLEY CARE CENTRE -- 1070 LYNN VALLEY RD, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 LYNN VLY CARE CENTRE -- 1070 Lynn Valley Rd, District of North Vancouver, BC","[SITE_NAME.notMatched,LOCALITY.isAlias]",R,,,T,T
+00303-UnknownSiteNameWithoutFrontGate,"UNIT 1 LYNN VALLEY CARE CENTRE 1070 LYNN VALLEY RD, NORTH VANCOUVER, BC",CIVIC_NUMBER,"1070 Lynn Valley Rd, District of North Vancouver, BC","[INITIAL_GARBAGE.notAllowed, LOCALITY.isAlias]",R,,,T,T
+00304-UnknownSiteNameAfterStreetWithoutFrontGate,"1 1070 LYNN VALLEY RD LYNN VALLEY CARE CENTRE, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 -- 1070 Lynn Valley Rd, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched,FRONT_GATE.missing]",R,,,T,T
 00305-UnknownSiteNameWithFrontGate,"CERWYDDEN CARE HOME -- 3243 COWICHAN LAKE RD, DUNCAN, BC",CIVIC_NUMBER,"CERWYDDEN CARE HOME -- 3243 Cowichan Lake Rd, Duncan, BC",[SITE_NAME.notMatched],R,,,T,T
 00306-UnknownSiteNameWithoutFrontGate,"CERWYDDEN CARE HOME 3243 COWICHAN LAKE RD, DUNCAN, BC",CIVIC_NUMBER,"3243 Cowichan Lake Rd, Duncan, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",R,,,T,T
 00307-UnknownSiteNameAfterStreetWithoutFrontGate,"3243 COWICHAN LAKE RD CERWYDDEN CARE HOME, DUNCAN, BC",CIVIC_NUMBER,"3243 Cowichan Lake Rd, Duncan, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",R,,,T,T
@@ -448,7 +448,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00448-CareOf,"c/o Mr Allen & Mrs Bear, PO BOX 102, Quesnel,BC",LOCALITY,"Quesnel, BC",[],F,,,T,T
 00449-CareOf,"c/o 1301 Oak Ave, Quesnel,BC",CIVIC_NUMBER,"1301 Oak Ave, Quesnel, BC",[],R,,,T,T
 00450-SuffixNameMatching,"2020 Kent Ave S, Vancouver, BC",CIVIC_NUMBER,"2020 East Kent Ave S, Vancouver, BC",[],F,,,T,T
-00451-StreetNameWordsGluedTogether,"3821 Cedarhill Rd, Saanich, BC",CIVIC_NUMBER,"3821 Cedar Hill Rd, Saanich, BC",[],F,,,T,T
+00451-StreetNameWordsGluedTogether,"3821 Cedarhill Rd, Saanich, BC",CIVIC_NUMBER,"3821 Cedar Hill Rd, Saanich, BC",[STREET_NAME.partialMatch],R,,,T,T
 00452-StreetNameCompoundWordsSeparated,"8514 Horseshoebay Rd, Anglemont, BC",CIVIC_NUMBER,"8514 Horseshoe Bay Rd, Anglemont, BC",[],R,,,T,T
 00453-NonStandardStreetTypeAbbreviation,"2908 Hwy 99, Mot Currie, BC",CIVIC_NUMBER,"2908 Hwy 99, Mount Currie, BC",[],R,,102,T,T
 00454-civicAddressWithUnitandUnknownSiteName,"UNIT 170 Happy House -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 HAPPY HOUSE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched],R,,,T,T
