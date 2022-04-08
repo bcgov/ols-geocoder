@@ -126,7 +126,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00126-IntersectionAddressWrongLocality,"gorge rd e and douglas st and Hillside Rd Saanich bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave, Victoria, BC","[STREET_NAME.notMatched:12 LOCALITY.isAlias:4]",R,,,T,T
 00127-IntersectionAddressWrongStreetType,"gorge st e and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave, Victoria, BC","[STREET_TYPE.notMatched:3 STREET_NAME.notMatched:12]",R,,,F,F
 00128-IntersectionAddressWrongStreetDirection,"gorge rd w and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave, Victoria, BC","[STREET_DIRECTION.notMatched:2 STREET_NAME.notMatched:12]",R,,,F,F
-00129-IntersectionAddressUnknownLocality,"gorge rd and douglas st bardville bc",STREET,"George Massey Tunnel, Richmond, BC","[STREET_TYPE.notMatched:3 STREET_NAME.isAlias:1 STREET_NAME.spelledWrong:2 STREET_NAME.spelledWrong:2 LOCALITY.missing:10]",R,,,F,F
+00129-IntersectionAddressUnknownLocality,"gorge rd and douglas st bardville bc",STREET,"George Massey Tunnel, Richmond, BC","[STREET_TYPE.notMatched:3 STREET_NAME.isAlias:1 STREET_NAME.spelledWrong:2 STREET_NAME.spelledWrong:2 LOCALITY.missing:10]",F,,,F,F
 00130-IntersectionAddressUnknownStreetDirection,"gorge rd n and douglas st Victoria bc",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave, Victoria, BC","[STREET_DIRECTION.notMatched:2 STREET_NAME.notMatched:12]",R,,,F,F
 00131-IntersectionAddressStreetDirectionForUndirectedStreet,"Pandora Ave W and Blanshard St Victoria bc",INTERSECTION,"Blanshard St and Pandora Ave, Victoria, BC",[STREET_DIRECTION.notMatched:2],R,,,T,T
 00132-CivicAddressNumberedStreetWithoutTH,"955 13 ave Valemont bc",CIVIC_NUMBER,"955 13th Ave, Valemount, BC",[LOCALITY.spelledWrong:2],R,,,T,T
@@ -167,7 +167,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00167-NumberedStreetName,"857 E 45th Ave Vancouver BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],R,,,T,T
 00168-NumberedStreetNameWithEmbeddedBlanks,"857 E 45 th Ave, Vancouver, BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],R,,,T,T
 00169-StreetNameWithGluedWords,"2845 CedarHill Rd, Victoria, BC",CIVIC_NUMBER,"2845 Cedar Hill Rd, Victoria, BC",[STREET_NAME.partialMatch],R,,,T,T
-00170-LocalityNameWithGluedWords,"206 E 15th St, Northvancouver, BC",CIVIC_NUMBER,"206 E 15th St, North Vancouver, BC",[],F,,,T,T
+00170-LocalityNameWithGluedWords,"1722 Elford Rd, ShawniganLake, BC",CIVIC_NUMBER,"1722 Elford Rd, Shawnigan Lake, BC",[LOCALITY.partialMatch],R,,,T,T
 00171-SiteNameWithGluedWords,"AnahimLake Airport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],F,,,T,T
 00172-StreetNameWithMultipleSpellingMistakes,"Omineca St, Kitimat, BC",STREET,"Omenica St, Kitimat, BC",[],R,,,T,T
 00173-LocalityNameWithMultipleSpellingMistakes,"Spalumchin BC",LOCALITY,"Spallumcheen, BC",[],R,,,T,T
@@ -438,7 +438,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00438-NonStandardLocalityNameAbbreviation,"1745 Esquimalt Ave, West Van, BC",CIVIC_NUMBER,"1745 Esquimalt Ave, West Vancouver, BC",[],R,,102,T,T
 00439-NonStandardLocalityNameAbbreviation,"352 W 14th St, North Vanc, BC",CIVIC_NUMBER,"352 W 14th St, North Vancouver, BC",[],R,,102,T,T
 00440-NonStandardLocalityNameAbbreviation,"569 Hody Dr, Ok Falls, BC",CIVIC_NUMBER,"569 Hody Dr, Okanagan Falls, BC",[],R,,102,T,T
-00441-NonStandardStreetNameAbbreviation,"5450 Ok Ave, Vernon, BC",LOCALITY,"Vernon, BC",[],R,,102,T,T
+00441-NonStandardStreetNameAbbreviation,"5450 Ok Ave, Vernon, BC",CIVIC_NUMBER,"5450 Oak St, Vancouver, BC",[LOCALITY.spelledWrong, LOCALITY.notMatched, STREET_TYPE.notMatched],R,,102,T,T
 00442-NonStandardStreetNameAbbreviation,"1301 Ok Ave, Quesnel, BC",CIVIC_NUMBER,"1301 Oak Ave, Quesnel, BC",[],R,,102,T,T
 00443-NonStandardGeneralDelivery,"GD, Quesnel, BC",LOCALITY,"Quesnel, BC",[],R,,102,T,T
 00444-NonStandardGeneralDelivery,"Genral Delivery, Quesnel, BC",LOCALITY,"Quesnel, BC",[],F,,102,T,T
@@ -500,3 +500,4 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00500-NoisyAddress,"Oscar the Grouch 1 Centennial Sq Felix the Cat Victoria Winnie the Pooh BC",CIVIC_NUMBER,"1 Centennial Sq, Victoria, BC",[],R,,156,T,T
 00501-StreetNameCompoundWordsSeparated,"12312 Horse Shoe Way, Richmond, BC",BLOCK,"12312 Horseshoe Way, Richmond, BC",[],F,,,T,T
 00502-StreetNameCompoundWordsSeparated,"101 Sea View St, Sayward, BC",CIVIC_NUMBER,"101 Seaview St, Sayward, BC",[],F,,,T,T
+00503-LocalityNameWithSplitWords,"1090 Ironwood St, Camp bell River, BC",CIVIC_NUMBER,"1090 Ironwood St, Campbell River, BC",[LOCALITY.partialMatch],R,,,T,T
