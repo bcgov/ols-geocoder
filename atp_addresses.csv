@@ -279,7 +279,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00279-POBoxAtFrontOfUnitAddressWithBUZZNumber,"105 150 21ST ST BUZZ 49, WEST VANCOUVER, BC",CIVIC_NUMBER,"UNIT 105 -- 150 21st St, West Vancouver, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,INTERCOM_NUMBER.notAllowed]",R,,,T,T
 00280-POBoxAtFrontOfUnitAddressWithINTERCOMNumber,"105 150 21ST ST INTERCOM 49, WEST VANCOUVER, BC",CIVIC_NUMBER,"UNIT 105 -- 150 21st St, West Vancouver, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched,INTERCOM_NUMBER.notAllowed]",R,,,T,T
 00281-StreetNameWithApostrophe,"907 LAMEY'S MILL ROAD, VANCOUVER, BC",CIVIC_NUMBER,"907 Lamey's Mill Rd, Vancouver, BC",[],R,,,T,T
-00282-StreetNameWithSpaceInsteadOfApostrophe,"907 LAMEY S MILL ROAD, VANCOUVER, BC",CIVIC_NUMBER,"907 Lamey's Mill Rd, Vancouver, BC",[LOCALITY_GARBAGE.notAllowed,STREET_NAME.spelledWrong,STREET_TYPE.missing,STREET_NAME.partialMatch],R,,,T,T
+00282-StreetNameWithSpaceInsteadOfApostrophe,"907 LAMEY S MILL ROAD, VANCOUVER, BC",CIVIC_NUMBER,"907 Lamey's Mill Rd, Vancouver, BC","[LOCALITY_GARBAGE.notAllowed,STREET_NAME.spelledWrong,STREET_TYPE.missing,STREET_NAME.partialMatch]",R,,,T,T
 00283-GoodAddress,"1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"1110 Cardero St, Vancouver, BC",[],R,,,T,T
 00284-UnknownSiteNameWithFrontGate,"PATRICIA APTS -- 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"PATRICIA APTS -- 1110 Cardero St, Vancouver, BC",[SITE_NAME.notMatched],R,,,T,T
 00285-UnknownSiteNameWithoutFrontGate,"PATRICIA APTS 1110 CARDERO ST , VANCOUVER, BC",CIVIC_NUMBER,"1110 Cardero St, Vancouver, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",R,,,T,T
@@ -438,7 +438,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00438-NonStandardLocalityNameAbbreviation,"1745 Esquimalt Ave, West Van, BC",CIVIC_NUMBER,"1745 Esquimalt Ave, West Vancouver, BC",[],R,,102,T,T
 00439-NonStandardLocalityNameAbbreviation,"352 W 14th St, North Vanc, BC",CIVIC_NUMBER,"352 W 14th St, North Vancouver, BC",[],R,,102,T,T
 00440-NonStandardLocalityNameAbbreviation,"569 Hody Dr, Ok Falls, BC",CIVIC_NUMBER,"569 Hody Dr, Okanagan Falls, BC",[],R,,102,T,T
-00441-NonStandardStreetNameAbbreviation,"5450 Ok Ave, Vernon, BC",CIVIC_NUMBER,"5450 Oak St, Vancouver, BC",[LOCALITY.spelledWrong, LOCALITY.notMatched, STREET_TYPE.notMatched],R,,102,T,T
+00441-NonStandardStreetNameAbbreviation,"5450 Ok Ave, Vernon, BC",CIVIC_NUMBER,"5450 Oak St, Vancouver, BC","[LOCALITY.spelledWrong, LOCALITY.notMatched, STREET_TYPE.notMatched]",R,,102,T,T
 00442-NonStandardStreetNameAbbreviation,"1301 Ok Ave, Quesnel, BC",CIVIC_NUMBER,"1301 Oak Ave, Quesnel, BC",[],R,,102,T,T
 00443-NonStandardGeneralDelivery,"GD, Quesnel, BC",LOCALITY,"Quesnel, BC",[],R,,102,T,T
 00444-NonStandardGeneralDelivery,"Genral Delivery, Quesnel, BC",LOCALITY,"Quesnel, BC",[],F,,102,T,T
