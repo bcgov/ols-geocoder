@@ -104,12 +104,12 @@ objects:
       spec:
         containers:
         - args:
+          - run
+          - --config
           - /conf/Caddyfile
           command:
           - caddy
-          - -quic
-          - -conf
-          image: abiosoft/caddy:no-stats
+          image: image-registry.apps.silver.devops.gov.bc.ca/988040-tools/caddy:2.4.1-alpine
           imagePullPolicy: IfNotPresent
           name: www
           resources: {}
@@ -225,10 +225,6 @@ objects:
     #name: ${APPLICATION_NAME}
   spec:
     ports:
-    - name: 9001-tcp
-      port: 9001
-      protocol: TCP
-      targetPort: 9001
     - name: 9000-tcp
       port: 9000
       protocol: TCP
@@ -357,6 +353,8 @@ objects:
   data:
     caddifile: |-
       :8080
+      root * /data
+      file_server
     # root /data
     # log stdout
     # errors stdout
