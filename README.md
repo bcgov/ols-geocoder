@@ -100,13 +100,20 @@ oc get all -l app=geocoder-admin-sidecar -n 988040-tools
 oc delete all -l app=geocoder-admin-sidecar -n 988040-tools
 ```
 
+## `cfg-maps.yaml`
+
+Geocoder config files.
+
+```
+oc process -f cfg-maps.yaml | oc apply -f -
+```
+
 ## `geocoder-template.yaml`
 
 This provision all the objects relevant to the Geocoder API.  This includes
 
 * Geocoder API web app
 * Data (or) Config Admin Web App
-* Cassandra Cluster
 * necessary services and geocoders
 * necessary NetworPolcies.
 
