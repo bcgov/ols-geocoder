@@ -115,15 +115,13 @@ This provision all the objects relevant to the Geocoder API.  This includes
 ```bash
 #!/bin/bash
 
-NS=988040-dev
 APP_NAME=geocoder
 ENV=dev
-TOOLS=988040-tools
 GEOCODER_IS_TAG=latest
 DATA_ADMIN_IS_TAG=latest
 
-# oc get all -l app=ols-geocoderr-web -n ${NS}
-# oc delete  all -l app=ols-geocoderr-web -n ${NS}
+# oc get all -l app=ols-geocoder-web
+# oc delete  all -l app=ols-geocoder-web
 
 oc process -f geocoder-template.yaml \
     -p APP_NAME=${APP_NAME} \
@@ -131,7 +129,7 @@ oc process -f geocoder-template.yaml \
     -p GEOCODER_IS_TAG=${GEOCODER_IS_TAG} \
     -p DATA_ADMIN_IS_TAG=${DATA_ADMIN_IS_TAG} \
     -o yaml \
-    | oc apply -f - -n ${NS} #\
+    | oc apply -f - -n 988040-prod #\
     #--dry-run=client
     #| yq -C - r
 ```
@@ -145,7 +143,7 @@ GEOCODER_IS_TAG=latest
 DATA_ADMIN_IS_TAG=latest
 $
 $
-$ oc process -f geocoder-template.yaml --param-file=dev.env -o yaml | oc apply -f - -n 988040-dev
+$ oc process -f geocoder-template.yaml --param-file=dev.env -o yaml | oc apply -f - -n 988040-prod
 
 ```
 
