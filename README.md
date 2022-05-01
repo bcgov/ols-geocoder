@@ -66,7 +66,8 @@ The resulting BuildConfig take ols-geocoder-web WAR file as input and when run, 
 
 ### Example  
 ```bash
-oc create -f geocoder-admin-bc.yaml -o yam -n 988040-tools
+oc create -f geocoder-web-bc.yaml -o yam -n 988040-tools \
+ | oc apply -f - -n 988040-tools
 ```
 #### Remove
 ```bash
