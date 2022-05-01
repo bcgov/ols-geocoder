@@ -89,8 +89,7 @@ The resulting BuildConfig take `ols-geocoder-admin` WAR file as input and when r
 
 ### Example  
 ```bash
-oc process -f geocoder-admin.bc.yaml -o yaml \
- | oc apply -f - -n 988040-tools
+oc apply -f geocoder-admin-bc.yaml
 ```
 #### Remove
 ```bash
