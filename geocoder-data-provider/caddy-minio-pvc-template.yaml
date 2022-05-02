@@ -199,12 +199,24 @@ objects:
           ports:
           - containerPort: 9001
             protocol: TCP
+          - containerPort: 9000
+            protocol: TCP
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           volumeMounts:
           - mountPath: /data
             name: minio-vol
+          readinessProbe:
+            httpGet:
+              path: /minio/health/ready
+              port: 9000
+              scheme: HTTP
+            initialDelaySeconds: 120
+            periodSeconds: 15
+            timeoutSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
         dnsPolicy: ClusterFirst
         restartPolicy: Always
         schedulerName: default-scheduler
@@ -231,6 +243,10 @@ objects:
       port: 9001
       protocol: TCP
       targetPort: 9001
+    - name: 9000-tcp
+      port: 9000
+      protocol: TCP
+      targetPort: 9000
     selector:
       deploymentconfig: ${MINIO_SERVICE_NAME}-${APPLICATION_NAME}
     sessionAffinity: None
