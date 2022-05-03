@@ -1,0 +1,36 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: minio-client
+  labels:
+    app: minio-client
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'minio-client:latest'
+  resources: {}
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
+  strategy:
+    type: Docker
+    dockerStrategy: {}
+  postCommit: {}
+  source:
+    type: Dockerfile
+    dockerfile: |
+      FROM golang:1.17-alpine as builder
+
+      ENV GOPATH /go
+      ENV CGO_ENABLED 0
+      ENV GO111MODULE on
+
+      RUN  \
+          apk add --no-cache git && \
+          git clone https://github.com/minio/mc && cd mc && \
+          go install -v -ldflags "$(go run buildscripts/gen-ldflags.go)"
+
+      FROM minio/minio:latest
+
+      COPY --from=builder /go/bin/mc /usr/bin/mc
+  runPolicy: Serial
