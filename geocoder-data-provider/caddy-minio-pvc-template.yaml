@@ -73,6 +73,14 @@ parameters:
     name: TOOLS_NAMESPACE
     default: e80f9d
     required: true
+  - description: Webhook url (used to trigger Tekton pipeline)
+    name: WEBHOOK_URL_GEOCODER
+    default: http://el-minio-geocodoer-webhook-listener-988040-tools.apps.silver.devops.gov.bc.ca/
+    required: true
+  - description: Webhook url (used to trigger Tekton pipeline)
+    name: WEBHOOK_URL_BAARG
+    default: http://el-minio-baarg-webhook-listener-988040-tools.apps.silver.devops.gov.bc.ca/
+    required: true
 objects:
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
@@ -160,15 +168,7 @@ objects:
       app: ${APPLICATION_NAME}
       deploymentconfig: ${MINIO_SERVICE_NAME}
     strategy:
-      activeDeadlineSeconds: 21600
-      resources: {}
-      rollingParams:
-        intervalSeconds: 1
-        maxSurge: 25%
-        maxUnavailable: 25%
-        timeoutSeconds: 600
-        updatePeriodSeconds: 1
-      type: Rolling
+      type: Recreate
     template:
       metadata:
         creationTimestamp: null
@@ -201,12 +201,32 @@ objects:
             ports:
             - containerPort: 9001
               protocol: TCP
+            - containerPort: 9000
+              protocol: TCP
             resources: {}
-            terminationMessagePath: /dev/termination-log
+            lifecycle:
+              postStart:
+                exec:
+                  command:
+                    - "/bin/sh"
+                    - "-c"
+                    - >
+                      mc mb data/geocoder;
+                      mc mb data/baarg;
+                      # until ( mc alias set data-integration-minio https://${MINIO_SERVICE_NAME}-${APPLICATION_NAME}}-api.${ROUTE_SUBDOMAIN}/ ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD} ) do echo '...waiting...' && sleep 1; done
+                      # mc admin config get data-integration-minio notify_webhook;
+                      # mc admin config set data-integration-minio notify_webhook:geocoder queue_limit='0' endpoint=$WEBHOOK_URL_GEOCODER queue_dir='';
+                      # mc admin config set data-integration-minio notify_webhook:baarg queue_limit='0' endpoint=$WEBHOOK_URL_BAARG queue_dir='';
+                      # mc admin service restart data-integration-minio;
+                      # mc event add data-integration-minio/geocoder arn:minio:sqs::geocoder:webhook --event put;
+                      # mc event add data-integration-minio/baarg arn:minio:sqs::baarg:webhook --event put;
+
             terminationMessagePolicy: File
             volumeMounts:
             - mountPath: /data
               name: minio-vol
+            - mountPath: /.mc
+              name: mc-vol
             readinessProbe:
               httpGet:
                 path: /minio/health/ready
@@ -223,6 +243,9 @@ objects:
         securityContext: {}
         terminationGracePeriodSeconds: 30
         volumes:
+        - name: mc-vol
+          persistentVolumeClaim:
+            claimName: ${APPLICATION_NAME}-mc-config
         - name: minio-vol
           persistentVolumeClaim:
             claimName: ${APPLICATION_NAME}-pv
@@ -236,12 +259,17 @@ objects:
     labels:
       app: ${APPLICATION_NAME}
     name: ${MINIO_SERVICE_NAME}-${APPLICATION_NAME}
+    #name: ${APPLICATION_NAME}
   spec:
     ports:
     - name: 9001-tcp
       port: 9001
       protocol: TCP
       targetPort: 9001
+    - name: 9000-tcp
+      port: 9000
+      protocol: TCP
+      targetPort: 9000
     selector:
       deploymentconfig: ${MINIO_SERVICE_NAME}-${APPLICATION_NAME}
     sessionAffinity: None
@@ -274,6 +302,23 @@ objects:
     host: ${MINIO_SERVICE_NAME}-${APPLICATION_NAME}.${ROUTE_SUBDOMAIN}
     port:
       targetPort: 9001-tcp
+    tls:
+      termination: edge
+    to:
+      kind: Service
+      name: ${MINIO_SERVICE_NAME}-${APPLICATION_NAME}
+      weight: 100
+    wildcardPolicy: None
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    labels:
+      app: ${APPLICATION_NAME}
+    name: ${MINIO_SERVICE_NAME}-${APPLICATION_NAME}-api
+  spec:
+    host: ${MINIO_SERVICE_NAME}-${APPLICATION_NAME}-api.${ROUTE_SUBDOMAIN}
+    port:
+      targetPort: 9000-tcp
     tls:
       termination: edge
     to:
@@ -353,7 +398,23 @@ objects:
     resources:
       requests:
         storage: 5Gi
-
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    annotations:
+      #volume.beta.kubernetes.io/storage-class: gluster-file
+      volume.beta.kubernetes.io/storage-provisioner: netapp.io/trident
+    finalizers:
+    - kubernetes.io/pvc-protection
+    labels:
+      app: ${APPLICATION_NAME}
+    name: ${APPLICATION_NAME}-mc-config
+  spec:
+    accessModes:
+    - ReadWriteMany
+    resources:
+      requests:
+        storage: 50Mi
 - apiVersion: v1
   data:
     caddifile: |-
