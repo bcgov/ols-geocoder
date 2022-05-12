@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>ca.bc.gov.ols</groupId>
 		<artifactId>ols-geocoder</artifactId>
-		<version>4.2.0-SNAPSHOT</version>
+		<version>4.2.1-SNAPSHOT</version>
 	</parent>
 
 	<name>OLS Geocoder Admin</name>
