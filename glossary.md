@@ -112,4 +112,3 @@ Term | Definition
 <a name="unitNumberSuffix">unitNumberSuffix</a> | A letter that follows the unit number as in Unit 1A.
 <a name="version">version</a> | Software version of the REST Web Service
 <a name="websiteUrl">websiteUrl</a> | Web site URL of occupant
-<a name="yourId">yourId<a> | Unique identifier you have assigned to an address occupant
