@@ -111,7 +111,7 @@ Term | Definition
 <a name="tags">tags</a> | A list of tags separated by semicolons (e.g., schools;courts;employment). A tag is a word used to describe the type of occupant you are searching for.
 <a name="unitNumber">unitNumber</a> | The number of the unit, suite, or apartment within a house or building.
 <a name="unitNumberSuffix">unitNumberSuffix</a> | A letter that follows the unit number as in Unit 1A.
-<a name="unitDesignator">unitDesignator</a> | The type of unit. Examples include APT, BLDG, BSMT, FLR, LOBBY, LWR, PAD, PH, REAR, RM, SIDE, SITE, SUITE, TH, UNIT, UPPR.
+<a name="unitDesignator">unitDesignator</a> | The type of unit within a house or building. Examples include APT, BLDG, BSMT, FLR, LOBBY, LWR, PAD, PH, REAR, RM, SIDE, SITE, SUITE, TH, UNIT, UPPR.
 <a name="version">version</a> | Software version of the REST Web Service
 <a name="websiteUrl">websiteUrl</a> | Web site URL of occupant
 <a name="yourId">yourId<a> | Unique identifier you have assigned to an address occupant
