@@ -26,8 +26,8 @@ Term | Definition
 <a name="contactFax">contactFax</a> | Contact fax number of occupant
 <a name="contactPhone">contactPhone</a> | Contact phone number of occupant
 <a name="custodianId">custodianId</a> | Unique id assigned to custodian of occupant data.
-<a name="dateOccupantUpdated">dateOccupantUpdated</a> | The date the occupant was last updated in the Geographic Site Registry.
 <a name="dateOccupantAdded">dateOccupantAdded</a> | The date the occupant was added to the Geographic Site Registry.
+<a name="dateOccupantUpdated">dateOccupantUpdated</a> | The date the occupant was last updated in the Geographic Site Registry.
 <a name="degree">degree</a> | The number of road segments that intersection at an intersection. The degree of a dead-end is 1. The degree of a 4-way intersection is 4.
 <a name="echo">echo</a> | Include unmatched address details such as site name in results.
 <a name="electoralArea">electoralArea</a> | The name of the Electoral Area a physical address is located in. Is empty if address is located in a municipality. An Electoral Area is an administrative area within a [Regional-District](http://www.cscd.gov.bc.ca/lgd/pathfinder-rd.htm) in British Columbia.
