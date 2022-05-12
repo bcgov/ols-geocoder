@@ -109,10 +109,9 @@ Term | Definition
 <a name="streetQualifier">streetQualifier</a> | The qualifier of a street as assigned by a municipality (e.g., the Bridge in Johnson St Bridge). The set of all street qualifiers is defined by the provincial Integrated Transportion Network program. Here are some more qualifiers:<br>350, 420, Airport, Airstrip, Arm, Bay, Beach, Boardwalk, Boatlaunch, Brakecheck, Campground, Causeway, Chainoff, Chainup, Channel, Conn, Creek, Dam, Day Use Area, Diversion, Extension, Falls, Ferry, Flyover, Frtg, Hill, Hospital, Island, Lake, Marina, MHP, Offramp, Onramp, Overhead, Overpass, Parkinglot, Passage, Picnicarea, Pk, Point, Pullout, Ramp, Recsite, Restarea, River, School, Seabus, Shoreline, Snowshed, Station, Stub, Terminal,  TrailerCrt, Trailhead, Trestle, Tunnel, Underpass, Viaduct, WeighScale
 <a name="subSites">subSites</a> | Represents all subsites of a given site.
 <a name="tags">tags</a> | A list of tags separated by semicolons (e.g., schools;courts;employment). A tag is a word used to describe the type of occupant you are searching for.
+<a name="unitDesignator">unitDesignator</a> | The type of unit within a house or building. Examples include APT, BLDG, BSMT, FLR, LOBBY, LWR, PAD, PH, REAR, RM, SIDE, SITE, SUITE, TH, UNIT, UPPR.
 <a name="unitNumber">unitNumber</a> | The number of the unit, suite, or apartment within a house or building.
 <a name="unitNumberSuffix">unitNumberSuffix</a> | A letter that follows the unit number as in Unit 1A.
-<a name="unitDesignator">unitDesignator</a> | The type of unit within a house or building. Examples include APT, BLDG, BSMT, FLR, LOBBY, LWR, PAD, PH, REAR, RM, SIDE, SITE, SUITE, TH, UNIT, UPPR.
 <a name="version">version</a> | Software version of the REST Web Service
 <a name="websiteUrl">websiteUrl</a> | Web site URL of occupant
 <a name="yourId">yourId<a> | Unique identifier you have assigned to an address occupant
-
