@@ -299,9 +299,9 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00299-UnknownSiteNameWithFrontGate,"FRASERVIEW CARE LODGE -- 9580 WILLIAMS RD, RICHMOND, BC",CIVIC_NUMBER,"FRASERVIEW CARE LODGE -- 9580 Williams Rd, Richmond, BC",[SITE_NAME.notMatched],R,,,T,T
 00300-UnknownSiteNameWithoutFrontGate,"FRASERVIEW CARE LODGE 9580 WILLIAMS RD, RICHMOND, BC",CIVIC_NUMBER,"9580 Williams Rd, Richmond, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",R,,,T,T
 00301-UnknownSiteNameAfterStreetWithoutFrontGate,"9580 WILLIAMS RD FRASERVIEW CARE LODGE, RICHMOND, BC",CIVIC_NUMBER,"9580 Williams Rd, Richmond, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",R,,,T,T
-00302-UnknownSiteNameWithFrontGate,"UNIT 1 LYNN VALLEY CARE CENTRE -- 1070 LYNN VALLEY RD, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 LYNN VLY CARE CENTRE -- 1070 Lynn Valley Rd, District of North Vancouver, BC","[SITE_NAME.notMatched,LOCALITY.isAlias]",R,,,T,T
+00302-UnknownSiteNameWithFrontGate,"UNIT 1 LYNN VALLEY CARE CENTRE -- 1070 LYNN VALLEY RD, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 LYNN VLY CARE CTR -- 1070 Lynn Valley Rd, District of North Vancouver, BC","[SITE_NAME.notMatched,LOCALITY.isAlias,MAX_RESULTS.too_low_to_include_all_best_matches]",R,,,T,T
 00303-UnknownSiteNameWithoutFrontGate,"UNIT 1 LYNN VALLEY CARE CENTRE 1070 LYNN VALLEY RD, NORTH VANCOUVER, BC",CIVIC_NUMBER,"1070 Lynn Valley Rd, District of North Vancouver, BC","[INITIAL_GARBAGE.notAllowed, LOCALITY.isAlias]",R,,,T,T
-00304-UnknownSiteNameAfterStreetWithoutFrontGate,"1 1070 LYNN VALLEY RD LYNN VALLEY CARE CENTRE, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 -- 1070 Lynn Valley Rd, District of North Vancouver, BC","[UNIT_DESIGNATOR.missing, UNIT_NUMBER.notMatched, LOCALITY.isAlias,SITE_NAME.notMatched,FRONT_GATE.missing]",R,,,T,T
+00304-UnknownSiteNameAfterStreetWithoutFrontGate,"1 1070 LYNN VALLEY RD LYNN VALLEY CARE CENTRE, NORTH VANCOUVER, BC",CIVIC_NUMBER,"UNIT 1 -- 1070 Lynn Valley Rd, District of North Vancouver, BC","[LOCALITY_GARBAGE.notAllowed,UNIT_DESIGNATOR.missing,UNIT_NUMBER.notMatched,LOCALITY.isAlias]",R,,,T,T
 00305-UnknownSiteNameWithFrontGate,"CERWYDDEN CARE HOME -- 3243 COWICHAN LAKE RD, DUNCAN, BC",CIVIC_NUMBER,"CERWYDDEN CARE HOME -- 3243 Cowichan Lake Rd, Duncan, BC",[SITE_NAME.notMatched],R,,,T,T
 00306-UnknownSiteNameWithoutFrontGate,"CERWYDDEN CARE HOME 3243 COWICHAN LAKE RD, DUNCAN, BC",CIVIC_NUMBER,"3243 Cowichan Lake Rd, Duncan, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",R,,,T,T
 00307-UnknownSiteNameAfterStreetWithoutFrontGate,"3243 COWICHAN LAKE RD CERWYDDEN CARE HOME, DUNCAN, BC",CIVIC_NUMBER,"3243 Cowichan Lake Rd, Duncan, BC","[SITE_NAME.notMatched,FRONT_GATE.missing]",R,,,T,T
@@ -438,7 +438,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00438-NonStandardLocalityNameAbbreviation,"1745 Esquimalt Ave, West Van, BC",CIVIC_NUMBER,"1745 Esquimalt Ave, West Vancouver, BC",[],R,,102,T,T
 00439-NonStandardLocalityNameAbbreviation,"352 W 14th St, North Vanc, BC",CIVIC_NUMBER,"352 W 14th St, North Vancouver, BC",[],R,,102,T,T
 00440-NonStandardLocalityNameAbbreviation,"569 Hody Dr, Ok Falls, BC",CIVIC_NUMBER,"569 Hody Dr, Okanagan Falls, BC",[],R,,102,T,T
-00441-NonStandardStreetNameAbbreviation,"5450 Ok Ave, Vernon, BC",CIVIC_NUMBER,"5450 Oak St, Vancouver, BC","[LOCALITY.spelledWrong, LOCALITY.notMatched, STREET_TYPE.notMatched]",R,,102,T,T
+00441-NonStandardStreetNameAbbreviation,"5450 Ok St, Vancouver, BC",CIVIC_NUMBER,"5450 Oak St, Vancouver, BC",[],R,,102,T,T
 00442-NonStandardStreetNameAbbreviation,"1301 Ok Ave, Quesnel, BC",CIVIC_NUMBER,"1301 Oak Ave, Quesnel, BC",[],R,,102,T,T
 00443-NonStandardGeneralDelivery,"GD, Quesnel, BC",LOCALITY,"Quesnel, BC",[],R,,102,T,T
 00444-NonStandardGeneralDelivery,"Genral Delivery, Quesnel, BC",LOCALITY,"Quesnel, BC",[],F,,102,T,T
