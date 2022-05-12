@@ -455,7 +455,6 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 				+ escape(config.getDisclaimer()) + "</value></Data>\r\n"
 				+ "<Data name=\"privacyStatement\"><value>"
 				+ escape(config.getPrivacyStatement()) + "</value></Data>\r\n"
-				+ escape("http://www2.gov.bc.ca/gov/admin/privacy.page") + "</value></Data>\r\n"
 				+ "<Data name=\"copyrightNotice\"><value>"
 				+ escape(config.getCopyrightNotice())
 				+ "</value></Data>\r\n"
