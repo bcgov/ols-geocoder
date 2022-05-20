@@ -13,6 +13,7 @@ oc \
     process \
     -p ROUTE_SUBDOMAIN=apps.silver.devops.gov.bc.ca \
     -p APPLICATION_NAME=gc-address-range-gen-datastore \
+    -p TOOLS_NAMESPACE=${TOOLS_NAMESPACE} \
     -f caddy-minio-pvc-template.yaml \
     -o yaml \
     | oc apply \

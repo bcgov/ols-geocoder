@@ -73,17 +73,17 @@ parameters:
     name: TOOLS_NAMESPACE
     default: e80f9d
     required: true
-  - description: Webhook url (used to trigger geocoder/bgeo apps reload)
-    name: WEBHOOK_URL_GEOCODER
-    default: http://el-minio-geocodoer-webhook-listener-988040-tools.apps.silver.devops.gov.bc.ca/
-    required: true
-  - description: Webhook url (used to generate address ranges)
-    name: WEBHOOK_URL_BAARG
-    default: http://el-minio-baarg-webhook-listener-988040-tools.apps.silver.devops.gov.bc.ca/
-    required: true
-  - name: WEBHOOK_URL_ROUTER
-    description: Webhook url (used to trigger router app reload)
-    default: http://el-minio-router-webhook-listener-988040-tools.apps.silver.devops.gov.bc.ca/
+  # - description: Webhook url (used to trigger geocoder/bgeo apps reload)
+  #   name: WEBHOOK_URL_GEOCODER
+  #   default: http://el-minio-geocodoer-webhook-listener-988040-tools.apps.silver.devops.gov.bc.ca/
+  #   required: true
+  # - description: Webhook url (used to generate address ranges)
+  #   name: WEBHOOK_URL_BAARG
+  #   default: http://el-minio-baarg-webhook-listener-988040-tools.apps.silver.devops.gov.bc.ca/
+  #   required: true
+  # - name: WEBHOOK_URL_ROUTER
+  #   description: Webhook url (used to trigger router app reload)
+  #   default: http://el-minio-router-webhook-listener-988040-tools.apps.silver.devops.gov.bc.ca/
 objects:
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
@@ -403,7 +403,7 @@ objects:
     - ReadWriteMany
     resources:
       requests:
-        storage: 5Gi
+        storage: 10Gi
 - apiVersion: v1
   kind: PersistentVolumeClaim
   metadata:
