@@ -7,7 +7,7 @@ Checkout https://github.com/bcgov-dss/loc-tools/tree/main/helm/tekton-pipelines
 From tekton-pipelines/ run (where geocoder-helm-1s is a chart name)
 
 ```
-helm install geocoder-helm-1s . --values=examples/geocoder-pr-trigger.yaml
+helm install geocoder-helm-1s . --values=examples/geocoder-pr-triggers.yaml
 ```
 
 To uninstall:
