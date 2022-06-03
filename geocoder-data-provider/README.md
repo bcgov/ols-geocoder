@@ -19,3 +19,16 @@ oc \
     | oc apply \
       -n ${YOUR_NAMESPACER} -f -
 ```
+
+# Setting up bucket webhooks
+
+```
+// create a bucket
+mc mb data/geocoder;
+// create a webhook, where $WEBHOOK_URL_GEOCODER is a target endpoint
+mc admin config set data-integration-minio notify_webhook:geocoder queue_limit='10' endpoint=$WEBHOOK_URL_GEOCODER queue_dir='/.mc/queue/';
+// restart service
+mc admin service restart data-integration-minio;
+// assign webhook to bucket 
+mc event add data-integration-minio/geocoder arn:minio:sqs::geocoder:webhook --event put --suffix .files --prefix geocoder;
+```
