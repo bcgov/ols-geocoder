@@ -34,6 +34,7 @@ message: |-
   Deployment
     ${APP_NAME}-${ENV}-web   - Geocoder Web API
     ${APP_NAME}-${ENV}-admin - Admin WebApp
+    ${APP_NAME}-${ENV}-data-provider-monitor - Data Provider Monitor
 
   Service
     ${APP_NAME}-${ENV}-web   - Geocoder Web API
@@ -41,12 +42,6 @@ message: |-
 
   Route
     N/A - Routes are configured with the Kong Gateway
-
-  DeploymentConfig
-    N/A
-
-  Deployment
-    N/A
 
   NetworkPolicy
     allow-from-openshift-ingress
@@ -68,7 +63,10 @@ parameters:
     description: "tools namespace where build will be"
     value: tools_namespace
     required: true
-
+  - name: "DATA_PROVIDER_URL"
+    description: "URL for data provider bucket containing geocoder config files"
+    value: https://minio-geocoder-datastore-prod.apps.silver.devops.gov.bc.ca/
+    requited: true
   - name: "GEOCODER_IS_TAG"
     description: "The image stream tag to use for the geocoder-sidecar"
     required: true
@@ -396,6 +394,8 @@ objects:
                     secretKeyRef:
                       name: minio-data-integration-pipeline-datastore
                       key: minioSecretKey
+                - name: DATA_PROVIDER_URL
+                  value: ${DATA_PROVIDER_URL}
               ports:
                 - containerPort: 9000
                   protocol: TCP
@@ -430,7 +430,7 @@ objects:
                       - "sh"
                       - "-c"
                       - >
-                        mc alias set geocoder-prod https://minio-geocoder-datastore-prod.apps.silver.devops.gov.bc.ca/ $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD;
+                        mc alias set geocoder-prod $DATA_PROVIDER_URL $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD;
                         mc cp geocoder-prod/app-configs/ /data/app-configs/;
                         nohup mc mirror --watch /data/app-configs/ geocoder-prod/app-configs/
           restartPolicy: Always
