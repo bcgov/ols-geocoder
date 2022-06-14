@@ -186,8 +186,8 @@ objects:
           - name: tc-conf
             emptyDir: {}
           - name: geocoder-config
-            configMap:
-              name: bgeo-file-based-config
+            persistentVolumeClaim:
+              claimName: bgeo-configs
          containers:
            - resources:
                limits:
@@ -222,7 +222,7 @@ objects:
               - name: LogFilePath
                 value: /usr/local/tomcat/logs/bgeo.log
               - name: OLS_FILE_CONFIGURATION_URL
-                value: file://apps/config/geocoder/
+                value: file://apps/config/geocoder/app-configs/
               - name: OLS_GEOCODER_CONFIGURATION_STORE
                 value: ca.bc.gov.ols.geocoder.config.FileGeocoderConfigurationStore
              ports:
@@ -283,8 +283,8 @@ objects:
             - name: tc-conf
               emptyDir: {}
             - name: geocoder-config
-              configMap:
-                name: bgeo-file-based-config
+              persistentVolumeClaim:
+                claimName: bgeo-configs
           containers:
             - resources: {}
               readinessProbe:
@@ -316,7 +316,7 @@ objects:
                 - name: LogFilePath
                   value: /usr/local/tomcat/logs/bgeo.log
                 - name: OLS_FILE_CONFIGURATION_URL
-                  value: file://apps/config/geocoder/
+                  value: file://apps/config/geocoder/app-configs/
                 - name: OLS_GEOCODER_CONFIGURATION_STORE
                   value: ca.bc.gov.ols.geocoder.config.FileGeocoderConfigurationStore
               ports:
@@ -348,6 +348,140 @@ objects:
       revisionHistoryLimit: 10
       progressDeadlineSeconds: 600
 
+  - kind: Deployment
+    apiVersion: apps/v1
+    metadata:
+      name: ${APP_NAME}-${ENV}-data-provider-monitor
+      generation: 1
+      labels:
+        app: ${APP_NAME}-${ENV}-data-provider-monitor
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: ${APP_NAME}-${ENV}-data-provider-monitor
+          name: ${APP_NAME}-${ENV}-data-provider-monitor
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: ${APP_NAME}-${ENV}-data-provider-monitor
+            name: ${APP_NAME}-${ENV}-data-provider-monitor
+        spec:
+          volumes:
+            - name: bgeo-configs
+              persistentVolumeClaim:
+                claimName: bgeo-configs
+            - name: bgeo-mc
+              persistentVolumeClaim:
+                claimName: bgeo-mc
+          containers:
+            - resources:
+                limits:
+                  cpu: 250m
+                  memory: 1Gi
+                requests:
+                  cpu: 50m
+                  memory: 256Mi
+              terminationMessagePath: /dev/termination-log
+              name: ${APP_NAME}-data-provider-monitor
+              env:
+                - name: MINIO_ROOT_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: minio-data-integration-pipeline-datastore
+                      key: minioAccessKey
+                - name: MINIO_ROOT_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: minio-data-integration-pipeline-datastore
+                      key: minioSecretKey
+              ports:
+                - containerPort: 9000
+                  protocol: TCP
+              imagePullPolicy: IfNotPresent
+              volumeMounts:
+                - name: bgeo-configs
+                  mountPath: /data
+                - name: bgeo-mc
+                  mountPath: /.mc
+              terminationMessagePolicy: File
+              image: >-
+                image-registry.openshift-image-registry.svc:5000/988040-tools/minio-client:latest
+              args:
+                - -C
+                - /data
+                - server
+                - /data
+              readinessProbe:
+                httpGet:
+                  path: /minio/health/ready
+                  port: 9000
+                  scheme: HTTP
+                initialDelaySeconds: 120
+                periodSeconds: 15
+                timeoutSeconds: 10
+                successThreshold: 1
+                failureThreshold: 3
+              lifecycle:
+                postStart:
+                  exec:
+                    command:
+                      - "sh"
+                      - "-c"
+                      - >
+                        mc alias set geocoder-prod https://minio-geocoder-datastore-prod.apps.silver.devops.gov.bc.ca/ $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD;
+                        mc cp geocoder-prod/app-configs/ /data/app-configs/;
+                        nohup mc mirror --watch /data/app-configs/ geocoder-prod/app-configs/
+          restartPolicy: Always
+          terminationGracePeriodSeconds: 30
+          dnsPolicy: ClusterFirst
+          securityContext: {}
+          schedulerName: default-scheduler
+      strategy:
+        type: Recreate
+      revisionHistoryLimit: 10
+      progressDeadlineSeconds: 600
+  - kind: PersistentVolumeClaim
+    apiVersion: v1
+    metadata:
+      name: bgeo-configs
+      finalizers:
+        - kubernetes.io/pvc-protection
+    spec:
+      accessModes:
+        - ReadWriteMany
+      resources:
+        requests:
+          storage: 100Mi
+      storageClassName: netapp-file-standard
+      volumeMode: Filesystem
+    status:
+      phase: Bound
+      accessModes:
+        - ReadWriteMany
+      capacity:
+        storage: 100Mi
+  - kind: PersistentVolumeClaim
+    apiVersion: v1
+    metadata:
+      name: bgeo-mc
+      finalizers:
+        - kubernetes.io/pvc-protection
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 100Mi
+      storageClassName: netapp-file-standard
+      volumeMode: Filesystem
+    status:
+      phase: Bound
+      accessModes:
+        - ReadWriteOnce
+      capacity:
+        storage: 100Mi
 
   - kind: NetworkPolicy
     apiVersion: networking.k8s.io/v1
