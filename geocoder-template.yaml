@@ -431,7 +431,7 @@ objects:
                       - "-c"
                       - >
                         mc alias set geocoder-prod $DATA_PROVIDER_URL $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD;
-                        mc cp geocoder-prod/app-configs/ /data/app-configs/;
+                        mc cp --recursive geocoder-prod/app-configs/ /data/app-configs/;
                         nohup mc mirror --watch /data/app-configs/ geocoder-prod/app-configs/
           restartPolicy: Always
           terminationGracePeriodSeconds: 30
@@ -470,7 +470,7 @@ objects:
         - kubernetes.io/pvc-protection
     spec:
       accessModes:
-        - ReadWriteOnce
+        - ReadWriteMany
       resources:
         requests:
           storage: 100Mi
