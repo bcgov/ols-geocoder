@@ -73,6 +73,9 @@ parameters:
   - name: "DATA_ADMIN_IS_TAG"
     description: "The image stream tag to use for the ols-admin-sidecar"
     required: true
+  - name: "MINIO_BUCKET"
+    description: "Tminio bucket containing config files"
+    required: true
 
 objects:
   - kind: Route
@@ -220,7 +223,7 @@ objects:
               - name: LogFilePath
                 value: /usr/local/tomcat/logs/bgeo.log
               - name: OLS_FILE_CONFIGURATION_URL
-                value: file://apps/config/geocoder/app-configs/
+                value: file://apps/config/geocoder/${MINIO_BUCKET}/
               - name: OLS_GEOCODER_CONFIGURATION_STORE
                 value: ca.bc.gov.ols.geocoder.config.FileGeocoderConfigurationStore
              ports:
@@ -314,7 +317,7 @@ objects:
                 - name: LogFilePath
                   value: /usr/local/tomcat/logs/bgeo.log
                 - name: OLS_FILE_CONFIGURATION_URL
-                  value: file://apps/config/geocoder/app-configs/
+                  value: file://apps/config/geocoder/${MINIO_BUCKET}/
                 - name: OLS_GEOCODER_CONFIGURATION_STORE
                   value: ca.bc.gov.ols.geocoder.config.FileGeocoderConfigurationStore
               ports:
@@ -396,6 +399,8 @@ objects:
                       key: minioSecretKey
                 - name: DATA_PROVIDER_URL
                   value: ${DATA_PROVIDER_URL}
+                - name: MINIO_BUCKET
+                  value: ${MINIO_BUCKET}
               ports:
                 - containerPort: 9000
                   protocol: TCP
@@ -431,8 +436,10 @@ objects:
                       - "-c"
                       - >
                         mc alias set geocoder-prod $DATA_PROVIDER_URL $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD;
-                        mc cp --recursive geocoder-prod/app-configs/ /data/app-configs/;
-                        nohup mc mirror --watch /data/app-configs/ geocoder-prod/app-configs/
+
+                        mc cp --recursive geocoder-prod/$MINIO_BUCKET/ /data/$MINIO_BUCKET/;
+                        # leave this step as manual, as otherwise the pod is stuck in perpeptual initialization state
+                        # nohup mc mirror --watch /data/$MINIO_BUCKET/ geocoder-prod/$MINIO_BUCKET/;
           restartPolicy: Always
           terminationGracePeriodSeconds: 30
           dnsPolicy: ClusterFirst
