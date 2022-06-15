@@ -438,8 +438,8 @@ objects:
                         mc alias set geocoder-prod $DATA_PROVIDER_URL $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD;
 
                         mc cp --recursive geocoder-prod/$MINIO_BUCKET/ /data/$MINIO_BUCKET/;
-                        # leave this step as manual, as otherwise the pod is stuck in perpeptual initialization state
-                        # nohup mc mirror --watch /data/$MINIO_BUCKET/ geocoder-prod/$MINIO_BUCKET/;
+
+                        nohup mc mirror --watch /data/geocoder-configs-test/ geocoder-prod/geocoder-configs-test/ >/dev/null 2>&1 &
           restartPolicy: Always
           terminationGracePeriodSeconds: 30
           dnsPolicy: ClusterFirst
