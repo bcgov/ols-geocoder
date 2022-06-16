@@ -74,9 +74,13 @@ parameters:
     description: "The image stream tag to use for the ols-admin-sidecar"
     required: true
   - name: "MINIO_BUCKET"
-    description: "Tminio bucket containing config files"
+    description: "minio bucket containing config files"
+    value: geocoder-configs-dev
     required: true
-
+  - name: "MINIO_URL"
+    description: "minio bucket containing config files"
+    value: https://geocoder-datastore-prod.apps.silver.devops.gov.bc.ca/geocoder-configs-dev/
+    required: true
 objects:
   - kind: Route
     apiVersion: route.openshift.io/v1
@@ -223,7 +227,7 @@ objects:
               - name: LogFilePath
                 value: /usr/local/tomcat/logs/bgeo.log
               - name: OLS_FILE_CONFIGURATION_URL
-                value: file://apps/config/geocoder/${MINIO_BUCKET}/
+                value: ${MINIO_URL}
               - name: OLS_GEOCODER_CONFIGURATION_STORE
                 value: ca.bc.gov.ols.geocoder.config.FileGeocoderConfigurationStore
              ports:
@@ -439,7 +443,7 @@ objects:
 
                         mc cp --recursive geocoder-prod/$MINIO_BUCKET/ /data/$MINIO_BUCKET/;
 
-                        nohup mc mirror --watch /data/geocoder-configs-test/ geocoder-prod/geocoder-configs-test/ >/dev/null 2>&1 &
+                        nohup mc mirror --watch /data/$MINIO_BUCKET/ geocoder-prod/$MINIO_BUCKET/ >/dev/null 2>&1 &
           restartPolicy: Always
           terminationGracePeriodSeconds: 30
           dnsPolicy: ClusterFirst
