@@ -190,9 +190,6 @@ objects:
             emptyDir: {}
           - name: tc-conf
             emptyDir: {}
-          - name: geocoder-config
-            persistentVolumeClaim:
-              claimName: bgeo-configs
          containers:
            - resources:
                limits:
@@ -244,8 +241,6 @@ objects:
                   mountPath: /usr/local/tomcat/temp
                 - name: tc-conf
                   mountPath: /usr/local/tomcat/conf/Catalina
-                - name: geocoder-config
-                  mountPath: /apps/config/geocoder
              terminationMessagePolicy: File
              image: >-
                image-registry.openshift-image-registry.svc:5000/988040-tools/geocoder-sidecar:${GEOCODER_IS_TAG}
