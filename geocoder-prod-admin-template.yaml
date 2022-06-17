@@ -1,0 +1,202 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+labels:
+  template: geocoder-template
+metadata:
+  name: geocoder-template
+
+  annotations:
+    openshift.io/display-name: "DataBC Geocoder API"
+    description: >-
+      An example Geocoder API application with
+      a Data Admin WebApp and a Geocoder API. For more information
+      about using this template, including OpenShift considerations, see
+      https://docs.openshift.com/container-platform/4.6/openshift_images/using-templates.html.
+
+
+      WARNING: Any data stored will be lost upon pod destruction. Only use this
+      template for testing."
+    openshift.io/long-description: >-
+      This template defines resources needed to develop a Geoccoder API
+      application, including a build configuration, application DeploymentConfig, and
+      configuration database DeploymentConfig.  The database is stored in
+      persistent storage.
+
+    tags: "geocoder,java,gis,location"
+    iconClass: icon-spring
+    openshift.io/provider-display-name: "Data Systems and Services, DataBC"
+    openshift.io/documentation-url: "https://github.com/bcgov/ols-geocoder"
+    openshift.io/support-url: "https://access.redhat.com"
+message: |-
+  Your admin credentials are ${ADMIN_USERNAME}:${ADMIN_PASSWORD}
+  The following objects have been created in you project:
+
+  Deployment
+    ${APP_NAME}-${ENV}-web   - Geocoder Web API
+    ${APP_NAME}-${ENV}-admin - Admin WebApp
+    ${APP_NAME}-${ENV}-data-provider-monitor - Data Provider Monitor
+
+  Service
+    ${APP_NAME}-${ENV}-web   - Geocoder Web API
+    ${APP_NAME}-${ENV}-admin - Admin WebApp
+
+  Route
+    N/A - Routes are configured with the Kong Gateway
+
+  NetworkPolicy
+    allow-from-openshift-ingress
+    allow-same-namespace
+    deny-by-default
+    allow-traffic-from-gateway-to-${APP_NAME}-${ENV}
+
+parameters:
+
+  - name: "APP_NAME"
+    description: "name of app"
+    value: geocoder
+    required: true
+  - name: "ENV"
+    description: "environment"
+    value: dev
+    required: true
+  - name: "TOOLS_NAMESPACE"
+    description: "tools namespace where build will be"
+    value: tools_namespace
+    required: true
+  - name: "DATA_ADMIN_IS_TAG"
+    description: "The image stream tag to use for the ols-admin-sidecar"
+    required: true
+  - name: "MINIO_BUCKET"
+    description: "minio bucket containing config files"
+    value: geocoder-configs-dev
+    required: true
+objects:
+  - kind: Route
+    apiVersion: route.openshift.io/v1
+    metadata:
+      name: ${APP_NAME}-${ENV}-admin-route
+      labels:
+        app: ${APP_NAME}-${ENV}-admin
+    spec:
+      host: ${APP_NAME}-admin-${ENV}.apps.silver.devops.gov.bc.ca
+      to:
+        kind: Service
+        name: ${APP_NAME}-${ENV}-admin-service
+        weight: 100
+      port:
+        targetPort: ${APP_NAME}-${ENV}-admin
+      tls:
+        termination: edge
+        insecureEdgeTerminationPolicy: Redirect
+      wildcardPolicy: None
+
+  - kind: Service
+    apiVersion: v1
+    metadata:
+      labels:
+        app: ${APP_NAME}-${ENV}-admin
+      name: ${APP_NAME}-${ENV}-admin-service
+    spec:
+      ports:
+        - name: ${APP_NAME}-${ENV}-admin
+          port: 8080
+          protocol: TCP
+          targetPort: 8080
+      selector:
+        app: ${APP_NAME}-${ENV}-admin
+      sessionAffinity: None
+      type: ClusterIP
+
+  - kind: Deployment
+    apiVersion: apps/v1
+    metadata:
+      annotations:
+        image.openshift.io/triggers: >-
+          [{"from":{"kind":"ImageStreamTag","name":"ols-admin-sidecar:${ENV}","namespace":"988040-tools"},"fieldPath":"spec.template.spec.containers[?(@.name==\"geocoder-admin\")].image"}]
+      name: ${APP_NAME}-${ENV}-admin
+      generation: 1
+      labels:
+        app: ${APP_NAME}-${ENV}-admin
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: ${APP_NAME}-${ENV}-admin
+          name: ${APP_NAME}-${ENV}-admin
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: ${APP_NAME}-${ENV}-admin
+            name: ${APP_NAME}-${ENV}-admin
+        spec:
+          volumes:
+            - name: tc-work
+              emptyDir: {}
+            - name: tc-conf
+              emptyDir: {}
+            - name: geocoder-config
+              persistentVolumeClaim:
+                claimName: geocoder-datastore-prod-pv
+          containers:
+            - resources: {}
+              readinessProbe:
+                httpGet:
+                  path: /css/styles.css
+                  port: 8080
+                  scheme: HTTP
+                initialDelaySeconds: 55
+                timeoutSeconds: 1
+                periodSeconds: 10
+                successThreshold: 1
+                failureThreshold: 3
+              terminationMessagePath: /dev/termination-log
+              name: ${APP_NAME}-admin
+              command:
+                - catalina.sh
+                - run
+              livenessProbe:
+                tcpSocket:
+                  port: 8080
+                initialDelaySeconds: 45
+                timeoutSeconds: 1
+                periodSeconds: 10
+                successThreshold: 1
+                failureThreshold: 3
+              env:
+                - name: CATALINA_BASE
+                  value: /usr/local/tomcat
+                - name: LogFilePath
+                  value: /usr/local/tomcat/logs/bgeo.log
+                - name: OLS_FILE_CONFIGURATION_URL
+                  value: file://apps/config/geocoder/${MINIO_BUCKET}/
+                - name: OLS_GEOCODER_CONFIGURATION_STORE
+                  value: ca.bc.gov.ols.geocoder.config.FileGeocoderConfigurationStore
+              ports:
+                - name: catalina-http
+                  containerPort: 8080
+                  protocol: TCP
+              imagePullPolicy: IfNotPresent
+              volumeMounts:
+                - name: tc-work
+                  mountPath: /usr/local/tomcat/logs
+                - name: tc-work
+                  mountPath: /usr/local/tomcat/work
+                - name: tc-work
+                  mountPath: /usr/local/tomcat/temp
+                - name: tc-conf
+                  mountPath: /usr/local/tomcat/conf/Catalina
+                - name: geocoder-config
+                  mountPath: /apps/config/geocoder
+              terminationMessagePolicy: File
+              image: >-
+                image-registry.openshift-image-registry.svc:5000/988040-tools/ols-admin-sidecar:${DATA_ADMIN_IS_TAG}
+          restartPolicy: Always
+          terminationGracePeriodSeconds: 30
+          dnsPolicy: ClusterFirst
+          securityContext: {}
+          schedulerName: default-scheduler
+      strategy:
+        type: Recreate
+      revisionHistoryLimit: 10
+      progressDeadlineSeconds: 600
