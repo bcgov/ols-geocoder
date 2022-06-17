@@ -59,10 +59,6 @@ parameters:
     description: "environment"
     value: dev
     required: true
-  - name: "TOOLS_NAMESPACE"
-    description: "tools namespace where build will be"
-    value: tools_namespace
-    required: true
   - name: "DATA_PROVIDER_URL"
     description: "URL for data provider bucket containing geocoder config files"
     value: https://minio-geocoder-datastore-prod.apps.silver.devops.gov.bc.ca/
