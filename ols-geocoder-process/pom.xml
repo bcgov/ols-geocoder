@@ -60,17 +60,5 @@
 			<version>1.2.0</version>
 		</dependency>
 	</dependencies>
-	<distributionManagement>
-		<repository>
-			<id>central</id>
-			<name>artifactory-ha-primary-0-releases</name>
-			<url>https://artifacts.developer.gov.bc.ca/artifactory/g988-release</url>
-		</repository>
-			<snapshotRepository>
-			<id>snapshots</id>
-			<name>artifactory-ha-primary-0-snapshots</name>
-			<url>https://artifacts.developer.gov.bc.ca/artifactory/g988-snapshot</url>
-		</snapshotRepository>
-	</distributionManagement>
 
 </project>
