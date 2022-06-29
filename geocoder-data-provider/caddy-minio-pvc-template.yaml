@@ -83,10 +83,10 @@ parameters:
   #   required: true
   # - name: WEBHOOK_URL_ROUTER
   #   description: Webhook url (used to trigger router app reload)
-  #   default: http://el-minio-router-webhook-listener-988040-tools.apps.silver.devops.gov.bc.ca/
+  #   default: http://el-minio-router-webhook-listener-1475a9-tools.apps.silver.devops.gov.bc.ca/
   # - name: WEBHOOK_URL_RBCM
   #   description: Webhook url (used to trigger Routable BC Maker job)
-  #   default: http://el-minio-rbcm-webhook-listener-988040-tools.apps.silver.devops.gov.bc.ca/
+  #   default: http://el-minio-rbcm-webhook-listener-1475a9-tools.apps.silver.devops.gov.bc.ca/
 objects:
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
@@ -226,7 +226,7 @@ objects:
                       # mc admin config set data-integration-minio notify_webhook:geocoder queue_limit='10' endpoint=$WEBHOOK_URL_GEOCODER queue_dir='/.mc/queue/';
                       # mc admin config set data-integration-minio notify_webhook:baarg queue_limit='10' endpoint=$WEBHOOK_URL_BAARG queue_dir='/.mc/queue/';
                       # mc admin config set data-integration-minio notify_webhook:router queue_limit='10' endpoint=$WEBHOOK_URL_ROUTER queue_dir='/.mc/queue/';
-                      # mc admin config set data-integration-minio notify_webhook:rbcm queue_limit='10' endpoint=http://el-minio-rbcm-webhook-listener-988040-tools.apps.silver.devops.gov.bc.ca/ queue_dir='/.mc/queue/';
+                      # mc admin config set data-integration-minio notify_webhook:rbcm queue_limit='10' endpoint=$WEBHOOK_URL_RBCM queue_dir='/.mc/queue/';
                       # mc admin service restart data-integration-minio;
                       # mc event add data-integration-minio/geocoder arn:minio:sqs::geocoder:webhook --event put --suffix .files --prefix geocoder;
                       # mc event add data-integration-minio/baarg arn:minio:sqs::baarg:webhook --event put --suffix .files --prefix baarg;
