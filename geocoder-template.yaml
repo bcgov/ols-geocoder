@@ -191,6 +191,9 @@ objects:
                limits:
                  cpu: '2'
                  memory: 8Gi
+               requests:
+                 cpu: 50m
+                 memory: 3Gi
              readinessProbe:
                httpGet:
                  path: /ping
