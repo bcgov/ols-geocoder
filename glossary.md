@@ -79,7 +79,7 @@ Term | Definition
 <a name="occupantID">occupantID</a> | Unique id assigned to occupant
 <a name="occupantName">occupantName</a> | Name of occupant
 <a name="onlyCivic">onlyCivic</a> | If true, excludes sites without a civic address.
-<a name="outputFormat">outputFormat</a> | Format of request results. Allowed values are xhtml, kml, csv, shpz, geojson, geojsonp, gml. <br>Note: geojson input and output no longer support coordinates in Spatial Reference Systems other than EPSG 4326 - WGS 84.
+<a name="outputFormat">outputFormat</a> | Format of request results. Allowed values are xhtml, kml, csv, shpz, geojson, geojsonp, gml. <br>Note: geojson input and output no longer support coordinates in Spatial Reference Systems other than EPSG:4326 - WGS 84.
 <a name="outputSRS">outputSRS</a> | The EPSG code of the spatial reference system used to state the coordination location of a named feature. It is ignored if KML output is specified since KML only supports 4326 - WGS 84. Allowed values are:<br>3005: BC Albers<br>4326: WGS 84 (default)<br>26907-26911: NAD83/UTM Zones 7N through 11N<br>32607-32611: WGS84/UTM Zones 7N through 11N<br>26707-26711: NAD27/UTM Zones 7N through 11N
 <a name="parcelPoint">parcelPoint</a> | A point representing a position known to be within the boundaries of a land parcel, usually the parcel centroid.
 <a name="point">point</a> | The coordinates of the centre of a circle whose radius is defined by maxDistance. Together, centre and maxDistance define a search area. Format is x,y where x and y are coordinates in the specified outputSRS projection. By default, x is longitude and y is latitude in the default outputSRS projection of 4326 (WGS 84).
