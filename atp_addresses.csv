@@ -492,4 +492,4 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00502-StreetNameCompoundWordsSeparated,"101 Sea View St, Sayward, BC",CIVIC_NUMBER,"101 Seaview St, Sayward, BC",[],F,,,T,T
 00503-LocalityNameWithSplitWords,"1090 Ironwood St, Camp bell River, BC",CIVIC_NUMBER,"1090 Ironwood St, Campbell River, BC",[LOCALITY.partialMatch],R,,,T,T
 00504-siteNameWithTerminalAndMissingStreetName,"Cargill Terminal -- District of North Vancouver, BC",SITE,"Cargill Terminal -- Low Level Rd, District of North Vancouver, BC",[STREET_NAME.notMatched],R,,,T,T
-00505-siteNameWithPortAndMissingStreetName,"Delta Port Entrance -- Delta, BC",SITE,"Delta Port Entrance -- Roberts Bank Rd, Delta, BC",[STREET_NAME.notMatched],R,,,T,T
+00505-siteNameWithPortAndMissingStreetName,"Delta Port Entrance -- Delta, BC",SITE,"Delta Port Entrance -- Roberts Bank Rd, Delta, BC",[STREET_NAME.notMatched],F,,,T,T
