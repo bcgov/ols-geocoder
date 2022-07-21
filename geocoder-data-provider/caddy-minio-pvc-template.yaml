@@ -233,6 +233,16 @@ objects:
                       # mc event add data-integration-minio/router arn:minio:sqs::router:webhook --event put --suffix .files --prefix router;
                       # mc event add data-integration-minio/rbcm arn:minio:sqs::rbcm:webhook --event put --suffix .files --prefix rbcm;
 
+                      # mc alias set geocoder-prod-minio https://minio-geocoder-datastore-prod-api.apps.silver.devops.gov.bc.ca/ $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD
+                      # mc admin config set geocoder-prod-minio notify_webhook:geocoder_restart queue_limit='10' endpoint='http://el-minio-geocoder-restart-webhook-listener-988040-tools.apps.silver.devops.gov.bc.ca/' queue_dir='/.mc/queue/';
+                      # mc admin service restart geocoder-prod-minio;
+                      # mc event add geocoder-prod-minio/geocoder arn:minio:sqs::geocoder_restart:webhook --event put --suffix .files --prefix geocoder;
+
+                      # mc alias set router-prod-minio https://minio-router-datastore-prod-api.apps.silver.devops.gov.bc.ca/ $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD
+                      # mc admin config get router-prod-minio notify_webhook;
+                      # mc admin config set router-prod-minio notify_webhook:router_restart queue_limit='10' endpoint='http://el-minio-router-restart-webhook-listener-1475a9-tools.apps.silver.devops.gov.bc.ca/' queue_dir='/.mc/queue/';
+                      # mc admin service restart router-prod-minio
+                      # mc event add router-prod-minio/router arn:minio:sqs::router_restart:webhook --event put --suffix .files --prefix router;
             terminationMessagePolicy: File
             volumeMounts:
             - mountPath: /data
