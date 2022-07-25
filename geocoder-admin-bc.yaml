@@ -22,6 +22,7 @@ spec:
       RUN jar -xvf int.war
       WORKDIR "/usr/local/tomcat/"
       RUN mv /usr/local/tomcat/webapps/int/int.war /usr/local/tomcat/webapps/
+      RUN sed -i 's@<Connector @<Connector maxHttpHeaderSize="65536" @g' /usr/local/tomcat/conf/server.xml
     type: Dockerfile
   strategy:
     type: Docker
