@@ -47,16 +47,6 @@ public class NameLookupTrieTest extends TestCase {
 		testQuery(trie, "fubar", 2, new String[] {"bar", "fubar"});
 	}
 	
-	public void testTransposition() {
-		List<String> strings = Arrays.asList(new String[] {
-				"cat", "bat", "bar", "scat", "car", "cars", "card", "act", "actor"
-		});
-		NameLookupTrie<String> trie = new NameLookupTrie<String>(strings);
-		//testQuery(trie, "act", 1, new String[] {"cat", "act"});
-		testQuery(trie, "act", 2, new String[] {"cat", "bat", "scat", "car", "act", "actor"});
-		//testQuery(trie, "nothing", 2, new String[] {});
-	}
-	
 	public void testRealNames() {
 		List<String> strings = Arrays.asList(new String[] {
 				"tamarack", "tamarac", "tamany", "tamarack lake", "tamarind", "tamarisk",
