@@ -19,6 +19,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.bc.gov.ols.junitFlags.DevTest;
+import org.junit.experimental.categories.Category;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
@@ -28,6 +30,7 @@ import ca.bc.gov.ols.geocoder.data.ILocation;
 import ca.bc.gov.ols.util.StopWatch;
 import junit.framework.TestCase;
 
+@Category(DevTest.class)
 public class KDTreeTest extends TestCase {
 	
 	private static final int NUMBER_OF_POINTS = 12000000;

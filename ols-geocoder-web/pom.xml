@@ -22,6 +22,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>ca.bc.gov.ols</groupId>
+			<artifactId>ols-junit-flags</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>

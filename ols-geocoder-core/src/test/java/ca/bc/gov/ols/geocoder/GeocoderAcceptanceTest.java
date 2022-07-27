@@ -11,7 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ca.bc.gov.ols.junitFlags.DevTest;
 import org.apache.commons.lang3.StringUtils;
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.TestInstance;
@@ -26,6 +28,7 @@ import ca.bc.gov.ols.geocoder.api.data.SearchResults;
 import ca.bc.gov.ols.geocoder.data.enumTypes.MatchPrecision;
 import ca.bc.gov.ols.rowreader.XsvRowWriter;
 
+@Category(DevTest.class)
 @TestInstance(Lifecycle.PER_CLASS)
 public class GeocoderAcceptanceTest {
 

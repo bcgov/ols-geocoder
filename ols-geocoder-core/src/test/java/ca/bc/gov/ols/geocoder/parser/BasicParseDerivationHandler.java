@@ -18,9 +18,10 @@ package ca.bc.gov.ols.geocoder.parser;
 import java.util.ArrayList;
 import java.util.List;
 
-import ca.bc.gov.ols.geocoder.parser.ParseDerivation;
-import ca.bc.gov.ols.geocoder.parser.ParseDerivationHandler;
+import ca.bc.gov.ols.junitFlags.DevTest;
+import org.junit.experimental.categories.Category;
 
+@Category(DevTest.class)
 public class BasicParseDerivationHandler implements ParseDerivationHandler {
 	
 	List<ParseDerivation> derivations;

@@ -17,10 +17,11 @@ package ca.bc.gov.ols.geocoder;
 
 import java.sql.SQLException;
 
+import ca.bc.gov.ols.junitFlags.DevTest;
+import org.junit.experimental.categories.Category;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ca.bc.gov.ols.geocoder.GeocoderFactory;
 import ca.bc.gov.ols.geocoder.api.GeocodeQuery;
 import ca.bc.gov.ols.geocoder.api.data.AddressMatch;
 import ca.bc.gov.ols.geocoder.api.data.IntersectionMatch;
@@ -30,6 +31,7 @@ import ca.bc.gov.ols.geocoder.api.data.StreetIntersectionAddress;
 import ca.bc.gov.ols.geocoder.data.enumTypes.MatchPrecision;
 import ca.bc.gov.ols.geocoder.test.TestCase;
 
+@Category(DevTest.class)
 public class GeocoderTest extends TestCase {
 	final Logger logger = LoggerFactory.getLogger(GeocoderTest.class);
 	

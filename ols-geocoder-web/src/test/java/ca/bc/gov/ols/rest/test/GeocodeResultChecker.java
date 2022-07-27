@@ -19,11 +19,14 @@ import static org.junit.Assert.fail;
 
 import java.io.UnsupportedEncodingException;
 
+import ca.bc.gov.ols.junitFlags.DevTest;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.junit.experimental.categories.Category;
 import org.springframework.test.web.servlet.MvcResult;
 
+@Category(DevTest.class)
 public class GeocodeResultChecker {
 
 	Object contentObj;

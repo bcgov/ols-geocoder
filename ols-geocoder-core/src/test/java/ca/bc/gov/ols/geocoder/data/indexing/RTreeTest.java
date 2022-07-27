@@ -18,16 +18,17 @@ package ca.bc.gov.ols.geocoder.data.indexing;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.bc.gov.ols.junitFlags.DevTest;
 import junit.framework.TestCase;
 
+import org.junit.experimental.categories.Category;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.index.strtree.STRtree;
 
 import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
-import ca.bc.gov.ols.geocoder.data.indexing.IndexableEnvelope;
-import ca.bc.gov.ols.geocoder.data.indexing.RTree;
 import ca.bc.gov.ols.util.StopWatch;
 
+@Category(DevTest.class)
 public class RTreeTest extends TestCase {
 	GeometryFactory gf = new GeometryFactory(GeocoderConfig.BASE_PRECISION_MODEL, 3005);
 

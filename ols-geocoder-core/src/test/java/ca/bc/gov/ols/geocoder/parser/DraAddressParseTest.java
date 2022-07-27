@@ -19,10 +19,12 @@ import java.sql.SQLException;
 
 import ca.bc.gov.ols.geocoder.Geocoder;
 import ca.bc.gov.ols.geocoder.GeocoderFactory;
-import ca.bc.gov.ols.geocoder.parser.AddressParser;
 import ca.bc.gov.ols.geocoder.test.TestCase;
+import ca.bc.gov.ols.junitFlags.DevTest;
 import ca.bc.gov.ols.util.StopWatch;
+import org.junit.experimental.categories.Category;
 
+@Category(DevTest.class)
 public class DraAddressParseTest extends TestCase {
 	
 	private boolean trace = false;

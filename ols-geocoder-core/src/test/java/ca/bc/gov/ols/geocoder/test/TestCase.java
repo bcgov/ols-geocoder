@@ -19,7 +19,10 @@ import java.util.Properties;
 
 import ca.bc.gov.ols.geocoder.GeocoderFactory;
 import ca.bc.gov.ols.geocoder.IGeocoder;
+import ca.bc.gov.ols.junitFlags.DevTest;
+import org.junit.experimental.categories.Category;
 
+@Category(DevTest.class)
 public abstract class TestCase extends junit.framework.TestCase {
 	
 	protected static IGeocoder gc;

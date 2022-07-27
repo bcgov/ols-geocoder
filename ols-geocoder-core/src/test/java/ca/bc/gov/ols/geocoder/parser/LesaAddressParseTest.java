@@ -15,15 +15,17 @@
  */
 package ca.bc.gov.ols.geocoder.parser;
 
-import ca.bc.gov.ols.geocoder.parser.AddressParser;
 import ca.bc.gov.ols.geocoder.parser.generator.AddressParserGenerator;
 import ca.bc.gov.ols.geocoder.parser.generator.Rule;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleChoice;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleOperator;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleSequence;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleTerm;
+import ca.bc.gov.ols.junitFlags.DevTest;
 import junit.framework.TestCase;
+import org.junit.experimental.categories.Category;
 
+@Category(DevTest.class)
 public class LesaAddressParseTest extends TestCase
 {
 	

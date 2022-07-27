@@ -20,10 +20,12 @@ import java.util.List;
 
 import ca.bc.gov.ols.geocoder.data.BlockFace;
 import ca.bc.gov.ols.geocoder.data.enumTypes.Side;
-import ca.bc.gov.ols.geocoder.data.indexing.BlockFaceIntervalTree;
+import ca.bc.gov.ols.junitFlags.DevTest;
 import ca.bc.gov.ols.util.StopWatch;
 import junit.framework.TestCase;
+import org.junit.experimental.categories.Category;
 
+@Category(DevTest.class)
 public class BlockFaceIntervalTreeTest extends TestCase {
 	
 	private static final boolean OUTPUT_TIME = true;

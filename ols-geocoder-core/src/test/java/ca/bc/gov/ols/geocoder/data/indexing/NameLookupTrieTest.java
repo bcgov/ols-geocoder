@@ -18,15 +18,16 @@ package ca.bc.gov.ols.geocoder.data.indexing;
 import java.util.Arrays;
 import java.util.List;
 
-import ca.bc.gov.ols.geocoder.data.indexing.MisspellingOf;
-import ca.bc.gov.ols.geocoder.data.indexing.NameLookupTrie;
+import ca.bc.gov.ols.junitFlags.DevTest;
 import ca.bc.gov.ols.util.StopWatch;
 import junit.framework.TestCase;
+import org.junit.experimental.categories.Category;
 
+@Category(DevTest.class)
 public class NameLookupTrieTest extends TestCase {
 	
 	private static final boolean OUTPUT_TIME = true;
-	
+
 	public void testWithoutError() {
 		List<String> strings = Arrays.asList(new String[] {
 				"fu", "bar", "fubar"
@@ -36,7 +37,7 @@ public class NameLookupTrieTest extends TestCase {
 		testQuery(trie, "fubar", 0, new String[] {"fubar"});
 		testQuery(trie, "nothing", 0, new String[] {});
 	}
-	
+
 	public void testWithError() {
 		List<String> strings = Arrays.asList(new String[] {
 				"fu", "bar", "fubar"
@@ -46,7 +47,7 @@ public class NameLookupTrieTest extends TestCase {
 		testQuery(trie, "bar", 2, new String[] {"bar", "fubar"});
 		testQuery(trie, "fubar", 2, new String[] {"bar", "fubar"});
 	}
-	
+
 	public void testTransposition() {
 		List<String> strings = Arrays.asList(new String[] {
 				"cat", "bat", "bar", "scat", "car", "cars", "card", "act", "actor"
@@ -56,7 +57,7 @@ public class NameLookupTrieTest extends TestCase {
 		testQuery(trie, "act", 2, new String[] {"cat", "bat", "scat", "car", "act", "actor"});
 		//testQuery(trie, "nothing", 2, new String[] {});
 	}
-	
+
 	public void testRealNames() {
 		List<String> strings = Arrays.asList(new String[] {
 				"tamarack", "tamarac", "tamany", "tamarack lake", "tamarind", "tamarisk",
@@ -84,7 +85,7 @@ public class NameLookupTrieTest extends TestCase {
 		}
 		compareResults(results, new String[] {"black", "black bear", "black creek"});
 	}
-	
+
 	public void testAutoComplete() {
 		List<String> strings = Arrays.asList(new String[] {
 				"black", "black bear", "black creek", "blackness"

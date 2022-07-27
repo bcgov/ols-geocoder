@@ -17,6 +17,8 @@ package ca.bc.gov.ols.geocoder;
 
 import java.sql.SQLException;
 
+import ca.bc.gov.ols.junitFlags.DevTest;
+import org.junit.experimental.categories.Category;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +27,7 @@ import ca.bc.gov.ols.geocoder.api.data.SearchResults;
 import ca.bc.gov.ols.geocoder.data.enumTypes.MatchPrecision;
 import ca.bc.gov.ols.geocoder.test.TestCase;
 
+@Category(DevTest.class)
 public class GeocoderTest2 extends TestCase {
 	final Logger logger = LoggerFactory.getLogger(GeocoderTest2.class);
 	

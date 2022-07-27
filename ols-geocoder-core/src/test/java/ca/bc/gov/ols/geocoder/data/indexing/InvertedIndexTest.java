@@ -24,15 +24,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map.Entry;
 
-import ca.bc.gov.ols.geocoder.data.indexing.InvertedIndex;
-import ca.bc.gov.ols.geocoder.data.indexing.WeightedWord;
 import ca.bc.gov.ols.geocoder.data.indexing.InvertedIndex.InvertedIndexBuilder;
 import ca.bc.gov.ols.geocoder.util.GeocoderUtil;
 
 import java.util.Set;
 
+import ca.bc.gov.ols.junitFlags.DevTest;
 import junit.framework.TestCase;
+import org.junit.experimental.categories.Category;
 
+@Category(DevTest.class)
 public class InvertedIndexTest extends TestCase {
 	
 	public void testInvertedIndex() throws SQLException, ClassNotFoundException {

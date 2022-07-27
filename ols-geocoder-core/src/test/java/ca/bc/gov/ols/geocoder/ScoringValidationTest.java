@@ -15,6 +15,7 @@
  */
 package ca.bc.gov.ols.geocoder;
 
+import ca.bc.gov.ols.junitFlags.DevTest;
 import gnu.trove.map.hash.THashMap;
 import gnu.trove.set.hash.THashSet;
 
@@ -26,6 +27,7 @@ import java.sql.Statement;
 import java.util.Map;
 import java.util.Set;
 
+import org.junit.experimental.categories.Category;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,6 +46,7 @@ import ca.bc.gov.ols.geocoder.test.TestCase;
  * @author chodgson
  * 
  */
+@Category(DevTest.class)
 public class ScoringValidationTest extends TestCase {
 	final Logger logger = LoggerFactory.getLogger(ScoringValidationTest.class);
 	

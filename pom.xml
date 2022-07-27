@@ -73,7 +73,7 @@
 		<module>ols-geocoder-core</module>
 		<module>ols-geocoder-web</module>
 		<module>ols-geocoder-admin</module>
-		<module>ols-geocoder-process</module>
+		<module>ols-junit-flags</module>
 	</modules>
 
 	<build>

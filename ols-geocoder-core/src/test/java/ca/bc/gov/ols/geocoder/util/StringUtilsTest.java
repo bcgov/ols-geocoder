@@ -15,9 +15,12 @@
  */
 package ca.bc.gov.ols.geocoder.util;
 
+import ca.bc.gov.ols.junitFlags.ProdTest;
 import ca.bc.gov.ols.util.StringUtils;
 import junit.framework.TestCase;
+import org.junit.experimental.categories.Category;
 
+@Category(ProdTest.class)
 public class StringUtilsTest extends TestCase {
 
 	public void testOSADistance() {
