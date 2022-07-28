@@ -5,15 +5,11 @@ Physical Address Geocoder
 
 ## Build Instructions
 
-The Following Jenkins Job is used to Build the artifacts:
-
- [OLS Geocoder Build](https://cis.apps.gov.bc.ca/int/view/LOC/job/ols/job/OLS%20OSS%20Jobs/job/OLS%20Geocoder%20Build/)
+Helm Chart instructions to provision CI/CD Tekton pipeline:
+https://github.com/bcgov-dss/loc-tools/tree/main/helm#988040-tools
 
 Artifacts are managed in Artifactory:
-
-https://delivery.apps.gov.bc.ca/artifactory/
-
-`lib-snapshot-repo` and   `lib-release-repo` folders.
+https://artifacts.developer.gov.bc.ca/artifactory/g988-libs/
 
 
 ## OpenShift Deployment Instructions
@@ -117,44 +113,30 @@ This provision all the objects relevant to the Geocoder API.  This includes
 * necessary services and geocoders
 * necessary NetworPolcies.
 
+## Deploy
+
+### Dev
+
+```bash
+$ oc process -f geocoder-template.yaml --param-file=env.dev -o yaml | oc apply -f - -n 988040-prod
+
+```
+### Test
+
+```bash
+$ oc process -f geocoder-template.yaml --param-file=env.test -o yaml | oc apply -f - -n 988040-prod
+
+```
+
+### Data Integration
+
+```bash
+oc process -f geocoder-template.yaml --param-file=env.data -o yaml | oc apply -f - -n 988040-prod
+```
+
+## Remove
+
 ### Example
-
-```bash
-#!/bin/bash
-
-APP_NAME=geocoder
-ENV=dev
-GEOCODER_IS_TAG=latest
-DATA_ADMIN_IS_TAG=latest
-
-# oc get all -l app=ols-geocoder-web
-# oc delete  all -l app=ols-geocoder-web
-
-oc process -f geocoder-template.yaml \
-    -p APP_NAME=${APP_NAME} \
-    -p ENV=${ENV} \
-    -p GEOCODER_IS_TAG=${GEOCODER_IS_TAG} \
-    -p DATA_ADMIN_IS_TAG=${DATA_ADMIN_IS_TAG} \
-    -o yaml \
-    | oc apply -f - -n 988040-prod #\
-    #--dry-run=client
-    #| yq -C - r
-```
-#### Alternatively  
-Copy or rename `example.env` to `dev.env` for this example to work. _make changes as required
-```bash
-$ cat dev.env
-APP_NAME=geocoder
-ENV=dev
-GEOCODER_IS_TAG=latest
-DATA_ADMIN_IS_TAG=latest
-$
-$
-$ oc process -f geocoder-template.yaml --param-file=dev.env -o yaml | oc apply -f - -n 988040-prod
-
-```
-
-#### Remove
 
 ```bash
 # use get first to check
