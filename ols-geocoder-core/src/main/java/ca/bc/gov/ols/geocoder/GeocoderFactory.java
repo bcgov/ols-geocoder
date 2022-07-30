@@ -91,16 +91,14 @@ public class GeocoderFactory {
 		if (unitTest) {
 			logger.info("GeocoderFactory: Creating unit test geocoder instance");
 			bootstrapConfig = getBootstrapUnitTestConfig();
-			IGeocoder g = new Geocoder(new GeocoderDataStore(bootstrapConfig, geometryFactory, geometryReprojector));
-			return g;
+			return new Geocoder(new GeocoderDataStore(bootstrapConfig, geometryFactory, geometryReprojector));
 		}
 		else if(dummyMode) {
 			logger.info("GeocoderFactory: create Dummy Geocoder.");
 			return new DummyGeocoder(geometryFactory);
 		}
 		logger.info("GeocoderFactory: Creating new geocoder instance");
-		IGeocoder g = new Geocoder(new GeocoderDataStore(bootstrapConfig, geometryFactory, geometryReprojector));
-		return g;
+		return new Geocoder(new GeocoderDataStore(bootstrapConfig, geometryFactory, geometryReprojector));
 	}
 	
 	public static Properties getBootstrapConfigFromEnvironment() {
