@@ -35,7 +35,7 @@ public class KDTreeTest {
 	private static final int NUMBER_OF_TESTS = 40000;
 
 	@Test
-	@Tag("Prod")
+	@Tag("Dev")
 	public void testKDTree() throws SQLException, ClassNotFoundException {
 		GeometryFactory gf = new GeometryFactory(GeocoderConfig.BASE_PRECISION_MODEL, 3005);
 		StopWatch sw = new StopWatch();
