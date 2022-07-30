@@ -30,7 +30,7 @@ public class NameLookupTrieTest {
 	private static final boolean OUTPUT_TIME = true;
 
 	@Test
-	@Tag("Dev")
+	@Tag("Prod")
 	public void testWithoutError() {
 		List<String> strings = Arrays.asList(new String[] {
 				"fu", "bar", "fubar"
@@ -42,7 +42,7 @@ public class NameLookupTrieTest {
 	}
 
 	@Test
-	@Tag("Dev")
+	@Tag("Prod")
 	public void testWithError() {
 		List<String> strings = Arrays.asList(new String[] {
 				"fu", "bar", "fubar"
@@ -66,7 +66,7 @@ public class NameLookupTrieTest {
 	}
 
 	@Test
-	@Tag("Dev")
+	@Tag("Prod")
 	public void testRealNames() {
 		List<String> strings = Arrays.asList(new String[] {
 				"tamarack", "tamarac", "tamany", "tamarack lake", "tamarind", "tamarisk",
@@ -79,7 +79,7 @@ public class NameLookupTrieTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	@Tag("Dev")
+	@Tag("Prod")
 	public void testQueryExactWordPrefix() {
 		List<String> strings = Arrays.asList(new String[] {
 				"black", "black bear", "black creek" 
@@ -98,7 +98,7 @@ public class NameLookupTrieTest {
 	}
 
 	@Test
-	@Tag("Dev")
+	@Tag("Prod")
 	public void testAutoComplete() {
 		List<String> strings = Arrays.asList(new String[] {
 				"black", "black bear", "black creek", "blackness"
@@ -118,7 +118,7 @@ public class NameLookupTrieTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	@Tag("Dev")
+	@Tag("Prod")
 	private void testQuery(NameLookupTrie<String> trie, String query, int error,
 			String[] expectedResults) {
 		StopWatch sw = new StopWatch();
@@ -135,7 +135,7 @@ public class NameLookupTrieTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	@Tag("Dev")
+	@Tag("Prod")
 	private void compareResults(List<Object> actualResults, String[] expectedResults) {
 		for(String e : expectedResults) {
 			boolean found = false;

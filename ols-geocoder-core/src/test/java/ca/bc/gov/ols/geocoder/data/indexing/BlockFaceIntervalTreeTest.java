@@ -107,7 +107,7 @@ public class BlockFaceIntervalTreeTest {
 		assertEquals(expectedResults, results.size());
 	}
 
-	@Tag("Dev")
+	@Tag("Prod")
 	@Test
 	public void testIterator() {
 		List<BlockFace> faces = new ArrayList<BlockFace>();
