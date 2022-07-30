@@ -125,8 +125,8 @@
 			<scope>test</scope>
 			<exclusions>
 				<exclusion>
-					<groupId>ch.qos.logback</groupId>
-					<artifactId>clogback-classic</artifactId>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
