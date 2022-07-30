@@ -15,27 +15,22 @@
  */
 package ca.bc.gov.ols.geocoder.parser;
 
-import ca.bc.gov.ols.geocoder.parser.AddressParser;
 import ca.bc.gov.ols.geocoder.parser.generator.AddressParserGenerator;
 import ca.bc.gov.ols.geocoder.parser.generator.Rule;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleChoice;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleOperator;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleSequence;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleTerm;
-import junit.framework.TestCase;
-import junit.textui.TestRunner;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
-public class SimpleAddressParseTest extends TestCase
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class SimpleAddressParseTest
 {
-	
-	public static void main(String args[]) {
-		TestRunner.run(SimpleAddressParseTest.class);
-	}
-	
-	public SimpleAddressParseTest(String name) {
-		super(name);
-	}
-	
+
+	@Tag("Dev")
+	@Test
 	public void testAddress()
 	{
 		AddressParser parser = createParser();

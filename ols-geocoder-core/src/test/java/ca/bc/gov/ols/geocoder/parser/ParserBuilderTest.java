@@ -17,14 +17,16 @@ package ca.bc.gov.ols.geocoder.parser;
 
 import ca.bc.gov.ols.geocoder.dra.DraLexicalRules;
 import ca.bc.gov.ols.geocoder.lexer.Lexer;
-import ca.bc.gov.ols.geocoder.parser.AddressParser;
 import ca.bc.gov.ols.geocoder.parser.generator.AddressParserGenerator;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleSequence;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleTerm;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
-public class ParserBuilderTest extends TestCase {
-	
+public class ParserBuilderTest {
+
+	@Tag("Dev")
+	@Test
 	public void testWeirdCase() {
 		AddressParserGenerator parserGen = new AddressParserGenerator();
 		

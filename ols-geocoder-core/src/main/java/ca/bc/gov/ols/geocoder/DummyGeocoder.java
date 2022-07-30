@@ -54,6 +54,7 @@ public class DummyGeocoder implements IGeocoder {
 	
 	@Override
 	public GeocoderDataStore getDatastore() {
+		// TODO return a dummy datastore here
 		return null;
 	}
 	

@@ -19,10 +19,25 @@ import java.util.Properties;
 
 import ca.bc.gov.ols.geocoder.GeocoderFactory;
 import ca.bc.gov.ols.geocoder.IGeocoder;
+import org.junit.jupiter.api.Tag;
 
-public abstract class TestCase extends junit.framework.TestCase {
+import static org.junit.jupiter.api.Assertions.fail;
+
+@Tag("Dev")
+public abstract class TestCase {
 	
 	protected static IGeocoder gc;
+
+	public TestCase() {
+		try {
+			setUp();
+		}
+		catch(Exception e) {
+		}
+	}
+
+	protected void setUp() throws Exception {
+	}
 	
 	protected static IGeocoder getTestGeocoder() {
 		Properties props = new Properties();

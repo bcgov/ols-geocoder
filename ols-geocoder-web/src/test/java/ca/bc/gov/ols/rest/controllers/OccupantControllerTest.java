@@ -15,81 +15,140 @@
  */
 package ca.bc.gov.ols.rest.controllers;
 
-import static ca.bc.gov.ols.rest.test.GeocodeResultChecker.check;
-import static org.junit.Assert.fail;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import ca.bc.gov.ols.geocoder.IGeocoder;
+import ca.bc.gov.ols.geocoder.GeocoderFactory;
+import ca.bc.gov.ols.geocoder.api.GeocodeQuery;
+import ca.bc.gov.ols.geocoder.api.SharedParameters;
+import ca.bc.gov.ols.geocoder.api.data.GeocodeMatch;
+import ca.bc.gov.ols.geocoder.api.data.OccupantAddress;
+import ca.bc.gov.ols.geocoder.api.data.SearchResults;
+import ca.bc.gov.ols.geocoder.rest.OlsResponse;
+import ca.bc.gov.ols.geocoder.rest.controllers.OccupantController;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
+import org.springframework.validation.BindingResult;
+import java.lang.reflect.Field;
+import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
+import static ca.bc.gov.ols.geocoder.data.enumTypes.MatchPrecision.OCCUPANT;
+import static org.junit.jupiter.api.Assertions.*;
 
-import ca.bc.gov.ols.geocoder.rest.WebConfig;
-
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@ContextConfiguration(classes = WebConfig.class)
 public class OccupantControllerTest {
-	
-	@Autowired
-	private WebApplicationContext wac;
-	
-	MockMvc mockMvc;
+	private static IGeocoder gc;
 
-	@Before
-    public void init(){
-        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-    }
-	
+	@Spy
+	SharedParameters queryParams;
+
+	@Spy
+	BindingResult bindingResult;
+
+	@InjectMocks
+	private OccupantController ctrlr;
+
+	@BeforeEach
+	public void setup() throws Exception {
+		MockitoAnnotations.openMocks(this);
+		GeocoderFactory factory = new GeocoderFactory();
+		factory.setUnitTestMode("TRUE");
+		gc = factory.getGeocoder();
+		setPrivateField(ctrlr, "geocoder", gc);
+	}
+
+	@Tag("Prod")
 	@Test
 	public void testGetOccupantById() throws Exception {
-		ResultActions ra = mockMvc.perform(get("/occupants/00000000-0000-0000-0000-000000006001.json"));
-		MvcResult result = ra.andExpect(status().isOk()).andReturn();
-		check(result).property("occupantID", "00000000-0000-0000-0000-000000006001");
+		OlsResponse resp = ctrlr.getOccupant("f6c22ee6-8374-4ce8-8f4b-674a0d49635e", queryParams, bindingResult);
+		Object resp_o = resp.getResponseObj();
+		OccupantAddress address = (resp_o instanceof OccupantAddress ? (OccupantAddress)resp_o : null);
+		assertNotNull(address);
+		assertEquals(address.getOccupantId(), "f6c22ee6-8374-4ce8-8f4b-674a0d49635e");
+		assertEquals(address.getOccupantName(), "VALEMOUNT PROVINCIAL");
 	}
 
+	@Tag("Prod")
 	@Test
 	public void testGetOccupantByName() throws Exception {
-		ResultActions ra = mockMvc.perform(get("/occupants/addresses.json?addressString=refractions research --"));
-		ra.andExpect(status().isOk());
+		GeocodeQuery q = new GeocodeQuery("VALEMOUNT PROVINCIAL");
+		OlsResponse resp = ctrlr.geocoder(q, bindingResult);
+		Object resp_o = resp.getResponseObj();
+		SearchResults search_r = (resp_o instanceof SearchResults ? (SearchResults)resp_o : null);
+		assertNotNull(search_r);
+		List<GeocodeMatch> matches = search_r.getMatches();
+		assertEquals(matches.size(), 1);
+		GeocodeMatch match = matches.get(0);
+		assertEquals(match.getLocation().getX(), 1188780);
+		assertEquals(match.getLocation().getY(), 383424);
+		assertEquals(match.getPrecision(), OCCUPANT);
+		assertEquals(match.getScore(), 88);
+		assertEquals(match.getPrecisionPoints(), 100);
 	}
 
+	@Tag("Prod")
 	@Test
 	public void testGetOccupantByPartialName() throws Exception {
-		ResultActions ra = mockMvc.perform(get("/occupants/addresses.json?addressString=refractions --"));
-		MvcResult result = ra.andExpect(status().isOk()).andReturn();
-		check(result).getFirst().property("occupantName", "Refractions Research");
+		GeocodeQuery q = new GeocodeQuery("VALEMOUNT");
+		OlsResponse resp = ctrlr.geocoder(q, bindingResult);
+		Object resp_o = resp.getResponseObj();
+		SearchResults search_r = (resp_o instanceof SearchResults ? (SearchResults)resp_o : null);
+		assertNotNull(search_r);
+		List<GeocodeMatch> matches = search_r.getMatches();
+		assertEquals(matches.size(), 1);
+		GeocodeMatch match = matches.get(0);
+		assertEquals(match.getLocation().getX(), 1188780);
+		assertEquals(match.getLocation().getY(), 383424);
+		assertEquals(match.getPrecision(), OCCUPANT);
+		assertEquals(match.getScore(), 85);
+		assertEquals(match.getPrecisionPoints(), 100);
 	}
 
+	@Tag("Dev")
 	@Test
 	public void testGetOccupantByNameAndAddress() throws Exception {
-		ResultActions ra = mockMvc.perform(get("/occupants/addresses.json?addressString=refractions -- 1207 Douglas st victoria BC"));
-		MvcResult result = ra.andExpect(status().isOk()).andReturn();
-		check(result).getFirst().property("occupantName", "Refractions Research");
+		GeocodeQuery q = new GeocodeQuery("VALEMOUNT PROVINCIAL 1720 Galiano Cres., Colwood, BC");
+		OlsResponse resp = ctrlr.geocoder(q, bindingResult);
+		Object resp_o = resp.getResponseObj();
+		SearchResults search_r = (resp_o instanceof SearchResults ? (SearchResults)resp_o : null);
+		assertNotNull(search_r);
+		List<GeocodeMatch> matches = search_r.getMatches();
+		assertEquals(matches.size(), 1);
+		GeocodeMatch match = matches.get(0);
+		assertEquals(match.getLocation().getX(), 1188780);
+		assertEquals(match.getLocation().getY(), 383424);
+		assertEquals(match.getPrecision(), OCCUPANT);
+		assertEquals(match.getScore(), 82);
+		assertEquals(match.getPrecisionPoints(), 100);
 	}
 
+	@Tag("Dev")
 	@Test
 	public void testGetNearestOccupant() {
 		fail("Not yet implemented");
 	}
 
+	@Tag("Dev")
 	@Test
 	public void testGetOccupantsNear() {
 		fail("Not yet implemented");
 	}
 
+	@Tag("Dev")
 	@Test
 	public void testGetOccupantsWithin() {
 		fail("Not yet implemented");
+	}
+
+	public static void setPrivateField(Object target, String fieldName, Object value){
+		try {
+			Field privateField = target.getClass().getDeclaredField(fieldName);
+			privateField.setAccessible(true);
+			privateField.set(target, value);
+		} catch(Exception e){
+			throw new RuntimeException(e);
+		}
 	}
 
 }

@@ -12,9 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -52,7 +50,8 @@ public class GeocoderAcceptanceTest {
 	void tearDown() {
 		logWriter.close();
 	}
-	
+
+	@Tag("Dev")
 	@ParameterizedTest
 	@CsvFileSource(resources = "/atp_addresses.csv", numLinesToSkip = 1)
 	void accept(String yourId, String addressString, String expectedMatchPrecisionStr, String expectedFullAddress, String expectedFaults, String status, String parcelPoint, String issue) {

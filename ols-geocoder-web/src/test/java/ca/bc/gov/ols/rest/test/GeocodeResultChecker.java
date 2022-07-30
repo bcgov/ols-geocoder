@@ -15,14 +15,14 @@
  */
 package ca.bc.gov.ols.rest.test;
 
-import static org.junit.Assert.fail;
-
 import java.io.UnsupportedEncodingException;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.springframework.test.web.servlet.MvcResult;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class GeocodeResultChecker {
 

@@ -19,9 +19,12 @@ import java.sql.SQLException;
 
 import ca.bc.gov.ols.geocoder.Geocoder;
 import ca.bc.gov.ols.geocoder.GeocoderFactory;
-import ca.bc.gov.ols.geocoder.parser.AddressParser;
 import ca.bc.gov.ols.geocoder.test.TestCase;
 import ca.bc.gov.ols.util.StopWatch;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DraAddressParseTest extends TestCase {
 	
@@ -35,27 +38,39 @@ public class DraAddressParseTest extends TestCase {
 		}
 		parser = ((Geocoder)gc).getParser();
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testOneAddress() {
 		run("420 GORGE RD E, VICTORIA, BC");
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testSomeAddress() {
 		run("5559 CLIPPER DR NANAIMO BC");
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testUnitAddress() {
 		run("bsmt 5559 CLIPPER DR NANAIMO BC");
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testUvicAddress() {
 		run("ROOM 103A, CLEARIHUE BUILDING, UNIVERSITY OF VICTORIA, 3800 FINNERTY RD, VICTORIA, BC");
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testStarportAddress() {
 		run("PAD 11, TERMINAL 3, BC SPACEPORT, 1 MILKY WAY, STAR CITY, BC");
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testAddress() {
 		
 		run("FOO ST AND BAR ST VICTORIA BC");

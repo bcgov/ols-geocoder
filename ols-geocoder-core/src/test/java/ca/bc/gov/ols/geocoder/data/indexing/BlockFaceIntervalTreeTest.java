@@ -20,14 +20,18 @@ import java.util.List;
 
 import ca.bc.gov.ols.geocoder.data.BlockFace;
 import ca.bc.gov.ols.geocoder.data.enumTypes.Side;
-import ca.bc.gov.ols.geocoder.data.indexing.BlockFaceIntervalTree;
 import ca.bc.gov.ols.util.StopWatch;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
-public class BlockFaceIntervalTreeTest extends TestCase {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class BlockFaceIntervalTreeTest {
 	
 	private static final boolean OUTPUT_TIME = true;
-	
+
+	@Tag("Prod")
+	@Test
 	public void testContinuous() {
 		List<BlockFace> faces = new ArrayList<BlockFace>();
 		faces.add(new BlockFace(null, Side.RIGHT, 1, 9, "C", 0, null, null, null));
@@ -39,7 +43,9 @@ public class BlockFaceIntervalTreeTest extends TestCase {
 		testQuery(bfit, 5, 1);
 		testQuery(bfit, 100, 0);
 	}
-	
+
+	@Tag("Prod")
+	@Test
 	public void testEmptyMiddle() {
 		List<BlockFace> faces = new ArrayList<BlockFace>();
 		faces.add(new BlockFace(null, Side.RIGHT, 1, 9, "C", 0, null, null, null));
@@ -51,7 +57,9 @@ public class BlockFaceIntervalTreeTest extends TestCase {
 		testQuery(bfit, 21, 0);
 		testQuery(bfit, 100, 0);
 	}
-	
+
+	@Tag("Prod")
+	@Test
 	public void testParity() {
 		List<BlockFace> faces = new ArrayList<BlockFace>();
 		faces.add(new BlockFace(null, Side.RIGHT, 1, 9, "O", 0, null, null, null));
@@ -64,7 +72,9 @@ public class BlockFaceIntervalTreeTest extends TestCase {
 		testQuery(bfit, 5, 1);
 		testQuery(bfit, 100, 0);
 	}
-	
+
+	@Tag("Prod")
+	@Test
 	public void testPartialOverlaps() {
 		List<BlockFace> faces = new ArrayList<BlockFace>();
 		faces.add(new BlockFace(null, Side.RIGHT, 1, 9, "O", 0, null, null, null));
@@ -84,7 +94,8 @@ public class BlockFaceIntervalTreeTest extends TestCase {
 		testQuery(bfit, 91, 1);
 		testQuery(bfit, 100, 0);
 	}
-	
+
+	@Test
 	private void testQuery(BlockFaceIntervalTree bfit, int query, int expectedResults) {
 		StopWatch sw = new StopWatch();
 		sw.start();
@@ -95,7 +106,9 @@ public class BlockFaceIntervalTreeTest extends TestCase {
 		}
 		assertEquals(expectedResults, results.size());
 	}
-	
+
+	@Tag("Prod")
+	@Test
 	public void testIterator() {
 		List<BlockFace> faces = new ArrayList<BlockFace>();
 		faces.add(new BlockFace(null, Side.RIGHT, 1, 9, "O", 0, null, null, null));

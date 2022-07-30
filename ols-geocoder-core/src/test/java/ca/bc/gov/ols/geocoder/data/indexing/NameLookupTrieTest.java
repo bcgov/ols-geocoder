@@ -18,15 +18,19 @@ package ca.bc.gov.ols.geocoder.data.indexing;
 import java.util.Arrays;
 import java.util.List;
 
-import ca.bc.gov.ols.geocoder.data.indexing.MisspellingOf;
-import ca.bc.gov.ols.geocoder.data.indexing.NameLookupTrie;
 import ca.bc.gov.ols.util.StopWatch;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
-public class NameLookupTrieTest extends TestCase {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class NameLookupTrieTest {
 	
 	private static final boolean OUTPUT_TIME = true;
-	
+
+	@Test
+	@Tag("Prod")
 	public void testWithoutError() {
 		List<String> strings = Arrays.asList(new String[] {
 				"fu", "bar", "fubar"
@@ -36,7 +40,9 @@ public class NameLookupTrieTest extends TestCase {
 		testQuery(trie, "fubar", 0, new String[] {"fubar"});
 		testQuery(trie, "nothing", 0, new String[] {});
 	}
-	
+
+	@Test
+	@Tag("Prod")
 	public void testWithError() {
 		List<String> strings = Arrays.asList(new String[] {
 				"fu", "bar", "fubar"
@@ -46,7 +52,9 @@ public class NameLookupTrieTest extends TestCase {
 		testQuery(trie, "bar", 2, new String[] {"bar", "fubar"});
 		testQuery(trie, "fubar", 2, new String[] {"bar", "fubar"});
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testTransposition() {
 		List<String> strings = Arrays.asList(new String[] {
 				"cat", "bat", "bar", "scat", "car", "cars", "card", "act", "actor"
@@ -56,7 +64,9 @@ public class NameLookupTrieTest extends TestCase {
 		testQuery(trie, "act", 2, new String[] {"cat", "bat", "scat", "car", "act", "actor"});
 		//testQuery(trie, "nothing", 2, new String[] {});
 	}
-	
+
+	@Test
+	@Tag("Prod")
 	public void testRealNames() {
 		List<String> strings = Arrays.asList(new String[] {
 				"tamarack", "tamarac", "tamany", "tamarack lake", "tamarind", "tamarisk",
@@ -68,6 +78,8 @@ public class NameLookupTrieTest extends TestCase {
 	}
 
 	@SuppressWarnings("unchecked")
+	@Test
+	@Tag("Prod")
 	public void testQueryExactWordPrefix() {
 		List<String> strings = Arrays.asList(new String[] {
 				"black", "black bear", "black creek" 
@@ -84,7 +96,9 @@ public class NameLookupTrieTest extends TestCase {
 		}
 		compareResults(results, new String[] {"black", "black bear", "black creek"});
 	}
-	
+
+	@Test
+	@Tag("Prod")
 	public void testAutoComplete() {
 		List<String> strings = Arrays.asList(new String[] {
 				"black", "black bear", "black creek", "blackness"
@@ -103,6 +117,8 @@ public class NameLookupTrieTest extends TestCase {
 	}
 
 	@SuppressWarnings("unchecked")
+	@Test
+	@Tag("Prod")
 	private void testQuery(NameLookupTrie<String> trie, String query, int error,
 			String[] expectedResults) {
 		StopWatch sw = new StopWatch();
@@ -118,6 +134,8 @@ public class NameLookupTrieTest extends TestCase {
 	}
 
 	@SuppressWarnings("unchecked")
+	@Test
+	@Tag("Prod")
 	private void compareResults(List<Object> actualResults, String[] expectedResults) {
 		for(String e : expectedResults) {
 			boolean found = false;
