@@ -58,7 +58,7 @@ public class OccupantControllerTest {
 		setPrivateField(ctrlr, "geocoder", gc);
 	}
 
-	@Tag("Prod")
+	@Tag("Dev")
 	@Test
 	public void testGetOccupantById() throws Exception {
 		OlsResponse resp = ctrlr.getOccupant("f6c22ee6-8374-4ce8-8f4b-674a0d49635e", queryParams, bindingResult);
@@ -69,7 +69,7 @@ public class OccupantControllerTest {
 		assertEquals(address.getOccupantName(), "VALEMOUNT PROVINCIAL");
 	}
 
-	@Tag("Prod")
+	@Tag("Dev")
 	@Test
 	public void testGetOccupantByName() throws Exception {
 		GeocodeQuery q = new GeocodeQuery("VALEMOUNT PROVINCIAL");
@@ -87,7 +87,7 @@ public class OccupantControllerTest {
 		assertEquals(match.getPrecisionPoints(), 100);
 	}
 
-	@Tag("Prod")
+	@Tag("Dev")
 	@Test
 	public void testGetOccupantByPartialName() throws Exception {
 		GeocodeQuery q = new GeocodeQuery("VALEMOUNT");

@@ -30,7 +30,7 @@ public class BlockFaceIntervalTreeTest {
 	
 	private static final boolean OUTPUT_TIME = true;
 
-	@Tag("Prod")
+	@Tag("Dev")
 	@Test
 	public void testContinuous() {
 		List<BlockFace> faces = new ArrayList<BlockFace>();
@@ -44,7 +44,7 @@ public class BlockFaceIntervalTreeTest {
 		testQuery(bfit, 100, 0);
 	}
 
-	@Tag("Prod")
+	@Tag("Dev")
 	@Test
 	public void testEmptyMiddle() {
 		List<BlockFace> faces = new ArrayList<BlockFace>();
@@ -58,7 +58,7 @@ public class BlockFaceIntervalTreeTest {
 		testQuery(bfit, 100, 0);
 	}
 
-	@Tag("Prod")
+	@Tag("Dev")
 	@Test
 	public void testParity() {
 		List<BlockFace> faces = new ArrayList<BlockFace>();
@@ -73,7 +73,7 @@ public class BlockFaceIntervalTreeTest {
 		testQuery(bfit, 100, 0);
 	}
 
-	@Tag("Prod")
+	@Tag("Dev")
 	@Test
 	public void testPartialOverlaps() {
 		List<BlockFace> faces = new ArrayList<BlockFace>();
@@ -107,7 +107,7 @@ public class BlockFaceIntervalTreeTest {
 		assertEquals(expectedResults, results.size());
 	}
 
-	@Tag("Prod")
+	@Tag("Dev")
 	@Test
 	public void testIterator() {
 		List<BlockFace> faces = new ArrayList<BlockFace>();
