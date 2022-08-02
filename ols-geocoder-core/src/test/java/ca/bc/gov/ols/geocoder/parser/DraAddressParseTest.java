@@ -33,10 +33,16 @@ public class DraAddressParseTest extends TestCase {
 	
 	@Override
 	public void setUp() throws SQLException, ClassNotFoundException {
-		if(gc == null) {
-			gc = new GeocoderFactory().getGeocoder();
-		}
+		GeocoderFactory factory = new GeocoderFactory();
+		factory.setUnitTestMode("TRUE");
+		gc = factory.getGeocoder();
 		parser = ((Geocoder)gc).getParser();
+	}
+
+	@Test
+	@Tag("Prod")
+	public void testAddressWithSimpleData() {
+		run("1720 Galiano Cres., Colwood, BC");
 	}
 
 	@Test
