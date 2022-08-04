@@ -61,18 +61,18 @@ public class OccupantControllerTest {
 	@Tag("Prod")
 	@Test
 	public void testGetOccupantById() throws Exception {
-		OlsResponse resp = ctrlr.getOccupant("f6c22ee6-8374-4ce8-8f4b-674a0d49635e", queryParams, bindingResult);
+		OlsResponse resp = ctrlr.getOccupant("00000000-0000-0000-0000-000000006001", queryParams, bindingResult);
 		Object resp_o = resp.getResponseObj();
 		OccupantAddress address = (resp_o instanceof OccupantAddress ? (OccupantAddress)resp_o : null);
 		assertNotNull(address);
-		assertEquals(address.getOccupantId(), "f6c22ee6-8374-4ce8-8f4b-674a0d49635e");
-		assertEquals(address.getOccupantName(), "VALEMOUNT PROVINCIAL");
+		assertEquals(address.getOccupantId(), "00000000-0000-0000-0000-000000006001");
+		assertEquals(address.getOccupantName(), "Refractions Research");
 	}
 
 	@Tag("Prod")
 	@Test
 	public void testGetOccupantByName() throws Exception {
-		GeocodeQuery q = new GeocodeQuery("VALEMOUNT PROVINCIAL");
+		GeocodeQuery q = new GeocodeQuery("Refractions Research");
 		OlsResponse resp = ctrlr.geocoder(q, bindingResult);
 		Object resp_o = resp.getResponseObj();
 		SearchResults search_r = (resp_o instanceof SearchResults ? (SearchResults)resp_o : null);
@@ -80,8 +80,8 @@ public class OccupantControllerTest {
 		List<GeocodeMatch> matches = search_r.getMatches();
 		assertEquals(matches.size(), 1);
 		GeocodeMatch match = matches.get(0);
-		assertEquals(match.getLocation().getX(), 1188780);
-		assertEquals(match.getLocation().getY(), 383424);
+		assertEquals(match.getLocation().getX(), 1);
+		assertEquals(match.getLocation().getY(), 1);
 		assertEquals(match.getPrecision(), OCCUPANT);
 		assertEquals(match.getScore(), 88);
 		assertEquals(match.getPrecisionPoints(), 100);
@@ -90,7 +90,7 @@ public class OccupantControllerTest {
 	@Tag("Prod")
 	@Test
 	public void testGetOccupantByPartialName() throws Exception {
-		GeocodeQuery q = new GeocodeQuery("VALEMOUNT");
+		GeocodeQuery q = new GeocodeQuery("Refractions");
 		OlsResponse resp = ctrlr.geocoder(q, bindingResult);
 		Object resp_o = resp.getResponseObj();
 		SearchResults search_r = (resp_o instanceof SearchResults ? (SearchResults)resp_o : null);
@@ -98,8 +98,8 @@ public class OccupantControllerTest {
 		List<GeocodeMatch> matches = search_r.getMatches();
 		assertEquals(matches.size(), 1);
 		GeocodeMatch match = matches.get(0);
-		assertEquals(match.getLocation().getX(), 1188780);
-		assertEquals(match.getLocation().getY(), 383424);
+		assertEquals(match.getLocation().getX(), 1);
+		assertEquals(match.getLocation().getY(), 1);
 		assertEquals(match.getPrecision(), OCCUPANT);
 		assertEquals(match.getScore(), 85);
 		assertEquals(match.getPrecisionPoints(), 100);
@@ -108,7 +108,7 @@ public class OccupantControllerTest {
 	@Tag("Dev")
 	@Test
 	public void testGetOccupantByNameAndAddress() throws Exception {
-		GeocodeQuery q = new GeocodeQuery("VALEMOUNT PROVINCIAL 1720 Galiano Cres., Colwood, BC");
+		GeocodeQuery q = new GeocodeQuery("refractions -- 1207 Douglas st victoria BC");
 		OlsResponse resp = ctrlr.geocoder(q, bindingResult);
 		Object resp_o = resp.getResponseObj();
 		SearchResults search_r = (resp_o instanceof SearchResults ? (SearchResults)resp_o : null);
@@ -116,8 +116,8 @@ public class OccupantControllerTest {
 		List<GeocodeMatch> matches = search_r.getMatches();
 		assertEquals(matches.size(), 1);
 		GeocodeMatch match = matches.get(0);
-		assertEquals(match.getLocation().getX(), 1188780);
-		assertEquals(match.getLocation().getY(), 383424);
+		assertEquals(match.getLocation().getX(), 1);
+		assertEquals(match.getLocation().getY(), 1);
 		assertEquals(match.getPrecision(), OCCUPANT);
 		assertEquals(match.getScore(), 82);
 		assertEquals(match.getPrecisionPoints(), 100);
