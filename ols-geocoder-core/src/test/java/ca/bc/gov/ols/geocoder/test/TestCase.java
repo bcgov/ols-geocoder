@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Tag;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-@Tag("Dev")
+@Tag("Prod")
 public abstract class TestCase {
 	
 	protected static IGeocoder gc;

@@ -21,6 +21,7 @@ import ca.bc.gov.ols.geocoder.Geocoder;
 import ca.bc.gov.ols.geocoder.GeocoderFactory;
 import ca.bc.gov.ols.geocoder.test.TestCase;
 import ca.bc.gov.ols.util.StopWatch;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +31,8 @@ public class DraAddressParseTest extends TestCase {
 	
 	private boolean trace = false;
 	AddressParser parser;
-	
+
+	@BeforeEach
 	@Override
 	public void setUp() throws SQLException, ClassNotFoundException {
 		GeocoderFactory factory = new GeocoderFactory();
@@ -42,7 +44,7 @@ public class DraAddressParseTest extends TestCase {
 	@Test
 	@Tag("Prod")
 	public void testAddressWithSimpleData() {
-		run("1720 Galiano Cres., Colwood, BC");
+		run("Suite 419 – 1207 Douglas Street, Victoria, BC");
 	}
 
 	@Test
