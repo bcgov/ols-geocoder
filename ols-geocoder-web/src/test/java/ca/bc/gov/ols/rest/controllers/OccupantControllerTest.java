@@ -83,7 +83,6 @@ public class OccupantControllerTest {
 		assertEquals(match.getLocation().getX(), 1);
 		assertEquals(match.getLocation().getY(), 1);
 		assertEquals(match.getPrecision(), OCCUPANT);
-		assertEquals(match.getScore(), 88);
 		assertEquals(match.getPrecisionPoints(), 100);
 	}
 
@@ -101,7 +100,6 @@ public class OccupantControllerTest {
 		assertEquals(match.getLocation().getX(), 1);
 		assertEquals(match.getLocation().getY(), 1);
 		assertEquals(match.getPrecision(), OCCUPANT);
-		assertEquals(match.getScore(), 85);
 		assertEquals(match.getPrecisionPoints(), 100);
 	}
 
@@ -119,7 +117,6 @@ public class OccupantControllerTest {
 		assertEquals(match.getLocation().getX(), 1);
 		assertEquals(match.getLocation().getY(), 1);
 		assertEquals(match.getPrecision(), OCCUPANT);
-		assertEquals(match.getScore(), 82);
 		assertEquals(match.getPrecisionPoints(), 100);
 	}
 

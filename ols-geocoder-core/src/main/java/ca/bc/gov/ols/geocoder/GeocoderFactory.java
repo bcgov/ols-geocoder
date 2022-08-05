@@ -116,8 +116,7 @@ public class GeocoderFactory {
 
 	public static Properties getBootstrapUnitTestConfig() {
 		Properties bootstrapConfig = new Properties();
-		bootstrapConfig.setProperty("OLS_GEOCODER_CONFIGURATION_STORE", "ca.bc.gov.ols.geocoder.config.FileGeocoderConfigurationStore");
-		bootstrapConfig.setProperty("OLS_FILE_CONFIGURATION_URL", "https://geocoder-datastore-prod.apps.silver.devops.gov.bc.ca/geocoder-configs-test/");
+		bootstrapConfig.setProperty("OLS_GEOCODER_CONFIGURATION_STORE", "ca.bc.gov.ols.geocoder.config.InMemoryGeocoderConfigurationStore");
 		return bootstrapConfig;
 	}
 }
