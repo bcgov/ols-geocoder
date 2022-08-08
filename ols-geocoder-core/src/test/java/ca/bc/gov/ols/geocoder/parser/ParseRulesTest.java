@@ -15,11 +15,13 @@
  */
 package ca.bc.gov.ols.geocoder.parser;
 
-import ca.bc.gov.ols.geocoder.parser.generator.AddressParserGenerator;
-import ca.bc.gov.ols.geocoder.parser.generator.Rule;
-import ca.bc.gov.ols.geocoder.parser.generator.RuleOperator;
-import ca.bc.gov.ols.geocoder.parser.generator.RuleSequence;
-import ca.bc.gov.ols.geocoder.parser.generator.RuleTerm;
+import ca.bc.gov.ols.geocoder.data.indexing.TrieWordMap;
+import ca.bc.gov.ols.geocoder.data.indexing.WordClass;
+import ca.bc.gov.ols.geocoder.data.indexing.WordMap;
+import ca.bc.gov.ols.geocoder.data.indexing.WordMapBuilder;
+import ca.bc.gov.ols.geocoder.dra.DraLexicalRules;
+import ca.bc.gov.ols.geocoder.lexer.Lexer;
+import ca.bc.gov.ols.geocoder.parser.generator.*;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ParseRulesTest
 {
-	@Tag("Dev")
+	@Tag("Prod")
 	@Test
 	public void testA_BStar_C()
 	{
@@ -63,15 +65,34 @@ public class ParseRulesTest
 		
 		Rule ruleTop = new RuleSequence("main", true, new RuleTerm[] {
 				new RuleTerm("A"),
-				new RuleTerm("bees"),
+				new RuleTerm("bees", RuleOperator.OPTION),
 				new RuleTerm("C"),
 				new RuleTerm("D", RuleOperator.OPTION)
 		});
 		
 		parserGen.addRule(ruleTop);
-		
-		Rule rulebees = new RuleTerm("bees", "B", RuleOperator.STAR);
-		parserGen.addRule(rulebees);
+
+		parserGen.addRule(new RuleChoice("A", true, new RuleTerm[] {
+				new RuleTerm("LETTER")
+		}));
+		RuleTerm b = new RuleTerm("B", "LETTER", RuleOperator.STAR);
+		parserGen.addRule(b);
+
+		Rule c = new RuleTerm("C", "UNIT_DESIGNATOR");
+		parserGen.addRule(c);
+		Rule d = new RuleTerm("D", "LETTER");
+		parserGen.addRule(d);
+
+		parserGen.addRule(new RuleChoice("bees", true, new RuleTerm[] {
+				new RuleTerm("LETTER"),
+				b
+		}));
+
+		WordMapBuilder wordMapBuilder = new WordMapBuilder();
+		wordMapBuilder.addWord("C", WordClass.UNIT_DESIGNATOR);
+		WordMap wordMap = new TrieWordMap(wordMapBuilder.getWordMap());
+		Lexer lexer = new Lexer(new DraLexicalRules(), wordMap);
+		parserGen.setLexer(lexer);
 		
 		return parserGen.getParser();
 	}

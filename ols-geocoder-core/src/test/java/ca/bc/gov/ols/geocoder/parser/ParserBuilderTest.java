@@ -25,7 +25,7 @@ import org.junit.jupiter.api.Test;
 
 public class ParserBuilderTest {
 
-	@Tag("Dev")
+	@Tag("Prod")
 	@Test
 	public void testWeirdCase() {
 		AddressParserGenerator parserGen = new AddressParserGenerator();
