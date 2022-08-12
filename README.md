@@ -144,3 +144,13 @@ oc get all -n 988040-dev -l app=geocoder-template
 # delete
 oc delete all -n 988040-dev -l app=geocoder-template
 ```
+
+# Batch Address Range Generator (aka BARG)
+
+* This is a Tekton pipeline that is run during monthly data refresh
+  * The Job then runs the artifact to generate the addresses.
+  * It uses ols-geocoder-process module from ols-geocoder project. This in turn has a dependancy on `ols-geocoder-core`
+  * it is used to generate address ranges: this is a step in the monthly data refresh.
+* Details of the pipeline can be found in https://github.com/bcgov-dss/loc-tools/blob/main/helm/tekton-pipelines/examples/geocoder-data-integration-triggers.yaml under `minio-baarg-update`
+* Data integration pipelines can be deployed/torn down via steps described at https://github.com/bcgov-dss/loc-tools/tree/main/helm under `geocoder-data-integration-triggers.yaml`
+* The instructions for triggering the pipeline can be found at https://github.com/bcgov-dss/loc-tools/tree/main/helm under `minio-baarg-update`
