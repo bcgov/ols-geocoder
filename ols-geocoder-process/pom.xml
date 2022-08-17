@@ -1,37 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>ca.bc.gov.ols</groupId>
-		<artifactId>ols-geocoder</artifactId>
-		<version>4.3.0-SNAPSHOT</version>
-	</parent>
-	<artifactId>ols-geocoder-process</artifactId>
-	<name>OLS Geocoder Process</name>
-
-	<properties>
-		<geotools.version>26.3</geotools.version>
-	</properties>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.5.0</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<executable>java</executable>
-					<arguments>
-						<argument>-Xmx3000M</argument>
-						<argument>-classpath</argument>
-						<!-- automatically creates the classpath using all project dependencies, 
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>ca.bc.gov.ols</groupId>
+    <artifactId>ols-geocoder</artifactId>
+    <version>4.3.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>ols-geocoder-process</artifactId>
+  <name>OLS Geocoder Process</name>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.5.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <executable>java</executable>
+          <arguments>
+            <argument>-Xmx3000M</argument>
+            <argument>-classpath</argument>
+            <!-- automatically creates the classpath using all project dependencies,
 							also adding the project build directory -->
 						<classpath />
 						<argument>ca.bc.gov.ols.rangebuilder.RangeBuilder</argument>
