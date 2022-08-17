@@ -29,6 +29,7 @@ import ca.bc.gov.ols.geocoder.data.enumTypes.PhysicalStatus;
 import ca.bc.gov.ols.geocoder.data.enumTypes.PositionalAccuracy;
 import ca.bc.gov.ols.rowreader.CsvRowReader;
 import ca.bc.gov.ols.rowreader.JsonRowReader;
+import ca.bc.gov.ols.rowreader.RowComparer;
 import ca.bc.gov.ols.rowreader.RowReader;
 import ca.bc.gov.ols.rowreader.RowWriter;
 import ca.bc.gov.ols.rowreader.TsvRowReader;
@@ -77,7 +78,7 @@ public class SiteLoaderPrep {
 
 	// output filenames
 	private static final String SITE_HYBRID_FILE = "site_Hybrid.tsv";
-	private static final String LOG_FILE = "site_loader_prep_log.csv";
+	private static final String REJECT_FILE = "site_loader_prep_rejected.csv";
 	private static final String SID2PID_FILE = "sid2pid.csv";
 	
 	private static final Map<MatchFault.MatchElement,List<String>> ALLOWED_CAP_FAULTS;
@@ -186,13 +187,12 @@ public class SiteLoaderPrep {
 			Map<String, GeocodeResult> addressStringMap = readGeocodeNames(streetNameMap);
 			List<InputSite> pseudoSites = new ArrayList<InputSite>();
 			Map<String, List<InputSite>> siteMap = readGeocodeHybrid(addressStringMap, pseudoSites);
-			List<InputSite> additionalBcaSids = new ArrayList<InputSite>();
-			List<InputSite> dedupedSites = deduplicateSites(siteMap, additionalBcaSids);
+			List<InputSite> dedupedSites = deduplicateSites(siteMap);
 			siteMap = null;
 			assignParents(dedupedSites);
 			List<OutputSite> anchorPoints = readSitesHybrid(inputDir + ITN_ANCHOR_POINT_FILE);
 			writeOutput(dedupedSites, pseudoSites, anchorPoints);
-			writeSid2Pids(dedupedSites, additionalBcaSids);
+			writeSid2Pids(dedupedSites);
 			dedupedSites = null;
 		} finally {
 			rejectWriter.close();
@@ -201,12 +201,21 @@ public class SiteLoaderPrep {
 			List<OutputSite> outSites = readSitesHybrid(outputDir + SITE_HYBRID_FILE);
 			List<OutputSite> compareSites = readSitesHybrid(compareDir + SITE_HYBRID_FILE);
 			compareOutputs(outSites, compareSites);
+			logger.info("Comparing {}", SID2PID_FILE);
+			try(RowReader rr1 = new CsvRowReader(outputDir + SID2PID_FILE, geometryFactory);
+					RowReader rr2 = new CsvRowReader(compareDir + SID2PID_FILE, geometryFactory)) {
+				RowComparer comp = new RowComparer(rr1, rr2);
+				comp.compare(Arrays.asList("PID"));
+			}
 		}
 	}
 
 	private RowWriter openRejectWriter() {
-		File logFile = new File(outputDir + LOG_FILE);
-		List<String> siteSchema = Arrays.asList("ID","GID","SITE_ID","REASON");
+		File logFile = new File(outputDir + REJECT_FILE);
+		List<String> siteSchema = Arrays.asList("ID", "GID", "SITE_ID", "ORIG_ADDR", "REASON", "MATCH_PRCN", "PRCN_PTS", 
+				"SCORE","FAULTS","UNIT_NUM", "UNIT_NUM_S", "CIV_NUM", "CIV_NUM_S", "STR_DIR", "STR_DIR_PI", "STR_QUAL", 
+				"LOC_NAME", "SITE_NAME", "IS_PRIMARY", "FULL_ADDR", "INPUT_NAME", "AP_TYPE", "YOUR_ID", "S_POS_ACC", 
+				"AP_POS_ACC", "EXEC_TIME");
 		return new XsvRowWriter(logFile, ',', siteSchema, true);
 	}
 	
@@ -345,7 +354,6 @@ public class SiteLoaderPrep {
 				InputSite site = new InputSite(); 
 				site.id = rr.getInt("ID");
 				site.addressString = rr.getString("addressString");
-				site.yourId = rr.getString("yourId");
 				site.siteName = rr.getString("siteName");
 				site.unitDesignator = rr.getString("unitDesignator");
 				site.unitNumber = rr.getString("unitNumber");
@@ -362,6 +370,9 @@ public class SiteLoaderPrep {
 				site.provinceCode = rr.getString("provinceCode");
 				site.gId = rr.getInt("GID");
 				site.inputName = rr.getString("INPUT_NAME");
+				if(site.inputName.equals("BCA")) {
+					site.jurol = rr.getString("yourId");
+				}
 				site.siteId = rr.getInt("SITE_ID");
 				site.locationDescriptor = LocationDescriptor.convert(rr.getString("LOCATION_DESCRIPTOR"));
 				site.positionalAccuracy = PositionalAccuracy.convert(rr.getString("SITE_POSITIONAL_ACCURACY"));
@@ -493,7 +504,7 @@ public class SiteLoaderPrep {
 		return siteMap;
 	}
 	
-	private List<InputSite> deduplicateSites(Map<String, List<InputSite>> siteMap, List<InputSite> additionalBcaSids) {
+	private List<InputSite> deduplicateSites(Map<String, List<InputSite>> siteMap) {
 		List<InputSite> deduped = new ArrayList<InputSite>(siteMap.size());
 		for(Map.Entry<String,List<InputSite>> entry: siteMap.entrySet()) {
 			String key = entry.getKey();
@@ -509,9 +520,9 @@ public class SiteLoaderPrep {
 			for(int i = 1; i < siteList.size(); i++) {
 				InputSite rejectedSite = siteList.get(i);
 				logReject(rejectedSite, "REPEAT " + rejectedSite.apType + " ADDRESS DROPPED");
-				if("BCA".equals(rejectedSite.inputName)) {
-					rejectedSite.uuid = site.uuid;
-					additionalBcaSids.add(rejectedSite);
+				if("BCA".equals(rejectedSite.inputName) 
+						&& (site.jurol == null || site.jurol.isEmpty())) {
+					site.jurol = rejectedSite.jurol;
 				}
 			}
 			// FME: GSRtester
@@ -617,7 +628,10 @@ public class SiteLoaderPrep {
 				parent.accessPointStatus = chosenOne.accessPointStatus;
 				parent.positionalAccuracy = PositionalAccuracy.MEDIUM;
 				parent.localityId = chosenOne.localityId;
-				// TODO maybe inputName should be "GENERATED"?
+				parent.localityName = chosenOne.localityName;
+				parent.provinceCode = chosenOne.provinceCode;
+				// not including jurol, so sid2pid will not assign a sid to parents of BCA sites
+				// parent.jurol = chosenOne.jurol;
 				parent.inputName = chosenOne.inputName;
 				parent.uuid = UUID.randomUUID();
 				dedupedSites.add(parent);
@@ -626,6 +640,10 @@ public class SiteLoaderPrep {
 					orphan.parentId = parentId;
 					orphan.forceSubsite();
 					dedupedSites.add(orphan);
+					// this would look through orphans for a jurol, but we don't want to do that
+					// if((parent.jurol == null || parent.jurol.isEmpty()) && orphan.jurol != null && !orphan.jurol.isEmpty()) {
+					//	 parent.jurol = orphan.jurol;
+					// }
 				}
 			}
 				
@@ -715,7 +733,35 @@ public class SiteLoaderPrep {
 		row.put("ID", site.id);
 		row.put("GID", site.gId);
 		row.put("SITE_ID", site.siteId);
+		row.put("ORIG_ADDR", site.addressString);
 		row.put("REASON", reason);
+		if(site.result != null) {
+			row.put("MATCH_PRCN", site.result.matchPrecision);
+			row.put("PRCN_PTS", site.result.precisionPoints);
+			row.put("SCORE", site.result.score);
+			if(site.result.faults != null) {
+				row.put("FAULTS", site.result.faults.toString());
+			}
+			if(site.result.name != null) {
+				row.put("STR_DIR", site.result.name.dir);
+				row.put("STR_DIR_PI", site.result.name.dirIsPrefix);
+				row.put("STR_QUAL", site.result.name.qual);
+				row.put("FULL_ADDR", site.fullAddress());
+			}
+			row.put("EXEC_TIME", site.result.executionTime);
+		}
+		row.put("UNIT_NUM", site.unitNumber);
+		row.put("UNIT_NUM_S", site.unitNumberSuffix);
+		row.put("CIV_NUM", site.civicNumber);
+		row.put("CIV_NUM_S", site.civicNumberSuffix);
+		row.put("LOC_NAME", site.localityName);
+		row.put("SITE_NAME", site.siteName);
+		row.put("IS_PRIMARY", site.isPrimary);
+		row.put("INPUT_NAME", site.inputName);
+		row.put("AP_TYPE", site.apType);
+		row.put("JUROL", site.jurol);
+		row.put("S_POS_ACC", site.positionalAccuracy);
+		row.put("AP_POS_ACC", site.accessPositionalAccuracy);
 		rejectWriter.writeRow(row);
 	}
 	
@@ -816,20 +862,18 @@ public class SiteLoaderPrep {
 		siteOutputWriter.writeRow(row);
 	}
 	
-	private void writeSid2Pids(List<InputSite> outputSites, List<InputSite> additionalBcaSids) {
+	private void writeSid2Pids(List<InputSite> outputSites) {
 		Map<String, List<String>> jurolMap = readPids();
 		try(RowWriter sid2pidWriter = openSid2PidWriter()) {
 			for(InputSite site : outputSites) {
-				writeSid2Pid(sid2pidWriter, site, jurolMap.get(site.yourId));
-			}
-			for(InputSite site : additionalBcaSids) {
-				writeSid2Pid(sid2pidWriter, site, jurolMap.get(site.yourId));
+				writeSid2Pid(sid2pidWriter, site, jurolMap);
 			}
 		}
 	}
 	
-	private void writeSid2Pid(RowWriter sid2pidWriter, InputSite site, List<String> pids) {
-		if("BCA".equals(site.inputName) && (site.yourId != null && !site.yourId.isEmpty())) {
+	private void writeSid2Pid(RowWriter sid2pidWriter, InputSite site, Map<String, List<String>> jurolMap) {
+		if(site.jurol != null && !site.jurol.isEmpty()) {
+			List<String> pids = jurolMap.get(site.jurol);
 			if(pids != null) {
 				Map<String,Object> row = new HashMap<String,Object>();
 				row.put("SID", site.uuid);

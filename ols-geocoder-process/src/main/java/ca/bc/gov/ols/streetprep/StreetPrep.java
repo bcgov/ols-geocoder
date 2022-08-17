@@ -24,6 +24,7 @@ import org.locationtech.jts.geom.MultiLineString;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.linearref.LengthIndexedLine;
 import org.locationtech.jts.operation.distance.DistanceOp;
+import org.locationtech.jts.simplify.DouglasPeuckerSimplifier;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
@@ -192,6 +193,12 @@ public class StreetPrep {
 	private static final double CUSTOM_LOCALITY_LOCATION_TOLERANCE = 15000; // meters 
 	private static final int GNIS_FUDGE_FACTOR = 25; // meters, to allow a GNIS point to be outside of a same-name locality polygon and still match it
 
+	// meters tolerance for Douglas-Peucker simplifier, 0.0 disables simplification
+	private static final double GEOM_SIMPLIFY_TOLERANCE = 0.0;
+	// for tracking the effectiveness of the simplification, if applied
+	private int originalPoints = 0; 
+	private int reducedPoints = 0; 
+
 	private static final int FIRST_GNIS_LOCALITY_ID = 10000;
 	private static final int FIRST_EXIT_NAME_ID = 250000;
 	
@@ -343,7 +350,7 @@ public class StreetPrep {
 			try(RowReader rr1 = new JsonRowReader(outputDir + STREET_LOAD_STREET_SEGMENTS_FILE, geometryFactory);
 					RowReader rr2 = new JsonRowReader(compareDir + STREET_LOAD_STREET_SEGMENTS_FILE, geometryFactory)) {
 				RowComparer comp = new RowComparer(rr1, rr2);
-				comp.setOutputLimit(0);
+				comp.setOutputLimit(20);
 				comp.compare(Arrays.asList(
 						"STREET_SEGMENT_ID", 
 						"START_INTERSECTION_ID", "END_INTERSECTION_ID", 
@@ -495,7 +502,7 @@ public class StreetPrep {
 					}
 				}
 				
-				// check if it is one of custom locality locations
+				// check if it is one of the custom locality locations
 				if(locTweakMap.get("BCGNIS|" + name) != null) {
 					List<RawLocality> list = tweakListMap.get("BCGNIS|" + name);
 					if(list == null) {
@@ -617,12 +624,11 @@ public class StreetPrep {
 		for(List<RawLocality> list : gnisNameMap.values()) {
 			if(list.size() > 1) {
 				for(RawLocality loc : list) {
-					String disambiguator = loc.type.toString();
-					// "locality" is to ambiguous for a disambiguator
-					if(loc.type == LocalityType.LOCALITY) disambiguator = "sparse locality";
+					loc.disambiguator = loc.type.toString();
+					// "locality" is too ambiguous for a disambiguator
+					if(loc.type == LocalityType.LOCALITY) loc.disambiguator = "sparse locality";
 					// we don't lower case Indian Reserve for some reason
-					if(loc.type != LocalityType.INDIAN_RESERVE) disambiguator = disambiguator.toLowerCase();
-					loc.name = loc.name + " (" + disambiguator + ")";
+					if(loc.type != LocalityType.INDIAN_RESERVE) loc.disambiguator = loc.disambiguator.toLowerCase();
 				}
 			}
 		}
@@ -1133,8 +1139,18 @@ public class StreetPrep {
 			while(iterator.hasNext()) {
 				iterator.advance();
 				RawStreetSeg seg = iterator.value();
+				if(GEOM_SIMPLIFY_TOLERANCE > 0) {
+					Geometry newGeom = DouglasPeuckerSimplifier.simplify(seg.geom, GEOM_SIMPLIFY_TOLERANCE);
+					originalPoints += seg.geom.getNumPoints();
+					reducedPoints += newGeom.getNumPoints();
+					seg.geom = (LineString)newGeom;
+				}
 				seg.write(rw);
 			}
+		}
+		if(GEOM_SIMPLIFY_TOLERANCE > 0) {
+			logger.info("Geometry simplification tolerance of {} reduced point output by {} from {} to {}", GEOM_SIMPLIFY_TOLERANCE, 
+					originalPoints - reducedPoints, originalPoints, reducedPoints);
 		}
 	}
 	

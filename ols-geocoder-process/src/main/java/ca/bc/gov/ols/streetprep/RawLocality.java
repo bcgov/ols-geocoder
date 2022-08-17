@@ -9,6 +9,7 @@ import gnu.trove.map.TIntObjectMap;
 public class RawLocality {
 	public int id;
 	public String name;
+	public String disambiguator;
 	public String source;
 	public LocalityType type;
 	public int stateProvTerrId;
@@ -25,8 +26,10 @@ public class RawLocality {
 			if(type.equals(LocalityType.INDIAN_RESERVE)) {
 				descriptor = " near ";
 			}
-			
 			String cName = localityMap.get(containingLocalityId).name;
+			if(disambiguator != null) {
+				return name + " (" + disambiguator +")" + descriptor + cName;
+			}			
 			return name + descriptor + cName;
 		}
 		return name;

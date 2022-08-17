@@ -5,7 +5,6 @@ import java.util.Map;
 import org.locationtech.jts.geom.LineString;
 
 import ca.bc.gov.ols.enums.AccessRestriction;
-import ca.bc.gov.ols.enums.AddressScheme;
 import ca.bc.gov.ols.enums.DividerType;
 import ca.bc.gov.ols.enums.LaneRestriction;
 import ca.bc.gov.ols.enums.RoadClass;
@@ -176,6 +175,10 @@ public class RawStreetSeg {
 		if(!Double.isNaN(toWidth)) row.put("TO_VEHICLE_MAX_WIDTH", toWidth);	
 		row.put("FROM_VEHICLE_MAX_WEIGHT", fromWeight);	
 		row.put("TO_VEHICLE_MAX_WEIGHT", toWeight);
+		// route numbers
+		row.put("HIGHWAY_ROUTE_1", highwayRoute1);
+		row.put("HIGHWAY_ROUTE_2", highwayRoute2);
+		row.put("HIGHWAY_ROUTE_3", highwayRoute3);
 		row.put("geom", geom);
 		rw.writeRow(row);
 	}

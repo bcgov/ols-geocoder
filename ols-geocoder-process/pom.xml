@@ -8,6 +8,11 @@
   </parent>
   <artifactId>ols-geocoder-process</artifactId>
   <name>OLS Geocoder Process</name>
+  
+  <properties>
+	<geotools.version>26.3</geotools.version>
+  </properties>
+	
   <build>
     <plugins>
       <plugin>

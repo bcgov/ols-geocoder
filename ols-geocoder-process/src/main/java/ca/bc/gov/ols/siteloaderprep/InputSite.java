@@ -13,7 +13,7 @@ public class InputSite {
 	UUID uuid;
 	Integer parentId;
 	String addressString;
-	String yourId;
+	String jurol;
 	String siteName;
 	String unitDesignator;
 	String unitNumber;
@@ -82,7 +82,7 @@ public class InputSite {
 				appendPart(sb, "", civicNumberSuffix);
 			}
 		}
-		if(result.name != null) {
+		if(result != null && result.name != null) {
 			appendPart(sb, " ", result.name.toString());
 		}
 		appendPart(sb, " ", localityName);
