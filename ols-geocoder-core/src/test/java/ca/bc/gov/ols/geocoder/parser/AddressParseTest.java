@@ -30,6 +30,13 @@ import ca.bc.gov.ols.geocoder.parser.generator.RuleTerm;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import org.bytedeco.javacpp.*;
+import org.bytedeco.libpostal.*;
+
+import java.io.UnsupportedEncodingException;
+
+import static org.bytedeco.libpostal.global.postal.*;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AddressParseTest
@@ -70,6 +77,38 @@ public class AddressParseTest
 
 	AddressParser createParser()
 	{
+		String dataDir = "ols-geocoder-core/src/main/resources/libpostal_data/";
+		String libpostal_data = Loader.load(org.bytedeco.libpostal.libpostal_data.class);
+		ProcessBuilder pb = new ProcessBuilder("bash", libpostal_data, "download", "all", dataDir);
+		try {
+			pb.inheritIO().start().waitFor();
+		} catch (Exception e) {
+			System.out.println("libpostal data download failed.");
+		}
+
+		boolean setup1 = libpostal_setup_datadir(dataDir);
+		boolean setup2 = libpostal_setup_parser_datadir(dataDir);
+		boolean setup3 = libpostal_setup_language_classifier_datadir(dataDir);
+		if (setup1 && setup2 && setup3) {
+			libpostal_address_parser_options_t options = libpostal_get_address_parser_default_options();
+			BytePointer address = null;
+			try {
+				address = new BytePointer("781 Franklin Ave Crown Heights Brooklyn NYC NY 11216 USA", "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			libpostal_address_parser_response_t response = libpostal_parse_address(address, options);
+			long count = response.num_components();
+			for (int i = 0; i < count; i++) {
+				System.out.println(response.labels(i).getString() + " " + response.components(i).getString());
+			}
+			libpostal_teardown();
+			libpostal_teardown_parser();
+			libpostal_teardown_language_classifier();
+		} else {
+			System.out.println("Cannot setup libpostal, check if the training data is available at the specified path!");
+		}
+
 		AddressParserGenerator parserGen = new AddressParserGenerator();
 
 		Rule ruleAddr = new RuleSequence("addr", true, new RuleTerm[] {

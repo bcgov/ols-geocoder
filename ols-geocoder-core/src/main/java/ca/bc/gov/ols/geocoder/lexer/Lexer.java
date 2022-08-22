@@ -15,6 +15,7 @@
  */
 package ca.bc.gov.ols.geocoder.lexer;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumSet;
@@ -25,6 +26,14 @@ import ca.bc.gov.ols.geocoder.data.indexing.MisspellingOf;
 import ca.bc.gov.ols.geocoder.data.indexing.Word;
 import ca.bc.gov.ols.geocoder.data.indexing.WordClass;
 import ca.bc.gov.ols.geocoder.data.indexing.WordMap;
+import ca.bc.gov.ols.geocoder.parser.ParseDerivationHandler;
+import ca.bc.gov.ols.geocoder.parser.generator.*;
+import org.bytedeco.javacpp.BytePointer;
+import org.bytedeco.libpostal.libpostal_address_parser_options_t;
+import org.bytedeco.libpostal.libpostal_address_parser_response_t;
+
+import static org.bytedeco.libpostal.global.postal.*;
+import static org.bytedeco.libpostal.global.postal.libpostal_teardown_language_classifier;
 
 /**
  * A Lexer takes an input string and separates it into Words, associating the matching WordClasses
@@ -39,7 +48,8 @@ public class Lexer
 	private LexicalRules rules;
 	private WordMap wordMap;
 	private static String[] STRING_ARRAY_TYPE = new String[0];
-	
+	private static String dataDir = "src/main/resources/libpostal_data/";
+
 	public Lexer(LexicalRules rules, WordMap wordMap)
 	{
 		this.rules = rules;
@@ -51,12 +61,105 @@ public class Lexer
 		//sentence = " " + sentence;
 		sentence = rules.cleanSentence(sentence);
 		sentence = rules.runSpecialRules(sentence);
-		String[] atoms = sentence.split(rules.getTokenDelimiterRegex());
-		
-		String[] atomsSplit = runSplitRules(atoms);
-		String[] atomsJoin = runJoinRules(atomsSplit);
-		return tokenize(atomsJoin, allowMisspellings, autoComplete, nonWords);
-		
+		List<List<MisspellingOf<Word>>> toks = new ArrayList<List<MisspellingOf<Word>>>();
+		boolean setup1 = libpostal_setup_datadir(dataDir);
+		boolean setup2 = libpostal_setup_parser_datadir(dataDir);
+		boolean setup3 = libpostal_setup_language_classifier_datadir(dataDir);
+		if (setup1 && setup2 && setup3) {
+			libpostal_address_parser_options_t options = libpostal_get_address_parser_default_options();
+			BytePointer address = null;
+			try {
+				address = new BytePointer(sentence, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			libpostal_address_parser_response_t response = libpostal_parse_address(address, options);
+			long count = response.num_components();
+			for (int i = 0; i < count; i++) {
+				Word word = new Word(response.components(i).getString().toUpperCase());
+				String wordClass = response.labels(i).getString();
+				List<MisspellingOf<Word>> sub_toks = new ArrayList<MisspellingOf<Word>>();
+				switch(wordClass) {
+					case "house_number":
+						word.addClass(WordClass.NUMBER);
+						sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
+						break;
+					case "road":
+						String[] atoms = word.getWord().split(rules.getTokenDelimiterRegex());
+						List<List<MisspellingOf<Word>>> temp_toks = tokenize(atoms, allowMisspellings, autoComplete, nonWords);
+						toks.addAll(temp_toks);
+						break;
+					case "unit":
+						word.addClass(WordClass.UNIT_DESIGNATOR);
+						sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
+						break;
+					case "level":
+						word.addClass(WordClass.FLOOR);
+						sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
+						break;
+					case "entrance":
+						word.addClass(WordClass.FRONT_GATE);
+						sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
+						break;
+					case "po_box":
+					case "postcode":
+					case "suburb":
+					case "city_district":
+						word.addClass(WordClass.POSTAL_ADDRESS_ELEMENT);
+						sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
+						break;
+					case "city":
+						word.addClass(WordClass.LOCALITY_NAME);
+						sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
+						break;
+					case "state":
+						word.addClass(WordClass.STATE_PROV_TERR);
+						sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
+						break;
+//					case "country_region":
+//						break;
+//					case "country":
+//						word.addClass(WordClass.);
+//						break;
+//					case "world_region":
+//						break;
+//					case "house":
+//						break;
+//					case "category":
+//						break;
+//					case "near":
+//						break;
+//					case "island":
+//						break;
+//					case "staircase":
+//						break;
+					default:
+						word.addClass(WordClass.UNRECOGNIZED);
+						sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
+						break;
+				}
+				if (!sub_toks.isEmpty())
+				{
+					toks.add(sub_toks);
+				}
+//				System.out.println(response.labels(i).getString() + " " + response.components(i).getString());
+			}
+			libpostal_teardown();
+			libpostal_teardown_parser();
+			libpostal_teardown_language_classifier();
+		} else {
+			System.out.println("Cannot setup libpostal, check if the training data is available at the specified path!");
+		}
+
+		return toks;
+
+////		 TODO I don't think we need to use splits/joins anymore
+//		String[] atoms = sentence.split(rules.getTokenDelimiterRegex());
+//		String[] atomsSplit = runSplitRules(atoms);
+//		String[] atomsJoin = runJoinRules(atomsSplit);
+////		 TODO need to change tokenize logic - since we already assigned WordClasses before even going to tokenize method
+//		return tokenize(atoms, allowMisspellings, autoComplete, nonWords);
+
 	}
 	
 	public List<List<MisspellingOf<Word>>> lexField(String sentence, EnumSet<WordClass> wc) {

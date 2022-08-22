@@ -17,6 +17,7 @@ package ca.bc.gov.ols.geocoder;
 
 import gnu.trove.set.hash.THashSet;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -29,6 +30,10 @@ import java.util.Set;
 
 import javax.annotation.PreDestroy;
 
+import org.bytedeco.javacpp.BytePointer;
+import org.bytedeco.javacpp.Loader;
+import org.bytedeco.libpostal.libpostal_address_parser_options_t;
+import org.bytedeco.libpostal.libpostal_address_parser_response_t;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,6 +85,9 @@ import ca.bc.gov.ols.util.StringUtils;
 
 import org.locationtech.jts.geom.Coordinate;
 
+//import static org.bytedeco.libpostal.global.postal.*;
+//import static org.bytedeco.libpostal.global.postal.libpostal_teardown_language_classifier;
+
 /**
  * The Geocoder takes GeocodeQueries and uses the GeocoderDataStore to return GeocodeResults.
  * 
@@ -95,12 +103,27 @@ public class Geocoder implements IGeocoder {
 	//private DateFormatter dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	private Lexer lexer;
 	private SiteAddress fallbackSiteAddress;
-	
+//	private static String dataDir = "src/main/resources/libpostal_data/";
+
 	public Geocoder(GeocoderDataStore datastore) {
 		this.datastore = datastore;
 		lexer = new Lexer(new DraLexicalRules(), datastore.getWordMap());
 		parser = createParser(lexer);
 		fallbackSiteAddress = geocodeFallbackAddress(datastore.getConfig().getFallbackAddress());
+//		String libpostal_data = Loader.load(org.bytedeco.libpostal.libpostal_data.class);
+//		ProcessBuilder pb = new ProcessBuilder("bash", libpostal_data, "download", "all", dataDir);
+//		try {
+//			pb.inheritIO().start().waitFor();
+//		} catch (Exception e) {
+//			System.out.println("libpostal data download failed.");
+//		}
+//
+//		boolean setup1 = libpostal_setup_datadir(dataDir);
+//		boolean setup2 = libpostal_setup_parser_datadir(dataDir);
+//		boolean setup3 = libpostal_setup_language_classifier_datadir(dataDir);
+//		if (!setup1 || !setup2 || !setup3) {
+//			System.out.println("Cannot setup libpostal, check if the training data is available at the specified path!");
+//		}
 	}
 	
 	private SiteAddress geocodeFallbackAddress(String fallbackAddress) {
@@ -175,9 +198,7 @@ public class Geocoder implements IGeocoder {
 			// filter the lex results to words of the correct type for the specified field
 			// combine the results into one list
 			List<List<MisspellingOf<Word>>> addressWords = new ArrayList<List<MisspellingOf<Word>>>();
-			
-			
-			// TODO need to accept invalid unit designators and somehow pass the UNIT_DESIGNATOR.notMatched all the way up
+
 			addressWords.addAll(lexer.lexField(query.getUnitDesignator(),
 					EnumSet.of(WordClass.UNIT_DESIGNATOR)));
 			addressWords.addAll(lexer.lexField(query.getUnitNumber(),
@@ -245,62 +266,7 @@ public class Geocoder implements IGeocoder {
 				matches.add(match);
 			}
 		}
-		
-//		logger.debug("matches.size() before duplicate filter: {}", matches.size());
-//		
-//		// filter out any duplicate results, keep the one with the highest score
-//		// sort by AddressString,Location first
-//		Collections.sort(matches, GeocodeMatch.ADDRESS_LOCATION_COMPARATOR);
-//		
-//		List<GeocodeMatch> newMatches = new ArrayList<GeocodeMatch>();
-//		for(int i = 0; i < matches.size();) {
-//			GeocodeMatch a = matches.get(i);
-//			// loop over matches following match[i] aka. "a"
-//			int next = 1;
-//			while(i + next < matches.size()) {
-//				GeocodeMatch b = matches.get(i + next);
-//				if(((a.getLocation() == null && b.getLocation() == null)
-//						|| (a.getLocation() != null && b.getLocation() != null
-//						&& a.getLocation().getX() == b.getLocation().getX()
-//						&& a.getLocation().getY() == b.getLocation().getY()))
-//						&& a.getAddressString().equals(b.getAddressString())) {
-//					if(b.getScore() > a.getScore()) {
-//						// if b is better, move a up to b
-//						i = i + next;
-//						a = b;
-//						next = 1;
-//					} else {
-//						next++;
-//					}
-//				} else {
-//					// we've run out of duplicates for "a"
-//					break;
-//				}
-//			}
-//			i = i + next;
-//			newMatches.add(a);
-//		}
-//		matches = newMatches;
-//		
-//		logger.debug("matches.size() after duplicate filter: {}", matches.size());
-		
-		/*
-		 * // filter by centre/maxDistance spatial filter if(query.getCentre() != null &&
-		 * query.getMaxDistance() != 0) { newMatches = new ArrayList<GeocodeMatch>(); for(int i = 0;
-		 * i < matches.size(); i++) { GeocodeMatch match = matches.get(i);
-		 * if(match.getLocation().distance(query.getCentre()) < query.getMaxDistance()) {
-		 * newMatches.add(match); } } matches = newMatches; }
-		 * 
-		 * // filter by bbox spatial filter if(query.getBbox() != null) { newMatches = new
-		 * ArrayList<GeocodeMatch>(); for(int i = 0; i < matches.size(); i++) { GeocodeMatch match =
-		 * matches.get(i); if(query.getBbox().contains(match.getLocation())) {
-		 * newMatches.add(match); } } matches = newMatches; }
-		 * 
-		 * logger.debug("matches.size() after spatial filters: {}", matches.size());
-		 */
-		// sort the list by score
-		//Collections.sort(matches, GeocodeMatch.SCORE_COMPARATOR);
-		
+
 		// filter the list down to the maxResults limit from the query
 		List<GeocodeMatch> limitedMatches = matches;
 		if(query.getMaxResults() > 0) {
