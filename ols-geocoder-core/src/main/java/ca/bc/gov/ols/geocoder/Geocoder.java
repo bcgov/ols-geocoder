@@ -104,26 +104,27 @@ public class Geocoder implements IGeocoder {
 	private Lexer lexer;
 	private SiteAddress fallbackSiteAddress;
 	private static String dataDir = "/usr/local/tomcat/webapps/libpostal/";
+//	private static String dataDir = "src/main/resources/libpostal_data/";
 
 	public Geocoder(GeocoderDataStore datastore) {
 		this.datastore = datastore;
 		lexer = new Lexer(new DraLexicalRules(), datastore.getWordMap());
 		parser = createParser(lexer);
 		fallbackSiteAddress = geocodeFallbackAddress(datastore.getConfig().getFallbackAddress());
-		String libpostal_data = Loader.load(org.bytedeco.libpostal.libpostal_data.class);
-		ProcessBuilder pb = new ProcessBuilder("bash", libpostal_data, "download", "all", dataDir);
-		try {
-			pb.inheritIO().start().waitFor();
-		} catch (Exception e) {
-			System.out.println("libpostal data download failed.");
-		}
-
-		boolean setup1 = libpostal_setup_datadir(dataDir);
-		boolean setup2 = libpostal_setup_parser_datadir(dataDir);
-		boolean setup3 = libpostal_setup_language_classifier_datadir(dataDir);
-		if (!setup1 || !setup2 || !setup3) {
-			System.out.println("Cannot setup libpostal, check if the training data is available at the specified path!");
-		}
+//		String libpostal_data = Loader.load(org.bytedeco.libpostal.libpostal_data.class);
+//		ProcessBuilder pb = new ProcessBuilder("bash", libpostal_data, "download", "all", dataDir);
+//		try {
+//			pb.inheritIO().start().waitFor();
+//		} catch (Exception e) {
+//			System.out.println("libpostal data download failed.");
+//		}
+//
+//		boolean setup1 = libpostal_setup_datadir(dataDir);
+//		boolean setup2 = libpostal_setup_parser_datadir(dataDir);
+//		boolean setup3 = libpostal_setup_language_classifier_datadir(dataDir);
+//		if (!setup1 || !setup2 || !setup3) {
+//			System.out.println("Cannot setup libpostal, check if the training data is available at the specified path!");
+//		}
 	}
 	
 	private SiteAddress geocodeFallbackAddress(String fallbackAddress) {
