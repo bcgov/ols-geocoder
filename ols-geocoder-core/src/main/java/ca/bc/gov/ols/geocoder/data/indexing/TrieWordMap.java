@@ -81,8 +81,6 @@ public class TrieWordMap implements WordMap {
 		// newWords.add(words.get(0));
 		// words = newWords;
 		// }
-
-		//TODO this is where classification needs to be redone
 		
 		Word word = classifyWord(fromWord);		
 
