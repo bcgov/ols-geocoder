@@ -50,7 +50,7 @@ public class Lexer
 //	private static String dataDir = "/usr/local/libpostal/";
 //	private static String dataDir = "src/main/resources/libpostal_data/";
 //	private static String dataDir = "/Users/abolyach/bc_work/ols-geocoder/ols-geocoder-web/src/main/resources/libpostal_data/";
-	private static String dataDir = "/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/libpostal_data/"
+	private static String dataDir = "/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/libpostal_data/";
 
 	public Lexer(LexicalRules rules, WordMap wordMap)
 	{
