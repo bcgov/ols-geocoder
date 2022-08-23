@@ -16,7 +16,6 @@
 package ca.bc.gov.ols.geocoder.lexer;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumSet;
@@ -32,7 +31,6 @@ import org.bytedeco.libpostal.libpostal_address_parser_options_t;
 import org.bytedeco.libpostal.libpostal_address_parser_response_t;
 
 import static org.bytedeco.libpostal.global.postal.*;
-import static org.bytedeco.libpostal.global.postal.libpostal_teardown_language_classifier;
 
 /**
  * A Lexer takes an input string and separates it into Words, associating the matching WordClasses
@@ -50,7 +48,7 @@ public class Lexer
 //	private static String dataDir = "/usr/local/libpostal/";
 //	private static String dataDir = "src/main/resources/libpostal_data/";
 //	private static String dataDir = "/Users/abolyach/bc_work/ols-geocoder/ols-geocoder-web/src/main/resources/libpostal_data/";
-	private static String dataDir = "/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/libpostal_data/";
+//	private static String dataDir = "/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/libpostal_data/";
 
 	public Lexer(LexicalRules rules, WordMap wordMap)
 	{
@@ -64,21 +62,11 @@ public class Lexer
 		sentence = rules.cleanSentence(sentence);
 		sentence = rules.runSpecialRules(sentence);
 		List<List<MisspellingOf<Word>>> toks = new ArrayList<List<MisspellingOf<Word>>>();
-		URL url = this.getClass()
-				.getClassLoader()
-				.getResource("libpostal_data/data_version");
-		System.out.println("PATH");
-		System.out.println(url.getPath());
-//
-//		String dataDir = "";
-//		dataDir = url.getPath();
-//
-//		dataDir = "/" + FilenameUtils.getPath(dataDir);
 
-		boolean setup1 = libpostal_setup_datadir(dataDir);
-		boolean setup2 = libpostal_setup_parser_datadir(dataDir);
-		boolean setup3 = libpostal_setup_language_classifier_datadir(dataDir);
-		if (setup1 && setup2 && setup3) {
+//		boolean setup1 = libpostal_setup_datadir(dataDir);
+//		boolean setup2 = libpostal_setup_parser_datadir(dataDir);
+//		boolean setup3 = libpostal_setup_language_classifier_datadir(dataDir);
+//		if (setup1 && setup2 && setup3) {
 			libpostal_address_parser_options_t options = libpostal_get_address_parser_default_options();
 			BytePointer address = null;
 			try {
@@ -157,12 +145,12 @@ public class Lexer
 				}
 //				System.out.println(response.labels(i).getString() + " " + response.components(i).getString());
 			}
-			libpostal_teardown();
-			libpostal_teardown_parser();
-			libpostal_teardown_language_classifier();
-		} else {
-			System.out.println("Cannot setup libpostal, check if the training data is available at the specified path!");
-		}
+//			libpostal_teardown();
+//			libpostal_teardown_parser();
+//			libpostal_teardown_language_classifier();
+//		} else {
+//			System.out.println("Cannot setup libpostal, check if the training data is available at the specified path!");
+//		}
 
 		return toks;
 

@@ -18,6 +18,7 @@ package ca.bc.gov.ols.geocoder;
 import gnu.trove.set.hash.THashSet;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -30,6 +31,7 @@ import java.util.Set;
 
 import javax.annotation.PreDestroy;
 
+import org.apache.commons.io.FilenameUtils;
 import org.bytedeco.javacpp.BytePointer;
 import org.bytedeco.javacpp.Loader;
 import org.bytedeco.libpostal.libpostal_address_parser_options_t;
@@ -84,9 +86,8 @@ import ca.bc.gov.ols.util.PairedListEntry;
 import ca.bc.gov.ols.util.StringUtils;
 
 import org.locationtech.jts.geom.Coordinate;
+import static org.bytedeco.libpostal.global.postal.*;
 
-//import static org.bytedeco.libpostal.global.postal.*;
-//import static org.bytedeco.libpostal.global.postal.libpostal_teardown_language_classifier;
 
 /**
  * The Geocoder takes GeocodeQueries and uses the GeocoderDataStore to return GeocodeResults.
@@ -106,6 +107,11 @@ public class Geocoder implements IGeocoder {
 //	private static String dataDir = "/usr/local/libpostal/";
 //	private static String dataDir = "src/main/resources/libpostal_data/";
 
+	private static String dataDir = "/usr/local/libpostal/";
+//	private static String dataDir = "src/main/resources/libpostal_data/";
+//	private static String dataDir = "/Users/abolyach/bc_work/ols-geocoder/ols-geocoder-web/src/main/resources/libpostal_data/";
+//	private static String dataDir = "/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/libpostal_data/";
+
 	public Geocoder(GeocoderDataStore datastore) {
 		this.datastore = datastore;
 		lexer = new Lexer(new DraLexicalRules(), datastore.getWordMap());
@@ -119,12 +125,23 @@ public class Geocoder implements IGeocoder {
 //			System.out.println("libpostal data download failed.");
 //		}
 //
-//		boolean setup1 = libpostal_setup_datadir(dataDir);
-//		boolean setup2 = libpostal_setup_parser_datadir(dataDir);
-//		boolean setup3 = libpostal_setup_language_classifier_datadir(dataDir);
-//		if (!setup1 || !setup2 || !setup3) {
-//			System.out.println("Cannot setup libpostal, check if the training data is available at the specified path!");
-//		}
+//		URL url = this.getClass()
+//				.getClassLoader()
+//				.getResource("libpostal_data/data_version");
+//		System.out.println("PATH");
+//		System.out.println(url.getPath());
+//
+//		String dataDir = "";
+//		dataDir = url.getPath();
+//		dataDir = "/" + FilenameUtils.getPath(dataDir);
+//		System.out.println(dataDir);
+//
+		boolean setup1 = libpostal_setup_datadir(dataDir);
+		boolean setup2 = libpostal_setup_parser_datadir(dataDir);
+		boolean setup3 = libpostal_setup_language_classifier_datadir(dataDir);
+		if (!setup1 || !setup2 || !setup3) {
+			System.out.println("Cannot setup libpostal, check if the training data is available at the specified path!");
+		}
 	}
 	
 	private SiteAddress geocodeFallbackAddress(String fallbackAddress) {
