@@ -86,7 +86,7 @@ import ca.bc.gov.ols.util.PairedListEntry;
 import ca.bc.gov.ols.util.StringUtils;
 
 import org.locationtech.jts.geom.Coordinate;
-import static org.bytedeco.libpostal.global.postal.*;
+//import static org.bytedeco.libpostal.global.postal.*;
 
 
 /**
@@ -136,12 +136,12 @@ public class Geocoder implements IGeocoder {
 //		dataDir = "/" + FilenameUtils.getPath(dataDir);
 //		System.out.println(dataDir);
 //
-		boolean setup1 = libpostal_setup_datadir(dataDir);
-		boolean setup2 = libpostal_setup_parser_datadir(dataDir);
-		boolean setup3 = libpostal_setup_language_classifier_datadir(dataDir);
-		if (!setup1 || !setup2 || !setup3) {
-			System.out.println("Cannot setup libpostal, check if the training data is available at the specified path!");
-		}
+//		boolean setup1 = libpostal_setup_datadir(dataDir);
+//		boolean setup2 = libpostal_setup_parser_datadir(dataDir);
+//		boolean setup3 = libpostal_setup_language_classifier_datadir(dataDir);
+//		if (!setup1 || !setup2 || !setup3) {
+//			System.out.println("Cannot setup libpostal, check if the training data is available at the specified path!");
+//		}
 	}
 	
 	private SiteAddress geocodeFallbackAddress(String fallbackAddress) {

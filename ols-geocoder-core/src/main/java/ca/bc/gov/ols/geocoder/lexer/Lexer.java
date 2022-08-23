@@ -45,7 +45,7 @@ public class Lexer
 	private LexicalRules rules;
 	private WordMap wordMap;
 	private static String[] STRING_ARRAY_TYPE = new String[0];
-//	private static String dataDir = "/usr/local/libpostal/";
+	private static String dataDir = "/usr/local/libpostal/";
 //	private static String dataDir = "src/main/resources/libpostal_data/";
 //	private static String dataDir = "/Users/abolyach/bc_work/ols-geocoder/ols-geocoder-web/src/main/resources/libpostal_data/";
 //	private static String dataDir = "/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/libpostal_data/";
@@ -63,95 +63,95 @@ public class Lexer
 		sentence = rules.runSpecialRules(sentence);
 		List<List<MisspellingOf<Word>>> toks = new ArrayList<List<MisspellingOf<Word>>>();
 
-//		boolean setup1 = libpostal_setup_datadir(dataDir);
-//		boolean setup2 = libpostal_setup_parser_datadir(dataDir);
-//		boolean setup3 = libpostal_setup_language_classifier_datadir(dataDir);
-//		if (setup1 && setup2 && setup3) {
+		boolean setup1 = libpostal_setup_datadir(dataDir);
+		boolean setup2 = libpostal_setup_parser_datadir(dataDir);
+		boolean setup3 = libpostal_setup_language_classifier_datadir(dataDir);
 		try {
-			libpostal_address_parser_options_t options = libpostal_get_address_parser_default_options();
-			BytePointer address = null;
-			try {
-				address = new BytePointer(sentence, "UTF-8");
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-			libpostal_address_parser_response_t response = libpostal_parse_address(address, options);
+			if (setup1 && setup2 && setup3) {
+				libpostal_address_parser_options_t options = libpostal_get_address_parser_default_options();
+				BytePointer address = null;
+				try {
+					address = new BytePointer(sentence, "UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+				libpostal_address_parser_response_t response = libpostal_parse_address(address, options);
 
-			long count = response.num_components();
-			for (int i = 0; i < count; i++) {
-				Word word = new Word(response.components(i).getString().toUpperCase());
-				String wordClass = response.labels(i).getString();
-				List<MisspellingOf<Word>> sub_toks = new ArrayList<MisspellingOf<Word>>();
-				switch (wordClass) {
-					case "house_number":
-						word.addClass(WordClass.NUMBER);
-						sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
-						break;
-					case "road":
-						String[] atoms = word.getWord().split(rules.getTokenDelimiterRegex());
-						List<List<MisspellingOf<Word>>> temp_toks = tokenize(atoms, allowMisspellings, autoComplete, nonWords);
-						toks.addAll(temp_toks);
-						break;
-					case "unit":
-						word.addClass(WordClass.UNIT_DESIGNATOR);
-						sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
-						break;
-					case "level":
-						word.addClass(WordClass.FLOOR);
-						sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
-						break;
-					case "entrance":
-						word.addClass(WordClass.FRONT_GATE);
-						sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
-						break;
-					case "po_box":
-					case "postcode":
-					case "suburb":
-					case "city_district":
-						word.addClass(WordClass.POSTAL_ADDRESS_ELEMENT);
-						sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
-						break;
-					case "city":
-						word.addClass(WordClass.LOCALITY_NAME);
-						sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
-						break;
-					case "state":
-						word.addClass(WordClass.STATE_PROV_TERR);
-						sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
-						break;
-//					case "country_region":
-//						break;
-//					case "country":
-//						word.addClass(WordClass.);
-//						break;
-//					case "world_region":
-//						break;
-//					case "house":
-//						break;
-//					case "category":
-//						break;
-//					case "near":
-//						break;
-//					case "island":
-//						break;
-//					case "staircase":
-//						break;
-					default:
-						word.addClass(WordClass.UNRECOGNIZED);
-						sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
-						break;
+				long count = response.num_components();
+				for (int i = 0; i < count; i++) {
+					Word word = new Word(response.components(i).getString().toUpperCase());
+					String wordClass = response.labels(i).getString();
+					List<MisspellingOf<Word>> sub_toks = new ArrayList<MisspellingOf<Word>>();
+					switch (wordClass) {
+						case "house_number":
+							word.addClass(WordClass.NUMBER);
+							sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
+							break;
+						case "road":
+							String[] atoms = word.getWord().split(rules.getTokenDelimiterRegex());
+							List<List<MisspellingOf<Word>>> temp_toks = tokenize(atoms, allowMisspellings, autoComplete, nonWords);
+							toks.addAll(temp_toks);
+							break;
+						case "unit":
+							word.addClass(WordClass.UNIT_DESIGNATOR);
+							sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
+							break;
+						case "level":
+							word.addClass(WordClass.FLOOR);
+							sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
+							break;
+						case "entrance":
+							word.addClass(WordClass.FRONT_GATE);
+							sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
+							break;
+						case "po_box":
+						case "postcode":
+						case "suburb":
+						case "city_district":
+							word.addClass(WordClass.POSTAL_ADDRESS_ELEMENT);
+							sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
+							break;
+						case "city":
+							word.addClass(WordClass.LOCALITY_NAME);
+							sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
+							break;
+						case "state":
+							word.addClass(WordClass.STATE_PROV_TERR);
+							sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
+							break;
+	//					case "country_region":
+	//						break;
+	//					case "country":
+	//						word.addClass(WordClass.);
+	//						break;
+	//					case "world_region":
+	//						break;
+	//					case "house":
+	//						break;
+	//					case "category":
+	//						break;
+	//					case "near":
+	//						break;
+	//					case "island":
+	//						break;
+	//					case "staircase":
+	//						break;
+						default:
+							word.addClass(WordClass.UNRECOGNIZED);
+							sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
+							break;
+					}
+					if (!sub_toks.isEmpty()) {
+						toks.add(sub_toks);
+					}
+	//				System.out.println(response.labels(i).getString() + " " + response.components(i).getString());
 				}
-				if (!sub_toks.isEmpty()) {
-					toks.add(sub_toks);
-				}
-//				System.out.println(response.labels(i).getString() + " " + response.components(i).getString());
+	//			libpostal_teardown();
+	//			libpostal_teardown_parser();
+	//			libpostal_teardown_language_classifier();
+			} else {
+				System.out.println("Cannot setup libpostal, check if the training data is available at the specified path!");
 			}
-//			libpostal_teardown();
-//			libpostal_teardown_parser();
-//			libpostal_teardown_language_classifier();
-//		} else {
-//			System.out.println("Cannot setup libpostal, check if the training data is available at the specified path!");
-//		}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
