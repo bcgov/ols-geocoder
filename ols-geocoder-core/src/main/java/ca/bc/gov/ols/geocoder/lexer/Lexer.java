@@ -67,6 +67,7 @@ public class Lexer
 //		boolean setup2 = libpostal_setup_parser_datadir(dataDir);
 //		boolean setup3 = libpostal_setup_language_classifier_datadir(dataDir);
 //		if (setup1 && setup2 && setup3) {
+		try {
 			libpostal_address_parser_options_t options = libpostal_get_address_parser_default_options();
 			BytePointer address = null;
 			try {
@@ -75,12 +76,13 @@ public class Lexer
 				e.printStackTrace();
 			}
 			libpostal_address_parser_response_t response = libpostal_parse_address(address, options);
+
 			long count = response.num_components();
 			for (int i = 0; i < count; i++) {
 				Word word = new Word(response.components(i).getString().toUpperCase());
 				String wordClass = response.labels(i).getString();
 				List<MisspellingOf<Word>> sub_toks = new ArrayList<MisspellingOf<Word>>();
-				switch(wordClass) {
+				switch (wordClass) {
 					case "house_number":
 						word.addClass(WordClass.NUMBER);
 						sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
@@ -139,8 +141,7 @@ public class Lexer
 						sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
 						break;
 				}
-				if (!sub_toks.isEmpty())
-				{
+				if (!sub_toks.isEmpty()) {
 					toks.add(sub_toks);
 				}
 //				System.out.println(response.labels(i).getString() + " " + response.components(i).getString());
@@ -151,6 +152,9 @@ public class Lexer
 //		} else {
 //			System.out.println("Cannot setup libpostal, check if the training data is available at the specified path!");
 //		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		return toks;
 
