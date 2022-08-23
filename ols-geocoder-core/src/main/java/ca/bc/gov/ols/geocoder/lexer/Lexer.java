@@ -27,9 +27,6 @@ import ca.bc.gov.ols.geocoder.data.indexing.MisspellingOf;
 import ca.bc.gov.ols.geocoder.data.indexing.Word;
 import ca.bc.gov.ols.geocoder.data.indexing.WordClass;
 import ca.bc.gov.ols.geocoder.data.indexing.WordMap;
-import ca.bc.gov.ols.geocoder.parser.ParseDerivationHandler;
-import ca.bc.gov.ols.geocoder.parser.generator.*;
-import org.apache.commons.io.FilenameUtils;
 import org.bytedeco.javacpp.BytePointer;
 import org.bytedeco.libpostal.libpostal_address_parser_options_t;
 import org.bytedeco.libpostal.libpostal_address_parser_response_t;
@@ -52,6 +49,8 @@ public class Lexer
 	private static String[] STRING_ARRAY_TYPE = new String[0];
 //	private static String dataDir = "/usr/local/libpostal/";
 //	private static String dataDir = "src/main/resources/libpostal_data/";
+//	private static String dataDir = "/Users/abolyach/bc_work/ols-geocoder/ols-geocoder-web/src/main/resources/libpostal_data/";
+	private static String dataDir = "/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/libpostal_data/"
 
 	public Lexer(LexicalRules rules, WordMap wordMap)
 	{
@@ -68,11 +67,13 @@ public class Lexer
 		URL url = this.getClass()
 				.getClassLoader()
 				.getResource("libpostal_data/data_version");
-
-		String dataDir = "";
-		dataDir = url.getPath();
-
-		dataDir = "/" + FilenameUtils.getPath(dataDir);
+		System.out.println("PATH");
+		System.out.println(url.getPath());
+//
+//		String dataDir = "";
+//		dataDir = url.getPath();
+//
+//		dataDir = "/" + FilenameUtils.getPath(dataDir);
 
 		boolean setup1 = libpostal_setup_datadir(dataDir);
 		boolean setup2 = libpostal_setup_parser_datadir(dataDir);
