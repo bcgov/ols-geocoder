@@ -48,8 +48,8 @@ public class Lexer
 	private LexicalRules rules;
 	private WordMap wordMap;
 	private static String[] STRING_ARRAY_TYPE = new String[0];
-	private static String dataDir = "/usr/local/tomcat/webapps/libpostal/";
-//	private static String dataDir = "src/main/resources/libpostal_data/";
+//	private static String dataDir = "/usr/local/tomcat/webapps/libpostal/";
+	private static String dataDir = "src/main/resources/libpostal_data/";
 
 	public Lexer(LexicalRules rules, WordMap wordMap)
 	{
