@@ -103,7 +103,7 @@ public class Geocoder implements IGeocoder {
 	//private DateFormatter dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	private Lexer lexer;
 	private SiteAddress fallbackSiteAddress;
-	private static String dataDir = "/usr/local/tomcat/webapps/libpostal/";
+	private static String dataDir = "/usr/local/libpostal/";
 //	private static String dataDir = "src/main/resources/libpostal_data/";
 
 	public Geocoder(GeocoderDataStore datastore) {
