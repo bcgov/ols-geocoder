@@ -88,13 +88,20 @@ public class Lexer
 					String wordClass = response.labels(i).getString();
 					List<MisspellingOf<Word>> sub_toks = new ArrayList<MisspellingOf<Word>>();
 					switch (wordClass) {
+						// We need to further tokenize these, as libpostal lack granularity in these categories - retraining would solve this problem
 						case "house_number":
-							word.addClass(WordClass.NUMBER);
-							sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
-							break;
 						case "road":
 							String[] atoms = word.getWord().split(rules.getTokenDelimiterRegex());
 							List<List<MisspellingOf<Word>>> temp_toks = tokenize(atoms, allowMisspellings, autoComplete, nonWords);
+							for(List<MisspellingOf<Word>> word_lists : temp_toks) {
+								for(MisspellingOf<Word> w: word_lists) {
+									w.get().removeClass(WordClass.UNRECOGNIZED);
+									if (w.get().getClasses().isEmpty())
+									{
+										temp_toks.remove(w);
+									}
+								}
+							}
 							toks.addAll(temp_toks);
 							break;
 						case "unit":

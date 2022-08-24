@@ -208,7 +208,7 @@ public class Geocoder implements IGeocoder {
 					for (int i = 0; i < num_expansions.get(); i++) {
 						s = address_expansions.getString(i);
 						GeocodeResultsHandler libpostalHandler = new GeocodeResultsHandler(query, this);
-						parser.parseWithLibpostal(s, query.getAutoComplete(), libpostalHandler);
+						parser.parseWithLibpostal(s.toUpperCase(), query.getAutoComplete(), libpostalHandler);
 						if (libpostalHandler.getBestScore() > handler.getBestScore()) {
 							handler = libpostalHandler;
 						}

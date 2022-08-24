@@ -237,6 +237,9 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 					// lets short-circuit outta here!
 					matches.clear();
 					matches.add(match);
+					if(match.getScore() > bestScore) {
+						bestScore = match.getScore();
+					}
 					return false;
 				}
 			}

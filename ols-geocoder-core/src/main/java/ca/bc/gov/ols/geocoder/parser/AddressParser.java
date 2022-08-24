@@ -65,27 +65,8 @@ public class AddressParser {
 		List<String> nonWords = new ArrayList<String>();
 		List<List<MisspellingOf<Word>>> toks = lexer.lexWithLibpostal(sentence, false, autoComplete, nonWords);
 
-		boolean cont = parse(toks, nonWords, handler);
-		if(!cont || toks.size() == 0) {
-			return;
-		}
-		// if we have at least 90 we are done
-		if(handler.getBestScore() >= 90) {
-			return;
-		}
+		parse(toks, nonWords, handler);
 
-		// try with misspellings
-		nonWords = new ArrayList<String>();
-		toks = lexer.lexWithLibpostal(sentence, true, autoComplete, nonWords);
-		cont = parse(toks, nonWords, handler);
-		if(!cont || toks.size() == 0) {
-			return;
-		}
-
-		// if we have at least 90 we are done
-		if(handler.getBestScore() >= 90) {
-			return;
-		}
 	}
 	
 	public void parse(String sentence, boolean autoComplete, ParseDerivationHandler handler)
