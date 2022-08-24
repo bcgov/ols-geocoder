@@ -47,32 +47,25 @@ public class Lexer
 	private LexicalRules rules;
 	private WordMap wordMap;
 	private static String[] STRING_ARRAY_TYPE = new String[0];
-//	private static String dataDir = "/usr/local/libpostal/";
-//	private static String dataDir = "src/main/resources/libpostal_data/";
-//	private static String dataDir = "/Users/abolyach/bc_work/ols-geocoder/ols-geocoder-web/src/main/resources/libpostal_data/";
-	private static String dataDir = "/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/libpostal_data/";
 
 	public Lexer(LexicalRules rules, WordMap wordMap)
 	{
 		this.rules = rules;
 		this.wordMap = wordMap;
 	}
-	
-	public List<List<MisspellingOf<Word>>> lex(String sentence, boolean allowMisspellings, boolean autoComplete, List<String> nonWords)
+
+	public List<List<MisspellingOf<Word>>> lexWithLibpostal(String sentence, boolean allowMisspellings, boolean autoComplete, List<String> nonWords)
 	{
 		sentence = rules.cleanSentence(sentence);
 		sentence = rules.runSpecialRules(sentence);
 		List<List<MisspellingOf<Word>>> toks = new ArrayList<List<MisspellingOf<Word>>>();
 		URL url = this.getClass()
-		.getClassLoader()
-		.getResource("libpostal_data/data_version");
-		System.out.println("PATH");
-		System.out.println(url.getPath());
+				.getClassLoader()
+				.getResource("libpostal_data/data_version");
 
-//		String dataDir = "";
-//		dataDir = url.getPath();
-//		dataDir = "/" + FilenameUtils.getPath(dataDir);
-//		System.out.println(dataDir);
+		String dataDir = "";
+		dataDir = url.getPath();
+		dataDir = "/" + FilenameUtils.getPath(dataDir);
 
 		boolean setup1 = libpostal_setup_datadir(dataDir);
 		boolean setup2 = libpostal_setup_parser_datadir(dataDir);
@@ -86,6 +79,7 @@ public class Lexer
 				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
 				}
+
 				libpostal_address_parser_response_t response = libpostal_parse_address(address, options);
 
 				long count = response.num_components();
@@ -130,23 +124,23 @@ public class Lexer
 							word.addClass(WordClass.STATE_PROV_TERR);
 							sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
 							break;
-	//					case "country_region":
-	//						break;
-	//					case "country":
-	//						word.addClass(WordClass.);
-	//						break;
-	//					case "world_region":
-	//						break;
-	//					case "house":
-	//						break;
-	//					case "category":
-	//						break;
-	//					case "near":
-	//						break;
-	//					case "island":
-	//						break;
-	//					case "staircase":
-	//						break;
+						//					case "country_region":
+						//						break;
+						//					case "country":
+						//						word.addClass(WordClass.);
+						//						break;
+						//					case "world_region":
+						//						break;
+						//					case "house":
+						//						break;
+						//					case "category":
+						//						break;
+						//					case "near":
+						//						break;
+						//					case "island":
+						//						break;
+						//					case "staircase":
+						//						break;
 						default:
 							word.addClass(WordClass.UNRECOGNIZED);
 							sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
@@ -155,11 +149,7 @@ public class Lexer
 					if (!sub_toks.isEmpty()) {
 						toks.add(sub_toks);
 					}
-	//				System.out.println(response.labels(i).getString() + " " + response.components(i).getString());
 				}
-	//			libpostal_teardown();
-	//			libpostal_teardown_parser();
-	//			libpostal_teardown_language_classifier();
 			} else {
 				System.out.println("Cannot setup libpostal, check if the training data is available at the specified path!");
 			}
@@ -168,14 +158,20 @@ public class Lexer
 		}
 
 		return toks;
+	}
 
-////		 TODO I don't think we need to use splits/joins anymore
-//		String[] atoms = sentence.split(rules.getTokenDelimiterRegex());
-//		String[] atomsSplit = runSplitRules(atoms);
-//		String[] atomsJoin = runJoinRules(atomsSplit);
-////		 TODO need to change tokenize logic - since we already assigned WordClasses before even going to tokenize method
-//		return tokenize(atoms, allowMisspellings, autoComplete, nonWords);
 
+	public List<List<MisspellingOf<Word>>> lex(String sentence, boolean allowMisspellings, boolean autoComplete, List<String> nonWords)
+	{
+		sentence = rules.cleanSentence(sentence);
+		sentence = rules.runSpecialRules(sentence);
+		List<List<MisspellingOf<Word>>> toks = new ArrayList<List<MisspellingOf<Word>>>();
+		//TODO I don't think we need to use splits/joins anymore
+		String[] atoms = sentence.split(rules.getTokenDelimiterRegex());
+		String[] atomsSplit = runSplitRules(atoms);
+		String[] atomsJoin = runJoinRules(atomsSplit);
+		//TODO need to change tokenize logic - since we already assigned WordClasses before even going to tokenize method
+		return tokenize(atoms, allowMisspellings, autoComplete, nonWords);
 	}
 	
 	public List<List<MisspellingOf<Word>>> lexField(String sentence, EnumSet<WordClass> wc) {

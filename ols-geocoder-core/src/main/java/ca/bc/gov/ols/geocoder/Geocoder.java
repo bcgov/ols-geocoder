@@ -33,9 +33,9 @@ import javax.annotation.PreDestroy;
 
 import org.apache.commons.io.FilenameUtils;
 import org.bytedeco.javacpp.BytePointer;
-import org.bytedeco.javacpp.Loader;
-import org.bytedeco.libpostal.libpostal_address_parser_options_t;
-import org.bytedeco.libpostal.libpostal_address_parser_response_t;
+import org.bytedeco.javacpp.PointerPointer;
+import org.bytedeco.javacpp.SizeTPointer;
+import org.bytedeco.libpostal.libpostal_normalize_options_t;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -86,7 +86,8 @@ import ca.bc.gov.ols.util.PairedListEntry;
 import ca.bc.gov.ols.util.StringUtils;
 
 import org.locationtech.jts.geom.Coordinate;
-//import static org.bytedeco.libpostal.global.postal.*;
+
+import static org.bytedeco.libpostal.global.postal.*;
 
 
 /**
@@ -104,44 +105,13 @@ public class Geocoder implements IGeocoder {
 	//private DateFormatter dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	private Lexer lexer;
 	private SiteAddress fallbackSiteAddress;
-//	private static String dataDir = "/usr/local/libpostal/";
-//	private static String dataDir = "src/main/resources/libpostal_data/";
-
-	private static String dataDir = "/usr/local/libpostal/";
-//	private static String dataDir = "src/main/resources/libpostal_data/";
-//	private static String dataDir = "/Users/abolyach/bc_work/ols-geocoder/ols-geocoder-web/src/main/resources/libpostal_data/";
-//	private static String dataDir = "/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/libpostal_data/";
+	private static int min_score = 60;
 
 	public Geocoder(GeocoderDataStore datastore) {
 		this.datastore = datastore;
 		lexer = new Lexer(new DraLexicalRules(), datastore.getWordMap());
 		parser = createParser(lexer);
 		fallbackSiteAddress = geocodeFallbackAddress(datastore.getConfig().getFallbackAddress());
-//		String libpostal_data = Loader.load(org.bytedeco.libpostal.libpostal_data.class);
-//		ProcessBuilder pb = new ProcessBuilder("bash", libpostal_data, "download", "all", dataDir);
-//		try {
-//			pb.inheritIO().start().waitFor();
-//		} catch (Exception e) {
-//			System.out.println("libpostal data download failed.");
-//		}
-//
-//		URL url = this.getClass()
-//				.getClassLoader()
-//				.getResource("libpostal_data/data_version");
-//		System.out.println("PATH");
-//		System.out.println(url.getPath());
-//
-//		String dataDir = "";
-//		dataDir = url.getPath();
-//		dataDir = "/" + FilenameUtils.getPath(dataDir);
-//		System.out.println(dataDir);
-//
-//		boolean setup1 = libpostal_setup_datadir(dataDir);
-//		boolean setup2 = libpostal_setup_parser_datadir(dataDir);
-//		boolean setup3 = libpostal_setup_language_classifier_datadir(dataDir);
-//		if (!setup1 || !setup2 || !setup3) {
-//			System.out.println("Cannot setup libpostal, check if the training data is available at the specified path!");
-//		}
 	}
 	
 	private SiteAddress geocodeFallbackAddress(String fallbackAddress) {
@@ -210,6 +180,41 @@ public class Geocoder implements IGeocoder {
 			GeocodeResultsHandler handler = new GeocodeResultsHandler(query, this);
 			parser.parse(query.getAddressString(), query.getAutoComplete(), handler);
 			logger.debug("Number of derivations: {}", handler.getDerivationCount());
+			if (handler.getBestScore() < min_score)
+			{
+				URL url = this.getClass()
+						.getClassLoader()
+						.getResource("libpostal_data/data_version");
+
+				String dataDir = "";
+				dataDir = url.getPath();
+				dataDir = "/" + FilenameUtils.getPath(dataDir);
+
+				boolean setup1 = libpostal_setup_datadir(dataDir);
+				boolean setup2 = libpostal_setup_parser_datadir(dataDir);
+				boolean setup3 = libpostal_setup_language_classifier_datadir(dataDir);
+				if (setup1 && setup2 && setup3) {
+					libpostal_normalize_options_t norm_opts = libpostal_get_default_options();
+					SizeTPointer num_expansions = new SizeTPointer(5);
+					BytePointer address = null;
+					try {
+						address = new BytePointer(query.getAddressString(), "UTF-8");
+					} catch (UnsupportedEncodingException e) {
+						e.printStackTrace();
+					}
+					PointerPointer address_expansions = libpostal_expand_address(address, norm_opts, num_expansions);
+
+					String s = "";
+					for (int i = 0; i < num_expansions.get(); i++) {
+						s = address_expansions.getString(i);
+						GeocodeResultsHandler libpostalHandler = new GeocodeResultsHandler(query, this);
+						parser.parseWithLibpostal(s, query.getAutoComplete(), libpostalHandler);
+						if (libpostalHandler.getBestScore() > handler.getBestScore()) {
+							handler = libpostalHandler;
+						}
+					}
+				}
+			}
 			matches = handler.getMatches();
 		} else {
 			// go through all of the components and lex them
@@ -311,7 +316,7 @@ public class Geocoder implements IGeocoder {
 						.subList(0, Math.min(query.getMaxResults(), matches.size()));
 			}
 		}
-		
+
 		for(GeocodeMatch gm : limitedMatches) {
 			gm.setYourId(query.getYourId());
 			gm.resolve(datastore);

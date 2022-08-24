@@ -54,6 +54,39 @@ public class AddressParser {
 	{
 		this.isTracing = isTracing;
 	}
+
+	public void parseWithLibpostal(String sentence, boolean autoComplete, ParseDerivationHandler handler)
+	{
+		if(isTracing) {
+			logger.trace("Parsing with libpostal sentence: " + sentence);
+		}
+
+		// try first with no misspellings
+		List<String> nonWords = new ArrayList<String>();
+		List<List<MisspellingOf<Word>>> toks = lexer.lexWithLibpostal(sentence, false, autoComplete, nonWords);
+
+		boolean cont = parse(toks, nonWords, handler);
+		if(!cont || toks.size() == 0) {
+			return;
+		}
+		// if we have at least 90 we are done
+		if(handler.getBestScore() >= 90) {
+			return;
+		}
+
+		// try with misspellings
+		nonWords = new ArrayList<String>();
+		toks = lexer.lexWithLibpostal(sentence, true, autoComplete, nonWords);
+		cont = parse(toks, nonWords, handler);
+		if(!cont || toks.size() == 0) {
+			return;
+		}
+
+		// if we have at least 90 we are done
+		if(handler.getBestScore() >= 90) {
+			return;
+		}
+	}
 	
 	public void parse(String sentence, boolean autoComplete, ParseDerivationHandler handler)
 	{
