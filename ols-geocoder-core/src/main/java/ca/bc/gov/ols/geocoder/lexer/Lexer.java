@@ -123,6 +123,7 @@ public class Lexer
 							word.addClass(WordClass.POSTAL_ADDRESS_ELEMENT);
 							sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
 							break;
+						case "island":
 						case "city":
 							word.addClass(WordClass.LOCALITY_NAME);
 							sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
@@ -149,8 +150,8 @@ public class Lexer
 						//					case "staircase":
 						//						break;
 						default:
-							word.addClass(WordClass.UNRECOGNIZED);
-							sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
+//							word.addClass(WordClass.UNRECOGNIZED);
+//							sub_toks.add(0, new MisspellingOf<Word>(word, 0, word.getWord()));
 							break;
 					}
 					if (!sub_toks.isEmpty()) {
