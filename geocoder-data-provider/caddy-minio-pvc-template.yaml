@@ -87,6 +87,12 @@ parameters:
   # - name: WEBHOOK_URL_RBCM
   #   description: Webhook url (used to trigger Routable BC Maker job)
   #   default: http://el-minio-rbcm-webhook-listener-1475a9-tools.apps.silver.devops.gov.bc.ca/
+  # - name: WEBHOOK_URL_STREET_PREP
+  #   description: Webhook url (used to trigger Routable BC Maker job)
+  #   default: http://el-minio-street-prep-webhook-listener-988040-tools.apps.silver.devops.gov.bc.ca/
+  # - name: WEBHOOK_URL_SITE_LOADER_PREP
+  #   description: Webhook url (used to trigger Routable BC Maker job)
+  #   default: http://el-minio-site-loader-prep-webhook-listener-988040-tools.apps.silver.devops.gov.bc.ca/
 objects:
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
@@ -227,11 +233,16 @@ objects:
                       # mc admin config set data-integration-minio notify_webhook:baarg queue_limit='10' endpoint=$WEBHOOK_URL_BAARG queue_dir='/.mc/queue/';
                       # mc admin config set data-integration-minio notify_webhook:router queue_limit='10' endpoint=$WEBHOOK_URL_ROUTER queue_dir='/.mc/queue/';
                       # mc admin config set data-integration-minio notify_webhook:rbcm queue_limit='10' endpoint=$WEBHOOK_URL_RBCM queue_dir='/.mc/queue/';
+                      # mc admin config set data-integration-minio notify_webhook:street-prep queue_limit='10' endpoint=$WEBHOOK_URL_STREET_PREP queue_dir='/.mc/queue/';
+                      # mc admin config set data-integration-minio notify_webhook:site-loader-prep queue_limit='10' endpoint=$WEBHOOK_URL_SITE_LAODER_PREP queue_dir='/.mc/queue/';
+
                       # mc admin service restart data-integration-minio;
                       # mc event add data-integration-minio/geocoder arn:minio:sqs::geocoder:webhook --event put --suffix .files --prefix geocoder;
                       # mc event add data-integration-minio/baarg arn:minio:sqs::baarg:webhook --event put --suffix .files --prefix baarg;
                       # mc event add data-integration-minio/router arn:minio:sqs::router:webhook --event put --suffix .files --prefix router;
                       # mc event add data-integration-minio/rbcm arn:minio:sqs::rbcm:webhook --event put --suffix .files --prefix rbcm;
+                      # mc event add data-integration-minio/street-prep arn:minio:sqs::street-prep:webhook --event put --suffix .files --prefix street-prep;
+                      # mc event add data-integration-minio/site-loader-prep arn:minio:sqs::site-loader-prep:webhook --event put --suffix .files --prefix site-loader-prep;
 
                       # mc alias set geocoder-prod-minio https://minio-geocoder-datastore-prod-api.apps.silver.devops.gov.bc.ca/ $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD
                       # mc admin config set geocoder-prod-minio notify_webhook:geocoder_restart queue_limit='10' endpoint='http://el-minio-geocoder-restart-webhook-listener-988040-tools.apps.silver.devops.gov.bc.ca/' queue_dir='/.mc/queue/';
@@ -243,6 +254,7 @@ objects:
                       # mc admin config set router-prod-minio notify_webhook:router_restart queue_limit='10' endpoint='http://el-minio-router-restart-webhook-listener-1475a9-tools.apps.silver.devops.gov.bc.ca/' queue_dir='/.mc/queue/';
                       # mc admin service restart router-prod-minio
                       # mc event add router-prod-minio/router arn:minio:sqs::router_restart:webhook --event put --suffix .files --prefix router;
+
             terminationMessagePolicy: File
             volumeMounts:
             - mountPath: /data
