@@ -3,7 +3,7 @@
 
 	<groupId>ca.bc.gov.ols</groupId>
 	<artifactId>ols-geocoder</artifactId>
-	<version>4.2.2-RELEASE</version>
+	<version>4.3.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>OLS Geocoder</name>
 	<url>https://bcgov.github.io/ols-geocoder/</url>
@@ -67,6 +67,7 @@
         <springframework.version>5.2.8.RELEASE</springframework.version>
         <springframework.security.version>5.3.4.RELEASE</springframework.security.version>
 		<junit.jupiter.version>5.6.2</junit.jupiter.version>
+		<slf4j.version>1.7.21</slf4j.version>
 	</properties>
 
 	<modules>
@@ -248,6 +249,11 @@
 				<groupId>org.junit.vintage</groupId>
 				<artifactId>junit-vintage-engine</artifactId>
 				<version>${junit.jupiter.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
