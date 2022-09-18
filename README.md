@@ -118,13 +118,13 @@ This provision all the objects relevant to the Geocoder API.  This includes
 ### Dev
 
 ```bash
-$ oc process -f geocoder-template.yaml --param-file=env.dev -o yaml | oc apply -f - -n 988040-prod
+$ oc process -f geocoder-template.yaml --param-file=env.dev -o yaml | oc apply -f - -n 988040-dev
 
 ```
 ### Test
 
 ```bash
-$ oc process -f geocoder-template.yaml --param-file=env.test -o yaml | oc apply -f - -n 988040-prod
+$ oc process -f geocoder-template.yaml --param-file=env.test -o yaml | oc apply -f - -n 988040-test
 
 ```
 
