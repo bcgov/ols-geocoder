@@ -34,7 +34,6 @@ message: |-
   Deployment
     ${APP_NAME}-${ENV}-web   - Geocoder Web API
     ${APP_NAME}-${ENV}-admin - Admin WebApp
-    ${APP_NAME}-${ENV}-data-provider-monitor - Data Provider Monitor
 
   Service
     ${APP_NAME}-${ENV}-web   - Geocoder Web API
@@ -347,106 +346,6 @@ objects:
       revisionHistoryLimit: 10
       progressDeadlineSeconds: 600
 
-  - kind: Deployment
-    apiVersion: apps/v1
-    metadata:
-      name: ${APP_NAME}-${ENV}-data-provider-monitor
-      generation: 1
-      labels:
-        app: ${APP_NAME}-${ENV}-data-provider-monitor
-    spec:
-      replicas: 1
-      selector:
-        matchLabels:
-          app: ${APP_NAME}-${ENV}-data-provider-monitor
-          name: ${APP_NAME}-${ENV}-data-provider-monitor
-      template:
-        metadata:
-          creationTimestamp: null
-          labels:
-            app: ${APP_NAME}-${ENV}-data-provider-monitor
-            name: ${APP_NAME}-${ENV}-data-provider-monitor
-        spec:
-          volumes:
-            - name: bgeo-configs
-              persistentVolumeClaim:
-                claimName: bgeo-configs
-            - name: bgeo-mc
-              persistentVolumeClaim:
-                claimName: bgeo-mc
-          containers:
-            - resources:
-                limits:
-                  cpu: 250m
-                  memory: 1Gi
-                requests:
-                  cpu: 50m
-                  memory: 256Mi
-              terminationMessagePath: /dev/termination-log
-              name: ${APP_NAME}-data-provider-monitor
-              env:
-                - name: MINIO_ROOT_USER
-                  valueFrom:
-                    secretKeyRef:
-                      name: minio-data-integration-pipeline-datastore
-                      key: minioAccessKey
-                - name: MINIO_ROOT_PASSWORD
-                  valueFrom:
-                    secretKeyRef:
-                      name: minio-data-integration-pipeline-datastore
-                      key: minioSecretKey
-                - name: DATA_PROVIDER_URL
-                  value: ${DATA_PROVIDER_URL}
-                - name: MINIO_BUCKET
-                  value: ${MINIO_BUCKET}
-              ports:
-                - containerPort: 9000
-                  protocol: TCP
-              imagePullPolicy: IfNotPresent
-              volumeMounts:
-                - name: bgeo-configs
-                  mountPath: /data
-                - name: bgeo-mc
-                  mountPath: /.mc
-              terminationMessagePolicy: File
-              image: >-
-                image-registry.openshift-image-registry.svc:5000/988040-tools/minio-client:latest
-              args:
-                - -C
-                - /data
-                - server
-                - /data
-              readinessProbe:
-                httpGet:
-                  path: /minio/health/ready
-                  port: 9000
-                  scheme: HTTP
-                initialDelaySeconds: 120
-                periodSeconds: 15
-                timeoutSeconds: 10
-                successThreshold: 1
-                failureThreshold: 3
-              lifecycle:
-                postStart:
-                  exec:
-                    command:
-                      - "sh"
-                      - "-c"
-                      - >
-                        mc alias set geocoder-prod $DATA_PROVIDER_URL $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD;
-
-                        mc cp --recursive geocoder-prod/$MINIO_BUCKET/ /data/$MINIO_BUCKET/;
-
-                        nohup mc mirror --watch /data/$MINIO_BUCKET/ geocoder-prod/$MINIO_BUCKET/ >/dev/null 2>&1 &
-          restartPolicy: Always
-          terminationGracePeriodSeconds: 30
-          dnsPolicy: ClusterFirst
-          securityContext: {}
-          schedulerName: default-scheduler
-      strategy:
-        type: Recreate
-      revisionHistoryLimit: 10
-      progressDeadlineSeconds: 600
   - kind: PersistentVolumeClaim
     apiVersion: v1
     metadata:
