@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
-
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.slf4j.Logger;
@@ -41,7 +40,7 @@ import gnu.trove.set.hash.THashSet;
 public class TestDataSource implements GeocoderDataSource {
 	private static final Logger logger = LoggerFactory.getLogger(GeocoderConfig.LOGGER_PREFIX
 			+ TestDataSource.class.getCanonicalName());
-	
+
 	private Set<String> streetTypes = new THashSet<String>();
 	private Map<String, Integer> streetTypeSchema = FlexObj
 			.createSchema(new String[] {"street_type"});
@@ -80,7 +79,7 @@ public class TestDataSource implements GeocoderDataSource {
 	private TIntObjectHashMap<FlexObj> localities = new TIntObjectHashMap<FlexObj>();
 	private Map<String, Integer> localitySchema = FlexObj.createSchema(
 			new String[] {"locality_id", "locality_name", "locality_type_name",
-					"state_prov_terr_id", "geom"});
+					"state_prov_terr_id", "geom", "locality_type_id", "electoral_area_id"});
 
 	private TIntObjectHashMap<FlexObj> electoralAreas = new TIntObjectHashMap<FlexObj>();
 	private Map<String, Integer> electoralAreaSchema = FlexObj.createSchema(
@@ -145,11 +144,35 @@ public class TestDataSource implements GeocoderDataSource {
 			new String[] {"business_category_class", "business_category_description", 
 					"naics_code"});
 
+
+	private TIntObjectHashMap<FlexObj> combinedSitesPost = new TIntObjectHashMap<FlexObj>();
+	private Map<String, Integer> combinedSitesPostSchema = FlexObj.createSchema(
+			new String[] {"site_id", "site_uuid", "parent_site_id", "site_name",
+					"location_descriptor", "unit_designator",
+					"unit_number", "unit_number_suffix", "site_positional_accuracy",
+					"site_status", "site_change_date", "site_retire_date", "site_albers_", "ap_type", "is_primary_ind", "narrative_location",
+					"access_positional_accuracy", "civic_number", "civic_number_suffix", "access_point_status",
+					"access_retire_date", "access_albers_", "full_address", "street_segment_id",
+					"locality_id", "pids", "input_name"});
+
+	private TIntObjectHashMap<FlexObj> streetSegmentsPost = new TIntObjectHashMap<FlexObj>();
+	private Map<String, Integer> streetSegmentsPostSchema = FlexObj.createSchema(
+			new String[] {"street_segment_id",
+					"first_address_left", "first_address_right",
+					"last_address_left", "last_address_right", "address_parity_left", "address_parity_right",
+					"left_locality_id", "right_locality_id", "left_electoral_area_id", "right_electoral_area_id",
+					"num_lanes_left", "num_lanes_right", "road_class", "lane_restriction", "travel_direction",
+					"divider_type", "start_intersection_id", "end_intersection_id",
+					"geom"});
+
 	private GeocoderConfig config;
 	
 	public TestDataSource(GeocoderConfig config, GeometryFactory gf) {
 		this.config = config;
-		
+
+		electoralAreas.put(1, new FlexObj(electoralAreaSchema, new Object[] { 1, "Victoria" }));
+		electoralAreas.put(2, new FlexObj(electoralAreaSchema, new Object[] { 2, "Vancouver" }));
+
 		// AbbreviationMappings
 		abbreviationMappings.add(new FlexObj(abbreviationMappingSchema,
 				new Object[] {"St", "Street"}));
@@ -165,11 +188,11 @@ public class TestDataSource implements GeocoderDataSource {
 		// Localities IDs in 100-range
 		localities.put(101, new FlexObj(localitySchema,
 				new Object[] {101, "Victoria", "City", 10,
-						gf.createPoint(new Coordinate(1, 1))
+						gf.createPoint(new Coordinate(1, 1)), 1, 1
 				}));
 		localities.put(102, new FlexObj(localitySchema,
 				new Object[] {102, "Vancouver", "City", 10,
-						gf.createPoint(new Coordinate(1, 1))
+						gf.createPoint(new Coordinate(1, 1)), 1, 2
 				}));
 		
 		// Business Category IDs in the 200-range
@@ -247,7 +270,7 @@ public class TestDataSource implements GeocoderDataSource {
 		
 		// Occupant ID in 6000-range
 		occupants.put(6001, new FlexObj(occupantSchema,
-				new Object[] {6001, "00000000-0000-0000-0000-000000006001", 4003, 
+				new Object[] {6001, "00000000-0000-0000-0000-000000006001", 4002,
 					"Refractions Research", "Software Development and Consulting", 
 					"Suite 419 – 1207 Douglas Street Victoria, British Columbia, Canada, V8W 2E7",
 					"(250)383-3022", "info@refractions.net", null,
@@ -256,6 +279,17 @@ public class TestDataSource implements GeocoderDataSource {
 					LocalDate.of(2015,1,1), LocalDate.of(1979,1,1), "1", "1", ""
 				}));
 
+		combinedSitesPost.put(4002, new FlexObj(combinedSitesPostSchema,
+				new Object[] {4002, "00000000-0000-0000-0000-000000004002", null, null, null,
+						"parcelPoint", null, null, "medium", "A", LocalDate.of(2015,1,1), null, gf.createPoint(new Coordinate(1, 1)), "CAP", "Y", null, "medium", 4002, "A", null, null,
+						gf.createPoint(new Coordinate(1, 1)), "Suite 419 – 1207 Douglas Street Victoria, British Columbia, Canada, V8W 2E7", 2001, 101, "028726014", "BCA"
+				}));
+
+		streetSegmentsPost.put(2001, new FlexObj(streetSegmentsPostSchema,
+				new Object[] {2001, 4001, 4001, 4002, 4002, "E", "O", 101, 101, 1, 1, 1, 1, "local", "N", "B", "n", 1001, 1002,
+						gf.createLineString(new Coordinate[]
+								{new Coordinate(1, 1), new Coordinate(2, 2)})
+				}));
 	}
 	
 	@Override
@@ -352,22 +386,6 @@ public class TestDataSource implements GeocoderDataSource {
 		}
 		return new FlexObjListRowReader(unitDesignatorsList).asStream(UnitDesignator::new);
 	}
-	
-//	@Override
-//	public RowReader getSites() {
-//		return new FlexObjListRowReader(sites.values());
-//	}
-//	
-//	@Override
-//	public RowReader getRbSites() {
-//		// TODO Auto-generated method stub
-//		return new FlexObjListRowReader(Collections.<FlexObj> emptyList());
-//	}
-//	
-//	@Override
-//	public RowReader getAccessPoints() {
-//		return new FlexObjListRowReader(accessPoints.values());
-//	}
 
 	@Override
 	public RowReader getBusinessCategories() {
@@ -377,7 +395,17 @@ public class TestDataSource implements GeocoderDataSource {
 	@Override
 	public RowReader getOccupants() {
 		return new FlexObjListRowReader(occupants.valueCollection());
-	}	
+	}
+
+	@Override
+	public RowReader getStreetSegmentsPost() {
+		return new FlexObjListRowReader(streetSegmentsPost.valueCollection());
+	}
+
+	@Override
+	public RowReader getCombinedSitesPost() {
+		return new FlexObjListRowReader(combinedSitesPost.valueCollection());
+	}
 	
 	@Override
 	public GeocoderConfig getConfig() {
@@ -390,12 +418,6 @@ public class TestDataSource implements GeocoderDataSource {
 	}
 
 	@Override
-	public RowReader getStreetSegmentsPost() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public RowReader getCombinedSites() {
 		// TODO Auto-generated method stub
 		return null;
@@ -403,12 +425,6 @@ public class TestDataSource implements GeocoderDataSource {
 	
 	@Override
 	public RowReader getSid2Pids() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public RowReader getCombinedSitesPost() {
 		// TODO Auto-generated method stub
 		return null;
 	}

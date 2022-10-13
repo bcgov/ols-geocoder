@@ -17,10 +17,12 @@ package ca.bc.gov.ols.geocoder;
 
 import java.sql.SQLException;
 
+import ca.bc.gov.ols.geocoder.test.TestCase;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ca.bc.gov.ols.geocoder.GeocoderFactory;
 import ca.bc.gov.ols.geocoder.api.GeocodeQuery;
 import ca.bc.gov.ols.geocoder.api.data.AddressMatch;
 import ca.bc.gov.ols.geocoder.api.data.IntersectionMatch;
@@ -28,18 +30,21 @@ import ca.bc.gov.ols.geocoder.api.data.SearchResults;
 import ca.bc.gov.ols.geocoder.api.data.SiteAddress;
 import ca.bc.gov.ols.geocoder.api.data.StreetIntersectionAddress;
 import ca.bc.gov.ols.geocoder.data.enumTypes.MatchPrecision;
-import ca.bc.gov.ols.geocoder.test.TestCase;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GeocoderTest extends TestCase {
 	final Logger logger = LoggerFactory.getLogger(GeocoderTest.class);
-	
+
 	@Override
-	public void setUp() throws SQLException, ClassNotFoundException {
+	protected void setUp() throws SQLException, ClassNotFoundException {
 		if(gc == null) {
 			gc = new GeocoderFactory().getGeocoder();
 		}
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testGeocodeIntersection() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"Douglas St and View St, Victoria, BC"));
@@ -51,7 +56,9 @@ public class GeocoderTest extends TestCase {
 		assertEquals("Victoria", bestAddress.getLocalityName());
 		assertEquals(0, results.getBestMatch().getFaults().size());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testGeocodeIntersectionSameNameBody() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"Atkins Rd and Atkins Ave, Langford, BC"));
@@ -63,35 +70,45 @@ public class GeocoderTest extends TestCase {
 		assertEquals("Langford", bestAddress.getLocalityName());
 		assertEquals(0, results.getBestMatch().getFaults().size());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testBug28() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"310 4th ave ladysmith bc"));
 		assertGreater(0, results.getMatches().size());
 		logger.info("testBug28(): " + results.getBestMatch());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testBug31() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"13a 1207 Douglas st victoria, bc"));
 		assertGreater(0, results.getMatches().size());
 		logger.info("testBug31(): " + results.getBestMatch());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testBug43() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				" 1207 Douglas st victoria, bc"));
 		assertGreater(0, results.getMatches().size());
 		logger.info("testBug43(): " + results.getBestMatch());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testSlowAddress() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"100 1st st vancouver, bc"));
 		assertGreater(0, results.getMatches().size());
 		logger.info("testSlowAddress(): " + results.getBestMatch());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testParityIssue() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"210 WEDGE PL Nanaimo"));
@@ -99,7 +116,9 @@ public class GeocoderTest extends TestCase {
 		assertGreater(80, results.getBestMatch().getScore());
 		logger.info("testParityIssue(): " + results.getBestMatch());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testGeocodeNanaimoSite() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"1009 Beverly Dr Nanaimo BC"));
@@ -109,7 +128,9 @@ public class GeocoderTest extends TestCase {
 		assertEquals(100, results.getBestMatch().getScore());
 		assertEquals(MatchPrecision.CIVIC_NUMBER, results.getBestMatch().getPrecision());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testGeocodeLangleySite() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"6285 226 St, Langley, BC"));
@@ -119,7 +140,9 @@ public class GeocoderTest extends TestCase {
 		assertEquals(100, results.getBestMatch().getScore());
 		assertEquals(MatchPrecision.CIVIC_NUMBER, results.getBestMatch().getPrecision());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testGeocodeVancouverSite() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"7051 Main St, Vancouver, BC"));
@@ -129,7 +152,9 @@ public class GeocoderTest extends TestCase {
 		assertEquals(100, results.getBestMatch().getScore());
 		assertEquals(MatchPrecision.CIVIC_NUMBER, results.getBestMatch().getPrecision());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testGeocodeBCASite() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"6570 Lyon Rd, Delta, BC"));
@@ -139,7 +164,9 @@ public class GeocoderTest extends TestCase {
 		assertEquals(100, results.getBestMatch().getScore());
 		assertEquals(MatchPrecision.CIVIC_NUMBER, results.getBestMatch().getPrecision());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testStructuredGeocodeCivicAddress() {
 		GeocodeQuery query = new GeocodeQuery();
 		query.setLocalityName("Victoria");
@@ -152,7 +179,9 @@ public class GeocoderTest extends TestCase {
 		SiteAddress bestAddress = ((AddressMatch)results.getBestMatch()).getAddress();
 		assertEquals("Victoria", bestAddress.getLocalityName());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testGeocodeWithTypeMapping() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"58 King George Terrace Oak Bay BC"));
@@ -162,7 +191,9 @@ public class GeocoderTest extends TestCase {
 				+ results.getBestMatch().getFaults().toString());
 		assertEquals(0, results.getBestMatch().getFaults().size());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testGeocodeWithNameDirMapping() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"1530 N Dairy Road Saanich BC"));
@@ -172,7 +203,9 @@ public class GeocoderTest extends TestCase {
 				+ results.getBestMatch().getFaults().toString());
 		assertEquals(0, results.getBestMatch().getFaults().size());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testGeocodeWithDirMapping() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"340 Gorge Rd West Saanich BC"));
@@ -182,7 +215,9 @@ public class GeocoderTest extends TestCase {
 				+ results.getBestMatch().getFaults().toString());
 		assertEquals(0, results.getBestMatch().getFaults().size());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testGeocodeWithDirBeforeName() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"340 W Gorge Rd Saanich BC"));
@@ -192,7 +227,9 @@ public class GeocoderTest extends TestCase {
 				+ results.getBestMatch().getFaults().toString());
 		assertEquals(0, results.getBestMatch().getFaults().size());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testGeocodeWithNameMapping() {
 		GeocodeQuery query = new GeocodeQuery();
 		query.setLocalityName("Victoria");
@@ -207,7 +244,9 @@ public class GeocoderTest extends TestCase {
 				+ results.getBestMatch().getFaults().toString());
 		assertEquals(0, results.getBestMatch().getFaults().size());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testGeocodeCivicAddress() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"1207 Douglas St, Victoria, BC"));
@@ -216,7 +255,9 @@ public class GeocoderTest extends TestCase {
 		SiteAddress bestAddress = ((AddressMatch)results.getBestMatch()).getAddress();
 		assertEquals("Victoria", bestAddress.getLocalityName());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testGeocodeNonExistentCivicNumber() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"12000 Douglas St, Victoria"));
@@ -224,7 +265,9 @@ public class GeocoderTest extends TestCase {
 		logger.info("testGeocodeNonExistentCivicNumber(): " + results.getBestMatch());
 		assertEquals(MatchPrecision.STREET, results.getBestMatch().getPrecision());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testGeocodeLocality() {
 		GeocodeQuery query = new GeocodeQuery();
 		query.setLocalityName("Victoria");

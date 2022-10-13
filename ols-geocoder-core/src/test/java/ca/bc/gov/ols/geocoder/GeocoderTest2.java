@@ -17,6 +17,8 @@ package ca.bc.gov.ols.geocoder;
 
 import java.sql.SQLException;
 
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,6 +26,8 @@ import ca.bc.gov.ols.geocoder.api.GeocodeQuery;
 import ca.bc.gov.ols.geocoder.api.data.SearchResults;
 import ca.bc.gov.ols.geocoder.data.enumTypes.MatchPrecision;
 import ca.bc.gov.ols.geocoder.test.TestCase;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GeocoderTest2 extends TestCase {
 	final Logger logger = LoggerFactory.getLogger(GeocoderTest2.class);
@@ -34,7 +38,9 @@ public class GeocoderTest2 extends TestCase {
 			gc = getTestGeocoder();
 		}
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testGeocodeCivicAddress() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"1 Douglas St, Victoria, British Columbia"));
@@ -44,7 +50,9 @@ public class GeocoderTest2 extends TestCase {
 		assertEquals(99, results.getBestMatch().getScore());
 		assertEquals(MatchPrecision.BLOCK, results.getBestMatch().getPrecision());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testGeocodeNCAPWithStreet() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"Museum -- Douglas St, Victoria, British Columbia"));
@@ -54,7 +62,9 @@ public class GeocoderTest2 extends TestCase {
 		assertEquals(100, results.getBestMatch().getScore());
 		assertEquals(MatchPrecision.SITE, results.getBestMatch().getPrecision());
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testGeocodeNCAPWithStreetByName() {
 		SearchResults results = gc.geocode(new GeocodeQuery(
 				"Museum -- "));

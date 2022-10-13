@@ -18,24 +18,28 @@ package ca.bc.gov.ols.geocoder.data.indexing;
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.TestCase;
-
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.index.strtree.STRtree;
 
 import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
-import ca.bc.gov.ols.geocoder.data.indexing.IndexableEnvelope;
-import ca.bc.gov.ols.geocoder.data.indexing.RTree;
 import ca.bc.gov.ols.util.StopWatch;
 
-public class RTreeTest extends TestCase {
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class RTreeTest {
 	GeometryFactory gf = new GeometryFactory(GeocoderConfig.BASE_PRECISION_MODEL, 3005);
 
+	@Test
+	@Tag("Prod")
 	public void testRTree101() {
 		RTree<IndexableEnvelope> rTree = new RTree<IndexableEnvelope>(generateEnvelopeGrid(101));
 		//System.out.println(rTree.toString());
 	}
 
+	@Test
+	@Tag("Prod")
 	public void testRTree100000() {
 		int numEntries = 100001;
 		StopWatch sw = new StopWatch();
@@ -63,6 +67,8 @@ public class RTreeTest extends TestCase {
 				+ "(" + ((double)sw.getElapsedTime())/numEntries + "ms/query)");
 	}
 
+	@Test
+	@Tag("Prod")
 	public void testSTRtree100000() {
 		int numEntries = 100000;
 		StopWatch sw = new StopWatch();

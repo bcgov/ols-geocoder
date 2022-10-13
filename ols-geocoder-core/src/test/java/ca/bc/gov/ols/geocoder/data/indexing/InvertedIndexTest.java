@@ -24,17 +24,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map.Entry;
 
-import ca.bc.gov.ols.geocoder.data.indexing.InvertedIndex;
-import ca.bc.gov.ols.geocoder.data.indexing.WeightedWord;
 import ca.bc.gov.ols.geocoder.data.indexing.InvertedIndex.InvertedIndexBuilder;
 import ca.bc.gov.ols.geocoder.util.GeocoderUtil;
-
 import java.util.Set;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
-import junit.framework.TestCase;
+public class InvertedIndexTest {
 
-public class InvertedIndexTest extends TestCase {
-	
+	@Test
+	@Tag("Dev")
 	public void testInvertedIndex() throws SQLException, ClassNotFoundException {
 		Class.forName("org.postgresql.Driver");
 		Connection conn = DriverManager.getConnection(

@@ -67,6 +67,7 @@
         <springframework.version>5.2.8.RELEASE</springframework.version>
         <springframework.security.version>5.3.4.RELEASE</springframework.security.version>
 		<junit.jupiter.version>5.6.2</junit.jupiter.version>
+		<maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
 		<slf4j.version>1.7.21</slf4j.version>
 	</properties>
 
@@ -79,6 +80,19 @@
 
 	<build>
 		<plugins>
+			<plugin>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<version>${maven-surefire-plugin.version}</version>
+			<configuration>
+				<groups>Prod</groups>
+				<excludedGroups>Dev</excludedGroups>
+			</configuration>
+			</plugin>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-war-plugin</artifactId>
+			    <version>3.3.1</version>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -246,8 +260,8 @@
 				<version>${junit.jupiter.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.junit.vintage</groupId>
-				<artifactId>junit-vintage-engine</artifactId>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
 				<version>${junit.jupiter.version}</version>
 			</dependency>
 			<dependency>

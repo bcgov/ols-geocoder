@@ -26,6 +26,8 @@ import java.sql.Statement;
 import java.util.Map;
 import java.util.Set;
 
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,7 +48,9 @@ import ca.bc.gov.ols.geocoder.test.TestCase;
  */
 public class ScoringValidationTest extends TestCase {
 	final Logger logger = LoggerFactory.getLogger(ScoringValidationTest.class);
-	
+
+	@Test
+	@Tag("Dev")
 	public void testScoringConsistency() {
 		GeocoderConfig config = new GeocoderConfig();
 		
@@ -62,7 +66,9 @@ public class ScoringValidationTest extends TestCase {
 		
 		// TODO: Put more rules here as they are identified
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testStuff() throws ClassNotFoundException, SQLException {
 		Class.forName("org.postgresql.Driver");
 		Connection conn = DriverManager.getConnection("jdbc:postgresql://192.168.50.7:5432/bgeo",
@@ -109,7 +115,9 @@ public class ScoringValidationTest extends TestCase {
 		System.out.println(matchedAbbrs.toString());
 		
 	}
-	
+
+	@Test
+	@Tag("Dev")
 	public void testMapPerformance() {
 		final int SIZE = 1000000;
 		System.out.println("map size:" + SIZE);

@@ -15,11 +15,13 @@
  */
 package ca.bc.gov.ols.rangebuilder;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 public class RangeBuilderTest {
 
 	@Test
+	@Tag("Dev")
 	public void testRangeBuilder() {
 		RangeBuilder rb = new RangeBuilder();
 		rb.buildRanges();

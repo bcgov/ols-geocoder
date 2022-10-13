@@ -30,6 +30,7 @@ public class GeocoderFactory {
 			+ GeocoderFactory.class.getCanonicalName());
 	
 	private boolean dummyMode = false;
+	private boolean unitTest = false;
 	
 	private Properties bootstrapConfig = getBootstrapConfigFromEnvironment();
 	private GeometryFactory geometryFactory;
@@ -79,9 +80,20 @@ public class GeocoderFactory {
 			this.dummyMode = true;
 		}
 	}
+
+	public void setUnitTestMode(String unitTest) {
+		if("TRUE".equalsIgnoreCase(unitTest)) {
+			this.unitTest = true;
+		}
+	}
 	
 	public IGeocoder getGeocoder() {
-		if(dummyMode) {
+		if (unitTest) {
+			logger.info("GeocoderFactory: Creating unit test geocoder instance");
+			bootstrapConfig = getBootstrapUnitTestConfig();
+			return new Geocoder(new GeocoderDataStore(bootstrapConfig, geometryFactory, geometryReprojector));
+		}
+		else if(dummyMode) {
 			logger.info("GeocoderFactory: create Dummy Geocoder.");
 			return new DummyGeocoder(geometryFactory);
 		}
@@ -101,5 +113,10 @@ public class GeocoderFactory {
 				.orElse("ca.bc.gov.ols.geocoder.config.CassandraGeocoderConfigurationStore"));
 		return bootstrapConfig;
 	}
-	
+
+	public static Properties getBootstrapUnitTestConfig() {
+		Properties bootstrapConfig = new Properties();
+		bootstrapConfig.setProperty("OLS_GEOCODER_CONFIGURATION_STORE", "ca.bc.gov.ols.geocoder.config.InMemoryGeocoderConfigurationStore");
+		return bootstrapConfig;
+	}
 }

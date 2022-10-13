@@ -16,10 +16,16 @@
 package ca.bc.gov.ols.geocoder.util;
 
 import ca.bc.gov.ols.util.StringUtils;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
-public class StringUtilsTest extends TestCase {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Tag("Prod")
+public class StringUtilsTest {
+
+	@Test
+	@Tag("Prod")
 	public void testOSADistance() {
 		assertEquals(0, StringUtils.OSADistance("foo", "foo"));
 		assertEquals(1, StringUtils.OSADistance("foo", "fob"));

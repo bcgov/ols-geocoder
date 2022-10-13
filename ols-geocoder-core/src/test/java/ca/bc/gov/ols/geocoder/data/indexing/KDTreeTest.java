@@ -19,6 +19,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
@@ -26,13 +28,14 @@ import org.locationtech.jts.geom.Point;
 import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 import ca.bc.gov.ols.geocoder.data.ILocation;
 import ca.bc.gov.ols.util.StopWatch;
-import junit.framework.TestCase;
 
-public class KDTreeTest extends TestCase {
+public class KDTreeTest {
 	
 	private static final int NUMBER_OF_POINTS = 12000000;
 	private static final int NUMBER_OF_TESTS = 40000;
-	
+
+	@Test
+	@Tag("Dev")
 	public void testKDTree() throws SQLException, ClassNotFoundException {
 		GeometryFactory gf = new GeometryFactory(GeocoderConfig.BASE_PRECISION_MODEL, 3005);
 		StopWatch sw = new StopWatch();

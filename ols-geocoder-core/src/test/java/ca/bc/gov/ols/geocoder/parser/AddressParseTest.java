@@ -15,126 +15,86 @@
  */
 package ca.bc.gov.ols.geocoder.parser;
 
-import ca.bc.gov.ols.geocoder.parser.AddressParser;
+import ca.bc.gov.ols.geocoder.data.indexing.TrieWordMap;
+import ca.bc.gov.ols.geocoder.data.indexing.WordClass;
+import ca.bc.gov.ols.geocoder.data.indexing.WordMap;
+import ca.bc.gov.ols.geocoder.data.indexing.WordMapBuilder;
+import ca.bc.gov.ols.geocoder.dra.DraLexicalRules;
+import ca.bc.gov.ols.geocoder.lexer.Lexer;
 import ca.bc.gov.ols.geocoder.parser.generator.AddressParserGenerator;
 import ca.bc.gov.ols.geocoder.parser.generator.Rule;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleChoice;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleOperator;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleSequence;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleTerm;
-import junit.framework.TestCase;
-import junit.textui.TestRunner;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
-public class AddressParseTest extends TestCase
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class AddressParseTest
 {
-	
-	public static void main(String args[]) {
-		TestRunner.run(AddressParseTest.class);
-	}
-	
-	public AddressParseTest(String name) {
-		super(name);
-	}
-	
+	@Test
+	@Tag("Prod")
 	public void testTest()
 	{
 		AddressParser parser = createParser();
 		run(parser, "123 1/2");
 	}
-	
+
+	@Tag("Prod")
+	@Test
 	public void testAddress()
 	{
 		AddressParser parser = createParser();
-		
+
 		run(parser, "123 main");
 		run(parser, "123 n main");
 		run(parser, "123 n san pedro");
 		run(parser, "123 n 13th");
-		run(parser, "123 1/2 n 13th");
 	}
-	
+
 	void run(AddressParser parser, String sentence)
 	{
 		run(parser, sentence, true);
 	}
-	
+
 	void run(AddressParser parser, String sentence, boolean expected)
 	{
-		
 		parser.setTrace(true);
 		BasicParseDerivationHandler handler = new BasicParseDerivationHandler();
 		parser.parse(sentence, false, handler);
 		boolean isValid = handler.getDerivations().size() > 0;
-		
 		assertTrue(isValid == expected);
 	}
-	
-	/**
-	 * Unit numbers
-	 * 
-	 * Examples: #1234, #A1234A, #1, #1A A#308, Apt#17
-	 */
-	public static final String RE_UNIT = ".*#.*";
-	/**
-	 * Examples: 1234, 1234A, 1, 1A
-	 */
-	public static final String RE_NUMBER = "\\d+[A-Z]?";
-	
-	/**
-	 * Examples: 12TH, 23RD
-	 */
-	public static final String RE_NUMBERED_STREET = "\\d+((ST)|(TH)|(RD))";
-	
-	public static final String RE_NUMBERED_HWY = "(I|(SR))\\d+";
-	
-	public static final String RE_DIRECTIONAL = "N|NO|SNW|NE|S|SO|SE|SW|E|EA|W|WE";
-	
+
 	AddressParser createParser()
 	{
 		AddressParserGenerator parserGen = new AddressParserGenerator();
-		
+
 		Rule ruleAddr = new RuleSequence("addr", true, new RuleTerm[] {
 				new RuleTerm("number"),
 				new RuleTerm("directional", RuleOperator.OPTION),
 				new RuleTerm("name"),
 		});
 		parserGen.addRule(ruleAddr);
-		
-		parserGen.addRule(new RuleSequence("number", true, new RuleTerm[] {
-				new RuleTerm("NUMBER"),
-				new RuleTerm("numSuffix", RuleOperator.OPTION),
-				new RuleTerm("fraction", RuleOperator.OPTION)
-		}));
-		
-		parserGen.addRule(new RuleTerm("fraction", "FRACTION"));
-		
-		parserGen.addRule(new RuleTerm("numSuffix", "NUM_SUFFIX"));
-		
-		parserGen.addRule(new RuleTerm("directional", "DIRECTIONAL"));
-		
+
+		parserGen.addRule(new RuleTerm("number", "NUMBER"));
+
+		parserGen.addRule(new RuleTerm("directional", "STREET_DIRECTIONAL"));
+
 		parserGen.addRule(new RuleChoice("name", true, new RuleTerm[] {
-				new RuleTerm("NUMBERED_ST"),
-				new RuleTerm("WORD", RuleOperator.STAR)
+				new RuleTerm("STREET_NAME_BODY"),
+				new RuleTerm("NAME", RuleOperator.STAR)
 		}));
-		
+
+		WordMapBuilder wordMapBuilder = new WordMapBuilder();
+		wordMapBuilder.addWord("N", WordClass.STREET_DIRECTIONAL);
+		WordMap wordMap = new TrieWordMap(wordMapBuilder.getWordMap());
+		Lexer lexer = new Lexer(new DraLexicalRules(), wordMap);
+		parserGen.setLexer(lexer);
+
 		return parserGen.getParser();
 	}
-	
-	AddressParser createNumberParser()
-	{
-		AddressParserGenerator parserGen = new AddressParserGenerator();
-		
-		parserGen.addRule(new RuleSequence("number", true, new RuleTerm[] {
-				new RuleTerm("NUMBER"),
-				new RuleTerm("numSuffix", RuleOperator.OPTION),
-				new RuleTerm("fraction", RuleOperator.OPTION)
-		}));
-		
-		parserGen.addRule(new RuleTerm("fraction", "FRACTION"));
-		
-		parserGen.addRule(new RuleTerm("numSuffix", "NUM_SUFFIX"));
-		
-		return parserGen.getParser();
-	}
-	
+
 }
