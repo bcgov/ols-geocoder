@@ -168,7 +168,7 @@ Here is the data flow for the current implementation of the gather and transform
 
 #### Data Flow 2 - Geocoder data integration
 
-![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/e9202169-36b8-4748-acf8-eef1555fbb72)
+![OLS Prep Flow 2 Geocoder](https://user-images.githubusercontent.com/9123564/204048460-7b3d4738-4dd3-48fc-b7d1-303de77cdf87.png)
 <br><br>
 
 #### Data Flow 3 - Route Planner data integration
