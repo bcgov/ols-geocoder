@@ -48,35 +48,35 @@ import ca.bc.gov.ols.geocoder.util.GeocoderUtil;
 
 @Component
 public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsResponse> {
-	
+
 	private static final String GEOCODED = "geocoded";
 	private static final String REVERSE = "reverse";
-	
+
 	@Autowired
 	private IGeocoder geocoder;
 	private OlsResponse response;
-	
+
 	public KmlOlsResponseConverter() {
 		super(new MediaType("application", "vnd.google-earth.kml+xml",
 				Charset.forName("UTF-8")));
 	}
-	
+
 	@Override
 	protected boolean supports(Class<?> clazz) {
 		return OlsResponse.class.isAssignableFrom(clazz);
 	}
-	
+
 	@Override
 	public boolean canRead(Class<?> clazz, MediaType mediaType) {
 		return false;
 	}
-	
+
 	@Override
 	protected OlsResponse readInternal(Class<? extends OlsResponse> clazz,
 			HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
 		return null;
 	}
-	
+
 	@Override
 	protected void writeInternal(OlsResponse response, HttpOutputMessage outputMessage)
 			throws IOException, HttpMessageNotWritableException {
@@ -113,7 +113,7 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 		out.write(("</Document>\r\n</kml>"));
 		out.flush();
 	}
-	
+
 	String singleSiteDocHeader(SiteAddress addr, GeocoderConfig config, OlsResponse response) {
 		return "<Document>\r\n"
 				+ "<name>Results for " + escape(addr.getAddressString()) + "</name>\r\n"
@@ -134,12 +134,12 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 				+ escape(config.getCopyrightLicense())
 				+ "</value></Data>\r\n"
 				+ "</ExtendedData>\r\n"
-				+ "<styleUrl>" 
-				+ (response.getExtraInfo("occupantQuery").equals("true") ? 
-						config.getOccupantCategoryKmlStyleUrl() : config.getKmlStylesUrl())  
+				+ "<styleUrl>"
+				+ (response.getExtraInfo("occupantQuery").equals("true") ?
+						config.getOccupantCategoryKmlStyleUrl() : config.getKmlStylesUrl())
 				+ "#reverse_results_heading</styleUrl>\r\n";
 	}
-	
+
 	String singleIntersectionDocHeader(StreetIntersectionAddress intersection,
 			GeocoderConfig config, OlsResponse response) {
 		return "<Document>\r\n"
@@ -168,7 +168,7 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 				+ "<styleUrl>" + config.getKmlStylesUrl()
 				+ "#reverse_intersection_results_heading</styleUrl>\r\n";
 	}
-	
+
 	String searchResultsToKML(SearchResults results, GeocoderConfig config,
 			OlsResponse response) {
 		// TODO need to handle date formatting
@@ -183,7 +183,7 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 				+ "</value></Data>\r\n"
 				+ "<Data name=\"version\"><value>" + escape(GeocoderConfig.VERSION)
 				+ "</value></Data>\r\n"
-				+ "<Data name=\"baseDataDate\"><value>" + escape(results.getProcessingDate())
+				+ "<Data name=\"baseDataDate\"><value>" + escape(results.getProcessingDate().format(OlsResponseReader.DATE_FORMATTER))
 				+ "</value></Data>\r\n"
 				+ "<Data name=\"minScore\"><value>" + escape(results.getMinScore())
 				+ "</value></Data>\r\n"
@@ -209,9 +209,9 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 				+ escape(config.getCopyrightLicense())
 				+ "</value></Data>\r\n"
 				+ "</ExtendedData>\r\n"
-				+ "<styleUrl>" 
-				+ (response.getExtraInfo("occupantQuery").equals("true") ? 
-						config.getOccupantCategoryKmlStyleUrl() : config.getKmlStylesUrl())  
+				+ "<styleUrl>"
+				+ (response.getExtraInfo("occupantQuery").equals("true") ?
+						config.getOccupantCategoryKmlStyleUrl() : config.getKmlStylesUrl())
 				+ "#results_heading</styleUrl>\r\n");
 		Iterator<GeocodeMatch> it = results.getMatches().iterator();
 		while(it.hasNext()) {
@@ -220,7 +220,7 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 		buf.append("");
 		return buf.toString();
 	}
-	
+
 	String geocodeMatchToKML(GeocodeMatch match, GeocoderConfig config) {
 		if(match instanceof AddressMatch) {
 			return addressMatchToKML((AddressMatch)match, config);
@@ -229,7 +229,7 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 		}
 		return "";
 	}
-	
+
 	String addressMatchToKML(AddressMatch match, GeocoderConfig config) {
 		SiteAddress addr = match.getAddress();
 		String occupantStr = "";
@@ -360,7 +360,7 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 				+ "</Placemark>";
 		return result;
 	}
-	
+
 	private String getStyleUrl(GeocoderConfig config, String type,
 			GeocoderAddress addr) {
 		if(addr instanceof OccupantAddress) {
@@ -374,7 +374,7 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 		return config.getKmlStylesUrl() + "#" + type + "_" + addr.getLocationDescriptor() + "_"
 				+ addr.getLocationPositionalAccuracy().toString();
 	}
-	
+
 	private String getLookAt(GeocoderAddress addr, GeocoderConfig config) {
 		if(addr.getLocation() == null) {
 			return "";
@@ -383,9 +383,9 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 				"<latitude>" + addr.getLocation().getY() + "</latitude>" +
 				"<altitude>0</altitude><heading>0</heading><tilt>0</tilt>" +
 				"<range>" + config.getDefaultLookAtRange() + "</range>" + "</LookAt>\r\n";
-		
+
 	}
-	
+
 	private String getPoint(ILocation loc) {
 		if(loc.getLocation() == null) {
 			return "";
@@ -434,7 +434,7 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 				+ getPoint(addr)
 				+ "</Placemark>\r\n";
 	}
-	
+
 	String siteAddressesToKML(SiteAddress[] addrs, GeocoderConfig config,
 			OlsResponse response) {
 		StringBuilder buf = new StringBuilder("<Document>\r\n"
@@ -450,12 +450,12 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 				+ "</value></Data>\r\n"
 				+ "<Data name=\"executionTime\"><value>" + response.getExtraInfo("executionTime")
 				+ "</value></Data>\r\n"
-				+ (response.getExtraInfo("tags").isEmpty() ? "" : "<Data name=\"tags\"><value>" 
+				+ (response.getExtraInfo("tags").isEmpty() ? "" : "<Data name=\"tags\"><value>"
 						+ response.getExtraInfo("tags") + "</value></Data>\r\n")
+				+ "<Data name=\"disclaimer\"><value>"
 				+ escape(config.getDisclaimer()) + "</value></Data>\r\n"
 				+ "<Data name=\"privacyStatement\"><value>"
 				+ escape(config.getPrivacyStatement()) + "</value></Data>\r\n"
-				+ escape("http://www2.gov.bc.ca/gov/admin/privacy.page") + "</value></Data>\r\n"
 				+ "<Data name=\"copyrightNotice\"><value>"
 				+ escape(config.getCopyrightNotice())
 				+ "</value></Data>\r\n"
@@ -463,16 +463,16 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 				+ escape(config.getCopyrightLicense())
 				+ "</value></Data>\r\n"
 				+ "</ExtendedData>\r\n"
-				+ "<styleUrl>" 
-				+ (response.getExtraInfo("occupantQuery").equals("true") ? 
-						config.getOccupantCategoryKmlStyleUrl() : config.getKmlStylesUrl())  
+				+ "<styleUrl>"
+				+ (response.getExtraInfo("occupantQuery").equals("true") ?
+						config.getOccupantCategoryKmlStyleUrl() : config.getKmlStylesUrl())
 				+ "#reverse_results_heading</styleUrl>\r\n");
 		for(SiteAddress addr : addrs) {
 			buf.append(siteAddressToKML(addr, config));
 		}
 		return buf.toString();
 	}
-	
+
 	String siteAddressToKML(SiteAddress addr, GeocoderConfig config) {
 		String occupantStr = "";
 		if(addr instanceof OccupantAddress) {
@@ -581,7 +581,7 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 				+ getPoint(addr)
 				+ "</Placemark>";
 	}
-	
+
 	String streetIntersectionAddressesToKML(StreetIntersectionAddress[] addrs,
 			GeocoderConfig config, OlsResponse response) {
 		StringBuilder buf = new StringBuilder("<Document>\r\n"
@@ -616,7 +616,7 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 		}
 		return buf.toString();
 	}
-	
+
 	String streetIntersectionAddressToKML(StreetIntersectionAddress addr,
 			GeocoderConfig config) {
 		return "<Placemark>\r\n"
@@ -648,7 +648,7 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 				+ getPoint(addr)
 				+ "</Placemark>";
 	}
-	
+
 
 	String escape(Object field) {
 		if(field == null) {
@@ -657,5 +657,5 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 		field = OlsResponseWriter.formatDate(field);
 		return StringEscapeUtils.escapeXml10(field.toString());
 	}
-	
+
 }

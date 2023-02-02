@@ -15,7 +15,7 @@
  */
 package ca.bc.gov.ols.geocoder.datasources;
 
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -71,7 +71,7 @@ public interface GeocoderDataSource {
 	
 	RowReader getOccupants();
 		
-	Map<DateType, LocalDate> getDates();
+	Map<DateType, ZonedDateTime> getDates();
 	
 	GeocoderConfig getConfig();
 	

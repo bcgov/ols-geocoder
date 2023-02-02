@@ -18,6 +18,7 @@ package ca.bc.gov.ols.geocoder;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -242,7 +243,7 @@ public class GeocoderDataStore {
 
 	GeometryReprojector reprojector;
 
-	private Map<DateType, LocalDate> dates;
+	private Map<DateType, ZonedDateTime> dates;
 	
 	public GeocoderDataStore(Properties bootstrapConfig, GeometryFactory gf, GeometryReprojector reprojector) {
 		logger.info("GeocoderDataStore() constructor called");
@@ -1968,7 +1969,7 @@ public class GeocoderDataStore {
 		return partialTagIndex.lookup(partialTag, maxResults);
 	}
 
-	public LocalDate getDate(DateType source) {
+	public ZonedDateTime getDate(DateType source) {
 		if(dates != null) {
 			return dates.get(source);
 		}

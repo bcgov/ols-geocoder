@@ -1,8 +1,12 @@
 package ca.bc.gov.ols.streetprep;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.nio.charset.Charset;
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -63,6 +67,7 @@ public class StreetPrep {
 	private static final int SRID = 3005;
 	
 	// input filenames
+	private static final String VERSION_FILE = "version.tsv";
 	private static final String TRANSPORT_LINE_DEMOGRAPHIC_FILE = "TRANSPORT_LINE_DEMOGRAPHIC.tsv";
 	private static final String STRUCTURED_NAME_FILE = "STRUCTURED_NAME.tsv";
 	private static final String NAME_PREFIX_CODE_FILE = "NAME_PREFIX_CODE.tsv";
@@ -203,7 +208,7 @@ public class StreetPrep {
 	private static final int FIRST_EXIT_NAME_ID = 250000;
 	
 	private GeometryFactory geometryFactory;
-	private Map<DateType,LocalDate> dates; 
+	private Map<String,String> dates;
 	
 	private Map<String,MathTransform> transformToAlbers = new HashMap<String,MathTransform>();
 	
@@ -254,8 +259,12 @@ public class StreetPrep {
 	}
 	
 	public void run() {
-		dates = new HashMap<DateType,LocalDate>();
-		dates.put(DateType.PROCESSING_DATE, LocalDate.now());
+		dates = new HashMap<String, String>();
+		dates.put(DateType.PROCESSING_DATE.name(), ZonedDateTime.now().format(JsonRowWriter.DATETIME_FORMATTER));
+		
+		// version
+		ZonedDateTime itnDate = readVersion();
+		dates.put(DateType.ITN_VINTAGE_DATE.name(), itnDate.format(JsonRowWriter.DATETIME_FORMATTER));
 		
 		// Localities
 		Map<String, StateProvTerr> sptMap = readStateProvTerr();
@@ -413,6 +422,15 @@ public class StreetPrep {
 			return newP;
 		} catch (TransformException te) {
 			throw new RuntimeException("Unexpected error in coordinate reprojection.");
+		}
+	}
+	
+	private ZonedDateTime readVersion() {
+		try (BufferedReader reader = new BufferedReader(new FileReader(inputDir + VERSION_FILE))) {
+			String line = reader.readLine();
+			return ZonedDateTime.parse(line);
+		} catch(IOException ioe) {
+			throw new RuntimeException(ioe);
 		}
 	}
 	
