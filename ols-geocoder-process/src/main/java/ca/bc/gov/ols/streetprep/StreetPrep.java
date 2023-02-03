@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -67,7 +66,7 @@ public class StreetPrep {
 	private static final int SRID = 3005;
 	
 	// input filenames
-	private static final String VERSION_FILE = "version.tsv";
+	private static final String VERSION_FILE = "VERSION.tsv";
 	private static final String TRANSPORT_LINE_DEMOGRAPHIC_FILE = "TRANSPORT_LINE_DEMOGRAPHIC.tsv";
 	private static final String STRUCTURED_NAME_FILE = "STRUCTURED_NAME.tsv";
 	private static final String NAME_PREFIX_CODE_FILE = "NAME_PREFIX_CODE.tsv";
@@ -426,11 +425,10 @@ public class StreetPrep {
 	}
 	
 	private ZonedDateTime readVersion() {
-		try (BufferedReader reader = new BufferedReader(new FileReader(inputDir + VERSION_FILE))) {
-			String line = reader.readLine();
-			return ZonedDateTime.parse(line);
-		} catch(IOException ioe) {
-			throw new RuntimeException(ioe);
+		try (RowReader rr = new TsvRowReader(inputDir + VERSION_FILE, geometryFactory)) {
+			rr.next();
+			String date = rr.getString("VERSION");
+			return ZonedDateTime.parse(date);
 		}
 	}
 	
