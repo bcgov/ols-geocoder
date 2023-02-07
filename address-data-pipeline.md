@@ -155,8 +155,7 @@ It will be a major challenge to design a parallel architecture for the embedded 
 ### Gather and Transform Steps
 Here is the data flow for the current implementation of the gather and transform steps.
 
-![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/a714c132-e764-41c7-983c-67fa952465c0)
-
+![Data_Gathering_v11](https://user-images.githubusercontent.com/34925250/217385786-a76d163c-6abb-4a88-9148-12028ec06b59.png)
 <br><br>
 
 ### Current implementation of Geocoder data integration process
