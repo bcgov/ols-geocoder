@@ -37,6 +37,7 @@ Name | Meaning | Penalty
 <a name="LOCALITY.isAlias">LOCALITY.isAlias</a>	| A given civic number and street were found in an alias of the given locality but not the locality itself.|Up to 20 points depending on alias confidence. For example, if Victoria aliases to Willis Point with a confidence of 80%, the penalty is 4 points. If the same alias had a confidence of 20%, the penalty would be 16
 <a name="LOCALITY.missing">LOCALITY.missing</a> | A given address didn’t contain a locality name but one was found that contains the given civic number and street.|10
 <a name="LOCALITY.notMatched">LOCALITY.notMatched</a> | A given locality does not contain a given civic number and street but another locality was found that does.|35
+<a name="LOCALITY.partialMatch">LOCALITY.partialMatch</a> | Some of the words in a locality name were matched. A match with a full locality name is returned.|1
 <a name="LOCALITY.spelledWrong">LOCALITY.spelledWrong</a> | A given locality was spelled wrong but was successfully corrected to match a known locality.|2
 <a name="POSTAL_ADDRESS_ELEMENT.notAllowed">POSTAL_ADDRESS_ELEMENT.notAllowed</a> | An element of a mailing address was detected (e.g., PO, BOX nn, SS, RR nn, a postal code. All such elements are ignored.|1
 <a name="PROVINCE.missing">PROVINCE.missing</a> | A given address didn't contain a province code (e.g., BC)|1
@@ -57,6 +58,7 @@ Name | Meaning | Penalty
 <a name="STREET_NAME.isHighwayAlias">STREET_NAME.isHighwayAlias</a> | A given street name is an alias for an official highway name. |0
 <a name="STREET_NAME.missing">STREET_NAME.missing</a> | A given address didn't contain a street name but one was found.|1
 <a name="STREET_NAME.notMatched">STREET_NAME.notMatched</a> | A given streetName within a given locality was not found. The locality is returned with a match precision of LOCALITY. Other addresses in different localities that contain the given civic number and street will also be returned but with a lesser score.|12
+<a name="STREET_NAME.partialMatch">STREET_NAME.partialMatch</a> | Some of the words in a street name were matched. A match with a full street name is returned.|1
 <a name="STREET_NAME.spelledWrong">STREET_NAME.spelledWrong</a> | A given street name was spelled wrong but was successfully corrected to match a known street name with the given locality.|2
 <a name="STREET_QUALIFIER.missing">STREET_QUALIFIER.missing</a> | A given address didn't contain a street qualifier but one was found.|1
 <a name="STREET_QUALIFIER.notMatched">STREET_QUALIFIER.notMatched</a> | A given street qualifier was not found. A match without a street qualifier is returned.|1
