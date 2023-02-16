@@ -1,5 +1,8 @@
 # Frequently Asked Questions
 
+#### Q: Can I bulk download all addresses in BC?
+No. The BC Address Geocoder does not provide the ability to bulk download all addresses in BC.
+
 #### Q: What are the system requirements for using the Geocoder?
 A web browser is required to use Geocoder web applications.
 To use the Geocoder in Google Earth, Google Earth 6.1 or higher needs to be installed on the user’s computer.
