@@ -28,6 +28,7 @@ Name | Meaning | Points awarded
 ## Match Faults
 Name | Meaning | Penalty
 -------: | --------------- | -----:
+<a name="ADDRESS.autoCompleted">ADDRESS.autoCompleted</a> |This fault applies to automatic word extensions done to the last word in autocomplete input. For example, the word 'Bar' in Boston Bar extended to Barkerville or Barret.|5
 <a name="ADDRESS.missing">ADDRESS.missing</a> | No address was found in an occupant-address request. Just an occupant name.|12
 <a name="CIVIC_NUMBER.missing">CIVIC_NUMBER.missing</a> | A given address didn't contain a civic number but one was found.|10
 <a name="CIVIC_NUMBER.notInAnyBlock">CIVIC_NUMBER.notInAnyBlock</a> | A given civic number is not in any known address range for a given street in a given locality. The street within the given locality is returned with a match precision of STREET.|1
