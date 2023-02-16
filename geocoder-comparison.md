@@ -118,7 +118,7 @@ Two sets of samples of the BC Address Geocoder civic addresses were taken:
 
 1.	Select thirty urban localities at random.
 2.	For each urban locality, repeat steps 3 to 6.
-3.	Enter locality into address tab of Location Services demo app then click search icon. 
+3.	Enter locality into address tab of LSIA demo app then click search icon. 
 4.	Zoom out until full extent of urban core is visible.
 5.	Click Jump at Random icon and system will select and display a civic address chosen randomly from current map extent.
 6.	Record civic address in an urban addresses spreadsheet.
