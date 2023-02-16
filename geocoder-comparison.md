@@ -4,7 +4,7 @@ April 4, 2018
 
 # Introduction
 
-This study was conducted to determine the address match accuracy of four popular web geocoders relative to the BC Address Geocoder. The geocoders under study include:
+This study was conducted to determine the address match accuracy of four popular geocoders relative to the BC Address Geocoder. The geocoders under study include:
 1. Bing Maps
 2. ESRI
 3. Google Maps 
