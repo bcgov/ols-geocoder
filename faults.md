@@ -30,15 +30,14 @@ Name | Meaning | Penalty
 -------: | --------------- | -----:
 <a name="ADDRESS.missing">ADDRESS.missing</a> | No address was found in an occupant-address request. Just an occupant name.|12
 <a name="CIVIC_NUMBER.missing">CIVIC_NUMBER.missing</a> | A given address didn't contain a civic number but one was found.|10
-<a name="CIVIC_NUMBER.notInAnyBlock">CIVIC_NUMBER.notInAnyBlock</a> | A given civic number is not in any known address range for a given street in a given locality. The street within the given locality is returned with a match precision of STREET.|10
+<a name="CIVIC_NUMBER.notInAnyBlock">CIVIC_NUMBER.notInAnyBlock</a> | A given civic number is not in any known address range for a given street in a given locality. The street within the given locality is returned with a match precision of STREET.|1
 <a name="CIVIC_NUMBER_SUFFIX.notMatched">CIVIC_NUMBER_SUFFIX.notMatched</a> | A given civic number suffix for a given civic number and street was not found in a given locality.|1
 <a name="INITIAL_GARBAGE.notAllowed">INITIAL_GARBAGE.notAllowed</a> |Unrecognized words found at beginning of address and before a unit number or civic number.|3
 <a name="LOCALITY_GARBAGE.notAllowed">LOCALITY_GARBAGE.notAllowed</a> |Unrecognized words found between street and locality name.|3
 <a name="LOCALITY.isAlias">LOCALITY.isAlias</a>	| A given civic number and street were found in an alias of the given locality but not the locality itself.|Up to 20 points depending on alias confidence. For example, if Victoria aliases to Willis Point with a confidence of 80%, the penalty is 4 points. If the same alias had a confidence of 20%, the penalty would be 16
 <a name="LOCALITY.missing">LOCALITY.missing</a> | A given address didn’t contain a locality name but one was found that contains the given civic number and street.|10
 <a name="LOCALITY.notMatched">LOCALITY.notMatched</a> | A given locality does not contain a given civic number and street but another locality was found that does.|35
-<a name="LOCALITY.spelledWrong">LOCALITY.spelledWrong</a> | A given locality was spelled wrong but was successfully corrected to match a known locality.|2 
-<a name="OCCUPANT_NAME.partiallyMatched">Occupant Name Partially Matched</a> | Some of the words in an occupant name were matched. A match with a full occupant name is returned.| Up to 10 points depending on how weak the partial match is.
+<a name="LOCALITY.spelledWrong">LOCALITY.spelledWrong</a> | A given locality was spelled wrong but was successfully corrected to match a known locality.|2
 <a name="POSTAL_ADDRESS_ELEMENT.notAllowed">POSTAL_ADDRESS_ELEMENT.notAllowed</a> | An element of a mailing address was detected (e.g., PO, BOX nn, SS, RR nn, a postal code. All such elements are ignored.|1
 <a name="PROVINCE.missing">PROVINCE.missing</a> | A given address didn't contain a province code (e.g., BC)|1
 <a name="PROVINCE.notMatched">PROVINCE.notMatched</a> |	A province code other than BC was found|1
@@ -65,7 +64,7 @@ Name | Meaning | Penalty
 <a name="STREET_TYPE.notMatched">STREET_TYPE.notMatched</a> | A given street type for a given street name in a given locality was not found. A match containing the correct street type is returned.|3
 <a name="STREET_TYPE.notPrefix">STREET_TYPE.notPrefix</a> | A given street street was placed before street name instead of after. A match with a correctly positioned street type is returned.|0
 <a name="STREET_TYPE.notSuffix">STREET_TYPE.notSuffix</a> | A given street type was placed after street name instead of before. A match with a correctly positioned street type is returned.|0
-<a name="STREET_TYPE.spelledWrong">STREET_TYPE.spelledWrong</A> | A given street type was spelled wrong but was successfully corrected to match a known street type.|1 
+<a name="STREET_TYPE.spelledWrong">STREET_TYPE.spelledWrong</A> | A given street type was spelled wrong but was successfully corrected to match a known street type.|1
 <a name="UNIT_DESIGNATOR.isAlias">UNIT_DESIGNATOR.isAlias</A> | A given unit designator is an alias of the official unit designator. A match containing the official unit designator is returned.|0
 <a name="UNIT_DESIGNATOR.missing">UNIT_DESIGNATOR.missing</A> | A given address didn't contain a unit designator but one was found.|0
 <a name="UNIT_DESIGNATOR.notMatched">UNIT_DESIGNATOR.notMatched</A> | A given unit designator was not found. A match containing the correct unit designator is returned.|1
@@ -74,4 +73,4 @@ Name | Meaning | Penalty
 <a name="UNIT_NUMBER.notMatched">UNIT_NUMBER.notMatched</A> | A given unit number was not found. A match containing the correct unit number is returned.|1
 <a name="UNIT_NUMBER.suffixMissing">UNIT_NUMBER_SUFFIX.missing</A> | A given address didn't contain a unit number suffix but one was found.|1
   <a name="UNIT_NUMBER.suffixNotMatched">UNIT_NUMBER_SUFFIX.notMatched</A> | A given unit number suffix was not found. A match containing the correct unit number suffix is returned.|1
-<a name="UNRECOGNIZED_ELEMENT.notAllowed">UNRECOGNIZED.notAllowed</a>	| There are unnecessary or redundant words in an address. For example, the following address has a redundant streetType (e.g., Road): 33457 COTTAGE LANE ROAD ABBOTSFORD BC. The following address has an unnecessary site name (e.g., ABERDEEN SQUARE) : ABERDEEN SQUARE 101-2764 BARNET HIGHWAY COQUITLAM BC |30 + (3 \* number of words not recognized) 
+<a name="UNRECOGNIZED_ELEMENT.notAllowed">UNRECOGNIZED.notAllowed</a>	| There are unnecessary or redundant words in an address. For example, the following address has a redundant streetType (e.g., Road): 33457 COTTAGE LANE ROAD ABBOTSFORD BC. The following address has an unnecessary site name (e.g., ABERDEEN SQUARE) : ABERDEEN SQUARE 101-2764 BARNET HIGHWAY COQUITLAM BC |3 * number of words not recognized
