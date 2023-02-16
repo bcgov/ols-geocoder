@@ -2,7 +2,7 @@
 
 <br>
 
-## Address List Match Accuracy = Number of addresses with a match score of ninety or higher divided by the number of addresses in the list
+## Address List Match Accuracy = Number of addresses with a match score of 90 or higher divided by the number of addresses in the list
 
 <br><br>
 
