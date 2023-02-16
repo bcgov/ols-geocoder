@@ -54,6 +54,7 @@ Name | Meaning | Penalty
 <a name="STREET_DIRECTION.notSuffix">STREET_DIRECTION.notSuffix</a> | A given street direction was placed after street name instead of before. A match with a correctly positioned street direction is returned.|0
 <a name="STREET_DIRECTION.spelledWrong">STREET_DIRECTION.spelledWrong</a> | A given street direction was spelled wrong. A match with a correctly spelled street direction is returned.|1
 <a name="STREET_NAME.isAlias">STREET_NAME.isAlias</a> | A given street name is an alias for the official street name. A match with the official street name is returned.|1
+<a name="STREET_NAME.isHighwayAlias">STREET_NAME.isHighwayAlias</a> | A given street name is an alias for an official highway name. |0
 <a name="STREET_NAME.missing">STREET_NAME.missing</a> | A given address didn't contain a street name but one was found.|1
 <a name="STREET_NAME.notMatched">STREET_NAME.notMatched</a> | A given streetName within a given locality was not found. The locality is returned with a match precision of LOCALITY. Other addresses in different localities that contain the given civic number and street will also be returned but with a lesser score.|12
 <a name="STREET_NAME.spelledWrong">STREET_NAME.spelledWrong</a> | A given street name was spelled wrong but was successfully corrected to match a known street name with the given locality.|2
@@ -71,6 +72,7 @@ Name | Meaning | Penalty
 <a name="UNIT_DESIGNATOR.spelledWrong">UNIT_DESIGNATOR.spelledWrong</A> | A given unit designator was spelled wrong but was successfully corrected to match a known unit designator.|1
 <a name="UNIT_NUMBER.missing">UNIT_NUMBER.missing</A> | A given address didn't contain a unit number but one was found.|1
 <a name="UNIT_NUMBER.notMatched">UNIT_NUMBER.notMatched</A> | A given unit number was not found. A match containing the correct unit number is returned.|1
+<a name="UNIT_NUMBER.spelledWrong">UNIT_NUMBER.spelledWrong</A> | A given unit  number was spelled wrong but was successfully corrected to match a known unit number.|1
 <a name="UNIT_NUMBER.suffixMissing">UNIT_NUMBER_SUFFIX.missing</A> | A given address didn't contain a unit number suffix but one was found.|1
-  <a name="UNIT_NUMBER.suffixNotMatched">UNIT_NUMBER_SUFFIX.notMatched</A> | A given unit number suffix was not found. A match containing the correct unit number suffix is returned.|1
+<a name="UNIT_NUMBER.suffixNotMatched">UNIT_NUMBER_SUFFIX.notMatched</A> | A given unit number suffix was not found. A match containing the correct unit number suffix is returned.|1
 <a name="UNRECOGNIZED_ELEMENT.notAllowed">UNRECOGNIZED.notAllowed</a>	| There are unnecessary or redundant words in an address. For example, the following address has a redundant streetType (e.g., Road): 33457 COTTAGE LANE ROAD ABBOTSFORD BC. The following address has an unnecessary site name (e.g., ABERDEEN SQUARE) : ABERDEEN SQUARE 101-2764 BARNET HIGHWAY COQUITLAM BC |3 * number of words not recognized
