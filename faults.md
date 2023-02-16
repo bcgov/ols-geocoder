@@ -33,6 +33,7 @@ Name | Meaning | Penalty
 <a name="CIVIC_NUMBER.missing">CIVIC_NUMBER.missing</a> | A given address didn't contain a civic number but one was found.|10
 <a name="CIVIC_NUMBER.notInAnyBlock">CIVIC_NUMBER.notInAnyBlock</a> | A given civic number is not in any known address range for a given street in a given locality. The street within the given locality is returned with a match precision of STREET.|1
 <a name="CIVIC_NUMBER_SUFFIX.notMatched">CIVIC_NUMBER_SUFFIX.notMatched</a> | A given civic number suffix for a given civic number and street was not found in a given locality.|1
+<a name="FAULTS.tooMany">FAULTS.tooMany</a> |Indicates that to many faults were found in the provided input address which may prevent a successful address match.|6
 <a name="INITIAL_GARBAGE.notAllowed">INITIAL_GARBAGE.notAllowed</a> |Unrecognized words found at beginning of address and before a unit number or civic number.|3
 <a name="LOCALITY_GARBAGE.notAllowed">LOCALITY_GARBAGE.notAllowed</a> |Unrecognized words found between street and locality name.|3
 <a name="LOCALITY.isAlias">LOCALITY.isAlias</a>	| A given civic number and street were found in an alias of the given locality but not the locality itself.|Up to 20 points depending on alias confidence. For example, if Victoria aliases to Willis Point with a confidence of 80%, the penalty is 4 points. If the same alias had a confidence of 20%, the penalty would be 16
