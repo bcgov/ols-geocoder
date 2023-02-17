@@ -2,7 +2,7 @@
 
 This tutorial shows you how to use the Location Services in Action application to design a civic address fabric and compile civic addresses. Compiling civic addresses involves digitizing the coordinate location of each address and storing all address information in the new\_civic\_addresses spreadsheet which is compliant with the  [Physical Address eXchange (PAX) Schema](https://github.com/bcgov/ols-geocoder/blob/gh-pages/BCAddressExchangeSchema.md).
 
-To get started, you will need a Chrome web browser and a copy of the MS Excel spreadsheet called new_civic_addresses.xlsx If you don't have MS Excel, you can use new_civic_addresses.csv and your favourite spreadsheet software instead.  Feel free to add your agency name to the file name.
+To get started, you will need a modern web browser (such as Chrome) and a copy of the MS Excel spreadsheet called new_civic_addresses.xlsx. If you don't have MS Excel, you can use new_civic_addresses.csv and your favourite spreadsheet software instead.  Feel free to add your agency name to the file name.
 
 1. Open up new_civic_addresses.xlsx. It will have some example addresses in it to show you which columns address elements go into.
 
