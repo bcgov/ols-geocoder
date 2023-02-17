@@ -35,7 +35,7 @@ The app will display a list of layers grouped into background layers and foregro
 
 6. Select foreground layers Digital Road Atlas and ParcelMap BC. Turn on the Address - parcel point layer to see all existing addresses in the area.
 
-![image](https://user-images.githubusercontent.com/11318574/123010311-36dbb400-d373-11eb-9d48-37914f097f8e.png)
+![Layer list2](https://user-images.githubusercontent.com/9123564/219814785-f588e8dd-3386-4369-9f8d-9186aa644fdc.PNG)
 <br><br>
 7. Close the side panel by clicking on the icon circled in red. This will let you make the map bigger.
 
