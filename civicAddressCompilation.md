@@ -4,9 +4,9 @@ This tutorial shows you how to use the Location Services in Action application t
 
 To get started, you will need a modern web browser (such as Chrome) and a copy of the MS Excel spreadsheet called new_civic_addresses.xlsx. If you don't have MS Excel, you can use new_civic_addresses.csv and your favourite spreadsheet software instead.  Feel free to add your agency name to the file name.
 
-1. Open up new_civic_addresses.xlsx. It will have some example addresses in it to show you which columns address elements go into.
+1. Open new_civic_addresses.xlsx. It contains several example addresses to show you which columns address elements go into.
 
-2.  Open up a Chrome browser and visit [Location Services In Action](https://bcgov.github.io/ols-devkit/ols-demo/index.html)
+2. Open a Chrome web browser and visit [Location Services In Action](https://bcgov.github.io/ols-devkit/ols-demo/index.html)
 
 ![image](https://user-images.githubusercontent.com/11318574/123008528-dc8d2400-d36f-11eb-8872-9a2b51b83543.png)
 <br><br>
