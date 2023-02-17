@@ -37,7 +37,7 @@ The URL entered here is a list of addresses, one for every incorporated municipa
 
 ![image](https://user-images.githubusercontent.com/11318574/106338675-59d7cf80-62cf-11eb-80ad-5adb8116f5eb.png)
 
-If you don't know what a map projection is, leave it unchanged. The default projection called WGS84 (longitude, latitude) is what all mapping apps understand.
+If you don't know what a map projection is, leave it unchanged. The default projection is called WGS84 (longitude, latitude).
 
 **STEP 6.** Choose your Result data content type, otherwise known as output format. Let's leave the default of CSV for now since it is easy to view in a spreadsheet. 
 
