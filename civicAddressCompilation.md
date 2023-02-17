@@ -25,7 +25,7 @@ Turn on imagery and other cartographic information layers as follows:
 
 The app will display a list of layers grouped into background layers and foreground layers.
 
-![image](https://user-images.githubusercontent.com/11318574/123009893-7229b300-d372-11eb-9a01-a7bb0a66ad4f.png)
+![Layer list](https://user-images.githubusercontent.com/9123564/219814144-de6d602a-543d-477e-9e8f-2e12ed534696.PNG)
 <br><br>
  
 5. Select the best background imagery layer for your area. There are four to choose from: Mapbox Satellite, ESRI imagery, Google Satellite, and Bing Aerial.
