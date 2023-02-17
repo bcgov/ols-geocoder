@@ -39,7 +39,7 @@ The app will display a list of layers grouped into background layers and foregro
 <br><br>
 7. Close the side panel by clicking on the icon circled in red. This will let you make the map bigger.
 
-![image](https://user-images.githubusercontent.com/11318574/123313916-d2d5fe80-d4de-11eb-981f-51b46beb470c.png)
+![Left panel](https://user-images.githubusercontent.com/9123564/219815282-78338f31-6903-4989-a3e7-51ddea2622e5.png)
 <br><br>
 8.  Take a screenshot of the map and open up the side panel again.
 
