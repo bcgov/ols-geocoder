@@ -1,6 +1,6 @@
 # Submitting an address list to the batch geocoder interactively
 
-This document describes the process of submitting a list of addresses to the batch geocoder.
+This document describes the process of submitting a list of addresses to the batch geocoder using a BCeID account.
 
 ## Preliminaries
 
