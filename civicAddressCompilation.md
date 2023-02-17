@@ -55,8 +55,6 @@ The app will display a list of layers grouped into background layers and foregro
 - Leave number gaps between civic numbers to allow infilling.
 - Place civic numbers roughly where future building roofs will be.
 
-For more design tips see the powerpoint presentation called  address_fabric_design_for_NG911
-
 When you're happy with your address fabric, its time to digitize each civic address site location.
 
 ![image](https://user-images.githubusercontent.com/11318574/123883273-8be07280-d8fd-11eb-95b5-6c1a297a538a.png)
