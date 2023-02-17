@@ -19,7 +19,7 @@ You will also need a list of addresses in a format and schema the batch geocoder
 ![image](https://user-images.githubusercontent.com/11318574/106338032-c81b9280-62cd-11eb-82dd-30f6b12e4367.png)
 
 
-**STEP 3.** Click on the tab named Submit multi-request job
+**STEP 3.** Click on the tab named Create Multi-Request Job
 
 ![image](https://user-images.githubusercontent.com/11318574/106338121-f4371380-62cd-11eb-9f24-c4553ea9c92f.png)
   
