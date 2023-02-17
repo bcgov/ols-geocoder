@@ -27,7 +27,7 @@ The system will display the following form:
 
 ![image](https://user-images.githubusercontent.com/11318574/106338197-29436600-62ce-11eb-90aa-f58edada19b9.png)
 
-**STEP 4.** Enter the name of a file or a file URL. A file URL must be a public URL or a URL that is accessible within BC government network.
+**STEP 4.** Enter the name of a file or a file URL. A file URL must be a public URL or a URL that is accessible within the BC government network.
 
 ![image](https://user-images.githubusercontent.com/11318574/106338415-c3a3a980-62ce-11eb-806d-7545e0fda5dd.png)
 
