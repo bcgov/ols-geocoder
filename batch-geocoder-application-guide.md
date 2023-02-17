@@ -1,10 +1,10 @@
 # Submitting an address list to the batch geocoder interactively
 
-This document describes the process of submitting a list of addresses to the batch geocoder using a BCeID account.
+This document describes the process of submitting a list of addresses to the batch geocoder.
 
 ## Preliminaries
 
-If you don't have an active BC IDIR account, you will have to [register](https://github.com/bcgov/ols-geocoder/blob/gh-pages/bc-location-services/batch-geocoder-registration.md) with the batch geocoder.
+If you don't have an active BC IDIR account, you will have to [register](https://github.com/bcgov/ols-geocoder/blob/gh-pages/bc-location-services/batch-geocoder-registration.md) with the batch geocoder using a BCeID account.
 
 You will also need a list of addresses in a format and schema the batch geocoder understands.  For help with this, click [here](https://www2.gov.bc.ca/assets/gov/data/geographic/location-services/geocoder/batch_address_data_prep.pdf). For the purposes of this tutorial, we have provided an address list if you don't have one.
 
