@@ -13,7 +13,7 @@ To do the comparison, we selected a handful of random addresses in a given rural
 
 Here is our methodology if you would like to do the comparison yourself:
 
-1. Start up [Location Services in Action](https://bcgov.github.io/ols-devkit/ols-demo/index.html)
+1. Launch the [Location Services in Action](https://bcgov.github.io/ols-devkit/ols-demo/index.html) web application
 
 2. In the Address tab, enter a rural area or incorporated municipality name and press search icon. You may want to zoom out a bit to include the entire populated area.
 
