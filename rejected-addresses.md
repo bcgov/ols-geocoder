@@ -18,7 +18,7 @@ Here is a table of common address errors and how well they are handled in Geocod
 [964 Lillooet Rd St, Lillooet St,  Rd,  North Vancouver, Squamish, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=964%20Lillooet%20Rd%20St,%20Lillooet%20St,%20%20Rd,%20%20North%20Vancouver,%20Squamish,%20BC)|964 Lilloet Rd, North Vancouver, BC|90+|?|Redundant, conflicting, address elements|yes
 [58550 Wild Rose Lane Hope BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=58550%20Wild%20Rose%20Lane%20Hope%20BC)|58550 Wildrose Lane, Laidlaw, BC|90+|Hope, BC with score below 90|Compound name entered as separate words|no|**yes**
 [3821 Cedarhill Rd, Saanich, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=3821%20Cedarhill%20Rd,%20Saanich,%20BC)|3821 Cedar hill Rd, Saanich, BC|90+|3821 Saanich Rd, Saanich, BC|Separate words entered as compound name|no|**yes**
-[200 21st Ave, prince george, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=200%2021st%20Ave,%20prince%20george,%20BC)|Prince George, BC|below 90|200 21st Ave N, Cranbrook, BC|Unknown street in locality|no|
+[200 21st Ave, prince george, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=200%2021st%20Ave,%20prince%20george,%20BC)|Prince George, BC|below 90|200 21st Ave N, Cranbrook, BC|Unknown street in locality|no|**no**
 [950 Hope Princeton Way, Hope, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=950%20Hope%20Princeton%20Way,%20Hope,%20BC)|950 Old Hope Princeton Way, Hope, BC|90+|950 Hope St, Port Moody, BC|Suffix matching|no|
 
 [Here](https://github.com/bcgov/ols-geocoder/blob/gh-pages/understanding-match-scoring.md) is a detailed explanation of address match scoring.
