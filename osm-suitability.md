@@ -7,7 +7,7 @@ The BC Route Planner is based on the *BC Digital Road Atlas* (DRA) which is a pr
 
 Out of one hundred random address waypoints around BC, only one OSM road segment had enough misalignment to cause confusion. Only three OSM road names were sufficiently different from the BC Digital Road Atlas (DRA) to cause confusion. The BC DRA is used by the Route Planner to generate routes and driving directions. Given that OSM is a free and open base map, any discrepencies in OSM can be easily fixed. Currently, such fixes are published globally within a few minutes.
 
-To do the comparison, we selected a handful of random addresses in a given rural area or municipality and asked the Route Planner to find the best route using the addresses as waypoints. For each address in the route, we zoomed right in and looked at how well the route line matched the road in the OSM basemap then compared the spelling of road in OSM to the spelling of our address. Detailed observations are available [here](https://github.com/bcgov/ols-geocoder/blob/gh-pages/itn-osm-comparison.csv)
+To do the comparison, we selected a handful of random addresses in a given rural area or municipality and asked the Route Planner to find the best route using the addresses as waypoints. For each address in the route, we zoomed in and looked at how well the route line matched the road in the OSM basemap. Following that, we compared the spelling of the road in OSM to the spelling of our address. Detailed observations are available [here](https://github.com/bcgov/ols-geocoder/blob/gh-pages/itn-osm-comparison.csv)
 
 ## Methodology
 
