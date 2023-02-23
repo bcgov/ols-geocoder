@@ -1,4 +1,4 @@
-# Location Services by the Numbers (as of July 13, 2021)
+# Location Services by the Numbers (snapshot for July, 2021)
 |Service|Number|Significance|
 |--|--:|--|
 Address Geocoder|15|Ministries served
