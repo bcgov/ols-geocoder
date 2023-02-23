@@ -1,7 +1,7 @@
 Here is a table of common address errors and how well they are handled in Geocoder 4.1 compared to 4.0:
 
-|Given address|Expected result|Expected score|Actual result in Geocoder 4.0|What 4.0 can't handle|Fixed in 4.1
-|---|---|---|---|---|---|
+|Given address|Expected result|Expected score|Actual result in Geocoder 4.0|What 4.0 can't handle|Fixed in 4.1|Fixed in 4.2
+|---|---|---|---|---|---|---|
 [964 Lillooet Rd North Vancouver, North Vancouver, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=964%20Lillooet%20Rd%20North%20Vancouver,%20North%20Vancouver,%20BC)|964 Lillooet Rd North Vancouver, BC|90+|964 Lillooet Rd North Vancouver, BC and score below 90|Duplicate locality name|yes
 [964 LIllooet Rd Road, North Vancouver, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=964%20LIllooet%20Rd%20Road,%20North%20Vancouver,%20BC)|964 Lillooet Rd, North Vancouver, BC|90+|964 Lillooet Rd, North Vancouver, BC with score below 90|Duplicate street type|yes
 [1413 Omenica Ave, Prince Rupert, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=1413%20Omenica%20Ave,%20Prince%20Rupert,%20BC)|1413 Omineca Ave, Prince Rupert, BC|90+|Rupert, BC with score below 90|Multiple spelling mistakes|yes
@@ -16,9 +16,9 @@ Here is a table of common address errors and how well they are handled in Geocod
 [c/o 442 Kinchant St, Quesnel, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=c/o%20Joe%20Fonebone%20442%20Kinchant%20St,%20Quesnel,%20BC)|442 Kinchant St, Quesnel, BC|90+|442 Kinchant St, Quesnel, BC with score below 90|c/o with civic address|Yes
 [c/o Joe Fonebone 442 Kinchant St, Quesnel, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=c/o%20Joe%20Fonebone%20442%20Kinchant%20St,%20Quesnel,%20BC)|442 Kinchant St, Quesnel, BC|90+|BC| c/o with name and civic address|Yes
 [964 Lillooet Rd St, Lillooet St,  Rd,  North Vancouver, Squamish, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=964%20Lillooet%20Rd%20St,%20Lillooet%20St,%20%20Rd,%20%20North%20Vancouver,%20Squamish,%20BC)|964 Lilloet Rd, North Vancouver, BC|90+|?|Redundant, conflicting, address elements|Yes
-[58550 Wild Rose Lane Hope BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=58550%20Wild%20Rose%20Lane%20Hope%20BC)|58550 Wildrose Lane, Laidlaw, BC|90+|Hope, BC with score below 90|Compound name entered as separate words|No
-[3821 Cedarhill Rd, Saanich, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=3821%20Cedarhill%20Rd,%20Saanich,%20BC)|3821 Cedar hill Rd, Saanich, BC|90+|3821 Saanich Rd, Saanich, BC|Separate words entered as compound name|No
-[200 21st Ave, prince george, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=200%2021st%20Ave,%20prince%20george,%20BC)|Prince George, BC|below 90|200 21st Ave N, Cranbrook, BC|Unknown street in locality|no
-[950 Hope Princeton Way, Hope, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=950%20Hope%20Princeton%20Way,%20Hope,%20BC)|950 Old Hope Princeton Way, Hope, BC|90+|950 Hope St, Port Moody, BC|Suffix matching|no
+[58550 Wild Rose Lane Hope BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=58550%20Wild%20Rose%20Lane%20Hope%20BC)|58550 Wildrose Lane, Laidlaw, BC|90+|Hope, BC with score below 90|Compound name entered as separate words|No|
+[3821 Cedarhill Rd, Saanich, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=3821%20Cedarhill%20Rd,%20Saanich,%20BC)|3821 Cedar hill Rd, Saanich, BC|90+|3821 Saanich Rd, Saanich, BC|Separate words entered as compound name|No|
+[200 21st Ave, prince george, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=200%2021st%20Ave,%20prince%20george,%20BC)|Prince George, BC|below 90|200 21st Ave N, Cranbrook, BC|Unknown street in locality|no|
+[950 Hope Princeton Way, Hope, BC](https://bcgov.github.io/ols-devkit/ols-demo/index.html?q=950%20Hope%20Princeton%20Way,%20Hope,%20BC)|950 Old Hope Princeton Way, Hope, BC|90+|950 Hope St, Port Moody, BC|Suffix matching|no|
 
 [Here](https://github.com/bcgov/ols-geocoder/blob/gh-pages/understanding-match-scoring.md) is a detailed explanation of address match scoring.
