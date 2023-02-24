@@ -122,6 +122,3 @@ siteLocation|Point|(x,y) coordinate location of a site; by default, coordinates 
 accessPoint|Point| (x,y) coordinate location of a site's access point; 
 
 Coordinates are assumed to be in lon,lat format (e.g., EPGS code 4326)
-
-### Topics to do
-fullAddress as business unique identifier, addresses in the real world, adding a sense of history, how are sites and parcels related, how are sites related spatially to the earth.
