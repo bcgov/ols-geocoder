@@ -10,7 +10,7 @@
 **NEVER FAR**|No public facilities or services that are hard to find or reach by road
 
 ### Slogan
-Find a better way with Open Location Services
+Find a better way with Location Services
 
 ## Product Line
 
