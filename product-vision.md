@@ -16,7 +16,7 @@ Find a better way with Open Location Services
 
 ### BC Address Geocoder
 
-The OLS Address Geocoder provides address cleaning, correction, completion, geocoding, and reverse geocoding for government and the public at large. Geocoding turns a physical address into a form of spatial data called a point that can be used to display the location of the address on a map or answer spatial queries such as:
+The BC Address Geocoder provides address cleaning, correction, completion, geocoding, and reverse geocoding for government and the public at large. Geocoding turns a physical address into a form of spatial data called a point that can be used to display the location of the address on a map or answer spatial queries such as:
 
 - how close is the nearest school, firehall, hospital, or swimming pool?
 - are there any medical lab test facilities within three kilometres of a given medical drop-in clinic?
