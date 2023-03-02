@@ -169,7 +169,7 @@ Here is the data flow for the current implementation of the gather and transform
 
 #### Data Flow 3 - Route Planner data integration
 
-![data flow 3](https://user-images.githubusercontent.com/9123564/222526738-7f6865dd-4587-4473-afc6-389ed9ee2d95.png)
+![image](https://user-images.githubusercontent.com/9123564/222528373-7f043613-7297-4b38-9356-08c70ec10ba0.png)
 <br><br>
 
 <a name=activity></a>
