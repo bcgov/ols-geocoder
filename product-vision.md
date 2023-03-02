@@ -14,7 +14,7 @@ Find a better way with Open Location Services
 
 ## Product Line
 
-### OLS Address Geocoder
+### BC Address Geocoder
 
 The OLS Address Geocoder provides address cleaning, correction, completion, geocoding, and reverse geocoding for government and the public at large. Geocoding turns a physical address into a form of spatial data called a point that can be used to display the location of the address on a map or answer spatial queries such as:
 
@@ -62,7 +62,7 @@ OLS Address Geocoder exposes an online API using the [Apache Spring](https://spr
 <br><br><br>
 
 
-### OLS Route Planner
+### BC Route Planner
 
 Road and ferry travel are essential to the business of government. Route planning can be used to find the best routes, determine proximity of clients to service delivery locations, and optimize goods and service delivery. Route planning is useful across a wide range of government business activities; from field operations to resource and emergency planning, to policy and law making.
 
@@ -74,3 +74,14 @@ The OLS Route Planner is released under the Apache 2.0 Open Source License with 
 
 #### Architecture Overview
 The OLS Route Planner is designed to run behind an API Gateway such as [Kong](https://github.com/Kong/kong), which is a plugin for [NGINX](https://www.nginx.com/). Both Kong and NGNIX are open source projects. The OLS Route Planner API is RESTful which makes it easy it integrate into your application or API. The OLS Route Planner is defined using the industry standard OpenAPI 3.0.
+
+
+### Geomark Web Service
+
+The [Geomark Web Service](https://www2.gov.bc.ca/gov/content?id=F6BAF45131954020BCFD2EBCC456F084) allows you to create and share geographic areas of interest over the web in a variety of formats and coordinate systems. This service is especially helpful when you need to share an area of interest with people who require that the data be in a different format, or they use different mapping software.
+
+Established in 2010, the Geomark Web Service continues to support a variety of clients both within and external to government. Although it is a mature product, the web service and web application continue to be updated as required as seen in the [What's New](https://www2.gov.bc.ca/gov/content?id=C88C27C98E9B4BACBC0978017CAA5F84) page.
+
+The Geomark Web Service is registered with the BC Data Catalogue, and supports industry standards in its design and specification including REST and OpenAPI 3.0.
+
+Although the source code for the Geomark Web Service has not been released as open source we have included scripts to make use of the API under an Apache 2.0 license on GitHub ([bcgov/ols-devkit](https://github.com/bcgov/ols-devkit/tree/gh-pages/geomark/scripts))
