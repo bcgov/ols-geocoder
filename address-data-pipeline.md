@@ -138,11 +138,9 @@ The current implementation of the geocoder data integration process needs a dedi
 * Load 2 requires the latest road network and new reference addresses to confirm candidate reference occupants have valid addresses.
 * Load 3 requires the latest road network and new reference addresses and occupants to confirm correct handling of test addresses.
 
-The geocoder is written in Java. 
-
 The current implementation also needs a standalone Java application which handles address block assignment and range generation and is appropriately named the *Block  Assignment and Address Range Generator* (BAARG).
 
-In the new implementation, all integration and verification steps will be moved from separate FME scripts that call out to the batch geocoder, to a single Java application called Geocodable BC Maker which will have an embedded geocoder. Geocodable BC Maker will also incorporate an enhanced version of the BAARG. This simplifies the data integration architecture by eliminating the need for an external batch geocoder, speeds up the integration process, localizes all integration algorithms into a single component for easier understanding and maintenance, and leaves the task of keeping up with constantly changing data source schemas and formats to easily-updated scripts.
+In the new implementation, all integration and verification steps will be moved from separate scripts that call out to the batch geocoder, to a single Java application called Geocodable BC Maker which will have an embedded geocoder. Geocodable BC Maker will also incorporate an enhanced version of the BAARG. This simplifies the data integration architecture by eliminating the need for an external batch geocoder, speeds up the integration process, localizes all integration algorithms into a single component for easier understanding and maintenance, and leaves the task of keeping up with constantly changing data source schemas and formats to easily-updated scripts.
 
 It will be a major challenge to design a parallel architecture for the embedded geocoder so it can process six million addresses (two million reference addresses three times) as fast as the current batch geocoder (e.g., one hour at six million per hour).
 
