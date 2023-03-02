@@ -105,7 +105,6 @@ The current geocoder data integration process has three main weaknesses:
 
 - It is too fussy. The current process requires many manual steps that require careful typing and lots of visual confirmation.
 - It takes too long. It takes approximately three business days to complete.
-- It ties up our delivery and test environments; conversely, delivery and testing of code fixes and enhancements often blocks the data integration process. We rarely keep to our stated monthly data update schedule.
 <br><br>
 
 <a name=requirements></a>
