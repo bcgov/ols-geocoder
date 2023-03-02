@@ -1,4 +1,4 @@
-# Open Location Services (OLS)
+# Location Services
 
 ## Product Vision
 
