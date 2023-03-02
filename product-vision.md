@@ -74,6 +74,7 @@ The OLS Route Planner is released under the Apache 2.0 Open Source License with 
 
 #### Architecture Overview
 The OLS Route Planner is designed to run behind an API Gateway such as [Kong](https://github.com/Kong/kong), which is a plugin for [NGINX](https://www.nginx.com/). Both Kong and NGNIX are open source projects. The OLS Route Planner API is RESTful which makes it easy it integrate into your application or API. The OLS Route Planner is defined using the industry standard OpenAPI 3.0.
+<br><br><br>
 
 
 ### Geomark Web Service
