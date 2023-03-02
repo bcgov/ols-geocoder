@@ -16,7 +16,7 @@ Find a better way with Open Location Services
 
 ### BC Address Geocoder
 
-The BC Address Geocoder provides address cleaning, correction, completion, geocoding, and reverse geocoding for government and the public at large. Geocoding turns a physical address into a form of spatial data called a point that can be used to display the location of the address on a map or answer spatial queries such as:
+The BC Address Geocoder provides address cleaning, correction, completion, geocoding, and reverse geocoding for government and the public. Geocoding turns a physical address into a form of spatial data called a point that can be used to display the location of the address on a map or answer spatial queries such as:
 
 - how close is the nearest school, firehall, hospital, or swimming pool?
 - are there any medical lab test facilities within three kilometres of a given medical drop-in clinic?
@@ -25,7 +25,7 @@ Reverse geocoding finds the nearest address to a given point. Address cleaning a
 
 #### History at the Province of British Columbia
 
-Established in 2013 by the Province of British Columbia and released under the Apache 2.0 open source license in 2019, the BC Address Geocoder is the reference deployment of the OLS Address Geocoder. The BC Address Geocoder, is used by over two dozen government ministries and agencies in dozens of government digital services. As of June, 2021, the BC Address Geocoder has processed over 1.5 billion addresses.
+Established in 2013 by the Province of British Columbia and released under the Apache 2.0 open source license in 2019. The BC Address Geocoder is used by over two dozen government ministries and agencies in dozens of government digital services. As of June, 2021, the BC Address Geocoder has processed over 1.5 billion addresses.
 
 Major clients include:
 - Elections BC
@@ -53,12 +53,12 @@ The BC Address Geocoder is a recognized common component that is suitable for us
 The BC Address Geocoder is free and open to end-users. Geocoder addresses are covered under an open government license and their locations can be used for any legal purpose. For example, the Geocoder has become quite popular in the real-estate sector. 
 
 #### Open Source
-In 2019, source code for the BC Address Geocoder was released as the OLS Address Geocoder under the Apache 2.0 Open Source License with the intent of building a community of government partners to share the effort of code enhancement and maintenance, ideas, documentation, and advocacy. In its current form, the OLS Address Geocoder is most suitable to local, provincial, and federal governments of Canada since it is consistent with Canada Post address standards, deviating only where necessary such as the use of civic authority instead of postal community (e.g., civic authority of North Saanich instead of postal community of Victoria for a civic address in North Saanich).
+In 2019, source code for the BC Address Geocoder was released as the OLS Address Geocoder under the Apache 2.0 Open Source License. The intent was to build a community of government partners to share the effort of code enhancement and maintenance, ideas, documentation, and advocacy. In its current form, the OLS Address Geocoder is most suitable to local, provincial, and federal governments of Canada since it is consistent with Canada Post address standards, deviating only where necessary such as the use of civic authority instead of postal community (e.g., civic authority of North Saanich instead of postal community of Victoria for a civic address in North Saanich).
 
 #### Architecture Overview
 The OLS Address Geocoder is designed to run behind an API Gateway such as [Kong](https://github.com/Kong/kong), which is a plugin for [NGINX](https://www.nginx.com/). Both Kong and NGNIX are open source projects. The OLS Address Geocoder API is RESTful which makes it easy to integrate into your application or API. The API is defined using the industry standard OpenAPI 3.0.
 
-OLS Address Geocoder exposes an online API using the [Apache Spring](https://spring.io/) and a batch geocoding API through the [Concurrent Processing Framework](https://bcgov.github.io/cpf/). CPF is another open source project in Open Location Services. The CPF supports a single scheduler, multiple worker architecture. Thanks to the CPF, the batch geocoder can process seven million addresses per hour and there are plans to double throughput in the next year.
+OLS Address Geocoder exposes an online API using the [Apache Spring](https://spring.io/) and a batch geocoding API through the [Concurrent Processing Framework](https://bcgov.github.io/cpf/). CPF is another open source project in Open Location Services. The CPF supports a single scheduler, multiple worker architecture. Thanks to the CPF, the batch geocoder can process six million addresses per hour.
 <br><br><br>
 
 
