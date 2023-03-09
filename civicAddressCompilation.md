@@ -2,11 +2,11 @@
 
 This tutorial shows you how to use the Location Services in Action application to design a civic address fabric and compile civic addresses. Compiling civic addresses involves digitizing the coordinate location of each address and storing all address information in the new\_civic\_addresses spreadsheet which is compliant with the  [Physical Address eXchange (PAX) Schema](https://github.com/bcgov/ols-geocoder/blob/gh-pages/BCAddressExchangeSchema.md).
 
-To get started, you will need a Chrome web browser and a copy of the MS Excel spreadsheet called new_civic_addresses.xlsx If you don't have MS Excel, you can use new_civic_addresses.csv and your favourite spreadsheet software instead.  Feel free to add your agency name to the file name.
+To get started, you will need a modern web browser (such as Chrome) and a copy of the MS Excel spreadsheet called new_civic_addresses.xlsx. If you don't have MS Excel, you can use new_civic_addresses.csv and your favourite spreadsheet software instead.  Feel free to add your agency name to the file name.
 
-1. Open up new_civic_addresses.xlsx. It will have some example addresses in it to show you which columns address elements go into.
+1. Open new_civic_addresses.xlsx. It contains several example addresses to show you which columns address elements go into.
 
-2.  Open up a Chrome browser and visit [Location Services In Action](https://bcgov.github.io/ols-devkit/ols-demo/index.html)
+2. Open a Chrome web browser and visit [Location Services In Action](https://bcgov.github.io/ols-devkit/ols-demo/index.html)
 
 ![image](https://user-images.githubusercontent.com/11318574/123008528-dc8d2400-d36f-11eb-8872-9a2b51b83543.png)
 <br><br>
@@ -25,7 +25,7 @@ Turn on imagery and other cartographic information layers as follows:
 
 The app will display a list of layers grouped into background layers and foreground layers.
 
-![image](https://user-images.githubusercontent.com/11318574/123009893-7229b300-d372-11eb-9a01-a7bb0a66ad4f.png)
+![Layer list](https://user-images.githubusercontent.com/9123564/219814144-de6d602a-543d-477e-9e8f-2e12ed534696.PNG)
 <br><br>
  
 5. Select the best background imagery layer for your area. There are four to choose from: Mapbox Satellite, ESRI imagery, Google Satellite, and Bing Aerial.
@@ -35,15 +35,15 @@ The app will display a list of layers grouped into background layers and foregro
 
 6. Select foreground layers Digital Road Atlas and ParcelMap BC. Turn on the Address - parcel point layer to see all existing addresses in the area.
 
-![image](https://user-images.githubusercontent.com/11318574/123010311-36dbb400-d373-11eb-9d48-37914f097f8e.png)
+![Layer list2](https://user-images.githubusercontent.com/9123564/219814785-f588e8dd-3386-4369-9f8d-9186aa644fdc.PNG)
 <br><br>
 7. Close the side panel by clicking on the icon circled in red. This will let you make the map bigger.
 
-![image](https://user-images.githubusercontent.com/11318574/123313916-d2d5fe80-d4de-11eb-981f-51b46beb470c.png)
+![Left panel](https://user-images.githubusercontent.com/9123564/219815282-78338f31-6903-4989-a3e7-51ddea2622e5.png)
 <br><br>
 8.  Take a screenshot of the map and open up the side panel again.
 
-9.  Print the screenshot or load it up into your favourite paint program.
+9.  Print the screenshot or load it up into your favourite image editor.
 
 ![image](https://user-images.githubusercontent.com/11318574/123315947-234e5b80-d4e1-11eb-942b-4456862f4932.png)
 <br><br>
@@ -54,8 +54,6 @@ The app will display a list of layers grouped into background layers and foregro
 - One blockface is usually assigned even numbers and the other odd numbers
 - Leave number gaps between civic numbers to allow infilling.
 - Place civic numbers roughly where future building roofs will be.
-
-For more design tips see the powerpoint presentation called  address_fabric_design_for_NG911
 
 When you're happy with your address fabric, its time to digitize each civic address site location.
 

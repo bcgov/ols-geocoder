@@ -4,7 +4,7 @@ April 4, 2018
 
 # Introduction
 
-This study was conducted to determine the address match accuracy of four popular web geocoders relative to the BC Address Geocoder. The geocoders under study include:
+This study was conducted to determine the address match accuracy of four popular geocoders relative to the BC Address Geocoder. The geocoders under study include:
 1. Bing Maps
 2. ESRI
 3. Google Maps 
@@ -108,7 +108,7 @@ The set of random addresses generated in the BC StreetMap Comparison were used i
 ## Creating sets of random urban and rural addresses
 
 The Location Services in Action (LSIA) application was used to generate sample addresses and to analyse all street maps. The app runs in any HTML5-compatible browser and is located at:
-https://ols-demo.apps.gov.bc.ca/index.html
+[https://ols-demo.apps.gov.bc.ca/index.html](https://bcgov.github.io/ols-devkit/ols-demo/index.html?)
 
 Two sets of samples of the BC Address Geocoder civic addresses were taken:
 1.	Thirty urban street addresses
@@ -118,7 +118,7 @@ Two sets of samples of the BC Address Geocoder civic addresses were taken:
 
 1.	Select thirty urban localities at random.
 2.	For each urban locality, repeat steps 3 to 6.
-3.	Enter locality into address tab of Location Services demo app then click search icon. 
+3.	Enter locality into address tab of LSIA demo app then click search icon. 
 4.	Zoom out until full extent of urban core is visible.
 5.	Click Jump at Random icon and system will select and display a civic address chosen randomly from current map extent.
 6.	Record civic address in an urban addresses spreadsheet.
@@ -138,7 +138,7 @@ Two sets of samples of the BC Address Geocoder civic addresses were taken:
     1.	ESRI geocoder is located at https://governmentofbc.maps.arcgis.com/home/webmap/viewer.html?webmap=b8ea19982bd74db3bd968d3c7f038e43
     1.	Google Maps is located at https://www.google.ca/maps
     1.	Here is located at: https://wego.here.com
-    1.	The BC Geocoder is not being evaluated but can be used for QA purposes and can be found in the Location Services in Action application located at: https://ols-demo.apps.gov.bc.ca/index.html
+    1.	The BC Geocoder is not being evaluated but can be used for QA purposes and can be found in the Location Services in Action application located at: [https://ols-demo.apps.gov.bc.ca/index.html](https://bcgov.github.io/ols-devkit/ols-demo/index.html?)
 1.	For each sample civic address and for each geocoder, do the following:
     1.	Select the tab of the appropriate geocoder (e.g., Bing ESRI, Google, Here).
     1.	Geocode the civic address and assess the quality of the response using the following criteria:

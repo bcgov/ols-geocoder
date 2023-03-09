@@ -18,11 +18,11 @@ P5. Handle multiple types of input addresses including civic address, non-civic 
 
 ## How the BC Address Geocoder measures up
 
-The BC Geocoder scoring system has the following properties:
+The BC Address Geocoder scoring system has the following properties:
 
 1.	There is a numeric score between 1 and 100 that is computed for each address match. Addresses with a score of 90 or higher are good matches; addresses below 90 are bad matches [P1].
 
-2.	Preliminary analysis of misclassification rates (e.g., false positives and false negatives) suggests that Geocoder 4.0 has too many false negatives and some false positives [P2]. Geocoder 4.1 has much fewer false negatives.
+2.	Preliminary analysis of misclassification rates (e.g., false positives and false negatives) suggests that Geocoder 4.0 had too many false negatives and some false positives [P2]. Geocoder 4.1, followed by Geocoder 4.2 had much fewer false negatives.
 
 3.	For good matches, a score of 100 indicates a perfect match, a score of 95-99 indicates a very good match and a score of 90-95 indicates a good match. For bad matches, a score of 1 indicates no match, a score of 2-79 indicates a very bad match, and a score of 80-89 indicates a bad match [P3].
 
@@ -37,7 +37,7 @@ A civic address has a civic number and may also have a unit number. A perfect ci
 A non-civic address has a site name, an optional street, a locality, and a province. It also has its own match precision of Site.
 
 
-### Examples of matches with diferent match precisions
+### Examples of matches with different match precisions
 
 Assuming no faults, here is how addresses containing various match precisions are scored:
 
@@ -61,6 +61,6 @@ Address List Match Accuracy = number of addresses with a score of 90 or higher d
 
 Ninety is the minimum score of a good match.
 
-Once you have measured the initial match accuracy of your address list, use the match precision and the list of faults in the geocoder output to analyse the misclassification rates with an eye on reducing the number of false negatives (e.g., Central Building 620 View St, Victoria, BC gets rejected because it is missing the front-gate delimiter ("--"). For more detailed information on faults, see the [BC Address Geocoder Match Scoring Reference](https://github.com/bcgov/ols-geocoder/blob/gh-pages/faults.md). For examples of faulty addresses and their root causes, see [Understanding Batch Geocoder Output](https://www2.gov.bc.ca/assets/gov/data/geographic/location-services/geocoder/understanding_geocoder_results.pdf). 
+Once you have measured the initial match accuracy of your address list, use the match precision and the list of faults in the geocoder output to analyse the misclassification rates with an eye on reducing the number of false negatives (e.g., Central Building 620 View St, Victoria, BC gets rejected because it is missing the front-gate delimiter "--"). For more detailed information on faults, see the [BC Address Geocoder Match Scoring Reference](https://github.com/bcgov/ols-geocoder/blob/gh-pages/faults.md). For examples of faulty addresses and their root causes, see [Understanding Batch Geocoder Output](https://www2.gov.bc.ca/assets/gov/data/geographic/location-services/geocoder/understanding_geocoder_results.pdf). 
 
 Once you have the misclassification rates, you can determine what combination of address ETL improvement and manual editing gives you the best return on your effort. You should also try to set an accuracy improvement goal (e.g., improve address match accuracy by 5%). As you work through your address list, keep measuring match accuracy to measure progress toward your accuracy improvement goal.

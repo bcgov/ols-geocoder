@@ -1,7 +1,10 @@
 # Frequently Asked Questions
 
+#### Q: Can I bulk download all addresses in BC?
+No. The BC Address Geocoder does not provide the ability to bulk download all addresses in BC.
+
 #### Q: What are the system requirements for using the Geocoder?
-A web browser is required to use the Geocoder web application and Address List Editor.
+A web browser is required to use Geocoder web applications.
 To use the Geocoder in Google Earth, Google Earth 6.1 or higher needs to be installed on the user’s computer.
 The Batch Geocoder is not generally available to the public.  To request access please open a ticket with the [Data Systems & Services request system](https://dpdd.atlassian.net/servicedesk/customer/portal/1/group/7/create/15).
 Addresses to be geocoded should be physical addresses and not mailing addresses.
@@ -9,7 +12,7 @@ Postal codes are not supported and will be ignored.
 
 #### Q: How do I get help with using the Geocoder?
 
-If you need help, please call the Service Desk’s Toll Free service at 1-866-952-6801. A representative is available Monday through Friday (except Holidays) from 8:30 am to 4:30 pm (PST). Please leave a voice message is you are calling after hours and a representative will return your call the next business day. You can also E-mail the NRS Service Desk. A representative is available Monday through Friday (except Holidays) from 8:30 am to 4:30 pm (PST).
+Please open a ticket with the [Data Systems & Services request system](https://dpdd.atlassian.net/servicedesk/customer/portal/1/group/7/create/15)
 
 #### Q: How do I get postal code included with my geocoded address?
 
@@ -25,14 +28,24 @@ To request a production Geocoder API key please open a ticket with the [Data Sys
 
 #### Q: How do I get Geocoder API keys for use by a developer?
 
-There are two steps involved:
+Steps:
 
-Step 1: 
-Launch the [API Services Portal](https://api.gov.bc.ca/) application and login with your GitHub account. This will register you as a developer with the API gateway.
+1. Open the API Service Portal (https://api.gov.bc.ca/)
 
-Step 2 (per API): 
-To be granted access to create your own developer Geocoder API keys please open a ticket with the [Data Systems & Services request system](https://dpdd.atlassian.net/servicedesk/customer/portal/1/group/7/create/15) and include your GitHub account name as well as confirmation that you have logged into GWA.
+2. Click the ‘login’ button on the top right side of the screen and login with your account. You can login with a GitHub or IDIR account.
 
-Once you have logged into GWA, and following our team granting access, you should see the BC Address Geocoder listed on the right side of your screen. By expanding each item, you will see the associated rate limit.
+3. Click on the API Directory tab
 
-You can generate and delete as many API keys as required on the left side of the screen. Please note that unlike production API keys, developer API keys expire every 90 days. Your account access will remain, but the API key will need to be renewed from within GWA. Screen captures that illustrate this process are available in the [GWA user guide](https://github.com/bcgov/gwa/wiki/Developer-Guide).
+4. Click on BC Address Geocoder Web Service
+
+5. Scroll down and click on the ‘request access’ hyperlink below BC Address Geocoder (Public) (not the button below BC Address Geocoder Parcels)
+
+6. In the next screen, click the blue ‘+’ button to create an entry for your application, project or script.
+
+7. Within the same screen click on ‘prod’ to ensure your API key is granted to the production Geocoder environment.
+
+8. Click submit
+
+9. In the next screen also click the button to ‘generate secrets’ and copy the resulting string to a file on your computer. This is your API key for the BC Address Geocoder.
+
+10. At that point, our team will receive an email request, we will login and grant your API key to the BC Address Geocoder, following that you will receive a confirmation email.

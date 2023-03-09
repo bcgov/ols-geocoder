@@ -4,7 +4,7 @@ This document describes the process of submitting a list of addresses to the bat
 
 ## Preliminaries
 
-If you don't have an active BC IDIR account, you will have to [register](https://github.com/bcgov/ols-geocoder/blob/gh-pages/bc-location-services/batch-geocoder-registration.md) with the batch geocoder.
+If you don't have an active BC IDIR account, you will have to [register](https://github.com/bcgov/ols-geocoder/blob/gh-pages/bc-location-services/batch-geocoder-registration.md) with the batch geocoder using a BCeID account.
 
 You will also need a list of addresses in a format and schema the batch geocoder understands.  For help with this, click [here](https://www2.gov.bc.ca/assets/gov/data/geographic/location-services/geocoder/batch_address_data_prep.pdf). For the purposes of this tutorial, we have provided an address list if you don't have one.
 
@@ -19,7 +19,7 @@ You will also need a list of addresses in a format and schema the batch geocoder
 ![image](https://user-images.githubusercontent.com/11318574/106338032-c81b9280-62cd-11eb-82dd-30f6b12e4367.png)
 
 
-**STEP 3.** Click on the tab named Submit multi-request job
+**STEP 3.** Click on the tab named Create Multi-Request Job
 
 ![image](https://user-images.githubusercontent.com/11318574/106338121-f4371380-62cd-11eb-9f24-c4553ea9c92f.png)
   
@@ -27,7 +27,7 @@ The system will display the following form:
 
 ![image](https://user-images.githubusercontent.com/11318574/106338197-29436600-62ce-11eb-90aa-f58edada19b9.png)
 
-**STEP 4.** Enter the name of a file or a file URL. A file URL must be a public URL or a URL that is accessible within BC government network.
+**STEP 4.** Enter the name of a file or a file URL. A file URL must be a public URL or a URL that is accessible within the BC government network.
 
 ![image](https://user-images.githubusercontent.com/11318574/106338415-c3a3a980-62ce-11eb-806d-7545e0fda5dd.png)
 
@@ -37,7 +37,7 @@ The URL entered here is a list of addresses, one for every incorporated municipa
 
 ![image](https://user-images.githubusercontent.com/11318574/106338675-59d7cf80-62cf-11eb-80ad-5adb8116f5eb.png)
 
-If you don't know what a map projection is, leave it unchanged. The default projection called WGS84 (longitude, latitude) is what all mapping apps understand.
+If you don't know what a map projection is, leave it unchanged. The default projection is called WGS84 (longitude, latitude).
 
 **STEP 6.** Choose your Result data content type, otherwise known as output format. Let's leave the default of CSV for now since it is easy to view in a spreadsheet. 
 
