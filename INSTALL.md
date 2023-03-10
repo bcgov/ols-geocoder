@@ -53,8 +53,8 @@ Windows users may download an installer at https://www.oracle.com/java/technolog
 
 
 ```console
-sudo apt update
-sudo apt install openjdk-11-jdk
+$ sudo apt update
+$ sudo apt install openjdk-11-jdk
 ```
 Make sure you know the value of your JAVA_HOME environmental variable and export it in your .profile
 (or other alternative files).
@@ -129,8 +129,7 @@ WantedBy=multi-user.target
 
 Please make sure to replace *YOUR JAVA_HOME PATH*
 with the appropriate value. And replace *A WRITABLE FOLDER PATH* with a writable
-path if you want to store Geocoder configuration in a local disk, otherwise you can modify
-*CATALINA* related options if you want to save Geocoder configuration data using Catalina database.
+path if you want to store Geocoder configuration on your local disk.
 
 Now reload system control and enable Tomcat.
 ```console
