@@ -27,7 +27,7 @@ In Windows (using WSL) and macOS (using terminal) the process is very similar.
 - [Install Geocoder](#install-geocoder)
     - [Install ols-util dependency](#controller-filters-and-helpers)
     - [Install Geocoder](#configuring-models)
-  [Configuring geocoder](#configuring-geocoder)
+    - [Configuring geocoder](#configuring-geocoder)
     - [Main configuration](#main-configuration)
     - [Data store configuration](#data-store-configuration)
 - [Troubleshooting](#troubleshooting)
@@ -49,7 +49,7 @@ OpenJDK 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 ```
 
 if not you can install java using following commands. 
-Windows use may download an installer at https://www.oracle.com/java/technologies/downloads/#java17.
+Windows users may download an installer at https://www.oracle.com/java/technologies/downloads/#java17.
 
 
 ```console
