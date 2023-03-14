@@ -222,6 +222,10 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 			if(localityGarbage != null) {
 				faults.add(datastore.getConfig().getMatchFault(localityGarbage, MatchElement.LOCALITY_GARBAGE, "notAllowed"));
 			}
+			String localityInitialGarbage = pd.getPart("localityInitialGarbage");
+			if(localityInitialGarbage != null) {
+				faults.add(datastore.getConfig().getMatchFault(localityInitialGarbage, MatchElement.LOCALITY_INITIAL_GARBAGE, "notAllowed"));
+			}
 
 			String provinceGarbage = pd.getPart("provinceGarbage");
 			if(provinceGarbage != null) {
