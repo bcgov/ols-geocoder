@@ -102,7 +102,7 @@ public class DraLexicalRules extends LexicalRules
 			// insert spaces between numbers and trailing single letters (we can't put a space in "7Eten"!)
 			new CleanRule("\\b(\\d+)([a-zA-Z])\\b", "$1 $2"),
 			// reduce all whitespace to single spaces
-			new CleanRule("\\s+", " ")
+			new CleanRule("\\s+", " "),
 	};
 	
 	public DraLexicalRules() {
@@ -127,8 +127,11 @@ public class DraLexicalRules extends LexicalRules
 				Pattern.compile("\\b(POSTAL\\s+)?STN\\s+[^\\s]+\\b(?!.*\\/FG)", Pattern.CASE_INSENSITIVE),
 				// General Delivery
 				Pattern.compile("\\b(GD|GENERAL\\s+DELIVERY)\\b", Pattern.CASE_INSENSITIVE),
+				// care/of
 				Pattern.compile("\\bC\\/O\\b", Pattern.CASE_INSENSITIVE),
-				Pattern.compile("\\bcareof\\b", Pattern.CASE_INSENSITIVE)
+				Pattern.compile("\\bcareof\\b", Pattern.CASE_INSENSITIVE),
+				// RPO/SPO
+				Pattern.compile("\\b[RS]PO\\b", Pattern.CASE_INSENSITIVE)
 		};
 		
 	}
@@ -143,7 +146,7 @@ public class DraLexicalRules extends LexicalRules
 		for(CleanRule rule : cleanRules) {
 			sentence = rule.clean(sentence);
 		}
-		return sentence;
+		return sentence.trim();
 	}
 	
 	@Override
