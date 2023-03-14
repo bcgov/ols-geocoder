@@ -14,24 +14,23 @@ public class RawLocality {
 	public LocalityType type;
 	public int stateProvTerrId;
 	public Integer electoralAreaId;
-	public String descriptor;
 	public Integer containingLocalityId;
 	public Geometry geom;
 	public Point point;
 	
-	public String getFullyQualifiedName(TIntObjectMap<RawLocality> localityMap) {
+	public String getQualifier(TIntObjectMap<RawLocality> localityMap) {
 		if("BCGNIS".equals(source)) {
 			// we add "near" for IRs and "in" for other gnis localities
-			String descriptor = " in ";
+			String descriptor = "in ";
 			if(type.equals(LocalityType.INDIAN_RESERVE)) {
-				descriptor = " near ";
+				descriptor = "near ";
 			}
 			String cName = localityMap.get(containingLocalityId).name;
 			if(disambiguator != null) {
-				return name + " (" + disambiguator +")" + descriptor + cName;
+				return "(" + disambiguator +") " + descriptor + cName;
 			}			
-			return name + descriptor + cName;
+			return descriptor + cName;
 		}
-		return name;
+		return null;
 	}
 }

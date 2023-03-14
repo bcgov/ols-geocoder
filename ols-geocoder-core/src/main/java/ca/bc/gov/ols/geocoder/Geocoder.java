@@ -812,8 +812,16 @@ public class Geocoder implements IGeocoder {
 						datastore.getConfig().getMatchPrecisionPoints(
 								MatchPrecision.LOCALITY));
 				match.addFaults(incomingFaults);
-				if(mlm.getError() > 0) {
-					match.addFault(datastore.getConfig().getMatchFault(address.getLocalityName(), MatchElement.LOCALITY, "partialMatch"));
+				// if there is an error it means this is a prefix match
+				if(mlm.getError() > 0 ) {
+					// check if the prefix is a perfect match for the base locality name (without qualifier)
+					if(address.getLocalityName().equalsIgnoreCase(lm.getLocality().getName())) {
+						// add a no-penalty fault in this case
+						match.addFault(new MatchFault(address.getLocalityName(), MatchElement.LOCALITY, "partialMatch", 0));
+					} else {
+						// usual penalty in this case
+						match.addFault(datastore.getConfig().getMatchFault(address.getLocalityName(), MatchElement.LOCALITY, "partialMatch"));
+					}
 				}
 				scoreLocalityMatch(address, lm, match, misspellings, query);
 				globalScoring(match, misspellings);
@@ -1076,7 +1084,7 @@ public class Geocoder implements IGeocoder {
 			// String mappedLocalityName = datastore.mapWords(match.getAddress().getLocalityName());
 			for(MisspellingOf<LocalityMapTarget> mlm : lms) {
 				LocalityMapTarget lm = mlm.get();
-				if(lm.getLocality().getName().equals(match.getAddress().getLocalityName())) {
+				if(lm.getLocality().getFullyQualifiedName().equals(match.getAddress().getLocalityName())) {
 					if(lm.getConfidence() < 100) {
 						// the penalty for an alias is variable based on the
 						// confidence of the alias
@@ -1124,7 +1132,7 @@ public class Geocoder implements IGeocoder {
 			// String mappedLocalityName = datastore.mapWords(match.getAddress().getLocalityName());
 			for(MisspellingOf<LocalityMapTarget> mlm : lms) {
 				LocalityMapTarget lm = mlm.get();
-				if(lm.getLocality().getName().equals(match.getAddress().getLocalityName())) {
+				if(lm.getLocality().getFullyQualifiedName().equals(match.getAddress().getLocalityName())) {
 					if(lm.getConfidence() < 100) {
 						// the penalty for an alias is variable based on the
 						// confidence of the alias

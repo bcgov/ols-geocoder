@@ -648,20 +648,28 @@ public class GeocoderDataStore {
 			count++;
 			int id = rr.getInt("locality_id");
 			String unMappedName = rr.getString("locality_name");
+			String unMappedQual = rr.getString("locality_qualifier");
 			LocalityType localityType = LocalityType.convert(rr.getInteger("locality_type_id"));
 			int ea = rr.getInt("electoral_area_id");
 			int stateProvTerrId = rr.getInt("state_prov_terr_id");
 			Point point = rr.getPoint();
-			String mappedName = mapWords(unMappedName).toUpperCase();
-			wordMapBuilder.addPhrase(mappedName, WordClass.LOCALITY_NAME);
-			Set<LocalityMapTarget> names = localityMappings.get(mappedName);
-			if(names == null) {
-				names = new ArraySet<LocalityMapTarget>();
-				localityMappings.put(mappedName, names);
-			}
-			Locality locality = new Locality(id, unMappedName, localityType,
+			Locality locality = new Locality(id, unMappedName, unMappedQual, localityType,
 					electoralAreaById.get(ea), stateProvTerrById.get(stateProvTerrId), point);
 			localityIdMap.put(id, locality);
+
+			String mappedName = mapWords(unMappedName).toUpperCase();
+			wordMapBuilder.addPhrase(mappedName, WordClass.LOCALITY_NAME);
+			String mappedQualifiedName = mappedName;
+			if(unMappedQual != null) {
+				String mappedQual = mapWords(unMappedQual).toUpperCase();
+				wordMapBuilder.addPhrase(mappedQual, WordClass.LOCALITY_NAME);
+				mappedQualifiedName = mappedName + " " + mappedQual;
+			}
+			Set<LocalityMapTarget> names = localityMappings.get(mappedQualifiedName);
+			if(names == null) {
+				names = new ArraySet<LocalityMapTarget>();
+				localityMappings.put(mappedQualifiedName, names);
+			}
 			names.add(new LocalityMapTarget(100, locality));
 		}
 		logger.debug("Locality count: {}", count);

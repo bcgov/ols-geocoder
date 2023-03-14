@@ -22,15 +22,17 @@ import ca.bc.gov.ols.geocoder.data.enumTypes.LocalityType;
 public class Locality {
 	private final int id;
 	private final String name;
+	private final String qualifier; 
 	private final LocalityType type;
 	private final String electoralArea;
 	private final StateProvTerr stateProvTerr;
 	private final Point location;
 	
-	public Locality(int id, String name, LocalityType type, String electoralArea, StateProvTerr stateProvTerr,
+	public Locality(int id, String name, String qualifier, LocalityType type, String electoralArea, StateProvTerr stateProvTerr,
 			Point location) {
 		this.id = id;
 		this.name = name;
+		this.qualifier = qualifier;
 		this.type = type;
 		this.electoralArea = electoralArea;
 		this.stateProvTerr = stateProvTerr;
@@ -41,8 +43,18 @@ public class Locality {
 		return id;
 	}
 	
+	public String getFullyQualifiedName() {
+		if(qualifier != null && !qualifier.isEmpty())
+			return name + " " + qualifier;
+		return name;
+	}
+	
 	public String getName() {
 		return name;
+	}
+	
+	public String getQualifier() {
+		return qualifier;
 	}
 	
 	public LocalityType getType() {
