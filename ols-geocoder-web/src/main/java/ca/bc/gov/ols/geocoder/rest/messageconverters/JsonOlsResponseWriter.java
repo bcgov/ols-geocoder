@@ -18,7 +18,7 @@ package ca.bc.gov.ols.geocoder.rest.messageconverters;
 import java.io.IOException;
 import java.io.Writer;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 
 import com.google.gson.stream.JsonWriter;
 
