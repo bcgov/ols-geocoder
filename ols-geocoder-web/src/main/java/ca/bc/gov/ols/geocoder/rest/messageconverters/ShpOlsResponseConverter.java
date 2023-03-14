@@ -95,7 +95,6 @@ public class ShpOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 	@Override
 	protected OlsResponse readInternal(Class<? extends OlsResponse> clazz,
 			HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

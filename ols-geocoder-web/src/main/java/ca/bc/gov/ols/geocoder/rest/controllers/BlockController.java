@@ -27,7 +27,6 @@ import ca.bc.gov.ols.geocoder.api.SharedParameters;
 import ca.bc.gov.ols.geocoder.data.StreetSegment;
 import ca.bc.gov.ols.geocoder.rest.OlsResponse;
 import ca.bc.gov.ols.geocoder.rest.exceptions.InvalidParameterException;
-import ca.bc.gov.ols.geocoder.rest.exceptions.NotFoundException;
 
 @RestController
 @RequestMapping("/blocks")
@@ -44,10 +43,6 @@ public class BlockController {
 		}
 		
 		StreetSegment seg = geocoder.getDatastore().getStreetSegmentById(id);
-		if(seg == null) {
-			throw new NotFoundException("No block found.");
-		}
-		
 		OlsResponse response = new OlsResponse(seg);
 		response.setParams(params);
 		return response;

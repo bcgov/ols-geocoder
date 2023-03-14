@@ -41,6 +41,7 @@ import ca.bc.gov.ols.geocoder.rest.messageconverters.CsvStringConverter;
 import ca.bc.gov.ols.geocoder.rest.messageconverters.GmlOlsResponseConverter;
 import ca.bc.gov.ols.geocoder.rest.messageconverters.HtmlErrorMessageConverter;
 import ca.bc.gov.ols.geocoder.rest.messageconverters.HtmlOlsResponseConverter;
+import ca.bc.gov.ols.geocoder.rest.messageconverters.JsonErrorMessageConverter;
 import ca.bc.gov.ols.geocoder.rest.messageconverters.JsonOlsResponseConverter;
 import ca.bc.gov.ols.geocoder.rest.messageconverters.JsonStringListConverter;
 import ca.bc.gov.ols.geocoder.rest.messageconverters.JsonpOlsResponseConverter;
@@ -81,6 +82,7 @@ public class WebConfig implements WebMvcConfigurer {
 		converters.add(xhtmlOlsResponseConverter());
 		converters.add(htmlErrorMessageConverter());
 		converters.add(kmlErrorMessageConverter());
+		converters.add(jsonErrorMessageConverter());
 		converters.add(csvStringConverter());
 		//converters.add(csvBatchResponseConverter());
 		converters.add(jsonStringListConverter());
@@ -136,7 +138,12 @@ public class WebConfig implements WebMvcConfigurer {
 	public KmlErrorMessageConverter kmlErrorMessageConverter() {
 		return new KmlErrorMessageConverter();
 	}
-	
+
+	@Bean
+	public JsonErrorMessageConverter jsonErrorMessageConverter() {
+		return new JsonErrorMessageConverter();
+	}
+
 	@Bean
 	public CsvStringConverter csvStringConverter() {
 		return new CsvStringConverter();

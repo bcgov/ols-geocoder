@@ -17,6 +17,8 @@ package ca.bc.gov.ols.geocoder.rest.controllers;
 
 import java.util.List;
 
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.PrecisionModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,11 +35,7 @@ import ca.bc.gov.ols.geocoder.rest.GeotoolsGeometryReprojector;
 import ca.bc.gov.ols.geocoder.rest.OlsResponse;
 import ca.bc.gov.ols.geocoder.rest.converters.UuidParam;
 import ca.bc.gov.ols.geocoder.rest.exceptions.InvalidParameterException;
-import ca.bc.gov.ols.geocoder.rest.exceptions.NotFoundException;
 import ca.bc.gov.ols.util.StopWatch;
-
-import org.locationtech.jts.geom.GeometryFactory;
-import org.locationtech.jts.geom.PrecisionModel;
 
 @RestController
 @RequestMapping("/intersections")
@@ -61,10 +59,6 @@ public class IntersectionController {
 		
 		StreetIntersectionAddress addr = geocoder.getDatastore().getIntersectionByUuid(
 				uuid.getValue());
-		if(addr == null) {
-			throw new NotFoundException("No intersection found.");
-		}
-		
 		OlsResponse response = new OlsResponse(addr);
 		response.setParams(params);
 		return response;
@@ -96,10 +90,12 @@ public class IntersectionController {
 				params.getMinDegree(), params.getMaxDegree());
 		sw.stop();
 		
+		OlsResponse response;
 		if(addrs.size() < 1) {
-			throw new NotFoundException("No intersection found.");
+			response = new OlsResponse(new StreetIntersectionAddress[0]);
+		} else { 
+			response = new OlsResponse(addrs.get(0));
 		}
-		OlsResponse response = new OlsResponse(addrs.get(0));
 		response.setParams(params);
 		response.setExtraInfo("minDegree", "" + params.getMinDegree());
 		response.setExtraInfo("maxDegree", "" + params.getMaxDegree());

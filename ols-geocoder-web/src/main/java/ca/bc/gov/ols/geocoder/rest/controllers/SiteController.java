@@ -17,6 +17,8 @@ package ca.bc.gov.ols.geocoder.rest.controllers;
 
 import java.util.List;
 
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.PrecisionModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,11 +35,7 @@ import ca.bc.gov.ols.geocoder.rest.GeotoolsGeometryReprojector;
 import ca.bc.gov.ols.geocoder.rest.OlsResponse;
 import ca.bc.gov.ols.geocoder.rest.converters.UuidParam;
 import ca.bc.gov.ols.geocoder.rest.exceptions.InvalidParameterException;
-import ca.bc.gov.ols.geocoder.rest.exceptions.NotFoundException;
 import ca.bc.gov.ols.util.StopWatch;
-
-import org.locationtech.jts.geom.GeometryFactory;
-import org.locationtech.jts.geom.PrecisionModel;
 
 @RestController
 @RequestMapping("/sites")
@@ -60,11 +58,13 @@ public class SiteController {
 		
 		SiteAddress addr = geocoder.getDatastore().getSiteByUuid(uuid.getValue(),
 				params.getLocationDescriptor(), params.getSetBack());
-		if(addr == null) {
-			throw new NotFoundException("No site found.");
-		}
 		
-		OlsResponse response = new OlsResponse(addr);
+		OlsResponse response;
+		if(addr == null) {
+			response = new OlsResponse(new SiteAddress[0]);
+		} else {
+			response = new OlsResponse(addr);
+		}
 		response.setParams(params);
 		return response;
 	}
@@ -82,10 +82,13 @@ public class SiteController {
 		
 		List<SiteAddress> addrs = geocoder.getDatastore().getSubSitesByUuid(uuid.getValue(), 
 				params.getLocationDescriptor(), params.getSetBack());
+		
+		OlsResponse response;
 		if(addrs.size() == 0) {
-			throw new NotFoundException("No site found.");
+			response = new OlsResponse(new SiteAddress[0]);
+		} else {
+			response = new OlsResponse(addrs.toArray(new SiteAddress[addrs.size()]));
 		}
-		OlsResponse response = new OlsResponse(addrs.toArray(new SiteAddress[addrs.size()]));
 		response.setParams(params);
 		return response;
 	}
@@ -115,10 +118,13 @@ public class SiteController {
 				params.getSetBack(), params.getExcludeUnits(), params.isOnlyCivic());
 		sw.stop();
 		
+		OlsResponse response;
 		if(addrs.size() < 1) {
-			throw new NotFoundException("No site found.");
+			//throw new NotFoundException("No site found.");\
+			response = new OlsResponse(new SiteAddress[0]);
+		} else {
+			response = new OlsResponse(addrs.get(0));
 		}
-		OlsResponse response = new OlsResponse(addrs.get(0));
 		response.setParams(params);
 		response.setExtraInfo("executionTime", "" + sw.getElapsedTime());
 		return response;
