@@ -1774,6 +1774,7 @@ public class Geocoder implements IGeocoder {
 
 		parserGen.addRule(new RuleSequence("localityAddress", false,
 				new RuleTerm[] {
+						new RuleTerm("localityInitialGarbage", "garbage", RuleOperator.OPTION),
 						new RuleTerm("locality"),
 						new RuleTerm("stateProvTerr", RuleOperator.OPTION)}));		
 
