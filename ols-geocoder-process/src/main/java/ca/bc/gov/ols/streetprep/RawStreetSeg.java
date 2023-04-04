@@ -5,6 +5,7 @@ import java.util.Map;
 import org.locationtech.jts.geom.LineString;
 
 import ca.bc.gov.ols.enums.AccessRestriction;
+import ca.bc.gov.ols.enums.AddressScheme;
 import ca.bc.gov.ols.enums.DividerType;
 import ca.bc.gov.ols.enums.LaneRestriction;
 import ca.bc.gov.ols.enums.RoadClass;
@@ -23,12 +24,12 @@ public class RawStreetSeg {
 	int endIntersectionId; // "TO_TRANSPORT_NODE_POINT_ID" / "END_INTERSECTION_ID"
 	int leftLocalityId; // "LEFT_LOCALITY_ID" / "LEFT_LOCALITY_ID"
 	int rightLocalityId; // "RIGHT_LOCALITY_ID" / "RIGHT_LOCALITY_ID"
-//	int firstAddressLeft; // "FROM_LEFT_HOUSE_NUMBER" / "FIRST_ADDRESS_LEFT" 
-//	int lastAddressLeft; // "TO_LEFT_HOUSE_NUMBER" / "LAST_ADDRESS_LEFT" 
-//	int firstAddressRight; // "FROM_RIGHT_HOUSE_NUMBER" / "FIRST_ADDRESS_RIGHT"
-//	int lastAddressRight; // "TO_RIGHT_HOUSE_NUMBER" / "LAST_ADDRESS_RIGHT"
-//	AddressScheme addressParityLeft; // "LEFT_HOUSE_NUM_SCHEME_CODE" / "ADDRESS_PARITY_LEFT"
-//	AddressScheme addressParityRight; // "RIGHT_HOUSE_NUM_SCHEME_CODE" / "ADDRESS_PARITY_RIGHT"
+	Integer firstAddressLeft; // "FROM_LEFT_HOUSE_NUMBER" / "FIRST_ADDRESS_LEFT" 
+	Integer lastAddressLeft; // "TO_LEFT_HOUSE_NUMBER" / "LAST_ADDRESS_LEFT" 
+	Integer firstAddressRight; // "FROM_RIGHT_HOUSE_NUMBER" / "FIRST_ADDRESS_RIGHT"
+	Integer lastAddressRight; // "TO_RIGHT_HOUSE_NUMBER" / "LAST_ADDRESS_RIGHT"
+	AddressScheme addressParityLeft; // "LEFT_HOUSE_NUM_SCHEME_CODE" / "ADDRESS_PARITY_LEFT"
+	AddressScheme addressParityRight; // "RIGHT_HOUSE_NUM_SCHEME_CODE" / "ADDRESS_PARITY_RIGHT"
 	RoadClass roadClass; // "TRANSPORT_LINE_TYPE_CODE" / "ROAD_CLASS"
 	int numLanesLeft; // "LEFT_NUMBER_OF_LANES" / "NUM_LANES_LEFT"
 	int numLanesRight; // "RIGHT_NUMBER_OF_LANES" / "NUM_LANES_RIGHT"
@@ -87,12 +88,12 @@ public class RawStreetSeg {
 		endIntersectionId = rr.getInt("TO_TRANSPORT_NODE_POINT_ID");
 		leftLocalityId = rr.getInt("LEFT_LOCALITY_ID");
 		rightLocalityId = rr.getInt("RIGHT_LOCALITY_ID");
-//		firstAddressLeft = rr.getInt("FROM_LEFT_HOUSE_NUMBER");
-//		lastAddressLeft = rr.getInt("TO_LEFT_HOUSE_NUMBER");
-//		firstAddressRight = rr.getInt("FROM_RIGHT_HOUSE_NUMBER");
-//		lastAddressRight = rr.getInt("TO_RIGHT_HOUSE_NUMBER");
-//		addressParityLeft = AddressScheme.convert(rr.getString("LEFT_HOUSE_NUM_SCHEME_CODE"));
-//		addressParityRight = AddressScheme.convert(rr.getString("RIGHT_HOUSE_NUM_SCHEME_CODE"));
+		firstAddressLeft = rr.getInteger("FROM_LEFT_HOUSE_NUMBER");
+		lastAddressLeft = rr.getInteger("TO_LEFT_HOUSE_NUMBER");
+		firstAddressRight = rr.getInteger("FROM_RIGHT_HOUSE_NUMBER");
+		lastAddressRight = rr.getInteger("TO_RIGHT_HOUSE_NUMBER");
+		addressParityLeft = AddressScheme.convert(rr.getString("LEFT_HOUSE_NUM_SCHEME_CODE"));
+		addressParityRight = AddressScheme.convert(rr.getString("RIGHT_HOUSE_NUM_SCHEME_CODE"));
 		roadClass = RoadClass.convert(rr.getString("TRANSPORT_LINE_TYPE_CODE"));
 		numLanesLeft = rr.getInt("LEFT_NUMBER_OF_LANES");
 		numLanesRight = rr.getInt("RIGHT_NUMBER_OF_LANES");
@@ -144,8 +145,12 @@ public class RawStreetSeg {
 		row.put("END_INTERSECTION_ID", endIntersectionId);
 		row.put("LEFT_LOCALITY_ID", leftLocalityId);
 		row.put("RIGHT_LOCALITY_ID", rightLocalityId);
-		//row.put("ADDRESS_PARITY_LEFT", addressParityLeft);
-		//row.put("ADDRESS_PARITY_RIGHT", addressParityRight);
+		row.put("FIRST_ADDRESS_LEFT", firstAddressLeft);
+		row.put("LAST_ADDRESS_LEFT", lastAddressLeft);
+		row.put("FIRST_ADDRESS_RIGHT", firstAddressRight);
+		row.put("LAST_ADDRESS_RIGHT", lastAddressRight);
+		row.put("ADDRESS_PARITY_LEFT", addressParityLeft);
+		row.put("ADDRESS_PARITY_RIGHT", addressParityRight);
 		row.put("ROAD_CLASS", roadClass);
 		row.put("NUM_LANES_LEFT", numLanesLeft);
 		row.put("NUM_LANES_RIGHT", numLanesRight);

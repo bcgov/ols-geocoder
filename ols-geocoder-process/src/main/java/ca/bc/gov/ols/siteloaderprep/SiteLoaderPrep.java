@@ -68,7 +68,6 @@ public class SiteLoaderPrep {
 	public static final int FIRST_GENERATED_PARENT_ID = 8000000;
 	
 	// input filenames
-	private static final String ITN_ANCHOR_POINT_FILE = "site_ITN_anchor_points.tsv";
 	private static final String STREET_LOAD_STREET_NAMES_FILE = "street_load_street_names.json";
 	private static final String LOCALITIES_FILE = "street_load_localities.json";
 	private static final String GEOCODE_HYBRID_NAMES_FILE = "geocode_Hybrid_names.csv";
@@ -190,8 +189,7 @@ public class SiteLoaderPrep {
 			List<InputSite> dedupedSites = deduplicateSites(siteMap);
 			siteMap = null;
 			assignParents(dedupedSites);
-			List<OutputSite> anchorPoints = readSitesHybrid(inputDir + ITN_ANCHOR_POINT_FILE);
-			writeOutput(dedupedSites, pseudoSites, anchorPoints);
+			writeOutput(dedupedSites, pseudoSites);
 			writeSid2Pids(dedupedSites);
 			dedupedSites = null;
 		} finally {
@@ -802,16 +800,13 @@ public class SiteLoaderPrep {
 		return new XsvRowWriter(outFile, '\t', siteSchema, true);
 	}
 	
-	private void writeOutput(List<InputSite> sitesToOutput, List<InputSite> pseudoSites, List<OutputSite> anchorPoints) {
+	private void writeOutput(List<InputSite> sitesToOutput, List<InputSite> pseudoSites) {
 		try(RowWriter siteOutputWriter = openSiteOutputWriter()) {
 			for(InputSite site : sitesToOutput) {
 				writeSiteOutput(siteOutputWriter, site);
 			}
 			for(InputSite site : pseudoSites) {
 				writeSiteOutput(siteOutputWriter, site);
-			}
-			for(OutputSite site : anchorPoints) {
-				site.write(siteOutputWriter);
 			}
 		} 
 	}
