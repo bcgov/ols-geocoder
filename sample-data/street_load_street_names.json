@@ -6597,8 +6597,8 @@
 				"geometry" : null,
 				"properties" : {
 					"STREET_NAME_ID" : 549,
-					"NAME_BODY" : "",
-					"STREET_TYPE" : "",
+					"NAME_BODY" : "Sample street",
+					"STREET_TYPE" : "St",
 					"STREET_DIRECTION" : "",
 					"STREET_TYPE_IS_PREFIX_IND" : "N",
 					"STREET_DIRECTION_IS_PREFIX_IND" : "N"
