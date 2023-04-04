@@ -59,26 +59,26 @@ public class OlsResponseReader {
 			streetIntersectionAddress((StreetIntersectionAddress)responseObj);
 		} else if(responseObj instanceof SiteAddress[]) {
 			SiteAddress[] addrs = (SiteAddress[])responseObj;
-			if(addrs.length == 0) {
-				writer.noMatches();
-			} else {
+//			if(addrs.length == 0) {
+//				writer.noMatches();
+//			} else {
 				writer.featureCollectionHeader();
 				for(SiteAddress addr : addrs) {
 					siteAddress(addr);
 				}
 				writer.featureCollectionFooter();
-			}
+//			}
 		} else if(responseObj instanceof StreetIntersectionAddress[]) {
 			StreetIntersectionAddress[] addrs = (StreetIntersectionAddress[])responseObj;
-			if(addrs.length == 0) {
-				writer.noMatches();
-			} else {
+//			if(addrs.length == 0) {
+//				writer.noMatches();
+//			} else {
 				writer.featureCollectionHeader();
 				for(StreetIntersectionAddress addr : addrs) {
 					streetIntersectionAddress(addr);
 				}
 				writer.featureCollectionFooter();
-			}
+//			}
 		} else if(responseObj instanceof PointOnBlock) {
 			pointOnBlock((PointOnBlock)responseObj);
 		} else if(responseObj instanceof PidsResponse) {

@@ -30,7 +30,6 @@ import ca.bc.gov.ols.geocoder.rest.OlsResponse;
 import ca.bc.gov.ols.geocoder.rest.PidsResponse;
 import ca.bc.gov.ols.geocoder.rest.converters.UuidParam;
 import ca.bc.gov.ols.geocoder.rest.exceptions.InvalidParameterException;
-import ca.bc.gov.ols.geocoder.rest.exceptions.NotFoundException;
 
 @RestController
 @RequestMapping("/parcels")
@@ -52,11 +51,13 @@ public class ParcelController {
 		}
 		
 		ISite site = geocoder.getDatastore().getRawSiteByUuid(siteUuid.getValue());
+		
+		PidsResponse pr;
 		if(site == null) {
-			throw new NotFoundException("No site found with specified UUID.");
+			pr = new PidsResponse(null, null);
 		}
 		
-		PidsResponse pr = new PidsResponse(site.getUuid(), site.getPids());
+		pr = new PidsResponse(site.getUuid(), site.getPids());
 		
 		OlsResponse response = new OlsResponse(pr);
 		response.setParams(params);

@@ -28,6 +28,9 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.stereotype.Component;
 
+import com.google.gson.stream.JsonWriter;
+
+import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 import ca.bc.gov.ols.geocoder.rest.exceptions.ErrorMessage;
 
 /**
@@ -37,13 +40,14 @@ import ca.bc.gov.ols.geocoder.rest.exceptions.ErrorMessage;
  * 
  */
 @Component
-public class HtmlErrorMessageConverter extends AbstractHttpMessageConverter<ErrorMessage> {
+public class JsonErrorMessageConverter extends AbstractHttpMessageConverter<ErrorMessage> {
 	
-	public HtmlErrorMessageConverter() {
-		super(MediaType.APPLICATION_XHTML_XML,
-				MediaType.TEXT_HTML,
-				new org.springframework.http.MediaType("text", "csv", Charset.forName("UTF-8")),
-				new org.springframework.http.MediaType("application", "gml+xml",
+	public JsonErrorMessageConverter() {
+		super(new MediaType("application", "vnd.geo+json", Charset.forName("UTF-8")),
+				MediaType.APPLICATION_JSON,
+				new org.springframework.http.MediaType("application", "javascript",
+						Charset.forName("UTF-8")),
+				new org.springframework.http.MediaType("application", "zip",
 						Charset.forName("UTF-8")));
 	}
 	
@@ -66,13 +70,16 @@ public class HtmlErrorMessageConverter extends AbstractHttpMessageConverter<Erro
 	@Override
 	protected void writeInternal(ErrorMessage message, HttpOutputMessage outputMessage)
 			throws IOException, HttpMessageNotWritableException {
-		outputMessage.getHeaders().setContentType(MediaType.TEXT_HTML);
+		outputMessage.getHeaders().setContentType(MediaType.APPLICATION_JSON);
 		Writer out = new OutputStreamWriter(outputMessage.getBody(), "UTF-8");
-		out.write("<!DOCTYPE html>\r\n<html>\r\n<head></head>\r\n<body>\r\n");
-		
-		out.write(message.getMessage());
-		out.write("</body>\r\n</html>");
-		out.flush();
+		JsonWriter jw = new JsonWriter(out);
+		jw.beginObject();
+		jw.name("version").value(GeocoderConfig.VERSION);
+		jw.name("error").beginObject();
+			jw.name("message").value(message.getMessage());
+			jw.endObject();
+		jw.endObject();
+		jw.flush();
 	}
 	
 }
