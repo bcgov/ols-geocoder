@@ -1092,7 +1092,8 @@ public class StreetPrep {
 				RawLocality loc = iterator.value();
 				Map<String, Object> row = new THashMap<String, Object>();
 				row.put("LOCALITY_ID", loc.id);
-				row.put("LOCALITY_NAME", loc.getFullyQualifiedName(localityMap));
+				row.put("LOCALITY_NAME", loc.name);
+				row.put("LOCALITY_QUALIFIER", loc.getQualifier(localityMap));
 				if(loc.type != null) {
 					row.put("LOCALITY_TYPE_ID", loc.type.getId());
 				}
