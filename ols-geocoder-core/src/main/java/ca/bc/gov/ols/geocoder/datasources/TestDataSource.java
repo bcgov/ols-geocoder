@@ -16,11 +16,13 @@
 package ca.bc.gov.ols.geocoder.datasources;
 
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
+
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.slf4j.Logger;
@@ -430,7 +432,7 @@ public class TestDataSource implements GeocoderDataSource {
 	}
 
 	@Override
-	public Map<DateType, LocalDate> getDates() {
+	public Map<DateType, ZonedDateTime> getDates() {
 		return null;
 	}
 

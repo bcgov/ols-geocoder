@@ -16,6 +16,7 @@
 package ca.bc.gov.ols.geocoder.rest.messageconverters;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 
 import ca.bc.gov.ols.geocoder.api.data.AddressMatch;
@@ -34,6 +35,7 @@ import ca.bc.gov.ols.geocoder.util.GeocoderUtil;
 
 public class OlsResponseReader {
 
+	public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE;
 	private OlsResponse response;
 	private OlsResponseWriter writer;
 	private GeocoderConfig config;
@@ -94,7 +96,7 @@ public class OlsResponseReader {
 		writer.field("searchTimestamp", results.getSearchTimeStamp());
 		writer.field("executionTime", results.getExecutionTime());
 		writer.field("version", GeocoderConfig.VERSION);
-		writer.field("baseDataDate", results.getProcessingDate());
+		writer.field("baseDataDate", results.getProcessingDate().format(DATE_FORMATTER));
 		writer.field("srsCode", results.getSrsCode());
 		writer.field("interpolation", results.getInterpolation());
 		writer.field("echo", results.getIsEcho());

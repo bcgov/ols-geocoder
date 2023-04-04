@@ -21,7 +21,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Collections;
@@ -53,7 +53,7 @@ public class FileGeocoderDataSource implements GeocoderDataSource {
 	private final static Logger logger = LoggerFactory.getLogger(GeocoderConfig.LOGGER_PREFIX + 
 			FileGeocoderDataSource.class.getCanonicalName());
 	
-	private final static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
+	//private final static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
 	
 	private GeocoderConfig config;
 	private GeometryFactory geometryFactory;
@@ -269,8 +269,8 @@ public class FileGeocoderDataSource implements GeocoderDataSource {
 	}
 
 	@Override
-	public Map<DateType, LocalDate> getDates() {
-		Map<DateType, LocalDate> dates = new EnumMap<DateType, LocalDate>(DateType.class);
+	public Map<DateType, ZonedDateTime> getDates() {
+		Map<DateType, ZonedDateTime> dates = new EnumMap<DateType, ZonedDateTime>(DateType.class);
 		boolean ok = true;
 		for(Entry<String, Map<String, String>> dateSet : allDates.entrySet()) {
 			String file = dateSet.getKey();
@@ -283,9 +283,9 @@ public class FileGeocoderDataSource implements GeocoderDataSource {
 				String source = dateEntry.getKey();
 				DateType sourceType = null;
 				String dateStr = dateEntry.getValue();
-				LocalDate date = null;
+				ZonedDateTime date = null;
 				try {
-					date = LocalDate.parse(dateStr, DATE_FORMATTER);
+					date = ZonedDateTime.parse(dateStr);
 				} catch(DateTimeParseException pe) {
 					logger.error("Invalid Date '" + dateStr + "' for source '" + source +"' from file '" + file + "'.");
 				}

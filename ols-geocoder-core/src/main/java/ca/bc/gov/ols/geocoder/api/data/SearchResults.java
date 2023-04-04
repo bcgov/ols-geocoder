@@ -18,6 +18,7 @@ package ca.bc.gov.ols.geocoder.api.data;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -77,7 +78,7 @@ public class SearchResults {
 	private BigDecimal executionTime;
 	
 	@XmlElement
-	private LocalDate processingDate;
+	private ZonedDateTime processingDate;
 	
 	@XmlElement
 	private String disclaimer;
@@ -108,7 +109,7 @@ public class SearchResults {
 	 * @param matches the results that matched the query
 	 * @param processingDate the date
 	 */
-	public SearchResults(GeocodeQuery query, List<GeocodeMatch> matches, LocalDate processingDate) {
+	public SearchResults(GeocodeQuery query, List<GeocodeMatch> matches, ZonedDateTime processingDate) {
 		this.queryAddress = query.getQueryAddress();
 		this.matches = matches;
 		this.maxResults = query.getMaxResults();
@@ -217,7 +218,7 @@ public class SearchResults {
 		this.locationDescriptor = locationDescriptor;
 	}
 
-	public LocalDate getProcessingDate() {
+	public ZonedDateTime getProcessingDate() {
 		return processingDate;
 	}
 }

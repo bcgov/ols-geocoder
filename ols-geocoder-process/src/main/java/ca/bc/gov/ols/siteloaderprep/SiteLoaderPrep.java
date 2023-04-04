@@ -926,7 +926,7 @@ public class SiteLoaderPrep {
 	}
 	
 	private static String addTrailingSeparator(String path) {
-		if(path.charAt(path.length()-1) == File.separatorChar){
+		if(path.charAt(path.length()-1) == File.separatorChar) {
 		    return path;
 		}
 		return path += File.separator;
