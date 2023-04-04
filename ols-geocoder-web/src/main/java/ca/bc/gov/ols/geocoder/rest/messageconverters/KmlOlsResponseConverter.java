@@ -22,7 +22,7 @@ import java.nio.charset.Charset;
 import java.time.LocalDateTime;
 import java.util.Iterator;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
