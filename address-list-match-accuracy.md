@@ -1,4 +1,4 @@
-Address List Match Accuracy (ALMA) is calculated by dividing the number of Geocoded addresses with a score of at least 90, by the total number of addresses in your list. ALMA can be used as a measure of both address quality in your list, and how well the Geocoder handles errors.
+Address List Match Accuracy (ALMA) is calculated by dividing the number of Geocoded addresses with a score of at least 90, by the total number of addresses in your list. ALMA can be used as a measure of both the quality of addresses in your list and how well the Geocoder handles the errors.
 
 |Version|ALMA|Notes|
 |:---|:---:|:---|
