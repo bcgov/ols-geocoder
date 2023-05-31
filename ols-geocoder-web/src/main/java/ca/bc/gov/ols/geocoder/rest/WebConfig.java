@@ -19,16 +19,14 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import ca.bc.gov.ols.geocoder.IGeocoder;
@@ -51,17 +49,67 @@ import ca.bc.gov.ols.geocoder.rest.messageconverters.ShpOlsResponseConverter;
 import ca.bc.gov.ols.geocoder.rest.messageconverters.XhtmlOlsResponseConverter;
 
 @Configuration
-@ComponentScan("ca.bc.gov.ols.rest")
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 	
 	@Autowired
 	private IGeocoder geocoder;
 	
-	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-		configurer.enable();
-	}
+	@Autowired
+	private CsvOlsResponseConverter csvOlsResponseConverter;
+	
+	@Autowired
+	private GmlOlsResponseConverter gmlOlsResponseConverter;
+
+	@Autowired
+	private HtmlOlsResponseConverter htmlOlsResponseConverter;
+
+	@Autowired
+	private JsonOlsResponseConverter jsonOlsResponseConverter;
+
+	@Autowired
+	private JsonpOlsResponseConverter jsonpOlsResponseConverter;
+	
+	@Autowired
+	private KmlOlsResponseConverter kmlOlsResponseConverter;
+	
+	@Autowired
+	private ShpOlsResponseConverter shpOlsResponseConverter;
+	
+	@Autowired
+	private XhtmlOlsResponseConverter xhtmlOlsResponseConverter;
+	
+	@Autowired
+	private HtmlErrorMessageConverter htmlErrorMessageConverter;
+	
+	@Autowired
+	private KmlErrorMessageConverter kmlErrorMessageConverter;
+
+	@Autowired
+	private JsonErrorMessageConverter jsonErrorMessageConverter;
+
+	@Autowired
+	private CsvStringConverter csvStringConverter;
+	
+	@Autowired
+	private JsonStringListConverter jsonStringListConverter;
+
+//  For Instant Batch
+//	@Autowired
+//	private CSVBatchResponseConverter csvBatchResponseConverter;
+//	
+//	@Bean
+//	public CommonsMultipartResolver multipartResolver() {
+//	    CommonsMultipartResolver resolver=new CommonsMultipartResolver();
+//	    resolver.setDefaultEncoding("utf-8");
+//	    return resolver;
+//	}
+
+
+//	@Override
+//	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+//		configurer.enable();
+//	}
 	
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -72,100 +120,22 @@ public class WebConfig implements WebMvcConfigurer {
 	
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-		converters.add(csvOlsResponseConverter());
-		converters.add(gmlOlsResponseConverter());
-		converters.add(htmlOlsResponseConverter());
-		converters.add(jsonOlsResponseConverter());
-		converters.add(jsonpOlsResponseConverter());
-		converters.add(kmlOlsResponseConverter());
-		converters.add(shpOlsResponseConverter());
-		converters.add(xhtmlOlsResponseConverter());
-		converters.add(htmlErrorMessageConverter());
-		converters.add(kmlErrorMessageConverter());
-		converters.add(jsonErrorMessageConverter());
-		converters.add(csvStringConverter());
+		converters.add(csvOlsResponseConverter);
+		converters.add(gmlOlsResponseConverter);
+		converters.add(htmlOlsResponseConverter);
+		converters.add(jsonOlsResponseConverter);
+		converters.add(jsonpOlsResponseConverter);
+		converters.add(kmlOlsResponseConverter);
+		converters.add(shpOlsResponseConverter);
+		converters.add(xhtmlOlsResponseConverter);
+		converters.add(htmlErrorMessageConverter);
+		converters.add(kmlErrorMessageConverter);
+		converters.add(jsonErrorMessageConverter);
+		converters.add(csvStringConverter);
+		converters.add(jsonStringListConverter);
 		//converters.add(csvBatchResponseConverter());
-		converters.add(jsonStringListConverter());
-		//super.configureMessageConverters(converters);
 	}
 	
-	@Bean
-	public CsvOlsResponseConverter csvOlsResponseConverter() {
-		return new CsvOlsResponseConverter();
-	}
-
-	@Bean
-	public GmlOlsResponseConverter gmlOlsResponseConverter() {
-		return new GmlOlsResponseConverter();
-	}
-
-	@Bean
-	public HtmlOlsResponseConverter htmlOlsResponseConverter() {
-		return new HtmlOlsResponseConverter();
-	}
-
-	@Bean
-	public JsonOlsResponseConverter jsonOlsResponseConverter() {
-		return new JsonOlsResponseConverter();
-	}
-
-	@Bean
-	public JsonpOlsResponseConverter jsonpOlsResponseConverter() {
-		return new JsonpOlsResponseConverter();
-	}
-	
-	@Bean
-	public KmlOlsResponseConverter kmlOlsResponseConverter() {
-		return new KmlOlsResponseConverter();
-	}
-	
-	@Bean
-	public ShpOlsResponseConverter shpOlsResponseConverter() {
-		return new ShpOlsResponseConverter();
-	}
-	
-	@Bean
-	public XhtmlOlsResponseConverter xhtmlOlsResponseConverter() {
-		return new XhtmlOlsResponseConverter();
-	}
-	
-	@Bean
-	public HtmlErrorMessageConverter htmlErrorMessageConverter() {
-		return new HtmlErrorMessageConverter();
-	}
-	
-	@Bean
-	public KmlErrorMessageConverter kmlErrorMessageConverter() {
-		return new KmlErrorMessageConverter();
-	}
-
-	@Bean
-	public JsonErrorMessageConverter jsonErrorMessageConverter() {
-		return new JsonErrorMessageConverter();
-	}
-
-	@Bean
-	public CsvStringConverter csvStringConverter() {
-		return new CsvStringConverter();
-	}
-	
-//  For Instant Batch
-//	@Bean
-//	public CSVBatchResponseConverter csvBatchResponseConverter() {
-//		return new CSVBatchResponseConverter();
-//	}
-//	
-//	@Bean
-//	public CommonsMultipartResolver multipartResolver() {
-//	    CommonsMultipartResolver resolver=new CommonsMultipartResolver();
-//	    resolver.setDefaultEncoding("utf-8");
-//	    return resolver;
-//	}
-
-	@Bean
-	public JsonStringListConverter jsonStringListConverter() {
-		return new JsonStringListConverter();
-	}
 
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
@@ -201,6 +171,11 @@ public class WebConfig implements WebMvcConfigurer {
 				.mediaType("shpz", new MediaType("application", "zip", Charset.forName("UTF-8")))
 				.mediaType("kml", new MediaType("application", "vnd.google-earth.kml+xml",
 						Charset.forName("UTF-8")));
+	}
+	
+	@Override
+	public void configurePathMatch(PathMatchConfigurer configurer) {
+		configurer.setUseSuffixPatternMatch(true);
 	}
 	
 }

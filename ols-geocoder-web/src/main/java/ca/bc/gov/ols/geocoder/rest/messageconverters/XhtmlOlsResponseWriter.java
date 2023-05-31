@@ -22,12 +22,10 @@ import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 
 public class XhtmlOlsResponseWriter extends HtmlOlsResponseWriter {
 
-	protected String contextPath;
 	protected String footer;
 	
-	public XhtmlOlsResponseWriter(Writer out, GeocoderConfig config, String contextPath) {
+	public XhtmlOlsResponseWriter(Writer out, GeocoderConfig config) {
 		super(out, config);
-		this.contextPath = contextPath;
 	}
 
 	@Override

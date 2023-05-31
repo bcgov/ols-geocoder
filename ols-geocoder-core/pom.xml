@@ -12,10 +12,7 @@
 	<name>OLS Geocoder Core</name>
 	<artifactId>ols-geocoder-core</artifactId>
 	<packaging>jar</packaging>
-
-	<properties>
-		<ols-util.version>1.3.1-SNAPSHOT</ols-util.version>
-	</properties>
+		
 	<dependencies>
 		<dependency>
 			<groupId>javax.annotation</groupId>
@@ -57,12 +54,10 @@
 		<dependency>
 			<groupId>ca.bc.gov.ols</groupId>
 			<artifactId>ols-util</artifactId>
-			<version>${ols-util.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.trove4j</groupId>
 			<artifactId>trove4j</artifactId>
-			<version>3.0.3</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
