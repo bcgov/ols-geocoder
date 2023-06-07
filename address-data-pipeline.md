@@ -151,11 +151,14 @@ It will be a major challenge to design a parallel architecture for the embedded 
 
 ### Gather and Transform Steps
 Here is the data flow for the current implementation of the gather and transform steps.
-
 ![Data_Gathering_v11](https://user-images.githubusercontent.com/34925250/217385786-a76d163c-6abb-4a88-9148-12028ec06b59.png)
 <br><br>
 
-### Current implementation of Geocoder data integration process
+### Current implementation of Geocoder (and Router) data integration process
+
+#### Data Flow diagram legend
+![image2](https://github.com/bcgov/ols-geocoder/assets/34925250/d4bfee91-b3d1-402d-b131-0871b86c6db3)
+<br><br>
 
 #### Data Flow 1: Shared Geocoder and Route Planner data integration
 
@@ -169,7 +172,7 @@ Here is the data flow for the current implementation of the gather and transform
 
 #### Data Flow 3 - Route Planner data integration
 
-![image](https://user-images.githubusercontent.com/9123564/222528373-7f043613-7297-4b38-9356-08c70ec10ba0.png)
+![image1](https://github.com/bcgov/ols-geocoder/assets/34925250/56dd74d7-da43-4e0d-9f3c-79ea0a68afbb)
 <br><br>
 
 <a name=activity></a>
