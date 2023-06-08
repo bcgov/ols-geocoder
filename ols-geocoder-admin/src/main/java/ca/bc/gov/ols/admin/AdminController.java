@@ -149,8 +149,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/validate", method = RequestMethod.POST)
-	public ModelAndView doValidate(@RequestParam("file") MultipartFile file) {
-		GeocoderConfigurationStore exportConfig = new FileExportGeocoderConfigurationStore(file);
+	public ModelAndView doValidate(@RequestParam("file") MultipartFile file) throws IOException {
+		GeocoderConfigurationStore exportConfig = new FileExportGeocoderConfigurationStore(file.getInputStream());
 		GeocoderConfigurationStore localConfig = adminApp.getConfigStore();
 		GeocoderConfigurationComparison comparison = new GeocoderConfigurationComparison(localConfig, exportConfig);
 		ModelAndView modelAndView = new ModelAndView("view/validate", "exportConfig", exportConfig);
@@ -159,8 +159,8 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/import", method = RequestMethod.POST)
-	public ModelAndView doImport(@RequestParam("file") MultipartFile file) {
-		FileExportGeocoderConfigurationStore exportConfig = new FileExportGeocoderConfigurationStore(file);
+	public ModelAndView doImport(@RequestParam("file") MultipartFile file) throws IOException {
+		FileExportGeocoderConfigurationStore exportConfig = new FileExportGeocoderConfigurationStore(file.getInputStream());
 		if(exportConfig.getErrors().isEmpty()) {
 			adminApp.getConfigStore().replaceWith(exportConfig);
 			return new ModelAndView("view/import", "errors", exportConfig.getErrors());

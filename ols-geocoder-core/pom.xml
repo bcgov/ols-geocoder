@@ -12,7 +12,7 @@
 	<name>OLS Geocoder Core</name>
 	<artifactId>ols-geocoder-core</artifactId>
 	<packaging>jar</packaging>
-		
+	
 	<dependencies>
 		<dependency>
 			<groupId>javax.annotation</groupId>
