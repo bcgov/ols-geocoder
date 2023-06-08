@@ -463,10 +463,10 @@ public class StreetPrep {
 	private List<RawLocality> readBCGNIS(Map<String,Point> locTweakMap, List<CustomCity> ccList) {
 		List<RawLocality> gnisLocalities = new ArrayList<RawLocality>();
 		Map<String,List<RawLocality>> tweakListMap = new HashMap<String,List<RawLocality>>();
-		try(RowReader rr = new CsvRowReader(inputDir + BCGNIS_FILE, null, Charset.forName("ISO-8859-1"))) {
+		try(RowReader rr = new CsvRowReader(inputDir + BCGNIS_FILE, null, Charset.forName("UTF-8"))) {
 			while(rr.next()) {
 				// Official Name,Feature Type,Feature Type Code,Mapsheet,Latitude,Longitude,Datum
-				int fcode = rr.getInt("Feature Type Code");
+				int fcode = rr.getInt("FType_Code");
 				if(!ALLOWABLE_GNIS_FCODES.contains(fcode)) continue;
 				String name = rr.getString("Official Name");
 				
