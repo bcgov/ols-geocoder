@@ -104,5 +104,10 @@
     		<artifactId>lucene-queryparser</artifactId>
     		<version>8.6.2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>6.0.9</version>
+		</dependency>
     </dependencies>
 </project>
