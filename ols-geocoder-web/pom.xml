@@ -13,11 +13,6 @@
 	<artifactId>ols-geocoder-web</artifactId>
 	<packaging>jar</packaging>
 
-	<properties>
-		<m2eclipse.wtp.contextRoot>/pub/geocoder</m2eclipse.wtp.contextRoot>
-		<geotools.version>22.5</geotools.version>
-	</properties>
-
 	<dependencies>
 		<dependency>
 		    <groupId>jakarta.servlet</groupId>
@@ -89,7 +84,7 @@
 	 	<dependency>
 		  	<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<version>3.0.6</version>
+			<version>${springboot.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
