@@ -1,9 +1,6 @@
 package ca.bc.gov.ols.streetprep;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.nio.charset.Charset;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -34,6 +31,11 @@ import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 
 import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 import ca.bc.gov.ols.geocoder.data.StateProvTerr;
@@ -68,6 +70,7 @@ public class StreetPrep {
 	// input filenames
 	private static final String VERSION_FILE = "VERSION.tsv";
 	private static final String TRANSPORT_LINE_DEMOGRAPHIC_FILE = "TRANSPORT_LINE_DEMOGRAPHIC.tsv";
+	private static final String TRANSPORT_LINE_MOT_FILE = "TRANSPORT_LINE_MOT.csv";
 	private static final String STRUCTURED_NAME_FILE = "STRUCTURED_NAME.tsv";
 	private static final String NAME_PREFIX_CODE_FILE = "NAME_PREFIX_CODE.tsv";
 	private static final String NAME_SUFFIX_CODE_FILE = "NAME_SUFFIX_CODE.tsv";
@@ -289,6 +292,7 @@ public class StreetPrep {
 		
 		// Streets Segments
 		TIntObjectMap<RawStreetSeg> segMap = readTransportLines();
+		readMotTransportLines(segMap);
 		correctSegmentLocalities(segMap, localityMap);
 		applySegmentElectoralAreas(segMap, eaPolyIndex, noEaLocalities);
 		addHwyAndExitNames(streetNameIdMap, segMap);
@@ -927,6 +931,42 @@ public class StreetPrep {
 			}
 		}
 		return segMap;
+	}
+	
+	private void readMotTransportLines(TIntObjectMap<RawStreetSeg> segMap) {
+		try(CsvRowReader rr = new CsvRowReader(inputDir +  TRANSPORT_LINE_MOT_FILE, geometryFactory)) {
+			List<String> schema = rr.getSchema();
+			while(rr.next()) {
+				int segId = rr.getInt("TRANSPORT_LINE_ID");
+				RawStreetSeg seg = segMap.get(segId);
+				if(seg != null) {
+					JsonObject obj = new JsonObject();
+					for(String prop : schema) {
+						if(prop.equalsIgnoreCase("TRANSPORT_LINE_ID")) continue;
+						JsonElement value = null;
+						try {
+							Integer intVal = rr.getInteger(prop);
+							if(intVal != null) {
+								value = new JsonPrimitive(intVal);
+							}
+						} catch(NumberFormatException nfe) {
+							
+						}
+						if(value == null) {
+							String stringVal = rr.getString(prop);
+							if(stringVal != null) {
+								value = new JsonPrimitive(stringVal);
+							}
+						}
+						if(value == null) {
+							value = JsonNull.INSTANCE;
+						}
+						obj.add(prop, value);
+					}
+					seg.motData = obj;
+				}
+			}
+		}
 	}
 	
 	private void correctSegmentLocalities(TIntObjectMap<RawStreetSeg> segMap, TIntObjectMap<RawLocality> localityMap) {

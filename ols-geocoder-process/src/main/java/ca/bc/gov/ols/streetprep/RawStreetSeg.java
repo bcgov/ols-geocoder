@@ -4,6 +4,8 @@ import java.util.Map;
 
 import org.locationtech.jts.geom.LineString;
 
+import com.google.gson.JsonObject;
+
 import ca.bc.gov.ols.enums.AccessRestriction;
 import ca.bc.gov.ols.enums.AddressScheme;
 import ca.bc.gov.ols.enums.DividerType;
@@ -64,6 +66,9 @@ public class RawStreetSeg {
 	String highwayRoute2; // "HIGHWAY_ROUTE_2"
 	String highwayRoute3; // "HIGHWAY_ROUTE_3"
 	TIntArrayList nameIds; // "STRUCTURED_NAME_#_ID"	
+	JsonObject extendedData; // "EXTENDED_DATA"
+	JsonObject motData; // "MINISTRY_OF_TRANSPORT_DATA"
+
 	LineString geom;
 	
 	public RawStreetSeg(RowReader rr) {
@@ -126,6 +131,7 @@ public class RawStreetSeg {
 		highwayRoute1 = rr.getString("HIGHWAY_ROUTE_1");
 		highwayRoute2 = rr.getString("HIGHWAY_ROUTE_2");
 		highwayRoute3 = rr.getString("HIGHWAY_ROUTE_3");
+		extendedData = rr.getJson("EXTENDED_DATA");
 		geom = rr.getLineString("GEOMETRY");
 		
 		nameIds = new TIntArrayList(7);
@@ -184,6 +190,8 @@ public class RawStreetSeg {
 		row.put("HIGHWAY_ROUTE_1", highwayRoute1);
 		row.put("HIGHWAY_ROUTE_2", highwayRoute2);
 		row.put("HIGHWAY_ROUTE_3", highwayRoute3);
+		row.put("EXTENDED_DATA", extendedData);
+		row.put("MINISTRY_OF_TRANSPORT_DATA", motData);
 		row.put("geom", geom);
 		rw.writeRow(row);
 	}
