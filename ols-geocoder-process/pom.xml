@@ -4,7 +4,7 @@
   <parent>
     <groupId>ca.bc.gov.ols</groupId>
     <artifactId>ols-geocoder</artifactId>
-    <version>4.3.0-SNAPSHOT</version>
+    <version>4.2.3-DISNAP</version>
   </parent>
   <artifactId>ols-geocoder-process</artifactId>
   <name>OLS Geocoder Process</name>
@@ -57,7 +57,7 @@
 		<dependency>
 			<groupId>ca.bc.gov.ols</groupId>
 			<artifactId>ols-util</artifactId>
-			<version>1.3.0-SNAPSHOT</version>
+			<version>1.3.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
