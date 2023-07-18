@@ -1408,7 +1408,7 @@ public class RangeBuilder {
 	}
 
 	public void writeRanges(TIntObjectHashMap<RbStreetSegment> segmentIdMap, List<IRbSite> extraSites,
-			String baseFilePathString, Map<DateType, LocalDate> dates, String tableSuffix) {
+			String baseFilePathString, Map<String, String> dates, String tableSuffix) {
 		File streetsFile = new File(baseFilePathString + "street_load_street_segments_geocoder.json");
 		RowWriter streetWriter = new JsonRowWriter(streetsFile, "bgeo_street_segments", dates);
 		File sitesFile = new File(baseFilePathString + "site_Hybrid_geocoder.tsv");
