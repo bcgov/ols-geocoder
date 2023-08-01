@@ -23,6 +23,7 @@ This guide is aimed at developers and web masters that would like to incorporate
 [Intersection Address Representation](#intersectionaddressrepresentation)<br>
 [About faults](#aboutfaults)<br>
 [Implementing address autocompletion in your application](#implementingautocomplete)<br>
+[API reponse error code](#APIReponseErrorCodes)<br>
 
 
 <a name=intro></a>
@@ -258,3 +259,10 @@ A user starts entering the characters of an address. After three or so character
 If the user clicks on the search icon or presses the Enter key, the application should issue a get request on the addresses resource with autocomplete set to False. This tells the geocoder to use addressString as entered when trying to find the best N matches.
 
 If you are using jQuery in your javascript app, check out our javascript code for autocompletion [here](https://github.com/bcgov/ols-devkit/tree/gh-pages/widget). To see the code in action, visit [here](https://bcgov.github.io/ols-devkit/examples/address_autocomplete.html)
+
+<br><br>
+<a name=APIReponseErrorCodes></a>
+## API reponse error codes
+Please refere to [this confluence document](https://dpdd.atlassian.net/wiki/spaces/~63d942f9724a5c79c7b7220a/pages/451543092/Geocoder+API+Error+Codes) for the full list of API response errors.
+
+
