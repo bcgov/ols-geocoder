@@ -264,7 +264,7 @@ If you are using jQuery in your javascript app, check out our javascript code fo
 <a name=APIReponseErrorCodes></a>
 ## API reponse error codes
 ### KONG API gateway errors
-Kong API gateway is used to manage Geocoder API calls. Kong can generate a number of errors such as wrong API keys.
+We use Kong API gateway to manage Geocoder API calls. Below is a list of gateway errors. You can skip this section if you installed your own Geocoder.
 
 |Response Code|Error Message|Error Description
 |--|--|--|
@@ -284,12 +284,12 @@ Geocoder can return a number of error response.
 
 In addition to above common error responses there are also a number of errors that can happen occasionally or during the initialization state. These errors usually come with 500s but could also be 400s.
 
-- **Invalid or no API key found in request:** (Deprecated) old check for invalid parcel API key. This feature should be currently disabled in production.
-- **Invalid JDBC URL in properties file:** (Deprecated) database related error.
-- **No JDBC URL found in properties file:** (Deprecated) database related error.
-- **Invalid JDBC URL in properties file:** (Deprecated) database related error.
-- **Exception loading database driver:** (Deprecated) database related error.
-- **Error connecting to database:** (Deprecated) database related error.
+- **Invalid or no API key found in request:** check for invalid parcel API key.
+- **Invalid JDBC URL in properties file:** database related error.
+- **No JDBC URL found in properties file:** database related error.
+- **Invalid JDBC URL in properties file:** database related error.
+- **Exception loading database driver:** database related error.
+- **Error connecting to database:** database related error.
 - **Parameter must be in the format:** Request format not recognized.
 - **Unable to parse MatchFault string:** unknown internal/data error.
 - **Unexpected error in coordinate reprojection:** unknown data error.
