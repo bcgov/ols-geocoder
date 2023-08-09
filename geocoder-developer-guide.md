@@ -263,6 +263,35 @@ If you are using jQuery in your javascript app, check out our javascript code fo
 <br><br>
 <a name=APIReponseErrorCodes></a>
 ## API reponse error codes
-Please refere to [this confluence document](https://dpdd.atlassian.net/wiki/spaces/~63d942f9724a5c79c7b7220a/pages/451543092/Geocoder+API+Error+Codes) for the full list of API response errors.
+### KONG API gateway errors
+Kong API gateway is used to manage Geocoder API calls. Kong can generate a number of errors such as wrong API keys.
 
+|Response Code|Error Message|Error Description
+|--|--|--|
+|404|This page is not found|The path is not defined
+|401|No API key found in reques|The API endpoints requires an API key
+|401|Invalid authentication credentials|The provided API key is not found
+|403|You cannot consume this service|The provided API key is invalid, unapproved or expired.
+|429|API rate limit exceeded|Too many requests per minute
 
+### Geocoder specific errors 
+Geocoder can return a number of error response.
+|Response Code|Error Message|Error Description
+|--|--|--|
+|400|Invalid parameter:[details]|The provided parameter is incorrect. Please refer to the details
+|404|no Route matched with those values|The path is not found. Please make sure it’s one in document
+|500|Anything|This is a general internal error
+
+In addition to above common error responses there are also a number of errors that can happen occasionally or during the initialization state. These errors usually come with 500s but could also be 400s.
+
+- **Invalid or no API key found in request:** (Deprecated) old check for invalid parcel API key. This feature should be currently disabled in production.
+- **Invalid JDBC URL in properties file:** (Deprecated) database related error.
+- **No JDBC URL found in properties file:** (Deprecated) database related error.
+- **Invalid JDBC URL in properties file:** (Deprecated) database related error.
+- **Exception loading database driver:** (Deprecated) database related error.
+- **Error connecting to database:** (Deprecated) database related error.
+- **Parameter must be in the format:** Request format not recognized.
+- **Unable to parse MatchFault string:** unknown internal/data error.
+- **Unexpected error in coordinate reprojection:** unknown data error.
+- **No value for parameter:** unknown internal/data error.
+- **Parameter must be in UUID format XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX:** invalid UUID
