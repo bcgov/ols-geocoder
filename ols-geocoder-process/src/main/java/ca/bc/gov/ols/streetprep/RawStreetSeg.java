@@ -132,6 +132,7 @@ public class RawStreetSeg {
 		highwayRoute2 = rr.getString("HIGHWAY_ROUTE_2");
 		highwayRoute3 = rr.getString("HIGHWAY_ROUTE_3");
 		extendedData = rr.getJson("EXTENDED_DATA");
+		motData = rr.getJson("MINISTRY_OF_TRANSPORT_DATA");
 		geom = rr.getLineString("GEOMETRY");
 		
 		nameIds = new TIntArrayList(7);

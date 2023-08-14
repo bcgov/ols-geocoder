@@ -32,11 +32,6 @@ import org.opengis.referencing.operation.TransformException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonNull;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
-
 import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 import ca.bc.gov.ols.geocoder.data.StateProvTerr;
 import ca.bc.gov.ols.geocoder.data.enumTypes.LocalityType;
@@ -70,7 +65,7 @@ public class StreetPrep {
 	// input filenames
 	private static final String VERSION_FILE = "VERSION.tsv";
 	private static final String TRANSPORT_LINE_DEMOGRAPHIC_FILE = "TRANSPORT_LINE_DEMOGRAPHIC.tsv";
-	private static final String TRANSPORT_LINE_MOT_FILE = "TRANSPORT_LINE_MOT.csv";
+	
 	private static final String STRUCTURED_NAME_FILE = "STRUCTURED_NAME.tsv";
 	private static final String NAME_PREFIX_CODE_FILE = "NAME_PREFIX_CODE.tsv";
 	private static final String NAME_SUFFIX_CODE_FILE = "NAME_SUFFIX_CODE.tsv";
@@ -292,7 +287,6 @@ public class StreetPrep {
 		
 		// Streets Segments
 		TIntObjectMap<RawStreetSeg> segMap = readTransportLines();
-		readMotTransportLines(segMap);
 		correctSegmentLocalities(segMap, localityMap);
 		applySegmentElectoralAreas(segMap, eaPolyIndex, noEaLocalities);
 		addHwyAndExitNames(streetNameIdMap, segMap);
@@ -483,10 +477,10 @@ public class StreetPrep {
 	private List<RawLocality> readBCGNIS(Map<String,Point> locTweakMap, List<CustomCity> ccList) {
 		List<RawLocality> gnisLocalities = new ArrayList<RawLocality>();
 		Map<String,List<RawLocality>> tweakListMap = new HashMap<String,List<RawLocality>>();
-		try(RowReader rr = new CsvRowReader(inputDir + BCGNIS_FILE, null, Charset.forName("ISO-8859-1"))) {
+		try(RowReader rr = new CsvRowReader(inputDir + BCGNIS_FILE, null, Charset.forName("UTF-8"))) {
 			while(rr.next()) {
 				// Official Name,Feature Type,Feature Type Code,Mapsheet,Latitude,Longitude,Datum
-				int fcode = rr.getInt("Feature Type Code");
+				int fcode = rr.getInt("FType_Code");
 				if(!ALLOWABLE_GNIS_FCODES.contains(fcode)) continue;
 				String name = rr.getString("Official Name");
 				
@@ -932,43 +926,7 @@ public class StreetPrep {
 		}
 		return segMap;
 	}
-	
-	private void readMotTransportLines(TIntObjectMap<RawStreetSeg> segMap) {
-		try(CsvRowReader rr = new CsvRowReader(inputDir +  TRANSPORT_LINE_MOT_FILE, geometryFactory)) {
-			List<String> schema = rr.getSchema();
-			while(rr.next()) {
-				int segId = rr.getInt("TRANSPORT_LINE_ID");
-				RawStreetSeg seg = segMap.get(segId);
-				if(seg != null) {
-					JsonObject obj = new JsonObject();
-					for(String prop : schema) {
-						if(prop.equalsIgnoreCase("TRANSPORT_LINE_ID")) continue;
-						JsonElement value = null;
-						try {
-							Integer intVal = rr.getInteger(prop);
-							if(intVal != null) {
-								value = new JsonPrimitive(intVal);
-							}
-						} catch(NumberFormatException nfe) {
-							
-						}
-						if(value == null) {
-							String stringVal = rr.getString(prop);
-							if(stringVal != null) {
-								value = new JsonPrimitive(stringVal);
-							}
-						}
-						if(value == null) {
-							value = JsonNull.INSTANCE;
-						}
-						obj.add(prop, value);
-					}
-					seg.motData = obj;
-				}
-			}
-		}
-	}
-	
+		
 	private void correctSegmentLocalities(TIntObjectMap<RawStreetSeg> segMap, TIntObjectMap<RawLocality> localityMap) {
 		TIntObjectIterator<RawStreetSeg> iterator = segMap.iterator();
 		while(iterator.hasNext()) {
