@@ -90,6 +90,11 @@
 			<version>4.1.0</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.12.0</version>
@@ -103,6 +108,11 @@
     		<groupId>org.apache.lucene</groupId>
     		<artifactId>lucene-queryparser</artifactId>
     		<version>8.6.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>5.2.22.RELEASE</version>
 		</dependency>
     </dependencies>
 </project>

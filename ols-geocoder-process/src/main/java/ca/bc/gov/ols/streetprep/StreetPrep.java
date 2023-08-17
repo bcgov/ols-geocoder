@@ -489,6 +489,7 @@ public class StreetPrep {
 				if(fcode == RowReader.NULL_INT_VALUE) {
 					logger.error("GNIS Feature does not have a type code! Check GNIS Input File.");
 				}
+
 				if(!ALLOWABLE_GNIS_FCODES.contains(fcode)) continue;
 				String name = rr.getString("Official Name");
 				
