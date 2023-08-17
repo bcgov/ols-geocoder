@@ -466,7 +466,13 @@ public class StreetPrep {
 		try(RowReader rr = new CsvRowReader(inputDir + BCGNIS_FILE, null, Charset.forName("UTF-8"))) {
 			while(rr.next()) {
 				// Official Name,Feature Type,Feature Type Code,Mapsheet,Latitude,Longitude,Datum
-				int fcode = rr.getInt("FType_Code");
+				int fcode = rr.getInt("Feature Type Code");
+				if(fcode == RowReader.NULL_INT_VALUE) {
+					fcode = rr.getInt("FType_Code");
+				}
+				if(fcode == RowReader.NULL_INT_VALUE) {
+					logger.error("GNIS Feature does not have a type code! Check GNIS Input File.");
+				}
 				if(!ALLOWABLE_GNIS_FCODES.contains(fcode)) continue;
 				String name = rr.getString("Official Name");
 				
