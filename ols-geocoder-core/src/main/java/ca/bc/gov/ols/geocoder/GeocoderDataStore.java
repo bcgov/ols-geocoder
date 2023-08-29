@@ -789,7 +789,7 @@ public class GeocoderDataStore {
 				if(civicNumberSuffix != null) {
 					civicNumberSuffix = civicNumberSuffix.toUpperCase();
 				}
-				String isPrimary = rr.getString("is_primary_ind");
+				Boolean isPrimary = rr.getBoolean("is_primary_ind");
 				Point point = rr.getPoint("access_albers_");
 				// if no accessPoint, fallback on SitePoint
 				if(point == null) {
@@ -820,7 +820,7 @@ public class GeocoderDataStore {
 					}
 					aps.add(ap);
 				}
-				if(isPrimary.equals("Y")) {
+				if(Boolean.TRUE.equals(isPrimary)) {
 					site.setPrimaryAccessPoint(ap);
 				}
 			}

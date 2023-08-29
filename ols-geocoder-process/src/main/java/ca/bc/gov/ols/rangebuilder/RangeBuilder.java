@@ -236,14 +236,14 @@ public class RangeBuilder {
 		while(rr.next()) {
 			int nameId = rr.getInt("street_name_id");
 			int segmentId = rr.getInt("street_segment_id");
-			String isPrimary = rr.getString("is_primary_ind");
+			Boolean isPrimary = rr.getBoolean("is_primary_ind");
 			RbStreetSegment seg = segmentIdMap.get(segmentId);
 			// ignore xrefs to non-existent segments; should only be the case in test data
 			if(seg == null) {
 				logger.warn("CONSTRAINT VIOLATION: StreetNameOnSegment refers to non-existent segment: " + segmentId);
 				continue;
 			}
-			if(isPrimary.equalsIgnoreCase("Y")) {
+			if(Boolean.TRUE.equals(isPrimary)) {
 				// get the list of segs with this street name, if there is one
 				List<RbStreetSegment> segsWithName = primaryStreetNameIdToSegmentListMap.get(nameId);
 				if(segsWithName == null) {
@@ -322,7 +322,7 @@ public class RangeBuilder {
 			site.setSiteX(rr.getDouble("SITE_ALBERS_X"));
 			site.setSiteY(rr.getDouble("SITE_ALBERS_Y"));
 			site.setApType(rr.getString("AP_TYPE"));
-			site.setPrimary("Y".equals(rr.getString("IS_PRIMARY_IND")));
+			site.setPrimary(Boolean.TRUE.equals(rr.getBoolean("IS_PRIMARY_IND")));
 			site.setNarrativeLocation(rr.getString("NARRATIVE_LOCATION"));
 			site.setAccessPositionalAccuracy(PositionalAccuracy.convert(rr.getString("ACCESS_POSITIONAL_ACCURACY")));
 			site.setCivicNumber(rr.getInt("CIVIC_NUMBER"));
@@ -1510,7 +1510,7 @@ public class RangeBuilder {
 		siteRow.put("SITE_ALBERS_X", Math.round(site.getSiteLocation().getX()));
 		siteRow.put("SITE_ALBERS_Y", Math.round(site.getSiteLocation().getY()));
 		siteRow.put("AP_TYPE", site.getApType());
-		siteRow.put("IS_PRIMARY_IND", site.isPrimary() ? "Y" : "N");
+		siteRow.put("IS_PRIMARY_IND", site.isPrimary());
 		siteRow.put("NARRATIVE_LOCATION", site.getNarrativeLocation());
 		siteRow.put("ACCESS_POSITIONAL_ACCURACY", site.getAccessPositionalAccuracy());
 		siteRow.put("CIVIC_NUMBER", convertNull(site.getCivicNumber()));
