@@ -8,14 +8,52 @@
 
 	<name>OLS Geocoder Admin</name>
 	<artifactId>ols-geocoder-admin</artifactId>
-	<packaging>war</packaging>
-
-	<properties>
-		<m2eclipse.wtp.contextRoot>/geocoder/admin</m2eclipse.wtp.contextRoot>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+	<packaging>jar</packaging>
 
 	<dependencies>
+		<dependency>
+		    <groupId>jakarta.servlet</groupId>
+		    <artifactId>jakarta.servlet-api</artifactId>
+		    <version>6.0.0</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<version>10.1.9</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.servlet.jsp.jstl</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+		<dependency>
+		  	<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>${springboot.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-json</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${springframework.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>	
+		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
@@ -33,19 +71,17 @@
 			<type>jar</type>
 		</dependency>
 		<dependency>
+			<groupId>ca.bc.gov.ols</groupId>
+			<artifactId>ols-util</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.26</version>
 		</dependency>
-		<!-- dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>1.7.25</version>
-		</dependency -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.26</version>
+			<version>${slf4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -57,36 +93,10 @@
 			<artifactId>opencsv</artifactId>
 			<version>2.0</version>
 		</dependency>
-		<!-- dependency>
-			<groupId>com.datastax.oss</groupId>
-			<artifactId>java-driver-core</artifactId>
-			<version>4.1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.datastax.oss</groupId>
-			<artifactId>java-driver-mapper-runtime</artifactId>
-			<version>4.1.0</version>
-		</dependency -->
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-servlet-api</artifactId>
-			<version>9.0.14</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.12.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${springframework.version}</version>
+			<artifactId>commons-text</artifactId>
+			<version>1.10.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>

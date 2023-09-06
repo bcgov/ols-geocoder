@@ -322,7 +322,7 @@ public class RangeBuilder {
 			site.setSiteX(rr.getDouble("SITE_ALBERS_X"));
 			site.setSiteY(rr.getDouble("SITE_ALBERS_Y"));
 			site.setApType(rr.getString("AP_TYPE"));
-			site.setPrimary("Y".equals(rr.getString("IS_PRIMARY_IND")));
+			site.setPrimary(rr.getBoolean("IS_PRIMARY_IND"));
 			site.setNarrativeLocation(rr.getString("NARRATIVE_LOCATION"));
 			site.setAccessPositionalAccuracy(PositionalAccuracy.convert(rr.getString("ACCESS_POSITIONAL_ACCURACY")));
 			site.setCivicNumber(rr.getInt("CIVIC_NUMBER"));

@@ -110,7 +110,7 @@ public class GeocoderFactory {
 		bootstrapConfig.setProperty("OLS_CASSANDRA_KEYSPACE", Optional.ofNullable(System.getenv("OLS_CASSANDRA_KEYSPACE")).orElse("bgeo"));
 		bootstrapConfig.setProperty("OLS_CASSANDRA_REPL_FACTOR", Optional.ofNullable(System.getenv("OLS_CASSANDRA_REPL_FACTOR")).orElse("2"));
 		bootstrapConfig.setProperty("OLS_GEOCODER_CONFIGURATION_STORE", Optional.ofNullable(System.getenv("OLS_GEOCODER_CONFIGURATION_STORE"))
-				.orElse("ca.bc.gov.ols.geocoder.config.CassandraGeocoderConfigurationStore"));
+				.orElse("ca.bc.gov.ols.geocoder.config.FileGeocoderConfigurationStore"));
 		return bootstrapConfig;
 	}
 

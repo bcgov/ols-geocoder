@@ -13,7 +13,7 @@
 <%@ page language="java" import="java.util.Collections" %>
 <%@ page language="java" import="java.util.Iterator" %>
 <%@ page language="java" import="java.util.Comparator" %>
-<%@ page language="java" import="org.apache.commons.lang3.StringEscapeUtils" %>
+<%@ page language="java" import="org.apache.commons.text.StringEscapeUtils" %>
 <%@ page language="java" import="gnu.trove.map.hash.TIntObjectHashMap" %>
 <%@ page language="java" import="gnu.trove.iterator.TIntObjectIterator" %>
 

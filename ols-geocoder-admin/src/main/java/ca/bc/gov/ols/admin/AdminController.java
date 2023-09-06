@@ -22,7 +22,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.stream.Stream;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +33,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.stream.JsonWriter;
 
@@ -51,6 +54,11 @@ public class AdminController {
 	
 	@Autowired
 	private AdminApplication adminApp;
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+    public View index() {
+       return new RedirectView("index.jsp");
+    }
 	
 	@RequestMapping(value = "/export", produces = "application/json")
 	public void doExport(HttpServletResponse response) throws IOException {
@@ -149,8 +157,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/validate", method = RequestMethod.POST)
-	public ModelAndView doValidate(@RequestParam("file") MultipartFile file) {
-		GeocoderConfigurationStore exportConfig = new FileExportGeocoderConfigurationStore(file);
+	public ModelAndView doValidate(@RequestParam("file") MultipartFile file) throws IOException {
+		GeocoderConfigurationStore exportConfig = new FileExportGeocoderConfigurationStore(file.getInputStream());
 		GeocoderConfigurationStore localConfig = adminApp.getConfigStore();
 		GeocoderConfigurationComparison comparison = new GeocoderConfigurationComparison(localConfig, exportConfig);
 		ModelAndView modelAndView = new ModelAndView("view/validate", "exportConfig", exportConfig);
@@ -159,8 +167,8 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/import", method = RequestMethod.POST)
-	public ModelAndView doImport(@RequestParam("file") MultipartFile file) {
-		FileExportGeocoderConfigurationStore exportConfig = new FileExportGeocoderConfigurationStore(file);
+	public ModelAndView doImport(@RequestParam("file") MultipartFile file) throws IOException {
+		FileExportGeocoderConfigurationStore exportConfig = new FileExportGeocoderConfigurationStore(file.getInputStream());
 		if(exportConfig.getErrors().isEmpty()) {
 			adminApp.getConfigStore().replaceWith(exportConfig);
 			return new ModelAndView("view/import", "errors", exportConfig.getErrors());
