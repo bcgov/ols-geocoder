@@ -486,7 +486,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00496-StreetNameWithSpecialCharacters,"Tl’etinqox Rd, Anahims Flat IR, BC",STREET,"Tl’etinqox Rd, Anahims Flat IR, BC",[],R,,129,T,T
 00497-StreetNameWithSpecialCharacters,"Clinton/Loon Lake FSR, Hutchison Lake, BC",STREET,"Clinton/Loon Lake FSR, Hutchison Lake, BC",[],R,,129,T,T
 00498-ACrazy,"201 A 201 A A St, Abbotsford, BC",BLOCK,"UNIT 201A -- 201A A St, Abbotsford, BC","[UNIT_DESIGNATOR.missing,UNIT_NUMBER.notMatched,CIVIC_NUMBER_SUFFIX.notMatched]",R,,156,T,T
-00499-NonIntersectionOfRoadAndHwy,"Chancellor Ave and Trans-Canada Hwy, View Royal, BC",STREET,"Chancellor Ave, View Royal, BC",[LOCALITY_GARBAGE.notAllowed,STREET_TYPE.missing],R,,156,T,T
+00499-NonIntersectionOfRoadAndHwy,"Chancellor Ave and Trans-Canada Hwy, View Royal, BC",STREET,"Chancellor Ave, View Royal, BC","[LOCALITY_GARBAGE.notAllowed,STREET_TYPE.missing]",R,,156,T,T
 00500-NoisyAddress,"Oscar the Grouch 1 Centennial Sq Felix the Cat Victoria Winnie the Pooh BC",CIVIC_NUMBER,"1 Centennial Sq, Victoria, BC",[],R,,156,T,T
 00501-StreetNameCompoundWordsSeparated,"12312 Horse Shoe Way, Richmond, BC",BLOCK,"12312 Horseshoe Way, Richmond, BC",[],F,,,T,T
 00502-StreetNameCompoundWordsSeparated,"101 Sea View St, Sayward, BC",CIVIC_NUMBER,"101 Seaview St, Sayward, BC",[],F,,,T,T
