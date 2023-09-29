@@ -71,8 +71,8 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00072-CivicAddressWithMisplacedStreetTypeandUnneededStreetDirectionOnHighway,"8930 Hwy Cariboo S Pineview FFG BC",CIVIC_NUMBER,"8930 Cariboo Hwy, Pineview FFG, BC","[STREET_DIRECTION.notMatchedInHighway:0 STREET_TYPE.notPrefix:0]",R,,,T,T
 00073-CivicAddressUnknownLocality,"626 Lindley Dr Leftbank bc ",BLOCK,"626 Lindley Dr, West Kelowna, BC","[UNRECOGNIZED.notAllowed:33 LOCALITY.missing:10]",R,,,F,F
 00074-CivicAddressUnknownStreetDirection,"456 Gorge Rd WN Victoria BC",CIVIC_NUMBER,"456 Gorge Rd E, Victoria, BC","[UNRECOGNIZED.notAllowed:33 STREET_DIRECTION.missing:2]",R,,,T,T
-00075-CivicAddressUnknownStreetType,"561 salmon Ave, North Saanich, BC",BLOCK,"561 Salmon Rd, Central Saanich, BC","[UNRECOGNIZED.notAllowed:33 STREET_TYPE.notMatched]",R,,,T,T
-00076-CivicAddressUnknownStreetName,"561 samson Rd, North Saanich, BC",BLOCK,"561 Salmon Rd, Central Saanich, BC","[LOCALITY.notMatched STREET_NAME.spelledWrong:2]",R,,,F,F
+00075-CivicAddressUnknownStreetType,"561 Salmon Ave, Central Saanich, BC",BLOCK,"561 Salmon Rd, Central Saanich, BC","[UNRECOGNIZED.notAllowed:33 STREET_TYPE.notMatched]",R,,,T,T
+00076-CivicAddressUnknownStreetName,"561 Samson Rd, Central Saanich, BC",BLOCK,"561 Salmon Rd, Central Saanich, BC","[STREET_NAME.spelledWrong:2]",R,,,F,F
 00077-CivicAddressUnknownCivicNumber,"60000 Hwy 97B SE Salmon Arm BC",STREET,"Hwy 97B SE, Salmon Arm, BC",[CIVIC_NUMBER.notInAnyBlock:10],R,,,F,F
 00078-CivicAddressUnknownUnitDescriptor,"ABODE 128 -- 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 ABODE -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.Unknown],F,,,T,T
 00079-CivicAddressStreetDirectionForUndirectedStreet,"109 Quarry Dr W Salt Spring Island BC",CIVIC_NUMBER,"109 Quarry Dr, Salt Spring Island, BC",[STREET_DIRECTION.notMatched:2],R,,,T,T
@@ -100,10 +100,10 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00101-CivicAddresswithBoxNoStreet,"BOX 283 Victoria BC",LOCALITY,"Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
 00102-CivicAddressWithBoxAfterStreet,"525 Superior St BOX 283 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
 00103-CivicAddressWithBoxAtEnd,"525 Superior St, Victoria, BC BOX 283",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
-00104-CivicAddressWithFloorDesignator,"FLR 3 1175 Douglas St Victoria BC",CIVIC_NUMBER,"FLR 3 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",R,,,T,T
-00105-CivicAddressWithReverseFloorDesignator,"3nd FLR 1175 Douglas St Victoria BC",CIVIC_NUMBER,"1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",R,,,T,T
-00106-CivicAddressWithUnabbreviatedFloorDesignator,"Floor 3 1175 Douglas St Victoria BC",CIVIC_NUMBER,"FLR 3 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",R,,,T,T
-00107-CivicAddressWithReverseUnabbreviatedFloorDesignator,"3nd Floor 1175 Douglas St Victoria BC",CIVIC_NUMBER,"1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",R,,,T,T
+00104-CivicAddressWithFloorDesignator,"FLR 1 1175 Douglas St Victoria BC",UNIT,"UNIT 1 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",R,,,T,T
+00105-CivicAddressWithReverseFloorDesignator,"1st FLR 1175 Douglas St Victoria BC",UNIT,"UNIT 1 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",R,,,T,T
+00106-CivicAddressWithUnabbreviatedFloorDesignator,"Floor 1 1175 Douglas St Victoria BC",UNIT,"UNIT 1 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",R,,,T,T
+00107-CivicAddressWithReverseUnabbreviatedFloorDesignator,"1st Floor 1175 Douglas St Victoria BC",UNIT,"UNIT 1 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",R,,,T,T
 00108-SimpleInterpolatedCivicAddress,"5742 Malibu Terr Nanaimo BC",BLOCK,"5742 Malibu Terr, Nanaimo, BC",[],R,,,T,T
 00109-AdaptiveInterpolatedCivicAddress,"5686 Malibu Terr Nanaimo BC",BLOCK,"5686 Malibu Terr, Nanaimo, BC",[],R,,,T,T
 00110-CivicAddressWithKnownCivicNumber,"525 Superior St, Victoria, BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[],R,,,T,T
@@ -342,8 +342,8 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00350-AddressInSmallCommunityUsingLocalityAlias,"3492 SPOKIN LAKE RD, 150 MILE HOUSE, BC",CIVIC_NUMBER,"3492 Spokin Lake Rd, Spokin Lake, BC",[LOCALITY.isAlias],R,,101,T,T
 00351-AddressInSmallCommunity,"2582 SHOREACRES RD, SHOREACRES, BC",CIVIC_NUMBER,"2582 Shoreacres Rd, Shoreacres, BC",[],R,,,T,T
 00352-AddressInSmallCommunityUsingLocalityAlias,"2582 SHOREACRES RD, CASTLEGAR, BC",CIVIC_NUMBER,"2582 Shoreacres Rd, Shoreacres, BC",[LOCALITY.isAlias],R,,101,T,T
-00353-AddressInSmallCommunity,"1414 THRUMS WEST RD, THRUMS, BC",CIVIC_NUMBER,"1414 Thrums West Rd, Thrums, BC",[],R,,,T,T
-00354-AddressInSmallCommunityUsingLocalityAlias,"1414 THRUMS RD, CASTLEGAR, BC",CIVIC_NUMBER,"1414 Thrums West Rd, Thrums, BC",[LOCALITY.isAlias],R,,101,T,T
+00353-AddressInSmallCommunity,"1679 Moran Rd, THRUMS, BC",CIVIC_NUMBER,"1679 Moran Rd, Thrums, BC",[],R,,,T,T
+00354-AddressInSmallCommunityUsingLocalityAlias,"1679 Moran Rd, CASTLEGAR, BC",CIVIC_NUMBER,"1679 Moran Rd, Thrums, BC",[LOCALITY.isAlias],R,,101,T,T
 00355-AddressInSmallCommunity,"6010 HARROP-PROCTER RD, HARROP, BC",CIVIC_NUMBER,"6010 Harrop-Procter Rd, Harrop, BC",[],R,,,T,T
 00356-AddressInSmallCommunityUsingLocalityAlias,"6010 HARROP-PROCTER RD, NELSON, BC",CIVIC_NUMBER,"6010 Harrop-Procter Rd, Harrop, BC",[LOCALITY.isAlias],R,,101,T,T
 00357-AddressInSmallCommunity,"7136 WILLIS POINT RD, WILLIS POINT, BC",CIVIC_NUMBER,"7136 Willis Point Rd, Willis Point, BC",[],R,,,T,T
@@ -486,7 +486,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00496-StreetNameWithSpecialCharacters,"Tl’etinqox Rd, Anahims Flat IR, BC",STREET,"Tl’etinqox Rd, Anahims Flat IR, BC",[],R,,129,T,T
 00497-StreetNameWithSpecialCharacters,"Clinton/Loon Lake FSR, Hutchison Lake, BC",STREET,"Clinton/Loon Lake FSR, Hutchison Lake, BC",[],R,,129,T,T
 00498-ACrazy,"201 A 201 A A St, Abbotsford, BC",BLOCK,"UNIT 201A -- 201A A St, Abbotsford, BC","[UNIT_DESIGNATOR.missing,UNIT_NUMBER.notMatched,CIVIC_NUMBER_SUFFIX.notMatched]",R,,156,T,T
-00499-NonIntersectionOfRoadAndHwy,"trans-canada hwy and no 1 rd abbotsford bc",INTERSECTION,"Trans-Canada Hwy and Trans-Canada Hwy Onramp, Abbotsford, BC",[],R,,156,T,T
+00499-NonIntersectionOfRoadAndHwy,"Chancellor Ave and Trans-Canada Hwy, View Royal, BC",STREET,"Chancellor Ave, View Royal, BC",[LOCALITY_GARBAGE.notAllowed,STREET_TYPE.missing],R,,156,T,T
 00500-NoisyAddress,"Oscar the Grouch 1 Centennial Sq Felix the Cat Victoria Winnie the Pooh BC",CIVIC_NUMBER,"1 Centennial Sq, Victoria, BC",[],R,,156,T,T
 00501-StreetNameCompoundWordsSeparated,"12312 Horse Shoe Way, Richmond, BC",BLOCK,"12312 Horseshoe Way, Richmond, BC",[],F,,,T,T
 00502-StreetNameCompoundWordsSeparated,"101 Sea View St, Sayward, BC",CIVIC_NUMBER,"101 Seaview St, Sayward, BC",[],F,,,T,T
