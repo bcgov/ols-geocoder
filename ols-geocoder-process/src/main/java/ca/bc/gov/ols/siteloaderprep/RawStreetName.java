@@ -6,8 +6,8 @@ public class RawStreetName {
 	public String type;
 	public String dir;
 	public String qual;
-	public Boolean typeIsPrefix;
-	public Boolean dirIsPrefix;
+	public boolean typeIsPrefix;
+	public boolean dirIsPrefix;
 	
 	@Override
 	public String toString() {

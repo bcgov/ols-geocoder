@@ -918,7 +918,7 @@ public class StreetPrep {
 		TIntObjectMap<RawStreetSeg> segMap = new TIntObjectHashMap<RawStreetSeg>();
 		try(RowReader rr = new TsvRowReader(inputDir + TRANSPORT_LINE_DEMOGRAPHIC_FILE, geometryFactory)) {
 			while(rr.next()) {
-				if(rr.getBoolean("DEMOGRAPHIC_IND")) {
+				if(Boolean.TRUE.equals(rr.getBoolean("DEMOGRAPHIC_IND"))) {
 					RawStreetSeg seg = new RawStreetSeg(rr);
 					segMap.put(seg.streetSegmentId, seg);
 				}
@@ -1116,8 +1116,8 @@ public class StreetPrep {
 				row.put("INPUT_STRING", lm.inputString);
 				row.put("LOCALITY_ID", lm.localityId);
 				row.put("CONFIDENCE", lm.confidence);
-				row.put("USER_DEFINED_IND", "N");
-				row.put("ACTIVE_IND", "Y");
+				row.put("USER_DEFINED_IND", false);
+				row.put("ACTIVE_IND", true);
 				rw.writeRow(row);
 			}
 		}
@@ -1134,11 +1134,11 @@ public class StreetPrep {
 				row.put("NAME_BODY", name.body);
 				if(name.type != null) {
 					row.put("STREET_TYPE", name.type);
-					row.put("STREET_TYPE_IS_PREFIX_IND", name.typeIsPrefix ? "Y" : "N");
+					row.put("STREET_TYPE_IS_PREFIX_IND", name.typeIsPrefix);
 				}
 				if(name.dir != null) {
 					row.put("STREET_DIRECTION", name.dir);
-					row.put("STREET_DIRECTION_IS_PREFIX_IND", name.dirIsPrefix ? "Y" : "N");
+					row.put("STREET_DIRECTION_IS_PREFIX_IND", name.dirIsPrefix);
 				}
 				if(name.qual != null) {
 					row.put("STREET_QUALIFIER", name.qual);
@@ -1179,7 +1179,7 @@ public class StreetPrep {
 					Map<String, Object> row = new THashMap<String, Object>();
 					row.put("STREET_NAME_ID", seg.nameIds.get(nameIdx));
 					row.put("STREET_SEGMENT_ID", seg.streetSegmentId);
-					row.put("IS_PRIMARY_IND", nameIdx == 0 ? "Y" : "N");
+					row.put("IS_PRIMARY_IND", nameIdx == 0);
 					rw.writeRow(row);
 				}
 			}

@@ -110,9 +110,9 @@ public class RawStreetSeg {
 		startTrafficImpactor = TrafficImpactor.convert(rr.getString("FROM_TRAFFIC_IMPACTOR_CODE")); 
 		endTrafficImpactor = TrafficImpactor.convert(rr.getString("TO_TRAFFIC_IMPACTOR_CODE")); 
 		speedLimit = rr.getInt("SPEED_LIMIT");
-		isVirtual = rr.getBoolean("VIRTUAL_IND");
+		isVirtual = Boolean.TRUE.equals(rr.getBoolean("VIRTUAL_IND"));
 		surfaceType= SurfaceType.convert(rr.getString("TRANSPORT_LINE_SURFACE_CODE"));
-		isTruckRoute = rr.getBoolean("TRUCK_ROUTE_IND");
+		isTruckRoute = Boolean.TRUE.equals(rr.getBoolean("TRUCK_ROUTE_IND"));
 		// turn restrictions
 		fromLeft = rr.getString("FROM_LEFT_TURN_TIME_CODE");
 		fromCentre = rr.getString("FROM_CENTRE_TURN_TIME_CODE");
@@ -168,11 +168,11 @@ public class RawStreetSeg {
 		row.put("START_TRAFFIC_IMPACTOR", startTrafficImpactor);
 		row.put("END_TRAFFIC_IMPACTOR", endTrafficImpactor);
 		row.put("SPEED_LIMIT", speedLimit);
-		row.put("VIRTUAL_IND", isVirtual ? "Y" : "N");
+		row.put("VIRTUAL_IND", isVirtual);
 		row.put("SURFACE_TYPE", surfaceType);
 		row.put("RIGHT_ELECTORAL_AREA_ID", rightElectoralAreaId); 
 		row.put("LEFT_ELECTORAL_AREA_ID", leftElectoralAreaId); 
-		row.put("TRUCK_ROUTE_IND", isTruckRoute ? "Y" : "N");
+		row.put("TRUCK_ROUTE_IND", isTruckRoute);
 		// turn restrictions
 		row.put("FROM_LEFT_TURN_RESTRICTION", fromLeft);	
 		row.put("FROM_CENTRE_TURN_RESTRICTION", fromCentre);
