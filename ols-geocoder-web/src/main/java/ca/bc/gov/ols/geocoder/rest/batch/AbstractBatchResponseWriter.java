@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpInputMessage;
@@ -94,7 +93,6 @@ public abstract class AbstractBatchResponseWriter extends AbstractHttpMessageCon
 		LocationReprojector lr = new LocationReprojector(geocoder.getConfig().getBaseSrsCode(), srsCode);
 		if(srsCode != geocoder.getDatastore().getConfig().getBaseSrsCode()) {
 			results.setSrsCode(srsCode);
-			results.setSearchTimeStamp(LocalDateTime.now());
 			lr.reproject(results.getMatches());
 			lr.reprecision(results.getMatches());
 		} else {

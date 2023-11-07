@@ -183,7 +183,7 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 				+ "</value></Data>\r\n"
 				+ "<Data name=\"version\"><value>" + escape(GeocoderConfig.VERSION)
 				+ "</value></Data>\r\n"
-				+ "<Data name=\"baseDataDate\"><value>" + escape(results.getProcessingDate().format(OlsResponseReader.DATE_FORMATTER))
+				+ "<Data name=\"baseDataDate\"><value>" + escape(results.getProcessingDate())
 				+ "</value></Data>\r\n"
 				+ "<Data name=\"minScore\"><value>" + escape(results.getMinScore())
 				+ "</value></Data>\r\n"

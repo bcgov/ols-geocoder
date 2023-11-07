@@ -125,7 +125,7 @@ public class GmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 						+ escape(GeocoderConfig.VERSION)
 						+ "</bgeo:version>\n"
 						+ "<bgeo:baseDataDate>"
-						+ escape(results.getProcessingDate().format(OlsResponseReader.DATE_FORMATTER))
+						+ escape(results.getProcessingDate())
 						+ "</bgeo:baseDataDate>\n"
 						+ "<bgeo:disclaimer>"
 						+ escape(config.getDisclaimer())

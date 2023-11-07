@@ -19,6 +19,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -119,6 +120,7 @@ public class SearchResults {
 		this.isEcho = query.isEcho();
 		this.locationDescriptor = query.getLocationDescriptor();
 		this.processingDate = processingDate;
+		this.searchTimeStamp = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
 		this.executionTime = new BigDecimal(String.format("%.3f",
 				query.getExecutionTimeNanos() / 1000000f));
 	}
@@ -180,10 +182,6 @@ public class SearchResults {
 	
 	public void setInterpolation(Interpolation interp) {
 		this.interpolation = interp;
-	}
-	
-	public void setSearchTimeStamp(LocalDateTime timeStamp) {
-		this.searchTimeStamp = timeStamp;
 	}
 	
 	public LocalDateTime getSearchTimeStamp() {
