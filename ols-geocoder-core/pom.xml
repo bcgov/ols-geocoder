@@ -12,6 +12,15 @@
 	<name>OLS Geocoder Core</name>
 	<artifactId>ols-geocoder-core</artifactId>
 	<packaging>jar</packaging>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources-filtered</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
 	
 	<dependencies>
 		<dependency>
