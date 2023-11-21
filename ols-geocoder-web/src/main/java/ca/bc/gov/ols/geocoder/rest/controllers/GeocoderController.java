@@ -47,6 +47,15 @@ public class GeocoderController {
 	@Autowired
 	private IGeocoder geocoder;
 	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public OlsResponse geocoderPing() {
+		GeocodeQuery query = new GeocodeQuery("BC");
+		SearchResults results = geocoder.geocode(query);
+		OlsResponse response = new OlsResponse(results);
+		response.setParams(query);
+		return response;
+	}
+	
 	@RequestMapping(value = "/ping", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public void geocoder() {
