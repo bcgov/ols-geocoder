@@ -60,19 +60,7 @@ public class GeocoderUtil {
 		Matcher m = ALPHA_PATTERN.matcher(in);
 		return m.matches();
 	}
-	
-	public static Boolean charToBoolean(String in) {
-		if(in == null) {
-			return null;
-		}
-		if(in.equals("N")) {
-			return Boolean.FALSE;
-		} else if(in.equals("Y")) {
-			return Boolean.TRUE;
-		}
-		return null;
-	}
-	
+		
 	public static String removeOrdinal(String str) {
 		Matcher m = NUMBER_WITH_ORDINAL_PATTERN.matcher(str);
 		if(m.matches()) {

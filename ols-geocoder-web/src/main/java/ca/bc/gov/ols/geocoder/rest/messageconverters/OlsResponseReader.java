@@ -96,7 +96,7 @@ public class OlsResponseReader {
 		writer.field("searchTimestamp", results.getSearchTimeStamp());
 		writer.field("executionTime", results.getExecutionTime());
 		writer.field("version", GeocoderConfig.VERSION);
-		writer.field("baseDataDate", results.getProcessingDate().format(DATE_FORMATTER));
+		writer.field("baseDataDate", results.getProcessingDate());
 		writer.field("srsCode", results.getSrsCode());
 		writer.field("interpolation", results.getInterpolation());
 		writer.field("echo", results.getIsEcho());

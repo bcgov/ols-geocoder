@@ -4,6 +4,8 @@ import java.util.Map;
 
 import org.locationtech.jts.geom.LineString;
 
+import com.google.gson.JsonObject;
+
 import ca.bc.gov.ols.enums.AccessRestriction;
 import ca.bc.gov.ols.enums.AddressScheme;
 import ca.bc.gov.ols.enums.DividerType;
@@ -64,6 +66,9 @@ public class RawStreetSeg {
 	String highwayRoute2; // "HIGHWAY_ROUTE_2"
 	String highwayRoute3; // "HIGHWAY_ROUTE_3"
 	TIntArrayList nameIds; // "STRUCTURED_NAME_#_ID"	
+	JsonObject extendedData; // "EXTENDED_DATA"
+	JsonObject motData; // "MINISTRY_OF_TRANSPORT_DATA"
+
 	LineString geom;
 	
 	public RawStreetSeg(RowReader rr) {
@@ -105,9 +110,9 @@ public class RawStreetSeg {
 		startTrafficImpactor = TrafficImpactor.convert(rr.getString("FROM_TRAFFIC_IMPACTOR_CODE")); 
 		endTrafficImpactor = TrafficImpactor.convert(rr.getString("TO_TRAFFIC_IMPACTOR_CODE")); 
 		speedLimit = rr.getInt("SPEED_LIMIT");
-		isVirtual = rr.getBoolean("VIRTUAL_IND");
+		isVirtual = Boolean.TRUE.equals(rr.getBoolean("VIRTUAL_IND"));
 		surfaceType= SurfaceType.convert(rr.getString("TRANSPORT_LINE_SURFACE_CODE"));
-		isTruckRoute = rr.getBoolean("TRUCK_ROUTE_IND");
+		isTruckRoute = Boolean.TRUE.equals(rr.getBoolean("TRUCK_ROUTE_IND"));
 		// turn restrictions
 		fromLeft = rr.getString("FROM_LEFT_TURN_TIME_CODE");
 		fromCentre = rr.getString("FROM_CENTRE_TURN_TIME_CODE");
@@ -126,6 +131,8 @@ public class RawStreetSeg {
 		highwayRoute1 = rr.getString("HIGHWAY_ROUTE_1");
 		highwayRoute2 = rr.getString("HIGHWAY_ROUTE_2");
 		highwayRoute3 = rr.getString("HIGHWAY_ROUTE_3");
+		extendedData = rr.getJson("EXTENDED_DATA");
+		motData = rr.getJson("MINISTRY_OF_TRANSPORT_DATA");
 		geom = rr.getLineString("GEOMETRY");
 		
 		nameIds = new TIntArrayList(7);
@@ -161,11 +168,11 @@ public class RawStreetSeg {
 		row.put("START_TRAFFIC_IMPACTOR", startTrafficImpactor);
 		row.put("END_TRAFFIC_IMPACTOR", endTrafficImpactor);
 		row.put("SPEED_LIMIT", speedLimit);
-		row.put("VIRTUAL_IND", isVirtual ? "Y" : "N");
+		row.put("VIRTUAL_IND", isVirtual);
 		row.put("SURFACE_TYPE", surfaceType);
 		row.put("RIGHT_ELECTORAL_AREA_ID", rightElectoralAreaId); 
 		row.put("LEFT_ELECTORAL_AREA_ID", leftElectoralAreaId); 
-		row.put("TRUCK_ROUTE_IND", isTruckRoute ? "Y" : "N");
+		row.put("TRUCK_ROUTE_IND", isTruckRoute);
 		// turn restrictions
 		row.put("FROM_LEFT_TURN_RESTRICTION", fromLeft);	
 		row.put("FROM_CENTRE_TURN_RESTRICTION", fromCentre);
@@ -184,6 +191,8 @@ public class RawStreetSeg {
 		row.put("HIGHWAY_ROUTE_1", highwayRoute1);
 		row.put("HIGHWAY_ROUTE_2", highwayRoute2);
 		row.put("HIGHWAY_ROUTE_3", highwayRoute3);
+		row.put("EXTENDED_DATA", extendedData);
+		row.put("MINISTRY_OF_TRANSPORT_DATA", motData);
 		row.put("geom", geom);
 		rw.writeRow(row);
 	}

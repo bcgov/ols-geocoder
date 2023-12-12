@@ -45,7 +45,7 @@ public class StreetName {
 	private final BlockFaceIntervalTree blocks;
 	
 	public StreetName(String body, String type, String dir, String qual,
-			Boolean typeIsPrefix, Boolean dirIsPrefix, BlockFaceIntervalTree blocks) {
+			boolean typeIsPrefix, boolean dirIsPrefix, BlockFaceIntervalTree blocks) {
 		this.body = body;
 		this.type = type;
 		this.dir = dir;

@@ -459,7 +459,7 @@ public class GeocodeQuery extends SharedParameters{
 			filters.add(new Filter<GeocodeMatch>() {
 				@Override
 				public boolean pass(GeocodeMatch match) {
-					if(localities.contains(match.getLocalityName().toLowerCase())) {
+					if(match.getLocalityName() != null && localities.contains(match.getLocalityName().toLowerCase())) {
 						return true;
 					}
 					return false;
@@ -470,7 +470,7 @@ public class GeocodeQuery extends SharedParameters{
 			filters.add(new Filter<GeocodeMatch>() {
 				@Override
 				public boolean pass(GeocodeMatch match) {
-					if(!notLocalities.contains(match.getLocalityName().toLowerCase())) {
+					if(match.getLocalityName() == null || !notLocalities.contains(match.getLocalityName().toLowerCase())) {
 						return true;
 					}
 					return false;

@@ -73,10 +73,8 @@ public interface OlsResponseWriter {
 	void faultFooter() throws IOException;
 
 	static Object formatDate(Object field) {
-		if(field instanceof LocalDate) {
-			return ((LocalDate)field).format(GeocoderConfig.DATE_FORMATTER);
-		} else if(field instanceof LocalDateTime) {
-			return ((LocalDateTime)field).format(GeocoderConfig.DATE_TIME_FORMATTER);
+		if(field instanceof LocalDate || field instanceof LocalDateTime) {
+			return String.valueOf(field);
 		}
 		return field;
 	}

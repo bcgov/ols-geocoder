@@ -798,7 +798,7 @@ public class GeocoderDataStore {
 				if(civicNumberSuffix != null) {
 					civicNumberSuffix = civicNumberSuffix.toUpperCase();
 				}
-				String isPrimary = rr.getString("is_primary_ind");
+				boolean isPrimary = Boolean.TRUE.equals(rr.getBoolean("is_primary_ind"));
 				Point point = rr.getPoint("access_albers_");
 				// if no accessPoint, fallback on SitePoint
 				if(point == null) {
@@ -829,7 +829,7 @@ public class GeocoderDataStore {
 					}
 					aps.add(ap);
 				}
-				if(isPrimary.equals("Y")) {
+				if(isPrimary) {
 					site.setPrimaryAccessPoint(ap);
 				}
 			}
@@ -1076,7 +1076,7 @@ public class GeocoderDataStore {
 			count++;
 			int name_id = rr.getInt("street_name_id");
 			int segment_id = rr.getInt("street_segment_id");
-			String is_primary = rr.getString("is_primary_ind");
+			boolean is_primary = Boolean.TRUE.equals(rr.getBoolean("is_primary_ind"));
 			StreetSegment segment = streetSegmentIdMap.get(segment_id);
 			if(segment != null) {
 				// get the list of segs for this street name so far, if there is one
@@ -1089,7 +1089,7 @@ public class GeocoderDataStore {
 				segs.add(segment);
 
 				// set the primary name id for the segment
-				if(is_primary.equalsIgnoreCase("Y")) {
+				if(is_primary) {
 					segment.setPrimaryStreetNameId(name_id);
 				} else {
 					segment.addAliasNameId(name_id);
@@ -1101,7 +1101,7 @@ public class GeocoderDataStore {
 				logger.warn("CONSTRAINT VIOLATION: Street Name on Segment refers to non-existent SegmentId: " + segment_id);
 			} else {
 				for(StreetIntersection intersection : intersections) {
-					if(is_primary.equalsIgnoreCase("Y")) {
+					if(is_primary) {
 						List<StreetIntersection> nameIntersections = primaryNameIdToIntersectionsMap
 								.get(name_id);
 						if(nameIntersections == null) {
@@ -1176,10 +1176,8 @@ public class GeocoderDataStore {
 			String type = rr.getString("street_type");
 			String dir = rr.getString("street_direction");
 			String qual = rr.getString("street_qualifier");
-			Boolean typeIsPrefix = GeocoderUtil.charToBoolean(
-					rr.getString("street_type_is_prefix_ind"));
-			Boolean dirIsPrefix = GeocoderUtil.charToBoolean(
-					rr.getString("street_direction_is_prefix_ind"));
+			boolean typeIsPrefix = Boolean.TRUE.equals(rr.getBoolean("street_type_is_prefix_ind"));
+			boolean dirIsPrefix = Boolean.TRUE.equals(rr.getBoolean("street_direction_is_prefix_ind"));
 			//todo should mapwords do the splitting?
 			String mappedBody = mapWords(unMappedBody).toUpperCase();
 			wordMapBuilder.addPhrase(mappedBody, WordClass.STREET_NAME_BODY);

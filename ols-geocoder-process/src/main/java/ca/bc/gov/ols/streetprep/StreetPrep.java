@@ -1,9 +1,6 @@
 package ca.bc.gov.ols.streetprep;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.nio.charset.Charset;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -68,6 +65,7 @@ public class StreetPrep {
 	// input filenames
 	private static final String VERSION_FILE = "VERSION.tsv";
 	private static final String TRANSPORT_LINE_DEMOGRAPHIC_FILE = "TRANSPORT_LINE_DEMOGRAPHIC.tsv";
+	
 	private static final String STRUCTURED_NAME_FILE = "STRUCTURED_NAME.tsv";
 	private static final String NAME_PREFIX_CODE_FILE = "NAME_PREFIX_CODE.tsv";
 	private static final String NAME_SUFFIX_CODE_FILE = "NAME_SUFFIX_CODE.tsv";
@@ -927,7 +925,7 @@ public class StreetPrep {
 		TIntObjectMap<RawStreetSeg> segMap = new TIntObjectHashMap<RawStreetSeg>();
 		try(RowReader rr = new TsvRowReader(inputDir + TRANSPORT_LINE_DEMOGRAPHIC_FILE, geometryFactory)) {
 			while(rr.next()) {
-				if(rr.getBoolean("DEMOGRAPHIC_IND")) {
+				if(Boolean.TRUE.equals(rr.getBoolean("DEMOGRAPHIC_IND"))) {
 					RawStreetSeg seg = new RawStreetSeg(rr);
 					segMap.put(seg.streetSegmentId, seg);
 				}
@@ -935,7 +933,7 @@ public class StreetPrep {
 		}
 		return segMap;
 	}
-	
+		
 	private void correctSegmentLocalities(TIntObjectMap<RawStreetSeg> segMap, TIntObjectMap<RawLocality> localityMap) {
 		TIntObjectIterator<RawStreetSeg> iterator = segMap.iterator();
 		while(iterator.hasNext()) {
@@ -1125,8 +1123,8 @@ public class StreetPrep {
 				row.put("INPUT_STRING", lm.inputString);
 				row.put("LOCALITY_ID", lm.localityId);
 				row.put("CONFIDENCE", lm.confidence);
-				row.put("USER_DEFINED_IND", "N");
-				row.put("ACTIVE_IND", "Y");
+				row.put("USER_DEFINED_IND", false);
+				row.put("ACTIVE_IND", true);
 				rw.writeRow(row);
 			}
 		}
@@ -1143,11 +1141,11 @@ public class StreetPrep {
 				row.put("NAME_BODY", name.body);
 				if(name.type != null) {
 					row.put("STREET_TYPE", name.type);
-					row.put("STREET_TYPE_IS_PREFIX_IND", name.typeIsPrefix ? "Y" : "N");
+					row.put("STREET_TYPE_IS_PREFIX_IND", name.typeIsPrefix);
 				}
 				if(name.dir != null) {
 					row.put("STREET_DIRECTION", name.dir);
-					row.put("STREET_DIRECTION_IS_PREFIX_IND", name.dirIsPrefix ? "Y" : "N");
+					row.put("STREET_DIRECTION_IS_PREFIX_IND", name.dirIsPrefix);
 				}
 				if(name.qual != null) {
 					row.put("STREET_QUALIFIER", name.qual);
@@ -1188,7 +1186,7 @@ public class StreetPrep {
 					Map<String, Object> row = new THashMap<String, Object>();
 					row.put("STREET_NAME_ID", seg.nameIds.get(nameIdx));
 					row.put("STREET_SEGMENT_ID", seg.streetSegmentId);
-					row.put("IS_PRIMARY_IND", nameIdx == 0 ? "Y" : "N");
+					row.put("IS_PRIMARY_IND", nameIdx == 0);
 					rw.writeRow(row);
 				}
 			}

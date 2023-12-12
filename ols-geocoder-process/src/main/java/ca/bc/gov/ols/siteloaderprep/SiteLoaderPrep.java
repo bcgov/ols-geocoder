@@ -325,9 +325,9 @@ public class SiteLoaderPrep {
 				RawStreetName n = new RawStreetName();
 				n.body = rr.getString("streetName");
 				n.type = rr.getString("streetType");
-				n.typeIsPrefix = rr.getBoolean("isStreetTypePrefix");
+				n.typeIsPrefix = Boolean.TRUE.equals(rr.getBoolean("isStreetTypePrefix"));
 				n.dir = rr.getString("streetDirection");
-				n.dirIsPrefix = rr.getBoolean("isStreetDirectionPrefix");
+				n.dirIsPrefix = Boolean.TRUE.equals(rr.getBoolean("isStreetDirectionPrefix"));
 				n.qual = rr.getString("streetQualifier");
 				
 				String fullStreetName = n.toString();

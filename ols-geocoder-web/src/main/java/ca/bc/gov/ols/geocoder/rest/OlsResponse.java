@@ -15,14 +15,12 @@
  */
 package ca.bc.gov.ols.geocoder.rest;
 
-import gnu.trove.map.hash.THashMap;
-
-import java.time.LocalDateTime;
 import java.util.Map;
 
 import ca.bc.gov.ols.geocoder.api.SharedParameters;
 import ca.bc.gov.ols.geocoder.api.data.ModifiableLocation;
 import ca.bc.gov.ols.geocoder.api.data.SearchResults;
+import gnu.trove.map.hash.THashMap;
 
 /**
  * The OlsResponse class wraps a single instance of any result/output object, and holds any
@@ -107,7 +105,6 @@ public class OlsResponse {
 			if(responseObj instanceof SearchResults) {
 				SearchResults results = (SearchResults)responseObj;
 				results.setSrsCode(toSrsCode);
-				results.setSearchTimeStamp(LocalDateTime.now());
 				lr.reproject(results.getMatches());
 				lr.reprecision(results.getMatches());
 			} else if(responseObj instanceof ModifiableLocation) {
