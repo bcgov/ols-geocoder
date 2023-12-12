@@ -13,6 +13,21 @@
 	<artifactId>ols-geocoder-web</artifactId>
 	<packaging>jar</packaging>
 
+	<build>
+		<plugins>
+	      		<plugin>
+	        		<groupId>org.apache.maven.plugins</groupId>
+	        		<artifactId>maven-war-plugin</artifactId>
+	        		<version>3.3.2</version>
+	      		</plugin>
+	        	<plugin>
+	        		<groupId>org.springframework.boot</groupId>
+	        		<artifactId>spring-boot-maven-plugin</artifactId>
+	        		<version>${springboot.version}</version>
+	      		</plugin>
+	    	</plugins>
+	  </build>
+
 	<dependencies>
 		<dependency>
 		    <groupId>jakarta.servlet</groupId>
