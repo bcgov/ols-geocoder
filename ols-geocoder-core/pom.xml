@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>ca.bc.gov.ols</groupId>
 		<artifactId>ols-geocoder</artifactId>
-		<version>4.3.0-SNAPSHOT</version>
+		<version>4.4.0-DEV</version>
 	</parent>
 
 	<name>OLS Geocoder Core</name>
@@ -56,7 +56,7 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.3.12</version>
+			<version>1.4.8</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
