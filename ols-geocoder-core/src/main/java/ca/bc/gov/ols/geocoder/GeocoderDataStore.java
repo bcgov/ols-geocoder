@@ -570,7 +570,7 @@ public class GeocoderDataStore {
 	
 	private Document docFromAddr(SiteAddress addr) {
 		Document doc = new Document();
-	    doc.add(new Field("streetAddress", addr.getStreetAddressString(), TextField.TYPE_STORED));
+	    doc.add(new Field("streetAddress", addr.getStreetAddress(), TextField.TYPE_STORED));
 	    doc.add(new Field("locality", addr.getLocalityName(), TextField.TYPE_STORED));
 	    doc.add(new Field("province", addr.getStateProvTerr(), TextField.TYPE_STORED));
 	    return doc;

@@ -295,7 +295,8 @@ public class SiteAddress extends GeocoderAddress {
 		return addressString;
 	}
 	
-	public String getStreetAddressString() {
+	@XmlElement
+	public String getStreetAddress() {
 		StringBuilder sb = new StringBuilder(1024);
 		appendPart(sb, " ", GeocoderUtil.formatCivicNumber(civicNumber));
 		if(civicNumberSuffix != null) {
