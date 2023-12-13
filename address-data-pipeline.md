@@ -162,12 +162,12 @@ Here is the data flow for the current implementation of the gather and transform
 
 #### Data Flow 1: Shared Geocoder and Route Planner data integration
 
-![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/c875e03b-e01d-4244-948d-f60edb9a948b)
+![OLS Prep Flow 1_ Shared Geocoder and Router 2023-12-12](https://github.com/bcgov/ols-geocoder/assets/34925250/370e0d1e-00dc-48bf-be3a-5b00bc092a8a)
 <br><br>
 
 #### Data Flow 2 - Geocoder data integration
 
-![OLS Prep Flow 2 Geocoder](https://user-images.githubusercontent.com/9123564/204048460-7b3d4738-4dd3-48fc-b7d1-303de77cdf87.png)
+![OLS Prep Flow 2_ Geocoder 2023-12-12](https://github.com/bcgov/ols-geocoder/assets/34925250/d8db6c86-96eb-48f3-a1b7-3f397cc17449)
 <br><br>
 
 #### Data Flow 3 - Route Planner data integration
