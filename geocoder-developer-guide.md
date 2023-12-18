@@ -37,6 +37,13 @@ The BC Physical Address Online Geocoder REST API lets you integrate real-time st
 ## API Changes in v4.3
 There are no breaking API changes in this release. There is one non-breaking API change:
 
+- Improved recognition of addresses containing PO boxes.
+- Improved response for cases where no site is found.
+- Improved parsing to better handle non-address elements found in an addressString.
+- Improved handling of locality qualifiers in locality names.
+- Improved error responses for JSON.
+- Continued data integration automation.
+
 ## API Changes in v4.2
 There are no breaking API changes in this release. There is one non-breaking API change:
 
