@@ -33,6 +33,16 @@ The BC Physical Address Online Geocoder REST API lets you integrate real-time st
 
 
 <a name=apichanges></a>
+
+## API Changes in v4.3
+There are no breaking API changes in this release. There is one non-breaking API change:
+
+## API Changes in v4.2
+There are no breaking API changes in this release. There is one non-breaking API change:
+
+- Improved recognition of street and locality names containing missing or extra blank spaces.
+- Improved handling of unitNumberSuffix in structured address requests.
+
 ## API Changes in v4.1
 There are no breaking API changes in this release. There is one non-breaking API change:
 
