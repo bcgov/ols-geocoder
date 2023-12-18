@@ -40,7 +40,7 @@ Name | Meaning | Penalty
 <a name="LOCALITY.missing">LOCALITY.missing</a> | A given address didn’t contain a locality name but one was found that contains the given civic number and street.|10
 <a name="LOCALITY.notMatched">LOCALITY.notMatched</a> | A given locality does not contain a given civic number and street but another locality was found that does.|35
 <a name="LOCALITY.partialMatch">LOCALITY.partialMatch</a> | Some of the words in a locality name were matched. A match with a full locality name is returned.|1
-<a name="LOCALITY.partialMatch">LOCALITY.partialMatch</a> | The locality name was missing a locality qualifier, but was still valid without it (e.g., "Johnson BC" vs. "Johnson in Indian Arm, BC". A match with a full locality name is returned.|0
+<a name="LOCALITY.partialMatch">LOCALITY.partialMatch</a> | The locality name was missing a locality qualifier, but was still valid without it (e.g., "Kitsilano, BC" vs. "Kitsilano in Vancouver, BC". A match with a full locality name is returned.|0
 <a name="LOCALITY.spelledWrong">LOCALITY.spelledWrong</a> | A given locality was spelled wrong but was successfully corrected to match a known locality.|2
 <a name="POSTAL_ADDRESS_ELEMENT.notAllowed">POSTAL_ADDRESS_ELEMENT.notAllowed</a> | An element of a mailing address was detected (e.g., PO, BOX nn, SS, RR nn, a postal code). All such elements are ignored.|1
 <a name="PROVINCE.missing">PROVINCE.missing</a> | A given address didn't contain a province code (e.g., BC)|1
