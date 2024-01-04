@@ -840,7 +840,7 @@ public class SiteLoaderPrep {
 			}
 		}
 		row.put("AP_TYPE", site.apType); 
-		row.put("IS_PRIMARY_IND", site.isPrimary); 
+		row.put("IS_PRIMARY_IND", site.isPrimary ? "Y" : "N"); 
 		row.put("NARRATIVE_LOCATION", site.narrativeLocation); 
 		row.put("ACCESS_POSITIONAL_ACCURACY", site.accessPositionalAccuracy == null ? "" : site.accessPositionalAccuracy.toString()); 
 		row.put("CIVIC_NUMBER", site.civicNumber); 
