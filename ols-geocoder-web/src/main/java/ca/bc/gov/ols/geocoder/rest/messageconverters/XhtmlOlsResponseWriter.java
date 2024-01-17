@@ -21,11 +21,12 @@ import java.io.Writer;
 import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 
 public class XhtmlOlsResponseWriter extends HtmlOlsResponseWriter {
-
+	protected String contextPath;
 	protected String footer;
 	
-	public XhtmlOlsResponseWriter(Writer out, GeocoderConfig config) {
+	public XhtmlOlsResponseWriter(Writer out, GeocoderConfig config, String contextPath) {
 		super(out, config);
+		this.contextPath = contextPath;
 	}
 
 	@Override

@@ -111,6 +111,7 @@ public class GeocoderConfig {
 
 		Stream<ConfigurationParameter> configParams = configStore.getConfigParams();
 		configParams.forEach(configParam -> {
+			// keeps this change
 			if(!configParam.getAppId().equals("BGEO")) return;
 			String name = configParam.getConfigParamName();
 			String value = configParam.getConfigParamValue();

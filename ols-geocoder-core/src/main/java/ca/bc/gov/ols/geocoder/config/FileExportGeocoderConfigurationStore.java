@@ -16,13 +16,14 @@
 package ca.bc.gov.ols.geocoder.config;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.stream.JsonReader;
 
@@ -38,10 +39,11 @@ public class FileExportGeocoderConfigurationStore extends FileExportConfiguratio
 	protected List<LocalityMapping> localityMappings = new ArrayList<LocalityMapping>();
 	protected int localityMappingCount = 0;
 
-	public FileExportGeocoderConfigurationStore(InputStream inStream) {
+	public FileExportGeocoderConfigurationStore(MultipartFile file) {
+		fileName = file.getOriginalFilename();
 		try {
 			JsonReader jsonReader = new JsonReader(
-					new InputStreamReader(inStream, Charset.forName("UTF-8")));
+					new InputStreamReader(file.getInputStream(), Charset.forName("UTF-8")));
 			jsonReader.beginObject();
 			while(jsonReader.hasNext()) {
 				switch(jsonReader.nextName()) {

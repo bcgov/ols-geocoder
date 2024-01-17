@@ -15,28 +15,28 @@
  */
 package ca.bc.gov.ols.geocoder.rest;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.header.writers.StaticHeadersWriter;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	private static final String CSP_POLICY = "script-src 'self' https://code.jquery.com https://unipear.api.gov.bc.ca 'unsafe-inline' 'unsafe-eval'";
 	
-	@Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
-        	.authorizeHttpRequests((authorizeHttpRequests) ->
-        		authorizeHttpRequests.anyRequest().permitAll()
-        	);
-
-        //.headers().and().contentSecurityPolicy(CSP_POLICY);
-			//.addHeaderWriter(new StaticHeadersWriter("Content-Security-Policy", CSP_POLICY))
-			//.and().requestMatchers("/**");
-        return http.build();
-    }
+	@Override
+	protected void configure(HttpSecurity httpSec) throws Exception {
+		httpSec.csrf().disable()
+				.headers()
+				.contentTypeOptions().and()
+				.xssProtection().and()
+				.cacheControl().and()
+				.httpStrictTransportSecurity().and()
+				.frameOptions().and()
+				.addHeaderWriter(new StaticHeadersWriter("Content-Security-Policy", CSP_POLICY))
+				.and().antMatcher("/**");
+	}
 }

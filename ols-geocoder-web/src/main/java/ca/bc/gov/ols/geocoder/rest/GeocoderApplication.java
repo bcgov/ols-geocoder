@@ -19,12 +19,8 @@ import javax.annotation.PreDestroy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration;
-import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import ca.bc.gov.ols.geocoder.Geocoder;
 import ca.bc.gov.ols.geocoder.GeocoderFactory;
@@ -32,18 +28,13 @@ import ca.bc.gov.ols.geocoder.IGeocoder;
 import ca.bc.gov.ols.geocoder.api.GeometryReprojector;
 import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 
-@SpringBootApplication
-@EnableAutoConfiguration(exclude={CassandraAutoConfiguration.class, UserDetailsServiceAutoConfiguration.class})
+@Component
 public class GeocoderApplication {
 	private static final Logger logger = LoggerFactory.getLogger(GeocoderConfig.LOGGER_PREFIX
 			+ GeocoderApplication.class.getCanonicalName());
 	
 	private IGeocoder geocoder;
 	private GeometryReprojector reprojector = new GeotoolsGeometryReprojector();
-	
-	public static void main(String[] args) {
-		SpringApplication.run(GeocoderApplication.class, args);
-	}
 	
 	public GeocoderApplication() {
 		logger.info("GeocoderApplication() constructor called");

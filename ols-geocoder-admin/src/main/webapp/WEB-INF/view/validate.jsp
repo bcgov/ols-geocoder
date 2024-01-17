@@ -8,6 +8,7 @@
 <%@ include file="../../header.jsp" %>
 <div class="bodyContent">
 <h1>Validate Configuration</h1>
+<p><b>File Name:</b> ${exportConfig.fileName}</p>
 <p><b>Export Date (from file contents):</b> ${exportConfig.exportDate}</p> 
 <c:choose>
   <c:when test="${!exportConfig.errors.isEmpty()}">

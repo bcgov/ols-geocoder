@@ -33,7 +33,9 @@ import ca.bc.gov.ols.geocoder.rest.OlsResponse;
 
 @Component
 public class XhtmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsResponse> {
-	
+	@Autowired
+	ServletContext servletContext;
+
 	@Autowired
 	private IGeocoder geocoder;
 	
@@ -63,8 +65,8 @@ public class XhtmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsR
 		GeocoderConfig config = geocoder.getDatastore().getConfig();
 		OutputStreamWriter out = new OutputStreamWriter(outputMessage.getBody(), "UTF-8");
 		response.reproject(config.getBaseSrsCode(), response.getOutputSRS());
-		XhtmlOlsResponseWriter responseWriter = new XhtmlOlsResponseWriter(out, config);
-		OlsResponseReader responseReader = new OlsResponseReader(response, responseWriter, config);
+		XhtmlOlsResponseWriter responseWriter = new XhtmlOlsResponseWriter(out, config, 
+				servletContext.getContextPath());OlsResponseReader responseReader = new OlsResponseReader(response, responseWriter, config);
 		responseReader.convert();
 		out.flush();
 	}

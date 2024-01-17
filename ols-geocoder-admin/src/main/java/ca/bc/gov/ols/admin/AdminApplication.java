@@ -28,12 +28,8 @@ import javax.annotation.PreDestroy;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration;
-import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import ca.bc.gov.ols.geocoder.GeocoderFactory;
 import ca.bc.gov.ols.geocoder.config.GeocoderConfigurationStore;
@@ -42,8 +38,7 @@ import ca.bc.gov.ols.rowreader.JsonRowReader;
 import ca.bc.gov.ols.rowreader.RowReader;
 import gnu.trove.map.hash.TIntObjectHashMap;
 
-@SpringBootApplication
-@EnableAutoConfiguration(exclude={CassandraAutoConfiguration.class, UserDetailsServiceAutoConfiguration.class})
+@Component
 public class AdminApplication {
 	final static Logger logger = LoggerFactory.getLogger(
 			AdminApplication.class.getCanonicalName());
@@ -54,17 +49,13 @@ public class AdminApplication {
 	private TIntObjectHashMap<String> localityIdMap;
 	private int[] sortedLocalityIds;
 	private long localityIdMapTimestamp;
- 	
-	public static void main(String[] args) {
-		SpringApplication.run(AdminApplication.class, args);
-	}
 	   
 	public AdminApplication() {
 		logger.info("AdminApplication() constructor called");
 		configStore = GeocoderConfigurationStoreFactory.getConfigurationStore(GeocoderFactory.getBootstrapConfigFromEnvironment());
-		singleton = this;
 	}
 
+	@Bean
 	public static AdminApplication adminApplication() {
 		if(singleton == null) {
 			singleton = new AdminApplication();

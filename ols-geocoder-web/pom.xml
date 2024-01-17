@@ -11,30 +11,16 @@
 
 	<name>OLS Geocoder Web</name>
 	<artifactId>ols-geocoder-web</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
-	<build>
-		<plugins>
-	      		<plugin>
-	        		<groupId>org.apache.maven.plugins</groupId>
-	        		<artifactId>maven-war-plugin</artifactId>
-	        		<version>3.3.2</version>
-	      		</plugin>
-	        	<plugin>
-	        		<groupId>org.springframework.boot</groupId>
-	        		<artifactId>spring-boot-maven-plugin</artifactId>
-	        		<version>${springboot.version}</version>
-	      		</plugin>
-	    	</plugins>
-	  </build>
+	<properties>
+		<m2eclipse.wtp.contextRoot>/pub/geocoder</m2eclipse.wtp.contextRoot>
+		<geotools.version>22.5</geotools.version>
+	</properties>
+
+	
 
 	<dependencies>
-		<dependency>
-		    <groupId>jakarta.servlet</groupId>
-		    <artifactId>jakarta.servlet-api</artifactId>
-		    <version>6.0.0</version>
-		    <scope>provided</scope>
-		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
@@ -53,16 +39,17 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>ca.bc.gov.ols</groupId>
-			<artifactId>ols-util</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
 		<dependency>
@@ -91,19 +78,25 @@
 			<version>${geotools.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-servlet-api</artifactId>
+			<version>9.0.14</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
 			<scope>test</scope>
 		</dependency>
 	 	<dependency>
-		  	<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<version>${springboot.version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${springframework.version}</version>
 			<exclusions>
 				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-json</artifactId>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>		

@@ -18,14 +18,14 @@ package ca.bc.gov.ols.geocoder.rest;
 import java.security.InvalidParameterException;
 import java.util.List;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 
 
-public class ApiKeyInterceptor implements HandlerInterceptor {
+public class ApiKeyInterceptor extends HandlerInterceptorAdapter {
 
 	private List<String> parcelKeys;
 
