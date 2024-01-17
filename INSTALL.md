@@ -324,7 +324,7 @@ After configuring the environment, the Geocoder and Geocoder admin will need to 
 (eg. by restarting tomcat or using the Tomcat manager GUI to restart those particular apps).
 
 Now you should be able to connect to the Geocoder admin app through a path similar to
-http://localhost:8080/ols-geocoder-admin-4.3.0-SNAPSHOT/params.jsp. 
+http://localhost:8080/ols-geocoder-admin-4.4.0-SNAPSHOT/params.jsp. 
 The exact address can be found in Tomcat manager GUI at http://localhost:8080/manager/html
 (username and password are both *admin* in this example).
 
