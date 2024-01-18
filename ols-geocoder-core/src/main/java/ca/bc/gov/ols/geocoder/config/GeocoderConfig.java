@@ -96,7 +96,9 @@ public class GeocoderConfig {
             props.load(input);
             VERSION = props.getProperty("app.version");
 		} catch(IOException ioe) {
-			throw new RuntimeException(ioe);
+			// hack to see if CPF can work
+			VERSION = "java11-4.4";
+			// throw new RuntimeException(ioe);
 		}
 	}
 	
