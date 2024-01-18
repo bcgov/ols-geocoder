@@ -18,6 +18,8 @@ package ca.bc.gov.ols.geocoder.rest.messageconverters;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;

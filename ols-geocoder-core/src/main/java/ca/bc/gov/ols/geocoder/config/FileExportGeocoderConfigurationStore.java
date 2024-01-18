@@ -40,7 +40,7 @@ public class FileExportGeocoderConfigurationStore extends FileExportConfiguratio
 	protected int localityMappingCount = 0;
 
 	public FileExportGeocoderConfigurationStore(MultipartFile file) {
-		fileName = file.getOriginalFilename();
+		// fileName = file.getOriginalFilename();
 		try {
 			JsonReader jsonReader = new JsonReader(
 					new InputStreamReader(file.getInputStream(), Charset.forName("UTF-8")));
