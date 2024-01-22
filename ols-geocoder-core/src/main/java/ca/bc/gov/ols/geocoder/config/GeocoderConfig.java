@@ -91,15 +91,14 @@ public class GeocoderConfig {
 	protected float roadNarrowMultiplier;
 
 	static {
-		try (InputStream input = Thread.currentThread().getContextClassLoader().getResourceAsStream("app.properties")) {
-            Properties props = new Properties();
-            props.load(input);
-            VERSION = props.getProperty("app.version");
-		} catch(IOException ioe) {
-			// hack to see if CPF can work
-			VERSION = "java11-4.4";
-			// throw new RuntimeException(ioe);
-		}
+		VERSION = "java11-4.4";
+		// try (InputStream input = Thread.currentThread().getContextClassLoader().getResourceAsStream("app.properties")) {
+        //     Properties props = new Properties();
+        //     props.load(input);
+        //     VERSION = props.getProperty("app.version");
+		// } catch(IOException ioe) {
+		// 	throw new RuntimeException(ioe);
+		// }
 	}
 	
 	public GeocoderConfig() {
