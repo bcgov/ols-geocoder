@@ -24,11 +24,27 @@
 	        		<groupId>org.springframework.boot</groupId>
 	        		<artifactId>spring-boot-maven-plugin</artifactId>
 	        		<version>${springboot.version}</version>
+					
 	      		</plugin>
 	    	</plugins>
 	  </build>
 
 	<dependencies>
+		<dependency>
+			<groupId>io.prometheus</groupId>
+			<artifactId>prometheus-metrics-core</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.prometheus</groupId>
+			<artifactId>prometheus-metrics-exporter-servlet-jakarta</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.prometheus</groupId>
+			<artifactId>prometheus-metrics-instrumentation-jvm</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 		<dependency>
 		    <groupId>jakarta.servlet</groupId>
 		    <artifactId>jakarta.servlet-api</artifactId>

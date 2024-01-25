@@ -24,7 +24,13 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
+
+// for exposing metric API
+import io.prometheus.metrics.exporter.servlet.jakarta.PrometheusMetricsServlet;
+// the following line is the default JVM metrics. It's commented out to improve performance.
+// import io.prometheus.metrics.instrumentation.jvm.JvmMetrics;
 
 import ca.bc.gov.ols.geocoder.Geocoder;
 import ca.bc.gov.ols.geocoder.GeocoderFactory;
@@ -43,6 +49,8 @@ public class GeocoderApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(GeocoderApplication.class, args);
+		// when uncommented, the /metrics API will display all JVM metrics
+		// JvmMetrics.builder().register();
 	}
 	
 	public GeocoderApplication() {
@@ -63,5 +71,10 @@ public class GeocoderApplication {
 			((Geocoder)geocoder).close();
 		}
 	}
+
+	@Bean
+    public ServletRegistrationBean<PrometheusMetricsServlet> createPrometheusMetricsEndpoint() {
+        return new ServletRegistrationBean<>(new PrometheusMetricsServlet(), "/metrics/*");
+    }
 	
 }

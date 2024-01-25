@@ -38,11 +38,20 @@ import ca.bc.gov.ols.geocoder.rest.exceptions.InvalidParameterException;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.PrecisionModel;
 
+import io.prometheus.metrics.core.metrics.Gauge;
+import java.util.UUID;
+
 @RestController
 @CrossOrigin
 public class GeocoderController {
 	final static Logger logger = LoggerFactory.getLogger(GeocoderConfig.LOGGER_PREFIX
 			+ GeocoderController.class.getCanonicalName());
+
+	private static final Gauge responseTimeGauge = Gauge.builder()
+            .name("response_time_seconds")
+            .help("Response time in seconds.")
+            .labelNames("endpoint", "request_id")
+            .register();
 	
 	@Autowired
 	private IGeocoder geocoder;
@@ -68,6 +77,9 @@ public class GeocoderController {
 		if(bindingResult.hasErrors()) {
 			throw new InvalidParameterException(bindingResult);
 		}
+
+		long startTime = System.currentTimeMillis();
+
 		query.setIncludeOccupants(false);
 		GeocoderConfig config = geocoder.getDatastore().getConfig();
 		query.resolveAndValidate(config,
@@ -79,6 +91,13 @@ public class GeocoderController {
 		results.setInterpolation(query.getInterpolation());
 		OlsResponse response = new OlsResponse(results);
 		response.setParams(query);
+
+		long endTime = System.currentTimeMillis();
+		double responseTimeInSeconds = (endTime - startTime) / 1000.0;
+
+
+		responseTimeGauge.labelValues("/addresses", UUID.randomUUID().toString()).set(responseTimeInSeconds);
+        
 		return response;
 	}
 	
