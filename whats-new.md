@@ -3,7 +3,7 @@
 Check out the Geocoder release [roadmap](https://github.com/bcgov/ols-geocoder/blob/gh-pages/roadmap.md)
 For detailed API release notes, see the [BC Geocoder Developer Guide](https://github.com/bcgov/api-specs/blob/master/geocoder/geocoder-developer-guide.md)
 
-## January, 2024
+## February 6, 2024
 - BC Address Geocoder version 4.3.0
 - Improved recognition of addresses containing PO boxes.
 - Improved response for cases where no site is found.
