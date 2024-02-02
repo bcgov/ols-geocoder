@@ -296,8 +296,9 @@ public class GeocoderDataStore {
 	}
 	
 	public List<MisspellingOf<StreetName>> getStreetNames(String name, String type, String dir, String qual) {
-		List<MisspellingOf<StreetNameBody>> bodies = streetNameTrie.queryExactWordPrefix(name);
 		List<MisspellingOf<StreetName>> names = new ArrayList<MisspellingOf<StreetName>>();
+		if(name.equalsIgnoreCase("st")) return names; // "St" is too vague to match anything
+		List<MisspellingOf<StreetNameBody>> bodies = streetNameTrie.queryExactWordPrefix(name);
 		for(MisspellingOf<StreetNameBody> body : bodies) {
 			for(StreetName streetName : body.get().getStreetNames()) {
 				if(body.getError() == 0
