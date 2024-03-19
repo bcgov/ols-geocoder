@@ -105,6 +105,9 @@ The current geocoder data integration process has three main weaknesses:
 
 - It is too fussy. The current process requires many manual steps that require careful typing and lots of visual confirmation.
 - It takes too long. It takes approximately three business days to complete.
+- The current data integration pipelines only run the latest version by default. When we need a earlier version we must manually update the pipelines to run.
+- Data version should always match up with Geocoder's version. However there is yet a check if the supplied data does not match up Geocoder's version. It could lead to hard bugs.
+
 <br><br>
 
 <a name=requirements></a>
