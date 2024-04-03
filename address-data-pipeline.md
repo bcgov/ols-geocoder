@@ -9,7 +9,6 @@
 [Requirements of a new implementation](#requirements)<br>
 [Data Flow Diagrams](#data-flow)<br>
 [Activity diagrams](#activity)<br>
-[Architecture Diagrams](#architecture)<br>
 
 <a name=intro></a>
 ## Introduction
@@ -127,7 +126,7 @@ Stage name|Description|Implementation
 ||After reference addresses have been integrated, associate candidate occupants with reference addresses.<br><br>Reject occupants whose address is not a valid reference address.|To confirm validity, geocode an occupant's address using a geocoder that is loaded with the latest reference road network and reference addresses.<br><br>With the appropriate orchestration tool, an isolated batch geocoder can be preconfigured, deployed and loaded with the latest reference address data.
 ||Also generate locality aliases, qualified locality names from official populated place names, street name indexes, and other indexes necessary for speedy address matching|
 ||All rejected addresses and occupants are saved for QA analysis by the appropriate data authorities.|
-|Verify|Verify that the new reference address dataset is globally valid.|With the appropriate orchestration tool, an isolated batch geocoder can be preconfigured, deployed and loaded with the appropriate candidate address data for verification.
+|Verify|Verify that the new r.eference address dataset is globally valid.|With the appropriate orchestration tool, an isolated batch geocoder can be preconfigured, deployed and loaded with the appropriate candidate address data for verification.
 ||Globally valid means the dataset is <br> * locality-complete (e.g. has addresses from every locality) <br> * match-correct (e.g., all test addresses geocode as expected) <br> * spatially-consistent (e.g., address locations on every block increase in the same direction as their civic numbers, blockface address ranges don't overlap and increase in the same direction), and <br>  * version-consistent (e.g. locality address counts are higher than the previous version of reference data)|
 ||A data administrator should review the validation results before deployment of any new data to production
 Deploy| If validation is successful, make new reference road network and address list accessible to online and batch geocoders|This process can be automated but should be manually initiated.
@@ -186,14 +185,3 @@ Here is the activity diagram of the current implementation
 
 ![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/d19ba328-5612-404b-a364-6b0216817c9a)
 <br><br><br>
-
-<a name=architecture></a>
-## Architecture Diagrams
-
-The current implementation is on the left; one possible implementation on the right:
-
-![image.png](https://images.zenhubusercontent.com/57a52ca5e40e5714b16d039c/082b65d9-cc15-43af-9b39-dd0dc6b68215)
-
-<br><br>
-
-
