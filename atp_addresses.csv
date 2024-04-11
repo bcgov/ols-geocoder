@@ -73,7 +73,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00074-CivicAddressUnknownStreetDirection,"456 Gorge Rd WN Victoria BC",CIVIC_NUMBER,"456 Gorge Rd E, Victoria, BC","[UNRECOGNIZED.notAllowed:33 STREET_DIRECTION.missing:2]",R,,,T,T
 00075-CivicAddressUnknownStreetType,"561 Salmon Ave, Central Saanich, BC",BLOCK,"561 Salmon Rd, Central Saanich, BC","[UNRECOGNIZED.notAllowed:33 STREET_TYPE.notMatched]",R,,,T,T
 00076-CivicAddressUnknownStreetName,"561 Samson Rd, Central Saanich, BC",BLOCK,"561 Salmon Rd, Central Saanich, BC","[STREET_NAME.spelledWrong:2]",R,,,F,F
-00077-CivicAddressUnknownCivicNumber,"60000 Hwy 97B SE Salmon Arm BC",STREET,"Hwy 97B SE, Salmon Arm, BC",[CIVIC_NUMBER.notInAnyBlock:10],R,,,F,F
+00077-CivicAddressUnknownCivicNumber,"60000 Meares St, Victoria BC",STREET,"Meares St, Victoria, BC",[CIVIC_NUMBER.notInAnyBlock:10],R,,,F,F
 00078-CivicAddressUnknownUnitDescriptor,"ABODE 128 -- 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 ABODE -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.Unknown],F,,,T,T
 00079-CivicAddressStreetDirectionForUndirectedStreet,"109 Quarry Dr W Salt Spring Island BC",CIVIC_NUMBER,"109 Quarry Dr, Salt Spring Island, BC",[STREET_DIRECTION.notMatched:2],R,,,T,T
 00080-CivicAddressWithMailBagAtEnd,"525 Superior St, Victoria, BC MAILBAG 300",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
