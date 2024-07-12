@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>ca.bc.gov.ols</groupId>
 		<artifactId>ols-geocoder</artifactId>
-		<version>4.3.0-SNAPSHOT</version>
+		<version>4.3.1-SNAPSHOT</version>
 	</parent>
 
 	<name>OLS Geocoder Core</name>
