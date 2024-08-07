@@ -34,44 +34,7 @@ The BC Physical Address Online Geocoder REST API lets you integrate real-time st
 
 <a name=apichanges></a>
 
-## API Changes in v4.3
-There are no breaking API changes in this release. There is one non-breaking API change:
-
-- Improved recognition of addresses containing PO boxes.
-- Improved response for cases where no site is found.
-- Improved parsing to better handle non-address elements found in an addressString.
-- Improved handling of locality qualifiers in locality names.
-- Improved error responses for JSON.
-- Continued data integration automation.
-
-## API Changes in v4.2
-There are no breaking API changes in this release. There is one non-breaking API change:
-
-- Improved recognition of street and locality names containing missing or extra blank spaces.
-- Improved handling of unitNumberSuffix in structured address requests.
-
-## API Changes in v4.1
-There are no breaking API changes in this release. There is one non-breaking API change:
-
-- There is a new fault property called **value** that contains the string that caused the address match fault. This is useful when figuring out why a given address didn't geocode well. For details, see [About faults](#aboutFaults).
-
-## API Changes in v4.0.0
-There are no API changes in this release.
-
-
-## API Changes in v3.4.1
-There are two breaking API changes but they only affect the occupants/addresses resource.<br>
-1. In occupants/addresses, if no occupant separator ("**") is found in addressString, addressString is assumed to be an occupant name, not a civic address. In previous versions, if no frontGate ("--") was found, addressString was assumed to be a civic address.
-
-2. In occupants/addresses, fullAddress now includes an occupant separator "**" as in "Sir Jame Douglas Elementary ** 401 Moss St, Victoria, BC"
- 
-
-## API Changes in v3.3.1
-There is one breaking API change:<br>
-The following anonymous online geocoder URLs are deprecated, no longer supported and may be shut down in the future:
-
-https://apps.gov.bc.ca/pub/geocoder<br><br>
-http://apps.gov.bc.ca/pub/geocoder<br><br>
+A summary of changes to the BC Address Geocoder can be found on the [What's New](https://github.com/bcgov/ols-geocoder/blob/gh-pages/whats-new.md) page for each release.
 
 <br><br>
 <a name=resources></a>
