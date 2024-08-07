@@ -33,6 +33,7 @@ The BC Physical Address Online Geocoder REST API lets you integrate real-time st
 
 
 <a name=apichanges></a>
+## API Changes
 
 A summary of changes to the BC Address Geocoder can be found on the [What's New](https://github.com/bcgov/ols-geocoder/blob/gh-pages/whats-new.md) page for each release.
 
