@@ -13,6 +13,7 @@ This guide is aimed at developers and web masters that would like to incorporate
 [API Changes](#apichanges)<br>
 [Resource Overview](#resources)<br>
 [Cross-Origin Resource Sharing](#cors)<br>
+[URL encoding](#encoding)<br>
 [addresses Resource](#addresses)<br>
 [occupants\/addresses Resource](#occupantsaddresses)<br>
 [occupants\/nearest Resource](#occupantsnearest)<br>
@@ -45,12 +46,17 @@ The current baseUrl for the online geocoder is:<br>
 
 https://geocoder.api.gov.bc.ca/
 
-This URL allows both public and gated access. Gated access requires an apikey. To get a sandbox apikey with a maximum rate of 1000 requests per minute, visit the [geocoder api console](https://openapi.apps.gov.bc.ca/?url=https://raw.githubusercontent.com/bcgov/api-specs/master/geocoder/geocoder-combined.json). You can get an unrestricted apikey for use in government applications by contacting the [DataBC Help Desk](https://forms.gov.bc.ca/databc-contact-us/)
+To acquire an apikey with a rate limit of 1000 requests per minute, visit the [API Services Portal](https://api.gov.bc.ca/devportal/api-directory). Once an API key has been acquired, you can explore the API using the [API console](https://openapi.apps.gov.bc.ca/?url=https://raw.githubusercontent.com/bcgov/api-specs/master/geocoder/geocoder-combined.json).
 
 <br><br>
 <a name=cors></a>
 ## Cross-Origin Resource Sharing (CORS)
 CORS is enabled for any domain if you include an apikey with each request.
+
+<br><br>
+<a name=encoding></a>
+## URL Encoding
+Geocoder requests should use the ASCII character set. Characters found in an address that are not ASCII should be encoded. For example, a '#' would be encoded as '%23'.
 
 <br><br>
 <a name=addresses></a>
