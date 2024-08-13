@@ -5,7 +5,7 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
 
 ## Next release (2025)
 - BC Address Geocoder version 4.4.1
-- Added new exactSpelling parameter that limits autoComplete suggestions to addresses beginning with the provided partial address.
+- Added new exactSpelling parameter that improves autoComplete suggestions for partial addresses that do not containing civic numbers.
 
 ## February 6, 2024
 - BC Address Geocoder version 4.3.0
