@@ -11,7 +11,7 @@ To acquire an API key for the [BC Address Geocoder](https://www2.gov.bc.ca/gov/c
 5. Click on the [BC Address Geocoder Web Service](https://api.gov.bc.ca/devportal/api-directory/273?) panel link.
 6. Scroll down and click on the **Request Access** button beside BC Address Geocoder (Public) (*not the button for BC Address Geocoder Parcels*)
 7. In the next screen, click the ‘+’ button to create an entry for your application or script.
-8. Within the same screen, select which API Environment you need access to.
+8. Within the same screen, select which **API Environment** you need access to.
 9. Click the **Request Access** button.
 10. In the next screen click the **Generate Secrets** button to create an API key for the BC Address Geocoder.
 11. Next, our team will be notified and grant your API key to the BC Address Geocoder. Following that, you will receive a confirmation email.
