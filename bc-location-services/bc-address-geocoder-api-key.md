@@ -1,6 +1,6 @@
 # BC Address Geocoder API Key Request Process 
 
-To acquire an API key for the [BC Address Geocoder](https://www2.gov.bc.ca/gov/content?id=118DD57CD9674D57BDBD511C2E78DC0D), please complete the steps below.
+To acquire an API key for the [BC Address Geocoder](https://www2.gov.bc.ca/gov/content?id=118DD57CD9674D57BDBD511C2E78DC0D), complete the steps below.
 
 ## Instructions:
 
