@@ -167,7 +167,7 @@ public class Geocoder implements IGeocoder {
 		if(query.getAddressString() != null && !query.getAddressString().isEmpty()) {
 			matches = new ArrayList<GeocodeMatch>();
 			GeocodeResultsHandler handler = new GeocodeResultsHandler(query, this);
-			parser.parse(query.getAddressString(), query.getAutoComplete(), handler);
+			parser.parse(query.getAddressString(), query.getAutoComplete(), query.getExactSpelling(), handler);
 			logger.debug("Number of derivations: {}", handler.getDerivationCount());
 			matches = handler.getMatches();
 		} else {

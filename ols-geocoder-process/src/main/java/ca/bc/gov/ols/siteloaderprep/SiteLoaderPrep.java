@@ -267,8 +267,8 @@ public class SiteLoaderPrep {
 				name.type = rr.getString("street_type");
 				name.dir = rr.getString("street_direction");
 				name.qual = rr.getString("street_qualifier");
-				name.typeIsPrefix = "Y".equals(rr.getString("street_type_is_prefix_ind"));
-				name.dirIsPrefix = "Y".equals(rr.getString("street_direction_is_prefix_ind"));
+				name.typeIsPrefix = Boolean.TRUE.equals(rr.getBoolean("street_type_is_prefix_ind"));
+				name.dirIsPrefix = Boolean.TRUE.equals(rr.getBoolean("street_direction_is_prefix_ind"));
 				nameMap.put(name.toString(), name);
 			}
 		}

@@ -80,6 +80,7 @@ public class GeocodeQuery extends SharedParameters{
 	private Filter<GeocodeMatch> filter = null;
 	private boolean includeOccupants = false;
 	private boolean autoComplete = false;
+	private boolean exactSpelling = false;
 
 	public GeocodeQuery() {
 		setMaxResults(1);
@@ -408,6 +409,14 @@ public class GeocodeQuery extends SharedParameters{
 	
 	public void setAutoComplete(boolean autoComplete) {
 		this.autoComplete = autoComplete;
+	}
+
+	public boolean getExactSpelling() {
+		return exactSpelling;
+	}
+	
+	public void setExactSpelling(boolean exactSpelling) {
+		this.exactSpelling = exactSpelling;
 	}
 
 	public boolean pass(GeocodeMatch match) {
