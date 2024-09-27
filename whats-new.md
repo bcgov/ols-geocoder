@@ -3,7 +3,7 @@
 Check out the Geocoder release [roadmap](https://github.com/bcgov/ols-geocoder/blob/gh-pages/roadmap.md)
 For detailed API release notes, see the [BC Geocoder Developer Guide](https://github.com/bcgov/api-specs/blob/master/geocoder/geocoder-developer-guide.md)
 
-## Next release (Fall 2024)
+## Next release (late 2024)
 - BC Address Geocoder version 4.4.1
 - Added new exactSpelling parameter to improve autoComplete suggestions for partial addresses that do not contain civic numbers.
 
