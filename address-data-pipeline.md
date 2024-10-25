@@ -174,7 +174,8 @@ Here is the data flow for the current implementation of the gather and transform
 
 #### Data Flow 3 - Route Planner data integration
 
-![OLS Prep Flow 3_ Router 2023-12-14](https://github.com/bcgov/ols-geocoder/assets/34925250/43102eb5-630e-43c0-9380-f34b0401ec30)
+![OLS Prep Flow 3_ Router 2024-10-18](https://github.com/user-attachments/assets/b0c9d128-98b2-4ed7-a142-2026edc8f96d)
+
 
 <br><br>
 
