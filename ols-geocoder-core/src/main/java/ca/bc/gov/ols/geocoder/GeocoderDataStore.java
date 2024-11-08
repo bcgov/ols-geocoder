@@ -32,23 +32,6 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Stream;
 
-//import org.apache.lucene.analysis.Analyzer;
-//import org.apache.lucene.analysis.standard.StandardAnalyzer;
-//import org.apache.lucene.document.Document;
-//import org.apache.lucene.document.Field;
-//import org.apache.lucene.document.TextField;
-//import org.apache.lucene.index.DirectoryReader;
-//import org.apache.lucene.index.IndexWriter;
-//import org.apache.lucene.index.IndexWriterConfig;
-//import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
-//import org.apache.lucene.queryparser.classic.ParseException;
-//import org.apache.lucene.search.IndexSearcher;
-//import org.apache.lucene.search.Query;
-//import org.apache.lucene.search.ScoreDoc;
-//import org.apache.lucene.search.TopDocs;
-//import org.apache.lucene.store.Directory;
-//import org.apache.lucene.store.MMapDirectory;
-//import org.apache.lucene.util.IOUtils;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LineString;
@@ -163,12 +146,6 @@ public class GeocoderDataStore {
 	
 	private EnumSet<GeocoderFeature> featureSet = EnumSet.allOf(GeocoderFeature.class);
 
-//	private Analyzer analyzer;
-//	private Directory luceneIndex;
-//	private DirectoryReader ireader;
-//	private IndexSearcher isearcher;
-//	private MultiFieldQueryParser parser;
-	
 	/*
 	 * Map from Intersection UUID to Intersection object, used for geocode lookups
 	 */
@@ -441,8 +418,6 @@ public class GeocoderDataStore {
 		}
 		
 		wordMap = new TrieWordMap(wordMapBuilder.getWordMap());
-		//wordMap = new LuceneWordMap(wordMapBuilder.getWordList(), wordMapBuilder.getWordMap());
-		
 		wordMapBuilder = null;
 		dateMap = null;
 		siteIdMap = null;
@@ -459,7 +434,6 @@ public class GeocoderDataStore {
 		} else {
 			logger.info("Data file dates are consistent.");
 		}
-		//buildLuceneIndex(accessPointMap, localityMappings);
 	}
 	
 	private Map<String,String> buildCompoundWordMap(Set<String> wordSet) {
@@ -525,100 +499,7 @@ public class GeocoderDataStore {
 			}
 		}
 		return newPhrases;
-	}
-	
-//	private void buildLuceneIndex(TIntObjectHashMap<List<AccessPoint>> accessPointMap, Map<String, Set<LocalityMapTarget>> localityMappings) {
-//		Map<Locality, Set<String>> invertedLocalityMap = new THashMap<Locality, Set<String>>();
-//		for(Entry<String, Set<LocalityMapTarget>> entry : localityMappings.entrySet()) {
-//			String fromStr = entry.getKey();
-//			for(LocalityMapTarget locMap : entry.getValue()) {
-//				Locality loc = locMap.getLocality();
-//				Set<String> strings = invertedLocalityMap.get(loc);
-//				if(strings == null) {
-//					strings = new THashSet<String>();
-//					invertedLocalityMap.put(loc, strings);
-//				}
-//				strings.add(fromStr);
-//			}
-//		}
-//		try {
-//			logger.info("Lucene Index build starting...");
-//			StopWatch sw = new StopWatch();
-//			sw.start();
-//			analyzer = new StandardAnalyzer();
-//			Path indexPath = Path.of("C:/apps/bgeo/index/");
-//			IOUtils.rm(indexPath);
-//			luceneIndex = new MMapDirectory(indexPath);
-//	
-//			IndexWriterConfig config = new IndexWriterConfig(analyzer);
-//			int baseAddrs = 0;
-//			int altAddrs = 0;
-//			try(IndexWriter w = new IndexWriter(luceneIndex, config)) {
-//				for(List<AccessPoint> aps : accessPointMap.valueCollection()) {
-//					for(AccessPoint ap : aps) {
-//						SiteAddress addr = new SiteAddress(ap.getSite(), ap);
-//					    baseAddrs++;
-//					    Locality loc = null;
-//					    if(ap instanceof CivicAccessPoint) {
-//					    	loc = ((CivicAccessPoint) ap).getBlockFace().getLocality();
-//					    } else if(ap instanceof NonCivicAccessPoint) {
-//					    	loc = ((NonCivicAccessPoint) ap).getLocality();
-//					    }
-//					    if(loc != null) {
-//					    	Set<String> locMaps = invertedLocalityMap.get(loc);
-//					    	if(locMaps != null) {
-//					    		for(String locMap: locMaps) {
-//					    			SiteAddress altAddr = new SiteAddress(addr);
-//					    			addr.setLocalityName(locMap);
-//								    w.addDocument(docFromAddr(altAddr));
-//								    altAddrs++;
-//					    		}
-//					    	}
-//					    }
-//					}
-//				}
-//				logger.info("Base addresses added to index: {} ; alternate addresses: {}", baseAddrs, altAddrs);
-//				w.close();
-//			}
-//			
-//			sw.stop();
-//			logger.info("Lucene Index built in: " + sw.getElapsedTimeSecs() + "s");
-//			ireader = DirectoryReader.open(luceneIndex);
-//		    isearcher = new IndexSearcher(ireader);
-//		    //QueryParser parser = new QueryParser("address", analyzer);
-//		    parser = new MultiFieldQueryParser(new String[] {"streetAddress", "locality", "province"}, analyzer);
-//
-//		} catch(IOException ioe) {
-//			throw new RuntimeException(ioe);
-//		} 
-//	}
-//	
-//	private Document docFromAddr(SiteAddress addr) {
-//		Document doc = new Document();
-//	    doc.add(new Field("streetAddress", addr.getStreetAddress(), TextField.TYPE_STORED));
-//	    doc.add(new Field("locality", addr.getLocalityName(), TextField.TYPE_STORED));
-//	    doc.add(new Field("province", addr.getStateProvTerr(), TextField.TYPE_STORED));
-//	    return doc;
-//	}
-//	
-//	public List<String> queryLuceneIndex(String queryString) {
-//		try {
-//		    Query query = parser.parse(queryString);
-//		    TopDocs topDocs = isearcher.search(query, 10);
-//		    ScoreDoc[] hits = topDocs.scoreDocs;
-//		    List<String> results = new ArrayList<String>(hits.length);
-//		    // Iterate through the results:
-//		    for (int i = 0; i < hits.length; i++) {
-//		    	Document hitDoc = isearcher.doc(hits[i].doc);
-//		    	results.add(hitDoc.get("streetAddress") + ", " + hitDoc.get("locality") + ", " + hitDoc.get("province"));
-//		    }
-//		    return results;
-//		} catch(IOException ioe) {
-//			throw new RuntimeException(ioe);
-//		} catch (ParseException pe) {
-//			throw new RuntimeException(pe);
-//		}
-//	}
+	}	
 
 	private TIntObjectHashMap<StreetIntersection> buildIntersectionIdMap() {
 		// build a map from the intersection Id to the Intersection object
