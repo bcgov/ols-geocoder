@@ -170,7 +170,7 @@ public class Geocoder implements IGeocoder {
 				matches = datastore.lookupExact(query);
 			} else {
 				GeocodeResultsHandler handler = new GeocodeResultsHandler(query, this);
-				parser.parse(query.getAddressString(), query.getAutoComplete(), query.getExactSpelling(), handler);
+				parser.parse(query.getAddressString(), query.getAutoComplete(), handler);
 				logger.debug("Number of derivations: {}", handler.getDerivationCount());
 				matches = handler.getMatches();
 			}
