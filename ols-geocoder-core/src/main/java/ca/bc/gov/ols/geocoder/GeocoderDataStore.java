@@ -1619,7 +1619,7 @@ public class GeocoderDataStore {
 	}
 	
 	public List<GeocodeMatch> lookupExact(GeocodeQuery query) {
-		return exactMatchLookup.query(query.getAddressString(), query.getMaxResults());
+		return exactMatchLookup.query(query);
 	}
 	
 	public SiteAddress getSiteByUuid(UUID uuid, LocationDescriptor ld,
