@@ -28,7 +28,6 @@ import org.locationtech.jts.geom.Point;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ca.bc.gov.ols.geocoder.GeocoderDataStore;
 import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 import ca.bc.gov.ols.geocoder.data.ILocation;
 import ca.bc.gov.ols.geocoder.filters.Filter;
