@@ -21,8 +21,6 @@ import java.time.LocalDateTime;
 
 import org.locationtech.jts.geom.Point;
 
-import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
-
 public interface OlsResponseWriter {
 
 	void documentHeader() throws IOException;

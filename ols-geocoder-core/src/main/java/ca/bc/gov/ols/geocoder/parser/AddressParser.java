@@ -54,7 +54,7 @@ public class AddressParser {
 	{
 		this.isTracing = isTracing;
 	}
-	
+		
 	public void parse(String sentence, boolean autoComplete, ParseDerivationHandler handler)
 	{
 		if(isTracing) {

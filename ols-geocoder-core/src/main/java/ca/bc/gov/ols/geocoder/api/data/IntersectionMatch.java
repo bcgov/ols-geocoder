@@ -44,6 +44,20 @@ public class IntersectionMatch extends GeocodeMatch {
 		this.address = address;
 	}
 	
+	/**
+	 * Copy constructor, used for copying exactMatch instances before returning them. 
+	 * @param toCopy
+	 */
+	public IntersectionMatch(IntersectionMatch toCopy) {
+		super(toCopy);
+		this.address = toCopy.address;
+	}
+	
+	@Override
+	public IntersectionMatch copy() {
+		return new IntersectionMatch(this);
+	}
+	
 	@Override
 	public StreetIntersectionAddress getAddress() {
 		return address;

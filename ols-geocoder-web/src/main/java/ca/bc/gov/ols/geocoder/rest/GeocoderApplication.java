@@ -15,8 +15,6 @@
  */
 package ca.bc.gov.ols.geocoder.rest;
 
-import javax.annotation.PreDestroy;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -26,7 +24,6 @@ import org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfigurati
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
-import ca.bc.gov.ols.geocoder.Geocoder;
 import ca.bc.gov.ols.geocoder.GeocoderFactory;
 import ca.bc.gov.ols.geocoder.IGeocoder;
 import ca.bc.gov.ols.geocoder.api.GeometryReprojector;
@@ -55,13 +52,6 @@ public class GeocoderApplication {
 	@Bean
 	public IGeocoder geocoder() {
 		return geocoder;
-	}
-	
-	@PreDestroy
-	public void preDestroy() {
-		if(geocoder instanceof Geocoder) {
-			((Geocoder)geocoder).close();
-		}
 	}
 	
 }
