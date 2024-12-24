@@ -80,6 +80,8 @@ import ca.bc.gov.ols.util.StringUtils;
 
 import org.locationtech.jts.geom.Coordinate;
 
+import me.xdrop.fuzzywuzzy.FuzzySearch;
+
 /**
  * The Geocoder takes GeocodeQueries and uses the GeocoderDataStore to return GeocodeResults.
  * 
@@ -251,12 +253,23 @@ public class Geocoder implements IGeocoder {
 		}
 		
 
-		// Mike: sort by length if score is the same
+		// Mike: sort by length/fuzzy if score is the same
 
-		matches.sort(
-    		Comparator.comparingInt(GeocodeMatch::getScore).reversed() // Sort by score in descending order
-            	.thenComparingInt(match -> match.getAddressString() != null ? match.getAddressString().length() : 0) // Then by length in ascending order
-		);
+		// matches.sort(
+    	// 	Comparator.comparingInt(GeocodeMatch::getScore).reversed() // Sort by score in descending order
+        //     	.thenComparingInt(match -> match.getAddressString() != null ? match.getAddressString().length() : 0) // Then by length in ascending order
+		// );
+
+		if(query.getAddressString() != null && !query.getAddressString().isEmpty()) {
+			matches.sort(
+        		Comparator.comparingInt(GeocodeMatch::getScore).reversed() // Primary sort by score (descending)
+                	.thenComparingInt((GeocodeMatch match) -> 
+                    	FuzzySearch.ratio(query.getAddressString(), match.getAddressString() != null ? match.getAddressString() : "")
+                  	).reversed() // Break ties by fuzzy score (higher fuzzy score is better)
+    		);
+		}
+		
+    );
 
 
 
