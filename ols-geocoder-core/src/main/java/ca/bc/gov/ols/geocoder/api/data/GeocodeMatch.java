@@ -95,10 +95,7 @@ public abstract class GeocodeMatch implements ModifiableLocation {
 	};
 	
 	public static final Comparator<GeocodeMatch> ADDRESS_STRING_COMPARATOR = Comparator
-	        .comparing(GeocodeMatch::getAddressString, Comparator.nullsFirst(String::compareToIgnoreCase))
-			.thenComparingInt(match -> match.getAddressString().length());
-    		
-
+	        .comparing(GeocodeMatch::getAddressString, Comparator.nullsFirst(String::compareToIgnoreCase));
 	
 	@XmlElement(nillable = true)
 	protected int score;

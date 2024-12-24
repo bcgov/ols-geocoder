@@ -250,6 +250,16 @@ public class Geocoder implements IGeocoder {
 			}
 		}
 		
+
+		// Mike: sort by length if score is the same
+
+		matches.sort(
+    		Comparator.comparingInt(GeocodeMatch::getScore).reversed() // Sort by score in descending order
+            	.thenComparingInt(match -> match.getAddressString() != null ? match.getAddressString().length() : 0) // Then by length in ascending order
+		);
+
+
+
 //		logger.debug("matches.size() before duplicate filter: {}", matches.size());
 //		
 //		// filter out any duplicate results, keep the one with the highest score
