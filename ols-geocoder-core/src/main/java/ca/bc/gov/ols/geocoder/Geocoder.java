@@ -16,6 +16,7 @@
 package ca.bc.gov.ols.geocoder;
 
 import gnu.trove.set.hash.THashSet;
+import me.xdrop.fuzzywuzzy.FuzzySearch;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -79,8 +80,6 @@ import ca.bc.gov.ols.util.PairedListEntry;
 import ca.bc.gov.ols.util.StringUtils;
 
 import org.locationtech.jts.geom.Coordinate;
-
-import me.xdrop.fuzzywuzzy.FuzzySearch;
 
 /**
  * The Geocoder takes GeocodeQueries and uses the GeocoderDataStore to return GeocodeResults.
@@ -251,26 +250,16 @@ public class Geocoder implements IGeocoder {
 				matches.add(match);
 			}
 		}
-		
 
-		// Mike: sort by length/fuzzy if score is the same
-
-		// matches.sort(
-    	// 	Comparator.comparingInt(GeocodeMatch::getScore).reversed() // Sort by score in descending order
-        //     	.thenComparingInt(match -> match.getAddressString() != null ? match.getAddressString().length() : 0) // Then by length in ascending order
-		// );
-
-		if(query.getAddressString() != null && !query.getAddressString().isEmpty()) {
+		if(query.isFuzzyMatch() && query.getAddressString() != null && !query.getAddressString().isEmpty()) {
+			// sort by fuzzy score (higher fuzzy score is better)
 			matches.sort(
-        		Comparator.comparingInt(GeocodeMatch::getScore).reversed() // Primary sort by score (descending)
-                	.thenComparingInt((GeocodeMatch match) -> 
-                    	FuzzySearch.ratio(query.getAddressString(), match.getAddressString() != null ? match.getAddressString() : "")
-                  	).reversed() // Break ties by fuzzy score (higher fuzzy score is better)
-    		);
+				Comparator.comparingInt((GeocodeMatch match) ->
+					FuzzySearch.ratio(query.getAddressString(), match.getAddressString())
+				).reversed() 
+			);
+			matches = matches.subList(0, Math.min(query.getMaxResults(), matches.size()));
 		}
-		
-    );
-
 
 
 //		logger.debug("matches.size() before duplicate filter: {}", matches.size());

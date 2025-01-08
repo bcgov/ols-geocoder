@@ -54,8 +54,7 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 		this.query = query;
 		this.geocoder = geocoder;
 		this.datastore = geocoder.getDatastore();
-		//matches = new ArrayList<GeocodeMatch>();
-		matches = new UniquePriorityQueue<GeocodeMatch>(query.getMaxResults() + 1, GeocodeMatch.SCORE_COMPARATOR.reversed());
+		matches = new UniquePriorityQueue<GeocodeMatch>(query.getNumPrelimResults(), GeocodeMatch.SCORE_COMPARATOR.reversed());
 	}
 	
 	@Override

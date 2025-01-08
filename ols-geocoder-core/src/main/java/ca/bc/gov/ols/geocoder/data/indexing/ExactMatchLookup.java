@@ -35,7 +35,7 @@ public class ExactMatchLookup {
 		List<GeocodeMatch> results = new ArrayList<GeocodeMatch>(query.getMaxResults() + 1);
 		int pos = Collections.binarySearch(table, new StringOnlyGeocodeMatch(addressString), GeocodeMatch.ADDRESS_STRING_COMPARATOR);
 		pos = Math.abs(pos) - 1;
-		for(int i = pos; results.size() < query.getMaxResults() + 1; i++) {
+		for(int i = pos; results.size() < query.getNumPrelimResults(); i++) {
 			GeocodeMatch match = table.get(i);
 			if(match.getAddressString().substring(0, addressString.length()).equalsIgnoreCase(addressString)) {
 				if(query.pass(match)) {

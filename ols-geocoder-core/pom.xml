@@ -107,7 +107,7 @@
 			<version>3.12.0</version>
 		</dependency>
 		<dependency>
-    		<groupId>com.github.xdrop</groupId>
+    		<groupId>me.xdrop</groupId>
     		<artifactId>fuzzywuzzy</artifactId>
     		<version>1.4.0</version>
 		</dependency>
