@@ -239,11 +239,13 @@ The *faults* property in a resource response is a list of one or more address ma
 <br><br>
 <a name=implementingautocomplete></a>
 ## Implementing address autocompletion in your application
-Using the autoComplete boolean request parameter is the key to successful implementation of address autocompletion in your application. Let's assume your application input form has an address text box and a search icon. 
+Using the [autoComplete](https://github.com/bcgov/ols-geocoder/blob/gh-pages/glossary.md#autoComplete) boolean request parameter is the key to successful implementation of address autocompletion in your application. Let's assume your application input form has an address text box and a search icon. 
 
-A user starts entering the characters of an address. After three or so characters, the application should issue a get request on the addresses resource with autoComplete set to True every time a user enters an additional character. This tells the geocoder that addressString contains a partial address and to find the best N address prefix matches for display in a pick list below the address text box.
+A user starts entering the characters of an address. After three or so characters, the application should issue a get request on the addresses resource with autoComplete set to true every time a user enters an additional character. This tells the geocoder that addressString contains a partial address and to find the best N address prefix matches for display in a pick list below the address text box.
 
-If the user clicks on the search icon or presses the Enter key, the application should issue a get request on the addresses resource with autocomplete set to False. This tells the geocoder to use addressString as entered when trying to find the best N matches.
+If the user clicks on the search icon or presses the Enter key, the application should issue a get request on the addresses resource with autoComplete set to False. This tells the geocoder to use addressString as entered when trying to find the best N matches.
+
+You can also use the autoComplete and [exactSpelling](https://github.com/bcgov/ols-geocoder/blob/gh-pages/glossary.md#exactSpelling) parameters in the same request. If exactSpelling is set to true (default is false), autoComplete suggestions will be limited to addresses beginning with the provided partial address. 
 
 If you are using jQuery in your javascript app, check out our javascript code for autocompletion [here](https://github.com/bcgov/ols-devkit/tree/gh-pages/widget). To see the code in action, visit [here](https://bcgov.github.io/ols-devkit/examples/address_autocomplete.html)
 
