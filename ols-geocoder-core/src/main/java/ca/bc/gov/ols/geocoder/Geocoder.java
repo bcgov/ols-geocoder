@@ -16,6 +16,7 @@
 package ca.bc.gov.ols.geocoder;
 
 import gnu.trove.set.hash.THashSet;
+import me.xdrop.fuzzywuzzy.FuzzySearch;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -249,7 +250,18 @@ public class Geocoder implements IGeocoder {
 				matches.add(match);
 			}
 		}
-		
+
+		if(query.isFuzzyMatch() && query.getAddressString() != null && !query.getAddressString().isEmpty()) {
+			// sort by fuzzy score (higher fuzzy score is better)
+			matches.sort(
+				Comparator.comparingInt((GeocodeMatch match) ->
+					FuzzySearch.ratio(query.getAddressString(), match.getAddressString())
+				).reversed() 
+			);
+			matches = matches.subList(0, Math.min(query.getMaxResults(), matches.size()));
+		}
+
+
 //		logger.debug("matches.size() before duplicate filter: {}", matches.size());
 //		
 //		// filter out any duplicate results, keep the one with the highest score
