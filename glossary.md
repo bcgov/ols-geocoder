@@ -31,7 +31,8 @@ Term | Definition
 <a name="degree">degree</a> | The number of road segments that intersection at an intersection. The degree of a dead-end is 1. The degree of a 4-way intersection is 4.
 <a name="echo">echo</a> | Include unmatched address details such as site name in results.
 <a name="electoralArea">electoralArea</a> | The name of the Electoral Area a physical address is located in. Is empty if address is located in a municipality. An Electoral Area is an administrative area within a [Regional-District](http://www.cscd.gov.bc.ca/lgd/pathfinder-rd.htm) in British Columbia.
-<a name="endDate">endDate</a> | The ending date of a time period formatted as YYYY-MM-DD .
+<a name="endDate">endDate</a> | The ending date of a time period formatted as YYYY-MM-DD.
+<a name="exactSpelling">exactSpelling</a> | If true, autoComplete suggestions are limited to addresses beginning with the provided partial address.
 <a name="excludeUnits">excludeUnits</a> | If true, excludes sites that are units of a parent site.
 <a name="executionTime">executionTime</a> | Query execution time in milliseconds
 <a name="extrapolate">extrapolate</a> | If true, uses supplied parcelPoint to derive an appropriate accessPoint. If extrapolate=true and no parcelPoint is provided or if extrapolate= false and a parcelPoint is provided, no extrapolation is performed and locationDescriptor is used to determine type of point to return.
