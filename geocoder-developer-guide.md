@@ -247,6 +247,8 @@ If the user clicks on the search icon or presses the Enter key, the application 
 
 You can also use the autoComplete and [exactSpelling](https://github.com/bcgov/ols-geocoder/blob/gh-pages/glossary.md#exactSpelling) parameters in the same request. If exactSpelling is set to true (default is false), autoComplete suggestions will be limited to addresses beginning with the provided partial address. 
 
+In addition to [exactSpelling](https://github.com/bcgov/ols-geocoder/blob/gh-pages/glossary.md#exactSpelling), the [fuzzyMatch](https://github.com/bcgov/ols-geocoder/blob/gh-pages/glossary.md#fuzzyMatch) parameter can be included in the same request. If fuzzyMatch is set to true (default is false), autoComplete suggestions will be sorted using a fuzzy match comparison to the addressString. 
+
 If you are using jQuery in your javascript app, check out our javascript code for autocompletion [here](https://github.com/bcgov/ols-devkit/tree/gh-pages/widget). To see the code in action, visit [here](https://bcgov.github.io/ols-devkit/examples/address_autocomplete.html)
 
 <br><br>
