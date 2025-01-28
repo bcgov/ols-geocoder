@@ -327,48 +327,40 @@ Here are some more examples:
 
 1.  Civic addresses without a unit:
 
-1025 HAPPY VALLEY RD, METCHOSIN, BC
-
-130A HILL ST, NELSON, BC
+    1025 HAPPY VALLEY RD, METCHOSIN, BC
+    130A HILL ST, NELSON, BC
 
 2.  A civic address with a unit:
 
-PAD 2 -- 1200 NORTH PARK RD, SHAWNIGAN LAKE, BC
+    PAD 2 -- 1200 NORTH PARK RD, SHAWNIGAN LAKE, BC
 
 3.  Civic addresses with a simple site name:
 
-PORT ALICE HEALTH CENTRE -- 1090 MARINE DRIVE, PORT ALICE, BC ROYAL
-ATHLETIC PARK -- 1014 CALEDONIA AVE, VICTORIA, BC
+    PORT ALICE HEALTH CENTRE -- 1090 MARINE DRIVE, PORT ALICE, BC ROYAL
+    ATHLETIC PARK -- 1014 CALEDONIA AVE, VICTORIA, BC
 
 4.  Civic addresses with a unit within a named complex:
 
-PAD 2, HAPPY MOBILE HOME PARK -- 1200 NORTH PARK RD, SHAWNIGAN LAKE,
-BC
-
-ROOM 103A, CLEARIHUE BUILDING, UNIVERSITY OF VICTORIA -- 3800
-FINNERTY RD, VICTORIA, BC ROOM 230, WEST BLOCK, ROYAL JUBILEE HOSPITAL
--- 1952 BAY ST, VICTORIA, BC
+    PAD 2, HAPPY MOBILE HOME PARK -- 1200 NORTH PARK RD, SHAWNIGAN LAKE, BC
+    ROOM 103A, CLEARIHUE BUILDING, UNIVERSITY OF VICTORIA -- 3800 FINNERTY RD, VICTORIA, BC ROOM 230, WEST BLOCK, ROYAL JUBILEE HOSPITAL -- 1952 BAY ST, VICTORIA, BC
 
 5.  Non-civic addresses with a unit within a named complex:
 
-PAD 2, HAPPY MOBILE HOME PARK -- NIMPO LAKE, BC
->
-PAD 2, HAPPY MOBILE HOME PARK -- REMOTE RD, NIMPO LAKE, BC
+    PAD 2, HAPPY MOBILE HOME PARK -- NIMPO LAKE, BC
+    PAD 2, HAPPY MOBILE HOME PARK -- REMOTE RD, NIMPO LAKE, BC
 
 6.  Non-civic address containing a street, locality, and province:
 
-KILOPOST 330 -- WILLOW DRIVE, 70 MILE HOUSE, BC BIKE STAND 134 --
-JOHNSON ST BRIDGE, VICTORIA, BC
+    KILOPOST 330 -- WILLOW DRIVE, 70 MILE HOUSE, BC BIKE STAND 134 -- JOHNSON ST BRIDGE, VICTORIA, BC
 
 7.  Non-civic address without a street:
 
-CENTENNIAL CANDLE -- VICTORIA, BC
+    CENTENNIAL CANDLE -- VICTORIA, BC
 
 8.  Intersection addresses:
 
-Douglas St and Johnson St, Victoria, BC
-
-Douglas St and Gorge Rd E and Hillside Ave, Victoria, BC
+    Douglas St and Johnson St, Victoria, BC
+    Douglas St and Gorge Rd E and Hillside Ave, Victoria, BC
 
 # Alternative Address Formats
 
@@ -377,13 +369,13 @@ Single-Line Address Format:
 
 1.  Unit without a frontGate:
 
-PAD 2, 1200 NORTH PARK RD, SHAWNIGAN LAKE, BC
+    PAD 2, 1200 NORTH PARK RD, SHAWNIGAN LAKE, BC
 
 2.  Unit number without a frontGate and unitDesignator (as per Canada
     Post):
 
-2-1200 NORTH PARK RD, SHAWNIGAN LAKE, BC
+    2-1200 NORTH PARK RD, SHAWNIGAN LAKE, BC
 
 3.  Unit following street (as per Canada Post):
 
-1200 NORTH PARK RD PAD 2, SHAWNIGAN LAKE, BC
+    1200 NORTH PARK RD PAD 2, SHAWNIGAN LAKE, BC
