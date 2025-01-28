@@ -25,7 +25,7 @@ and standardize your addresses for use as reference data by the
 geocoder, consider providing three columns: addressString,
 parcelPoint, and Notes. Here is an example file:
 
-    addressString,parcelPoint,Notes<br>
+    addressString,parcelPoint,Notes
     "BIG BARN -- HWY 3, Rock Creek,BC",SRID=4326;POINT(-123.3715424
     48.4180423),"Added 2015/03/11" "CENTENNIAL CANDLE -- Victoria,
     BC",SRID=4326;POINT(-123.336306 48.423109),"Added 2015/05/17"
