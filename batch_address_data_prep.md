@@ -206,6 +206,8 @@ are a few tips about the syntax of these lines:
 
 The following table defines the meaning of each address element:
 
+<div align="center">
+
 | Element           | Type     | Required       | Description                                    |
 |-------------------|----------|----------------|------------------------------------------------|
 | unitDesignator    | String   | No             | The type of unit within a house or building. Valid values are APT, BLDG, BSMT, FLR, LOBBY, LWR, PAD, PH, REAR, RM, SIDE, SITE, SUITE, TH, UNIT, and UPPR. The geocoder will try to match variations of these values on input (e.g., UPR) and output the standardized value (e.g., UPPR). |
@@ -220,6 +222,8 @@ The following table defines the meaning of each address element:
 | streetQualifier   | String   | No             | The qualifier of a street name (e.g., the Bridge in Johnson St Bridge). |
 | localityName      | String   | No             | The name of the municipality, community, Indian reservation, subdivision, regional district, aboriginal lands, or natural feature the site is located in. Since this is a physical address geocoder, not a mailing address geocoder, the locality of a civic address is that defined by the civic address authority, not Canada Post. A locality name that starts with a directional is not abbreviated (e.g., North Vancouver, not N Vancouver). Spelling of localities that are place names or natural feature names MUST match that published by the BC Geographical Names Information System. |
 | provinceCode      | String   | No             | The ISO 3166-2 Sub-Country Code for British Columbia, which is BC. |
+
+</div>
 
 For address element examples, see the next section.
 
@@ -266,6 +270,8 @@ of a civic address:
 
 which contains the following address elements:
 
+<div align="center">
+
 | Address Element     | Value     |
 |---------------------|-----------|
 | civicNumber         | 420       |
@@ -276,11 +282,15 @@ which contains the following address elements:
 | localityName        | VICTORIA  |
 | provinceCode        | BC        |
 
+</div>
+
 Here is an example of a civic address with a unit:
 
     UNIT 1A -- 433 CEDAR RAPIDS BLVD, PEMBERTON, BC
 
 which contains the following address elements:
+
+<div align="center">
 
 | **Address Element**   | **Value**  |
 |------------------------|------------|
@@ -292,11 +302,15 @@ which contains the following address elements:
 | localityName           | VICTORIA   |
 | provinceCode           | BC         |
 
+</div>
+
 Here is an example of a non-civic address with a street qualifier:
 
     JOHNSON ST BRIDGE, VICTORIA, BC
 
 which contains the following address elements:
+
+<div align="center">
 
 | **Address Element**   | **Value**  |
 |------------------------|------------|
@@ -305,6 +319,8 @@ which contains the following address elements:
 | streetQualifier        | BRIDGE     |
 | localityName           | VICTORIA   |
 | provinceCode           | BC         |
+
+</div>
 
 Here are some more examples:
 
