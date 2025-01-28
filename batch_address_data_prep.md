@@ -31,16 +31,16 @@ addressString,parcelPoint,Notes<br>
 BC",SRID=4326;POINT(-123.336306 48.423109),"Added 2015/05/17"
 
 parcelPoint is given in Extended Well Known Text format which is
-defined as follows: SRID=<EPSG code>; POINT(x y)
+defined as follows: 
 
-where
+    SRID=<EPSG code>; POINT(x y)
 
-<EPSG code>is the projection code (e.g., 4326 is geographics, 3005
-is BC Albers, etc.)
+    where
 
-x is longitude in decimal degrees for SRID=4326, Easting otherwise
-
-y is latitude in decimal degrees for SRID=4326, Northing otherwise
+    <EPSG code>is the projection code (e.g., 4326 is geographics, 3005
+    is BC Albers, etc.)
+    x is longitude in decimal degrees for SRID=4326, Easting otherwise
+    y is latitude in decimal degrees for SRID=4326, Northing otherwise
 
 # Preparing You Address File for the Batch Geocoder
 
@@ -90,13 +90,13 @@ name, locality name, and province code (see last example above). If
 you include a sitename in an address, it must be followed by the front
 gate delimiter (e.g., "--") as in the following examples:
 
-Royal Jubilee Hospital -- 1952 Bay St, Victoria, BC Kilometre Post
-620 -- HWY 3, Rock Creek, BC
+    Royal Jubilee Hospital -- 1952 Bay St, Victoria, BC Kilometre Post
+    620 -- HWY 3, Rock Creek, BC
 
 If you include a unit in an address with a site name, the unit must
 appear before the site name as in:
 
-RM 102, Port Alice Health Centre -- 1090 Marine Dr,Port Alice,BC
+    RM 102, Port Alice Health Centre -- 1090 Marine Dr,Port Alice,BC
 
 You can optionally include a column called yourId which should contain
 the identifier you use to uniquely identify each row. For example, you
