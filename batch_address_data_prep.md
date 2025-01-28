@@ -1,7 +1,7 @@
 # Preparing your Address File for Batch Geocoding
 
-The *Address List Editor* can handle a list of up to one thousand
-addresses. For larger lists, use the *Batch Geocoder*.
+The [*Address List Editor*](https://bcgov.github.io/ols-devkit/ale/) can handle a list of up to one thousand
+addresses. For larger lists, use the [*Batch Geocoder*](https://apps.gov.bc.ca/pub/cpf/secure/ws/apps/geocoder/multiple/).
 
 # Preparing You Address File for the Address List Editor
 
