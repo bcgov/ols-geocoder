@@ -236,29 +236,28 @@ means the term may appear one or more times. A term in brace brackets
 places indicated (e.g., Central St, N Central St, or Central St N, but
 not N Central St NE)
 
-<h1 align="center">Format 1 -- Civic address</h1>
-Format 1 -- Civic address
+<h4 align="center">Format 1 -- Civic address</h4>
 
-\[\[unitDesignator unitNumber\[unitNumberSuffix\]\] \[siteName\],\]\*
-frontGate civicNumber\[civicNumberSuffix\] {streetDirection}
+[[unitDesignator unitNumber[unitNumberSuffix]] [siteName],]\*
+frontGate civicNumber[civicNumberSuffix] {streetDirection}
 {streetType} streetName
 
-{streetType} {streetDirection} \[streetQualifier\], localityName,
+{streetType} {streetDirection} [streetQualifier], localityName,
 provinceCode
 
-Format 2 -- Non-civic address
+<h4 align="center">Format 2 -- Non-Civic address</h4>
 
-\[\[unitDesignator unitNumber\[unitNumberSuffix\]\] \[siteName\],\]\*
-frontGate \[{streetDirection} {streetType} streetName {streetType}
-{streetDirection} \[streetQualifier\],\] localityName, provinceCode
+[[unitDesignator unitNumber[unitNumberSuffix]] [siteName],]\*
+frontGate [{streetDirection} {streetType} streetName {streetType}
+{streetDirection} [streetQualifier],] localityName, provinceCode
 
-Format 3 -- Intersection address
+<h4 align="center">Format 3 -- Intersection address</h4>
 
 {streetDirection} {streetType} streetName {streetType}
-{streetDirection} \[streetQualifier\] \[ and {streetDirection}
+{streetDirection} [streetQualifier] [ and {streetDirection}
 {streetType} streetName {streetType}
 
-{streetDirection} \[streetQualifier\] \]+ , localityName, provinceCode
+{streetDirection} [streetQualifier] ]+ , localityName, provinceCode
 
 frontGate is the double dash delimiter (e.g., "--"). Here is an example
 of a civic address:
