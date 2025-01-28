@@ -26,9 +26,8 @@ geocoder, consider providing three columns: addressString,
 parcelPoint, and Notes. Here is an example file:
 
     addressString,parcelPoint,Notes
-    "BIG BARN -- HWY 3, Rock Creek,BC",SRID=4326;POINT(-123.3715424
-    48.4180423),"Added 2015/03/11" "CENTENNIAL CANDLE -- Victoria,
-    BC",SRID=4326;POINT(-123.336306 48.423109),"Added 2015/05/17"
+    "BIG BARN -- HWY 3, Rock Creek,BC",SRID=4326;POINT(-123.3715424 48.4180423),"Added 2015/03/11"
+    "CENTENNIAL CANDLE -- Victoria, BC",SRID=4326;POINT(-123.336306 48.423109),"Added 2015/05/17"
 
 parcelPoint is given in Extended Well Known Text format which is
 defined as follows: 
