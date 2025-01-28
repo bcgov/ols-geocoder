@@ -68,6 +68,7 @@ file, the geocoder won't find any good matches.
 A file of unstructured addresses looks like this:
 
 addressString
+
 "2317 MOODY AVE Kamloops, BC"
 "APT 1 1207 Douglas St, Victoria, BC" "525 Superior St,
 Victoria,BC"
@@ -110,6 +111,7 @@ will be output with each geocoded address so you can match each
 address up with a source client record.
 
 yourId,addressString
+
 A23E4,"2317 MOODY AVE Kamloops, BC"
 BXe33,"APT 1 1207 Douglas St, Victoria, BC" AA2w3,"525 Superior St,
 Victoria,BC" Q2S3E,"4251A ROCKBANK PL, WEST VANCOUVER,BC"
@@ -128,6 +130,7 @@ address in a source client record, you can copy the value of
 addressString into yourId as well. Here is an example:
 
 yourId,addressString
+
 "2317 MOODY AVE Kamloops, BC","2317 MOODY AVE Kamloops, BC"
 "APT 1 1207 Douglas St, Victoria, BC","APT 1 1207 Douglas St,
 Victoria, BC" "525 Superior St, Victoria,BC","525 Superior St,
