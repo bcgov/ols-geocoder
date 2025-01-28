@@ -241,108 +241,83 @@ height="3.826771653543307in"}
 
 The following table defines the meaning of each address element:
 
-+-------------+-----+---------+---------------------------------------+
-| Element     | > T | > R     | > Description                         |
-| Name        | ype | equired |                                       |
-+=============+=====+=========+=======================================+
-| uni         | >   | > No    | > The type of unit within a house or  |
-| tDesignator | Str |         | > building. Valid values are APT,     |
-|             | ing |         | > BLDG, BSMT, FLR, LOBBY, LWR, PAD,   |
-|             |     |         | > PH, REAR, RM, SIDE, SITE, SUITE,    |
-|             |     |         | > TH,                                 |
-|             |     |         | >                                     |
-|             |     |         | > UNIT, and UPPR. The geocoder will   |
-|             |     |         | > try to match variations of these    |
-|             |     |         | > values on input (e.g., UPR) and     |
-|             |     |         | > output the standardized value       |
-|             |     |         | > (e.g., UPPR).                       |
-+-------------+-----+---------+---------------------------------------+
-| unitNumber  | >   | > No    | > The number of the unit within a     |
-|             | Str |         | > house or building.                  |
-|             | ing |         |                                       |
-+-------------+-----+---------+---------------------------------------+
-| unitN       | >   | > No    | > A letter that follows the unit      |
-| umberSuffix | Str |         | > number as in Unit 1A or Suite 302B. |
-|             | ing |         |                                       |
-+-------------+-----+---------+---------------------------------------+
-| civicNumber | >   | > No    | > The official number assigned to a   |
-|             | Str |         | > site on a street by an address      |
-|             | ing |         | > authority.                          |
-+-------------+-----+---------+---------------------------------------+
-| civicN      | >   | > No    | > A letter or fraction that follows   |
-| umberSuffix | Str |         | > the civic number. There should be   |
-|             | ing |         | > no space between a civic number and |
-|             |     |         | > a letter (e.g., Unit 1A) and one    |
-|             |     |         | > space between a civic number and a  |
-|             |     |         | > fraction (e.g., Suite 3 ½)          |
-+-------------+-----+---------+---------------------------------------+
-
-+-------------+-----+---------+---------------------------------------+
-| siteName    | >   | > No    | > A string containing the name of the |
-|             | Str | > for   | > building, facility, or institution  |
-|             | ing | > civic | > (e.g., Duck Building, Casa Del Mar, |
-|             |     | > a     | > Crystal Garden, Bluebird House). A  |
-|             |     | ddress, | > business name should only be used   |
-|             |     | >       | > if it is permanently affixed to the |
-|             |     | > Yes   | > site and the site has no other,     |
-|             |     | > for   | > more generic name. If a site is a   |
-|             |     | > non-  | > unit within a complex, it may have  |
-|             |     | > civic | > a sitename in addition to a         |
-|             |     | >       | > unitNumber and unitSuffix. siteName |
-|             |     | address | > is optional for civic addresses but |
-|             |     |         | > required for non-civic addresses.   |
-+=============+=====+=========+=======================================+
-| >           | >   | > No    | > The official name of the street     |
-|  streetName | Str |         | > recognized by a municipality (e.g., |
-|             | ing |         | > Douglas in 1175 Douglas Street). A  |
-|             |     |         | > streetName that starts with a       |
-|             |     |         | > directional is not abbreviated      |
-|             |     |         | > (e.g., North Park, not N Park).     |
-+-------------+-----+---------+---------------------------------------+
-| streetType  | >   | > No    | > The type of street as assigned by a |
-|             | Str |         | > municipality (e.g., the ST in 1175  |
-|             | ing |         | > DOUGLAS ST) and is abbreviated if   |
-|             |     |         | > such an abbreviation exists. The    |
-|             |     |         | > set of all street types is defined  |
-|             |     |         | > by the provincial Integrated        |
-|             |     |         | > Transportation Network Program.     |
-+-------------+-----+---------+---------------------------------------+
-| stre        | >   | > No    | > The abbreviated compass direction   |
-| etDirection | Str |         | > as defined by Canada Post and B.C.  |
-|             | ing |         | > civic addressing authorities. The   |
-|             |     |         | > complete list is C, E, N, NE, NW,   |
-|             |     |         | > S, SE, SW, and W. All street        |
-|             |     |         | > directions except C are defined by  |
-|             |     |         | > Canada Post.                        |
-+-------------+-----+---------+---------------------------------------+
-| stre        | >   | > No    | > The qualifier of a street name      |
-| etQualifier | Str |         | > (e.g., the Bridge in Johnson St     |
-|             | ing |         | > Bridge)                             |
-+-------------+-----+---------+---------------------------------------+
-| l           | >   | > No    | > The name of the municipality,       |
-| ocalityName | Str |         | > community, Indian reservation,      |
-|             | ing |         | > subdivision, regional district,     |
-|             |     |         | > aboriginal lands, or natural        |
-|             |     |         | > feature the site is located in.     |
-|             |     |         | > Since this is a physical address    |
-|             |     |         | > geocoder, not a mailing address     |
-|             |     |         | > geocoder, the locality of a civic   |
-|             |     |         | > address is that defined by the      |
-|             |     |         | > civic address authority, not Canada |
-|             |     |         | > Post. A locality name that starts   |
-|             |     |         | > with a directional is not           |
-|             |     |         | > abbreviated (e.g., North Vancouver, |
-|             |     |         | > not N Vancouver). Spelling of       |
-|             |     |         | > localities that are place names or  |
-|             |     |         | > natural feature names MUST match    |
-|             |     |         | > that published by the BC            |
-|             |     |         | > Geographical Names Information      |
-|             |     |         | > System.                             |
-+-------------+-----+---------+---------------------------------------+
-| p           | >   | > No    | > The ISO 3166-2 Sub-Country Code for |
-| rovinceCode | Str |         | > British Columbia, which is BC.      |
-|             | ing |         |                                       |
-+-------------+-----+---------+---------------------------------------+
++-------------------+----------+----------+------------------------------------------------+
+| Element           | Type     | Required | Description                                    |
++===================+==========+==========+================================================+
+| unitDesignator    | String   | No       | The type of unit within a house or building.  |
+|                   |          |          | Valid values are APT, BLDG, BSMT, FLR,       |
+|                   |          |          | LOBBY, LWR, PAD, PH, REAR, RM, SIDE, SITE,   |
+|                   |          |          | SUITE, TH, UNIT, and UPPR. The geocoder      |
+|                   |          |          | will try to match variations of these values |
+|                   |          |          | on input (e.g., UPR) and output the          |
+|                   |          |          | standardized value (e.g., UPPR).             |
++-------------------+----------+----------+------------------------------------------------+
+| unitNumber        | String   | No       | The number of the unit within a house or      |
+|                   |          |          | building.                                    |
++-------------------+----------+----------+------------------------------------------------+
+| unitNumberSuffix  | String   | No       | A letter that follows the unit number, as in |
+|                   |          |          | Unit 1A or Suite 302B.                       |
++-------------------+----------+----------+------------------------------------------------+
+| civicNumber       | String   | No       | The official number assigned to a site on a  |
+|                   |          |          | street by an address authority.              |
++-------------------+----------+----------+------------------------------------------------+
+| civicNumberSuffix | String   | No       | A letter or fraction that follows the civic  |
+|                   |          |          | number. There should be no space between a   |
+|                   |          |          | civic number and a letter (e.g., Unit 1A)    |
+|                   |          |          | and one space between a civic number and a   |
+|                   |          |          | fraction (e.g., Suite 3 ½).                  |
++-------------------+----------+----------+------------------------------------------------+
+| siteName          | String   | No for   | A string containing the name of the building,|
+|                   |          | civic    | facility, or institution (e.g., Duck         |
+|                   |          | address, | Building, Casa Del Mar, Crystal Garden,      |
+|                   |          | Yes for  | Bluebird House). A business name should only |
+|                   |          | non-     | be used if it is permanently affixed to the  |
+|                   |          | civic    | site and the site has no other, more generic |
+|                   |          | address  | name. If a site is a unit within a complex,  |
+|                   |          |          | it may have a siteName in addition to a      |
+|                   |          |          | unitNumber and unitSuffix.                   |
++-------------------+----------+----------+------------------------------------------------+
+| streetName        | String   | No       | The official name of the street recognized   |
+|                   |          |          | by a municipality (e.g., Douglas in 1175     |
+|                   |          |          | Douglas Street). A streetName that starts    |
+|                   |          |          | with a directional is not abbreviated        |
+|                   |          |          | (e.g., North Park, not N Park).             |
++-------------------+----------+----------+------------------------------------------------+
+| streetType        | String   | No       | The type of street as assigned by a          |
+|                   |          |          | municipality (e.g., the ST in 1175 DOUGLAS   |
+|                   |          |          | ST) and is abbreviated if such an            |
+|                   |          |          | abbreviation exists. The set of all street   |
+|                   |          |          | types is defined by the provincial           |
+|                   |          |          | Integrated Transportation Network Program.   |
++-------------------+----------+----------+------------------------------------------------+
+| streetDirection   | String   | No       | The abbreviated compass direction as defined |
+|                   |          |          | by Canada Post and B.C. civic addressing     |
+|                   |          |          | authorities. The complete list is C, E, N,   |
+|                   |          |          | NE, NW, S, SE, SW, and W. All street         |
+|                   |          |          | directions except C are defined by Canada    |
+|                   |          |          | Post.                                        |
++-------------------+----------+----------+------------------------------------------------+
+| streetQualifier   | String   | No       | The qualifier of a street name (e.g., the    |
+|                   |          |          | Bridge in Johnson St Bridge).               |
++-------------------+----------+----------+------------------------------------------------+
+| localityName      | String   | No       | The name of the municipality, community,     |
+|                   |          |          | Indian reservation, subdivision, regional    |
+|                   |          |          | district, aboriginal lands, or natural       |
+|                   |          |          | feature the site is located in. Since this   |
+|                   |          |          | is a physical address geocoder, not a        |
+|                   |          |          | mailing address geocoder, the locality of a  |
+|                   |          |          | civic address is that defined by the civic   |
+|                   |          |          | address authority, not Canada Post. A        |
+|                   |          |          | locality name that starts with a directional |
+|                   |          |          | is not abbreviated (e.g., North Vancouver,   |
+|                   |          |          | not N Vancouver). Spelling of localities     |
+|                   |          |          | that are place names or natural feature      |
+|                   |          |          | names MUST match that published by the BC    |
+|                   |          |          | Geographical Names Information System.       |
++-------------------+----------+----------+------------------------------------------------+
+| provinceCode      | String   | No       | The ISO 3166-2 Sub-Country Code for British  |
+|                   |          |          | Columbia, which is BC.                       |
++-------------------+----------+----------+------------------------------------------------+
 
 > For address element examples, see the next section.
 
