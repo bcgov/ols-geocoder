@@ -27,8 +27,7 @@ and standardize your addresses for use as reference data by the
 geocoder, consider providing three columns: addressString,
 parcelPoint, and Notes. Here is an example file:
 
-addressString,parcelPoint,Notes
-
+addressString,parcelPoint,Notes<br>
 "BIG BARN -- HWY 3, Rock Creek,BC",SRID=4326;POINT(-123.3715424
 48.4180423),"Added 2015/03/11" "CENTENNIAL CANDLE -- Victoria,
 BC",SRID=4326;POINT(-123.336306 48.423109),"Added 2015/05/17"
@@ -67,8 +66,7 @@ file, the geocoder won't find any good matches.
 
 A file of unstructured addresses looks like this:
 
-addressString
-
+addressString<br>
 "2317 MOODY AVE Kamloops, BC"
 "APT 1 1207 Douglas St, Victoria, BC" "525 Superior St,
 Victoria,BC"
@@ -110,8 +108,7 @@ row, every client gets their own geocoded address. The yourId column
 will be output with each geocoded address so you can match each
 address up with a source client record.
 
-yourId,addressString
-
+yourId,addressString<br>
 A23E4,"2317 MOODY AVE Kamloops, BC"
 BXe33,"APT 1 1207 Douglas St, Victoria, BC" AA2w3,"525 Superior St,
 Victoria,BC" Q2S3E,"4251A ROCKBANK PL, WEST VANCOUVER,BC"
@@ -129,8 +126,7 @@ having to use yourId to match up each address with the original
 address in a source client record, you can copy the value of
 addressString into yourId as well. Here is an example:
 
-yourId,addressString
-
+yourId,addressString<br>
 "2317 MOODY AVE Kamloops, BC","2317 MOODY AVE Kamloops, BC"
 "APT 1 1207 Douglas St, Victoria, BC","APT 1 1207 Douglas St,
 Victoria, BC" "525 Superior St, Victoria,BC","525 Superior St,
@@ -149,7 +145,7 @@ BLVD,PEMBERTON,BC"
 
 A file of structured addresses looks like this:
 
-yourId,siteName,unitDesignator,unitNumber,unitNumberSuffix,civicNumber,civicNumberSuffix,streetName,streetType,isStreetTypePrefix,streetDirection,isStreetDirectionPrefix,streetQualifier,localityName,provinceCode
+yourId,siteName,unitDesignator,unitNumber,unitNumberSuffix,civicNumber,civicNumberSuffix,streetName,streetType,isStreetTypePrefix,streetDirection,isStreetDirectionPrefix,streetQualifier,localityName,provinceCode<br>
 myId1,,,,,2317,,MOODY,AVE,,,,Kamloops,BC
 myId2,,APT,1,,1207,,Douglas,St,,,,Victoria,BC
 myId3,,,,,525,,Superior,St,,,,Victoria,BC
