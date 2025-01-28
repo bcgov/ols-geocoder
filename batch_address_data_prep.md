@@ -294,12 +294,13 @@ which contains the following address elements:
 
 | **Address Element**   | **Value**  |
 |------------------------|------------|
-| civicNumber            | 420        |
-| civicNumberSuffix      | A          |
-| streetName             | GORGE      |
-| streetType             | RD         |
-| streetDirection        | E          |
-| localityName           | VICTORIA   |
+| unitDesignator         | UNIT       |
+| unitNumber             | 1          |
+| unitNumberSuffix       | A          |
+| civicNumber            | 433        |
+| streetName             | CEDAR RAPIDS |
+| streetType             | BLVD       |
+| localityName           | PEMBERTON  |
 | provinceCode           | BC         |
 
 </div>
