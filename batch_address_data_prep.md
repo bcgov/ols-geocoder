@@ -5,7 +5,7 @@ addresses. For larger lists, use the [*Batch Geocoder*](https://apps.gov.bc.ca/p
 
 # Preparing You Address File for the Address List Editor
 
-The Address List Editor has a text box that you paste addresses into.
+The [Address List Editor](https://bcgov.github.io/ols-devkit/ale/) has a text box that you paste addresses into.
 Each pasted line should contain only one address, with or without
 double quotes. For best matching performance, each address should be
 in single-line address format as described in the Single-Line Address
@@ -43,7 +43,7 @@ defined as follows:
 
 # Preparing You Address File for the Batch Geocoder
 
-The batch geocoder accepts a csv file containing one or more addresses
+The [Batch Geocoder](https://apps.gov.bc.ca/pub/cpf/secure/ws/apps/geocoder/multiple/) accepts a csv file containing one or more addresses
 in one of two schemas: unstructured address and structured address.
 
 Put your address data into an unstructured address file if you
