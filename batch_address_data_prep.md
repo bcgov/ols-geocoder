@@ -25,10 +25,10 @@ and standardize your addresses for use as reference data by the
 geocoder, consider providing three columns: addressString,
 parcelPoint, and Notes. Here is an example file:
 
-addressString,parcelPoint,Notes<br>
-"BIG BARN -- HWY 3, Rock Creek,BC",SRID=4326;POINT(-123.3715424
-48.4180423),"Added 2015/03/11" "CENTENNIAL CANDLE -- Victoria,
-BC",SRID=4326;POINT(-123.336306 48.423109),"Added 2015/05/17"
+    addressString,parcelPoint,Notes<br>
+    "BIG BARN -- HWY 3, Rock Creek,BC",SRID=4326;POINT(-123.3715424
+    48.4180423),"Added 2015/03/11" "CENTENNIAL CANDLE -- Victoria,
+    BC",SRID=4326;POINT(-123.336306 48.423109),"Added 2015/05/17"
 
 parcelPoint is given in Extended Well Known Text format which is
 defined as follows: 
@@ -64,18 +64,18 @@ file, the geocoder won't find any good matches.
 
 A file of unstructured addresses looks like this:
 
-addressString<br>
-"2317 MOODY AVE Kamloops, BC"
-"APT 1 1207 Douglas St, Victoria, BC" "525 Superior St,
-Victoria,BC"
-"4251A ROCKBANK PL, WEST VANCOUVER,BC" "4450 HAPPY VALLEY RD,
-METCHOSIN,BC" "2050 SW MARINE DR,VANCOUVER,BC"
-"420 GORGE RD E,VICTORIA,BC" "130A HALL ST,NELSON,BC"
-"UNIT 1, 7467 ASPEN BLVD,PEMBERTON,BC"
-"PAD 2, 2097 WILDFLOWER RD,SHAWNIGAN LAKE,BC"
-"PORT ALICE HEALTH CENTRE -- 1090 MARINE DRIVE,PORT ALICE,BC"
-"ROYAL JUBILEE HOSPITAL -- 1952 BAY ST,VICTORIA,BC" "CENTENNIAL
-CANDLE -- VICTORIA, BC"
+    addressString<br>
+    "2317 MOODY AVE Kamloops, BC"
+    "APT 1 1207 Douglas St, Victoria, BC" "525 Superior St,
+    Victoria,BC"
+    "4251A ROCKBANK PL, WEST VANCOUVER,BC" "4450 HAPPY VALLEY RD,
+    METCHOSIN,BC" "2050 SW MARINE DR,VANCOUVER,BC"
+    "420 GORGE RD E,VICTORIA,BC" "130A HALL ST,NELSON,BC"
+    "UNIT 1, 7467 ASPEN BLVD,PEMBERTON,BC"
+    "PAD 2, 2097 WILDFLOWER RD,SHAWNIGAN LAKE,BC"
+    "PORT ALICE HEALTH CENTRE -- 1090 MARINE DRIVE,PORT ALICE,BC"
+    "ROYAL JUBILEE HOSPITAL -- 1952 BAY ST,VICTORIA,BC" "CENTENNIAL
+    CANDLE -- VICTORIA, BC"
 
 The first line tells the geocoder that each record contains a single
 column called addressString. Note that column names in CSV format are
@@ -106,17 +106,17 @@ row, every client gets their own geocoded address. The yourId column
 will be output with each geocoded address so you can match each
 address up with a source client record.
 
-yourId,addressString<br>
-A23E4,"2317 MOODY AVE Kamloops, BC"
-BXe33,"APT 1 1207 Douglas St, Victoria, BC" AA2w3,"525 Superior St,
-Victoria,BC" Q2S3E,"4251A ROCKBANK PL, WEST VANCOUVER,BC"
-E22Q3,"4450 HAPPY VALLEY RD, METCHOSIN,BC" E2f2e,"2050 SW MARINE
-DR,VANCOUVER,BC" E8f4k,"420 GORGE RD E,VICTORIA,BC" J4fkk,"130A
-HALL ST,NELSON,BC"
-U6t4m,"UNIT 1, 7467 ASPEN BLVD,PEMBERTON,BC"
-D4f76,"PAD 2, 2097 WILDFLOWER RD,SHAWNIGAN LAKE,BC"
-V8hj5,"PORT ALICE HEALTH CENTRE -- 1090 MARINE DRIVE,PORT ALICE,BC"
-P3u4j,"ROYAL ATHLETIC PARK -- 1014 CALEDONIA AVE,VICTORIA,BC"
+    yourId,addressString<br>
+    A23E4,"2317 MOODY AVE Kamloops, BC"
+    BXe33,"APT 1 1207 Douglas St, Victoria, BC" AA2w3,"525 Superior St,
+    Victoria,BC" Q2S3E,"4251A ROCKBANK PL, WEST VANCOUVER,BC"
+    E22Q3,"4450 HAPPY VALLEY RD, METCHOSIN,BC" E2f2e,"2050 SW MARINE
+    DR,VANCOUVER,BC" E8f4k,"420 GORGE RD E,VICTORIA,BC" J4fkk,"130A
+    HALL ST,NELSON,BC"
+    U6t4m,"UNIT 1, 7467 ASPEN BLVD,PEMBERTON,BC"
+    D4f76,"PAD 2, 2097 WILDFLOWER RD,SHAWNIGAN LAKE,BC"
+    V8hj5,"PORT ALICE HEALTH CENTRE -- 1090 MARINE DRIVE,PORT ALICE,BC"
+    P3u4j,"ROYAL ATHLETIC PARK -- 1014 CALEDONIA AVE,VICTORIA,BC"
 
 addressString is not included in the geocoded results file, only
 fullAddress which is the standardized and corrected address. To avoid
@@ -124,38 +124,38 @@ having to use yourId to match up each address with the original
 address in a source client record, you can copy the value of
 addressString into yourId as well. Here is an example:
 
-yourId,addressString<br>
-"2317 MOODY AVE Kamloops, BC","2317 MOODY AVE Kamloops, BC"
-"APT 1 1207 Douglas St, Victoria, BC","APT 1 1207 Douglas St,
-Victoria, BC" "525 Superior St, Victoria,BC","525 Superior St,
-Victoria,BC"
-"4251A ROCKBANK PL, WEST VANCOUVER,BC","4251A ROCKBANK PL, WEST
-VANCOUVER,BC" "4450 HAPPY VALLEY RD, METCHOSIN,BC","4450 HAPPY
-VALLEY RD, METCHOSIN,BC" "2050 SW MARINE DR,VANCOUVER,BC","2050 SW
-MARINE DR,VANCOUVER,BC"
-"420 GORGE RD E,VICTORIA,BC","420 GORGE RD E,VICTORIA,BC" "130A
-HALL ST,NELSON,BC","130A HALL ST,NELSON,BC"
-"UNIT 1, 7467 ASPEN BLVD,PEMBERTON,BC","UNIT 1, 7467 ASPEN
-BLVD,PEMBERTON,BC"
+    yourId,addressString<br>
+    "2317 MOODY AVE Kamloops, BC","2317 MOODY AVE Kamloops, BC"
+    "APT 1 1207 Douglas St, Victoria, BC","APT 1 1207 Douglas St,
+    Victoria, BC" "525 Superior St, Victoria,BC","525 Superior St,
+    Victoria,BC"
+    "4251A ROCKBANK PL, WEST VANCOUVER,BC","4251A ROCKBANK PL, WEST
+    VANCOUVER,BC" "4450 HAPPY VALLEY RD, METCHOSIN,BC","4450 HAPPY
+    VALLEY RD, METCHOSIN,BC" "2050 SW MARINE DR,VANCOUVER,BC","2050 SW
+    MARINE DR,VANCOUVER,BC"
+    "420 GORGE RD E,VICTORIA,BC","420 GORGE RD E,VICTORIA,BC" "130A
+    HALL ST,NELSON,BC","130A HALL ST,NELSON,BC"
+    "UNIT 1, 7467 ASPEN BLVD,PEMBERTON,BC","UNIT 1, 7467 ASPEN
+    BLVD,PEMBERTON,BC"
 
 
 # Structured Address File
 
 A file of structured addresses looks like this:
 
-yourId,siteName,unitDesignator,unitNumber,unitNumberSuffix,civicNumber,civicNumberSuffix,streetName,streetType,isStreetTypePrefix,streetDirection,isStreetDirectionPrefix,streetQualifier,localityName,provinceCode<br>
-myId1,,,,,2317,,MOODY,AVE,,,,Kamloops,BC
-myId2,,APT,1,,1207,,Douglas,St,,,,Victoria,BC
-myId3,,,,,525,,Superior,St,,,,Victoria,BC
-myId4,,,,,4251,A,ROCKBANK,PL,,,,WEST VANCOUVER,BC
-myId5,,,,,4450,,HAPPY VALLEY,RD,,,,METCHOSIN,BC
-myId6,,,,,2050,,MARINE,DR,SW,true,,,VANCOUVER,BC
-myId7,,,,,420,,GORGE,RD,E,,,,VICTORIA,BC
-myId8,,,,,130,A,HALL,ST,,,,NELSON,BC
-myId9,,UNIT,1,,7467,,ASPEN,BLVD,,,,PEMBERTON,BC
-myId10,,PAD,2,,2097,,WILDFLOWER,RD,,,,SHAWNIGAN LAKE,BC
-myId11,PORT ALICE HEALTH CENTRE,,,,1090,,MARINE,DRIVE,,,,PORT ALICE,BC
-myId12,ROYAL ATHLETIC PARK,,,,1014,,CALEDONIA,AVE,,,,VICTORIA,BC
+    yourId,siteName,unitDesignator,unitNumber,unitNumberSuffix,civicNumber,civicNumberSuffix,streetName,streetType,isStreetTypePrefix,streetDirection,isStreetDirectionPrefix,streetQualifier,localityName,provinceCode<br>
+    myId1,,,,,2317,,MOODY,AVE,,,,Kamloops,BC
+    myId2,,APT,1,,1207,,Douglas,St,,,,Victoria,BC
+    myId3,,,,,525,,Superior,St,,,,Victoria,BC
+    myId4,,,,,4251,A,ROCKBANK,PL,,,,WEST VANCOUVER,BC
+    myId5,,,,,4450,,HAPPY VALLEY,RD,,,,METCHOSIN,BC
+    myId6,,,,,2050,,MARINE,DR,SW,true,,,VANCOUVER,BC
+    myId7,,,,,420,,GORGE,RD,E,,,,VICTORIA,BC
+    myId8,,,,,130,A,HALL,ST,,,,NELSON,BC
+    myId9,,UNIT,1,,7467,,ASPEN,BLVD,,,,PEMBERTON,BC
+    myId10,,PAD,2,,2097,,WILDFLOWER,RD,,,,SHAWNIGAN LAKE,BC
+    myId11,PORT ALICE HEALTH CENTRE,,,,1090,,MARINE,DRIVE,,,,PORT ALICE,BC
+    myId12,ROYAL ATHLETIC PARK,,,,1014,,CALEDONIA,AVE,,,,VICTORIA,BC
 
 The first line tells the geocoder what the name and order of the
 columns that define a structured address are. Column names are
@@ -262,7 +262,7 @@ Format 3 -- Intersection address
 frontGate is the double dash delimiter (e.g., "--"). Here is an example
 of a civic address:
 
-420A GORGE RD E, VICTORIA, BC
+    420A GORGE RD E, VICTORIA, BC
 
 which contains the following address elements:
 
@@ -278,7 +278,7 @@ which contains the following address elements:
 
 Here is an example of a civic address with a unit:
 
-UNIT 1A -- 433 CEDAR RAPIDS BLVD, PEMBERTON, BC
+    UNIT 1A -- 433 CEDAR RAPIDS BLVD, PEMBERTON, BC
 
 which contains the following address elements:
 
@@ -294,7 +294,7 @@ which contains the following address elements:
 
 Here is an example of a non-civic address with a street qualifier:
 
-JOHNSON ST BRIDGE, VICTORIA, BC
+    JOHNSON ST BRIDGE, VICTORIA, BC
 
 which contains the following address elements:
 
