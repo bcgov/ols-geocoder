@@ -1,6 +1,4 @@
 # Preparing your Address File for Batch Geocoding
-# September 6, 2015
-**Document Version 2.0**
 
 The *Address List Editor* can handle a list of up to one thousand
 addresses. For larger lists, use the *Batch Geocoder*.
