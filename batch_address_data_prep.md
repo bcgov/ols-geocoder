@@ -47,7 +47,7 @@ The [Batch Geocoder](https://apps.gov.bc.ca/pub/cpf/secure/ws/apps/geocoder/mult
 in one of two schemas: unstructured address and structured address.
 
 Put your address data into an unstructured address file if you
-haven't batch geocoded your address data with the Physical Address
+haven't batch geocoded your address data with the BC Address
 Geocoder before. It gives the geocoder more latitude in exploring
 alternate interpretations of an address to find the best match.
 
