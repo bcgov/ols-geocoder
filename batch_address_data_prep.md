@@ -236,6 +236,7 @@ means the term may appear one or more times. A term in brace brackets
 places indicated (e.g., Central St, N Central St, or Central St N, but
 not N Central St NE)
 
+<h1 align="center">Format 1 -- Civic address</h1>
 Format 1 -- Civic address
 
 \[\[unitDesignator unitNumber\[unitNumberSuffix\]\] \[siteName\],\]\*
