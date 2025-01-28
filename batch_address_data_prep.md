@@ -65,13 +65,18 @@ A file of unstructured addresses looks like this:
 
     addressString
     "2317 MOODY AVE Kamloops, BC"
-    "APT 1 1207 Douglas St, Victoria, BC" "525 Superior St, Victoria,BC"
-    "4251A ROCKBANK PL, WEST VANCOUVER,BC" "4450 HAPPY VALLEY RD, METCHOSIN,BC" "2050 SW MARINE DR,VANCOUVER,BC"
-    "420 GORGE RD E,VICTORIA,BC" "130A HALL ST,NELSON,BC"
+    "APT 1 1207 Douglas St, Victoria, BC"
+    "525 Superior St, Victoria,BC"
+    "4251A ROCKBANK PL, WEST VANCOUVER,BC"
+    "4450 HAPPY VALLEY RD, METCHOSIN,BC"
+    "2050 SW MARINE DR,VANCOUVER,BC"
+    "420 GORGE RD E,VICTORIA,BC"
+    "130A HALL ST,NELSON,BC"
     "UNIT 1, 7467 ASPEN BLVD,PEMBERTON,BC"
     "PAD 2, 2097 WILDFLOWER RD,SHAWNIGAN LAKE,BC"
     "PORT ALICE HEALTH CENTRE -- 1090 MARINE DRIVE,PORT ALICE,BC"
-    "ROYAL JUBILEE HOSPITAL -- 1952 BAY ST,VICTORIA,BC" "CENTENNIAL CANDLE -- VICTORIA, BC"
+    "ROYAL JUBILEE HOSPITAL -- 1952 BAY ST,VICTORIA,BC"
+    "CENTENNIAL CANDLE -- VICTORIA, BC"
 
 The first line tells the geocoder that each record contains a single
 column called addressString. Note that column names in CSV format are
