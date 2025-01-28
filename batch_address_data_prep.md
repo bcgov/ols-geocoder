@@ -171,26 +171,19 @@ height="3.826771653543307in"}
 
 > A file of structured addresses looks like this:
 >
-> yourId,siteName,unitDesignator,unitNumber,unitNumberSuffix,civicNumber,civicNumberS
-> uffix,
-> streetName,streetType,isStreetTypePrefix,streetDirection,isStreetDirectionPre
-> fix, streetQualifier,localityName,provinceCode
->
-> myId1,,,,,2317,,MOODY,AVE,,,,Kamloops,BC
->
-> myId2,,APT,1,,1207,,Douglas,St,,,,Victoria,BC
-> myId3,,,,,525,,Superior,St,,,Victoria,BC
-> myId4,,,,,4251,A,ROCKBANK,PL,,,,WEST VANCOUVER,BC
-> myId5,,,,,4450,,HAPPY VALLEY,RD,,,METCHOSIN,BC
-> myId6,,,,,2050,,MARINE,DR,SW,true,,,VANCOUVER,BC
-> myId7,,,,,420,,GORGE,RD,E,,,,VICTORIA,BC
->
-> myId8,,,,,130,A,HALL,ST,,,,NELSON,BC
-> myId9,,UNIT,1,,7467,,ASPEN,BLVD,,,,PEMBERTON,BC
-> myId10,,PAD,2,,2097,,WILDFLOWER,RD,,,,SHAWNIGAN LAKE,BC
->
-> myId11,PORT ALICE HEALTH CENTRE,,,,1090,,MARINE,DRIVE,,,PORT ALICE,BC
-> myId12,ROYAL ATHLETIC PARK,,,,1014,,CALEDONIA,AVE,,,,,VICTORIA,BC
+yourId,siteName,unitDesignator,unitNumber,unitNumberSuffix,civicNumber,civicNumberSuffix,streetName,streetType,isStreetTypePrefix,streetDirection,isStreetDirectionPrefix,streetQualifier,localityName,provinceCode
+myId1,,,,,2317,,MOODY,AVE,,,,Kamloops,BC
+myId2,,APT,1,,1207,,Douglas,St,,,,Victoria,BC
+myId3,,,,,525,,Superior,St,,,,Victoria,BC
+myId4,,,,,4251,A,ROCKBANK,PL,,,,WEST VANCOUVER,BC
+myId5,,,,,4450,,HAPPY VALLEY,RD,,,,METCHOSIN,BC
+myId6,,,,,2050,,MARINE,DR,SW,true,,,VANCOUVER,BC
+myId7,,,,,420,,GORGE,RD,E,,,,VICTORIA,BC
+myId8,,,,,130,A,HALL,ST,,,,NELSON,BC
+myId9,,UNIT,1,,7467,,ASPEN,BLVD,,,,PEMBERTON,BC
+myId10,,PAD,2,,2097,,WILDFLOWER,RD,,,,SHAWNIGAN LAKE,BC
+myId11,PORT ALICE HEALTH CENTRE,,,,1090,,MARINE,DRIVE,,,,PORT ALICE,BC
+myId12,ROYAL ATHLETIC PARK,,,,1014,,CALEDONIA,AVE,,,,VICTORIA,BC
 >
 > The first line tells the geocoder what the name and order of the
 > columns that define a structured address are. Column names are
