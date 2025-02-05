@@ -1,6 +1,8 @@
 <div align="center">
+  
 # Understanding Physical Address
 # Geocoder Results
+
 </div>
 
 This document explains how to use the output of the Physical Address Geocoder to improve the quality of your addresses.
@@ -58,8 +60,9 @@ If you are still having problems, it could be because the geocoder’s reference
 
 Start up the [Physical Address Viewer in Google Earth](https://openmaps.gov.bc.ca/kml/geocoder/BCGov_Physical_Address_Viewer_Loader.kml)
 
+<div align="center">
 ![image](https://github.com/user-attachments/assets/5e587b2a-ff9c-490e-9d84-1cd135d224a6)
-
+</div>
 
 Click on Find Address, enter _615 Taku Rd, Heriot Bay, BC_, then press Geocode
 
