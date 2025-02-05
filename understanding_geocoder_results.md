@@ -59,10 +59,8 @@ If you are still having problems, it could be because the geocoder’s reference
 1. The batch geocoder said _615 Taku Rd, Heriot Bay, BC_ should be _615 Taku Rd, Quathiaski Cove, BC_. Is this correct?
 
 Start up the [Physical Address Viewer in Google Earth](https://openmaps.gov.bc.ca/kml/geocoder/BCGov_Physical_Address_Viewer_Loader.kml)
-
-<div align="center">
-![image](https://github.com/user-attachments/assets/5e587b2a-ff9c-490e-9d84-1cd135d224a6)
-</div>
+  
+![image](https://github.com/user-attachments/assets/5e587b2a-ff9c-490e-9d84-1cd135d224a6){:style="display:block; margin-left:auto; margin-right:auto"}
 
 Click on Find Address, enter _615 Taku Rd, Heriot Bay, BC_, then press Geocode
 
