@@ -1,11 +1,7 @@
-
-**Understanding Physical Address**
-
-**Geocoder Results**
-
-**March 21, 2014**
-
-**Document Version 0.1**
+<div align="center">
+# Understanding Physical Address
+# Geocoder Results
+</div>
 
 This document explains how to use the output of the Physical Address Geocoder to improve the quality of your addresses.
 
