@@ -1,3 +1,4 @@
+
 **Understanding Physical Address**
 
 **Geocoder Results**
@@ -61,46 +62,56 @@ If you are still having problems, it could be because the geocoder’s reference
 
 Start up the [Physical Address Viewer in Google Earth](https://openmaps.gov.bc.ca/kml/geocoder/BCGov_Physical_Address_Viewer_Loader.kml)
 
+![image](https://github.com/user-attachments/assets/5e587b2a-ff9c-490e-9d84-1cd135d224a6)
 
 
 Click on Find Address, enter _615 Taku Rd, Heriot Bay, BC_, then press Geocode
 
+![image](https://github.com/user-attachments/assets/1cb6968e-3fc0-4361-a301-8788efda50e5)
 
 
 The geocoded location will be shown on screen as a push pin.
 
+![image](https://github.com/user-attachments/assets/b1e0de2b-2940-4592-acf2-2aaed0fb6a0f)
 
 
 Turn on Geographic Names from BCGNIS layer and zoom out until you can see Heriot Bay and Quathiaski Cove on Quadra Island.
 
+![image](https://github.com/user-attachments/assets/ddabfa27-5a75-4d4d-b197-ea3b7508d552)
 
 
 In Geographical Names from BCGNIS, turn off all names except Heriot Bay and Quathiaski Cove.
 
+![image](https://github.com/user-attachments/assets/ca17a27c-8855-44c7-9fb4-0d842a0faf29)
 
 
 It looks like the correct locality of 615 Taku Rd is Heriot Bay, not Quathiaski Cove. However, the geocoded location appears to be correct.
 
 1. Let’s look for 145 Cow Bay Rd, Prince Rupert. The geocoder says there is no such civic number on this street:
 
+![image](https://github.com/user-attachments/assets/a4a296e7-cc55-4582-8d38-8313c3b497d3)
 
 
 Zoom out a bit, turn on Site Addresses and Intersection Addresses, and turn off all addresses except those on Cow Bay Rd.
 
+![image](https://github.com/user-attachments/assets/6a4baffa-35ab-40cf-bff1-aa957fc69a94)
 
 
 It is clear from the intersection addresses that Cow Bay Rd has three blocks, not just one. It is also clear from the site addresses that the first block has the address range 1-99. The second block is likely the 100 block, so 145 Cow Bay Rd is likely located half-way down the second block. Also, the Integrated Transportation Network, which the geocoder uses for address ranges, is missing the 100 block since 145 Cow Bay Rd returns a _civic number not in any block_ fault.
 
 1. Let’s look for _Murtle Lake Rd and Hwy 5, Blue River, BC_. The geocoder returns BC and a score of 1, no match. Turn on Intersection addresses and Geographical Names and then find address _Murtle Lake Rd, Blue River BC_.
 
+![image](https://github.com/user-attachments/assets/fc2f19fc-8539-4108-aaf7-2f8edc238bab)
 
 
 Zoom out a bit and we see we’re near Blue River.
 
+![image](https://github.com/user-attachments/assets/85959b6f-e90a-458a-a8c2-52148e39a9f0)
 
 
 Follow Murtle Lake Rd up to Hwy 5. A closer looks reveals that Murtle Lake Rd intersects Blue River West Frontage Rd, not Hwy 5.
 
+![image](https://github.com/user-attachments/assets/5d69a1aa-be84-49ab-9045-47f00a5bb20b)
 
 
 In this case, the input address of _Murtle Lake Rd and Hwy 5, Blue River, BC_ is wrong and the intersection address of _Murtle Lake Rd and Blue River West Frontage Rd, Blue River, BC_ is right.
@@ -122,22 +133,27 @@ The locationDescriptor property of the geocoder may have one of the following va
 
 **parcelPoint** – a point guaranteed to be within the boundaries of the parcel that has been assigned a civic number
 
+![image](https://github.com/user-attachments/assets/4b1c8780-7f32-4fc5-98b8-dabfdd8ee941)
 
 
 **accessPoint** – where the driveway or walkway meets the curb
 
+![image](https://github.com/user-attachments/assets/90dd3760-b56c-4e3e-abec-be79f63f4f7d)
 
 
 **roofTopPoint** - a point on the roof of a building or structure that has been assigned a civic number
 
+![image](https://github.com/user-attachments/assets/bdd7663a-31d7-463f-b745-59624e0219c3)
 
 
 **frontDoorPoint** – location of front door of a house or entrance to a building or store
 
+![image](https://github.com/user-attachments/assets/20863fc3-9171-4cc2-a6a0-84d00daf6dfd)
 
 
 **routingPoint** – a point lying on a road centreline and directly in front of a site's accessPoint. A routing point is intended for use by routing algorithms to find routes between addresses.
 
+![image](https://github.com/user-attachments/assets/ee0123bd-82db-4ee0-a4b1-7c65defb90b2)
 
 
 # Address location positional accuracy
@@ -146,20 +162,29 @@ Location positional accuracy reflects how well the geocoder knows the geographic
 
 **high** – position was observed or measured using GPS or survey instruments, or digitized off imagery with a resolution of one metre or better. Here is an address with a high-accuracy rooftop point:
 
+![image](https://github.com/user-attachments/assets/0bd5a978-96de-487f-85ca-f2f563834c54)
 
 
-Rooftop and front-door points always have high-accuracy. Parcel points can be high or medium accuracy**medium –** position was derived from parcel boundaries or from a point known to be inside a parcel. Here is an address as a medium accuracy parcel point:
+Rooftop and front-door points always have high-accuracy. Parcel points can be high or medium accuracy
 
+**medium –** position was derived from parcel boundaries or from a point known to be inside a parcel. Here is an address as a medium accuracy parcel point:
+
+![image](https://github.com/user-attachments/assets/2089b72e-080f-4bd5-b5f7-e8e4bf4214d6)
 
 
 **low –** position was interpolated along a block face address range. Access points are the most common type of low accuracy point.
 
+![image](https://github.com/user-attachments/assets/f083015a-23df-4cee-a93c-ca3dddbd725a)
 
 
 **coarse –** position represents an entire street, locality, or province
 
+![image](https://github.com/user-attachments/assets/507a4e6b-7192-4da7-97ed-c57dc818aeb9)
 
 
 # Representing location descriptor and positional accuracy in KML
 
 In KML output format, location descriptor is represented by a placemark icon and positional accuracy by a colour as follows:
+
+![image](https://github.com/user-attachments/assets/2eaac0c9-4928-4ed8-99ac-84759d8a6852)
+
