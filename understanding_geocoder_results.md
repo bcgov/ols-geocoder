@@ -1,7 +1,6 @@
 <div align="center">
   
-# Understanding Physical Address
-# Geocoder Results
+# Understanding BC Address Geocoder Results
 
 </div>
 
