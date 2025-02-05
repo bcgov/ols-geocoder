@@ -11,7 +11,7 @@ The geocoder returns two quality indicators: address match score and location po
 
 # Matching geocoder input to output
 
-The online geocoder always shows you the input address as well as one or more result addresses. The batch geocoder results file doesn’t include input address. The fullAddress field in the results file is the standardized, corrected, and matched address, not the input address. To effectively analyse batch geocoder output, you need to open and view both input and results files at the same time. In each line of the results file there is a sequence number which represents the nth address in your input file. Remember to account for the first row being column definitions (e.g., sequence number 6091 is row 6092 in input file). If you pull up both files in MS Excel and turn on View. View Side by Side and Synchronous Scrolling, you can see both input and result addresses at the same time.
+The BC Address Geocoder always shows you the input address as well as one or more result addresses. The batch geocoder results file doesn’t include input address. The fullAddress field in the results file is the standardized, corrected, and matched address, not the input address. To effectively analyse batch geocoder output, you need to open and view both input and results files at the same time. In each line of the results file there is a sequence number which represents the nth address in your input file. Remember to account for the first row being column definitions (e.g., sequence number 6091 is row 6092 in input file). If you pull up both files in MS Excel and turn on View. View Side by Side and Synchronous Scrolling, you can see both input and result addresses at the same time.
 
 # Address match score
 
@@ -45,7 +45,7 @@ The quickest way to fix an input address is to assume it is wrong in some way an
 2. You entered a postal locality instead of the appropriate municipality or community. For example, in the input address, _1300 esquimalt rd victoria bc_, Victoria is a mailing locality for this address. The correct physical locality is the municipality of Esquimalt
 3. You left a digit off a civic number and get the fault, Civic number not in any block. For example, you entered _102 Pine Springs Rd, Kamloops, BC, instead of 1026 Pine Springs Rd, Kamloops, BC_.
 4. You entered an unofficial street type abbreviation (e.g., Div instead of Divers). Only Canada Post street type abbreviations are supported (see [http://www.canadapost.ca/tools/pg/manual/PGaddress-e.asp#1423617](http://www.canadapost.ca/tools/pg/manual/PGaddress-e.asp%231423617)). Try using the unabbreviated street type instead (e.g., Diversion).
-5. You entered the wrong locality. For example, you entered _4705 Trans-Canada Hwy, Cowichan Bay, BC_ and only get a street-level match of _Trans-Canada Hwy, Duncan, BC_. Using the online geocoder, leave off the locality, set max results to 10 and try again. This time, we get _4705 Trans-Canada Hwy, Cowichan Bay, BC_ amongst other equally scoring matches but no _4705 Trans-Canada Hwy, Duncan, BC_. This implies the correct locality is Cowichan Bay, not Duncan since Cowichan Bay is near Duncan.
+5. You entered the wrong locality. For example, you entered _4705 Trans-Canada Hwy, Cowichan Bay, BC_ and only get a street-level match of _Trans-Canada Hwy, Duncan, BC_. Using the BC Address Geocoder, leave off the locality, set max results to 10 and try again. This time, we get _4705 Trans-Canada Hwy, Cowichan Bay, BC_ amongst other equally scoring matches but no _4705 Trans-Canada Hwy, Duncan, BC_. This implies the correct locality is Cowichan Bay, not Duncan since Cowichan Bay is near Duncan.
 
 If you are still having problems, it could be because the geocoder’s reference data is incomplete or incorrect.
 
@@ -60,7 +60,7 @@ If you are still having problems, it could be because the geocoder’s reference
 
 Start up the [Physical Address Viewer in Google Earth](https://openmaps.gov.bc.ca/kml/geocoder/BCGov_Physical_Address_Viewer_Loader.kml)
   
-![image](https://github.com/user-attachments/assets/5e587b2a-ff9c-490e-9d84-1cd135d224a6){:style="display:block; margin-left:auto; margin-right:auto"}
+![image](https://github.com/user-attachments/assets/5e587b2a-ff9c-490e-9d84-1cd135d224a6)
 
 Click on Find Address, enter _615 Taku Rd, Heriot Bay, BC_, then press Geocode
 
@@ -122,7 +122,7 @@ The geocoder returns the following address properties related to location:
 3. locationDescription which specifies the type of location returned.
 4. locationPositionalAccuracy.
 
-In csv format, x and y contain an address’ coordinates and the srsCode contains the projection code. An srsCode of 4326 specifies the geographic projection used by Google Map, Google Earth, and Bing Maps. This code also means that x will contain longitude and y, latitude. For additional examples of geometry formats in other file formats, see the [online geocoder rest api](https://www2.gov.bc.ca/gov/content?id=118DD57CD9674D57BDBD511C2E78DC0D) .
+In csv format, x and y contain an address’ coordinates and the srsCode contains the projection code. An srsCode of 4326 specifies the geographic projection used by Google Map, Google Earth, and Bing Maps. This code also means that x will contain longitude and y, latitude. For additional examples of geometry formats in other file formats, see the [BC Address Geocoder rest api](https://www2.gov.bc.ca/gov/content?id=118DD57CD9674D57BDBD511C2E78DC0D) .
 
 # Address Location Descriptor
 
