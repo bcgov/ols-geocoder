@@ -53,6 +53,23 @@ public class AddressMatch extends GeocodeMatch {
 		this.address = address;
 	}
 	
+	/**
+	 * Copy constructor, used for copying exactMatch instances before returning them. 
+	 * @param toCopy
+	 */
+	public AddressMatch(AddressMatch toCopy) {
+		super(toCopy);
+		this.address = new SiteAddress(toCopy.address);
+		this.segment = toCopy.segment;
+		this.accessPoint = toCopy.accessPoint;
+		this.site = toCopy.site;
+	}
+	
+	@Override
+	public AddressMatch copy() {
+		return new AddressMatch(this);
+	}
+	
 	@Override
 	public String toString() {
 		return address + " " + score + " " + precision;

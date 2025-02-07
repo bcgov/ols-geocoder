@@ -81,6 +81,7 @@ public class GeocodeQuery extends SharedParameters{
 	private boolean includeOccupants = false;
 	private boolean autoComplete = false;
 	private boolean exactSpelling = false;
+	private boolean fuzzyMatch = false;
 
 	public GeocodeQuery() {
 		setMaxResults(1);
@@ -411,6 +412,13 @@ public class GeocodeQuery extends SharedParameters{
 		this.autoComplete = autoComplete;
 	}
 
+	public boolean isFuzzyMatch() {
+		return fuzzyMatch;
+	}
+
+	public void setFuzzyMatch(boolean fuzzyMatch) {
+		this.fuzzyMatch = fuzzyMatch;
+	}
 	public boolean getExactSpelling() {
 		return exactSpelling;
 	}
@@ -418,6 +426,14 @@ public class GeocodeQuery extends SharedParameters{
 	public void setExactSpelling(boolean exactSpelling) {
 		this.exactSpelling = exactSpelling;
 	}
+
+	public int getNumPrelimResults() {
+		if(fuzzyMatch) {
+			return 100;
+		}
+		return getMaxResults() + 1;
+	}
+
 
 	public boolean pass(GeocodeMatch match) {
 		if(filter == null) {

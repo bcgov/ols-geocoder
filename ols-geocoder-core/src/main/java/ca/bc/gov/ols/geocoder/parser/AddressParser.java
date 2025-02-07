@@ -54,12 +54,8 @@ public class AddressParser {
 	{
 		this.isTracing = isTracing;
 	}
-	
-	public void parse(String sentence, boolean autoComplete, ParseDerivationHandler handler) {
-		parse(sentence, autoComplete, false, handler);
-	}
-	
-	public void parse(String sentence, boolean autoComplete, boolean exactSpelling, ParseDerivationHandler handler)
+		
+	public void parse(String sentence, boolean autoComplete, ParseDerivationHandler handler)
 	{
 		if(isTracing) {
 			logger.trace("Parsing sentence: " + sentence);

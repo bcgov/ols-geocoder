@@ -17,10 +17,7 @@ package ca.bc.gov.ols.geocoder.api.data;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import ca.bc.gov.ols.geocoder.api.data.MatchFault.MatchElement;
-import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 import ca.bc.gov.ols.geocoder.data.indexing.MisspellingOf;
 import ca.bc.gov.ols.geocoder.data.indexing.Word;
 
