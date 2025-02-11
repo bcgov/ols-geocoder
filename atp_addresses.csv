@@ -54,7 +54,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00054-CivicAddressWrongWordInStreetName,"Community Center Rd Grand Forks BC",STREET,"Community Center Rd, Grand Forks, BC",[STREET_NAME.spelledWrong:2],R,,,T,T
 00055-CivicAddressMissingCharactersInStreetName,"30 Frth Cres Mackenzie BC",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[STREET_NAME.spelledWrong:2],R,,,T,T
 00056-CivicAddressMissingCharactersInLocality,"30 Firth Cres Mckenzie BC",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[LOCALITY.spelledWrong:2],R,,,T,T
-00057-CivicAddressWrongAbbreviationInLocality,"2908 Hwy 99 Mot Currie BC",CIVIC_NUMBER,"2908 Hwy 99, Mount Currie, BC","[UNRECOGNIZED.notAllowed:33 LOCALITY.notMatched:35]",R,,,T,T
+00057-CivicAddressWrongAbbreviationInLocality,"2910 Hwy 99 Mot Currie BC",CIVIC_NUMBER,"2910 Hwy 99, Mount Currie, BC","[UNRECOGNIZED.notAllowed:33 LOCALITY.notMatched:35]",R,,,T,T
 00058-CivicAddressWrongProvinceCode,"30 Firth Cres Mackenzie AB",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[PROVINCE.notMatched:1],R,,,T,T
 00059-CivicAddressWrongLocality,952 COMOX AVE PRINCE GEORGE BC,CIVIC_NUMBER,"952 Comox Ave, Prince Rupert, BC",[LOCALITY.notMatched:35],R,,,F,F
 00060-CivicAddressWrongStreetType,952 COMOX ST PRINCE RUPERT BC,CIVIC_NUMBER,"952 Comox Ave, Prince Rupert, BC",[STREET_TYPE.notMatched:3],R,,,T,T
@@ -100,10 +100,10 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00101-CivicAddresswithBoxNoStreet,"BOX 283 Victoria BC",LOCALITY,"Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
 00102-CivicAddressWithBoxAfterStreet,"525 Superior St BOX 283 Victoria BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
 00103-CivicAddressWithBoxAtEnd,"525 Superior St, Victoria, BC BOX 283",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
-00104-CivicAddressWithFloorDesignator,"FLR 1 1175 Douglas St Victoria BC",UNIT,"UNIT 1 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",R,,,T,T
-00105-CivicAddressWithReverseFloorDesignator,"1st FLR 1175 Douglas St Victoria BC",UNIT,"UNIT 1 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",R,,,T,T
-00106-CivicAddressWithUnabbreviatedFloorDesignator,"Floor 1 1175 Douglas St Victoria BC",UNIT,"UNIT 1 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",R,,,T,T
-00107-CivicAddressWithReverseUnabbreviatedFloorDesignator,"1st Floor 1175 Douglas St Victoria BC",UNIT,"UNIT 1 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",R,,,T,T
+00104-CivicAddressWithFloorDesignator,"FLR 1 1175 Douglas St Victoria BC",UNIT,"FLR 1 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",R,,,T,T
+00105-CivicAddressWithReverseFloorDesignator,"1st FLR 1175 Douglas St Victoria BC",UNIT,"FLR 1 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",R,,,T,T
+00106-CivicAddressWithUnabbreviatedFloorDesignator,"Floor 1 1175 Douglas St Victoria BC",UNIT,"FLR 1 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",R,,,T,T
+00107-CivicAddressWithReverseUnabbreviatedFloorDesignator,"1st Floor 1175 Douglas St Victoria BC",UNIT,"FLR 1 -- 1175 Douglas St, Victoria, BC","[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1]",R,,,T,T
 00108-SimpleInterpolatedCivicAddress,"5742 Malibu Terr Nanaimo BC",BLOCK,"5742 Malibu Terr, Nanaimo, BC",[],R,,,T,T
 00109-AdaptiveInterpolatedCivicAddress,"5686 Malibu Terr Nanaimo BC",BLOCK,"5686 Malibu Terr, Nanaimo, BC",[],R,,,T,T
 00110-CivicAddressWithKnownCivicNumber,"525 Superior St, Victoria, BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[],R,,,T,T
@@ -440,7 +440,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00450-SuffixNameMatching,"2020 Kent Ave S, Vancouver, BC",CIVIC_NUMBER,"2020 East Kent Ave S, Vancouver, BC",[],F,,,T,T
 00451-StreetNameWordsGluedTogether,"3821 Cedarhill Rd, Saanich, BC",CIVIC_NUMBER,"3821 Cedar Hill Rd, Saanich, BC",[STREET_NAME.partialMatch],R,,,T,T
 00452-StreetNameCompoundWordsSeparated,"8514 Horseshoebay Rd, Anglemont, BC",CIVIC_NUMBER,"8514 Horseshoe Bay Rd, Anglemont, BC",[],R,,,T,T
-00453-NonStandardStreetTypeAbbreviation,"2908 Hwy 99, Mot Currie, BC",CIVIC_NUMBER,"2908 Hwy 99, Mount Currie, BC",[],R,,102,T,T
+00453-NonStandardStreetTypeAbbreviation,"2910 Hwy 99, Mot Currie, BC",CIVIC_NUMBER,"2910 Hwy 99, Mount Currie, BC",[],R,,102,T,T
 00454-civicAddressWithUnitandUnknownSiteName,"UNIT 170 Happy House -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 HAPPY HOUSE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched],R,,,T,T
 00455-StreetNameWithMultipleSpellingMistakes,"Omenica St, Hazelton, BC",STREET,"Omineca St, Hazelton, BC",[],R,,,T,T
 00456-NonStandardLocalityNameAbbreviation,"134 E 15th St, North Van, BC",CIVIC_NUMBER,"134 E 15th St, North Vancouver, BC",[],R,,102,T,T
