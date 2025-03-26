@@ -30,6 +30,7 @@ import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 import ca.bc.gov.ols.geocoder.data.enumTypes.LocationDescriptor;
 import ca.bc.gov.ols.geocoder.data.enumTypes.MatchPrecision;
 import ca.bc.gov.ols.geocoder.data.enumTypes.PositionalAccuracy;
+import ca.bc.gov.ols.geocoder.status.SystemStatus;
 import ca.bc.gov.ols.geocoder.util.GeocoderUtil;
 
 /**
@@ -89,6 +90,11 @@ public class DummyGeocoder implements IGeocoder {
 	@Override
 	public GeocoderConfig getConfig() {
 		return new GeocoderConfig();
+	}
+
+	@Override
+	public SystemStatus getStatus() {
+		return new SystemStatus();
 	}
 	
 }

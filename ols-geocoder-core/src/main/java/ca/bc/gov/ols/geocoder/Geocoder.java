@@ -72,6 +72,7 @@ import ca.bc.gov.ols.geocoder.parser.generator.RuleChoice;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleOperator;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleSequence;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleTerm;
+import ca.bc.gov.ols.geocoder.status.SystemStatus;
 import ca.bc.gov.ols.geocoder.util.GeocoderUtil;
 import ca.bc.gov.ols.rowreader.DateType;
 import ca.bc.gov.ols.util.PairedList;
@@ -91,6 +92,7 @@ public class Geocoder implements IGeocoder {
 			+ Geocoder.class.getCanonicalName());
 	
 	private GeocoderDataStore datastore;
+	private SystemStatus status;
 	private AddressParser parser;
 	//private DateFormatter dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	private Lexer lexer;
@@ -98,6 +100,7 @@ public class Geocoder implements IGeocoder {
 	
 	public Geocoder(GeocoderDataStore datastore) {
 		this.datastore = datastore;
+		this.status = datastore.getStatus();
 		lexer = new Lexer(new DraLexicalRules(), datastore.getWordMap());
 		parser = createParser(lexer);
 		fallbackSiteAddress = geocodeFallbackAddress(datastore.getConfig().getFallbackAddress());
@@ -333,6 +336,7 @@ public class Geocoder implements IGeocoder {
 			gm.resolve(datastore);
 		}
 		query.stopTimer();
+		//status.slowQueries.offer(query);
 		return new SearchResults(query, limitedMatches, datastore.getDate(DateType.PROCESSING_DATE));
 	}
 	
@@ -1967,6 +1971,11 @@ public class Geocoder implements IGeocoder {
 	 */
 	public AddressParser getParser() {
 		return parser;
+	}
+
+	@Override
+	public SystemStatus getStatus() {
+		return status;
 	}
 		
 }
