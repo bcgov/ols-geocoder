@@ -8,11 +8,11 @@ A list of changes per release can be found on the [What's New](https://github.co
 
 |Version|ALMA|Notes|
 |:---|:---:|
-|4.02 (prod baseline)|58|
-|4.02|60|
-|4.1 (bronze)|70|
-|4.1 (silver)|75|
-|4.2|79.53|
-|4.3|79.98|
-|4.5.1|80.06|
+|4.02 (prod baseline)|58
+|4.02|60
+|4.1 (bronze)|70
+|4.1 (silver)|75
+|4.2|79.53
+|4.3|79.98
+|4.5.1|80.06
 
