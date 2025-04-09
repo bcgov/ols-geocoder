@@ -6,12 +6,12 @@ The numbers below were calculated using the same test dataset for consistency to
 <br><br>
 A list of changes per release can be found on the [What's New](https://github.com/bcgov/ols-geocoder/blob/gh-pages/whats-new.md) page.
 
-| Version           | ALMA  |
-|:------------------|:-----:|
+| Version           | ALMA  | Notes |
+|:------------------|:-----|:-----:|
 | 4.02 (prod baseline) | 58    |
-| 4.02              | 60    |
-| 4.1 (bronze)      | 70    |
-| 4.1 (silver)      | 75    |
-| 4.2               | 79.53 |
-| 4.3               | 79.98 |
-| 4.5.1             | 80.06 |
+| 4.02              | 60    | Added adjacent localities as aliases, ITN address ranges, glued and unglued street names as aliases, streets with directionals in name as aliases; changed BCGNIS localities that aren't DRA localities from localities to sites within DRA localities.|
+| 4.1 (bronze)      | 70    | |
+| 4.1 (silver)      | 75    | |
+| 4.2               | 79.53 | |
+| 4.3               | 79.98 | |
+| 4.5.1             | 80.06 | |
