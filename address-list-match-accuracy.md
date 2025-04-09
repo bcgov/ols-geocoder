@@ -4,7 +4,7 @@ The Address List Match Accuracy (ALMA) is calculated by dividing the number of G
 <br><br>
 The numbers below were calculated using the same test dataset for consistency to measure how the Geocoder improves over time.
 <br><br>
-For a summary of changes with each release please see the (What's New)[https://github.com/bcgov/ols-geocoder/blob/gh-pages/whats-new.md] page.
+A list of changes per release can be found on the [What's New](https://github.com/bcgov/ols-geocoder/blob/gh-pages/whats-new.md) page.
 
 |Version|ALMA|Notes|
 |:---|:---:|:---|
