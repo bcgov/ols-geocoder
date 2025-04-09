@@ -12,3 +12,5 @@ The numbers below were calculated using the same test dataset for consistency to
 |4.1 (silver)|75|Removed redundant BCGNIS localities and StatsCan RNF address ranges; Added unit descriptors. Also includes better garbage word removal, handling of unitNumber stuck to unitDescriptor, handling of detached suffix in a numbered street-name, reducing locality-hopping, penalizing unmatched suffixes during autocompletion, better handling of special characters, and fine tuning the scoring system.|
 |4.2|79.53|What’s new:  https://github.com/bcgov/ols-geocoder/blob/gh-pages/whats-new.md|
 |4.3|79.98|What’s new:  https://github.com/bcgov/ols-geocoder/blob/gh-pages/whats-new.md|
+|4.5.1|80.06|What’s new:  https://github.com/bcgov/ols-geocoder/blob/gh-pages/whats-new.md|
+
