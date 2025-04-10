@@ -14,4 +14,5 @@ A list of changes per release can be found on the [What's New](https://github.co
 | 4.1 (silver)      | 75    | Removed redundant BCGNIS localities and StatsCan RNF address ranges; Added unit descriptors. Also includes better garbage word removal, handling of unitNumber stuck to unitDescriptor, handling of detached suffix in a numbered street-name, reducing locality-hopping, penalizing unmatched suffixes during autocompletion, better handling of special characters, and fine tuning the scoring system. |
 | 4.2               | 79.53 | |
 | 4.3               | 79.98 | |
+| 4.4.0               | 80.04 | |
 | 4.5.1             | 80.06 | |
