@@ -430,7 +430,7 @@ public class GeocodeQuery extends SharedParameters{
 
 	public int getNumPrelimResults() {
 		if(fuzzyMatch) {
-			return 100;
+			return 500;
 		}
 		return getMaxResults() + 1;
 	}
