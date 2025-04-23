@@ -371,8 +371,11 @@ public class KmlOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 			}
 			return config.getOccupantCategoryKmlStyleUrl() + "#" + type + "_" + occ.getBusinessCategoryClass();
 		}
-		return config.getKmlStylesUrl() + "#" + type + "_" + addr.getLocationDescriptor() + "_"
+		if(addr.getLocationPositionalAccuracy() != null){
+			return config.getKmlStylesUrl() + "#" + type + "_" + addr.getLocationDescriptor() + "_"
 				+ addr.getLocationPositionalAccuracy().toString();
+		}
+		return config.getKmlStylesUrl() + "#" + type + "_" + addr.getLocationDescriptor();
 	}
 
 	private String getLookAt(GeocoderAddress addr, GeocoderConfig config) {
