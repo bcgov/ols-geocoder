@@ -8,7 +8,7 @@ If you don't have a BC IDIR account and are in an agency outside of core goverme
 
 1. Request access by opening a ticket with the [Data Systems & Services request system](https://dpdd.atlassian.net/servicedesk/customer/portal/1/group/7/create/15) 
  
-2. If you don't have an active BCeID account, please register for a basic BCeID account at https://www.bceid.ca/
+2. If you don't have an active BCeID account, please register for a *basic BCeID* account at https://www.bceid.ca/
 
 3.	Using your BCeID account, try to log in to the batch geocoder located at https://apps.gov.bc.ca/pub/cpf/secure/ws/apps/geocoder/.
 You will be rejected but don’t take it hard. This process registers your account with the system. 
