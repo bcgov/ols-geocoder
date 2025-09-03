@@ -290,6 +290,8 @@ public class StreetPrep {
 		correctSegmentLocalities(segMap, localityMap);
 		applySegmentElectoralAreas(segMap, eaPolyIndex, noEaLocalities);
 		addHwyAndExitNames(streetNameIdMap, segMap);
+
+		applyPrivateRoadNameSwap(segMap, streetNameIdMap);
 		
 		// write outputs
 		writeStateProvTerrs(sptMap);
@@ -1319,4 +1321,28 @@ public class StreetPrep {
 		}
 		return path += File.separator;
 	}
+}
+
+private void applyPrivateRoadNameSwap(
+        TIntObjectMap<RawStreetSeg> segMap, 
+        TIntObjectMap<RawStreetName> streetNameIdMap) {
+
+    TIntObjectIterator<RawStreetSeg> segIterator = segMap.iterator();
+    while(segIterator.hasNext()) {
+        segIterator.advance();
+        RawStreetSeg seg = segIterator.value();
+        if(seg.nameIds.size() < 2) continue;
+
+        int nameId1 = seg.nameIds.get(0);
+        int nameId2 = seg.nameIds.get(1);
+
+        RawStreetName n1 = streetNameIdMap.get(nameId1);
+        RawStreetName n2 = streetNameIdMap.get(nameId2);
+
+        if(n1 != null && "private road".equalsIgnoreCase(n1.body) 
+           && n2 != null && n2.body != null && !n2.body.isBlank()) {
+            seg.nameIds.set(0, nameId2);
+            seg.nameIds.set(1, nameId1);
+        }
+    }
 }
