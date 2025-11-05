@@ -17,8 +17,8 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00017-civicAddressWithUnitBeforeCivicNumber,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",UNIT,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",[],R,,,T,T
 00018-civicAddressWithUnitBeforeCivicNumberandWithoutFrontGate,"UNIT 418 925 Leon Ave, Kelowna, BC",UNIT,"UNIT 418 -- 925 Leon Ave, Kelowna, BC",[],R,,,T,T
 00019-civicAddressWithUnitandKnownSiteName,"UNIT 170 Douglas College -- 22470 Dewdney Trunk Rd, Maple Ridge,BC",UNIT,"UNIT 170 DOUGLAS COLLEGE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[],U,,,T,T
-00020-civicAddressWithSiteName,"Anahim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],R,,,T,T
-00021-civicAddressWithPartialSiteName,"Anahim -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[SITE_NAME.partialMatch:5],R,,,T,T
+00020-civicAddressWithSiteName,"Anahim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- 827 Anahim Lake Airport Rd, Anahim Lake, BC",[],R,,,T,T
+00021-civicAddressWithPartialSiteName,"Anahim -- Anahim Lake BC",SITE,"Anahim Lake Airport -- 827 Anahim Lake Airport Rd, Anahim Lake, BC",[SITE_NAME.partialMatch:5],R,,,T,T
 00022-civicAddressWithSiteNameAndMissingCivicNumber,"BC",PROVINCE,"BC",[],U,,,F,F
 00023-civicAddressWithNumberForStreetName,"4216 E 51 Ave Fort Nelson BC",CIVIC_NUMBER,"4216 51st Ave E, Fort Nelson, BC",[],R,,,T,T
 00024-civicAddressWithUnitNumberSuffix,"BC",PROVINCE,"BC",[],U,,,T,T
@@ -38,19 +38,19 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00038-CivicAddressWithoutLocalityProvinceCode,3520 WENTWORTH AVE,CIVIC_NUMBER,"3520 Wentworth Ave, West Vancouver, BC","[LOCALITY.missing:10 PROVINCE.missing:1]",R,,,F,F
 00039-CivicAddressWithUnitAttachedToCivicNumber,"104490 Lorne St Kamloops bc",STREET,"Lorne St, Kamloops, BC",[CIVIC_NUMBER.notInAnyBlock:10],R,,,F,F
 00040-CivicAddressWithNonNumeric CivicNumber,"A Main St  West Vancouver BC",STREET,"A-B Connector Rd, Richmond, BC","[STREET_NAME.notMatched:12 MAX_RESULTS.too_low_to_include_all_best_matches:0]",F,,,F,F
-00041-CivicAddressSwappedCharactersInSiteName,"Anhaim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[SITE_NAME.spelledWrong:2],R,,,T,T
+00041-CivicAddressSwappedCharactersInSiteName,"Anhaim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- 827 Anahim Lake Airport Rd, Anahim Lake, BC",[SITE_NAME.spelledWrong:2],R,,,T,T
 00042-CivicAddressSwappedCharactersInStreetName,"30 Frith Cres Mackenzie BC",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[STREET_NAME.spelledWrong:2],R,,,T,T
 00043-CivicAddressSwappedCharactersInLocality,"30 Firth Cres Mackenzei BC",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[LOCALITY.spelledWrong:2],R,,,T,T
 00044-CivicAddressSwappedCharactersInStreetNameLocality,"30 Firht Cres Macknezie BC",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC","[STREET_NAME.spelledWrong:2 LOCALITY.spelledWrong:2]",R,,,T,T
-00045-CivicAddressWrongCharacterInSiteName,"Anachim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[SITE_NAME.spelledWrong:1],R,,,T,T
+00045-CivicAddressWrongCharacterInSiteName,"Anachim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- 827 Anahim Lake Airport Rd, Anahim Lake, BC",[SITE_NAME.spelledWrong:1],R,,,T,T
 00046-CivicAddressWrongCharacterInStreetName,"30 Fifth Cres Mackenzie BC",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[STREET_NAME.spelledWrong:2],R,,,T,T
 00047-CivicAddressWrongCharacterInLocality,"30 Firth Cres Mackensie BC",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[LOCALITY.spelledWrong:2],R,,,T,T
-00048-CivicAddressMissingWordInSiteName,"Anahim Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[SITE_NAME.partialMatch:2],R,,,T,T
+00048-CivicAddressMissingWordInSiteName,"Anahim Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- 827 Anahim Lake Airport Rd, Anahim Lake, BC",[SITE_NAME.partialMatch:2],R,,,T,T
 00049-CivicAddressWrongWordInStreetName,"6006 Happy Hilltop Rd Summerland BC",CIVIC_NUMBER,"6006 Happy Valley Rd, Summerland, BC","[UNRECOGNIZED.notAllowed:33 STREET_NAME.partialMatch:1]",R,,,T,T
 00050-CivicAddressMissingFirstWordInStreetName,"6006 Valley Rd Summerland BC",CIVIC_NUMBER,"6006 Happy Valley Rd, Summerland, BC","[STREET_NAME.partialMatch:1]",F,,,T,T
 00051-CivicAddressMissingFirstWordInLocalityName,"1323 5th Ave, George, BC",CIVIC_NUMBER,"1323 5th Ave, Prince George, BC","[STREET_NAME.partialMatch:1]",F,,,T,F
 00052-CivicAddressMissingFirstWordInSiteName,"Lake Airport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC","[STREET_NAME.partialMatch:1]",F,,,T,F
-00053-CivicAddressMissingCharactersInSiteName,"Anahi Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[SITE_NAME.spelledWrong:1],R,,,T,T
+00053-CivicAddressMissingCharactersInSiteName,"Anahi Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- 827 Anahim Lake Airport Rd, Anahim Lake, BC",[SITE_NAME.spelledWrong:1],R,,,T,T
 00054-CivicAddressWrongWordInStreetName,"Community Center Rd Grand Forks BC",STREET,"Community Center Rd, Grand Forks, BC",[STREET_NAME.spelledWrong:2],R,,,T,T
 00055-CivicAddressMissingCharactersInStreetName,"30 Frth Cres Mackenzie BC",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[STREET_NAME.spelledWrong:2],R,,,T,T
 00056-CivicAddressMissingCharactersInLocality,"30 Firth Cres Mckenzie BC",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[LOCALITY.spelledWrong:2],R,,,T,T
@@ -155,9 +155,9 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00158-CivicAddressWithUnescapedSpecialCharacter,"4429 Gaspardone\ Rd Kelowna BC",CIVIC_NUMBER,"4429 Gaspardone Rd, Kelowna, BC",[],R,,,T,T
 00159-CivicAddressWithNegativeScore,Unit 7 7460 Lancaster Pike Hockessin DE,LOCALITY,"Sooke, BC","[UNRECOGNIZED.notAllowed UNIT_DESIGNATOR.notMatched UNIT_NUMBER.notMatched LOCALITY.isAlias PROVINCE.missing]",F,,,F,F
 00160-CivicAddressWithCivicNumberTreatedAsCivicNumberSuffix,BC,PROVINCE,BC,[STREET_DIRECTION.notMatched:2],U,,,T,T
-00161-NonCivicAddressWithKnownSiteName,"Anahim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],R,,,T,T
+00161-NonCivicAddressWithKnownSiteName,"Anahim Lake Airport -- Anahim Lake BC",SITE,"Anahim Lake Airport -- 827 Anahim Lake Airport Rd, Anahim Lake, BC",[],R,,,T,T
 00162-NonCivicAddressWithKnownSiteNameAndMissingStreet,"Centennial Candle -- Victoria, BC",SITE,"Centennial Candle -- Laurel Lane, Victoria, BC","[STREET_NAME.missing:10 STREET_TYPE.missing:6]",U,,,F,F
-00163-NonCivicAddressWithKnownSiteNameandProvince,Anahim Lake Airport -- BC,SITE,"Anahim Lake Airport -- Anahim Lake, BC",[LOCALITY.missing:10],R,,,F,F
+00163-NonCivicAddressWithKnownSiteNameandProvince,Anahim Lake Airport -- BC,SITE,"Anahim Lake Airport -- 827 Anahim Lake Airport Rd, Anahim Lake, BC",[LOCALITY.missing:10],R,,,F,F
 00164-NonCivicAddressWithHwyNameAlias,BC,PROVINCE,BC,[STREET_NAME.isHighwayAlias:0],U,,,T,T
 00165-CivicAddressWithFractionalCivicNumberSuffix,"535 1/2 Fisgard Street, Victoria, BC",BLOCK,"535 1/2 Fisgard St, Victoria, BC",[CIVIC_NUMBER_SUFFIX.notMatched:1],R,,,T,T
 00167-NumberedStreetName,"857 E 45th Ave Vancouver BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],R,,,T,T
@@ -167,7 +167,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00171-SiteNameWithGluedWords,"AnahimLake Airport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],F,,,T,T
 00172-StreetNameWithMultipleSpellingMistakes,"Omineca St, Kitimat, BC",STREET,"Omenica St, Kitimat, BC",[],R,,,T,T
 00173-LocalityNameWithMultipleSpellingMistakes,"Spalumchin BC",LOCALITY,"Spallumcheen, BC",[],R,,,T,T
-00174-SiteNameWithMultipleSpellingMistakes,"Anahyme Lak Arport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- Anahim Lake, BC",[],R,,,T,T
+00174-SiteNameWithMultipleSpellingMistakes,"Anahyme Lak Arport -- Anahim Lake, BC",SITE,"Anahim Lake Airport -- 827 Anahim Lake Airport Rd, Anahim Lake, BC",[],R,,,T,T
 00175-NumberedStreetName,"857 E 45th Ave, Vancouver, BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],R,,,T,T
 00178-StreetNameWithSplitWords,"1985 Mill Stream Rd, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC",[STREET_NAME.partialMatch],R,,,T,T
 00179-UnknownSiteNameWithFrontGate,"Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],R,,,T,T
@@ -493,3 +493,4 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00503-LocalityNameWithSplitWords,"1090 Ironwood St, Camp bell River, BC",CIVIC_NUMBER,"1090 Ironwood St, Campbell River, BC",[LOCALITY.partialMatch],R,,,T,T
 00504-siteNameWithTerminalAndMissingStreetName,"Cargill Terminal -- District of North Vancouver, BC",SITE,"Cargill Terminal -- Low Level Rd, District of North Vancouver, BC",[STREET_NAME.notMatched],R,,,T,T
 00505-siteNameWithPortAndMissingStreetName,"Delta Port Entrance -- Delta, BC",SITE,"Delta Port Entrance -- Roberts Bank Rd, Delta, BC",[STREET_NAME.notMatched],F,,,T,T
+
