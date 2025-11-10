@@ -82,7 +82,11 @@ public class TagIndex<T> {
 			if(results == null) {
 				results = new THashSet<T>(tie.items);
 			} else {
-				results.retainAll(tie.items);
+				// intersect the results with the next tag's items (AND)
+				// results.retainAll(tie.items);
+
+				// union logic (OR) would be:
+				results.addAll(tie.items);
 			}
 		}
 		if(results == null) {
