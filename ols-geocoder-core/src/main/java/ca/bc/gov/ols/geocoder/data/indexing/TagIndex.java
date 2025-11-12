@@ -64,31 +64,58 @@ public class TagIndex<T> {
 	}
 	
 	/**
-	 * Queries the tag index for items that match all of the tags listed in the tags parameter.
-	 * @param tags semicolon separated list of tag strings 
+	 * Queries the tag index for items that match all or any of the tags listed in the tags parameter
+	 * depending on the presence of ':'.
+	 * @param tags colon/semicolon separated list of tag strings
 	 * @return a set of items matching all the specified tags
 	 */
 	public Set<T> query(String tags) {
 		if(tags == null || tags.isEmpty()) {
 			return Collections.emptySet();
 		}
-		String[] tagArray = tags.toLowerCase().split(";");
+		String lower = tags.toLowerCase();
 		Set<T> results = null;
-		for(String tag : tagArray) {
-			TagIndexEntry tie = index.get(tag);
-			if(tie == null) {
-				return Collections.emptySet();
+		// If tags contains ':' use OR semantics, otherwise default to AND using ';'
+		if(lower.contains(":")) {
+			String[] tagArray = lower.split(":");
+			for(String tag : tagArray) {
+				tag = tag.trim();
+				if(tag.isEmpty()) continue;
+				TagIndexEntry tie = index.get(tag);
+				if(tie == null) {
+					// missing tag contributes nothing for OR
+					continue;
+				}
+				if(results == null) {
+					results = new THashSet<T>(tie.items);
+				} else {
+					results.addAll(tie.items);
+				}
 			}
 			if(results == null) {
-				results = new THashSet<T>(tie.items);
-			} else {
-				results.retainAll(tie.items);
+				return Collections.emptySet();
 			}
+			return results;
+		} else {
+			String[] tagArray = lower.split(";");
+			for(String tag : tagArray) {
+				tag = tag.trim();
+				if(tag.isEmpty()) continue;
+				TagIndexEntry tie = index.get(tag);
+				if(tie == null) {
+					return Collections.emptySet();
+				}
+				if(results == null) {
+					results = new THashSet<T>(tie.items);
+				} else {
+					results.retainAll(tie.items);
+				}
+			}
+			if(results == null) {
+				return Collections.emptySet();
+			}
+			return results;
 		}
-		if(results == null) {
-			return Collections.emptySet();
-		}
-		return results;
 	}
 	
 	public Set<String> getTags() {
