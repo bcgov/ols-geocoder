@@ -471,11 +471,31 @@ public class GeocodeQuery extends SharedParameters{
 				@Override
 				public boolean pass(GeocodeMatch match) {
 					if(match instanceof AddressMatch 
-							&& ((AddressMatch)match).getAddress() instanceof OccupantAddress
-							&& ((OccupantAddress)(((AddressMatch)match).getAddress())).getKeywordList()
-									.containsAll(Arrays.asList(tags.toLowerCase().split(";")))
-							) {
-						return true;
+						&& ((AddressMatch)match).getAddress() instanceof OccupantAddress) {
+						List<String> keywords = ((OccupantAddress)(((AddressMatch)match).getAddress())).getKeywordList();
+						if(keywords == null || keywords.isEmpty()) {
+							return false;
+						}
+						String lowerTags = tags.toLowerCase();
+						// OR if tags contain ':'
+						if(lowerTags.contains(":")) {
+							String[] tagArray = lowerTags.split(":");
+							for(String t : tagArray) {
+								t = t.trim();
+								if(keywords.contains(t)) {
+									return true;
+								}
+							}
+							return false;
+						} else {
+							// default to AND using ';'
+							String[] tagArray = lowerTags.split(";");
+							List<String> required = new ArrayList<String>(tagArray.length);
+							for(String t : tagArray) {
+								required.add(t.trim());
+							}
+							return keywords.containsAll(required);
+						}
 					}
 					return false;
 				}
