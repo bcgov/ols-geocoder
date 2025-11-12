@@ -13,15 +13,15 @@
 ## Match Precisions
 Name | Meaning | Points awarded
 -------: | --------------- | -----:
-<a name="PROVINCE">Province</a>|No match|1
-<a name="LOCALITY">Locality</a>|Locality matched perfectly but finer-grained address elements such as street, civic number, and unit number, if provided, did not match|68
-<a name="STREET">Street</a>|Locality and street matched but finer grained address elements such as civic number and unit number, if provided, did not match|78
-<a name="BLOCK">Block</a>|An address range on a given block of a street was found that contains the civic number provided but no civic number in that block matched and no unit number, if provided, matched either|99
-<a name="CIVIC_NUMBER">Civic Number</a>|Perfect match down to civic number but unit number, if provided, did not match|100
-<a name="UNIT">Unit</a>|Perfect match down to unit|100
-<a name="SITE">Site</a>|Perfect match down to site name|100
-<a name="OCCUPANT">Occupant</a>|Perfect match down to occupant name (only used in occupants resource)|100
-<a name="INTERSECTION">Intersection</a>|Perfect match down to intersection name|100
+<a name="PROVINCE">PROVINCE</a>|No match|1
+<a name="LOCALITY">LOCALITY</a>|Locality matched perfectly but finer-grained address elements such as street, civic number, and unit number, if provided, did not match|68
+<a name="STREET">STREET</a>|Locality and street matched but finer grained address elements such as civic number and unit number, if provided, did not match|78
+<a name="BLOCK">BLOCK</a>|An address range on a given block of a street was found that contains the civic number provided but no civic number in that block matched and no unit number, if provided, matched either|99
+<a name="CIVIC_NUMBER">CIVIC_NUMBER</a>|Perfect match down to civic number but unit number, if provided, did not match|100
+<a name="UNIT">UNIT</a>|Perfect match down to unit|100
+<a name="SITE">SITE</a>|Perfect match down to site name|100
+<a name="OCCUPANT">OCCUPANT</a>|Perfect match down to occupant name (only used in occupants resource)|100
+<a name="INTERSECTION">INTERSECTION</a>|Perfect match down to intersection name|100
 
 <br>
 
