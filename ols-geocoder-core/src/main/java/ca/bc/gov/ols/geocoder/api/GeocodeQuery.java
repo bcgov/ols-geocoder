@@ -58,6 +58,7 @@ public class GeocodeQuery extends SharedParameters{
 	private String streetQualifier;
 	private String localityName;
 	private String stateProvTerr;
+	private String tagCondition;
 	
 	private int minScore = 0;
 	private EnumSet<MatchPrecision> matchPrecision = null;
@@ -428,6 +429,14 @@ public class GeocodeQuery extends SharedParameters{
 		this.exactSpelling = exactSpelling;
 	}
 
+	public String getTagCondition() {
+		return tagCondition;
+	}
+
+	public void setTagCondition(String tagCondition) {
+		this.tagCondition = tagCondition;
+	}
+
 	public int getNumPrelimResults() {
 		if(fuzzyMatch) {
 			return 100;
@@ -477,9 +486,19 @@ public class GeocodeQuery extends SharedParameters{
 							return false;
 						}
 						String lowerTags = tags.toLowerCase();
-						// OR if tags contain ':'
-						if(lowerTags.contains(":")) {
-							String[] tagArray = lowerTags.split(":");
+
+						boolean useOr = true;
+						if(tagCondition != null && !tagCondition.trim().isEmpty()) {
+							String c = tagCondition.trim().toLowerCase();
+							if(c.contains("or")) {
+								useOr = true;
+							} else if(c.contains("and")) {
+								useOr = false;
+							}
+						}
+
+						if(useOr) {
+							String[] tagArray = lowerTags.split(";");
 							for(String t : tagArray) {
 								t = t.trim();
 								if(keywords.contains(t)) {
@@ -488,7 +507,7 @@ public class GeocodeQuery extends SharedParameters{
 							}
 							return false;
 						} else {
-							// default to AND using ';'
+							// default
 							String[] tagArray = lowerTags.split(";");
 							List<String> required = new ArrayList<String>(tagArray.length);
 							for(String t : tagArray) {
