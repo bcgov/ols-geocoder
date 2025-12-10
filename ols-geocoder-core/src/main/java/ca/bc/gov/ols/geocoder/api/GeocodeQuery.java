@@ -479,6 +479,7 @@ public class GeocodeQuery extends SharedParameters{
 			filters.add(new Filter<GeocodeMatch>() {
 				@Override
 				public boolean pass(GeocodeMatch match) {
+
 					if(match instanceof AddressMatch 
 						&& ((AddressMatch)match).getAddress() instanceof OccupantAddress) {
 						List<String> keywords = ((OccupantAddress)(((AddressMatch)match).getAddress())).getKeywordList();
@@ -499,9 +500,11 @@ public class GeocodeQuery extends SharedParameters{
 
 						if(useOr) {
 							String[] tagArray = lowerTags.split(";");
+							System.out.println(">>>>>>>> keywords: " + keywords + " : " + Arrays.toString(tagArray));
 							for(String t : tagArray) {
 								t = t.trim();
 								if(keywords.contains(t)) {
+									System.out.println(">>>>>>>> matched tag: " + t);
 									return true;
 								}
 							}
