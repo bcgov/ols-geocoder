@@ -252,12 +252,13 @@ public class Geocoder implements IGeocoder {
 		}
 
 		if(query.isFuzzyMatch() && query.getAddressString() != null && !query.getAddressString().isEmpty()) {
-			// sort by fuzzy score (higher fuzzy score is better)
+			final String normalizedInput = query.getAddressString().toLowerCase();
 			matches.sort(
 				Comparator.comparingInt((GeocodeMatch match) ->
-					FuzzySearch.ratio(query.getAddressString(), match.getAddressString())
+					FuzzySearch.ratio(normalizedInput, match.getAddressString().toLowerCase())
 				).reversed() 
 			);
+
 			matches = matches.subList(0, Math.min(query.getMaxResults(), matches.size()));
 		}
 
