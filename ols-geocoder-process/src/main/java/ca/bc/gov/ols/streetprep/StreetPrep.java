@@ -693,19 +693,11 @@ public class StreetPrep {
 				}
 			}
 			if("BCGNIS".equals(loc.source) && loc.containingLocalityId != null) {
-				// Existing: map to parent
-				RawLocalityMapping lmParent = new RawLocalityMapping();
-				lmParent.inputString = loc.name;
-				lmParent.localityId = loc.containingLocalityId;
-				lmParent.confidence = 80;
-				lmMap.put(lmParent.inputString + "|" + lmParent.localityId, lmParent);
-				
-				// NEW: map to self with higher confidence
-				RawLocalityMapping lmSelf = new RawLocalityMapping();
-				lmSelf.inputString = loc.name;
-				lmSelf.localityId = loc.id;               // Self!
-				lmSelf.confidence = 95;                    // Higher priority
-				lmMap.put(lmSelf.inputString + "|" + lmSelf.localityId, lmSelf);
+				RawLocalityMapping lm = new RawLocalityMapping();
+				lm.inputString = loc.name;
+				lm.localityId = loc.containingLocalityId;
+				lm.confidence = 80;
+				lmMap.put(lm.inputString + "|" + lm.localityId, lm);
 			}
 		}
 		return lmMap;
