@@ -349,6 +349,7 @@ public class SiteLoaderPrep {
 		Map<String,List<InputSite>> siteMap = new THashMap<String,List<InputSite>>(2500000);
 		try(RowReader rr = new CsvRowReader(inputDir + GEOCODE_HYBRID_FILE, geometryFactory)) {
 			while(rr.next()) {
+				System.out.println("Line content: " + rr.toString());
 				InputSite site = new InputSite(); 
 				site.id = rr.getInt("ID");
 				site.addressString = rr.getString("addressString");
