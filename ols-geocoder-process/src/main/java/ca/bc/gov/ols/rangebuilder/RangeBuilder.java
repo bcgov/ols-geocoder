@@ -287,9 +287,9 @@ public class RangeBuilder {
 		rr = dataSource.getCombinedSites();
 		while(rr.next()) {
 			readSiteCount++;
-			if(readSiteCount % 100000 == 0) {
+			//if(readSiteCount % 100000 == 0) {
 				logger.info("Site/AccessPoints Read: {}", readSiteCount);
-			}
+			//}
 			int rangeType = rr.getInt("range_Type");
 
 			IRbSite site;
