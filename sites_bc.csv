@@ -62,7 +62,7 @@ yourId,addressString,localityType
 61,"575 Greenhorn Pl, Ladysmith, BC",Town
 62,"10750 Cheryl Crt, Lake Country, BC",District
 63,"7465 Teal Crt, Lake Cowichan, BC",Town
-64,"2751 Echo Valley Dr, Langford, BC",City
+64,"2355 Azurite Cres, Langford, BC",City
 65,"5900 Glover Rd, Langley, BC",City
 66,"21009 56 Ave, Township of Langley, BC",District Municipality
 67,"7099 Schines Pl, Lantzville, BC",District
@@ -161,3 +161,4 @@ yourId,addressString,localityType
 160,"15655 Semiahmoo Ave, White Rock, BC",City
 161,"1115 Tresierra St, Williams Lake, BC",City
 162,"108 Maquinna Ave, Zeballos, BC",village
+
