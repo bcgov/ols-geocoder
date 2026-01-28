@@ -256,13 +256,22 @@ public class Geocoder implements IGeocoder {
 			// than just by fuzzy score alone. We prioritize:
 			// 1. Exact locality matches (no penalty) over prefix matches (with penalty)
 			// 2. LOCALITY precision matches for simple word queries without numbers
-			// 3. Fuzzy score within each priority group
+			// 3. Fuzzy score within each priority group (case-insensitive)
 			final String queryStr = query.getAddressString();
+			final String normalizedInput = queryStr.toLowerCase();
 			matches.sort(
 				Comparator
 					// First, prioritize matches without locality partialMatch faults (exact matches)
-					.comparing((GeocodeMatch match) -> 
-						match.containsFault(MatchFault.MatchElement.LOCALITY, "partialMatch"))
+					.comparing((GeocodeMatch match) -> {
+						for(MatchFault fault : match.getFaults()) {
+							if(fault.getElement() == MatchFault.MatchElement.LOCALITY 
+								&& fault.getFault().equals("partialMatch")
+								&& fault.getPenalty() > 0) {
+								return 1; // Deprioritize prefix matches
+							}
+						}
+						return 0; // Prioritize exact matches
+					})
 					// Second, for locality-only queries, prioritize LOCALITY precision matches
 					.thenComparing((GeocodeMatch match) -> {
 						// Check if this is likely a locality-only query (simple word(s), no numbers)
@@ -273,9 +282,9 @@ public class Geocoder implements IGeocoder {
 						}
 						return 1; // Lower priority
 					})
-					// Then sort by fuzzy score (higher is better)
+					// Then sort by fuzzy score (higher is better, case-insensitive)
 					.thenComparing((GeocodeMatch match) ->
-						FuzzySearch.ratio(queryStr, match.getAddressString()),
+						FuzzySearch.ratio(normalizedInput, match.getAddressString().toLowerCase()),
 						Comparator.reverseOrder()
 					)
 			);
