@@ -252,12 +252,34 @@ public class Geocoder implements IGeocoder {
 		}
 
 		if(query.isFuzzyMatch() && query.getAddressString() != null && !query.getAddressString().isEmpty()) {
-			// sort by fuzzy score (higher fuzzy score is better)
+			// When fuzzy matching is enabled, we need to sort results more intelligently
+			// than just by fuzzy score alone. We prioritize:
+			// 1. Exact locality matches (no penalty) over prefix matches (with penalty)
+			// 2. LOCALITY precision matches for simple word queries without numbers
+			// 3. Fuzzy score within each priority group
+			final String queryStr = query.getAddressString();
 			matches.sort(
-				Comparator.comparingInt((GeocodeMatch match) ->
-					FuzzySearch.ratio(query.getAddressString(), match.getAddressString())
-				).reversed() 
+				Comparator
+					// First, prioritize matches without locality partialMatch faults (exact matches)
+					.comparing((GeocodeMatch match) -> 
+						match.containsFault(MatchFault.MatchElement.LOCALITY, "partialMatch"))
+					// Second, for locality-only queries, prioritize LOCALITY precision matches
+					.thenComparing((GeocodeMatch match) -> {
+						// Check if this is likely a locality-only query (simple word(s), no numbers)
+						boolean likelyLocalityQuery = !queryStr.matches(".*\\d+.*");
+						// If it's a locality query and this is a LOCALITY match, boost it
+						if (likelyLocalityQuery && match.getPrecision() == MatchPrecision.LOCALITY) {
+							return 0; // Higher priority
+						}
+						return 1; // Lower priority
+					})
+					// Then sort by fuzzy score (higher is better)
+					.thenComparing((GeocodeMatch match) ->
+						FuzzySearch.ratio(queryStr, match.getAddressString()),
+						Comparator.reverseOrder()
+					)
 			);
+			// limit to maxResults
 			matches = matches.subList(0, Math.min(query.getMaxResults(), matches.size()));
 		}
 
