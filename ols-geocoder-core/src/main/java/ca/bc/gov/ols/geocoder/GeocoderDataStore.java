@@ -1461,6 +1461,8 @@ public class GeocoderDataStore {
 		// Special case to handle the fact that Rue needs to map to St for french
 		// but Rue is also a valid street type on its own
 		wordMapBuilder.addWordMapping("Rue", "St");
+		// Add Wye as a valid street type (railway term for Y-shaped track junction)
+		wordMapBuilder.addWord("Wye", WordClass.STREET_TYPE);
 		
 		// Add directionals
 		rr = dataSource.getStreetDirs();
