@@ -25,6 +25,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.EnumSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -62,6 +63,7 @@ import ca.bc.gov.ols.geocoder.data.StreetSegment;
 import ca.bc.gov.ols.geocoder.data.enumTypes.LocationDescriptor;
 import ca.bc.gov.ols.geocoder.data.enumTypes.MatchPrecision;
 import ca.bc.gov.ols.geocoder.data.enumTypes.PositionalAccuracy;
+import ca.bc.gov.ols.geocoder.data.indexing.BlockFaceIntervalTree;
 import ca.bc.gov.ols.geocoder.data.indexing.MisspellingOf;
 import ca.bc.gov.ols.geocoder.data.indexing.Word;
 import ca.bc.gov.ols.geocoder.data.indexing.WordClass;
@@ -367,6 +369,73 @@ public class Geocoder implements IGeocoder {
 			logger.debug("Counts by match precision: {}", counts.toString());
 		}
 	}
+
+	/**
+	 * Finds an ASCII-safe alternative for a street name.
+	 * If the street name is already ASCII-safe, returns it.
+	 * Otherwise, looks for the primary name of a segment with this street name.
+	 * 
+	 * @param name the street name to find an ASCII alternative for
+	 * @return an ASCII-safe StreetName
+	 */
+	private StreetName findAsciiAlternative(StreetName name) {
+		// Check if the name itself is ASCII-safe
+		if(isStreetNameAsciiSafe(name)) {
+			return name;
+		}
+		
+		// Try to find a segment with this street name to get the primary name
+		// Use the iterator to get ANY block face (not tied to a specific address)
+		BlockFaceIntervalTree blocksTree = name.getBlocksTree();
+		if(blocksTree != null) {
+			Iterator<BlockFace> iterator = blocksTree.iterator();
+			if(iterator.hasNext()) {
+				BlockFace face = iterator.next();
+				StreetSegment segment = face.getSegment();
+				StreetName primaryName = segment.getPrimaryStreetName();
+				
+				// If primary is ASCII-safe, use it
+				if(isStreetNameAsciiSafe(primaryName)) {
+					return primaryName;
+				}
+				
+				// Otherwise, look for an ASCII-safe alias
+				for(Object aliasName : segment.getAliasNames()) {
+					if(aliasName instanceof StreetName) {
+						StreetName alias = (StreetName)aliasName;
+						if(isStreetNameAsciiSafe(alias)) {
+							return alias;
+						}
+					}
+				}
+			}
+		}
+		
+		// No ASCII alternative found, return original
+		return name;
+	}
+
+	private boolean isStreetNameAsciiSafe(StreetName streetName) {
+		if(streetName == null) {
+			return true;
+		}
+		return isAsciiSafe(streetName.getBody()) 
+			&& isAsciiSafe(streetName.getType())
+			&& isAsciiSafe(streetName.getDir())
+			&& isAsciiSafe(streetName.getQual());
+	}
+
+	private boolean isAsciiSafe(String str) {
+		if(str == null || str.isEmpty()) {
+			return true;
+		}
+		for(int i = 0; i < str.length(); i++) {
+			if(str.charAt(i) > 127) {
+				return false;
+			}
+		}
+		return true;
+	}
 	
 	/**
 	 * Internal geocode method used by both other structured and unstructured queries.
@@ -388,7 +457,6 @@ public class Geocoder implements IGeocoder {
 		if(query.getIncludeOccupants()) {
 			possibleOccupants = datastore.getOccupantsByName(occNameWords);
 		}
-
 		if((address.getStreetName() != null && !address.getStreetName().isEmpty())
 				&& (address.getCivicNumber() != null || 
 						(possibleSites.isEmpty() && possibleOccupants.isEmpty()))) {
@@ -419,7 +487,12 @@ public class Geocoder implements IGeocoder {
 							// we have an interpolated match
 							SiteAddress matchAddress = new SiteAddress();
 							MatchPrecision precision = MatchPrecision.BLOCK;
-							matchAddress.setStreetName(face.getSegment().getPrimaryStreetName());
+							face.getSegment().printAllAliasNames();
+							if(query.getOnlyAsciiNames()) {
+								matchAddress.setStreetName(findAsciiAlternative(face.getSegment().getPrimaryStreetName()));
+							} else {
+								matchAddress.setStreetName(face.getSegment().getPrimaryStreetName());
+							}
 							matchAddress.setCivicNumber(address.getCivicNumber());
 							matchAddress.setLocality(face.getLocality());
 							matchAddress.setElectoralArea(face.getElectoralArea());
@@ -478,7 +551,12 @@ public class Geocoder implements IGeocoder {
 								matchAddress.setUnitNumberSuffix(site.getUnitNumberSuffix());
 								matchAddress.setSiteName(site.getSiteName());
 								matchAddress.setParentSiteDescriptor(site.getParentSiteDescriptor());
-								matchAddress.setStreetName(face.getSegment().getPrimaryStreetName());
+								// face.getSegment().printAllAliasNames();
+								if(query.getOnlyAsciiNames()) {
+									matchAddress.setStreetName(findAsciiAlternative(face.getSegment().getPrimaryStreetName()));
+								} else {
+									matchAddress.setStreetName(face.getSegment().getPrimaryStreetName());
+								}
 								matchAddress.setCivicNumber(address.getCivicNumber());
 								matchAddress.setCivicNumberSuffix(address.getCivicNumberSuffix());
 								matchAddress.setLocality(face.getLocality());
@@ -596,7 +674,24 @@ public class Geocoder implements IGeocoder {
 				for(PairedListEntry<Locality, double[]> entry : localityPoints) {
 					// locality aliases are handled by scoring
 					SiteAddress matchAddress = new SiteAddress();
-					matchAddress.setStreetName(name);
+					
+					// debug info: Use the iterator to get ANY block face (not tied to a specific address)
+					BlockFaceIntervalTree blocksTree = name.getBlocksTree();
+					if(blocksTree != null) {
+						Iterator<BlockFace> iterator = blocksTree.iterator();
+						if(iterator.hasNext()) {
+							BlockFace face = iterator.next();
+							StreetSegment segment = face.getSegment();
+							segment.printAllAliasNames();
+						}
+					}
+					if(query.getOnlyAsciiNames()) {
+						// Use ASCII alternative: try to find primary name from segment
+						StreetName nameToUse = findAsciiAlternative(name);
+						matchAddress.setStreetName(nameToUse);
+					} else {
+						matchAddress.setStreetName(name);
+					}
 					matchAddress.setLocality(entry.getLeft());
 					
 					matchAddress.setLocation(GeocoderDataStore.getGeometryFactory().createPoint(

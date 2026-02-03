@@ -83,6 +83,8 @@ public class GeocodeQuery extends SharedParameters{
 	private boolean exactSpelling = false;
 	private boolean fuzzyMatch = false;
 
+	private boolean onlyAsciiNames = false;
+
 	public GeocodeQuery() {
 		setMaxResults(1);
 	}
@@ -433,6 +435,14 @@ public class GeocodeQuery extends SharedParameters{
 			return 100;
 		}
 		return getMaxResults() + 1;
+	}
+
+	public boolean getOnlyAsciiNames() {
+		return onlyAsciiNames;
+	}
+
+	public void setOnlyAsciiNames(boolean onlyAsciiNames) {
+		this.onlyAsciiNames = onlyAsciiNames;
 	}
 
 

@@ -65,6 +65,11 @@ public class StreetName {
 				+ (dir != null && !dirIsPrefix ? " " + dir : "")
 				+ (qual != null ? " " + qual : "");
 	}
+
+	// debug method to return the BlockFaceIntervalTree for this street name
+	public BlockFaceIntervalTree getBlocksTree() {
+    	return blocks;
+	}
 	
 	public List<BlockFace> getBlocks(int addr) {
 		if(blocks != null) {
