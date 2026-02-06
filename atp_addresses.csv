@@ -54,7 +54,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00054-CivicAddressWrongWordInStreetName,"Community Center Rd Grand Forks BC",STREET,"Community Center Rd, Grand Forks, BC",[STREET_NAME.spelledWrong:2],R,,,T,T
 00055-CivicAddressMissingCharactersInStreetName,"30 Frth Cres Mackenzie BC",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[STREET_NAME.spelledWrong:2],R,,,T,T
 00056-CivicAddressMissingCharactersInLocality,"30 Firth Cres Mckenzie BC",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[LOCALITY.spelledWrong:2],R,,,T,T
-00057-CivicAddressWrongAbbreviationInLocality,"2910 Hwy 99 Mot Currie BC",CIVIC_NUMBER,"2910 Hwy 99, Mount Currie, BC","[UNRECOGNIZED.notAllowed:33 LOCALITY.notMatched:35]",R,,,T,T
+00057-CivicAddressWrongAbbreviationInLocality,"2910 Hwy 99 Mout Currie BC",CIVIC_NUMBER,"2910 Hwy 99, Mount Currie, BC","[UNRECOGNIZED.notAllowed:33 LOCALITY.notMatched:35]",R,,,T,T
 00058-CivicAddressWrongProvinceCode,"30 Firth Cres Mackenzie AB",CIVIC_NUMBER,"30 Firth Cres, Mackenzie, BC",[PROVINCE.notMatched:1],R,,,T,T
 00059-CivicAddressWrongLocality,952 COMOX AVE PRINCE GEORGE BC,CIVIC_NUMBER,"952 Comox Ave, Prince Rupert, BC",[LOCALITY.notMatched:35],R,,,F,F
 00060-CivicAddressWrongStreetType,952 COMOX ST PRINCE RUPERT BC,CIVIC_NUMBER,"952 Comox Ave, Prince Rupert, BC",[STREET_TYPE.notMatched:3],R,,,T,T
@@ -111,8 +111,8 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00112-CivicAddressWithKnownParcelPoint,"5706 Malibu Terr Nanaimo BC",CIVIC_NUMBER,"5706 Malibu Terr, Nanaimo, BC",[],R,,,T,T
 00113-CivicAddressWithKnownFrontDoorAndUnknownParcelPoint,BC,PROVINCE,BC,"[UNRECOGNIZED.notAllowed:33 STREET_NAME.spelledWrong:2 LOCALITY.missing:10 STREET_TYPE.missing:6 PROVINCE.missing:1 MAX_RESULTS.too_low_to_include_all_best_matches:0]",R,,,T,T
 00114-CivicAddressWithUnKnownFrontDoorAndKnownParcelPoint,"5712 Malibu Terr Nanaimo BC",CIVIC_NUMBER,"5712 Malibu Terr, Nanaimo, BC",[],R,,,T,T
-00115-IntersectionAddressWithTwoStreetsInAscendingOrder,"douglas st and Victoria Rd Chemainus bc",INTERSECTION,"Douglas St and Private Rd and Victoria Rd, Chemainus, BC",[],R,,,T,T
-00116-IntersectionAddressWithTwoStreetsInDescendingOrder,"Victoria Rd and douglas st Chemainus bc",INTERSECTION,"Douglas St and Private Rd and Victoria Rd, Chemainus, BC",[],R,,,T,T
+00115-IntersectionAddressWithTwoStreetsInAscendingOrder,"douglas st and Victoria Rd Chemainus bc",INTERSECTION,"Douglas St and Victoria Rd, Chemainus, BC",[],R,,,T,T
+00116-IntersectionAddressWithTwoStreetsInDescendingOrder,"Victoria Rd and douglas st Chemainus bc",INTERSECTION,"Douglas St and Victoria Rd, Chemainus, BC",[],R,,,T,T
 00117-IntersectionAddressWithFourStreets,"Douglas St and Gorge Rd E and Hillside Ave and turning lane, Victoria, BC",INTERSECTION,"Douglas St and Gorge Rd E and Hillside Ave, Victoria, BC",[],R,,,T,T
 00118-IntersectionAddressWithStreetDirection,"Davin St and Maddock Ave W Saanich BC",INTERSECTION,"Davin St and Maddock Ave W, Saanich, BC",[],R,,,T,T
 00119-IntersectionAddressWithMissingStreetDirection,"Davin St and Maddock Ave Saanich BC",INTERSECTION,"Davin St and Maddock Ave W, Saanich, BC",[STREET_DIRECTION.missing:2],R,,,T,T
@@ -440,7 +440,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00450-SuffixNameMatching,"2020 Kent Ave S, Vancouver, BC",CIVIC_NUMBER,"2020 East Kent Ave S, Vancouver, BC",[],F,,,T,T
 00451-StreetNameWordsGluedTogether,"3821 Cedarhill Rd, Saanich, BC",CIVIC_NUMBER,"3821 Cedar Hill Rd, Saanich, BC",[STREET_NAME.partialMatch],R,,,T,T
 00452-StreetNameCompoundWordsSeparated,"8514 Horseshoebay Rd, Anglemont, BC",CIVIC_NUMBER,"8514 Horseshoe Bay Rd, Anglemont, BC",[],R,,,T,T
-00453-NonStandardStreetTypeAbbreviation,"2910 Hwy 99, Mot Currie, BC",CIVIC_NUMBER,"2910 Hwy 99, Mount Currie, BC",[],R,,102,T,T
+00453-NonStandardStreetTypeAbbreviation,"2910 Hwy 99, Mout Currie, BC",CIVIC_NUMBER,"2910 Hwy 99, Mount Currie, BC",[],R,,102,T,T
 00454-civicAddressWithUnitandUnknownSiteName,"UNIT 170 Happy House -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",UNIT,"UNIT 170 HAPPY HOUSE -- 22470 Dewdney Trunk Rd, Maple Ridge, BC",[SITE_NAME.notMatched],R,,,T,T
 00455-StreetNameWithMultipleSpellingMistakes,"Omenica St, Hazelton, BC",STREET,"Omineca St, Hazelton, BC",[],R,,,T,T
 00456-NonStandardLocalityNameAbbreviation,"134 E 15th St, North Van, BC",CIVIC_NUMBER,"134 E 15th St, North Vancouver, BC",[],R,,102,T,T
@@ -493,5 +493,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00503-LocalityNameWithSplitWords,"1090 Ironwood St, Camp bell River, BC",CIVIC_NUMBER,"1090 Ironwood St, Campbell River, BC",[LOCALITY.partialMatch],R,,,T,T
 00504-siteNameWithTerminalAndMissingStreetName,"Cargill Terminal -- District of North Vancouver, BC",SITE,"Cargill Terminal -- Low Level Rd, District of North Vancouver, BC",[STREET_NAME.notMatched],R,,,T,T
 00505-siteNameWithPortAndMissingStreetName,"Delta Port Entrance -- Delta, BC",SITE,"Delta Port Entrance -- Roberts Bank Rd, Delta, BC",[STREET_NAME.notMatched],F,,,T,T
+
+
 
 
