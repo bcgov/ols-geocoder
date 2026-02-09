@@ -144,7 +144,7 @@ yourId,addressString,localityType
 143,"1696 Telegraph St, Telkwa, BC",village
 144,"3605 Hallock Pl, Terrace, BC",City
 145,"660 Warren Way, Tofino, BC",District
-146,"224 Rossland Ave, Trail, BC",City
+146,"224 Old Rossland Ave, Trail, BC",City
 147,"24 Wapiti Pl, Tumbler Ridge, BC",District
 148,"1969 St. Jacques Blvd, Ucluelet, BC",District
 149,"1280 Juniper St, Valemount, BC",village
@@ -161,4 +161,5 @@ yourId,addressString,localityType
 160,"15655 Semiahmoo Ave, White Rock, BC",City
 161,"1115 Tresierra St, Williams Lake, BC",City
 162,"108 Maquinna Ave, Zeballos, BC",village
+
 
