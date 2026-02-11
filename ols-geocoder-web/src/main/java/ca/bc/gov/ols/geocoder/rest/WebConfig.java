@@ -49,7 +49,6 @@ import ca.bc.gov.ols.geocoder.rest.messageconverters.ShpOlsResponseConverter;
 import ca.bc.gov.ols.geocoder.rest.messageconverters.XhtmlOlsResponseConverter;
 
 @Configuration
-@EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 	
 	@Autowired
@@ -150,7 +149,6 @@ public class WebConfig implements WebMvcConfigurer {
 		configurer
 				.favorPathExtension(true)
 				.favorParameter(false)
-				.ignoreAcceptHeader(true)
 				.useRegisteredExtensionsOnly(true)
 				.defaultContentType(MediaType.APPLICATION_XHTML_XML)
 				.mediaType("xhtml", MediaType.APPLICATION_XHTML_XML)

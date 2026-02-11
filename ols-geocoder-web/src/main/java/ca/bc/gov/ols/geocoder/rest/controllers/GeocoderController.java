@@ -15,6 +15,8 @@
  */
 package ca.bc.gov.ols.geocoder.rest.controllers;
 
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.PrecisionModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +36,7 @@ import ca.bc.gov.ols.geocoder.data.enumTypes.Interpolation;
 import ca.bc.gov.ols.geocoder.rest.GeotoolsGeometryReprojector;
 import ca.bc.gov.ols.geocoder.rest.OlsResponse;
 import ca.bc.gov.ols.geocoder.rest.exceptions.InvalidParameterException;
-
-import org.locationtech.jts.geom.GeometryFactory;
-import org.locationtech.jts.geom.PrecisionModel;
+import ca.bc.gov.ols.geocoder.status.BasicStatus;
 
 @RestController
 @CrossOrigin
@@ -98,7 +98,18 @@ public class GeocoderController {
 		response.setParams(query);
 		return response;
 	}
+	
+	@RequestMapping(value = "/status", method = {RequestMethod.GET})
+	public BasicStatus status() {
+		return new BasicStatus(geocoder.getStatus());
+	}
 
+// For Slow Query API 
+//	@RequestMapping(value = "/status/slowQueries", method = {RequestMethod.GET})
+//	public QueryLog[] statusByType() {
+//		return geocoder.getStatus().slowQueries.get();
+//	}
+	
 // For Instant Batch	
 //	@RequestMapping(value = "/batch", method = RequestMethod.POST)
 //	public GeocoderBatchProcessor batch(GeocodeParameters params, BindingResult bindingResult) {

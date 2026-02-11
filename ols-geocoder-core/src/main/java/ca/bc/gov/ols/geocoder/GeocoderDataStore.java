@@ -108,6 +108,8 @@ import ca.bc.gov.ols.geocoder.filters.OnlyCivicAccessPointFilter;
 import ca.bc.gov.ols.geocoder.filters.OnlyCivicSiteFilter;
 import ca.bc.gov.ols.geocoder.filters.PointLocationBboxFilter;
 import ca.bc.gov.ols.geocoder.filters.StreetIntersectionDegreeFilter;
+import ca.bc.gov.ols.geocoder.status.BasicStatus;
+import ca.bc.gov.ols.geocoder.status.SystemStatus;
 import ca.bc.gov.ols.geocoder.util.GeocoderUtil;
 import ca.bc.gov.ols.rowreader.DateType;
 import ca.bc.gov.ols.rowreader.RowReader;
@@ -138,6 +140,7 @@ public class GeocoderDataStore {
 	private static final int NUM_EXPECTED_ADDRESSES = 10000;
 
 	private GeocoderDataSource dataSource;
+	private SystemStatus status;
 	
 	/* This is the global geometry factory, all geometries are created using it */
 	private static GeometryFactory geometryFactory;
@@ -234,6 +237,8 @@ public class GeocoderDataStore {
 		logger.info("GeocoderDataStore() constructor called");
 		geometryFactory = gf;
 		this.reprojector = reprojector;
+		status = new SystemStatus();
+		status.startTimestamp = ZonedDateTime.now().toString();
 		EnumSet<GeocoderFeature> features = GeocoderFeature.fromStringList(bootstrapConfig.getProperty("features"));
 		if(features != null) {
 			featureSet = features;
@@ -429,6 +434,7 @@ public class GeocoderDataStore {
 				"Memory in use after loading(Megs): {}",
 				((Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1000000));
 		dates = dataSource.getDates();
+		status.setDates(dates);
 		if(dates == null) {
 			logger.error("Data file dates are inconsistent; Errors may result! Check that all files were processed and copied correctly.");
 		} else {
@@ -516,6 +522,7 @@ public class GeocoderDataStore {
 			intMap.put(id, intersection);
 		}
 		logger.debug("Intersection count: {}", count);
+		status.counts.put("intersections", count);
 		rr.close();
 		return intMap;
 	}
@@ -544,6 +551,7 @@ public class GeocoderDataStore {
 			exactMatchLookup.add(match);
 		}
 		logger.debug("State/Prov/Terr count: {}", count);
+		status.counts.put("state_prov_terrs", count);
 		rr.close();
 		
 		return sptMap;
@@ -590,6 +598,7 @@ public class GeocoderDataStore {
 			names.add(new LocalityMapTarget(100, locality));
 		}
 		logger.debug("Locality count: {}", count);
+		status.counts.put("localities", count);
 		rr.close();
 		
 		Stream<LocalityMapping> locMaps = dataSource.getLocalityMappings();
@@ -629,6 +638,7 @@ public class GeocoderDataStore {
 			}
 		};
 		logger.debug("Locality Mapping count: {}", count);
+		status.counts.put("locality_mappings", count);
 		
 		// minimize the arrays used for the locality mappings sets
 		for(Set<LocalityMapTarget> set : localityMappings.values()) {
@@ -650,6 +660,7 @@ public class GeocoderDataStore {
 			eaMap.put(id, name);
 		}
 		logger.debug("Electoral Area count: {}", count);
+		status.counts.put("electorial_areas", count);
 		rr.close();
 		return eaMap;
 	}
@@ -754,7 +765,9 @@ public class GeocoderDataStore {
 			
 		}
 		logger.debug("Site Count: " + siteCount);
+		status.counts.put("sites", siteCount);
 		logger.debug("Access Point Count: " + apCount);
+		status.counts.put("access_points", apCount);
 		rr.close();
 		
 		// loop over all the Sites in the siteIdMap and resolve their parents
@@ -985,7 +998,9 @@ public class GeocoderDataStore {
 		rr.close();
 		
 		logger.debug("Street Segment count: {}", count);
+		status.counts.put("street_segments", count);
 		logger.debug("Block Face count: {}", faceCount);
+		status.counts.put("block_faces", faceCount);
 		
 		TIntObjectHashMap<List<StreetSegment>> nameIdToSegmentsMap = new TIntObjectHashMap<List<StreetSegment>>();
 		rr = dataSource.getStreetNameOnSegments();
@@ -1042,6 +1057,7 @@ public class GeocoderDataStore {
 		rr.close();
 		
 		logger.debug("Street Name on Segment count: {}", count);
+		status.counts.put("street_name_on_segments", count);
 		return nameIdToSegmentsMap;
 	}
 	
@@ -1137,6 +1153,7 @@ public class GeocoderDataStore {
 		rr.close();
 		
 		logger.debug("Street Name count: {}", count);
+		status.counts.put("street_names", count);
 		// loop over the PrimaryNameId -> IntersectionList map
 		for(TIntObjectIterator<List<StreetIntersection>> it = primaryNameIdToIntersectionsMap.iterator(); it.hasNext(); ){
 			it.advance();
@@ -1203,6 +1220,7 @@ public class GeocoderDataStore {
 		rr.close();
 		
 		logger.debug("Street Locality Centroid count: {}", count);
+		status.counts.put("street_locality_centroids", count);
 		
 		// loop over all streetNames and compact them
 		for(StreetName sn : streetNameIdMap.valueCollection()) {
@@ -1298,6 +1316,7 @@ public class GeocoderDataStore {
 		}
 		rr.close();
 		logger.info("Business Category Count: {}", count);
+		status.counts.put("business_categories", count);
 		return cats;
 	}
 	
@@ -1341,6 +1360,7 @@ public class GeocoderDataStore {
 		}
 		rr.close();
 		logger.info("Occupants Loaded: {}", count);
+		status.counts.put("occupants", count);
 		
 		// build the occupantNameIndex
 		InvertedIndexBuilder<IOccupant> builder = new InvertedIndexBuilder<IOccupant>();
@@ -1528,6 +1548,7 @@ public class GeocoderDataStore {
 		rr.close();
 		
 		logger.debug("Abbreviation Mapping count: {}", count);
+		status.counts.put("abbreviation_mappings", count);
 		
 		Map<String, String> abbrMappings = new THashMap<String, String>(count);
 		
@@ -1904,4 +1925,7 @@ public class GeocoderDataStore {
 		return null;
 	}
 
+	public SystemStatus getStatus() {
+		return status;
+	}
 }
