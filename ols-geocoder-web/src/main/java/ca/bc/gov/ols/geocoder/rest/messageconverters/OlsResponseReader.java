@@ -166,6 +166,7 @@ public class OlsResponseReader {
 			writer.field("isStreetDirectionPrefix", addr.isStreetDirectionPrefix());
 			writer.field("streetQualifier", addr.getStreetQualifier());
 			writer.field("localityName", addr.getLocalityName());
+			writer.field("streetAddress", addr.getStreetAddress());
 		}
 		writer.field("localityType", addr.getLocalityType());
 		writer.field("electoralArea", addr.getElectoralArea());

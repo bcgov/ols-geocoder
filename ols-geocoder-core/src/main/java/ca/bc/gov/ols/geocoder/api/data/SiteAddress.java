@@ -26,12 +26,15 @@ import javax.xml.bind.annotation.XmlType;
 import org.locationtech.jts.geom.Point;
 
 import ca.bc.gov.ols.geocoder.GeocoderDataStore;
+import ca.bc.gov.ols.geocoder.config.LocalityMapping;
 import ca.bc.gov.ols.geocoder.data.AccessPoint;
 import ca.bc.gov.ols.geocoder.data.BlockFace;
 import ca.bc.gov.ols.geocoder.data.CivicAccessPoint;
 import ca.bc.gov.ols.geocoder.data.ISite;
+import ca.bc.gov.ols.geocoder.data.Locality;
 import ca.bc.gov.ols.geocoder.data.NonCivicAccessPoint;
 import ca.bc.gov.ols.geocoder.data.ResultCivicAccessPoint;
+import ca.bc.gov.ols.geocoder.data.StateProvTerr;
 import ca.bc.gov.ols.geocoder.data.StreetName;
 import ca.bc.gov.ols.geocoder.data.enumTypes.LocationDescriptor;
 import ca.bc.gov.ols.geocoder.data.enumTypes.PhysicalStatus;
@@ -134,6 +137,21 @@ public class SiteAddress extends GeocoderAddress {
 		setLocation(site.getLocation());
 		setLocationDescriptor(site.getLocationDescriptor());
 		setLocationPositionalAccuracy(site.getLocationPositionalAccuracy());
+	}
+	
+	public SiteAddress(Locality locality) {
+		setLocality(locality);
+		setLocation(locality.getLocation());
+		setStateProvTerr(locality.getStateProvTerr().getName());
+		setLocationPositionalAccuracy(PositionalAccuracy.COARSE);
+		setLocationDescriptor(LocationDescriptor.LOCALITY_POINT);
+	}
+
+	public SiteAddress(StateProvTerr spt) {
+		setStateProvTerr(spt.getName());
+		setLocation(spt.getLocation());
+		setLocationPositionalAccuracy(PositionalAccuracy.COARSE);
+		setLocationDescriptor(LocationDescriptor.PROVINCE_POINT);
 	}
 	
 	public String getUnitNumber() {
@@ -295,7 +313,8 @@ public class SiteAddress extends GeocoderAddress {
 		return addressString;
 	}
 	
-	public String getStreetAddressString() {
+	@XmlElement
+	public String getStreetAddress() {
 		StringBuilder sb = new StringBuilder(1024);
 		appendPart(sb, " ", GeocoderUtil.formatCivicNumber(civicNumber));
 		if(civicNumberSuffix != null) {

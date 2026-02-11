@@ -16,6 +16,7 @@
 package ca.bc.gov.ols.geocoder;
 
 import gnu.trove.set.hash.THashSet;
+import me.xdrop.fuzzywuzzy.FuzzySearch;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -169,10 +170,14 @@ public class Geocoder implements IGeocoder {
 
 		if(query.getAddressString() != null && !query.getAddressString().isEmpty()) {
 			matches = new ArrayList<GeocodeMatch>();
-			GeocodeResultsHandler handler = new GeocodeResultsHandler(query, this);
-			parser.parse(query.getAddressString(), query.getAutoComplete(), handler);
-			logger.debug("Number of derivations: {}", handler.getDerivationCount());
-			matches = handler.getMatches();
+			if(query.getExactSpelling()) {
+				matches = datastore.lookupExact(query);
+			} else {
+				GeocodeResultsHandler handler = new GeocodeResultsHandler(query, this);
+				parser.parse(query.getAddressString(), query.getAutoComplete(), handler);
+				logger.debug("Number of derivations: {}", handler.getDerivationCount());
+				matches = handler.getMatches();
+			}
 		} else {
 			// go through all of the components and lex them
 			// filter the lex results to words of the correct type for the specified field
@@ -248,7 +253,18 @@ public class Geocoder implements IGeocoder {
 				matches.add(match);
 			}
 		}
-		
+
+		if(query.isFuzzyMatch() && query.getAddressString() != null && !query.getAddressString().isEmpty()) {
+			// sort by fuzzy score (higher fuzzy score is better)
+			matches.sort(
+				Comparator.comparingInt((GeocodeMatch match) ->
+					FuzzySearch.ratio(query.getAddressString(), match.getAddressString())
+				).reversed() 
+			);
+			matches = matches.subList(0, Math.min(query.getMaxResults(), matches.size()));
+		}
+
+
 //		logger.debug("matches.size() before duplicate filter: {}", matches.size());
 //		
 //		// filter out any duplicate results, keep the one with the highest score
@@ -612,12 +628,7 @@ public class Geocoder implements IGeocoder {
 				// check if the locality at least matches
 				LocalityMapTarget lm = datastore.getBestLocalityMapping(address.getLocalityName());
 				if(lm != null) {
-					SiteAddress matchAddress = new SiteAddress();
-					matchAddress.setLocality(lm.getLocality());
-					matchAddress.setLocation(lm.getLocality().getLocation());
-					matchAddress.setStateProvTerr(lm.getLocality().getStateProvTerr().getName());
-					matchAddress.setLocationPositionalAccuracy(PositionalAccuracy.COARSE);
-					matchAddress.setLocationDescriptor(LocationDescriptor.LOCALITY_POINT);
+					SiteAddress matchAddress = new SiteAddress(lm.getLocality());
 					AddressMatch match = new AddressMatch(
 							matchAddress, MatchPrecision.LOCALITY,
 							datastore.getConfig().getMatchPrecisionPoints(
@@ -708,13 +719,7 @@ public class Geocoder implements IGeocoder {
 						LocalityMapTarget lm = datastore
 								.getBestLocalityMapping(address.getLocalityName());
 						if(lm != null) {
-							SiteAddress matchAddress = new SiteAddress();
-							matchAddress.setLocality(lm.getLocality());
-							matchAddress.setLocation(lm.getLocality().getLocation());
-							matchAddress.setStateProvTerr(
-									lm.getLocality().getStateProvTerr().getName());
-							matchAddress.setLocationPositionalAccuracy(PositionalAccuracy.COARSE);
-							matchAddress.setLocationDescriptor(LocationDescriptor.LOCALITY_POINT);
+							SiteAddress matchAddress = new SiteAddress(lm.getLocality());
 							AddressMatch match = new AddressMatch(
 									matchAddress, MatchPrecision.LOCALITY,
 									datastore.getConfig().getMatchPrecisionPoints(
@@ -805,12 +810,7 @@ public class Geocoder implements IGeocoder {
 			List<MisspellingOf<LocalityMapTarget>> lms = datastore.getLocalities(address.getLocalityName());
 			for(MisspellingOf<LocalityMapTarget> mlm : lms) {
 				LocalityMapTarget lm = mlm.get();
-				SiteAddress matchAddress = new SiteAddress();
-				matchAddress.setLocality(lm.getLocality());
-				matchAddress.setLocation(lm.getLocality().getLocation());
-				matchAddress.setStateProvTerr(lm.getLocality().getStateProvTerr().getName());
-				matchAddress.setLocationPositionalAccuracy(PositionalAccuracy.COARSE);
-				matchAddress.setLocationDescriptor(LocationDescriptor.LOCALITY_POINT);
+				SiteAddress matchAddress = new SiteAddress(lm.getLocality());
 				AddressMatch match = new AddressMatch(
 						matchAddress, MatchPrecision.LOCALITY,
 						datastore.getConfig().getMatchPrecisionPoints(

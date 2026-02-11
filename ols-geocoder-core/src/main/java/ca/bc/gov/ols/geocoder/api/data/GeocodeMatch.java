@@ -94,6 +94,9 @@ public abstract class GeocodeMatch implements ModifiableLocation {
 		}
 	};
 	
+	public static final Comparator<GeocodeMatch> ADDRESS_STRING_COMPARATOR = Comparator
+	        .comparing(GeocodeMatch::getAddressString, Comparator.nullsFirst(String::compareToIgnoreCase));
+	
 	@XmlElement(nillable = true)
 	protected int score;
 	
@@ -122,6 +125,25 @@ public abstract class GeocodeMatch implements ModifiableLocation {
 		this.score = precisionPoints;
 	}
 	
+	/**
+	 * Copy constructor, used for copying exactMatch instances before returning them. 
+	 * Meant to be used by children to implement copy()
+	 * @param toCopy
+	 */
+	public GeocodeMatch(GeocodeMatch toCopy) {
+		this.yourId = toCopy.yourId;
+		this.score = toCopy.score;
+		this.precision = toCopy.precision;
+		this.precisionPoints = toCopy.precisionPoints;
+		this.score = toCopy.precisionPoints;
+	}
+
+	/**
+	 * Effectively a deep-enough clone method, used for copying exactMatch instances before returning them.
+	 * ExactMatchLookup needs to clone the matches it returns because the output code reprojects the location.
+	 */
+	public abstract GeocodeMatch copy();
+
 	@Override
 	public int hashCode() {
 		return Objects.hashCode(getLocation());
@@ -222,4 +244,5 @@ public abstract class GeocodeMatch implements ModifiableLocation {
 	}
 	
 	public abstract void resolve(GeocoderDataStore ds);
+
 }

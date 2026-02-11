@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Collections;
 import java.util.EnumMap;
@@ -52,8 +51,6 @@ import gnu.trove.set.hash.THashSet;
 public class FileGeocoderDataSource implements GeocoderDataSource {
 	private final static Logger logger = LoggerFactory.getLogger(GeocoderConfig.LOGGER_PREFIX + 
 			FileGeocoderDataSource.class.getCanonicalName());
-	
-	//private final static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
 	
 	private GeocoderConfig config;
 	private GeometryFactory geometryFactory;
