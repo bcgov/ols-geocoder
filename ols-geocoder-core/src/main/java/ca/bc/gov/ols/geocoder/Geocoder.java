@@ -25,7 +25,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.EnumSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.PreDestroy;
@@ -263,6 +265,47 @@ public class Geocoder implements IGeocoder {
 			);
 			matches = matches.subList(0, Math.min(query.getMaxResults(), matches.size()));
 		}
+
+		// Deduplicate by siteID - keep only the highest-scored match per physical site
+        if (matches.size() > 1) {
+            Map<String, GeocodeMatch> bestMatchBySiteId = new LinkedHashMap<>();
+            
+            for (GeocodeMatch match : matches) {
+                String siteId = null;
+                if (match instanceof AddressMatch) {
+                    AddressMatch am = (AddressMatch) match;
+                    if (am.getAddress() instanceof SiteAddress) {
+                        siteId = ((SiteAddress) am.getAddress()).getSiteID();
+                    }
+                }
+                
+                // Only deduplicate if we have a valid siteID
+                if (siteId != null && !siteId.isEmpty()) {
+                    GeocodeMatch existing = bestMatchBySiteId.get(siteId);
+                    if (existing == null) {
+                        bestMatchBySiteId.put(siteId, match);
+                    } else if (match.getScore() > existing.getScore()) {
+                        // Higher score wins
+                        bestMatchBySiteId.put(siteId, match);
+                    } else if (match.getScore() == existing.getScore()) {
+                        // Same score - prefer the one with longer/more complete address string
+                        if (match.getAddressString().length() > existing.getAddressString().length()) {
+                            bestMatchBySiteId.put(siteId, match);
+                        } else if (match.getAddressString().length() == existing.getAddressString().length()) {
+                            // Same length - prefer fewer faults
+                            if (match.getFaults().size() < existing.getFaults().size()) {
+                                bestMatchBySiteId.put(siteId, match);
+                            }
+                        }
+                    }
+                } else {
+                    // No siteID (e.g., street-level matches), add with unique key
+                    bestMatchBySiteId.put("_no_site_" + bestMatchBySiteId.size(), match);
+                }
+            }
+            
+            matches = new ArrayList<>(bestMatchBySiteId.values());
+        }
 
 
 //		logger.debug("matches.size() before duplicate filter: {}", matches.size());
