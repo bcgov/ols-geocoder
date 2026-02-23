@@ -1,4 +1,4 @@
-<div align="center">
+<img width="3840" height="1893" alt="image" src="https://github.com/user-attachments/assets/50a44b05-2d88-4f6d-9638-7d5f5d0f696d" /><div align="center">
   
 # Understanding BC Address Geocoder Results
 
@@ -58,29 +58,20 @@ If you are still having problems, it could be because the geocoder’s reference
 
 Start up the [Location Services in Action demo app](https://bcgov.github.io/ols-devkit/ols-demo/index.html)
   
-![image](https://github.com/user-attachments/assets/5e587b2a-ff9c-490e-9d84-1cd135d224a6)
-
-Click on Find Address, enter _615 Taku Rd, Heriot Bay, BC_, then press Geocode
-
-![image](https://github.com/user-attachments/assets/1cb6968e-3fc0-4361-a301-8788efda50e5)
+<img width="3840" height="1893" alt="Location_Services_in_Action" src="https://github.com/user-attachments/assets/ad53e665-eb36-476f-8112-02ccbc12583a" />
 
 
-The geocoded location will be shown on screen as a push pin.
+In the top left corner, enter _615 Taku Rd, Heriot Bay, BC_, then press Enter of click the magnifying glass button.
 
-![image](https://github.com/user-attachments/assets/b1e0de2b-2940-4592-acf2-2aaed0fb6a0f)
-
-
-Turn on Geographic Names from BCGNIS layer and zoom out until you can see Heriot Bay and Quathiaski Cove on Quadra Island.
-
-![image](https://github.com/user-attachments/assets/ddabfa27-5a75-4d4d-b197-ea3b7508d552)
+<img width="3840" height="1893" alt="2_Address_Search" src="https://github.com/user-attachments/assets/65fa7868-15d0-434c-81c8-ab203c6e53c0" />
 
 
-In Geographical Names from BCGNIS, turn off all names except Heriot Bay and Quathiaski Cove.
+Click on the layer list button in the top right corner of the maps and select both the 'Google Satellite'. Next, zoom in and click on the blue placemark for the search result. The placemark balloon indicates that the locality name is actually 'Quathiaski Cove' and that this address does not have a coordinate provided by the address authority. The matchPrecision level of 'BLOCK' indicates that it's localtion was interpolated.
 
-![image](https://github.com/user-attachments/assets/ca17a27c-8855-44c7-9fb4-0d842a0faf29)
+To further investigate, we can activate the layer 'Addresses – parcel point (including units)' to visualize surrounding addresses (click or hover mouse).
 
+<img width="3834" height="1890" alt="4_Address_check" src="https://github.com/user-attachments/assets/47d769b2-ff64-4c9c-b1f5-19df4d551fa2" />
 
-It looks like the correct locality of 615 Taku Rd is Heriot Bay, not Quathiaski Cove. However, the geocoded location appears to be correct.
 
 1. Let’s look for 145 Cow Bay Rd, Prince Rupert. The geocoder says there is no such civic number on this street:
 
@@ -182,6 +173,7 @@ Rooftop and front-door points always have high-accuracy. Parcel points can be hi
 In KML output format, location descriptor is represented by a placemark icon and positional accuracy by a colour as follows:
 
 ![image](https://github.com/user-attachments/assets/2eaac0c9-4928-4ed8-99ac-84759d8a6852)
+
 
 
 
