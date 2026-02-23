@@ -163,7 +163,8 @@ Rooftop and front-door points always have high-accuracy. Parcel points can be hi
 
 **coarse –** position represents an entire street, locality, or province
 
-![image](https://github.com/user-attachments/assets/507a4e6b-7192-4da7-97ed-c57dc818aeb9)
+<img width="942" height="945" alt="Nanaimo" src="https://github.com/user-attachments/assets/a28e24b2-10c8-4ba8-8954-c5a21d108f63" />
+
 
 
 # Representing location descriptor and positional accuracy in KML
@@ -171,6 +172,7 @@ Rooftop and front-door points always have high-accuracy. Parcel points can be hi
 In KML output format, location descriptor is represented by a placemark icon and positional accuracy by a colour as follows:
 
 ![image](https://github.com/user-attachments/assets/2eaac0c9-4928-4ed8-99ac-84759d8a6852)
+
 
 
 
