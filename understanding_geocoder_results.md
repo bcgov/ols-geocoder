@@ -1,5 +1,3 @@
-<img width="3840" height="1893" alt="image" src="https://github.com/user-attachments/assets/50a44b05-2d88-4f6d-9638-7d5f5d0f696d" /><div align="center">
-  
 # Understanding BC Address Geocoder Results
 
 </div>
@@ -173,6 +171,7 @@ Rooftop and front-door points always have high-accuracy. Parcel points can be hi
 In KML output format, location descriptor is represented by a placemark icon and positional accuracy by a colour as follows:
 
 ![image](https://github.com/user-attachments/assets/2eaac0c9-4928-4ed8-99ac-84759d8a6852)
+
 
 
 
