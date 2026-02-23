@@ -48,10 +48,9 @@ The quickest way to fix an input address is to assume it is wrong in some way an
 
 If you are still having problems, it could be because the geocoder’s reference data is incomplete or incorrect.
 
-1. If the locality you entered is in a rural area, it could be correct and the geocoder’s reference data is wrong. The geocoder’s locality data doesn’t currently have official community names as assigned by addressing authorities (e.g., regional districts). We expect this to be fixed in fiscal 2014/15. In the meantime, use the locality assigned by the geocoder if it is actually near the locality you originally entered. The easiest way to confirm this is to use the [Location Services in Action demo app](https://bcgov.github.io/ols-devkit/ols-demo/index.html). Turn on the layer named Geographical Names from BCGNIS, click on the layer name Find a Geographical Name in BC, enter your locality name and click Search.
-2. If the address you entered includes a unit designator and unit number, leave it off and try again. Most _unit number not matched_ faults are due to lack of reference data in the geocoder. Same goes for civic number suffixes and site names.
-3. If you get faults, Civic number not in any block or Locality not matched, the geocoder may have missing or incorrect address ranges. The Location Services in Action demo app can be used to confirm this. Turn on the following layers: Site Addresses, Intersection Addresses, and Geographical Names From BCGNIS. Click on layer name Find an Address, enter your address, set Max results to 20, and press geocode. A list of matching addressing will be added to the end of Temporary Places.
-4. There may be the odd incorrect street name, street type, street direction, or locality name in the geocoder reference data. Only an independent geocode or web search can confirm this.
+1. If the address you entered includes a unit designator and unit number, leave it off and try again. Most _unit number not matched_ faults are due to lack of reference data in the geocoder. Same goes for civic number suffixes and site names.
+2. If you get faults, Civic number not in any block or Locality not matched, the geocoder may have missing or incorrect address ranges. The Location Services in Action demo app can be used to confirm this. Turn on the following layers: Site Addresses, Intersection Addresses, and Geographical Names From BCGNIS. Click on layer name Find an Address, enter your address, set Max results to 20, and press geocode. A list of matching addressing will be added to the end of Temporary Places.
+3. There may be the odd incorrect street name, street type, street direction, or locality name in the geocoder reference data. Only an independent geocode or web search can confirm this.
 
 # Hunting elusive addresses with the Location Services in Action demo app
 
@@ -183,5 +182,6 @@ Rooftop and front-door points always have high-accuracy. Parcel points can be hi
 In KML output format, location descriptor is represented by a placemark icon and positional accuracy by a colour as follows:
 
 ![image](https://github.com/user-attachments/assets/2eaac0c9-4928-4ed8-99ac-84759d8a6852)
+
 
 
