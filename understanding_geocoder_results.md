@@ -49,7 +49,7 @@ The quickest way to fix an input address is to assume it is wrong in some way an
 If you are still having problems, it could be because the geocoder’s reference data is incomplete or incorrect.
 
 1. If the address you entered includes a unit designator and unit number, leave it off and try again. Most _unit number not matched_ faults are due to lack of reference data in the geocoder. Same goes for civic number suffixes and site names.
-2. If you get faults, Civic number not in any block or Locality not matched, the geocoder may have missing or incorrect address ranges. The Location Services in Action demo app can be used to confirm this. Turn on the following layers: Site Addresses, Intersection Addresses, and Geographical Names From BCGNIS. Click on layer name Find an Address, enter your address, set Max results to 20, and press geocode. A list of matching addressing will be added to the end of Temporary Places.
+2. If you get faults, Civic number not in any block or Locality not matched, the geocoder may have missing or incorrect address ranges. The [Location Services in Action demo app](https://bcgov.github.io/ols-devkit/ols-demo/index.html) can be used to confirm this. Turn on the following layers: Addresses – parcel point (including units), Intersections, and BC Geographical Names Web Service (BCGNWS). Enter your address in the text box at the top left corner, and press the Enter of click the magnifying glass button.
 3. There may be the odd incorrect street name, street type, street direction, or locality name in the geocoder reference data. Only an independent geocode or web search can confirm this.
 
 # Hunting elusive addresses with the Location Services in Action demo app
@@ -182,6 +182,7 @@ Rooftop and front-door points always have high-accuracy. Parcel points can be hi
 In KML output format, location descriptor is represented by a placemark icon and positional accuracy by a colour as follows:
 
 ![image](https://github.com/user-attachments/assets/2eaac0c9-4928-4ed8-99ac-84759d8a6852)
+
 
 
 
