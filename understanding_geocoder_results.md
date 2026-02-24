@@ -112,27 +112,15 @@ The locationDescriptor property of the geocoder may have one of the following va
 
 **parcelPoint** – a point guaranteed to be within the boundaries of the parcel that has been assigned a civic number
 
-![image](https://github.com/user-attachments/assets/4b1c8780-7f32-4fc5-98b8-dabfdd8ee941)
-
-
 **accessPoint** – where the driveway or walkway meets the curb
-
-![image](https://github.com/user-attachments/assets/90dd3760-b56c-4e3e-abec-be79f63f4f7d)
-
 
 **roofTopPoint** - a point on the roof of a building or structure that has been assigned a civic number
 
-![image](https://github.com/user-attachments/assets/bdd7663a-31d7-463f-b745-59624e0219c3)
-
-
 **frontDoorPoint** – location of front door of a house or entrance to a building or store
-
-![image](https://github.com/user-attachments/assets/20863fc3-9171-4cc2-a6a0-84d00daf6dfd)
-
 
 **routingPoint** – a point lying on a road centreline and directly in front of a site's accessPoint. A routing point is intended for use by routing algorithms to find routes between addresses.
 
-![image](https://github.com/user-attachments/assets/ee0123bd-82db-4ee0-a4b1-7c65defb90b2)
+
 
 
 # Address location positional accuracy
@@ -159,6 +147,7 @@ Rooftop and front-door points always have high-accuracy. Parcel points can be hi
 **coarse –** position represents an entire street, locality, or province
 
 <img width="500" height="545" alt="Nanaimo" src="https://github.com/user-attachments/assets/a28e24b2-10c8-4ba8-8954-c5a21d108f63" />
+
 
 
 
