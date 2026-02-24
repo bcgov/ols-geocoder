@@ -156,15 +156,14 @@ Rooftop and front-door points always have high-accuracy. Parcel points can be hi
 ![image](https://github.com/user-attachments/assets/2089b72e-080f-4bd5-b5f7-e8e4bf4214d6)
 
 
-**low –** position was interpolated along a block face address range. Access points are the most common type of low accuracy point.
+**low –** position was interpolated along a block face address range as indicated by the matchPrecision of BLOCK.
 
-![image](https://github.com/user-attachments/assets/f083015a-23df-4cee-a93c-ca3dddbd725a)
+<img width="500" height="545" alt="10th_Ave" src="https://github.com/user-attachments/assets/1a004004-8f61-4dce-8ee7-9dbfb478f938" />
 
 
 **coarse –** position represents an entire street, locality, or province
 
-<img width="600" height="645" alt="Nanaimo" src="https://github.com/user-attachments/assets/a28e24b2-10c8-4ba8-8954-c5a21d108f63" />
-
+<img width="500" height="545" alt="Nanaimo" src="https://github.com/user-attachments/assets/a28e24b2-10c8-4ba8-8954-c5a21d108f63" />
 
 
 # Representing location descriptor and positional accuracy in KML
@@ -172,6 +171,7 @@ Rooftop and front-door points always have high-accuracy. Parcel points can be hi
 In KML output format, location descriptor is represented by a placemark icon and positional accuracy by a colour as follows:
 
 ![image](https://github.com/user-attachments/assets/2eaac0c9-4928-4ed8-99ac-84759d8a6852)
+
 
 
 
