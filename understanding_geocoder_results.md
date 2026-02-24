@@ -2,7 +2,7 @@
 
 </div>
 
-This document explains how to use the output of the Physical Address Geocoder to improve the quality of your addresses.
+This document explains how to use the output of the BC Address Geocoder to improve the quality of your addresses.
 
 The geocoder returns two quality indicators: address match score and location positional accuracy. Address match score reflects how well an input address matches an address in the geocoder’s reference list of addresses. Location positional accuracy reflects how well the geocoder knows the geographic position of a given address.
 
@@ -73,15 +73,16 @@ To further investigate, we can activate the layer 'Addresses – parcel point (i
 
 1. Let’s look for 145 Cow Bay Rd, Prince Rupert. The geocoder says there is no such civic number on this street:
 
-![image](https://github.com/user-attachments/assets/a4a296e7-cc55-4582-8d38-8313c3b497d3)
+<img width="3840" height="1893" alt="Cow Bay Rd 1" src="https://github.com/user-attachments/assets/0b7ccd3c-d49c-41b6-ba20-e3412617acc1" />
 
 
 Zoom out a bit, turn on Site Addresses and Intersection Addresses, and turn off all addresses except those on Cow Bay Rd.
 
-![image](https://github.com/user-attachments/assets/6a4baffa-35ab-40cf-bff1-aa957fc69a94)
+<img width="3837" height="1896" alt="Cow Bay Rd 2" src="https://github.com/user-attachments/assets/b011e65d-bdea-452f-bc11-35fdac08af06" />
 
 
-It is clear from the intersection addresses that Cow Bay Rd has three blocks, not just one. It is also clear from the site addresses that the first block has the address range 1-99. The second block is likely the 100 block, so 145 Cow Bay Rd is likely located half-way down the second block. Also, the Integrated Transportation Network, which the geocoder uses for address ranges, is missing the 100 block since 145 Cow Bay Rd returns a _civic number not in any block_ fault.
+
+It is clear from the intersection addresses (click to see street names) that Cow Bay Rd has three blocks, not just one. It is also clear from the site addresses that the first block (by selecting layer 'Addresses - parcel point (including units)') has the address range 1-99. The second block is likely the 100 block, so 145 Cow Bay Rd is likely located half-way down the second block. Also, the Integrated Transportation Network, which the geocoder uses for address ranges, is missing the 100 block since 145 Cow Bay Rd returns a _civic number not in any block_ fault.
 
 1. Let’s look for _Murtle Lake Rd and Hwy 5, Blue River, BC_. The geocoder returns BC and a score of 1, no match. Turn on Intersection addresses and Geographical Names and then find address _Murtle Lake Rd, Blue River BC_.
 
@@ -164,6 +165,7 @@ Rooftop and front-door points always have high-accuracy. Parcel points can be hi
 **coarse –** position represents an entire street, locality, or province
 
 <img width="500" height="545" alt="Nanaimo" src="https://github.com/user-attachments/assets/a28e24b2-10c8-4ba8-8954-c5a21d108f63" />
+
 
 
 
