@@ -84,22 +84,16 @@ Zoom out a bit, turn on Site Addresses and Intersection Addresses, and turn off 
 
 It is clear from the intersection addresses (click to see street names) that Cow Bay Rd has three blocks, not just one. It is also clear from the site addresses that the first block (by selecting layer 'Addresses - parcel point (including units)') has the address range 1-99. The second block is likely the 100 block, so 145 Cow Bay Rd is likely located half-way down the second block. Also, the Integrated Transportation Network, which the geocoder uses for address ranges, is missing the 100 block since 145 Cow Bay Rd returns a _civic number not in any block_ fault.
 
-1. Let’s look for _Murtle Lake Rd and Hwy 5, Blue River, BC_. The geocoder returns BC and a score of 1, no match. Turn on Intersection addresses and Geographical Names and then find address _Murtle Lake Rd, Blue River BC_.
+1. Let’s look for _5th St and West Rd, Dease Lake, BC_. The geocoder returns BC and a matchPrecision of 'STREET', no match.
 
-![image](https://github.com/user-attachments/assets/fc2f19fc-8539-4108-aaf7-2f8edc238bab)
+<img width="3840" height="1890" alt="5th 1" src="https://github.com/user-attachments/assets/623174e5-a468-41cb-b544-295a19aa390e" />
 
+Zoom out a bit, turn on the Intersection layer, and follow 5th Street North and South to nearby intersection.
 
-Zoom out a bit and we see we’re near Blue River.
-
-![image](https://github.com/user-attachments/assets/85959b6f-e90a-458a-a8c2-52148e39a9f0)
-
-
-Follow Murtle Lake Rd up to Hwy 5. A closer looks reveals that Murtle Lake Rd intersects Blue River West Frontage Rd, not Hwy 5.
-
-![image](https://github.com/user-attachments/assets/5d69a1aa-be84-49ab-9045-47f00a5bb20b)
+<img width="3840" height="1890" alt="5th 2" src="https://github.com/user-attachments/assets/cd33baa6-2e9e-4c03-bde6-a45157c5e852" />
 
 
-In this case, the input address of _Murtle Lake Rd and Hwy 5, Blue River, BC_ is wrong and the intersection address of _Murtle Lake Rd and Blue River West Frontage Rd, Blue River, BC_ is right.
+In this case, the input address of _5th St and West Rd, Dease Lake, BC_ is wrong and the intersection address of _5th St and West Frontage Rd, Dease Lake, BC_ is correct.
 
 # Address Location
 
@@ -165,6 +159,7 @@ Rooftop and front-door points always have high-accuracy. Parcel points can be hi
 **coarse –** position represents an entire street, locality, or province
 
 <img width="500" height="545" alt="Nanaimo" src="https://github.com/user-attachments/assets/a28e24b2-10c8-4ba8-8954-c5a21d108f63" />
+
 
 
 
