@@ -148,12 +148,12 @@ Location positional accuracy reflects how well the geocoder knows the geographic
 
 Rooftop and front-door points always have high-accuracy. Parcel points can be high or medium accuracy
 
+<img width="500" height="545" alt="Kelowna" src="https://github.com/user-attachments/assets/4440d08b-6176-4495-ae33-2f63ccd57215" />
+
+
 **medium –** position was derived from parcel boundaries or from a point known to be inside a parcel. Here is an address as a medium accuracy parcel point:
 
 <img width="500" height="545" alt="Bute_St" src="https://github.com/user-attachments/assets/5ec88387-321d-4d90-a65d-60d9119fba73" />
-
-
-![image](https://github.com/user-attachments/assets/2089b72e-080f-4bd5-b5f7-e8e4bf4214d6)
 
 
 **low –** position was interpolated along a block face address range as indicated by the matchPrecision of BLOCK.
@@ -171,6 +171,7 @@ Rooftop and front-door points always have high-accuracy. Parcel points can be hi
 In KML output format, location descriptor is represented by a placemark icon and positional accuracy by a colour as follows:
 
 ![image](https://github.com/user-attachments/assets/2eaac0c9-4928-4ed8-99ac-84759d8a6852)
+
 
 
 
