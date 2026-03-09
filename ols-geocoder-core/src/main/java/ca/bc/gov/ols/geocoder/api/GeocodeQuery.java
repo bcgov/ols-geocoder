@@ -491,9 +491,9 @@ public class GeocodeQuery extends SharedParameters{
 						boolean useOr = true;
 						if(tagCondition != null && !tagCondition.trim().isEmpty()) {
 							String c = tagCondition.trim().toLowerCase();
-							if(c.contains("or")) {
+							if("or".equals(c)) {
 								useOr = true;
-							} else if(c.contains("and")) {
+							} else if("and".equals(c)) {
 								useOr = false;
 							}
 						}
