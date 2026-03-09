@@ -16,7 +16,6 @@
 package ca.bc.gov.ols.geocoder.api;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 
@@ -500,11 +499,9 @@ public class GeocodeQuery extends SharedParameters{
 
 						if(useOr) {
 							String[] tagArray = lowerTags.split(";");
-							System.out.println(">>>>>>>> keywords: " + keywords + " : " + Arrays.toString(tagArray));
 							for(String t : tagArray) {
 								t = t.trim();
 								if(keywords.contains(t)) {
-									System.out.println(">>>>>>>> matched tag: " + t);
 									return true;
 								}
 							}
