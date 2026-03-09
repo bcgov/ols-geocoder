@@ -510,7 +510,7 @@ public class GeocodeQuery extends SharedParameters{
 							}
 							return false;
 						} else {
-							// default
+							// AND logic
 							String[] tagArray = lowerTags.split(";");
 							List<String> required = new ArrayList<String>(tagArray.length);
 							for(String t : tagArray) {
