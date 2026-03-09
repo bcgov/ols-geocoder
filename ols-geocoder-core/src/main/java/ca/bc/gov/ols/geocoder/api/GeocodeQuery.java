@@ -16,7 +16,6 @@
 package ca.bc.gov.ols.geocoder.api;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 
@@ -58,6 +57,7 @@ public class GeocodeQuery extends SharedParameters{
 	private String streetQualifier;
 	private String localityName;
 	private String stateProvTerr;
+	private String tagCondition;
 	
 	private int minScore = 0;
 	private EnumSet<MatchPrecision> matchPrecision = null;
@@ -428,6 +428,14 @@ public class GeocodeQuery extends SharedParameters{
 		this.exactSpelling = exactSpelling;
 	}
 
+	public String getTagCondition() {
+		return tagCondition;
+	}
+
+	public void setTagCondition(String tagCondition) {
+		this.tagCondition = tagCondition;
+	}
+
 	public int getNumPrelimResults() {
 		if(fuzzyMatch) {
 			return 100;
@@ -470,12 +478,43 @@ public class GeocodeQuery extends SharedParameters{
 			filters.add(new Filter<GeocodeMatch>() {
 				@Override
 				public boolean pass(GeocodeMatch match) {
+
 					if(match instanceof AddressMatch 
-							&& ((AddressMatch)match).getAddress() instanceof OccupantAddress
-							&& ((OccupantAddress)(((AddressMatch)match).getAddress())).getKeywordList()
-									.containsAll(Arrays.asList(tags.toLowerCase().split(";")))
-							) {
-						return true;
+						&& ((AddressMatch)match).getAddress() instanceof OccupantAddress) {
+						List<String> keywords = ((OccupantAddress)(((AddressMatch)match).getAddress())).getKeywordList();
+						if(keywords == null || keywords.isEmpty()) {
+							return false;
+						}
+						String lowerTags = tags.toLowerCase();
+
+						boolean useOr = true;
+						if(tagCondition != null && !tagCondition.trim().isEmpty()) {
+							String c = tagCondition.trim().toLowerCase();
+							if("or".equals(c)) {
+								useOr = true;
+							} else if("and".equals(c)) {
+								useOr = false;
+							}
+						}
+
+						if(useOr) {
+							String[] tagArray = lowerTags.split(";");
+							for(String t : tagArray) {
+								t = t.trim();
+								if(keywords.contains(t)) {
+									return true;
+								}
+							}
+							return false;
+						} else {
+							// AND logic
+							String[] tagArray = lowerTags.split(";");
+							List<String> required = new ArrayList<String>(tagArray.length);
+							for(String t : tagArray) {
+								required.add(t.trim());
+							}
+							return keywords.containsAll(required);
+						}
 					}
 					return false;
 				}
