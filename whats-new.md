@@ -6,7 +6,7 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
 ## March 3, 2025
 - BC Address Geocoder version 4.5.3
 - The default tag condition used when searching for occupants has been changed from ‘and’ to ‘or’.
-- Added a new tagCondition parameter to change the default tag condition. Options include ‘and’ & ‘or’.
+- Added a new tagCondition parameter to change the default tag condition for the /occupants/addresses endpoint. Options include ‘and’ & ‘or’.
 - Improved Fuzzy Match search results for sub-localities.
 - Bug fix: Fuzzy Match handling of non-civic address searches in upper case.
 
