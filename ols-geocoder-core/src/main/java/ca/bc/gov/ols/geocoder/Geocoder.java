@@ -371,21 +371,22 @@ public class Geocoder implements IGeocoder {
 	}
 
 	/**
-	 * Finds an ASCII-safe alternative for a street name.
-	 * If the street name is already ASCII-safe, returns it.
-	 * Otherwise, looks for the primary name of a segment with this street name.
-	 * 
-	 * @param name the street name to find an ASCII alternative for
-	 * @return an ASCII-safe StreetName
+	 * Finds an encoding-safe alternative for a street name.
+	 * If the street name is already safe for the requested encoding, returns it.
+	 * Otherwise, looks for the primary/alias name from a related segment.
+	 *
+	 * Supported encodings: "ascii", "extended-ascii", "utf8".
 	 */
-	private StreetName findAsciiAlternative(StreetName name) {
-		// Check if the name itself is ASCII-safe
-		if(isStreetNameAsciiSafe(name)) {
+	private StreetName findPreferredEncodingAlternative(StreetName name, String preferredEncoding) {
+		if(isStreetNameEncodingSafe(name, preferredEncoding)) {
 			return name;
 		}
-		
-		// Try to find a segment with this street name to get the primary name
-		// Use the iterator to get ANY block face (not tied to a specific address)
+
+		// utf8 accepts all Unicode; no replacement needed
+		if("utf8".equals(normalizePreferredEncoding(preferredEncoding))) {
+			return name;
+		}
+
 		BlockFaceIntervalTree blocksTree = name.getBlocksTree();
 		if(blocksTree != null) {
 			Iterator<BlockFace> iterator = blocksTree.iterator();
@@ -393,48 +394,60 @@ public class Geocoder implements IGeocoder {
 				BlockFace face = iterator.next();
 				StreetSegment segment = face.getSegment();
 				StreetName primaryName = segment.getPrimaryStreetName();
-				
-				// If primary is ASCII-safe, use it
-				if(isStreetNameAsciiSafe(primaryName)) {
+
+				if(isStreetNameEncodingSafe(primaryName, preferredEncoding)) {
 					return primaryName;
 				}
-				
-				// Otherwise, look for an ASCII-safe alias
+
 				for(Object aliasName : segment.getAliasNames()) {
 					if(aliasName instanceof StreetName) {
 						StreetName alias = (StreetName)aliasName;
-						if(isStreetNameAsciiSafe(alias)) {
+						if(isStreetNameEncodingSafe(alias, preferredEncoding)) {
 							return alias;
 						}
 					}
 				}
 			}
 		}
-		
-		// No ASCII alternative found, return original
 		return name;
 	}
 
-	private boolean isStreetNameAsciiSafe(StreetName streetName) {
+	private boolean isStreetNameEncodingSafe(StreetName streetName, String preferredEncoding) {
 		if(streetName == null) {
 			return true;
 		}
-		return isAsciiSafe(streetName.getBody()) 
-			&& isAsciiSafe(streetName.getType())
-			&& isAsciiSafe(streetName.getDir())
-			&& isAsciiSafe(streetName.getQual());
+		return isEncodingSafe(streetName.getBody(), preferredEncoding)
+			&& isEncodingSafe(streetName.getType(), preferredEncoding)
+			&& isEncodingSafe(streetName.getDir(), preferredEncoding)
+			&& isEncodingSafe(streetName.getQual(), preferredEncoding);
 	}
 
-	private boolean isAsciiSafe(String str) {
+	private boolean isEncodingSafe(String str, String preferredEncoding) {
 		if(str == null || str.isEmpty()) {
 			return true;
 		}
+		String encoding = normalizePreferredEncoding(preferredEncoding);
+		if("utf8".equals(encoding)) {
+			return true;
+		}
+		int maxCodePoint = "ascii".equals(encoding) ? 127 : 255; // extended-ascii
 		for(int i = 0; i < str.length(); i++) {
-			if(str.charAt(i) > 127) {
+			if(str.charAt(i) > maxCodePoint) {
 				return false;
 			}
 		}
 		return true;
+	}
+
+	private String normalizePreferredEncoding(String preferredEncoding) {
+		if(preferredEncoding == null) {
+			return "utf8";
+		}
+		String normalized = preferredEncoding.trim().toLowerCase();
+		if("ascii".equals(normalized) || "extended-ascii".equals(normalized) || "utf8".equals(normalized)) {
+			return normalized;
+		}
+		return "utf8";
 	}
 	
 	/**
@@ -488,8 +501,10 @@ public class Geocoder implements IGeocoder {
 							SiteAddress matchAddress = new SiteAddress();
 							MatchPrecision precision = MatchPrecision.BLOCK;
 							face.getSegment().printAllAliasNames();
-							if(query.getOnlyAsciiNames()) {
-								matchAddress.setStreetName(findAsciiAlternative(face.getSegment().getPrimaryStreetName()));
+							if(query.getPreferredEncoding() != null) {
+								matchAddress.setStreetName(findPreferredEncodingAlternative(
+										face.getSegment().getPrimaryStreetName(),
+										query.getPreferredEncoding()));
 							} else {
 								matchAddress.setStreetName(face.getSegment().getPrimaryStreetName());
 							}
@@ -552,8 +567,10 @@ public class Geocoder implements IGeocoder {
 								matchAddress.setSiteName(site.getSiteName());
 								matchAddress.setParentSiteDescriptor(site.getParentSiteDescriptor());
 								// face.getSegment().printAllAliasNames();
-								if(query.getOnlyAsciiNames()) {
-									matchAddress.setStreetName(findAsciiAlternative(face.getSegment().getPrimaryStreetName()));
+								if(query.getPreferredEncoding() != null) {
+									matchAddress.setStreetName(findPreferredEncodingAlternative(
+											face.getSegment().getPrimaryStreetName(),
+											query.getPreferredEncoding()));
 								} else {
 									matchAddress.setStreetName(face.getSegment().getPrimaryStreetName());
 								}
@@ -685,9 +702,9 @@ public class Geocoder implements IGeocoder {
 							segment.printAllAliasNames();
 						}
 					}
-					if(query.getOnlyAsciiNames()) {
+					if(query.getPreferredEncoding() != null) {
 						// Use ASCII alternative: try to find primary name from segment
-						StreetName nameToUse = findAsciiAlternative(name);
+						StreetName nameToUse = findPreferredEncodingAlternative(name, query.getPreferredEncoding());
 						matchAddress.setStreetName(nameToUse);
 					} else {
 						matchAddress.setStreetName(name);

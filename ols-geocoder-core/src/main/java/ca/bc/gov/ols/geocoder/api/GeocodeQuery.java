@@ -83,7 +83,7 @@ public class GeocodeQuery extends SharedParameters{
 	private boolean exactSpelling = false;
 	private boolean fuzzyMatch = false;
 
-	private boolean onlyAsciiNames = false;
+	private String preferredEncoding = "utf8";
 
 	public GeocodeQuery() {
 		setMaxResults(1);
@@ -437,14 +437,25 @@ public class GeocodeQuery extends SharedParameters{
 		return getMaxResults() + 1;
 	}
 
-	public boolean getOnlyAsciiNames() {
-		return onlyAsciiNames;
+	public String getPreferredEncoding() {
+		return preferredEncoding;
 	}
 
-	public void setOnlyAsciiNames(boolean onlyAsciiNames) {
-		this.onlyAsciiNames = onlyAsciiNames;
+	public void setPreferredEncoding(String preferredEncoding) {
+		this.preferredEncoding = normalizePreferredEncoding(preferredEncoding);
 	}
 
+	private String normalizePreferredEncoding(String preferredEncoding) {
+		if(preferredEncoding == null || preferredEncoding.trim().isEmpty()) {
+			return "utf8";
+		}
+		String pe = preferredEncoding.trim().toLowerCase();
+		if("ascii".equals(pe) || "extended-ascii".equals(pe) || "utf8".equals(pe)) {
+			return pe;
+		}
+		throw new IllegalArgumentException(
+				"preferredEncoding must be one of: ascii, extended-ascii, utf8");
+	}
 
 	public boolean pass(GeocodeMatch match) {
 		if(filter == null) {
@@ -600,7 +611,8 @@ public class GeocodeQuery extends SharedParameters{
 				+ " interpolation=" + interpolation
 				+ " echo=" + echo
 				+ " locationDescriptor=" + locationDescriptor
-				+ " extrapolate=" + extrapolate;
+				+ " extrapolate=" + extrapolate
+				+ " preferredEncoding=" + preferredEncoding;
 	}
 	
 	public void startTimer() {
