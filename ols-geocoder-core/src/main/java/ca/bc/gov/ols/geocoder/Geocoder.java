@@ -18,6 +18,9 @@ package ca.bc.gov.ols.geocoder;
 import gnu.trove.set.hash.THashSet;
 import me.xdrop.fuzzywuzzy.FuzzySearch;
 
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -25,8 +28,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.EnumSet;
+import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.PreDestroy;
@@ -351,7 +356,10 @@ public class Geocoder implements IGeocoder {
 			gm.resolve(datastore);
 		}
 		query.stopTimer();
-		return new SearchResults(query, limitedMatches, datastore.getDate(DateType.PROCESSING_DATE));
+
+		SearchResults results = new SearchResults(query, limitedMatches, datastore.getDate(DateType.PROCESSING_DATE));
+		results.setEncoding(determineResponseEncoding(limitedMatches));
+		return results;
 	}
 	
 	private void categorizeMatches(List<GeocodeMatch> matches) {
@@ -1517,7 +1525,7 @@ public class Geocoder implements IGeocoder {
 		// intersection
 		@SuppressWarnings("unchecked")
 		List<StreetNameMatch>[] streetNameMatches = new List[streetNames.length];
-		for(int i = 0; i < streetNames.length; i++) {
+					for(int i = 0; i < streetNames.length; i++) {
 			StreetName inputSn = streetNames[i];
 			streetNameMatches[i] = new ArrayList<StreetNameMatch>();
 			for(StreetName matchSn : intersection.getStreetNames()) {
@@ -1748,6 +1756,121 @@ public class Geocoder implements IGeocoder {
 		}
 	}
 	
+	private String determineResponseEncoding(List<GeocodeMatch> matches) {
+		int level = 0;
+
+		for(GeocodeMatch match : matches) {
+			// fields shown for all match types
+			level = maxEncodingLevel(level, match.getAddressString());
+			level = maxEncodingLevel(level, match.getPrecision());
+			level = maxEncodingLevel(level, match.getPrecisionPoints());
+			level = maxEncodingLevel(level, match.getScore());
+
+			for(MatchFault fault : match.getFaults()) {
+				level = maxEncodingLevel(level, fault.getValue());
+				level = maxEncodingLevel(level, fault.getElement());
+				level = maxEncodingLevel(level, fault.getFault());
+				level = maxEncodingLevel(level, fault.getPenalty());
+			}
+
+			if(match instanceof AddressMatch) {
+				SiteAddress addr = ((AddressMatch)match).getAddress();
+
+				// fields always displayed in hit properties
+				level = maxEncodingLevel(level, addr.getAddressString());
+				level = maxEncodingLevel(level, addr.getLocalityType());
+				level = maxEncodingLevel(level, addr.getElectoralArea());
+				level = maxEncodingLevel(level, addr.getLocationPositionalAccuracy());
+				level = maxEncodingLevel(level, addr.getLocationDescriptor());
+				level = maxEncodingLevel(level, addr.getSiteID());
+				level = maxEncodingLevel(level, addr.getStreetSegmentID());
+				level = maxEncodingLevel(level, addr.getNarrativeLocation()); // accessNotes
+				level = maxEncodingLevel(level, addr.getSiteStatus());
+
+				// optional displayed fields (non-brief / occupant)
+				level = maxEncodingLevel(level, addr.getSiteName());
+				level = maxEncodingLevel(level, addr.getUnitDesignator());
+				level = maxEncodingLevel(level, addr.getUnitNumber());
+				level = maxEncodingLevel(level, addr.getUnitNumberSuffix());
+				level = maxEncodingLevel(level, addr.getCivicNumber());
+				level = maxEncodingLevel(level, addr.getCivicNumberSuffix());
+				level = maxEncodingLevel(level, addr.getStreetName());
+				level = maxEncodingLevel(level, addr.getStreetType());
+				level = maxEncodingLevel(level, addr.isStreetTypePrefix());
+				level = maxEncodingLevel(level, addr.getStreetDirection());
+				level = maxEncodingLevel(level, addr.isStreetDirectionPrefix());
+				level = maxEncodingLevel(level, addr.getStreetQualifier());
+				level = maxEncodingLevel(level, addr.getLocalityName());
+				level = maxEncodingLevel(level, addr.getStreetAddress());
+				level = maxEncodingLevel(level, addr.getStateProvTerr());
+				level = maxEncodingLevel(level, addr.getFullSiteDescriptor());
+				level = maxEncodingLevel(level, addr.getSiteRetireDate());
+				level = maxEncodingLevel(level, addr.getSiteChangeDate());
+				level = maxEncodingLevel(level, addr.isPrimary());
+
+				if(addr instanceof OccupantAddress) {
+					OccupantAddress occ = (OccupantAddress)addr;
+					level = maxEncodingLevel(level, occ.getOccupantName());
+					level = maxEncodingLevel(level, occ.getOccupantId());
+					level = maxEncodingLevel(level, occ.getOccupantAliasAddress());
+					level = maxEncodingLevel(level, occ.getOccupantDescription());
+					level = maxEncodingLevel(level, occ.getContactEmail());
+					level = maxEncodingLevel(level, occ.getContactPhone());
+					level = maxEncodingLevel(level, occ.getContactFax());
+					level = maxEncodingLevel(level, occ.getWebsiteUrl());
+					level = maxEncodingLevel(level, occ.getImageUrl());
+					level = maxEncodingLevel(level, occ.getKeywords());
+					level = maxEncodingLevel(level, occ.getBusinessCategoryClass());
+					level = maxEncodingLevel(level, occ.getBusinessCategoryDescription());
+					level = maxEncodingLevel(level, occ.getNaicsCode());
+					level = maxEncodingLevel(level, occ.getDateOccupantUpdated());
+					level = maxEncodingLevel(level, occ.getDateOccupantAdded());
+				}
+			} else if(match instanceof IntersectionMatch) {
+				StreetIntersectionAddress addr = ((IntersectionMatch)match).getAddress();
+				level = maxEncodingLevel(level, addr.getAddressString());
+				level = maxEncodingLevel(level, addr.getName());
+				level = maxEncodingLevel(level, addr.getLocalityName());
+				level = maxEncodingLevel(level, addr.getLocalityType());
+				level = maxEncodingLevel(level, addr.getStateProvTerr());
+				level = maxEncodingLevel(level, addr.getLocationPositionalAccuracy());
+				level = maxEncodingLevel(level, addr.getLocationDescriptor());
+				level = maxEncodingLevel(level, addr.getID());
+				level = maxEncodingLevel(level, addr.getDegree());
+			}
+
+			if(level == 2) {
+				return "utf8";
+			}
+		}
+
+		return level == 1 ? "extended-ascii" : "ascii";
+	}
+
+	private int maxEncodingLevel(int level, Object value) {
+		if(value == null) {
+			return level;
+		}
+		return Math.max(level, detectEncodingLevel(String.valueOf(value)));
+	}
+
+	private int detectEncodingLevel(String value) {
+		if(value == null || value.isEmpty()) {
+			return 0; // ascii-safe
+		}
+		int level = 0;
+		for(int i = 0; i < value.length(); i++) {
+			char c = value.charAt(i);
+			if(c > 255) {
+				return 2; // utf8
+			}
+			if(c > 127) {
+				level = 1; // extended-ascii
+			}
+		}
+		return level;
+	}
+	
 	private AddressParser createParser(Lexer lexer) {
 		AddressParserGenerator parserGen = new AddressParserGenerator();
 		
@@ -1927,7 +2050,7 @@ public class Geocoder implements IGeocoder {
 				new RuleTerm[] {
 						new RuleTerm("unitNumber"),
 						new RuleTerm("unitNumberSuffix", RuleOperator.OPTION)}));
-
+		
 		parserGen.addRule(new RuleChoice("unitNumber", true,
 				new RuleTerm[] {
 						new RuleTerm("unitNumberLetterFirst"),
