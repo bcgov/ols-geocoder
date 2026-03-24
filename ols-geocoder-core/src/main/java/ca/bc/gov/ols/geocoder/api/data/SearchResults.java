@@ -238,10 +238,10 @@ public class SearchResults {
 		String normalized = encoding.trim().toLowerCase();
 		if("ascii".equals(normalized)
 				|| "extended-ascii".equals(normalized)
-				|| "utf8".equals(normalized)) {
+				|| "utf-8".equals(normalized)) {
 			this.encoding = normalized;
 		} else {
-			this.encoding = "utf8";
+			this.encoding = "utf-8";
 		}
 	}
 }

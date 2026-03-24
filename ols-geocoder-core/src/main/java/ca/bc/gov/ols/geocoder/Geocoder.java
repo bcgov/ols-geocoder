@@ -383,15 +383,15 @@ public class Geocoder implements IGeocoder {
 	 * If the street name is already safe for the requested encoding, returns it.
 	 * Otherwise, looks for the primary/alias name from a related segment.
 	 *
-	 * Supported encodings: "ascii", "extended-ascii", "utf8".
+	 * Supported encodings: "ascii", "extended-ascii", "utf-8".
 	 */
 	private StreetName findPreferredEncodingAlternative(StreetName name, String preferredEncoding) {
 		if(isStreetNameEncodingSafe(name, preferredEncoding)) {
 			return name;
 		}
 
-		// utf8 accepts all Unicode; no replacement needed
-		if("utf8".equals(normalizePreferredEncoding(preferredEncoding))) {
+		// utf-8 accepts all Unicode; no replacement needed
+		if("utf-8".equals(normalizePreferredEncoding(preferredEncoding))) {
 			return name;
 		}
 
@@ -435,7 +435,7 @@ public class Geocoder implements IGeocoder {
 			return true;
 		}
 		String encoding = normalizePreferredEncoding(preferredEncoding);
-		if("utf8".equals(encoding)) {
+		if("utf-8".equals(encoding)) {
 			return true;
 		}
 		int maxCodePoint = "ascii".equals(encoding) ? 127 : 255; // extended-ascii
@@ -449,13 +449,13 @@ public class Geocoder implements IGeocoder {
 
 	private String normalizePreferredEncoding(String preferredEncoding) {
 		if(preferredEncoding == null) {
-			return "utf8";
+			return "utf-8";
 		}
 		String normalized = preferredEncoding.trim().toLowerCase();
-		if("ascii".equals(normalized) || "extended-ascii".equals(normalized) || "utf8".equals(normalized)) {
+		if("ascii".equals(normalized) || "extended-ascii".equals(normalized) || "utf-8".equals(normalized)) {
 			return normalized;
 		}
-		return "utf8";
+		return "utf-8";
 	}
 	
 	/**
@@ -1840,7 +1840,7 @@ public class Geocoder implements IGeocoder {
 			}
 
 			if(level == 2) {
-				return "utf8";
+				return "utf-8";
 			}
 		}
 
@@ -1862,7 +1862,7 @@ public class Geocoder implements IGeocoder {
 		for(int i = 0; i < value.length(); i++) {
 			char c = value.charAt(i);
 			if(c > 255) {
-				return 2; // utf8
+				return 2; // utf-8
 			}
 			if(c > 127) {
 				level = 1; // extended-ascii
