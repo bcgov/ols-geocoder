@@ -125,16 +125,16 @@ public class StreetSegment implements SpatiallyIndexable {
 
 	// debug method to print all alias names of the segment
 	public void printAllAliasNames() {
-		System.out.println("=== Segment ID: " + segmentId + " ===");
-		System.out.println("Primary Name: " + (primaryStreetName instanceof StreetName ? 
-			((StreetName)primaryStreetName).toString() : primaryStreetName));
-		System.out.println("Aliases:");
+		// System.out.println("=== Segment ID: " + segmentId + " ===");
+		// System.out.println("Primary Name: " + (primaryStreetName instanceof StreetName ? 
+		// 	((StreetName)primaryStreetName).toString() : primaryStreetName));
+		// System.out.println("Aliases:");
 		for(Object aliasName : aliasNames) {
 			if(aliasName instanceof StreetName) {
 				StreetName sn = (StreetName)aliasName;
-				System.out.println("Alias Name: " + sn.toString());
+				// System.out.println("Alias Name: " + sn.toString());
 			} else {
-				System.out.println("Alias NameId: " + aliasName);
+				// System.out.println("Alias NameId: " + aliasName);
 			}
 		}
 	}
