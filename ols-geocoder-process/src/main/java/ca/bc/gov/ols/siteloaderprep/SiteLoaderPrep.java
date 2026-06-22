@@ -243,12 +243,17 @@ public class SiteLoaderPrep {
 				String jur = rr.getString("JURISDICTION");
 				String roll = rr.getString("ROLL_NUM");
 				String pid = rr.getString("PID");
+				if(pid == null || pid.isBlank()) {
+					continue;
+				}
 				List<String> pids = jurolMap.get(jur+roll);
 				if(pids == null) {
 					pids = new ArrayList<String>();
 					jurolMap.put(jur+roll, pids);
 				}
-				pids.add(pid);
+				if(!pids.contains(pid)) {
+					pids.add(pid);
+				}
 			}
 		}
 		for(List<String> pids : jurolMap.values()) {
@@ -869,7 +874,7 @@ public class SiteLoaderPrep {
 	private void writeSid2Pid(RowWriter sid2pidWriter, InputSite site, Map<String, List<String>> jurolMap) {
 		if(site.jurol != null && !site.jurol.isEmpty()) {
 			List<String> pids = jurolMap.get(site.jurol);
-			if(pids != null) {
+			if(pids != null && !pids.isEmpty()) {
 				Map<String,Object> row = new HashMap<String,Object>();
 				row.put("SID", site.uuid);
 				row.put("PID", String.join("|", pids));
