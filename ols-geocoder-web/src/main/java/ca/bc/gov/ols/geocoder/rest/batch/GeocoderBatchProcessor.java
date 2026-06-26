@@ -15,9 +15,16 @@
  */
 package ca.bc.gov.ols.geocoder.rest.batch;
 
+import java.beans.PropertyDescriptor;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
 
 import ca.bc.gov.ols.rowreader.CsvRowReader;
 import ca.bc.gov.ols.geocoder.GeocoderDataStore;
@@ -34,6 +41,24 @@ public class GeocoderBatchProcessor {
 	private GeocodeParameters params;
 	private CsvRowReader rr;
 	private BatchStatsCalculator stats;
+
+	private static final String[] ROW_FIELDS = new String[] {
+			"addressString",
+			"siteName",
+			"unitDesignator",
+			"unitNumber",
+			"unitNumberSuffix",
+			"civicNumber",
+			"civicNumberSuffix",
+			"streetName",
+			"streetType",
+			"streetDirection",
+			"streetQualifier",
+			"localityName",
+			"stateProvTerr",
+			"province",
+			"file"
+	};
 
 	public GeocoderBatchProcessor(GeocodeParameters params, IGeocoder geocoder) {
 		this.params = params;
@@ -71,23 +96,35 @@ public class GeocoderBatchProcessor {
 			qry.setStateProvTerr(rr.getString("province"));
 		}
 
-		// handle additional query parameters
-//		qry.setMaxResults(params.getmaxResults);
-//		qry.setSetBack(setBack);
-//		qry.setMinScore(minScore);
-//		qry.setQuickMatch(quickMatch);
-//		qry.setEcho(echo);
-//		qry.setInterpolation(interpolation);
-//		qry.setLocationDescriptor(locationDescriptor);
-//
-//
-//		qry.setEcho(echo);
+		applyBatchParameters(qry);
+
 		SearchResults results = geocoder.geocode(qry);
-//		results.setInterpolation(qry.getInterpolation());
-//		results.setSrsCode(outputSRS);
-		
 		stats.record(results.getExecutionTime().doubleValue(), results.getBestScore());
 		return results;
+	}
+
+	private void applyBatchParameters(GeocodeQuery qry) {
+		Set<String> ignore = new HashSet<>(Arrays.asList(ROW_FIELDS));
+		BeanWrapper src = new BeanWrapperImpl(params);
+		BeanWrapper dst = new BeanWrapperImpl(qry);
+
+		for(PropertyDescriptor pd : dst.getPropertyDescriptors()) {
+			String name = pd.getName();
+			if("class".equals(name) || ignore.contains(name)) {
+				continue;
+			}
+			if(!src.isReadableProperty(name) || !dst.isWritableProperty(name)) {
+				continue;
+			}
+			try {
+				Object value = src.getPropertyValue(name);
+				if(value != null) {
+					dst.setPropertyValue(name, value);
+				}
+			} catch(Exception ex) {
+				// ignore incompatible/non-readable properties (e.g. malformed bean accessors)
+			}
+		}
 	}
 	
 	public BatchStatsCalculator stop() {
