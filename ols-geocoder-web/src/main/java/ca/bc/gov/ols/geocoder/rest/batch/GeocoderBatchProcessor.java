@@ -16,11 +16,14 @@
 package ca.bc.gov.ols.geocoder.rest.batch;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ca.bc.gov.ols.rowreader.CsvRowReader;
 import ca.bc.gov.ols.geocoder.GeocoderDataStore;
 import ca.bc.gov.ols.geocoder.IGeocoder;
 import ca.bc.gov.ols.geocoder.api.GeocodeQuery;
+import ca.bc.gov.ols.geocoder.api.data.GeocodeMatch;
 import ca.bc.gov.ols.geocoder.api.data.SearchResults;
 import ca.bc.gov.ols.geocoder.rest.controllers.GeocodeParameters;
 
@@ -94,5 +97,14 @@ public class GeocoderBatchProcessor {
 	
 	public BatchStatsCalculator getStats() {
 		return stats;
+	}
+
+	public List<GeocodeMatch> processAll() {
+		List<GeocodeMatch> allMatches = new ArrayList<>();
+		SearchResults results;
+		while((results = next()) != null) {
+			allMatches.addAll(results.getMatches());
+		}
+		return allMatches;
 	}
 }

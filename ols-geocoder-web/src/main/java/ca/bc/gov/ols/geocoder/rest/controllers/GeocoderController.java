@@ -15,6 +15,11 @@
  */
 package ca.bc.gov.ols.geocoder.rest.controllers;
 
+import java.io.IOException;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.PrecisionModel;
 import org.slf4j.Logger;
@@ -30,11 +35,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ca.bc.gov.ols.geocoder.IGeocoder;
 import ca.bc.gov.ols.geocoder.api.GeocodeQuery;
+import ca.bc.gov.ols.geocoder.api.data.GeocodeMatch;
 import ca.bc.gov.ols.geocoder.api.data.SearchResults;
 import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 import ca.bc.gov.ols.geocoder.data.enumTypes.Interpolation;
 import ca.bc.gov.ols.geocoder.rest.GeotoolsGeometryReprojector;
 import ca.bc.gov.ols.geocoder.rest.OlsResponse;
+import ca.bc.gov.ols.geocoder.rest.batch.GeocoderBatchProcessor;
+import ca.bc.gov.ols.geocoder.rest.batch.BatchStatsCalculator;
+import ca.bc.gov.ols.geocoder.rest.controllers.GeocodeParameters;
 import ca.bc.gov.ols.geocoder.rest.exceptions.InvalidParameterException;
 import ca.bc.gov.ols.geocoder.status.BasicStatus;
 
@@ -111,18 +120,30 @@ public class GeocoderController {
 //	}
 	
 // For Instant Batch	
-//	@RequestMapping(value = "/batch", method = RequestMethod.POST)
-//	public GeocoderBatchProcessor batch(GeocodeParameters params, BindingResult bindingResult) {
-//			if(bindingResult.hasErrors()) {
-//				throw new InvalidParameterException(bindingResult);
-//			}
-//			params.setIncludeOccupants(false);
-//			GeocoderConfig config = geocoder.getDatastore().getConfig();
-//			params.resolveAndValidate(config,
-//					new GeometryFactory(new PrecisionModel(), params.getOutputSRS()),
-//					new GeotoolsGeometryReprojector());
-//		GeocoderBatchProcessor proc = new GeocoderBatchProcessor(params, geocoder);
-//		return proc;
-//	}
+	@RequestMapping(value = "/batchMode", method = RequestMethod.POST)
+	public OlsResponse batch(GeocodeParameters params, BindingResult bindingResult) throws IOException {
+		if(bindingResult.hasErrors()) {
+			throw new InvalidParameterException(bindingResult);
+		}
+		params.setIncludeOccupants(false);
+		GeocoderConfig config = geocoder.getDatastore().getConfig();
+		params.resolveAndValidate(config,
+				new GeometryFactory(new PrecisionModel(), params.getOutputSRS()),
+				new GeotoolsGeometryReprojector());
+		GeocoderBatchProcessor proc = new GeocoderBatchProcessor(params, geocoder);
+		proc.start();
+		
+		List<GeocodeMatch> allMatches = new ArrayList<>();
+		SearchResults results;
+		while((results = proc.next()) != null) {
+			allMatches.addAll(results.getMatches());
+		}
+		
+		BatchStatsCalculator stats = proc.stop();
+		SearchResults allResults = new SearchResults(params, allMatches, ZonedDateTime.now());
+		OlsResponse response = new OlsResponse(allResults);
+		response.setParams(params);
+		return response;
+	}
 		
 }
