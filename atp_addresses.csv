@@ -98,10 +98,10 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00101-CivicAddresswithBoxNoStreet,BOX 283 Victoria BC,LOCALITY,"Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
 00102-CivicAddressWithBoxAfterStreet,525 Superior St BOX 283 Victoria BC,CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
 00103-CivicAddressWithBoxAtEnd,"525 Superior St, Victoria, BC BOX 283",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[POSTAL_ADDRESS_ELEMENT.notAllowed:1],R,,,T,T
-00104-CivicAddressWithFloorDesignator,FLR 1 1175 Douglas St Victoria BC,UNIT,"FLR 1 -- 1175 Douglas St, Victoria, BC",[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1],R,,,T,T
-00105-CivicAddressWithReverseFloorDesignator,1st FLR 1175 Douglas St Victoria BC,UNIT,"FLR 1 -- 1175 Douglas St, Victoria, BC",[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1],R,,,T,T
-00106-CivicAddressWithUnabbreviatedFloorDesignator,Floor 1 1175 Douglas St Victoria BC,UNIT,"FLR 1 -- 1175 Douglas St, Victoria, BC",[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1],R,,,T,T
-00107-CivicAddressWithReverseUnabbreviatedFloorDesignator,1st Floor 1175 Douglas St Victoria BC,UNIT,"FLR 1 -- 1175 Douglas St, Victoria, BC",[UNIT_DESIGNATOR.notMatched:1 UNIT_NUMBER.notMatched:1],R,,,T,T
+00104-CivicAddressWithFloorDesignator,FLR 2 1725 Robson St Vancouver BC,UNIT,"FLR 2 -- 1725 Robson St, Vancouver, BC",[],R,,,T,T
+00105-CivicAddressWithReverseFloorDesignator,2nd FLR 1725 Robson St Vancouver BC,UNIT,"FLR 2 -- 1725 Robson St, Vancouver, BC",[],R,,,T,T
+00106-CivicAddressWithUnabbreviatedFloorDesignator,Floor 2 1725 Robson St Vancouver BC,UNIT,"FLR 2 -- 1725 Robson St, Vancouver, BC",[],R,,,T,T
+00106-UnitOnPrivateRoad,UNIT 11 2100 Boucherie Rd, West Kelowna, BC,UNIT,"UNIT 11 -- 2100 Boucherie Rd, West Kelowna, BC",[],R,,,T,T
 00108-SimpleInterpolatedCivicAddress,5742 Malibu Terr Nanaimo BC,BLOCK,"5742 Malibu Terr, Nanaimo, BC",[],R,,,T,T
 00109-AdaptiveInterpolatedCivicAddress,5686 Malibu Terr Nanaimo BC,BLOCK,"5686 Malibu Terr, Nanaimo, BC",[],R,,,T,T
 00110-CivicAddressWithKnownCivicNumber,"525 Superior St, Victoria, BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[],R,,,T,T
@@ -491,3 +491,4 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00503-LocalityNameWithSplitWords,"1090 Ironwood St, Camp bell River, BC",CIVIC_NUMBER,"1090 Ironwood St, Campbell River, BC",[LOCALITY.partialMatch],R,,,T,T
 00504-siteNameWithTerminalAndMissingStreetName,"Cargill Terminal -- District of North Vancouver, BC",SITE,"Cargill Terminal -- Low Level Rd, District of North Vancouver, BC",[STREET_NAME.notMatched],R,,,T,T
 00505-siteNameWithPortAndMissingStreetName,"Delta Port Entrance -- Delta, BC",SITE,"Delta Port Entrance -- Roberts Bank Rd, Delta, BC",[STREET_NAME.notMatched],F,,,T,T
+00506-outOfProvinceLocality,"Banff, AB",LOCALITY,"Field, BC",[LOCALITY.isAlias,PROVINCE.notMatched,MAX_RESULTS.too_low_to_include_all_best_matches],F,,,T,T
