@@ -492,3 +492,5 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00504-siteNameWithTerminalAndMissingStreetName,"Cargill Terminal -- District of North Vancouver, BC",SITE,"Cargill Terminal -- Low Level Rd, District of North Vancouver, BC",[STREET_NAME.notMatched],R,,,T,T
 00505-siteNameWithPortAndMissingStreetName,"Delta Port Entrance -- Delta, BC",SITE,"Delta Port Entrance -- Roberts Bank Rd, Delta, BC",[STREET_NAME.notMatched],F,,,T,T
 00506-outOfProvinceLocality,"Banff, AB",LOCALITY,"Field, BC",[LOCALITY.isAlias,PROVINCE.notMatched,MAX_RESULTS.too_low_to_include_all_best_matches],F,,,T,T
+00507-indigenousSpellingOfBridgeNewWest,"stal̕əw̓asəm Bridge -- New Westminster, BC",SITE,"stal̕əw̓asəm Bridge -- New Westminster, BC",[],F,,,T,T
+00507-indigenousSpellingOfBridgeSurrey,"stal̕əw̓asəm Bridge -- Surrey, BC",SITE,"stal̕əw̓asəm Bridge -- Surrey, BC",[],F,,,T,T
