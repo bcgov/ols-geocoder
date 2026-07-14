@@ -1679,8 +1679,10 @@ public class GeocoderDataStore {
 			return false;
 		}
 		try {
-			ISite site = getRawSiteByUuid(UUID.fromString(address.getSiteID()));
-			return site != null && site.getPids() != null && !site.getPids().trim().isEmpty();
+UUID siteUuid = UUID.fromString(address.getSiteID());
+ISite site = sitesByUuid.get(siteUuid);
+String pids = (site == null) ? null : site.getPids();
+return pids != null && !pids.trim().isEmpty();
 		} catch(IllegalArgumentException iae) {
 			return false;
 		}
