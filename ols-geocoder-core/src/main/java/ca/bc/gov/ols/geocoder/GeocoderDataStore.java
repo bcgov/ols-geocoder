@@ -1669,6 +1669,24 @@ public class GeocoderDataStore {
 		}
 		return sitesByUuid.get(uuid);
 	}
+
+	public boolean hasPids(GeocodeMatch match) {
+		if(!(match instanceof AddressMatch)) {
+			return false;
+		}
+		SiteAddress address = ((AddressMatch)match).getAddress();
+		if(address == null || address.getSiteID() == null || address.getSiteID().isEmpty()) {
+			return false;
+		}
+		try {
+UUID siteUuid = UUID.fromString(address.getSiteID());
+ISite site = sitesByUuid.get(siteUuid);
+String pids = (site == null) ? null : site.getPids();
+return pids != null && !pids.trim().isEmpty();
+		} catch(IllegalArgumentException iae) {
+			return false;
+		}
+	}
 	
 	public ArrayList<SiteAddress> getSubSitesByUuid(UUID uuid, LocationDescriptor ld,
 			int setBack) {

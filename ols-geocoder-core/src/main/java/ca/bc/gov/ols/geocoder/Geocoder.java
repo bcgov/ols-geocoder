@@ -222,11 +222,12 @@ public class Geocoder implements IGeocoder {
 			matches = handler.getMatches();
 		}
 		
+		matches = filterMatchesByPid(matches, query);
 		logger.debug("Initial matches.size(): {}", matches.size());
 		categorizeMatches(matches);
 		
 		// if we have no matches, add the fallback match
-		if(matches.isEmpty()) {
+		if(matches.isEmpty() && !query.getHasPid()) {
 			// if nothing matched we return a low-scoring stateProvTerr level match
 			SiteAddress matchAddress = getFallbackAddress();
 			if(matchAddress == null) {
@@ -385,6 +386,20 @@ public class Geocoder implements IGeocoder {
 		query.stopTimer();
 		//status.slowQueries.offer(query);
 		return new SearchResults(query, limitedMatches, datastore.getDate(DateType.PROCESSING_DATE));
+	}
+	
+	private List<GeocodeMatch> filterMatchesByPid(List<GeocodeMatch> matches, GeocodeQuery query) {
+		if(!query.getHasPid()) {
+			return matches;
+		}
+		List<GeocodeMatch> filteredMatches = new ArrayList<GeocodeMatch>(matches.size());
+		for(GeocodeMatch match : matches) {
+			match.resolve(datastore);
+			if(datastore.hasPids(match)) {
+				filteredMatches.add(match);
+			}
+		}
+		return filteredMatches;
 	}
 	
 	private void categorizeMatches(List<GeocodeMatch> matches) {
@@ -1850,7 +1865,7 @@ public class Geocoder implements IGeocoder {
 				new RuleTerm[] {
 						new RuleTerm("unitNumber"),
 						new RuleTerm("unitNumberSuffix", RuleOperator.OPTION)}));
-
+		
 		parserGen.addRule(new RuleChoice("unitNumber", true,
 				new RuleTerm[] {
 						new RuleTerm("unitNumberLetterFirst"),

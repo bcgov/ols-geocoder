@@ -82,6 +82,7 @@ public class GeocodeQuery extends SharedParameters{
 	private boolean autoComplete = false;
 	private boolean exactSpelling = false;
 	private boolean fuzzyMatch = false;
+	private boolean hasPid = false;
 
 	public GeocodeQuery() {
 		setMaxResults(1);
@@ -428,6 +429,14 @@ public class GeocodeQuery extends SharedParameters{
 		this.exactSpelling = exactSpelling;
 	}
 
+	public boolean getHasPid() {
+		return hasPid;
+	}
+
+	public void setHasPid(boolean hasPid) {
+		this.hasPid = hasPid;
+	}
+
 	public String getTagCondition() {
 		return tagCondition;
 	}
@@ -439,6 +448,9 @@ public class GeocodeQuery extends SharedParameters{
 	public int getNumPrelimResults() {
 		if(fuzzyMatch) {
 			return 100;
+		}
+		if(hasPid) {
+			return Math.max(getMaxResults() + 1, 100);
 		}
 		return getMaxResults() + 1;
 	}
@@ -629,7 +641,8 @@ public class GeocodeQuery extends SharedParameters{
 				+ " interpolation=" + interpolation
 				+ " echo=" + echo
 				+ " locationDescriptor=" + locationDescriptor
-				+ " extrapolate=" + extrapolate;
+				+ " extrapolate=" + extrapolate
+				+ " hasPid=" + hasPid;
 	}
 	
 	public void startTimer() {
