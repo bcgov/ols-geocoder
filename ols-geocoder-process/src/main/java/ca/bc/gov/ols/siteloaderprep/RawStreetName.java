@@ -8,6 +8,7 @@ public class RawStreetName {
 	public String qual;
 	public boolean typeIsPrefix;
 	public boolean dirIsPrefix;
+	public boolean isPrivateRoad; // indicates if this street name is a private road name
 	
 	@Override
 	public String toString() {

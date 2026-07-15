@@ -44,6 +44,7 @@ import ca.bc.gov.ols.util.GeomParseUtil;
 
 public class GeocoderConfig {
 	public static final String VERSION;
+	public static final String GIT_COMMIT_ID;
 	public static final String LOGGER_PREFIX = "BGEO.";
 	public static final PrecisionModel BASE_PRECISION_MODEL = new PrecisionModel(1000);
 	private static final Logger logger = LoggerFactory.getLogger(LOGGER_PREFIX
@@ -95,6 +96,13 @@ public class GeocoderConfig {
             Properties props = new Properties();
             props.load(input);
             VERSION = props.getProperty("app.version");
+		} catch(IOException ioe) {
+			throw new RuntimeException(ioe);
+		}
+		try (InputStream input = Thread.currentThread().getContextClassLoader().getResourceAsStream("git.properties")) {
+            Properties props = new Properties();
+            props.load(input);
+            GIT_COMMIT_ID = props.getProperty("git.commit.id.abbrev");
 		} catch(IOException ioe) {
 			throw new RuntimeException(ioe);
 		}

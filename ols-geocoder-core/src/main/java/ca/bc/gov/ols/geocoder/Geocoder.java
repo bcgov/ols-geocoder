@@ -80,6 +80,7 @@ import ca.bc.gov.ols.geocoder.parser.generator.RuleChoice;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleOperator;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleSequence;
 import ca.bc.gov.ols.geocoder.parser.generator.RuleTerm;
+import ca.bc.gov.ols.geocoder.status.SystemStatus;
 import ca.bc.gov.ols.geocoder.util.GeocoderUtil;
 import ca.bc.gov.ols.rowreader.DateType;
 import ca.bc.gov.ols.util.PairedList;
@@ -99,6 +100,7 @@ public class Geocoder implements IGeocoder {
 			+ Geocoder.class.getCanonicalName());
 	
 	private GeocoderDataStore datastore;
+	private SystemStatus status;
 	private AddressParser parser;
 	//private DateFormatter dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	private Lexer lexer;
@@ -106,6 +108,7 @@ public class Geocoder implements IGeocoder {
 	
 	public Geocoder(GeocoderDataStore datastore) {
 		this.datastore = datastore;
+		this.status = datastore.getStatus();
 		lexer = new Lexer(new DraLexicalRules(), datastore.getWordMap());
 		parser = createParser(lexer);
 		fallbackSiteAddress = geocodeFallbackAddress(datastore.getConfig().getFallbackAddress());
@@ -226,11 +229,12 @@ public class Geocoder implements IGeocoder {
 			matches = handler.getMatches();
 		}
 		
+		matches = filterMatchesByPid(matches, query);
 		logger.debug("Initial matches.size(): {}", matches.size());
 		categorizeMatches(matches);
 		
 		// if we have no matches, add the fallback match
-		if(matches.isEmpty()) {
+		if(matches.isEmpty() && !query.getHasPid()) {
 			// if nothing matched we return a low-scoring stateProvTerr level match
 			SiteAddress matchAddress = getFallbackAddress();
 			if(matchAddress == null) {
@@ -259,12 +263,43 @@ public class Geocoder implements IGeocoder {
 		}
 
 		if(query.isFuzzyMatch() && query.getAddressString() != null && !query.getAddressString().isEmpty()) {
-			// sort by fuzzy score (higher fuzzy score is better)
+			// When fuzzy matching is enabled, we need to sort results more intelligently
+			// than just by fuzzy score alone. We prioritize:
+			// 1. Exact locality matches (no penalty) over prefix matches (with penalty)
+			// 2. LOCALITY precision matches for simple word queries without numbers
+			// 3. Fuzzy score within each priority group (case-insensitive)
+			final String queryStr = query.getAddressString();
+			final String normalizedInput = queryStr.toLowerCase();
 			matches.sort(
-				Comparator.comparingInt((GeocodeMatch match) ->
-					FuzzySearch.ratio(query.getAddressString(), match.getAddressString())
-				).reversed() 
+				Comparator
+					// First, prioritize matches without locality partialMatch faults (exact matches)
+					.comparing((GeocodeMatch match) -> {
+						for(MatchFault fault : match.getFaults()) {
+							if(fault.getElement() == MatchFault.MatchElement.LOCALITY 
+								&& fault.getFault().equals("partialMatch")
+								&& fault.getPenalty() > 0) {
+								return 1; // Deprioritize prefix matches
+							}
+						}
+						return 0; // Prioritize exact matches
+					})
+					// Second, for locality-only queries, prioritize LOCALITY precision matches
+					.thenComparing((GeocodeMatch match) -> {
+						// Check if this is likely a locality-only query (simple word(s), no numbers)
+						boolean likelyLocalityQuery = !queryStr.matches(".*\\d+.*");
+						// If it's a locality query and this is a LOCALITY match, boost it
+						if (likelyLocalityQuery && match.getPrecision() == MatchPrecision.LOCALITY) {
+							return 0; // Higher priority
+						}
+						return 1; // Lower priority
+					})
+					// Then sort by fuzzy score (higher is better, case-insensitive)
+					.thenComparing((GeocodeMatch match) ->
+						FuzzySearch.ratio(normalizedInput, match.getAddressString().toLowerCase()),
+						Comparator.reverseOrder()
+					)
 			);
+			// limit to maxResults
 			matches = matches.subList(0, Math.min(query.getMaxResults(), matches.size()));
 		}
 
@@ -360,6 +395,20 @@ public class Geocoder implements IGeocoder {
 		SearchResults results = new SearchResults(query, limitedMatches, datastore.getDate(DateType.PROCESSING_DATE));
 		results.setEncoding(determineResponseEncoding(limitedMatches));
 		return results;
+	}
+	
+	private List<GeocodeMatch> filterMatchesByPid(List<GeocodeMatch> matches, GeocodeQuery query) {
+		if(!query.getHasPid()) {
+			return matches;
+		}
+		List<GeocodeMatch> filteredMatches = new ArrayList<GeocodeMatch>(matches.size());
+		for(GeocodeMatch match : matches) {
+			match.resolve(datastore);
+			if(datastore.hasPids(match)) {
+				filteredMatches.add(match);
+			}
+		}
+		return filteredMatches;
 	}
 	
 	private void categorizeMatches(List<GeocodeMatch> matches) {
@@ -2202,6 +2251,11 @@ public class Geocoder implements IGeocoder {
 	 */
 	public AddressParser getParser() {
 		return parser;
+	}
+
+	@Override
+	public SystemStatus getStatus() {
+		return status;
 	}
 		
 }

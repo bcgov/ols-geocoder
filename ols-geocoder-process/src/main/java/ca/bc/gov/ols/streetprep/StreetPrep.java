@@ -851,6 +851,13 @@ public class StreetPrep {
 				name.body = rr.getString("NAME_BODY");
 				
 				name.qual = rr.getString("NAME_DESCRIPTOR_CODE");
+
+				if(rr.getString("FULL_NAME") != null && (rr.getString("FULL_NAME").toLowerCase().contains("private rd") || 
+						rr.getString("FULL_NAME").toLowerCase().contains("private road"))) {
+					// special case for "Private Rd"
+					name.isPrivateRoad = true;
+				}
+
 				if(name.qual != null) {
 					String newQual = streetQualMap.get(name.qual);
 					if(newQual == null) {
@@ -1179,15 +1186,42 @@ public class StreetPrep {
 	private void writeStreetNameOnSegs(TIntObjectMap<RawStreetSeg> segMap, TIntObjectMap<RawStreetName> streetNameIdMap) {
 		try(RowWriter rw = new JsonRowWriter(new File(outputDir + STREET_LOAD_STREET_NAME_ON_SEG_XREF_FILE), "bgeo_street_name_on_seg_xref", dates)) {
 			TIntObjectIterator<RawStreetSeg> segIterator = segMap.iterator();
+			// find the name ID for "private road" and "private rd" from the streetNameIdMap
+			// streetNameIdMap is keyed by STRUCTURED_NAME_ID, so we need to iterate through it to find the ID (the value is a RawStreetName. It has isPrivateRoad boolean)
+			int privateRoadNameId = -1;
+			for(TIntObjectIterator<RawStreetName> nameIterator = streetNameIdMap.iterator(); nameIterator.hasNext(); ) {
+				nameIterator.advance();
+				RawStreetName name = nameIterator.value();
+				if(name.isPrivateRoad) {
+					privateRoadNameId = name.id;
+					break;
+				}
+			}
+
 			while(segIterator.hasNext()) {
 				segIterator.advance();
 				RawStreetSeg seg = segIterator.value();
-				for(int nameIdx = 0; nameIdx < seg.nameIds.size(); nameIdx++) {
+				// new logic. Use STREET_SEGMENT_ID_2 if STREET_SEGMENT_ID_1 is "private road" or "private rd"
+				// and STREET_SEGMENT_ID_2 is not null. Please note the IDs are just number.
+				// Note: if the value was null in the source data, it will not be in the nameIds list.
+				// case 1: nameId 1 is private road and nameId 2 is not null -> use nameId 2 as primary
+				if(seg.nameIds.size() >= 2 && seg.nameIds.get(0) == privateRoadNameId) {
 					Map<String, Object> row = new THashMap<String, Object>();
-					row.put("STREET_NAME_ID", seg.nameIds.get(nameIdx));
+					row.put("STREET_NAME_ID", seg.nameIds.get(1));
 					row.put("STREET_SEGMENT_ID", seg.streetSegmentId);
-					row.put("IS_PRIMARY_IND", nameIdx == 0);
+					row.put("IS_PRIMARY_IND", true);
 					rw.writeRow(row);
+				}
+				else{
+					// case 2: nameId 1 is private road and nameId 2 is null -> do not change
+					// case 3: nameId 1 is not private road -> do not change
+					for(int nameIdx = 0; nameIdx < seg.nameIds.size(); nameIdx++) {
+						Map<String, Object> row = new THashMap<String, Object>();
+						row.put("STREET_NAME_ID", seg.nameIds.get(nameIdx));
+						row.put("STREET_SEGMENT_ID", seg.streetSegmentId);
+						row.put("IS_PRIMARY_IND", nameIdx == 0);
+						rw.writeRow(row);
+					}
 				}
 			}
 		}

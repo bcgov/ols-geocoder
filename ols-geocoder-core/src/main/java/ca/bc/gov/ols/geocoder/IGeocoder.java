@@ -18,6 +18,7 @@ package ca.bc.gov.ols.geocoder;
 import ca.bc.gov.ols.geocoder.api.GeocodeQuery;
 import ca.bc.gov.ols.geocoder.api.data.SearchResults;
 import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
+import ca.bc.gov.ols.geocoder.status.SystemStatus;
 
 public interface IGeocoder {
 	public SearchResults geocode(GeocodeQuery query);
@@ -25,5 +26,7 @@ public interface IGeocoder {
 	public GeocoderDataStore getDatastore();
 	
 	public GeocoderConfig getConfig();
+
+	public SystemStatus getStatus();
 	
 }
