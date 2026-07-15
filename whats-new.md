@@ -5,7 +5,7 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
 
 ## August, 2026
 - BC Address Geocoder version 4.5.4
-- Added a new preferredEncoding parameter to return an ASCII alternative for utf-8 street names, if it has been provided by the address authority. Parameter value options include ascii, extended-ascii and utf-8. The default response from the BC Address Geocoder is utf-8.
+- Added a new preferredEncoding parameter to return an ASCII alternative for a utf-8 street name, if one has been provided by the address authority. Parameter value options include ascii, extended-ascii and utf-8. The default response from the BC Address Geocoder is utf-8.
 - Added a new hasPid parameter which, when set to 'true' will only return address matches that have a pid. Default value is false.
 - Added a new status endpoint to return a data summary and list of any startup warnings or errors.
 
