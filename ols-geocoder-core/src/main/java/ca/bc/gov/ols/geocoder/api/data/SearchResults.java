@@ -98,6 +98,10 @@ public class SearchResults {
 	@XmlElement
 	private LocationDescriptor locationDescriptor;
 	
+	// response body attribute
+	@XmlElement
+	private String encoding = "ascii";
+	
 	public SearchResults() {
 	}
 	
@@ -217,5 +221,27 @@ public class SearchResults {
 
 	public ZonedDateTime getProcessingDate() {
 		return processingDate;
+	}
+
+	public String getEncoding() {
+		if(encoding == null || encoding.isBlank()) {
+			return "ascii";
+		}
+		return encoding;
+	}
+
+	public void setEncoding(String encoding) {
+		if(encoding == null || encoding.isBlank()) {
+			this.encoding = "ascii";
+			return;
+		}
+		String normalized = encoding.trim().toLowerCase();
+		if("ascii".equals(normalized)
+				|| "extended-ascii".equals(normalized)
+				|| "utf-8".equals(normalized)) {
+			this.encoding = normalized;
+		} else {
+			this.encoding = "utf-8";
+		}
 	}
 }

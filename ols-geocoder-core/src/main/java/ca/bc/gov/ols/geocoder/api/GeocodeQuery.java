@@ -84,6 +84,8 @@ public class GeocodeQuery extends SharedParameters{
 	private boolean fuzzyMatch = false;
 	private boolean hasPid = false;
 
+	private String preferredEncoding = "utf-8";
+
 	public GeocodeQuery() {
 		setMaxResults(1);
 	}
@@ -455,6 +457,25 @@ public class GeocodeQuery extends SharedParameters{
 		return getMaxResults() + 1;
 	}
 
+	public String getPreferredEncoding() {
+		return preferredEncoding;
+	}
+
+	public void setPreferredEncoding(String preferredEncoding) {
+		this.preferredEncoding = normalizePreferredEncoding(preferredEncoding);
+	}
+
+	private String normalizePreferredEncoding(String preferredEncoding) {
+		if(preferredEncoding == null || preferredEncoding.trim().isEmpty()) {
+			return "utf-8";
+		}
+		String pe = preferredEncoding.trim().toLowerCase();
+		if("ascii".equals(pe) || "extended-ascii".equals(pe) || "utf-8".equals(pe)) {
+			return pe;
+		}
+		throw new IllegalArgumentException(
+				"preferredEncoding must be one of: ascii, extended-ascii, utf-8");
+	}
 
 	public boolean pass(GeocodeMatch match) {
 		if(filter == null) {
@@ -642,6 +663,7 @@ public class GeocodeQuery extends SharedParameters{
 				+ " echo=" + echo
 				+ " locationDescriptor=" + locationDescriptor
 				+ " extrapolate=" + extrapolate
+				+ " preferredEncoding=" + preferredEncoding
 				+ " hasPid=" + hasPid;
 	}
 	

@@ -99,9 +99,11 @@ public class CsvOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 	}
 	
 	static String searchResultsToCSV(SearchResults results, OlsResponse response) {
-		StringBuilder sb = new StringBuilder(
-				"\"fullAddress\"," +
-				"\"intersectionName\"," +
+		StringBuilder sb = new StringBuilder("\"fullAddress\",");
+		if(!response.isBrief()) {
+			sb.append("\"encoding\",");
+		}
+		sb.append("\"intersectionName\"," +
 				"\"score\"," +
 				"\"matchPrecision\"," +
 				"\"precisionPoints\"," +
@@ -167,9 +169,12 @@ public class CsvOlsResponseConverter extends AbstractHttpMessageConverter<OlsRes
 		for(GeocodeMatch match : results.getMatches()) {
 			if(match instanceof AddressMatch) {
 				SiteAddress addr = ((AddressMatch)match).getAddress();				
-				sb.append(escape(addr.getAddressString()) + ","
-						// IntersectionName
-						+ ","
+				sb.append(escape(addr.getAddressString()) + ",");
+				if(!response.isBrief()) {
+					sb.append(escape(results.getEncoding()) + ",");
+				}
+				sb.append(// IntersectionName
+						","
 						+ match.getScore() + ","
 						+ escape(match.getPrecision()) + ","
 						+ match.getPrecisionPoints() + ","

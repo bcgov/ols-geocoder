@@ -93,6 +93,9 @@ public class OlsResponseReader {
 	public void searchResults(SearchResults results) throws IOException {
 		writer.searchResultsHeader();
 		writer.field("queryAddress", results.getQueryAddress());
+		if(!response.isBrief()) {
+			writer.field("encoding", results.getEncoding());
+		}
 		writer.field("searchTimestamp", results.getSearchTimeStamp());
 		writer.field("executionTime", results.getExecutionTime());
 		writer.field("version", GeocoderConfig.VERSION);
