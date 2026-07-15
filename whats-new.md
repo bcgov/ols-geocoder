@@ -3,6 +3,12 @@
 Check out the Geocoder release [roadmap](https://github.com/bcgov/ols-geocoder/blob/gh-pages/roadmap.md)
 For detailed API release notes, see the [BC Geocoder Developer Guide](https://github.com/bcgov/api-specs/blob/master/geocoder/geocoder-developer-guide.md)
 
+## August, 2026
+- BC Address Geocoder version 4.5.4
+- Added a new preferredEncoding parameter to return an ASCII alternative for utf-8 street names, if it has been provided by the address authority. Parameter value options include ascii, extended-ascii and utf-8. The default response from the BC Address Geocoder is utf-8.
+- Added a new hasPid parameter which, when set to 'true' will only return address matches that have a pid. Default value is false.
+- Added a new status endpoint to return a data summary and list of any startup warnings or errors.
+
 ## March 3, 2025
 - BC Address Geocoder version 4.5.3
 - The default tag condition used when searching for occupants has been changed from ‘and’ to ‘or’.
