@@ -101,7 +101,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00104-CivicAddressWithFloorDesignator,FLR 2 1725 Robson St Vancouver BC,UNIT,"FLR 2 -- 1725 Robson St, Vancouver, BC",[],R,,,T,T
 00105-CivicAddressWithReverseFloorDesignator,2nd FLR 1725 Robson St Vancouver BC,UNIT,"FLR 2 -- 1725 Robson St, Vancouver, BC",[],R,,,T,T
 00106-CivicAddressWithUnabbreviatedFloorDesignator,Floor 2 1725 Robson St Vancouver BC,UNIT,"FLR 2 -- 1725 Robson St, Vancouver, BC",[],R,,,T,T
-00106-UnitOnPrivateRoad,UNIT 11 2100 Boucherie Rd, West Kelowna, BC,UNIT,"UNIT 11 -- 2100 Boucherie Rd, West Kelowna, BC",[],R,,,T,T
+00107-UnitOnPrivateRoad,"UNIT 11 2100 Boucherie Rd, West Kelowna, BC",UNIT,"UNIT 11 -- 2100 Boucherie Rd, West Kelowna, BC",[],R,,,T,T
 00108-SimpleInterpolatedCivicAddress,5742 Malibu Terr Nanaimo BC,BLOCK,"5742 Malibu Terr, Nanaimo, BC",[],R,,,T,T
 00109-AdaptiveInterpolatedCivicAddress,5686 Malibu Terr Nanaimo BC,BLOCK,"5686 Malibu Terr, Nanaimo, BC",[],R,,,T,T
 00110-CivicAddressWithKnownCivicNumber,"525 Superior St, Victoria, BC",CIVIC_NUMBER,"525 Superior St, Victoria, BC",[],R,,,T,T
@@ -165,7 +165,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00171-SiteNameWithGluedWords,"SturdiesBayFerryTerminal -- 2622 Sturdies Bay Rd, Galiano Island, BC",SITE,"Sturdies Bay Ferry Terminal -- 2622 Sturdies Bay Rd, Galiano Island, BC",[],F,,,T,T
 00172-StreetNameWithMultipleSpellingMistakes,"Omineca St, Kitimat, BC",STREET,"Omenica St, Kitimat, BC",[],R,,,T,T
 00173-LocalityNameWithMultipleSpellingMistakes,Spalumchin BC,LOCALITY,"Spallumcheen, BC",[],R,,,T,T
-00174-SiteNameWithMultipleSpellingMistakes,"Strdies By Frry Termial -- 2622 Sturdies Bay Rd, Galiano Island, BC",SITE,"Sturdies Bay Ferry Terminal -- 2622 Sturdies Bay Rd, Galiano Island, BC",[SITE_NAME.notMatched 10],R,,,T,T
+00174-SiteNameWithMultipleSpellingMistakes,"Strdies By Frry Termial -- 2622 Sturdies Bay Rd, Galiano Island, BC",SITE,"Sturdies Bay Ferry Terminal -- 2622 Sturdies Bay Rd, Galiano Island, BC",[SITE_NAME.notMatched:10],R,,,T,T
 00175-NumberedStreetName,"857 E 45th Ave, Vancouver, BC",CIVIC_NUMBER,"857 E 45th Ave, Vancouver, BC",[],R,,,T,T
 00178-StreetNameWithSplitWords,"1985 Mill Stream Rd, Highlands, BC",CIVIC_NUMBER,"1985 Millstream Rd, Highlands, BC",[STREET_NAME.partialMatch],R,,,T,T
 00179-UnknownSiteNameWithFrontGate,"Old Mill Stream Manor -- 1985 Millstream Rd, Highlands, BC",CIVIC_NUMBER,"OLD MILL STREAM MANOR -- 1985 Millstream Rd, Highlands, BC",[SITE_NAME.notMatched],R,,,T,T
@@ -300,7 +300,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00310-DuplicateBCAfterLocality,"10011 SIMKIN PL, SIDNEY, BC, BC",CIVIC_NUMBER,"10011 Simkin Pl, Sidney, BC",[PROVINCE_CODE.duplicated],R,,,T,T
 00311-GoodAddress,"1447 RUPERT ST VANCOUVER, BC",CIVIC_NUMBER,"1447 Rupert St, Vancouver, BC",[],R,,,T,T
 00312-DuplicateLocalityAfterLocality,"1447 RUPERT ST VANCOUVER, VANCOUVER, BC",CIVIC_NUMBER,"1447 Rupert St, Vancouver, BC",[LOCALITY.duplicated],R,,,T,T
-00313-GoodAddress,"964 LILLOOET RD NORTH VANCOUVER, BC",CIVIC_NUMBER,"964 Lillooet Rd, District of North Vancouver, BC",[LOCALITY.isAlias],R,,,T,
+00313-GoodAddress,"964 LILLOOET RD NORTH VANCOUVER, BC",CIVIC_NUMBER,"964 Lillooet Rd, District of North Vancouver, BC",[LOCALITY.isAlias],R,,,T,T
 00314-DuplicateLocalityAfterLocality,"964 LILLOOET RD NORTH VANCOUVER, NORTH VANCOUVER, BC",CIVIC_NUMBER,"964 Lillooet Rd, District of North Vancouver, BC","[LOCALITY.duplicated,LOCALITY.isAlias]",R,,,T,T
 00315-GoodAddress,"1135 JEFFERSON AVE WEST VANCOUVER, BC",CIVIC_NUMBER,"1135 Jefferson Ave, West Vancouver, BC",[],R,,,T,T
 00316-DuplicateLocalityAfterLocality,"1135 JEFFERSON AVE WEST VANCOUVER, WEST VANCOUVER, BC",CIVIC_NUMBER,"1135 Jefferson Ave, West Vancouver, BC",[LOCALITY.duplicated],R,,,T,T
@@ -491,6 +491,6 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00503-LocalityNameWithSplitWords,"1090 Ironwood St, Camp bell River, BC",CIVIC_NUMBER,"1090 Ironwood St, Campbell River, BC",[LOCALITY.partialMatch],R,,,T,T
 00504-siteNameWithTerminalAndMissingStreetName,"Cargill Terminal -- District of North Vancouver, BC",SITE,"Cargill Terminal -- Low Level Rd, District of North Vancouver, BC",[STREET_NAME.notMatched],R,,,T,T
 00505-siteNameWithPortAndMissingStreetName,"Delta Port Entrance -- Delta, BC",SITE,"Delta Port Entrance -- Roberts Bank Rd, Delta, BC",[STREET_NAME.notMatched],F,,,T,T
-00506-outOfProvinceLocality,"Banff, AB",LOCALITY,"Field, BC",[LOCALITY.isAlias,PROVINCE.notMatched,MAX_RESULTS.too_low_to_include_all_best_matches],F,,,T,T
+00506-outOfProvinceLocality,"Banff, AB",LOCALITY,"Field, BC","[LOCALITY.isAlias,PROVINCE.notMatched,MAX_RESULTS.too_low_to_include_all_best_matches]",F,,,T,T
 00507-indigenousSpellingOfBridgeNewWest,"stal̕əw̓asəm Bridge -- New Westminster, BC",SITE,"stal̕əw̓asəm Bridge -- New Westminster, BC",[],F,,,T,T
 00508-indigenousSpellingOfBridgeSurrey,"stal̕əw̓asəm Bridge -- Surrey, BC",SITE,"stal̕əw̓asəm Bridge -- Surrey, BC",[],F,,,T,T
