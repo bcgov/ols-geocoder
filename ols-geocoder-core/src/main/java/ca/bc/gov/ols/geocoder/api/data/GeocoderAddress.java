@@ -72,6 +72,11 @@ public abstract class GeocoderAddress implements ModifiableLocation {
 	}
 	
 	public void setLocality(Locality locality) {
+		if(locality == null) {
+			this.localityName = null;
+			this.localityType = null;
+			return;
+		}
 		addressString = null;
 		this.localityName = locality.getFullyQualifiedName();
 		this.localityType = locality.getType();

@@ -920,6 +920,9 @@ public class GeocoderDataStore {
 			// and also ignore any with NULL_INT_VALUE for either address endpoint
 			BlockFace leftFace = null;
 			BlockFace rightFace = null;
+			Locality leftLocality = null;
+			Locality rightLocality = null;
+			
 			if(parityLeft != null && !parityLeft.equals("N")
 					&& !parityLeft.equals("S")
 					&& firstAddrLeft != RowReader.NULL_INT_VALUE
@@ -928,13 +931,18 @@ public class GeocoderDataStore {
 				CivicAccessPoint[] aps = getCivicAccessPointsForFace(segmentId,
 						firstAddrLeft, lastAddrLeft, parityLeft.charAt(0),
 						accessPointMap);
-				leftFace = new BlockFace(segment, Side.LEFT,
-						firstAddrLeft, lastAddrLeft, parityLeft,
-						numLanesLeft, localityIdMap.get(localityLeft), electoralAreaIdMap.get(eaLeft), aps);
-				if(aps != null) {
-					for(CivicAccessPoint ap : aps) {
-						ap.setBlockFace(leftFace);
+				leftLocality = localityIdMap.get(localityLeft);
+				if(leftLocality != null) {
+					leftFace = new BlockFace(segment, Side.LEFT,
+							firstAddrLeft, lastAddrLeft, parityLeft,
+							numLanesLeft, leftLocality, electoralAreaIdMap.get(eaLeft), aps);
+					if(aps != null) {
+						for(CivicAccessPoint ap : aps) {
+							ap.setBlockFace(leftFace);
+						}
 					}
+				} else {
+					logger.warn("BlockFace left side has null locality for segment: " + segmentId);
 				}
 			}
 			if(parityRight != null && !parityRight.equals("N")
@@ -945,13 +953,18 @@ public class GeocoderDataStore {
 				CivicAccessPoint[] aps = getCivicAccessPointsForFace(segmentId,
 						firstAddrRight, lastAddrRight, parityRight.charAt(0),
 						accessPointMap);
-				rightFace = new BlockFace(segment, Side.RIGHT,
-						firstAddrRight, lastAddrRight, parityRight,
-						numLanesRight, localityIdMap.get(localityRight), electoralAreaIdMap.get(eaRight), aps);
-				if(aps != null) {
-					for(CivicAccessPoint ap : aps) {
-						ap.setBlockFace(rightFace);
+				rightLocality = localityIdMap.get(localityRight);
+				if(rightLocality != null) {
+					rightFace = new BlockFace(segment, Side.RIGHT,
+							firstAddrRight, lastAddrRight, parityRight,
+							numLanesRight, rightLocality, electoralAreaIdMap.get(eaRight), aps);
+					if(aps != null) {
+						for(CivicAccessPoint ap : aps) {
+							ap.setBlockFace(rightFace);
+						}
 					}
+				} else {
+					logger.warn("BlockFace right side has null locality for segment: " + segmentId);
 				}
 			}
 			streetSegmentIdMap.put(segmentId, segment);
@@ -990,8 +1003,12 @@ public class GeocoderDataStore {
 			// add localities to the intersections
 			
 			for(StreetIntersection intersection : intersections) {
-				intersection.addLocality(localityIdMap.get(localityRight));
-				intersection.addLocality(localityIdMap.get(localityLeft));
+				if(leftLocality != null) {
+					intersection.addLocality(leftLocality);
+				}
+				if(rightLocality != null) {
+					intersection.addLocality(rightLocality);
+				}
 			}
 			
 		}
