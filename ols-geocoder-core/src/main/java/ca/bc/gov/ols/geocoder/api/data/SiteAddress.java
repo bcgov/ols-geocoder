@@ -116,15 +116,21 @@ public class SiteAddress extends GeocoderAddress {
 		if(ap == null) {
 			ap = site.getPrimaryAccessPoint();
 		}
+		BlockFace face = null;
 		if(ap instanceof CivicAccessPoint) {
 			CivicAccessPoint cap = (CivicAccessPoint)ap;
+			face = cap.getBlockFace();
+			if(face != null) {
+				setStreetName(face.getSegment().getPrimaryStreetName());
+				Locality faceLocality = face.getLocality();
+				if(faceLocality != null) {
+					setLocality(faceLocality);
+				}
+				setElectoralArea(face.getElectoralArea());
+				streetSegmentID = face.getSegment().getSegmentId();
+			}
 			civicNumber = cap.getCivicNumber();
 			civicNumberSuffix = cap.getCivicNumberSuffix();
-			BlockFace face = cap.getBlockFace();
-			setStreetName(face.getSegment().getPrimaryStreetName());
-			setLocality(face.getLocality());
-			setElectoralArea(face.getElectoralArea());
-			streetSegmentID = face.getSegment().getSegmentId();
 		} else if(ap instanceof NonCivicAccessPoint){
 			NonCivicAccessPoint ncap = (NonCivicAccessPoint)ap;
 			if(ncap.getStreetSegment() != null) {

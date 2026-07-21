@@ -481,6 +481,10 @@ public class GeocodeQuery extends SharedParameters{
 		if(filter == null) {
 			filter = buildFilter();
 		}
+		// Additional validation: ensure match has required data
+		if(match.getLocation() == null || match.getLocalityName() == null) {
+			return false;
+		}
 		return filter.pass(match);
 	}
 	
