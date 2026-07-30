@@ -59,7 +59,12 @@ public class IntersectionController {
 		
 		StreetIntersectionAddress addr = geocoder.getDatastore().getIntersectionByUuid(
 				uuid.getValue());
-		OlsResponse response = new OlsResponse(addr);
+		OlsResponse response;
+		if(addr == null) {
+			response = new OlsResponse(new StreetIntersectionAddress[0]);
+		} else {
+			response = new OlsResponse(addr);
+		}
 		response.setParams(params);
 		return response;
 	}
