@@ -81,7 +81,8 @@ public class TestDataSource implements GeocoderDataSource {
 	private TIntObjectHashMap<FlexObj> localities = new TIntObjectHashMap<FlexObj>();
 	private Map<String, Integer> localitySchema = FlexObj.createSchema(
 			new String[] {"locality_id", "locality_name", "locality_type_name",
-					"state_prov_terr_id", "geom", "locality_type_id", "electoral_area_id"});
+					"state_prov_terr_id", "geom", "locality_type_id", "electoral_area_id",
+					"locality_qualifier"});
 
 	private TIntObjectHashMap<FlexObj> electoralAreas = new TIntObjectHashMap<FlexObj>();
 	private Map<String, Integer> electoralAreaSchema = FlexObj.createSchema(
@@ -190,11 +191,11 @@ public class TestDataSource implements GeocoderDataSource {
 		// Localities IDs in 100-range
 		localities.put(101, new FlexObj(localitySchema,
 				new Object[] {101, "Victoria", "City", 10,
-						gf.createPoint(new Coordinate(1, 1)), 1, 1
+						gf.createPoint(new Coordinate(1, 1)), 1, 1, null
 				}));
 		localities.put(102, new FlexObj(localitySchema,
 				new Object[] {102, "Vancouver", "City", 10,
-						gf.createPoint(new Coordinate(1, 1)), 1, 2
+						gf.createPoint(new Coordinate(1, 1)), 1, 2, null
 				}));
 		
 		// Business Category IDs in the 200-range
@@ -222,11 +223,11 @@ public class TestDataSource implements GeocoderDataSource {
 		
 		// StreetNames IDs in 3000-range
 		streetNames.put(3001, new FlexObj(streetNameSchema,
-				new Object[] {3001, "Douglas", "St", null, null, null, "N", "N"}));
+				new Object[] {3001, "Douglas", "St", null, null, null, false, false}));
 		streetTypes.add("St");
 		
 		streetNameOnSegments.add(new FlexObj(streetNameOnSegmentSchema,
-				new Object[] {3001, 2001, "Y"}));
+				new Object[] {3001, 2001, true}));
 		
 		// StreetLocalityCentroids
 		streetLocalityCentroids.add(new FlexObj(streetLocalityCentroidSchema,
@@ -260,13 +261,13 @@ public class TestDataSource implements GeocoderDataSource {
 		// AccessPoints IDs in 5000-range
 		accessPoints.put(5001, new FlexObj(accessPointSchema,
 				new Object[] {5001, "NCAP", 1, 4001,
-						2001, 101, null, null, "medium", "Y",
+						2001, 101, null, null, "medium", true,
 						gf.createPoint(new Coordinate(1, 1))
 				}));
 
 		accessPoints.put(5002, new FlexObj(accessPointSchema,
 				new Object[] {5002, "CAP", 1, 4002,
-						2001, 101, 1207, null, "medium", "Y",
+						2001, 101, 1207, null, "medium", true,
 						gf.createPoint(new Coordinate(2, 2))
 				}));
 		
@@ -283,8 +284,14 @@ public class TestDataSource implements GeocoderDataSource {
 
 		combinedSitesPost.put(4002, new FlexObj(combinedSitesPostSchema,
 				new Object[] {4002, "00000000-0000-0000-0000-000000004002", null, null, null,
-						"parcelPoint", null, null, "medium", "A", LocalDate.of(2015,1,1), null, gf.createPoint(new Coordinate(1, 1)), "CAP", "Y", null, "medium", 4002, "A", null, null,
+						"parcelPoint", null, null, "medium", "A", LocalDate.of(2015,1,1), null, gf.createPoint(new Coordinate(1, 1)), "CAP", true, null, "medium", 4002, "A", null, null,
 						gf.createPoint(new Coordinate(1, 1)), "Suite 419 – 1207 Douglas Street Victoria, British Columbia, Canada, V8W 2E7", 2001, 101, "028726014", "BCA"
+				}));
+
+		combinedSitesPost.put(4003, new FlexObj(combinedSitesPostSchema,
+				new Object[] {4003, "00000000-0000-0000-0000-000000004003", 4002, null, null,
+						null, "419", null, "medium", "A", LocalDate.of(2015,1,1), null, gf.createPoint(new Coordinate(2, 2)), "NCAP", true, null, "medium", null, null, "A", null,
+						gf.createPoint(new Coordinate(2, 2)), "Suite 419 Sayward Building", 2001, 101, "028726015", "419"
 				}));
 
 		streetSegmentsPost.put(2001, new FlexObj(streetSegmentsPostSchema,

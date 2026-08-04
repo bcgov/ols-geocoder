@@ -1711,11 +1711,15 @@ return pids != null && !pids.trim().isEmpty();
 			throw new FeatureNotSupportedException(GeocoderFeature.REVERSE_GEOCODE);
 		}
 		ISite parentSite = sitesByUuid.get(uuid);
-		if(parentSite.getPrimaryAccessPoint() == null) {
+		if(parentSite == null || parentSite.getPrimaryAccessPoint() == null) {
 			return new ArrayList<SiteAddress>(0);
 		}
-		ArrayList<SiteAddress> sites = new ArrayList<SiteAddress>(parentSite.getChildren().size());
-		for(ISite site : parentSite.getChildren()) {
+		List<ISite> children = parentSite.getChildren();
+		if(children == null) {
+			return new ArrayList<SiteAddress>(0);
+		}
+		ArrayList<SiteAddress> sites = new ArrayList<SiteAddress>(children.size());
+		for(ISite site : children) {
 			SiteAddress address = new SiteAddress(site, null);
 			loadSiteDetailsById(address, site, site.getPrimaryAccessPoint());
 			address.resolveLocation(this, site, ld, setBack);
