@@ -152,6 +152,7 @@ public class OlsResponseReader {
 	public void siteAddress(SiteAddress addr, GeocodeMatch match) throws IOException {
 		writer.featureHeader(addr.getLocation());
 		writer.field("addressString", "fullAddress", addr.getAddressString());
+		writer.field("pid", addr.getPid());
 		if(match != null) {
 			match(match);
 		}
