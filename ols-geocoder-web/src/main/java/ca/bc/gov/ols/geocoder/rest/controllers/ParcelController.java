@@ -35,7 +35,6 @@ import ca.bc.gov.ols.geocoder.rest.OlsResponse;
 import ca.bc.gov.ols.geocoder.rest.PidsResponse;
 import ca.bc.gov.ols.geocoder.rest.converters.UuidParam;
 import ca.bc.gov.ols.geocoder.rest.exceptions.InvalidParameterException;
-import ca.bc.gov.ols.geocoder.rest.exceptions.ErrorMessage;
 
 @RestController
 @RequestMapping("/parcels")
@@ -77,14 +76,20 @@ public class ParcelController {
 		List<SiteAddress> addresses = new ArrayList<SiteAddress>();
 		for(String rawPid : pids.split(",")) {
 			String pid = rawPid.trim();
+			SiteAddress address = new SiteAddress();
+			address.setPid(pid);
 			if(!pid.matches("[0-9]{9}")) {
-				throw new InvalidParameterException(new ErrorMessage("Invalid PID: " + pid
-						+ ". A PID must contain exactly 9 digits."));
+				address.setError("Invalid PID: " + pid
+						+ ". A PID must contain exactly 9 digits.");
+				addresses.add(address);
+				continue;
 			}
-			SiteAddress address = geocoder.getDatastore().getSiteByPid(pid,
+			address = geocoder.getDatastore().getSiteByPid(pid,
 					params.getLocationDescriptor(), params.getSetBack());
 			if(address == null) {
-				throw new InvalidParameterException(new ErrorMessage("No civic address was found for PID: " + pid));
+				address = new SiteAddress();
+				address.setPid(pid);
+				address.setError("No civic address was found for PID: " + pid);
 			}
 			addresses.add(address);
 		}

@@ -151,8 +151,14 @@ public class OlsResponseReader {
 	
 	public void siteAddress(SiteAddress addr, GeocodeMatch match) throws IOException {
 		writer.featureHeader(addr.getLocation());
+		if(addr.getError() != null) {
+			writer.field("pid", addr.getPid(), true);
+			writer.field("error", addr.getError());
+			writer.featureFooter();
+			return;
+		}
 		writer.field("addressString", "fullAddress", addr.getAddressString());
-		writer.field("pid", addr.getPid());
+		writer.field("pid", addr.getPid(), true);
 		if(match != null) {
 			match(match);
 		}
