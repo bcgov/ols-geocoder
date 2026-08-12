@@ -3,7 +3,7 @@
 Check out the Geocoder release [roadmap](https://github.com/bcgov/ols-geocoder/blob/gh-pages/roadmap.md)
 For detailed API release notes, see the [BC Geocoder Developer Guide](https://github.com/bcgov/api-specs/blob/master/geocoder/geocoder-developer-guide.md)
 
-## August 13, 2026
+## August 12, 2026
 - BC Address Geocoder version 4.5.4
 - Added a new preferredEncoding parameter that returns an ASCII alternative for a UTF-8 street name when one is provided by the address authority. Supported values are ascii, extended-ascii, and utf-8. The BC Address Geocoder response also includes an 'encoding' element which indicates the encoding of the response address (fullAddress).
 - Added a new hasPid parameter. When set to true, only address matches with a PID are returned. The default value is false.
