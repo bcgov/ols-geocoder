@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 import ca.bc.gov.ols.geocoder.IGeocoder;
 import ca.bc.gov.ols.geocoder.api.SharedParameters;
@@ -35,6 +37,7 @@ import ca.bc.gov.ols.geocoder.rest.OlsResponse;
 import ca.bc.gov.ols.geocoder.rest.PidsResponse;
 import ca.bc.gov.ols.geocoder.rest.converters.UuidParam;
 import ca.bc.gov.ols.geocoder.rest.exceptions.InvalidParameterException;
+import ca.bc.gov.ols.rowreader.DateType;
 
 @RestController
 @RequestMapping("/parcels")
@@ -74,6 +77,7 @@ public class ParcelController {
 			SharedParameters params, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) throw new InvalidParameterException(bindingResult);
 		List<SiteAddress> addresses = new ArrayList<SiteAddress>();
+		long startNanos = System.nanoTime();
 		for(String rawPid : pids.split(",")) {
 			String pid = rawPid.trim();
 			SiteAddress address = new SiteAddress();
@@ -95,6 +99,15 @@ public class ParcelController {
 		}
 		OlsResponse response = new OlsResponse(addresses.toArray(new SiteAddress[addresses.size()]));
 		response.setParams(params);
+		response.setExtraInfo("encoding", "utf-8");
+		response.setExtraInfo("searchTimestamp", LocalDateTime.now().toString());
+		response.setExtraInfo("executionTime", String.valueOf((System.nanoTime() - startNanos) / 1000000f));
+		response.setExtraInfo("version", ca.bc.gov.ols.geocoder.config.GeocoderConfig.VERSION);
+		ZonedDateTime baseDataDate = geocoder.getDatastore().getDate(DateType.PROCESSING_DATE);
+		response.setExtraInfo("baseDataDate", baseDataDate == null ? "" : baseDataDate.toString());
+		response.setExtraInfo("disclaimer", geocoder.getDatastore().getConfig().getDisclaimer());
+		response.setExtraInfo("privacyStatement", geocoder.getDatastore().getConfig().getPrivacyStatement());
+		response.setExtraInfo("copyrightNotice", geocoder.getDatastore().getConfig().getCopyrightNotice());
 		return response;
 	}
 	
