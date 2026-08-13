@@ -1713,9 +1713,6 @@ public class GeocoderDataStore {
 	}
 
 	public ISite getRawSiteByPid(String pid) {
-		if(!featureSet.contains(GeocoderFeature.REVERSE_GEOCODE)) {
-			throw new FeatureNotSupportedException(GeocoderFeature.REVERSE_GEOCODE);
-		}
 		return sitesByPid.get(pid);
 	}
 
