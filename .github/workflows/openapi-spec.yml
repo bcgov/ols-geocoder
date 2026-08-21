@@ -1,0 +1,168 @@
+name: OpenAPI Spec
+
+on:
+  workflow_dispatch:
+    inputs:
+      java_version:
+        description: "Java version to use"
+        required: false
+        default: "17"
+
+env:
+  # ── API Metadata ──────────────────────────────────────────────────────────
+  API_TITLE: "Geocoder REST API"
+  API_DESCRIPTION: >-
+    This API represents address cleaning, correction, completion, geocoding,
+    reverse geocoding, and proximity resources for intersection addresses,
+    physical addresses and their occupants in British Columbia. Please read our
+    [data collection notice](https://github.com/bcgov/api-specs/blob/master/COLLECTION_NOTICE.md#collection-notice).
+
+    Please note that you may experience issues when submitting requests to the
+    delivery or test environment if using this
+    [OpenAPI specification](https://github.com/bcgov/api-specs) in other API
+    console viewers.
+
+    [API keys](https://api.gov.bc.ca/devportal/api-directory/273) are unique
+    and can be acquired with a GitHub or IDIR account.
+
+    **Notification:** If you have applications or web pages that link to the BC
+    Address Geocoder you must use the following URL.
+
+    *https://geocoder.api.gov.bc.ca*
+
+    Please note that the following URLs were deprecated in September 2018
+    [More Details](https://www2.gov.bc.ca/gov/content?id=103ADC5A956842828554238DEF28D6E5).
+
+    - http://apps.gov.bc.ca/pub/geocoder
+    - https://apps.gov.bc.ca/pub/geocoder
+
+  # ── Servers ───────────────────────────────────────────────────────────────
+  SERVER_PROD_URL: "https://geocoder.api.gov.bc.ca/"
+  SERVER_PROD_DESC: "Production (gated)"
+  SERVER_TEST_URL: "https://geocodertst.api.gov.bc.ca/"
+  SERVER_TEST_DESC: "Test (gated)"
+  SERVER_DLV_URL: "https://geocoderdlv.api.gov.bc.ca/"
+  SERVER_DLV_DESC: "Delivery (gated)"
+
+  # ── Contact / License / Docs ──────────────────────────────────────────────
+  CONTACT_NAME: "Contact the Location Services team"
+  CONTACT_URL: "https://dpdd.atlassian.net/servicedesk/customer/portal/1/group/7/"
+  LICENSE_NAME: "Open Government License - British Columbia"
+  LICENSE_URL: "https://www2.gov.bc.ca/gov/content?id=A519A56BC2BF44E4A008B33FCF527F61"
+  TOS_URL: "https://www2.gov.bc.ca/gov/content?id=D1EE0A405E584363B205CD4353E02C88"
+  EXTERNAL_DOCS_DESC: "BC Address Geocoder"
+  EXTERNAL_DOCS_URL: "https://www2.gov.bc.ca/gov/content?id=118DD57CD9674D57BDBD511C2E78DC0D"
+
+jobs:
+  generate-and-lint:
+    name: Generate & Lint OpenAPI Spec
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ inputs.java_version }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ inputs.java_version }}
+          distribution: temurin
+          cache: maven
+
+      # ols-util is not published to Maven Central or osgeo, so it must be
+      # built and installed locally first (see INSTALL.md). Pinned to the last
+      # commit of ols-util main carrying version 1.4.0-SNAPSHOT, the version
+      # this geocoder depends on.
+      - name: Install ols-util dependency
+        run: |
+          git clone https://github.com/bcgov/ols-util.git
+          git -C ols-util checkout 45ae84afb38dab0ce1960a9433e47ab535201f57
+          mvn install -f ols-util/pom.xml -DskipTests -B
+
+      - name: Install dependencies (skip core tests)
+        run: mvn install -pl ols-geocoder-core -DskipTests -B
+
+      - name: Extract API version from pom.xml
+        id: version
+        run: |
+          VERSION=$(grep '<version>' pom.xml | head -1 | sed 's/.*<version>\([^<]*\)<\/version>.*/\1/')
+          echo "api_version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "API version: $VERSION"
+
+      - name: Generate OpenAPI spec
+        run: mvn test -pl ols-geocoder-web -Popenapi-spec -B
+
+      - name: Verify spec file exists
+        run: |
+          if [ ! -f ols-geocoder-web/target/openapi.json ]; then
+            echo "::error::OpenAPI spec was not generated at ols-geocoder-web/target/openapi.json"
+            exit 1
+          fi
+          echo "OpenAPI spec generated successfully"
+          wc -c ols-geocoder-web/target/openapi.json
+
+      - name: Enrich OpenAPI spec with metadata
+        run: |
+          SPEC=ols-geocoder-web/target/openapi.json
+          jq \
+            --arg title "$API_TITLE" \
+            --arg version "${{ steps.version.outputs.api_version }}" \
+            --arg desc "$API_DESCRIPTION" \
+            --arg contact_name "$CONTACT_NAME" \
+            --arg contact_url "$CONTACT_URL" \
+            --arg license_name "$LICENSE_NAME" \
+            --arg license_url "$LICENSE_URL" \
+            --arg tos_url "$TOS_URL" \
+            --arg ext_desc "$EXTERNAL_DOCS_DESC" \
+            --arg ext_url "$EXTERNAL_DOCS_URL" \
+            --arg prod_url "$SERVER_PROD_URL" \
+            --arg prod_desc "$SERVER_PROD_DESC" \
+            --arg test_url "$SERVER_TEST_URL" \
+            --arg test_desc "$SERVER_TEST_DESC" \
+            --arg dlv_url "$SERVER_DLV_URL" \
+            --arg dlv_desc "$SERVER_DLV_DESC" \
+            '
+            .info = {
+              "title": $title,
+              "description": $desc,
+              "version": $version,
+              "license": { "name": $license_name, "url": $license_url },
+              "termsOfService": $tos_url,
+              "contact": { "name": $contact_name, "url": $contact_url }
+            }
+            | .servers = [
+                { "url": $prod_url, "description": $prod_desc },
+                { "url": $test_url, "description": $test_desc },
+                { "url": $dlv_url,  "description": $dlv_desc }
+              ]
+            | .externalDocs = { "description": $ext_desc, "url": $ext_url }
+            | .tags = [
+                { "name": "sites",         "description": "Physical site and address resources" },
+                { "name": "intersections", "description": "Intersection address resources" },
+                { "name": "occupants",     "description": "Occupant and business name resources" },
+                { "name": "parcels",       "description": "Parcel and PID resources" },
+                { "name": "blocks",        "description": "Block face resources" },
+                { "name": "status",        "description": "Service health and status" }
+              ]
+            | .components.securitySchemes.apikey = {
+                "type": "apiKey",
+                "in": "header",
+                "name": "apikey",
+                "description": "API key required for SDX Gateway access"
+              }
+            | .security = [ { "apikey": [] } ]
+            ' "$SPEC" > "$SPEC.tmp" && mv "$SPEC.tmp" "$SPEC"
+
+      - name: Validate OpenAPI structure
+        run: npx @stoplight/spectral-cli@6.14.0 lint ols-geocoder-web/target/openapi.json --ruleset .spectral.yaml --fail-severity error
+
+      - name: Lint against SDX Spectral rules
+        run: npx @stoplight/spectral-cli@6.14.0 lint ols-geocoder-web/target/openapi.json --ruleset .spectral.yaml
+
+      - name: Upload OpenAPI spec
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: openapi-spec
+          path: ols-geocoder-web/target/openapi.json
+          retention-days: 30

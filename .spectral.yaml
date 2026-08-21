@@ -1,0 +1,216 @@
+# =============================================================================
+# Spectral Ruleset for ols-geocoder
+# =============================================================================
+# Extends the BC Government itk-api-governance strict ruleset and adds
+# SDX (Secure Data Exchange) API Standard validation rules.
+#
+# Source: https://developer.gov.bc.ca/docs/default/component/api-style-guides/sdx-style-guide/
+# Ruleset: https://github.com/bcgov/itk-api-governance/tree/main/dist/spectral
+# =============================================================================
+
+extends:
+  - https://raw.githubusercontent.com/bcgov/itk-api-governance/main/dist/spectral/strict-ruleset.yaml
+
+rules:
+
+  # ==========================================================================
+  # BC Government itk-api-governance: soften strict rules for initial adoption
+  # ==========================================================================
+  # These rules are set to 'warn' to allow incremental improvement.
+  # Tighten to 'error' as the API spec matures.
+
+  operation-description-min-length: warn
+  info-description-min-length: warn
+  operation-description: warn
+  info-description: warn
+  tag-description: warn
+  oas3-parameter-description: warn
+  oas3_0-schema-requires-example: warn
+  oas3_1-schema-requires-example: warn
+  operation-summary: warn
+  operation-description-min-length: warn
+  path-item-summary: warn
+
+  # ==========================================================================
+  # SDX API Standard - Mandatory Rules (severity: error)
+  # ==========================================================================
+  # These rules enforce MUST/SHALL requirements from the SDX API Standard.
+
+  # SDX: OAD must use OpenAPI 3.x or newer. Swagger 2.0 is not supported.
+  sdx-oas3-required:
+    description: >-
+      SDX requires OpenAPI 3.x or newer. Swagger 2.0 is not supported
+      for SDX provisioning.
+    message: "SDX requires OpenAPI 3.x. Swagger 2.0 is not supported."
+    severity: error
+    given: $
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: ^3\.\d+\.\d+$
+
+  # SDX: No path-item-level servers.
+  sdx-no-path-item-servers:
+    description: >-
+      SDX does not support path-item-level servers.
+      Server URLs must be declared at the document root only.
+    message: "SDX forbids path-item-level servers."
+    severity: error
+    given: $.paths.*.servers
+    then:
+      function: falsy
+
+  # SDX: No operation-level servers.
+  sdx-no-operation-servers:
+    description: >-
+      SDX does not support operation-level servers.
+      Server URLs must be declared at the document root only.
+    message: "SDX forbids operation-level servers."
+    severity: error
+    given: $.paths.*.*.servers
+    then:
+      function: falsy
+
+  # SDX: Server URLs must use HTTP, HTTPS, or relative URLs.
+  sdx-server-url-scheme:
+    description: >-
+      SDX server URLs must use HTTP, HTTPS, or relative URLs.
+      WebSocket, FTP, SFTP, MQTT, AMQP and other schemes are forbidden.
+    message: "SDX server URL must use http://, https://, or a relative path. Found: {{value}}"
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(https?://|/)"
+
+  # SDX: No TRACE operations.
+  sdx-no-trace:
+    description: "SDX does not allow TRACE operations."
+    message: "SDX does not allow TRACE operations."
+    severity: error
+    given: $.paths.*.trace
+    then:
+      function: falsy
+
+  # SDX: No OPTIONS operations.
+  sdx-no-options:
+    description: "SDX does not allow OPTIONS operations."
+    message: "SDX does not allow OPTIONS operations."
+    severity: error
+    given: $.paths.*.options
+    then:
+      function: falsy
+
+  # SDX: No HEAD operations.
+  sdx-no-head:
+    description: "SDX does not allow HEAD operations."
+    message: "SDX does not allow HEAD operations."
+    severity: error
+    given: $.paths.*.head
+    then:
+      function: falsy
+
+  # SDX: No cookie parameters.
+  sdx-no-cookie-parameters:
+    description: "SDX does not support cookie parameters."
+    message: "SDX forbids cookie parameters."
+    severity: error
+    given: $.paths.*.*.parameters[?(@.in == 'cookie')]
+    then:
+      function: falsy
+
+  # SDX: No webhooks at document level (OAS 3.1).
+  sdx-no-webhooks:
+    description: >-
+      SDX does not support top-level webhooks (OAS 3.1).
+      The OAD must not define asynchronous or event-driven features.
+    message: "SDX forbids top-level webhooks."
+    severity: error
+    given: $.webhooks
+    then:
+      function: falsy
+
+  # SDX: No operation-level callbacks.
+  sdx-no-callbacks:
+    description: >-
+      SDX does not support operation-level callbacks.
+      The OAD must not define asynchronous or event-driven features.
+    message: "SDX forbids operation-level callbacks."
+    severity: error
+    given: $.paths.*.*.callbacks
+    then:
+      function: falsy
+
+  # SDX: No internal edge headers in the external contract.
+  sdx-no-edge-token-header:
+    description: >-
+      The external API contract must not expose SDX internal transport details.
+      The X-Edge-Token header must not be included in the OAD.
+    message: "SDX forbids the X-Edge-Token header in the external API contract."
+    severity: error
+    given: $.paths.*.*.parameters[?(@.in == 'header')]
+    then:
+      field: name
+      function: pattern
+      functionOptions:
+        notMatch: "(?i)^x-edge-token$"
+
+  # SDX: All operations must have an operationId.
+  sdx-operation-operationid:
+    description: >-
+      SDX requires operation IDs for all operations to enable
+      consistent API cataloguing and client generation.
+    message: "Operation is missing an operationId (required by SDX)."
+    severity: error
+    given: $.paths.*.*[get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: truthy
+
+  # SDX: No query strings in path keys.
+  sdx-path-not-include-query:
+    description: >-
+      SDX requires that path keys must not include query strings.
+      Query parameters must be documented as OpenAPI parameters.
+    message: "Path key must not include query strings (required by SDX)."
+    severity: error
+    given: $.paths
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: "\\?"
+
+  # ==========================================================================
+  # SDX API Standard - Recommended Rules (severity: warn)
+  # ==========================================================================
+  # These rules enforce SHOULD/RECOMMENDED requirements from the SDX API Standard.
+
+  # SDX: OAuth2 security scheme should be used for SDX Gateway authorization.
+  sdx-oauth2-security-scheme:
+    description: >-
+      SDX recommends using an OAuth2 security scheme for SDX Gateway
+      authorization. OpenID Connect schemes should not be the primary
+      scheme for SDX Gateway authorization.
+    message: >-
+      Consider adding an OAuth2 security scheme for SDX Gateway authorization.
+    severity: warn
+    given: $.components.securitySchemes
+    then:
+      function: truthy
+
+  # SDX: Security declarations should reference the security scheme.
+  sdx-security-declaration:
+    description: >-
+      SDX APIs should use security declarations to identify the SDX Gateway
+      OAuth2 scheme and any scopes required to access operations.
+    message: >-
+      Consider adding global or operation-level security declarations
+      for SDX Gateway authorization.
+    severity: warn
+    given: $
+    then:
+      field: security
+      function: truthy
