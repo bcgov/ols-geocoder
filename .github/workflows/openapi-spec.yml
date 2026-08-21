@@ -79,6 +79,13 @@ jobs:
           git -C ols-util checkout 45ae84afb38dab0ce1960a9433e47ab535201f57
           mvn install -f ols-util/pom.xml -DskipTests -B
 
+      # The parent POM must be installed too: when later steps resolve
+      # ols-geocoder-core from ~/.m2, Maven needs its parent
+      # ca.bc.gov.ols:ols-geocoder:pom to read the artifact descriptor,
+      # and -pl installs never publish it.
+      - name: Install parent POM (non-recursive)
+        run: mvn install -N -DskipTests -B
+
       - name: Install dependencies (skip core tests)
         run: mvn install -pl ols-geocoder-core -DskipTests -B
 
