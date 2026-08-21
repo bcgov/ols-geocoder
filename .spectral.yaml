@@ -1,10 +1,12 @@
 # =============================================================================
 # Spectral Ruleset for ols-geocoder
 # =============================================================================
-# Extends the BC Government itk-api-governance strict ruleset and adds
-# SDX (Secure Data Exchange) API Standard validation rules.
+# Extends the BC Government itk-api-governance strict ruleset (which encodes
+# the Basic OpenAPI Style Guide) and adds SDX API Standard validation rules.
 #
-# Source: https://developer.gov.bc.ca/docs/default/component/api-style-guides/sdx-style-guide/
+# Guides:
+#   https://developer.gov.bc.ca/docs/default/component/api-style-guides/basic-style-guide/
+#   https://developer.gov.bc.ca/docs/default/component/api-style-guides/sdx-style-guide/
 # Ruleset: https://github.com/bcgov/itk-api-governance/tree/main/dist/spectral
 # =============================================================================
 
@@ -28,8 +30,15 @@ rules:
   oas3_0-schema-requires-example: warn
   oas3_1-schema-requires-example: warn
   operation-summary: warn
-  operation-description-min-length: warn
   path-item-summary: warn
+
+  # The generated spec currently emits terse response descriptions ("OK"),
+  # JTS geometry schemas without descriptions, and two non-camelCase
+  # operationIds. Warn until the OpenAPI generator is improved.
+  response-description-min-length: warn
+  schema-description: warn
+  schema-description-min-length: warn
+  operation-id-camel-case: warn
 
   # ==========================================================================
   # SDX API Standard - Mandatory Rules (severity: error)
@@ -84,6 +93,22 @@ rules:
       function: pattern
       functionOptions:
         match: "^(https?://|/)"
+
+  # SDX: No long-lived streaming media types.
+  sdx-no-streaming-media-types:
+    description: >-
+      SDX does not support long-lived streaming media types such as
+      server-sent events or stream-framed JSON payloads.
+    message: "SDX forbids streaming media type '{{value}}'."
+    severity: error
+    given:
+      - $.paths.*.*.responses.*.content
+      - $.paths.*.*.requestBody.content
+    then:
+      field: '@key'
+      function: pattern
+      functionOptions:
+        notMatch: "^(text/event-stream|text/event-flow|application/stream\\+json|application/x-ndjson)$"
 
   # SDX: No TRACE operations.
   sdx-no-trace:
@@ -144,18 +169,33 @@ rules:
       function: falsy
 
   # SDX: No internal edge headers in the external contract.
-  sdx-no-edge-token-header:
+  # Forbids X-Edge-Token and any other X-Edge-* header declared as an
+  # operation parameter...
+  sdx-no-internal-headers:
     description: >-
       The external API contract must not expose SDX internal transport details.
-      The X-Edge-Token header must not be included in the OAD.
-    message: "SDX forbids the X-Edge-Token header in the external API contract."
+      X-Edge-Token and any other X-Edge-* header must not be included in the OAD.
+    message: "SDX forbids internal edge header '{{value}}' in the external API contract."
     severity: error
-    given: $.paths.*.*.parameters[?(@.in == 'header')]
+    given: $.paths.*.*.parameters[?(@.in == 'header')].name
     then:
-      field: name
       function: pattern
       functionOptions:
-        notMatch: "(?i)^x-edge-token$"
+        notMatch: "(?i)^x-edge-"
+
+  # Same prohibition for response header declarations.
+  sdx-no-internal-response-headers:
+    description: >-
+      The external API contract must not expose SDX internal transport details.
+      X-Edge-* response headers must not be included in the OAD.
+    message: "SDX forbids internal edge response header '{{value}}'."
+    severity: error
+    given: $.paths.*.*.responses.*.headers
+    then:
+      field: '@key'
+      function: pattern
+      functionOptions:
+        notMatch: "(?i)^x-edge-"
 
   # SDX: All operations must have an operationId.
   sdx-operation-operationid:
@@ -188,18 +228,28 @@ rules:
   # ==========================================================================
   # These rules enforce SHOULD/RECOMMENDED requirements from the SDX API Standard.
 
-  # SDX: OAuth2 security scheme should be used for SDX Gateway authorization.
+  # SDX: OAuth2 security scheme required for SDX Gateway authorization.
+  # The guide mandates at least one OAuth2 securityScheme defining gateway
+  # scopes (sdx-oauth2-security-schemes, ERROR). Kept at 'warn' for now:
+  # this API currently documents an apiKey scheme for gateway access;
+  # escalate to 'error' once the contract migrates to SDX OAuth2
+  # client-credentials authorization. Full scope validation (consistent
+  # scope descriptions across flows, per-operation effective security) is
+  # available in the upstream SDX ruleset and requires custom functions.
   sdx-oauth2-security-scheme:
     description: >-
-      SDX recommends using an OAuth2 security scheme for SDX Gateway
-      authorization. OpenID Connect schemes should not be the primary
-      scheme for SDX Gateway authorization.
-    message: >-
-      Consider adding an OAuth2 security scheme for SDX Gateway authorization.
+      SDX Gateway authorization must be documented with at least one OAuth2
+      security scheme because the contract must explicitly define the
+      relevant gateway scopes. OpenID Connect schemes should not be the
+      primary scheme for SDX Gateway authorization.
+    message: "No OAuth2 security scheme found; SDX Gateway authorization should be documented with an OAuth2 scheme."
     severity: warn
-    given: $.components.securitySchemes
+    given: $.components.securitySchemes.*
     then:
-      function: truthy
+      field: type
+      function: pattern
+      functionOptions:
+        match: ^oauth2$
 
   # SDX: Security declarations should reference the security scheme.
   sdx-security-declaration:

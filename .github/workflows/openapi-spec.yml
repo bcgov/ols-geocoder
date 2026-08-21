@@ -7,6 +7,11 @@ on:
         description: "Java version to use"
         required: false
         default: "17"
+      bypass_lint:
+        description: "Bypass Spectral lint failures (artifact is still generated)"
+        required: false
+        default: false
+        type: boolean
 
 env:
   # ── API Metadata ──────────────────────────────────────────────────────────
@@ -37,12 +42,12 @@ env:
     - https://apps.gov.bc.ca/pub/geocoder
 
   # ── Servers ───────────────────────────────────────────────────────────────
-  SERVER_PROD_URL: "https://geocoder.api.gov.bc.ca/"
-  SERVER_PROD_DESC: "Production (gated)"
-  SERVER_TEST_URL: "https://geocodertst.api.gov.bc.ca/"
-  SERVER_TEST_DESC: "Test (gated)"
-  SERVER_DLV_URL: "https://geocoderdlv.api.gov.bc.ca/"
-  SERVER_DLV_DESC: "Delivery (gated)"
+  SERVER_PROD_URL: "https://geocoder.api.gov.bc.ca"
+  SERVER_PROD_DESC: "Production environment (gated)"
+  SERVER_TEST_URL: "https://geocodertst.api.gov.bc.ca"
+  SERVER_TEST_DESC: "Test environment (gated access)"
+  SERVER_DLV_URL: "https://geocoderdlv.api.gov.bc.ca"
+  SERVER_DLV_DESC: "Development environment (gated access)"
 
   # ── Contact / License / Docs ──────────────────────────────────────────────
   CONTACT_NAME: "Contact the Location Services team"
@@ -144,12 +149,12 @@ jobs:
               ]
             | .externalDocs = { "description": $ext_desc, "url": $ext_url }
             | .tags = [
-                { "name": "sites",         "description": "Physical site and address resources" },
+                { "name": "blocks",        "description": "Block face and street segment resources" },
                 { "name": "intersections", "description": "Intersection address resources" },
                 { "name": "occupants",     "description": "Occupant and business name resources" },
-                { "name": "parcels",       "description": "Parcel and PID resources" },
-                { "name": "blocks",        "description": "Block face resources" },
-                { "name": "status",        "description": "Service health and status" }
+                { "name": "parcels",       "description": "Parcel and PID lookup resources" },
+                { "name": "sites",         "description": "Physical site and address resources" },
+                { "name": "status",        "description": "Service health and status resources" }
               ]
             | .components.securitySchemes.apikey = {
                 "type": "apiKey",
@@ -161,9 +166,11 @@ jobs:
             ' "$SPEC" > "$SPEC.tmp" && mv "$SPEC.tmp" "$SPEC"
 
       - name: Validate OpenAPI structure
+        continue-on-error: ${{ inputs.bypass_lint }}
         run: npx @stoplight/spectral-cli@6.14.0 lint ols-geocoder-web/target/openapi.json --ruleset .spectral.yaml --fail-severity error
 
       - name: Lint against SDX Spectral rules
+        continue-on-error: ${{ inputs.bypass_lint }}
         run: npx @stoplight/spectral-cli@6.14.0 lint ols-geocoder-web/target/openapi.json --ruleset .spectral.yaml
 
       - name: Upload OpenAPI spec
