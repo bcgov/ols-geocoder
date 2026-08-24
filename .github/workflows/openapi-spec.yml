@@ -3,17 +3,14 @@ name: OpenAPI Spec
 on:
   workflow_dispatch:
     inputs:
-      java_version:
-        description: "Java version to use"
-        required: false
-        default: "17"
       bypass_lint:
-        description: "Bypass Spectral lint failures (artifact is still generated)"
+        description: "Bypass SDX lint failures (spec is still generated)"
         required: false
         default: false
         type: boolean
 
 env:
+  JAVA_VERSION: "17"
   # ── API Metadata ──────────────────────────────────────────────────────────
   API_TITLE: "Geocoder REST API"
   API_DESCRIPTION: >-
@@ -67,10 +64,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up JDK ${{ inputs.java_version }}
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
         uses: actions/setup-java@v4
         with:
-          java-version: ${{ inputs.java_version }}
+          java-version: ${{ env.JAVA_VERSION }}
           distribution: temurin
           cache: maven
 
@@ -116,51 +113,36 @@ jobs:
       - name: Enrich OpenAPI spec with metadata
         run: |
           SPEC=ols-geocoder-web/target/openapi.json
-          jq \
-            --arg title "$API_TITLE" \
-            --arg version "${{ steps.version.outputs.api_version }}" \
-            --arg desc "$API_DESCRIPTION" \
-            --arg contact_name "$CONTACT_NAME" \
-            --arg contact_url "$CONTACT_URL" \
-            --arg license_name "$LICENSE_NAME" \
-            --arg license_url "$LICENSE_URL" \
-            --arg tos_url "$TOS_URL" \
-            --arg ext_desc "$EXTERNAL_DOCS_DESC" \
-            --arg ext_url "$EXTERNAL_DOCS_URL" \
-            --arg prod_url "$SERVER_PROD_URL" \
-            --arg prod_desc "$SERVER_PROD_DESC" \
-            --arg test_url "$SERVER_TEST_URL" \
-            --arg test_desc "$SERVER_TEST_DESC" \
-            --arg dlv_url "$SERVER_DLV_URL" \
-            --arg dlv_desc "$SERVER_DLV_DESC" \
-          '
-          # Regroup operations from springdoc's generated *-controller tags
-          # into the friendly tags published below. Any new endpoint whose
-          # path is not matched here keeps its controller tag and must be
-          # added to this mapping.
-          def tagForPath($p):
-            if   $p == "/" or $p == "/ping" or $p == "/status" then "status"
-            elif ($p | startswith("/intersections"))           then "intersections"
-            elif ($p | startswith("/occupants"))               then "occupants"
-            elif ($p | startswith("/parcels"))                 then "parcels"
-            elif ($p == "/addresses" or ($p | startswith("/sites"))) then "sites"
-            else null
-            end;
 
-          # /blocks/{id} stays internal-only; it is excluded from the spec.
+          cat > /tmp/enrich.jq << 'JQEOF'
           del(.paths["/blocks/{id}"])
           | .paths |= (
-              to_entries
-              | map(
-                  .key as $path
-                  | .value |= with_entries(
-                      .value |= (
-                        tagForPath($path) as $tag
-                        | if $tag == null or .tags == null then . else .tags = [$tag] end
-                      )
+              to_entries | map(
+                .key as $path | .value |= (
+                  to_entries | map(
+                    if .key == "parameters" then .
+                    else .value |= (
+                      if .tags == null then . else
+                      .tags = [
+                          if $path == "/" or $path == "/ping" or $path == "/status"
+                            then "status"
+                          elif ($path | startswith("/intersections"))
+                            then "intersections"
+                          elif ($path | startswith("/occupants"))
+                            then "occupants"
+                          elif ($path | startswith("/parcels"))
+                            then "parcels"
+                          elif ($path == "/addresses" or ($path | startswith("/sites")))
+                            then "sites"
+                          else .tags[0]
+                          end
+                        ]
+                      end
                     )
+                    end
+                  ) | from_entries
                 )
-              | from_entries
+              ) | from_entries
             )
           | .info = {
               "title": $title,
@@ -190,7 +172,27 @@ jobs:
                 "description": "API key required for SDX Gateway access"
               }
             | .security = [ { "apikey": [] } ]
-            ' "$SPEC" > "$SPEC.tmp" && mv "$SPEC.tmp" "$SPEC"
+          JQEOF
+
+          jq \
+            --arg title "$API_TITLE" \
+            --arg version "${{ steps.version.outputs.api_version }}" \
+            --arg desc "$API_DESCRIPTION" \
+            --arg contact_name "$CONTACT_NAME" \
+            --arg contact_url "$CONTACT_URL" \
+            --arg license_name "$LICENSE_NAME" \
+            --arg license_url "$LICENSE_URL" \
+            --arg tos_url "$TOS_URL" \
+            --arg ext_desc "$EXTERNAL_DOCS_DESC" \
+            --arg ext_url "$EXTERNAL_DOCS_URL" \
+            --arg prod_url "$SERVER_PROD_URL" \
+            --arg prod_desc "$SERVER_PROD_DESC" \
+            --arg test_url "$SERVER_TEST_URL" \
+            --arg test_desc "$SERVER_TEST_DESC" \
+            --arg dlv_url "$SERVER_DLV_URL" \
+            --arg dlv_desc "$SERVER_DLV_DESC" \
+            -f /tmp/enrich.jq \
+            "$SPEC" > "$SPEC.tmp" && mv "$SPEC.tmp" "$SPEC"
 
       - name: Validate OpenAPI structure
         continue-on-error: ${{ inputs.bypass_lint }}
