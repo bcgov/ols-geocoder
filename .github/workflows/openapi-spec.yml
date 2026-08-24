@@ -133,8 +133,36 @@ jobs:
             --arg test_desc "$SERVER_TEST_DESC" \
             --arg dlv_url "$SERVER_DLV_URL" \
             --arg dlv_desc "$SERVER_DLV_DESC" \
-            '
-            .info = {
+          '
+          # Regroup operations from springdoc's generated *-controller tags
+          # into the friendly tags published below. Any new endpoint whose
+          # path is not matched here keeps its controller tag and must be
+          # added to this mapping.
+          def tagForPath($p):
+            if   $p == "/" or $p == "/ping" or $p == "/status" then "status"
+            elif ($p | startswith("/intersections"))           then "intersections"
+            elif ($p | startswith("/occupants"))               then "occupants"
+            elif ($p | startswith("/parcels"))                 then "parcels"
+            elif ($p == "/addresses" or ($p | startswith("/sites"))) then "sites"
+            else null
+            end;
+
+          # /blocks/{id} stays internal-only; it is excluded from the spec.
+          del(.paths["/blocks/{id}"])
+          | .paths |= (
+              to_entries
+              | map(
+                  .key as $path
+                  | .value |= with_entries(
+                      .value |= (
+                        tagForPath($path) as $tag
+                        | if $tag == null or .tags == null then . else .tags = [$tag] end
+                      )
+                    )
+                )
+              | from_entries
+            )
+          | .info = {
               "title": $title,
               "description": $desc,
               "version": $version,
@@ -149,7 +177,6 @@ jobs:
               ]
             | .externalDocs = { "description": $ext_desc, "url": $ext_url }
             | .tags = [
-                { "name": "blocks",        "description": "Block face and street segment resources" },
                 { "name": "intersections", "description": "Intersection address resources" },
                 { "name": "occupants",     "description": "Occupant and business name resources" },
                 { "name": "parcels",       "description": "Parcel and PID lookup resources" },
