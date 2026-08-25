@@ -32,7 +32,7 @@ yourId,addressString,expectedMatchPrecision,expectedFullAddress,expectedFaults,s
 00032-CivicAddressWithUnitDesignator,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.missing:0],R,,,T,T
 00033-CivicAddressWithoutUnitDesignator,"128 - 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.missing:0],R,,,T,T
 00034-CivicAddressWithoutUnitDesignator,"128 850 Saucier Ave, Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.missing:0],R,,,T,T
-00035-CivicAddressWithoutUnitDesignator,"850 Saucier Ave 128 Kelowna, BC",CIVIC_NUMBER,"850 Saucier Ave Kelowna, BC",[UNRECOGNIZED.notAllowed:33],R,,,F,F
+00035-CivicAddressWithTrailingUnitWithoutDesignator,"850 Saucier Ave 128 Kelowna, BC",UNIT,"UNIT 128 -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.missing:0],R,,,T,T
 00036-CivicAddressWithoutUnitNumber,"UNIT -- 850 Saucier Ave, Kelowna, BC",CIVIC_NUMBER,"UNIT -- 850 Saucier Ave, Kelowna, BC",[UNIT_DESIGNATOR.notMatched:1],R,,,T,T
 00037-CivicAddressWithoutUnitNumber,"1359 Porlier Pass Rd APT Galiano Island BC",CIVIC_NUMBER,"APT -- 1359 Porlier Pass Rd, Galiano Island, BC",[UNIT_DESIGNATOR.notMatched:1],R,,,T,T
 00038-CivicAddressWithoutLocalityProvinceCode,3520 WENTWORTH AVE,CIVIC_NUMBER,"3520 Wentworth Ave, West Vancouver, BC","[LOCALITY.missing:10 PROVINCE.missing:1]",R,,,F,F
