@@ -71,14 +71,11 @@ jobs:
           distribution: temurin
           cache: maven
 
-      # ols-util is not published to Maven Central or osgeo, so it must be
-      # built and installed locally first (see INSTALL.md). Pinned to the last
-      # commit of ols-util main carrying version 1.4.0-SNAPSHOT, the version
-      # this geocoder depends on.
+      # ols-util 1.4.0-SNAPSHOT tag, the version this geocoder depends on.
       - name: Install ols-util dependency
         run: |
           git clone https://github.com/bcgov/ols-util.git
-          git -C ols-util checkout 45ae84afb38dab0ce1960a9433e47ab535201f57
+          git -C ols-util checkout 1.4.0-SNAPSHOT
           mvn install -f ols-util/pom.xml -DskipTests -B
 
       # The parent POM must be installed too: when later steps resolve
