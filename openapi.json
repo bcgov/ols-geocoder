@@ -1,0 +1,5353 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Geocoder REST API",
+    "description": "This API represents address cleaning, correction, completion, geocoding, reverse geocoding, and proximity resources for intersection addresses, physical addresses and their occupants in British Columbia. \n Please read our [data collection notice](https://github.com/bcgov/api-specs/blob/master/COLLECTION_NOTICE.md#collection-notice). \n\n\nPlease note that you may experience issues when submitting requests to the delivery or test environment if using this [OpenAPI specification](https://github.com/bcgov/api-specs) in other API console viewers. \n\n\n[API keys](https://api.gov.bc.ca/devportal/api-directory/273) are unique and can be acquired with a GitHub or IDIR account. \n\n\n**Notification:** If you have applications or web pages that link to the BC Address Geocoder you must use the following URL. \n\n\n*https://geocoder.api.gov.bc.ca* \n\n\nPlease note that the following URLs were deprecated in September 2018 [More Details](https://www2.gov.bc.ca/gov/content?id=103ADC5A956842828554238DEF28D6E5). \n\n\n- http://apps.gov.bc.ca/pub/geocoder \n - https://apps.gov.bc.ca/pub/geocoder",
+    "version": "4.5.4",
+    "license": {
+      "name": "Open Government License - British Columbia",
+      "url": "https://www2.gov.bc.ca/gov/content?id=A519A56BC2BF44E4A008B33FCF527F61"
+    },
+    "termsOfService": "https://www2.gov.bc.ca/gov/content?id=D1EE0A405E584363B205CD4353E02C88",
+    "contact": {
+      "name": "Contact the Location Services team",
+      "url": "https://dpdd.atlassian.net/servicedesk/customer/portal/1/group/7/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://geocoder.api.gov.bc.ca",
+      "description": "Production environment (gated)"
+    },
+    {
+      "url": "https://geocodertst.api.gov.bc.ca",
+      "description": "Test environment (gated access)"
+    },
+    {
+      "url": "https://geocoderdlv.api.gov.bc.ca",
+      "description": "Development environment (gated access)"
+    }
+  ],
+  "paths": {
+    "/status": {
+      "get": {
+        "tags": [
+          "status"
+        ],
+        "operationId": "status",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BasicStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sites": {
+      "get": {
+        "tags": [
+          "sites"
+        ],
+        "operationId": "siteGeocoder",
+        "parameters": [
+          {
+            "name": "addressString",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "siteName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "unitNumber",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "unitNumberSuffix",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "unitDesignator",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "civicNumber",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "civicNumberSuffix",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "streetName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "streetType",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "streetDirection",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "streetQualifier",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "localityName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stateProvTerr",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagCondition",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "minScore",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "matchPrecision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "OCCUPANT",
+                  "UNIT",
+                  "SITE",
+                  "CIVIC_NUMBER",
+                  "INTERSECTION",
+                  "BLOCK",
+                  "STREET",
+                  "LOCALITY",
+                  "PROVINCE",
+                  "NONE"
+                ]
+              }
+            }
+          },
+          {
+            "name": "matchPrecisionNot",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "OCCUPANT",
+                  "UNIT",
+                  "SITE",
+                  "CIVIC_NUMBER",
+                  "INTERSECTION",
+                  "BLOCK",
+                  "STREET",
+                  "LOCALITY",
+                  "PROVINCE",
+                  "NONE"
+                ]
+              }
+            }
+          },
+          {
+            "name": "localities",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "notLocalities",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "centre",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Point"
+            }
+          },
+          {
+            "name": "centrePoint.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "centrePoint.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "centrePoint.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "centrePoint.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "maxDistance",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Polygon"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "parcelPoint",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Point"
+            }
+          },
+          {
+            "name": "parcelPointPoint.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "parcelPointPoint.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "parcelPointPoint.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "parcelPointPoint.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "yourId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "interpolation",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "adaptive",
+                "linear",
+                "none"
+              ]
+            }
+          },
+          {
+            "name": "echo",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "extrapolate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeOccupants",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "autoComplete",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "exactSpelling",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "fuzzyMatch",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasPid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "preferredEncoding",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "outputSRS",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "asAttachment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brief",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "setBack",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "locationDescriptor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "any",
+                "streetPoint",
+                "localityPoint",
+                "provincePoint",
+                "intersectionPoint",
+                "accessPoint",
+                "routingPoint",
+                "blockFacePoint",
+                "rooftopPoint",
+                "frontDoorPoint",
+                "parcelPoint"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sites/{id}": {
+      "get": {
+        "tags": [
+          "sites"
+        ],
+        "operationId": "getSite",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "outputSRS",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "asAttachment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brief",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "setBack",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "locationDescriptor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "any",
+                "streetPoint",
+                "localityPoint",
+                "provincePoint",
+                "intersectionPoint",
+                "accessPoint",
+                "routingPoint",
+                "blockFacePoint",
+                "rooftopPoint",
+                "frontDoorPoint",
+                "parcelPoint"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sites/{id}/subsites": {
+      "get": {
+        "tags": [
+          "sites"
+        ],
+        "operationId": "getSubSites",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "outputSRS",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "asAttachment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brief",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "setBack",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "locationDescriptor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "any",
+                "streetPoint",
+                "localityPoint",
+                "provincePoint",
+                "intersectionPoint",
+                "accessPoint",
+                "routingPoint",
+                "blockFacePoint",
+                "rooftopPoint",
+                "frontDoorPoint",
+                "parcelPoint"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sites/within": {
+      "get": {
+        "tags": [
+          "sites"
+        ],
+        "operationId": "getSitesWithin",
+        "parameters": [
+          {
+            "name": "minDegree",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxDegree",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "point",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Point"
+            }
+          },
+          {
+            "name": "pointPoint.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "pointPoint.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pointPoint.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pointPoint.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Polygon"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "maxDistance",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "excludeUnits",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "onlyCivic",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "outputSRS",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "asAttachment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brief",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "setBack",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "locationDescriptor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "any",
+                "streetPoint",
+                "localityPoint",
+                "provincePoint",
+                "intersectionPoint",
+                "accessPoint",
+                "routingPoint",
+                "blockFacePoint",
+                "rooftopPoint",
+                "frontDoorPoint",
+                "parcelPoint"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sites/nearest": {
+      "get": {
+        "tags": [
+          "sites"
+        ],
+        "operationId": "getNearestSite",
+        "parameters": [
+          {
+            "name": "minDegree",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxDegree",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "point",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Point"
+            }
+          },
+          {
+            "name": "pointPoint.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "pointPoint.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pointPoint.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pointPoint.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Polygon"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "maxDistance",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "excludeUnits",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "onlyCivic",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "outputSRS",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "asAttachment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brief",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "setBack",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "locationDescriptor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "any",
+                "streetPoint",
+                "localityPoint",
+                "provincePoint",
+                "intersectionPoint",
+                "accessPoint",
+                "routingPoint",
+                "blockFacePoint",
+                "rooftopPoint",
+                "frontDoorPoint",
+                "parcelPoint"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sites/near": {
+      "get": {
+        "tags": [
+          "sites"
+        ],
+        "operationId": "getSitesNear",
+        "parameters": [
+          {
+            "name": "minDegree",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxDegree",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "point",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Point"
+            }
+          },
+          {
+            "name": "pointPoint.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "pointPoint.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pointPoint.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pointPoint.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Polygon"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "maxDistance",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "excludeUnits",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "onlyCivic",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "outputSRS",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "asAttachment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brief",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "setBack",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "locationDescriptor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "any",
+                "streetPoint",
+                "localityPoint",
+                "provincePoint",
+                "intersectionPoint",
+                "accessPoint",
+                "routingPoint",
+                "blockFacePoint",
+                "rooftopPoint",
+                "frontDoorPoint",
+                "parcelPoint"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ping": {
+      "get": {
+        "tags": [
+          "status"
+        ],
+        "operationId": "geocoder",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/parcels/pids/{siteUuid}": {
+      "get": {
+        "tags": [
+          "parcels"
+        ],
+        "operationId": "getPids",
+        "parameters": [
+          {
+            "name": "siteUuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "outputSRS",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "asAttachment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brief",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "setBack",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "locationDescriptor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "any",
+                "streetPoint",
+                "localityPoint",
+                "provincePoint",
+                "intersectionPoint",
+                "accessPoint",
+                "routingPoint",
+                "blockFacePoint",
+                "rooftopPoint",
+                "frontDoorPoint",
+                "parcelPoint"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/occupants/{id}": {
+      "get": {
+        "tags": [
+          "occupants"
+        ],
+        "operationId": "getOccupant",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "outputSRS",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "asAttachment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brief",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "setBack",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "locationDescriptor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "any",
+                "streetPoint",
+                "localityPoint",
+                "provincePoint",
+                "intersectionPoint",
+                "accessPoint",
+                "routingPoint",
+                "blockFacePoint",
+                "rooftopPoint",
+                "frontDoorPoint",
+                "parcelPoint"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/occupants/within": {
+      "get": {
+        "tags": [
+          "occupants"
+        ],
+        "operationId": "getOccupantsWithin",
+        "parameters": [
+          {
+            "name": "minDegree",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxDegree",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "point",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Point"
+            }
+          },
+          {
+            "name": "pointPoint.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "pointPoint.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pointPoint.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pointPoint.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Polygon"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "maxDistance",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "excludeUnits",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "onlyCivic",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "outputSRS",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "asAttachment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brief",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "setBack",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "locationDescriptor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "any",
+                "streetPoint",
+                "localityPoint",
+                "provincePoint",
+                "intersectionPoint",
+                "accessPoint",
+                "routingPoint",
+                "blockFacePoint",
+                "rooftopPoint",
+                "frontDoorPoint",
+                "parcelPoint"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/occupants/tags": {
+      "get": {
+        "tags": [
+          "occupants"
+        ],
+        "operationId": "getTags",
+        "parameters": [
+          {
+            "name": "tag",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 6
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/occupants/nearest": {
+      "get": {
+        "tags": [
+          "occupants"
+        ],
+        "operationId": "getNearestOccupant",
+        "parameters": [
+          {
+            "name": "minDegree",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxDegree",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "point",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Point"
+            }
+          },
+          {
+            "name": "pointPoint.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "pointPoint.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pointPoint.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pointPoint.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Polygon"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "maxDistance",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "excludeUnits",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "onlyCivic",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "outputSRS",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "asAttachment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brief",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "setBack",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "locationDescriptor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "any",
+                "streetPoint",
+                "localityPoint",
+                "provincePoint",
+                "intersectionPoint",
+                "accessPoint",
+                "routingPoint",
+                "blockFacePoint",
+                "rooftopPoint",
+                "frontDoorPoint",
+                "parcelPoint"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/occupants/near": {
+      "get": {
+        "tags": [
+          "occupants"
+        ],
+        "operationId": "getOccupantsNear",
+        "parameters": [
+          {
+            "name": "minDegree",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxDegree",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "point",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Point"
+            }
+          },
+          {
+            "name": "pointPoint.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "pointPoint.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pointPoint.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pointPoint.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Polygon"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "maxDistance",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "excludeUnits",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "onlyCivic",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "outputSRS",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "asAttachment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brief",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "setBack",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "locationDescriptor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "any",
+                "streetPoint",
+                "localityPoint",
+                "provincePoint",
+                "intersectionPoint",
+                "accessPoint",
+                "routingPoint",
+                "blockFacePoint",
+                "rooftopPoint",
+                "frontDoorPoint",
+                "parcelPoint"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/occupants/addresses": {
+      "get": {
+        "tags": [
+          "occupants"
+        ],
+        "operationId": "geocoder_1",
+        "parameters": [
+          {
+            "name": "addressString",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "siteName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "unitNumber",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "unitNumberSuffix",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "unitDesignator",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "civicNumber",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "civicNumberSuffix",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "streetName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "streetType",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "streetDirection",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "streetQualifier",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "localityName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stateProvTerr",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagCondition",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "minScore",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "matchPrecision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "OCCUPANT",
+                  "UNIT",
+                  "SITE",
+                  "CIVIC_NUMBER",
+                  "INTERSECTION",
+                  "BLOCK",
+                  "STREET",
+                  "LOCALITY",
+                  "PROVINCE",
+                  "NONE"
+                ]
+              }
+            }
+          },
+          {
+            "name": "matchPrecisionNot",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "OCCUPANT",
+                  "UNIT",
+                  "SITE",
+                  "CIVIC_NUMBER",
+                  "INTERSECTION",
+                  "BLOCK",
+                  "STREET",
+                  "LOCALITY",
+                  "PROVINCE",
+                  "NONE"
+                ]
+              }
+            }
+          },
+          {
+            "name": "localities",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "notLocalities",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "centre",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Point"
+            }
+          },
+          {
+            "name": "centrePoint.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "centrePoint.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "centrePoint.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "centrePoint.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "maxDistance",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Polygon"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "parcelPoint",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Point"
+            }
+          },
+          {
+            "name": "parcelPointPoint.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "parcelPointPoint.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "parcelPointPoint.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "parcelPointPoint.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "yourId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "interpolation",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "adaptive",
+                "linear",
+                "none"
+              ]
+            }
+          },
+          {
+            "name": "echo",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "extrapolate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeOccupants",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "autoComplete",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "exactSpelling",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "fuzzyMatch",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasPid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "preferredEncoding",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "outputSRS",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "asAttachment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brief",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "setBack",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "locationDescriptor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "any",
+                "streetPoint",
+                "localityPoint",
+                "provincePoint",
+                "intersectionPoint",
+                "accessPoint",
+                "routingPoint",
+                "blockFacePoint",
+                "rooftopPoint",
+                "frontDoorPoint",
+                "parcelPoint"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/intersections/{id}": {
+      "get": {
+        "tags": [
+          "intersections"
+        ],
+        "operationId": "getIntersection",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "outputSRS",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "asAttachment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brief",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "setBack",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "locationDescriptor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "any",
+                "streetPoint",
+                "localityPoint",
+                "provincePoint",
+                "intersectionPoint",
+                "accessPoint",
+                "routingPoint",
+                "blockFacePoint",
+                "rooftopPoint",
+                "frontDoorPoint",
+                "parcelPoint"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/intersections/within": {
+      "get": {
+        "tags": [
+          "intersections"
+        ],
+        "operationId": "getIntersectionsWithin",
+        "parameters": [
+          {
+            "name": "minDegree",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxDegree",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "point",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Point"
+            }
+          },
+          {
+            "name": "pointPoint.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "pointPoint.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pointPoint.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pointPoint.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Polygon"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "maxDistance",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "excludeUnits",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "onlyCivic",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "outputSRS",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "asAttachment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brief",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "setBack",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "locationDescriptor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "any",
+                "streetPoint",
+                "localityPoint",
+                "provincePoint",
+                "intersectionPoint",
+                "accessPoint",
+                "routingPoint",
+                "blockFacePoint",
+                "rooftopPoint",
+                "frontDoorPoint",
+                "parcelPoint"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/intersections/nearest": {
+      "get": {
+        "tags": [
+          "intersections"
+        ],
+        "operationId": "getNearestIntersection",
+        "parameters": [
+          {
+            "name": "minDegree",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxDegree",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "point",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Point"
+            }
+          },
+          {
+            "name": "pointPoint.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "pointPoint.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pointPoint.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pointPoint.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Polygon"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "maxDistance",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "excludeUnits",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "onlyCivic",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "outputSRS",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "asAttachment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brief",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "setBack",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "locationDescriptor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "any",
+                "streetPoint",
+                "localityPoint",
+                "provincePoint",
+                "intersectionPoint",
+                "accessPoint",
+                "routingPoint",
+                "blockFacePoint",
+                "rooftopPoint",
+                "frontDoorPoint",
+                "parcelPoint"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/intersections/near": {
+      "get": {
+        "tags": [
+          "intersections"
+        ],
+        "operationId": "getIntersectionsNear",
+        "parameters": [
+          {
+            "name": "minDegree",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxDegree",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "point",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Point"
+            }
+          },
+          {
+            "name": "pointPoint.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "pointPoint.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pointPoint.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pointPoint.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Polygon"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "maxDistance",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "excludeUnits",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "onlyCivic",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "outputSRS",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "asAttachment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brief",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "setBack",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "locationDescriptor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "any",
+                "streetPoint",
+                "localityPoint",
+                "provincePoint",
+                "intersectionPoint",
+                "accessPoint",
+                "routingPoint",
+                "blockFacePoint",
+                "rooftopPoint",
+                "frontDoorPoint",
+                "parcelPoint"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/addresses": {
+      "get": {
+        "tags": [
+          "sites"
+        ],
+        "operationId": "geocoder_2",
+        "parameters": [
+          {
+            "name": "addressString",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "siteName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "unitNumber",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "unitNumberSuffix",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "unitDesignator",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "civicNumber",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "civicNumberSuffix",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "streetName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "streetType",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "streetDirection",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "streetQualifier",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "localityName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stateProvTerr",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagCondition",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "minScore",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "matchPrecision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "OCCUPANT",
+                  "UNIT",
+                  "SITE",
+                  "CIVIC_NUMBER",
+                  "INTERSECTION",
+                  "BLOCK",
+                  "STREET",
+                  "LOCALITY",
+                  "PROVINCE",
+                  "NONE"
+                ]
+              }
+            }
+          },
+          {
+            "name": "matchPrecisionNot",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "OCCUPANT",
+                  "UNIT",
+                  "SITE",
+                  "CIVIC_NUMBER",
+                  "INTERSECTION",
+                  "BLOCK",
+                  "STREET",
+                  "LOCALITY",
+                  "PROVINCE",
+                  "NONE"
+                ]
+              }
+            }
+          },
+          {
+            "name": "localities",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "notLocalities",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "centre",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Point"
+            }
+          },
+          {
+            "name": "centrePoint.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "centrePoint.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "centrePoint.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "centrePoint.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "maxDistance",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Polygon"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.shell.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "bboxPolygon.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bboxPolygon.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "parcelPoint",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Point"
+            }
+          },
+          {
+            "name": "parcelPointPoint.factory.precisionModel.scale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "parcelPointPoint.factory.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "parcelPointPoint.SRID",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "parcelPointPoint.userData",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "yourId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "interpolation",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "adaptive",
+                "linear",
+                "none"
+              ]
+            }
+          },
+          {
+            "name": "echo",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "extrapolate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeOccupants",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "autoComplete",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "exactSpelling",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "fuzzyMatch",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasPid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "preferredEncoding",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "outputSRS",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "asAttachment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brief",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "setBack",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "locationDescriptor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "any",
+                "streetPoint",
+                "localityPoint",
+                "provincePoint",
+                "intersectionPoint",
+                "accessPoint",
+                "routingPoint",
+                "blockFacePoint",
+                "rooftopPoint",
+                "frontDoorPoint",
+                "parcelPoint"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "tags": [
+          "status"
+        ],
+        "operationId": "geocoderPing",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BasicStatus": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string"
+          },
+          "gitCommitId": {
+            "type": "string"
+          },
+          "dataProcessingTimestamp": {
+            "type": "string"
+          },
+          "roadNetworkTimestamp": {
+            "type": "string"
+          },
+          "startTimestamp": {
+            "type": "string"
+          },
+          "counts": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      },
+      "Coordinate": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "number",
+            "format": "double"
+          },
+          "y": {
+            "type": "number",
+            "format": "double"
+          },
+          "z": {
+            "type": "number",
+            "format": "double"
+          },
+          "valid": {
+            "type": "boolean"
+          },
+          "m": {
+            "type": "number",
+            "format": "double"
+          },
+          "coordinate": {
+            "$ref": "#/components/schemas/Coordinate"
+          }
+        }
+      },
+      "CoordinateSequence": {
+        "type": "object",
+        "properties": {
+          "dimension": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "measures": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CoordinateSequenceFactory": {
+        "type": "object"
+      },
+      "Envelope": {
+        "type": "object",
+        "properties": {
+          "null": {
+            "type": "boolean"
+          },
+          "minX": {
+            "type": "number",
+            "format": "double"
+          },
+          "maxX": {
+            "type": "number",
+            "format": "double"
+          },
+          "minY": {
+            "type": "number",
+            "format": "double"
+          },
+          "maxY": {
+            "type": "number",
+            "format": "double"
+          },
+          "area": {
+            "type": "number",
+            "format": "double"
+          },
+          "width": {
+            "type": "number",
+            "format": "double"
+          },
+          "height": {
+            "type": "number",
+            "format": "double"
+          },
+          "diameter": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "Geometry": {
+        "type": "object",
+        "properties": {
+          "envelope": {
+            "$ref": "#/components/schemas/Geometry"
+          },
+          "factory": {
+            "$ref": "#/components/schemas/GeometryFactory"
+          },
+          "userData": {
+            "type": "object"
+          },
+          "length": {
+            "type": "number",
+            "format": "double"
+          },
+          "empty": {
+            "type": "boolean"
+          },
+          "valid": {
+            "type": "boolean"
+          },
+          "simple": {
+            "type": "boolean"
+          },
+          "geometryType": {
+            "type": "string"
+          },
+          "srid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numGeometries": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "precisionModel": {
+            "$ref": "#/components/schemas/PrecisionModel"
+          },
+          "coordinate": {
+            "$ref": "#/components/schemas/Coordinate"
+          },
+          "coordinates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Coordinate"
+            }
+          },
+          "numPoints": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rectangle": {
+            "type": "boolean"
+          },
+          "area": {
+            "type": "number",
+            "format": "double"
+          },
+          "centroid": {
+            "$ref": "#/components/schemas/Point"
+          },
+          "interiorPoint": {
+            "$ref": "#/components/schemas/Point"
+          },
+          "dimension": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "boundary": {
+            "$ref": "#/components/schemas/Geometry"
+          },
+          "boundaryDimension": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "envelopeInternal": {
+            "$ref": "#/components/schemas/Envelope"
+          }
+        }
+      },
+      "GeometryFactory": {
+        "type": "object",
+        "properties": {
+          "precisionModel": {
+            "$ref": "#/components/schemas/PrecisionModel"
+          },
+          "coordinateSequenceFactory": {
+            "$ref": "#/components/schemas/CoordinateSequenceFactory"
+          },
+          "srid": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Point": {
+        "type": "object",
+        "properties": {
+          "envelope": {
+            "$ref": "#/components/schemas/Geometry"
+          },
+          "factory": {
+            "$ref": "#/components/schemas/GeometryFactory"
+          },
+          "userData": {
+            "type": "object"
+          },
+          "coordinates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Coordinate"
+            }
+          },
+          "empty": {
+            "type": "boolean"
+          },
+          "simple": {
+            "type": "boolean"
+          },
+          "x": {
+            "type": "number",
+            "format": "double"
+          },
+          "y": {
+            "type": "number",
+            "format": "double"
+          },
+          "geometryType": {
+            "type": "string"
+          },
+          "coordinateSequence": {
+            "$ref": "#/components/schemas/CoordinateSequence"
+          },
+          "coordinate": {
+            "$ref": "#/components/schemas/Coordinate"
+          },
+          "numPoints": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dimension": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "boundary": {
+            "$ref": "#/components/schemas/Geometry"
+          },
+          "boundaryDimension": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "length": {
+            "type": "number",
+            "format": "double"
+          },
+          "valid": {
+            "type": "boolean"
+          },
+          "srid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numGeometries": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "precisionModel": {
+            "$ref": "#/components/schemas/PrecisionModel"
+          },
+          "rectangle": {
+            "type": "boolean"
+          },
+          "area": {
+            "type": "number",
+            "format": "double"
+          },
+          "centroid": {
+            "$ref": "#/components/schemas/Point"
+          },
+          "interiorPoint": {
+            "$ref": "#/components/schemas/Point"
+          },
+          "envelopeInternal": {
+            "$ref": "#/components/schemas/Envelope"
+          }
+        }
+      },
+      "PrecisionModel": {
+        "type": "object",
+        "properties": {
+          "scale": {
+            "type": "number",
+            "format": "double"
+          },
+          "type": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "floating": {
+            "type": "boolean"
+          },
+          "maximumSignificantDigits": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "offsetX": {
+            "type": "number",
+            "format": "double"
+          },
+          "offsetY": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "Type": {
+        "type": "object"
+      },
+      "LinearRing": {
+        "type": "object",
+        "properties": {
+          "envelope": {
+            "$ref": "#/components/schemas/Geometry"
+          },
+          "factory": {
+            "$ref": "#/components/schemas/GeometryFactory"
+          },
+          "userData": {
+            "type": "object"
+          },
+          "closed": {
+            "type": "boolean"
+          },
+          "geometryType": {
+            "type": "string"
+          },
+          "boundaryDimension": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "length": {
+            "type": "number",
+            "format": "double"
+          },
+          "empty": {
+            "type": "boolean"
+          },
+          "coordinateSequence": {
+            "$ref": "#/components/schemas/CoordinateSequence"
+          },
+          "coordinate": {
+            "$ref": "#/components/schemas/Coordinate"
+          },
+          "coordinates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Coordinate"
+            }
+          },
+          "numPoints": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dimension": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "boundary": {
+            "$ref": "#/components/schemas/Geometry"
+          },
+          "startPoint": {
+            "$ref": "#/components/schemas/Point"
+          },
+          "endPoint": {
+            "$ref": "#/components/schemas/Point"
+          },
+          "ring": {
+            "type": "boolean"
+          },
+          "valid": {
+            "type": "boolean"
+          },
+          "simple": {
+            "type": "boolean"
+          },
+          "srid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numGeometries": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "precisionModel": {
+            "$ref": "#/components/schemas/PrecisionModel"
+          },
+          "rectangle": {
+            "type": "boolean"
+          },
+          "area": {
+            "type": "number",
+            "format": "double"
+          },
+          "centroid": {
+            "$ref": "#/components/schemas/Point"
+          },
+          "interiorPoint": {
+            "$ref": "#/components/schemas/Point"
+          },
+          "envelopeInternal": {
+            "$ref": "#/components/schemas/Envelope"
+          }
+        }
+      },
+      "Polygon": {
+        "type": "object",
+        "properties": {
+          "envelope": {
+            "$ref": "#/components/schemas/Geometry"
+          },
+          "factory": {
+            "$ref": "#/components/schemas/GeometryFactory"
+          },
+          "userData": {
+            "type": "object"
+          },
+          "length": {
+            "type": "number",
+            "format": "double"
+          },
+          "empty": {
+            "type": "boolean"
+          },
+          "geometryType": {
+            "type": "string"
+          },
+          "exteriorRing": {
+            "$ref": "#/components/schemas/LinearRing"
+          },
+          "numInteriorRing": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coordinate": {
+            "$ref": "#/components/schemas/Coordinate"
+          },
+          "coordinates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Coordinate"
+            }
+          },
+          "numPoints": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rectangle": {
+            "type": "boolean"
+          },
+          "area": {
+            "type": "number",
+            "format": "double"
+          },
+          "dimension": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "boundary": {
+            "$ref": "#/components/schemas/Geometry"
+          },
+          "boundaryDimension": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "valid": {
+            "type": "boolean"
+          },
+          "simple": {
+            "type": "boolean"
+          },
+          "srid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numGeometries": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "precisionModel": {
+            "$ref": "#/components/schemas/PrecisionModel"
+          },
+          "centroid": {
+            "$ref": "#/components/schemas/Point"
+          },
+          "interiorPoint": {
+            "$ref": "#/components/schemas/Point"
+          },
+          "envelopeInternal": {
+            "$ref": "#/components/schemas/Envelope"
+          }
+        }
+      },
+      "OlsResponse": {
+        "type": "object",
+        "properties": {
+          "responseObj": {
+            "type": "object"
+          },
+          "outputSRS": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "callback": {
+            "type": "string"
+          },
+          "brief": {
+            "type": "boolean"
+          },
+          "errorMsg": {
+            "type": "string"
+          },
+          "error": {
+            "type": "boolean"
+          },
+          "params": {
+            "$ref": "#/components/schemas/SharedParameters"
+          }
+        }
+      },
+      "SharedParameters": {
+        "type": "object",
+        "properties": {
+          "callback": {
+            "type": "string"
+          },
+          "outputSRS": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "asAttachment": {
+            "type": "boolean"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "brief": {
+            "type": "boolean"
+          },
+          "maxResults": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "setBack": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "locationDescriptor": {
+            "type": "string",
+            "enum": [
+              "any",
+              "streetPoint",
+              "localityPoint",
+              "provincePoint",
+              "intersectionPoint",
+              "accessPoint",
+              "routingPoint",
+              "blockFacePoint",
+              "rooftopPoint",
+              "frontDoorPoint",
+              "parcelPoint"
+            ]
+          },
+          "maxFeatures": {
+            "type": "integer",
+            "format": "int32",
+            "writeOnly": true
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "apikey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "apikey",
+        "description": "API key required for SDX Gateway access"
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "BC Address Geocoder",
+    "url": "https://www2.gov.bc.ca/gov/content?id=118DD57CD9674D57BDBD511C2E78DC0D"
+  },
+  "tags": [
+    {
+      "name": "intersections",
+      "description": "Intersection address resources"
+    },
+    {
+      "name": "occupants",
+      "description": "Occupant and business name resources"
+    },
+    {
+      "name": "parcels",
+      "description": "Parcel and PID lookup resources"
+    },
+    {
+      "name": "sites",
+      "description": "Physical site and address resources"
+    },
+    {
+      "name": "status",
+      "description": "Service health and status resources"
+    }
+  ],
+  "security": [
+    {
+      "apikey": []
+    }
+  ]
+}

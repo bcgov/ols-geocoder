@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BC Address Geocoder — Swagger UI</title>
+  <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5.18.2/swagger-ui.css">
+  <style>
+    body { margin: 0; padding: 0; }
+    #swagger-ui { max-width: 1200px; margin: 0 auto; }
+    .topbar { display: none; }
+  </style>
+</head>
+<body>
+  <div id="swagger-ui"></div>
+  <script src="https://unpkg.com/swagger-ui-dist@5.18.2/swagger-ui-bundle.js"></script>
+  <script>
+    fetch("./openapi.json")
+      .then(r => r.json())
+      .then(spec => {
+        SwaggerUIBundle({
+          spec,
+          dom_id: "#swagger-ui",
+          presets: [
+            SwaggerUIBundle.presets.apis,
+            SwaggerUIBundle.SwaggerUIStandalonePreset
+          ],
+          layout: "BaseLayout"
+        });
+      });
+  </script>
+</body>
+</html>
