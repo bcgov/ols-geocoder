@@ -199,6 +199,15 @@ jobs:
             -f /tmp/enrich.jq \
             "$SPEC" > "$SPEC.tmp" && mv "$SPEC.tmp" "$SPEC"
 
+      - name: Fix escaped newlines in API description
+        run: |
+          python3 -c "
+          import json
+          with open('ols-geocoder-web/target/openapi.json') as f: spec = json.load(f)
+          spec['info']['description'] = spec['info']['description'].replace('\\\\n', '\\n')
+          with open('ols-geocoder-web/target/openapi.json', 'w') as f: json.dump(spec, f, indent=2)
+          "
+
       - name: Validate OpenAPI structure
         continue-on-error: ${{ inputs.bypass_lint }}
         run: npx @stoplight/spectral-cli@6.14.0 lint ols-geocoder-web/target/openapi.json --ruleset .spectral.yaml --fail-severity error
