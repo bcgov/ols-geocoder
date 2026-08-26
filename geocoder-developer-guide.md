@@ -46,7 +46,7 @@ The current baseUrl for the online geocoder is:<br>
 
 https://geocoder.api.gov.bc.ca/
 
-To acquire an apikey with a rate limit of 1000 requests per minute, visit the [API Services Portal](https://api.gov.bc.ca/devportal/api-directory). Once an API key has been acquired, you can explore the API using the [API console](https://openapi.apps.gov.bc.ca/?url=https://raw.githubusercontent.com/bcgov/api-specs/master/geocoder/geocoder-combined.json).
+To acquire an apikey with a rate limit of 3000 requests per minute, visit the [API Services Portal](https://api.gov.bc.ca/devportal/api-directory). Once an API key has been acquired, you can explore the API using the [API console](https://openapi.apps.gov.bc.ca/?url=https://raw.githubusercontent.com/bcgov/api-specs/master/geocoder/geocoder-combined.json).
 
 <br><br>
 <a name=cors></a>
