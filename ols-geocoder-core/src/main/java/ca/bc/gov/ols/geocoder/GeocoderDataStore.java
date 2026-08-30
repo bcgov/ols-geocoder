@@ -1812,6 +1812,9 @@ return pids != null && !pids.trim().isEmpty();
 	
 	public StreetIntersectionAddress getIntersectionByUuid(UUID uuid) {
 		StreetIntersection intr = intersectionsByUuid.get(uuid);
+		if(intr == null) {
+			return null;
+		}
 		return new StreetIntersectionAddress(intr);
 	}
 	
