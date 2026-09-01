@@ -38,7 +38,7 @@ jobs:
       # This must run after setup-java because setup-java can create
       # or replace ~/.m2/settings.xml.
       - name: Configure LOC Maven access
-        uses: bcgov/ols-util/.github/actions/setup-loc-maven
+        uses: bcgov/ols-util/.github/actions/setup-loc-maven@5fb17c36c02189b703f41d6b287a6561aee47b6e
         with:
           artifactory-username: ${{ secrets.LOC_ARTIFACTORY_USERNAME }}
           artifactory-password: ${{ secrets.LOC_ARTIFACTORY_PASSWORD }}
