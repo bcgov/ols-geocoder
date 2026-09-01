@@ -44,14 +44,14 @@ jobs:
           artifactory-password: ${{ secrets.LOC_ARTIFACTORY_PASSWORD }}
 
       - name: Compile and run unit tests
-        run: mvn --batch-mode --update-snapshots test
+        run: mvn --batch-mode --update-snapshots clean install
 
       - name: Set up JDK ${{ env.JAVA_VERSION_SONAR }} for Sonar
         uses: actions/setup-java@v6
         with:
           distribution: corretto
           java-version: ${{ env.JAVA_VERSION_SONAR }}
-          overwrite-settings: false
+          # Default overwrite-settings: true
 
       - name: Cache Sonar packages
         uses: actions/cache@v6
