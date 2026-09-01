@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import ca.bc.gov.ols.geocoder.test.TestCase;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.locationtech.jts.util.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,6 +42,12 @@ public class GeocoderTest extends TestCase {
 		if(gc == null) {
 			gc = new GeocoderFactory().getGeocoder();
 		}
+	}
+
+	@Test
+	@Tag("Prod")
+	public void testReverseBoolean_GivenTrue_ShouldReturnFalse(){
+		Assert.equals(false, Geocoder.testReverseBooleanMethod(true));
 	}
 
 	@Test

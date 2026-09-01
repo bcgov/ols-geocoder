@@ -113,6 +113,10 @@ public class Geocoder implements IGeocoder {
 		parser = createParser(lexer);
 		fallbackSiteAddress = geocodeFallbackAddress(datastore.getConfig().getFallbackAddress());
 	}
+
+	public static boolean testReverseBooleanMethod(boolean isTrueOrFalse){
+		return !isTrueOrFalse;
+	}
 	
 	private SiteAddress geocodeFallbackAddress(String fallbackAddress) {
 		if(fallbackAddress != null && !fallbackAddress.isEmpty()) {
@@ -2296,3 +2300,4 @@ class StreetNameMatchCombination {
 		this.totalPenalty = totalPenalty;
 	}
 }
+
