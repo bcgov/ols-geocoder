@@ -51,7 +51,7 @@ jobs:
         with:
           distribution: corretto
           java-version: ${{ env.JAVA_VERSION_SONAR }}
-          # Default overwrite-settings: true
+          overwrite-settings: false
 
       - name: Cache Sonar packages
         uses: actions/cache@v6
@@ -61,11 +61,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-sonar
 
-      - name: Run Sonar Analysis
-        run: mvn sonar:sonar
-          -Dsonar.token=${{ secrets.SONAR_TOKEN }}
-          -Dsonar.host.url=${{ vars.SONAR_HOST_URL }}
-          -Dsonar.organization=${{ vars.SONAR_ORG }}
-          -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
+      - name: Run Sonar analysis
+        run: >
+          mvn --batch-mode
+          org.sonarsource.scanner.maven:sonar-maven-plugin:5.7.0.6970:sonar
+          -Dsonar.host.url="${{ vars.SONAR_HOST_URL }}"
+          -Dsonar.organization="${{ vars.SONAR_ORG }}"
+          -Dsonar.projectKey="${{ vars.SONAR_PROJECT_KEY }}"
         env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ github.token }}
