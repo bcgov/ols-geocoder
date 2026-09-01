@@ -90,6 +90,9 @@ public class LocationReprojector {
 	// in the GeocoderDataStore class
 	public void reprecision(ModifiableLocation loc) {
 		Point p = loc.getLocation();
+		if(p == null) {
+			return;
+		}
 		if(toSRSCode == 4326) {
 			PrecisionModel model = new PrecisionModel(10000000.0);
 			GeometryFactory factory = new GeometryFactory(model);

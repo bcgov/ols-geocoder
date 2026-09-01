@@ -63,6 +63,8 @@ public class SiteAddress extends GeocoderAddress {
 	private String parentSiteID; // note: this is the UUID
 	private Integer streetSegmentID; // aka blockID
 	private String siteName;
+	private String pid;
+	private String error;
 	private String narrativeLocation;
 	
 	private boolean isPrimary = true;
@@ -97,6 +99,8 @@ public class SiteAddress extends GeocoderAddress {
 		parentSiteID = base.parentSiteID;
 		streetSegmentID = base.streetSegmentID;
 		siteName = base.siteName;
+		pid = base.pid;
+		error = base.error;
 		narrativeLocation = base.narrativeLocation;
 		isPrimary = base.isPrimary;
 		siteStatus = base.siteStatus;
@@ -432,6 +436,22 @@ public class SiteAddress extends GeocoderAddress {
 		return siteName;
 	}
 
+	public String getPid() {
+		return pid;
+	}
+
+	public void setPid(String pid) {
+		this.pid = pid;
+	}
+
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
+	}
+	
 	public void setSiteName(String siteName) {
 		this.siteName = siteName;
 	}
