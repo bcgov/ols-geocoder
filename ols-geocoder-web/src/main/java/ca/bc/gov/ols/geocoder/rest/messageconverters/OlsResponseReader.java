@@ -176,7 +176,9 @@ public class OlsResponseReader {
 			return;
 		}
 		writer.field("addressString", "fullAddress", addr.getAddressString());
-		writer.field("pid", addr.getPid(), true);
+		if(addr.getPid() != null) {
+			writer.field("pid", addr.getPid(), true);
+		}
 		if(match != null) {
 			match(match);
 		}
