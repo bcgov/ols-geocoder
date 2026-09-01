@@ -47,6 +47,7 @@ public class GeocoderTest extends TestCase {
 	@Test
 	@Tag("Prod")
 	public void testReverseBoolean_GivenTrue_ShouldReturnFalse(){
+		// test comment
 		Assert.equals(false, Geocoder.testReverseBooleanMethod(true));
 	}
 
