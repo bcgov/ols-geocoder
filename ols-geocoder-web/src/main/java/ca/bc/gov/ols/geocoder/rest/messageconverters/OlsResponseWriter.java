@@ -18,7 +18,6 @@ package ca.bc.gov.ols.geocoder.rest.messageconverters;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Map;
 
 import org.locationtech.jts.geom.Point;
 
@@ -50,10 +49,6 @@ public interface OlsResponseWriter {
 	void searchResultsFooter() throws IOException;
 
 	void featureCollectionHeader() throws IOException;
-
-	default void featureCollectionHeader(Map<String, Object> metadata) throws IOException {
-		featureCollectionHeader();
-	}
 
 	void featureCollectionFooter() throws IOException;
 
