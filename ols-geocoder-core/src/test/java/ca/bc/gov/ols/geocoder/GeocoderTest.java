@@ -49,6 +49,7 @@ public class GeocoderTest extends TestCase {
 	public void testReverseBoolean_GivenTrue_ShouldReturnFalse(){
 		// test comment
 		// and another
+		// and one more
 		Assert.equals(false, Geocoder.testReverseBooleanMethod(true));
 	}
 
