@@ -11,7 +11,6 @@ on:
 
 env:
   JAVA_VERSION: "17"
-  OLS_UTIL_TAG: "1.4.0-SNAPSHOT"
   # ── API Metadata ──────────────────────────────────────────────────────────
   API_TITLE: "Geocoder REST API"
   API_DESCRIPTION: >-
@@ -72,12 +71,13 @@ jobs:
           distribution: temurin
           cache: maven
 
-      # ols-util 1.4.0-SNAPSHOT tag, the version this geocoder depends on.
-      - name: Install ols-util dependency
-        run: |
-          git clone https://github.com/bcgov/ols-util.git
-          git -C ols-util checkout ${{ env.OLS_UTIL_TAG }}
-          mvn install -f ols-util/pom.xml -DskipTests -B
+      # This must run after setup-java because setup-java can create
+      # or replace ~/.m2/settings.xml.
+      - name: Configure LOC Maven access
+        uses: bcgov/ols-util/.github/actions/setup-loc-maven
+        with:
+          artifactory-username: ${{ secrets.LOC_ARTIFACTORY_USERNAME }}
+          artifactory-password: ${{ secrets.LOC_ARTIFACTORY_PASSWORD }}
 
       # The parent POM must be installed too: when later steps resolve
       # ols-geocoder-core from ~/.m2, Maven needs its parent
