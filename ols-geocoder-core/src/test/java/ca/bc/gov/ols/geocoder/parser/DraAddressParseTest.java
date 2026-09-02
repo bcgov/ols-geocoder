@@ -48,6 +48,18 @@ public class DraAddressParseTest extends TestCase {
 	}
 
 	@Test
+	@Tag("Prod")
+	public void testTrailingUnitWithoutDesignator() {
+		run("1207 Douglas Street 419, Victoria, BC");
+	}
+
+	@Test
+	@Tag("Prod")
+	public void testTrailingUnitWithDesignator() {
+		run("1207 Douglas Street UNIT 419, Victoria, BC");
+	}
+
+	@Test
 	@Tag("Dev")
 	public void testOneAddress() {
 		run("420 GORGE RD E, VICTORIA, BC");
