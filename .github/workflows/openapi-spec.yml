@@ -11,7 +11,6 @@ on:
 
 env:
   JAVA_VERSION: "17"
-  OLS_UTIL_TAG: "1.4.0-SNAPSHOT"
   # ── API Metadata ──────────────────────────────────────────────────────────
   API_TITLE: "Geocoder REST API"
   API_DESCRIPTION: >-
@@ -72,12 +71,13 @@ jobs:
           distribution: temurin
           cache: maven
 
-      # ols-util 1.4.0-SNAPSHOT tag, the version this geocoder depends on.
-      - name: Install ols-util dependency
-        run: |
-          git clone https://github.com/bcgov/ols-util.git
-          git -C ols-util checkout ${{ env.OLS_UTIL_TAG }}
-          mvn install -f ols-util/pom.xml -DskipTests -B
+      # This must run after setup-java because setup-java can create
+      # or replace ~/.m2/settings.xml.
+      - name: Configure LOC Maven access
+        uses: bcgov/ols-util/.github/actions/setup-loc-maven@5fb17c36c02189b703f41d6b287a6561aee47b6e
+        with:
+          artifactory-username: ${{ secrets.LOC_ARTIFACTORY_USERNAME }}
+          artifactory-password: ${{ secrets.LOC_ARTIFACTORY_PASSWORD }}
 
       # The parent POM must be installed too: when later steps resolve
       # ols-geocoder-core from ~/.m2, Maven needs its parent
@@ -117,7 +117,8 @@ jobs:
         run: |
           SPEC=ols-geocoder-web/target/openapi.json
 
-          cat > /tmp/enrich.jq << 'JQEOF'
+          ENRICH_JQ=$(mktemp)
+          cat > "$ENRICH_JQ" << 'JQEOF'
           del(.paths["/blocks/{id}"])
           | .paths |= (
               to_entries | map(
@@ -194,8 +195,10 @@ jobs:
             --arg test_desc "$SERVER_TEST_DESC" \
             --arg dlv_url "$SERVER_DLV_URL" \
             --arg dlv_desc "$SERVER_DLV_DESC" \
-            -f /tmp/enrich.jq \
+            -f "$ENRICH_JQ" \
             "$SPEC" > "$SPEC.tmp" && mv "$SPEC.tmp" "$SPEC"
+
+          rm -f "$ENRICH_JQ"
 
       - name: Fix escaped newlines in API description
         run: |
@@ -206,13 +209,26 @@ jobs:
           with open('ols-geocoder-web/target/openapi.json', 'w') as f: json.dump(spec, f, indent=2)
           "
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: .github/workflows/util/package-lock.json
+
+      - name: Install npm dependencies
+        run: npm ci --ignore-scripts
+        working-directory: .github/workflows/util
+
       - name: Validate OpenAPI structure
         continue-on-error: ${{ inputs.bypass_lint }}
-        run: npx @stoplight/spectral-cli@6.14.0 lint ols-geocoder-web/target/openapi.json --ruleset .spectral.yaml --fail-severity error
+        run: npm run lint:openapi
+        working-directory: .github/workflows/util
 
       - name: Lint against SDX Spectral rules
         continue-on-error: ${{ inputs.bypass_lint }}
-        run: npx @stoplight/spectral-cli@6.14.0 lint ols-geocoder-web/target/openapi.json --ruleset .spectral.yaml
+        run: npm run lint:openapi:warn
+        working-directory: .github/workflows/util
 
       - name: Upload OpenAPI spec
         if: always()
