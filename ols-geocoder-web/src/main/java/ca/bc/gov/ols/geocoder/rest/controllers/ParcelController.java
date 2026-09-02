@@ -52,14 +52,13 @@ public class ParcelController {
 		
 		ISite site = geocoder.getDatastore().getRawSiteByUuid(siteUuid.getValue());
 		
-		PidsResponse pr;
+		OlsResponse response;
 		if(site == null) {
-			pr = new PidsResponse(null, null);
+			response = new OlsResponse(null);
+		} else {
+			PidsResponse pr = new PidsResponse(site.getUuid(), site.getPids());
+			response = new OlsResponse(pr);
 		}
-		
-		pr = new PidsResponse(site.getUuid(), site.getPids());
-		
-		OlsResponse response = new OlsResponse(pr);
 		response.setParams(params);
 		return response;
 	}
