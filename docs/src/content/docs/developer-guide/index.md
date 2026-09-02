@@ -1,9 +1,7 @@
 ---
-title: BC Address Geocoder Developer Guide
-description: Locate and standardize your addresses with the BC Address Geocoder.
+title: "Developer Guide"
+description: "Learn the online geocoder API through a series of examples."
 ---
-
-# BC Address Geocoder Developer Guide
 This guide is aimed at developers and web masters that would like to incorporate the Physical Address Geocoder into their applications and websites.
 <br>
 
@@ -36,7 +34,7 @@ The BC Physical Address Online Geocoder REST API lets you integrate real-time st
 <a name=apichanges></a>
 ## API Changes
 
-A summary of changes to the BC Address Geocoder can be found on the [What's New](https://github.com/bcgov/ols-geocoder/blob/gh-pages/whats-new.md) page for each release.
+A summary of changes to the BC Address Geocoder can be found on the [What's New](../getting-started/whats-new) page for each release.
 
 <br><br>
 <a name=resources></a>
@@ -46,7 +44,7 @@ The current baseUrl for the online geocoder is:<br>
 
 https://geocoder.api.gov.bc.ca/
 
-To acquire an apikey with a rate limit of 1000 requests per minute, visit the [API Services Portal](https://api.gov.bc.ca/devportal/api-directory). Once an API key has been acquired, you can explore the API using the [API console](https://openapi.apps.gov.bc.ca/?url=https://raw.githubusercontent.com/bcgov/api-specs/master/geocoder/geocoder-combined.json).
+To acquire an apikey with a rate limit of 3000 requests per minute, visit the [API Services Portal](https://api.gov.bc.ca/devportal/api-directory). Once an API key has been acquired, you can explore the API using the [API console](https://openapi.apps.gov.bc.ca/?url=https://raw.githubusercontent.com/bcgov/api-specs/master/geocoder/geocoder-combined.json).
 
 <br><br>
 <a name=cors></a>
@@ -84,7 +82,7 @@ https://geocoder.api.gov.bc.ca/addresses.geojson?outputSRS=3005&addressString=56
 https://geocoder.api.gov.bc.ca/addresses.kml?locationDescriptor=routingPoint&addressString=5670%20malibu%20terrace%20nanaimo%20bc<br><br>
 6.	Geocode 5670 Malibu Terrace, Nanaimo and return accessPoint set back four metres from the curb towards the inside of the property. Note that only accessPoints can be set back<br>
 https://geocoder.api.gov.bc.ca/addresses.kml?locationDescriptor=accessPoint&setBack=4&addressString=5670%20malibu%20terrace%20nanaimo%20bc<br><br>  
-7.	Geocode 5671 Malibu Terrace, Nanaimo, BC without interpolation. In other words, if the geocoder doesn’t have a site with a civic number of 5671, it will fail instead of looking for an address range that contains 5671<br>
+7.	Geocode 5671 Malibu Terrace, Nanaimo, BC without interpolation. In other words, if the geocoder doesn't have a site with a civic number of 5671, it will fail instead of looking for an address range that contains 5671<br>
 https://geocoder.api.gov.bc.ca/addresses.xhtml?interpolation=none&addressString=5671%20malibu%20terrace%20nanaimo%20bc<br><br>
 8.	Geocode 200 Gorge Rd W, Saanich, BC and limit results to Victoria. It will return 200 Gorge Rd E, Victoria, BC since Gorge Rd E is in Victoria<br>
 https://geocoder.api.gov.bc.ca/addresses.xhtml?localities=victoria&addressString=200%20gorge%20rd%20w%20saanich%20bc<br><br> 
@@ -125,7 +123,7 @@ https://geocoder.api.gov.bc.ca/occupants/nearest.geojson?point=-123.7064038,48.8
 <br><br>
 <a name=resourcerepresentations></a>
 ### Resource representations in HTTP Responses
-The addresses resource will return a document in the requested format and spatial reference system.  Documents in formats that support a header record (e.g., XHTML, KML, GEOJSON, GEOJSONP, GML) will contain a single About Query representation describing the query and its execution, and one or more site address or intersection address representations. Documents in formats that don’t support a header record (e.g., CSV, SHPZ), will contain one or more site/intersection address representations.
+The addresses resource will return a document in the requested format and spatial reference system.  Documents in formats that support a header record (e.g., XHTML, KML, GEOJSON, GEOJSONP, GML) will contain a single About Query representation describing the query and its execution, and one or more site address or intersection address representations. Documents in formats that don't support a header record (e.g., CSV, SHPZ), will contain one or more site/intersection address representations.
 
 <a name=aboutqueryrepresentation></a>
 #### About Query Representation
@@ -239,15 +237,15 @@ The *faults* property in a resource response is a list of one or more address ma
 <br><br>
 <a name=implementingautocomplete></a>
 ## Implementing address autocompletion in your application
-Using the [autoComplete](https://github.com/bcgov/ols-geocoder/blob/gh-pages/glossary.md#autoComplete) boolean request parameter is the key to successful implementation of address autocompletion in your application. Let's assume your application input form has an address text box and a search icon. 
+Using the [autoComplete](../getting-started/glossary#autoComplete) boolean request parameter is the key to successful implementation of address autocompletion in your application. Let's assume your application input form has an address text box and a search icon. 
 
 A user starts entering the characters of an address. After three or so characters, the application should issue a get request on the addresses resource with autoComplete set to true every time a user enters an additional character. This tells the geocoder that addressString contains a partial address and to find the best N address prefix matches for display in a pick list below the address text box.
 
 If the user clicks on the search icon or presses the Enter key, the application should issue a get request on the addresses resource with autoComplete set to False. This tells the geocoder to use addressString as entered when trying to find the best N matches.
 
-You can also use the autoComplete and [exactSpelling](https://github.com/bcgov/ols-geocoder/blob/gh-pages/glossary.md#exactSpelling) parameters in the same request. If exactSpelling is set to true (default is false), autoComplete suggestions will be limited to addresses beginning with the provided partial address. 
+You can also use the autoComplete and [exactSpelling](../getting-started/glossary#exactSpelling) parameters in the same request. If exactSpelling is set to true (default is false), autoComplete suggestions will be limited to addresses beginning with the provided partial address. 
 
-In addition to [exactSpelling](https://github.com/bcgov/ols-geocoder/blob/gh-pages/glossary.md#exactSpelling), the [fuzzyMatch](https://github.com/bcgov/ols-geocoder/blob/gh-pages/glossary.md#fuzzyMatch) parameter can be included in the same request. If fuzzyMatch is set to true (default is false), autoComplete suggestions will be sorted using a fuzzy match comparison to the addressString. 
+In addition to [exactSpelling](../getting-started/glossary#exactSpelling), the [fuzzyMatch](../getting-started/glossary#fuzzyMatch) parameter can be included in the same request. If fuzzyMatch is set to true (default is false), autoComplete suggestions will be sorted using a fuzzy match comparison to the addressString. 
 
 If you are using jQuery in your javascript app, check out our javascript code for autocompletion [here](https://github.com/bcgov/ols-devkit/tree/gh-pages/widget). To see the code in action, visit [here](https://bcgov.github.io/ols-devkit/examples/address_autocomplete.html)
 
@@ -270,7 +268,7 @@ Geocoder can return a number of error response.
 |Response Code|Error Message|Error Description
 |--|--|--|
 |400|Invalid parameter:[details]|The provided parameter is incorrect. Please refer to the details
-|404|no Route matched with those values|The path is not found. Please make sure it’s one in document
+|404|no Route matched with those values|The path is not found. Please make sure it's one in document
 |500|Anything|This is a general internal error
 
 In addition to above common error responses there are also a number of errors that can happen occasionally or during the initialization state. These errors usually come with 500s but could also be 400s.

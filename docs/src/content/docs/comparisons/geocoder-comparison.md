@@ -1,4 +1,7 @@
-# Comparative Geocoder Address Match Accuracy Study
+---
+title: "Geocoder Comparison Study"
+description: "Comparison between Bing Maps, ESRI, Google Maps, and Here."
+---
 
 April 4, 2018
 
@@ -100,7 +103,8 @@ Here Geocoder|2 (7%)|3 (10%)|19 (63%)|1 (3%)|0|11 (37%)|26 (87%)|	2 (7%)
 100 Little Nimmo Bay, Sullivan Bay, BC
 2673 K P Rd, Vavenby, BC
 
- 
+ 
+
 # Methodology
 
 The set of random addresses generated in the BC StreetMap Comparison were used in this study. For completeness, the following defines how to generate new sets of random addresses suitable for this comparison.

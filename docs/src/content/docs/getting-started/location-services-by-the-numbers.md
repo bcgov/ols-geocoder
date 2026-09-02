@@ -1,4 +1,9 @@
-# Location Services by the Numbers (snapshot for July, 2021)
+---
+title: "Location Services by the Numbers"
+description: "Usage and adoption statistics for BC Location Services."
+---
+
+(snapshot for July, 2021)
 |Service|Number|Significance|
 |--|--:|--|
 Address Geocoder|15|Ministries served

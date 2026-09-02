@@ -1,4 +1,8 @@
-# Geocoder Roadmap
+---
+title: "Geocoder Roadmap"
+description: "Planned major enhancements to the geocoder."
+---
+
 Version | Release Date | Features
 -------: | --------------- | -------------
 4.1|Feb 2021|Improved address matching

@@ -1,3 +1,8 @@
+---
+title: "Copyright Notices"
+description: "Copyright notices and open source software licenses."
+---
+
 The BC Address Geocoder is Copyright Province of British Columbia and makes use of the following software packages:
 
 Name | Description | Copyright Owner | License

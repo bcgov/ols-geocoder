@@ -1,4 +1,7 @@
-# Understanding Address Match Scoring
+---
+title: "Understanding Match Scoring"
+description: "Explains how address matches are ranked by the geocoder."
+---
 
 Understanding address match scoring will help you understand why a given address was rated good or bad by the geocoder and where you should best spend your time improving the overall match accuracy of your address list to get the most business value for your clients.
  
@@ -61,6 +64,6 @@ Address List Match Accuracy = number of addresses with a score of 90 or higher d
 
 Ninety is the minimum score of a good match.
 
-Once you have measured the initial match accuracy of your address list, use the match precision and the list of faults in the geocoder output to analyse the misclassification rates with an eye on reducing the number of false negatives (e.g., Central Building 620 View St, Victoria, BC gets rejected because it is missing the front-gate delimiter "--"). For more detailed information on faults, see the [BC Address Geocoder Match Scoring Reference](https://github.com/bcgov/ols-geocoder/blob/gh-pages/faults.md). For examples of faulty addresses and their root causes, see [Understanding Batch Geocoder Output](https://www2.gov.bc.ca/assets/gov/data/geographic/location-services/geocoder/understanding_geocoder_results.pdf). 
+Once you have measured the initial match accuracy of your address list, use the match precision and the list of faults in the geocoder output to analyse the misclassification rates with an eye on reducing the number of false negatives (e.g., Central Building 620 View St, Victoria, BC gets rejected because it is missing the front-gate delimiter "--"). For more detailed information on faults, see the [BC Address Geocoder Match Scoring Reference](../developer-guide/match-scoring-reference). For examples of faulty addresses and their root causes, see [Understanding Batch Geocoder Output](https://www2.gov.bc.ca/assets/gov/data/geographic/location-services/geocoder/understanding_geocoder_results.pdf). 
 
 Once you have the misclassification rates, you can determine what combination of address ETL improvement and manual editing gives you the best return on your effort. You should also try to set an accuracy improvement goal (e.g., improve address match accuracy by 5%). As you work through your address list, keep measuring match accuracy to measure progress toward your accuracy improvement goal.

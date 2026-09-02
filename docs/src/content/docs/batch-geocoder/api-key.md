@@ -1,4 +1,7 @@
-# BC Address Geocoder API Key Request Process 
+---
+title: "API Key Request"
+description: "How to request a BC Address Geocoder API key."
+---
 
 To acquire an API key for the [BC Address Geocoder](https://www2.gov.bc.ca/gov/content?id=118DD57CD9674D57BDBD511C2E78DC0D), complete the steps below.
 
@@ -10,7 +13,7 @@ To acquire an API key for the [BC Address Geocoder](https://www2.gov.bc.ca/gov/c
 4. Click on the [API Directory](https://api.gov.bc.ca/devportal/api-directory) tab.
 5. Click on the [BC Address Geocoder Web Service](https://api.gov.bc.ca/devportal/api-directory/273?) panel link.
 6. Scroll down and click on the **Request Access** button beside BC Address Geocoder (Public) (*not the button for BC Address Geocoder Parcels*)
-7. In the next screen, click the ‘+’ button to create an entry for your application or script.
+7. In the next screen, click the '+' button to create an entry for your application or script.
 8. Within the same screen, select which **API Environment** you need access to.
 9. Click the **Request Access** button.
 10. In the next screen click the **Generate Secrets** button to create an API key for the BC Address Geocoder.
@@ -20,8 +23,8 @@ To acquire an API key for the [BC Address Geocoder](https://www2.gov.bc.ca/gov/c
 
 - [API Console](https://openapi.apps.gov.bc.ca/?url=https://raw.githubusercontent.com/bcgov/api-specs/master/geocoder/geocoder-combined.json)
 - [BC Address Geocoder homepage](https://www2.gov.bc.ca/gov/content?id=118DD57CD9674D57BDBD511C2E78DC0D)
-- [Developer Guide](https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md)
-- [Glossary of Terms](https://github.com/bcgov/ols-geocoder/blob/gh-pages/glossary.md)
-- [matchPrecision and faults](https://github.com/bcgov/ols-geocoder/blob/gh-pages/faults.md)
-- [Understanding Address Match Scoring](https://github.com/bcgov/ols-geocoder/blob/gh-pages/understanding-match-scoring.md)
-- [What's New with the BC Address Geocoder](https://github.com/bcgov/ols-geocoder/blob/gh-pages/whats-new.md)
+- [Developer Guide](../developer-guide)
+- [Glossary of Terms](../getting-started/glossary)
+- [matchPrecision and faults](../developer-guide/match-scoring-reference)
+- [Understanding Address Match Scoring](../developer-guide/match-scoring)
+- [What's New with the BC Address Geocoder](../getting-started/whats-new)

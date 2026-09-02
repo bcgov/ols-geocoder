@@ -1,6 +1,9 @@
-# What's New with the BC Address Geocoder
+---
+title: "What's New"
+description: "Latest changes and improvements to the BC Address Geocoder."
+---
 
-Check out the Geocoder release [roadmap](https://github.com/bcgov/ols-geocoder/blob/gh-pages/roadmap.md)
+Check out the Geocoder release [roadmap](../getting-started/roadmap)
 For detailed API release notes, see the [BC Geocoder Developer Guide](https://github.com/bcgov/api-specs/blob/master/geocoder/geocoder-developer-guide.md)
 
 ## August 12, 2026
@@ -11,8 +14,8 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
 
 ## March 3, 2025
 - BC Address Geocoder version 4.5.3
-- The default tag condition used when searching for occupants has been changed from ‘and’ to ‘or’.
-- Added a new tagCondition parameter to change the default tag condition for the /occupants/addresses endpoint. Options include ‘and’ & ‘or’.
+- The default tag condition used when searching for occupants has been changed from 'and' to 'or'.
+- Added a new tagCondition parameter to change the default tag condition for the /occupants/addresses endpoint. Options include 'and' & 'or'.
 - Improved Fuzzy Match search results for sub-localities.
 - Bug fix: Fuzzy Match handling of non-civic address searches in upper case.
 
@@ -57,7 +60,7 @@ For detailed API release notes, see the [BC Geocoder Developer Guide](https://gi
    - The address list match accuracy of a government list of 13 million addresses went from 58% in version 4.0 to 78% in version 4.1, a 20% improvement
    - 2% improvement is due to additional address ranges (from GeoBC Integrated Transportation Network), additional locality aliases (e.g., all neighbouring localities, abbreviations such as Poco for Port Coquitlam), and additional non-standard abbreviations in common usage (e.g., Bu for Boulevard, Cre for Crescent, Dri for Drive).
     - 18% improvement is due to smarter address parsing
-    - [Here](https://github.com/bcgov/ols-geocoder/blob/gh-pages/rejected-addresses.md) is a list of typical bad addresses and how v4.1 handles them compared to v4.0    
+    - [Here](../batch-geocoder/rejected-addresses) is a list of typical bad addresses and how v4.1 handles them compared to v4.0    
     - [Here](https://github.com/bcgov/ols-geocoder/issues/102) is the complete list of added abbreviations.
    
 - There is a new [batch address list metrics calculator](https://github.com/bcgov/ols-devkit/tree/gh-pages/alm) that takes your batch geocoder results file and computes address list match accuracy, address counts by score interval, and other metrics that let you see exactly how much better your results are in version 4.1
@@ -120,7 +123,7 @@ BC Address Geocoder version 3.4.1 released.
 ```
 Sir James Douglas Elementary ** 401 Moss St, Victoria, BC 
 ```
-If addressString doesn’t contain the occupant separator “\*\*”, addressString will be treated as an occupant name. In previous releases, addressString was treated as an address.
+If addressString doesn't contain the occupant separator "\*\*", addressString will be treated as an occupant name. In previous releases, addressString was treated as an address.
 
 ## April 24, 2018
 BC Address Geocoder version 3.4 released.
@@ -203,7 +206,7 @@ BC Address Geocoder version 1.4 released.
 - There is a new autocompleting address finder widget that you can incorporate into your own web apps and web pages.
 - 500,000 strata units from BC Assessment have been loaded.
 - The February 2014 release of the Digital Road Atlas has been loaded.
-- The Geocoder’s parser has been overhauled for much improved performance and smarter matching.
+- The Geocoder's parser has been overhauled for much improved performance and smarter matching.
 - French input is now recognized and translated.
 - Nested sites are now supported and recognized on input with the help of a frontGate delimiter ("--") as in "RM 605, West Wing, Royal Jubilee Hospital --1952 Bay St, Victoria BC.
 - Non-civic addresses (e.g., sitename, locality, province) are now supported.

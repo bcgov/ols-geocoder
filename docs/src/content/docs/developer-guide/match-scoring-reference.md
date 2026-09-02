@@ -1,4 +1,7 @@
-# BC Address Geocoder Match Scoring Reference
+---
+title: "Match Scoring Reference"
+description: "Defines how addresses matches are ranked by the geocoder."
+---
 
 <br>
 

@@ -1,4 +1,7 @@
-# Preparing your Address File for Batch Geocoding
+---
+title: "Preparing Your Address File"
+description: "How to format address lists for batch geocoding."
+---
 
 The [*Address List Editor*](https://bcgov.github.io/ols-devkit/ale/) can handle a list of up to one thousand
 addresses. For larger lists, use the [*Batch Geocoder*](https://apps.gov.bc.ca/pub/cpf/secure/ws/apps/geocoder/multiple/).

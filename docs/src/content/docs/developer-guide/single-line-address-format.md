@@ -1,4 +1,7 @@
-# Single-Line Address Format Specification
+---
+title: "Single-Line Address Format"
+description: "The single-string format of addresses supported by the geocoder."
+---
 
 A physical address may be represented by a single line (string) in one of the formats listed below. 
 
@@ -16,7 +19,7 @@ Civic number suffix, if present, should be placed after the civic number as foll
 Unit number suffix, if present, should be place after unitNumber without a space in between.
 
 
-frontGate is the double dash separator as in “--“ . 
+frontGate is the double dash separator as in "--" . 
 occupantSeparator is double star as in "**"
 
 ## Format 1 – Civic address

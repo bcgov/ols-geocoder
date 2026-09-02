@@ -14,6 +14,52 @@ export default defineConfig({
 					href: "https://github.com/bcgov/ols-geocoder",
 				},
 			],
+			sidebar: [
+			{
+				label: "Getting Started",
+				items: [
+					"getting-started/product-vision",
+					"getting-started/location-services-by-the-numbers",
+					"getting-started/whats-new",
+					"getting-started/roadmap",
+					"getting-started/faq",
+					"getting-started/glossary",
+					"getting-started/notice",
+					"getting-started/physical-address-conceptual-model",
+					"getting-started/bc-address-exchange-schema",
+					"getting-started/data-integration-process",
+				],
+			},
+				{
+					label: "Batch Geocoder",
+					items: [
+						"batch-geocoder/registration",
+						"batch-geocoder/api-key",
+						"batch-geocoder/data-preparation",
+						"batch-geocoder/application-guide",
+						"batch-geocoder/understanding-results",
+						"batch-geocoder/rejected-addresses",
+						"batch-geocoder/uat",
+					],
+				},
+				{
+					label: "Developer Guide",
+					items: [
+						"developer-guide",
+						"developer-guide/single-line-address-format",
+						"developer-guide/match-scoring",
+						"developer-guide/match-scoring-reference",
+					],
+				},
+
+				{
+					label: "Comparisons",
+					items: [
+						"comparisons/geocoder-comparison",
+						"comparisons/osm-suitability",
+					],
+				},
+			],
 		}),
 	],
 });

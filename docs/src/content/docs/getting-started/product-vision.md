@@ -1,4 +1,7 @@
-# Location Services
+---
+title: "Product Vision"
+description: "Location Services product vision and strategic objectives."
+---
 
 ## Product Vision
 

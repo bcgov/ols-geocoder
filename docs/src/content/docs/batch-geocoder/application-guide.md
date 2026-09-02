@@ -1,10 +1,13 @@
-# Submitting an address list to the batch geocoder interactively
+---
+title: "Application Guide"
+description: "Step-by-step tutorial for submitting addresses to the batch geocoder."
+---
 
 This document describes the process of submitting a list of addresses to the batch geocoder.
 
 ## Preliminaries
 
-If you don't have an active BC IDIR account, you will have to [register](https://github.com/bcgov/ols-geocoder/blob/gh-pages/bc-location-services/batch-geocoder-registration.md) with the batch geocoder using a BCeID account.
+If you don't have an active BC IDIR account, you will have to [register](../batch-geocoder/registration) with the batch geocoder using a BCeID account.
 
 You will also need a list of addresses in a format and schema the batch geocoder understands.  For help with this, click [here](https://www2.gov.bc.ca/assets/gov/data/geographic/location-services/geocoder/batch_address_data_prep.pdf). For the purposes of this tutorial, we have provided an address list if you don't have one.
 
@@ -84,7 +87,7 @@ Here are the first fifteen rows of my results file:
 
 All 15 addresses resulted in a perfect match score of 100 with a match precision of civic number which means the address matched right down to the civic number on a block on a street in a locality in the Province of BC. 
 
-The fullAddress column contains the cleaned and standardized address as a single string in [Single-Line Address Format](https://github.com/bcgov/ols-geocoder/blob/gh-pages/singleLineAddressFormat.md).
+The fullAddress column contains the cleaned and standardized address as a single string in [Single-Line Address Format](../developer-guide/single-line-address-format).
 
 Other columns just off the right contain all the individual address elements such as civicNumber, streetName, streetType, streetDirection, locality, etc.
 
