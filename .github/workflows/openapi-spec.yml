@@ -11,6 +11,7 @@ on:
 
 env:
   JAVA_VERSION: "17"
+  NODE_VERSION: "24"
   # ── API Metadata ──────────────────────────────────────────────────────────
   API_TITLE: "Geocoder REST API"
   API_DESCRIPTION: >-
@@ -212,7 +213,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: ${{ env.NODE_VERSION }}
           cache: npm
           cache-dependency-path: .github/workflows/util/package-lock.json
 
