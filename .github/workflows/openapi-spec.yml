@@ -11,6 +11,7 @@ on:
 
 env:
   JAVA_VERSION: "17"
+  NODE_VERSION: "24"
   # ── API Metadata ──────────────────────────────────────────────────────────
   API_TITLE: "Geocoder REST API"
   API_DESCRIPTION: >-
@@ -64,8 +65,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Set up JDK ${{ env.JAVA_VERSION }}
-        uses: actions/setup-java@v5
+      - name: Set up JDK
+        uses: actions/setup-java@v6
         with:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: temurin
@@ -210,9 +211,9 @@ jobs:
           "
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: "20"
+          node-version: ${{ env.NODE_VERSION }}
           cache: npm
           cache-dependency-path: .github/workflows/util/package-lock.json
 
@@ -237,3 +238,15 @@ jobs:
           name: openapi-spec
           path: ols-geocoder-web/target/openapi.json
           retention-days: 30
+
+      - name: Trigger docs deployment
+        if: always()
+        uses: actions/github-script@v9
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'docs.yml',
+              ref: 'main'
+            })

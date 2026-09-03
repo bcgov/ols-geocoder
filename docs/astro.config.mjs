@@ -1,5 +1,6 @@
 import starlight from "@astrojs/starlight";
 import { defineConfig } from "astro/config";
+import starlightOpenAPI, { openAPISidebarGroups } from "starlight-openapi";
 
 export default defineConfig({
 	site: "https://bcgov.github.io",
@@ -13,6 +14,15 @@ export default defineConfig({
 					label: "GitHub",
 					href: "https://github.com/bcgov/ols-geocoder",
 				},
+			],
+			plugins: [
+				starlightOpenAPI([
+					{
+						base: "api",
+						schema: "docs/public/openapi.json",
+						sidebar: { label: "OpenAPI Reference" },
+					},
+				]),
 			],
 			sidebar: [
 			{
@@ -51,7 +61,7 @@ export default defineConfig({
 						"developer-guide/match-scoring-reference",
 					],
 				},
-
+				...openAPISidebarGroups,
 				{
 					label: "Comparisons",
 					items: [
