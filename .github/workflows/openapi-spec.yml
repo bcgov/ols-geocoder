@@ -130,15 +130,15 @@ jobs:
                       if .tags == null then . else
                       .tags = [
                           if $path == "/" or $path == "/ping" or $path == "/status"
-                            then "status"
+                            then "Status"
                           elif ($path | startswith("/intersections"))
-                            then "intersections"
+                            then "Intersections"
                           elif ($path | startswith("/occupants"))
-                            then "occupants"
+                            then "Occupants"
                           elif ($path | startswith("/parcels"))
-                            then "parcels"
+                            then "Parcels"
                           elif ($path == "/addresses" or ($path | startswith("/sites")))
-                            then "sites"
+                            then "Sites"
                           else .tags[0]
                           end
                         ]
@@ -164,11 +164,11 @@ jobs:
               ]
             | .externalDocs = { "description": $ext_desc, "url": $ext_url }
             | .tags = [
-                { "name": "intersections", "description": "Intersection address resources" },
-                { "name": "occupants",     "description": "Occupant and business name resources" },
-                { "name": "parcels",       "description": "Parcel and PID lookup resources" },
-                { "name": "sites",         "description": "Physical site and address resources" },
-                { "name": "status",        "description": "Service health and status resources" }
+                { "name": "Intersections", "description": "Intersection address resources" },
+                { "name": "Occupants",     "description": "Occupant and business name resources" },
+                { "name": "Parcels",       "description": "Parcel and PID lookup resources" },
+                { "name": "Sites",         "description": "Physical site and address resources" },
+                { "name": "Status",        "description": "Service health and status resources" }
               ]
             | .components.securitySchemes.apikey = {
                 "type": "apiKey",

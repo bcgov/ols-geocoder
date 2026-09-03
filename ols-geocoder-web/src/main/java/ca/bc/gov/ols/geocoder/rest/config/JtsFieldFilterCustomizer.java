@@ -20,7 +20,7 @@ public class JtsFieldFilterCustomizer implements OperationCustomizer {
 
 	private static final Set<String> JTS_FIELD_PREFIXES = Set.of(
 		"pointPoint.", "bboxPolygon.",
-		"pointPoint ", "bboxPolygon "
+		"centrePoint.", "parcelPointPoint."
 	);
 
 	@Override
