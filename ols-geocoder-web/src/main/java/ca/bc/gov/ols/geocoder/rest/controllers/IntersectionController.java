@@ -27,6 +27,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+import org.springdoc.core.annotations.ParameterObject;
+
 import ca.bc.gov.ols.geocoder.IGeocoder;
 import ca.bc.gov.ols.geocoder.api.SharedParameters;
 import ca.bc.gov.ols.geocoder.api.data.StreetIntersectionAddress;
@@ -40,15 +46,27 @@ import ca.bc.gov.ols.util.StopWatch;
 @RestController
 @RequestMapping("/intersections")
 @CrossOrigin
+@Tag(name = "intersection", description = "The Intersection API")
 public class IntersectionController {
 	
 	@Autowired
 	private IGeocoder geocoder;
 	
-	// :[a-zA-Z0-9-]+
+	@Operation(
+		summary = "Find an intersection by ID",
+		description = "Returns a specific intersection based on its unique ID. "
+				+ "The ID can be either the intersection's UUID or its legacy numeric ID. "
+				+ "Note that the returned location is not the actual intersection point, "
+				+ "but a representative point on one of the intersecting streets. "
+				+ "Returns a GeoJSON FeatureCollection containing the intersection as a Point, "
+				+ "with properties including the site name, civic number ranges, and street metadata."
+	)
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public OlsResponse getIntersection(@PathVariable("id") String id,
-			SharedParameters params, BindingResult bindingResult) {
+	public OlsResponse getIntersection(
+			@Parameter(description = "The intersection's UUID or legacy numeric ID", required = true,
+					example = "74628473-1460-4d5f-8699-34964e8d3ba6")
+			@PathVariable("id") String id,
+			@ParameterObject SharedParameters params, BindingResult bindingResult) {
 		UuidParam uuid = new UuidParam(id);
 		if(uuid.getErrorMessage() != null) {
 			throw new InvalidParameterException(uuid.getErrorMessage());
@@ -64,9 +82,21 @@ public class IntersectionController {
 		return response;
 	}
 	
+	@Operation(
+		summary = "Find the intersection nearest to a point",
+		description = "Finds the single intersection nearest to the specified point. "
+				+ "The returned location is not the actual intersection point, but a representative point "
+				+ "on one of the intersecting streets. "
+				+ "Optionally filters by street classification and intersection angle. "
+				+ "Returns a GeoJSON FeatureCollection containing the nearest intersection as a Point, "
+				+ "with properties including the site name, civic number ranges, and street metadata."
+	)
 	@RequestMapping(value = "/nearest", method = RequestMethod.GET)
 	public OlsResponse getNearestIntersection(
-			ReverseGeocodeParameters params, BindingResult bindingResult) {
+			@Parameter(description = "The X (longitude) and Y (latitude) coordinate of the search point, "
+					+ "in the format 'x,y'. Must be in the same SRS as the outputSRS parameter.",
+					required = true, example = "-123.0,49.0")
+			@ParameterObject ReverseGeocodeParameters params, BindingResult bindingResult) {
 		GeocoderConfig config = geocoder.getDatastore().getConfig();
 		if(bindingResult.hasErrors()) {
 			throw new InvalidParameterException(bindingResult);
@@ -103,9 +133,21 @@ public class IntersectionController {
 		return response;
 	}
 	
+	@Operation(
+		summary = "Find multiple intersections nearest to a point",
+		description = "Finds up to maxResults intersections nearest to the specified point. "
+				+ "The returned locations are not the actual intersection points, but representative points "
+				+ "on one of the intersecting streets. "
+				+ "Optionally filters by street classification and intersection angle. "
+				+ "Returns a GeoJSON FeatureCollection containing the nearest intersections as Points, "
+				+ "with properties including site names, civic number ranges, and street metadata."
+	)
 	@RequestMapping(value = "/near", method = RequestMethod.GET)
 	public OlsResponse getIntersectionsNear(
-			ReverseGeocodeParameters params, BindingResult bindingResult) {
+			@Parameter(description = "The X (longitude) and Y (latitude) coordinate of the search point, "
+					+ "in the format 'x,y'. Must be in the same SRS as the outputSRS parameter.",
+					required = true, example = "-123.0,49.0")
+			@ParameterObject ReverseGeocodeParameters params, BindingResult bindingResult) {
 		GeocoderConfig config = geocoder.getDatastore().getConfig();
 		if(bindingResult.hasErrors()) {
 			throw new InvalidParameterException(bindingResult);
@@ -144,9 +186,20 @@ public class IntersectionController {
 		return response;
 	}
 	
+	@Operation(
+		summary = "Find intersections within a bounding box",
+		description = "Finds up to maxResults intersections that are within the specified bounding box. "
+				+ "The returned locations are not the actual intersection points, but representative points "
+				+ "on one of the intersecting streets. "
+				+ "Returns a GeoJSON FeatureCollection containing the intersections as Points, "
+				+ "with properties including site names, civic number ranges, and street metadata."
+	)
 	@RequestMapping(value = "/within", method = RequestMethod.GET)
 	public OlsResponse getIntersectionsWithin(
-			ReverseGeocodeParameters params, BindingResult bindingResult) {
+			@Parameter(description = "The bounding box to search within, in the format 'minx,miny,maxx,maxy'. "
+					+ "Must be in the same SRS as the outputSRS parameter.",
+					required = true, example = "-123.1,49.2,-123.0,49.3")
+			@ParameterObject ReverseGeocodeParameters params, BindingResult bindingResult) {
 		GeocoderConfig config = geocoder.getDatastore().getConfig();
 		if(bindingResult.hasErrors()) {
 			throw new InvalidParameterException(bindingResult);

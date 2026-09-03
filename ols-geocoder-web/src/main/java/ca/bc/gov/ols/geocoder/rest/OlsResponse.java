@@ -17,6 +17,8 @@ package ca.bc.gov.ols.geocoder.rest;
 
 import java.util.Map;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import ca.bc.gov.ols.geocoder.api.SharedParameters;
 import ca.bc.gov.ols.geocoder.api.data.ModifiableLocation;
 import ca.bc.gov.ols.geocoder.api.data.SearchResults;
@@ -28,13 +30,31 @@ import gnu.trove.map.hash.THashMap;
  * reproject all types of response objects.
  * 
  */
+@Schema(description = "The standard response envelope for all geocoder API responses. "
+		+ "Contains the response object (which may be a single result, an array of results, or a search results object), "
+		+ "along with metadata about the query parameters and output settings.")
 public class OlsResponse {
 	
+	@Schema(description = "The response payload, which varies by endpoint. "
+			+ "May be a single address or intersection object, an array of such objects, "
+			+ "or a SearchResults object containing matches and summary information.")
 	private Object responseObj = null;
+
+	@Schema(description = "The EPSG code of the spatial reference system used for the output geometries.",
+			example = "4326")
 	private Integer outputSRS = null;
+
+	@Schema(description = "The JSONP callback function name, if one was requested.")
 	private String callback = null;
+
+	@Schema(description = "Whether the results are in brief format, omitting detailed properties.")
 	private boolean brief = false;
+
+	@Schema(description = "An error message, if the request resulted in an error. Null if the request was successful.")
 	private String errorMsg = null;
+
+	@Schema(description = "Additional metadata about the query, such as execution time, "
+			+ "minDegree, maxDegree, and other parameters used.")
 	private Map<String, String> extraInfo = new THashMap<String, String>();
 	
 	public OlsResponse(Object responseObj) {
