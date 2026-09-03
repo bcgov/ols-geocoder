@@ -17,8 +17,17 @@ package ca.bc.gov.ols.geocoder.rest;
 
 import java.util.UUID;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "Response containing the Property Identifiers (PIDs) associated with a site.")
 public class PidsResponse {
+
+	@Schema(description = "The unique identifier (UUID) of the site.",
+			example = "a810e87b-7f99-4898-a19c-1493e1d25e25")
 	private final UUID siteUuid;
+
+	@Schema(description = "A comma-separated list of Property Identifiers (PIDs) for the site's parcels.",
+			example = "005-570-168;005-570-169")
 	private final String pids;
 	
 	public PidsResponse(UUID siteUuid, String pids) {

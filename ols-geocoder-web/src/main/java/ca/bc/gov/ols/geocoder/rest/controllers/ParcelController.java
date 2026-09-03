@@ -23,6 +23,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.core.annotations.ParameterObject;
+
 import ca.bc.gov.ols.geocoder.IGeocoder;
 import ca.bc.gov.ols.geocoder.api.SharedParameters;
 import ca.bc.gov.ols.geocoder.data.ISite;
@@ -34,14 +39,23 @@ import ca.bc.gov.ols.geocoder.rest.exceptions.InvalidParameterException;
 @RestController
 @RequestMapping("/parcels")
 @CrossOrigin
+@Tag(name = "parcels", description = "Parcel and PID lookup resources")
 public class ParcelController {
 	
 	@Autowired
 	private IGeocoder geocoder;
 	
+	@Operation(
+		summary = "Find PIDs for a site",
+		description = "Returns the Property Identifier (PID) and related parcel information for a specific site, "
+				+ "identified by its UUID. Results include the site UUID and a comma-separated list of PIDs."
+	)
 	@RequestMapping(value = "/pids/{siteUuid}", method = RequestMethod.GET)
-	public OlsResponse getPids(@PathVariable("siteUuid") String siteUuidStr,
-			SharedParameters params, BindingResult bindingResult) {
+	public OlsResponse getPids(
+			@Parameter(description = "The site's UUID", required = true,
+					example = "a810e87b-7f99-4898-a19c-1493e1d25e25")
+			@PathVariable("siteUuid") String siteUuidStr,
+			@ParameterObject SharedParameters params, BindingResult bindingResult) {
 		UuidParam siteUuid = new UuidParam(siteUuidStr);
 		if(siteUuid.getErrorMessage() != null) {
 			throw new InvalidParameterException(siteUuid.getErrorMessage());
