@@ -19,7 +19,7 @@ export default defineConfig({
 				starlightOpenAPI([
 					{
 						base: "api",
-						schema: "docs/public/openapi.json",
+						schema: "public/openapi.json",
 						sidebar: { label: "OpenAPI Reference" },
 					},
 				]),
