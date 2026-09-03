@@ -238,15 +238,3 @@ jobs:
           name: openapi-spec
           path: ols-geocoder-web/target/openapi.json
           retention-days: 30
-
-      - name: Trigger docs deployment
-        if: always()
-        uses: actions/github-script@v9
-        with:
-          script: |
-            await github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'docs.yml',
-              ref: 'main'
-            })
