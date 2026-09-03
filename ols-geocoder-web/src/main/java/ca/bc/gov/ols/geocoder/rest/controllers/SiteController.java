@@ -27,6 +27,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.core.annotations.ParameterObject;
+
 import ca.bc.gov.ols.geocoder.IGeocoder;
 import ca.bc.gov.ols.geocoder.api.SharedParameters;
 import ca.bc.gov.ols.geocoder.api.data.SiteAddress;
@@ -40,14 +45,25 @@ import ca.bc.gov.ols.util.StopWatch;
 @RestController
 @RequestMapping("/sites")
 @CrossOrigin
+@Tag(name = "sites", description = "Physical site and address resources")
 public class SiteController {
 	
 	@Autowired
 	private IGeocoder geocoder;
 	
+	@Operation(
+		summary = "Find a site by ID",
+		description = "Returns a specific site address based on its unique ID. "
+				+ "The ID can be either the site's UUID or its legacy numeric ID. "
+				+ "Returns a GeoJSON FeatureCollection containing the site as a Point, "
+				+ "with properties including the site name, civic number, street, and location metadata."
+	)
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public OlsResponse getSite(@PathVariable("id") String id,
-			SharedParameters params, BindingResult bindingResult) {
+	public OlsResponse getSite(
+			@Parameter(description = "The site's UUID or legacy numeric ID", required = true,
+					example = "a810e87b-7f99-4898-a19c-1493e1d25e25")
+			@PathVariable("id") String id,
+			@ParameterObject SharedParameters params, BindingResult bindingResult) {
 		UuidParam uuid = new UuidParam(id);
 		if(uuid.getErrorMessage() != null) {
 			throw new InvalidParameterException(uuid.getErrorMessage());
@@ -69,9 +85,18 @@ public class SiteController {
 		return response;
 	}
 	
+	@Operation(
+		summary = "Find sub-sites of a site",
+		description = "Returns all sub-sites (child addresses) of a specific site, identified by its UUID. "
+				+ "Sub-sites are individual units or suites within a multi-occupancy site. "
+				+ "Returns a GeoJSON FeatureCollection containing the sub-sites as Points."
+	)
 	@RequestMapping(value = "/{id}/subsites", method = RequestMethod.GET)
-	public OlsResponse getSubSites(@PathVariable("id") String id,
-			SharedParameters params, BindingResult bindingResult) {
+	public OlsResponse getSubSites(
+			@Parameter(description = "The parent site's UUID", required = true,
+					example = "a810e87b-7f99-4898-a19c-1493e1d25e25")
+			@PathVariable("id") String id,
+			@ParameterObject SharedParameters params, BindingResult bindingResult) {
 		UuidParam uuid = new UuidParam(id);
 		if(uuid.getErrorMessage() != null) {
 			throw new InvalidParameterException(uuid.getErrorMessage());
@@ -93,8 +118,16 @@ public class SiteController {
 		return response;
 	}
 	
+	@Operation(
+		summary = "Find the site nearest to a point",
+		description = "Finds the single site address nearest to the specified point. "
+				+ "Optionally filters by location descriptor and exclusion of access points. "
+				+ "Returns a GeoJSON FeatureCollection containing the nearest site as a Point, "
+				+ "with properties including the site name, civic number, street, and location metadata."
+	)
 	@RequestMapping(value = "/nearest", method = RequestMethod.GET)
-	public OlsResponse getNearestSite(ReverseGeocodeParameters params, BindingResult bindingResult) {
+	public OlsResponse getNearestSite(
+			@ParameterObject ReverseGeocodeParameters params, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			throw new InvalidParameterException(bindingResult);
 		}
@@ -130,8 +163,16 @@ public class SiteController {
 		return response;
 	}
 	
+	@Operation(
+		summary = "Find multiple sites nearest to a point",
+		description = "Finds up to maxResults site addresses nearest to the specified point. "
+				+ "Optionally filters by location descriptor and exclusion of access points. "
+				+ "Returns a GeoJSON FeatureCollection containing the nearest sites as Points, "
+				+ "with properties including site names, civic numbers, streets, and location metadata."
+	)
 	@RequestMapping(value = "/near", method = RequestMethod.GET)
-	public OlsResponse getSitesNear(ReverseGeocodeParameters params, BindingResult bindingResult) {
+	public OlsResponse getSitesNear(
+			@ParameterObject ReverseGeocodeParameters params, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			throw new InvalidParameterException(bindingResult);
 		}
@@ -166,8 +207,16 @@ public class SiteController {
 		return response;
 	}
 	
+	@Operation(
+		summary = "Find sites within a bounding box",
+		description = "Finds up to maxResults site addresses that are within the specified bounding box. "
+				+ "Optionally filters by location descriptor and exclusion of access points. "
+				+ "Returns a GeoJSON FeatureCollection containing the sites as Points, "
+				+ "with properties including site names, civic numbers, streets, and location metadata."
+	)
 	@RequestMapping(value = "/within", method = RequestMethod.GET)
-	public OlsResponse getSitesWithin(ReverseGeocodeParameters params, BindingResult bindingResult) {
+	public OlsResponse getSitesWithin(
+			@ParameterObject ReverseGeocodeParameters params, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			throw new InvalidParameterException(bindingResult);
 		}
