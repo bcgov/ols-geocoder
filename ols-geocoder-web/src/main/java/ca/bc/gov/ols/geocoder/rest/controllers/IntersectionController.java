@@ -29,6 +29,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import org.springdoc.core.annotations.ParameterObject;
@@ -61,6 +63,10 @@ public class IntersectionController {
 				+ "Returns a GeoJSON FeatureCollection containing the intersection as a Point, "
 				+ "with properties including the site name, civic number ranges, and street metadata."
 	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "The intersection with the requested ID in Intersection Address Representation. "
+				+ "See https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md#intersection-address-representation")
+	})
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public OlsResponse getIntersection(
 			@Parameter(description = "The intersection's UUID or legacy numeric ID", required = true,
@@ -91,6 +97,10 @@ public class IntersectionController {
 				+ "Returns a GeoJSON FeatureCollection containing the nearest intersection as a Point, "
 				+ "with properties including the site name, civic number ranges, and street metadata."
 	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "The nearest intersection in Intersection Address Representation. "
+				+ "See https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md#intersection-address-representation")
+	})
 	@RequestMapping(value = "/nearest", method = RequestMethod.GET)
 	public OlsResponse getNearestIntersection(
 			@Parameter(description = "The X (longitude) and Y (latitude) coordinate of the search point, "
@@ -142,6 +152,11 @@ public class IntersectionController {
 				+ "Returns a GeoJSON FeatureCollection containing the nearest intersections as Points, "
 				+ "with properties including site names, civic number ranges, and street metadata."
 	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "A list of selected intersections near a given point. "
+				+ "Each intersection is in Intersection Address Representation. "
+				+ "See https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md#intersection-address-representation")
+	})
 	@RequestMapping(value = "/near", method = RequestMethod.GET)
 	public OlsResponse getIntersectionsNear(
 			@Parameter(description = "The X (longitude) and Y (latitude) coordinate of the search point, "
@@ -194,6 +209,11 @@ public class IntersectionController {
 				+ "Returns a GeoJSON FeatureCollection containing the intersections as Points, "
 				+ "with properties including site names, civic number ranges, and street metadata."
 	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "A list of selected intersections within the given area. "
+				+ "Each intersection is in Intersection Address Representation. "
+				+ "See https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md#intersection-address-representation")
+	})
 	@RequestMapping(value = "/within", method = RequestMethod.GET)
 	public OlsResponse getIntersectionsWithin(
 			@Parameter(description = "The bounding box to search within, in the format 'minx,miny,maxx,maxy'. "

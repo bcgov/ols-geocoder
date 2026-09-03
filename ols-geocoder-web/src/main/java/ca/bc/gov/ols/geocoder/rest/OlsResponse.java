@@ -21,7 +21,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import ca.bc.gov.ols.geocoder.api.SharedParameters;
 import ca.bc.gov.ols.geocoder.api.data.ModifiableLocation;
+import ca.bc.gov.ols.geocoder.api.data.OccupantAddress;
 import ca.bc.gov.ols.geocoder.api.data.SearchResults;
+import ca.bc.gov.ols.geocoder.api.data.SiteAddress;
+import ca.bc.gov.ols.geocoder.api.data.StreetIntersectionAddress;
 import gnu.trove.map.hash.THashMap;
 
 /**
@@ -37,7 +40,9 @@ public class OlsResponse {
 	
 	@Schema(description = "The response payload, which varies by endpoint. "
 			+ "May be a single address or intersection object, an array of such objects, "
-			+ "or a SearchResults object containing matches and summary information.")
+			+ "or a SearchResults object containing matches and summary information.",
+			oneOf = {SearchResults.class, SiteAddress[].class, OccupantAddress[].class,
+					StreetIntersectionAddress[].class, String[].class, PidsResponse.class})
 	private Object responseObj = null;
 
 	@Schema(description = "The EPSG code of the spatial reference system used for the output geometries.",

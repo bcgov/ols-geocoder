@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springdoc.core.annotations.ParameterObject;
 
@@ -50,6 +52,9 @@ public class ParcelController {
 		description = "Returns the Property Identifier (PID) and related parcel information for a specific site, "
 				+ "identified by its UUID. Results include the site UUID and a comma-separated list of PIDs."
 	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "A comma-separated string containing all the parcel identifiers associated with the requested site ID.")
+	})
 	@RequestMapping(value = "/pids/{siteUuid}", method = RequestMethod.GET)
 	public OlsResponse getPids(
 			@Parameter(description = "The site's UUID", required = true,

@@ -29,6 +29,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springdoc.core.annotations.ParameterObject;
 
@@ -58,6 +60,10 @@ public class SiteController {
 				+ "Returns a GeoJSON FeatureCollection containing the site as a Point, "
 				+ "with properties including the site name, civic number, street, and location metadata."
 	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "The site with the requested ID in Site Address Representation. "
+				+ "See https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md#site-address-representation")
+	})
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public OlsResponse getSite(
 			@Parameter(description = "The site's UUID or legacy numeric ID", required = true,
@@ -91,6 +97,10 @@ public class SiteController {
 				+ "Sub-sites are individual units or suites within a multi-occupancy site. "
 				+ "Returns a GeoJSON FeatureCollection containing the sub-sites as Points."
 	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "Returns all sub-sites of a given site in Site Address Representation. "
+				+ "See https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md#site-address-representation")
+	})
 	@RequestMapping(value = "/{id}/subsites", method = RequestMethod.GET)
 	public OlsResponse getSubSites(
 			@Parameter(description = "The parent site's UUID", required = true,
@@ -125,6 +135,10 @@ public class SiteController {
 				+ "Returns a GeoJSON FeatureCollection containing the nearest site as a Point, "
 				+ "with properties including the site name, civic number, street, and location metadata."
 	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "The nearest site in Site Address Representation. "
+				+ "See https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md#site-address-representation")
+	})
 	@RequestMapping(value = "/nearest", method = RequestMethod.GET)
 	public OlsResponse getNearestSite(
 			@ParameterObject ReverseGeocodeParameters params, BindingResult bindingResult) {
@@ -170,6 +184,11 @@ public class SiteController {
 				+ "Returns a GeoJSON FeatureCollection containing the nearest sites as Points, "
 				+ "with properties including site names, civic numbers, streets, and location metadata."
 	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "A list of selected sites near a given point in order of closest to farthest. "
+				+ "Each site is in Site Address Representation. "
+				+ "See https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md#site-address-representation")
+	})
 	@RequestMapping(value = "/near", method = RequestMethod.GET)
 	public OlsResponse getSitesNear(
 			@ParameterObject ReverseGeocodeParameters params, BindingResult bindingResult) {
@@ -214,6 +233,11 @@ public class SiteController {
 				+ "Returns a GeoJSON FeatureCollection containing the sites as Points, "
 				+ "with properties including site names, civic numbers, streets, and location metadata."
 	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "A list of selected sites within the given area. "
+				+ "Each site is in Site Address Representation. "
+				+ "See https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md#site-address-representation")
+	})
 	@RequestMapping(value = "/within", method = RequestMethod.GET)
 	public OlsResponse getSitesWithin(
 			@ParameterObject ReverseGeocodeParameters params, BindingResult bindingResult) {

@@ -31,6 +31,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springdoc.core.annotations.ParameterObject;
 
@@ -62,6 +64,10 @@ public class OccupantController {
 				+ "Results include the full address, occupancy info, and geographically matched location. "
 				+ "If no matchPrecision is specified, defaults to OCCUPANT precision."
 	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "A list of matching occupants, sites, and their physical locations. "
+				+ "See https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md#resource-representations-in-http-responses")
+	})
 	@RequestMapping(value = "/addresses", method = RequestMethod.GET)
 	public OlsResponse geocoder(
 			@ParameterObject GeocodeQuery query, BindingResult bindingResult) {
@@ -100,6 +106,10 @@ public class OccupantController {
 				+ "Returns a GeoJSON FeatureCollection containing the occupant address as a Point, "
 				+ "with properties including the business name, civic address, and location metadata."
 	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "The occupant with the requested ID in Site Address Representation plus Occupant Representation. "
+				+ "See https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md#occupant-representation")
+	})
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public OlsResponse getOccupant(
 			@Parameter(description = "The occupant's UUID or legacy numeric ID", required = true,
@@ -136,6 +146,10 @@ public class OccupantController {
 				+ "Returns a GeoJSON FeatureCollection containing the nearest occupant as a Point, "
 				+ "with properties including the business name, civic address, and location metadata."
 	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "The nearest occupant in Site Address Representation plus Occupant Representation. "
+				+ "See https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md#occupant-representation")
+	})
 	@RequestMapping(value = "/nearest", method = RequestMethod.GET)
 	public OlsResponse getNearestOccupant(
 			@ParameterObject ReverseGeocodeParameters params, BindingResult bindingResult) {
@@ -182,6 +196,11 @@ public class OccupantController {
 				+ "Returns a GeoJSON FeatureCollection containing the nearest occupants as Points, "
 				+ "with properties including business names, civic addresses, and location metadata."
 	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "A list of selected occupants near a given point. "
+				+ "Each occupant is in Site Address Representation plus Occupant Representation. "
+				+ "See https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md#occupant-representation")
+	})
 	@RequestMapping(value = "/near", method = RequestMethod.GET)
 	public OlsResponse getOccupantsNear(
 			@ParameterObject ReverseGeocodeParameters params, BindingResult bindingResult) {
@@ -228,6 +247,11 @@ public class OccupantController {
 				+ "Returns a GeoJSON FeatureCollection containing the occupants as Points, "
 				+ "with properties including business names, civic addresses, and location metadata."
 	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "A list of selected occupants within the given area. "
+				+ "Each occupant is in Site Address Representation plus Occupant Representation. "
+				+ "See https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md#occupant-representation")
+	})
 	@RequestMapping(value = "/within", method = RequestMethod.GET)
 	public OlsResponse getOccupantsWithin(
 			@ParameterObject ReverseGeocodeParameters params, BindingResult bindingResult) {
@@ -272,6 +296,9 @@ public class OccupantController {
 		description = "Returns a list of occupant tags (business names or categories) that match the given search string. "
 				+ "Useful for auto-complete or tag lookup. Returns up to maxResults matching tags."
 	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "A list of matching tag strings.")
+	})
 	@RequestMapping(value = "/tags", method = RequestMethod.GET)
 	public List<String> getTags(
 			@Parameter(description = "The tag search string to match (prefix match).",
