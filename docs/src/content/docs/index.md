@@ -60,9 +60,9 @@ For more information about using the BC Address Geocoder and incorporating it in
 | Document | Description | Audience |
 |----------|-------------|----------|
 | [Geocoder Configuration Files](https://github.com/bcgov/ols-geocoder/tree/main/docs/config/bc) | Configuration files for the BC Address Geocoder including abbreviations, unit designators, and locality aliases | Geocoder developers and operators, other Canadian jurisdictions |
-| [Test Addresses](https://github.com/bcgov/ols-geocoder/blob/main/docs/atp_addresses.csv) | List of test addresses for QA of new versions of the geocoder | Geocoder clients, app developers |
-| [BC Address Coverage Test Addresses](https://github.com/bcgov/ols-geocoder/blob/main/docs/sites_bc.csv) | One address from every locality in BC for verification of Geocodable BC | BC Geocoder administrators, geocoder prospects |
-| [OSM Suitability Test Addresses](https://github.com/bcgov/ols-geocoder/blob/main/docs/itn-osm-comparison.csv) | Random addresses selected for use in the OSM suitability study | App developers |
+| [Test Addresses](https://github.com/bcgov/ols-geocoder/blob/main/docs/src/content/docs/data/atp_addresses.csv) | List of test addresses for QA of new versions of the geocoder | Geocoder clients, app developers |
+| [BC Address Coverage Test Addresses](https://github.com/bcgov/ols-geocoder/blob/main/docs/src/content/docs/data/sites_bc.csv) | One address from every locality in BC for verification of Geocodable BC | BC Geocoder administrators, geocoder prospects |
+| [OSM Suitability Test Addresses](https://github.com/bcgov/ols-geocoder/blob/main/docs/src/content/docs/comparisons/itn-osm-comparison.csv) | Random addresses selected for use in the OSM suitability study | App developers |
 
 ## Installation
 
