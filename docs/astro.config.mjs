@@ -8,6 +8,11 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: "BC Address Geocoder",
+			logo: {
+				src: "./src/assets/bc-mark.svg",
+				alt: "BC Government Logo",
+			},
+			customCss: ["./src/styles/bc-gov.css"],
 			social: [
 				{
 					icon: "github",
