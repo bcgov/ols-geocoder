@@ -148,11 +148,11 @@ public class GeocodeQuery extends SharedParameters{
 	private Interpolation interpolation = Interpolation.ADAPTIVE;
 
 	@Parameter(description = "If true, the query parameters are echoed back in the response.",
-			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "true"))
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "true"))
 	private boolean echo = true;
 
 	@Parameter(description = "If true, uses supplied parcelPoint to derive an appropriate accessPoint.",
-			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "false"))
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean extrapolate = false;
 
 	@Parameter(hidden = true)
@@ -162,23 +162,23 @@ public class GeocodeQuery extends SharedParameters{
 	private Filter<GeocodeMatch> filter = null;
 
 	@Parameter(description = "If true, occupant (business name) information is included in results.",
-			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "false"))
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean includeOccupants = false;
 
 	@Parameter(description = "If true, enables auto-complete mode for partial address input.",
-			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "false"))
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean autoComplete = false;
 
 	@Parameter(description = "If true, only exact spelling matches are returned.",
-			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "false"))
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean exactSpelling = false;
 
 	@Parameter(description = "If true, fuzzy matching is enabled for more lenient address matching.",
-			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "false"))
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean fuzzyMatch = false;
 
 	@Parameter(description = "If true, only results with a PID (Property Identifier) are returned.",
-			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "false"))
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean hasPid = false;
 
 	@Parameter(description = "The preferred character encoding for the response. "

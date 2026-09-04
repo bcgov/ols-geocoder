@@ -31,14 +31,14 @@ public class SharedParameters {
 	private int outputSRS = 4326;
 
 	@Parameter(description = "If true the result is returned as a file attachment.",
-			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "false"))
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean asAttachment = false;
 
 	@Parameter(description = "A set of user-defined tags to apply to the query results.")
 	protected String tags;
 
 	@Parameter(description = "If true the results are returned in brief format, omitting detailed address and location properties.",
-			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "false"))
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean brief = false;
 
 	@Parameter(description = "The maximum number of results to return.",

@@ -59,11 +59,11 @@ public class ReverseGeocodeParameters extends SharedParameters {
 	private Integer maxDistance;
 
 	@Parameter(description = "If true, address results that are identified as 'access points' are excluded.",
-			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "false"))
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean excludeUnits = false;
 
 	@Parameter(description = "If true, only civic addresses are returned.",
-			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "false"))
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean onlyCivic = false;
 	
 	public int getMinDegree() {
