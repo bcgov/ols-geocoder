@@ -1,5 +1,8 @@
 # BC Address Geocoder
 
+> [!IMPORTANT]
+> **This documentation has moved.** The current BC Address Geocoder documentation is available at [bcgov.github.io/ols-geocoder](https://bcgov.github.io/ols-geocoder/). This branch contains legacy documentation and is no longer maintained.
+
 The BC Address Geocoder provides REST APIs for address cleaning, correction, completion, geocoding, and reverse geocoding. The BC Address Geocoder has processed over one billion addresses since its initial release in 2013. To see it in use by an application, visit [Location Services in Action](https://bcgov.github.io/ols-devkit/ols-demo/index.html)..
 
 
