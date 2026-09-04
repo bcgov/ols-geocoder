@@ -49,9 +49,7 @@ public class SharedParameters {
 			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "0"))
 	private int setBack = 0;
 
-	@Parameter(description = "Determines what type of location is returned for the address. "
-			+ "Possible values: any, streetPoint, localityPoint, provincePoint, intersectionPoint, "
-			+ "accessPoint, routingPoint, blockFacePoint, rooftopPoint, frontDoorPoint, parcelPoint.",
+	@Parameter(description = "Describes the nature of the address location.",
 			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "any"))
 	protected LocationDescriptor locationDescriptor = LocationDescriptor.ANY;
 

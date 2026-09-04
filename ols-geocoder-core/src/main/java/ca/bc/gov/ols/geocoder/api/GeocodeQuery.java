@@ -46,11 +46,12 @@ import ca.bc.gov.ols.util.GeomParseUtil;
  */
 public class GeocodeQuery extends SharedParameters{
 	
-	@Parameter(description = "The address string to geocode. This is the main search input.",
+	@Parameter(description = "Civic or intersection address as a single string.",
 			example = "525 Superior St, Victoria, BC")
 	private String addressString;
 
-	@Parameter(description = "The site name (e.g. business name or building name).")
+	@Parameter(description = "A string containing the name of the building, facility, or institution "
+			+ "(e.g., Duck Building, Casa Del Mar, Crystal Garden, Bluebird House).")
 	private String siteName;
 
 	@Parameter(description = "The unit number (e.g. '100' in '100-525 Superior St').")
@@ -59,30 +60,31 @@ public class GeocodeQuery extends SharedParameters{
 	@Parameter(description = "The unit number suffix (e.g. 'A', 'B').")
 	private String unitNumberSuffix;
 
-	@Parameter(description = "The unit designator (e.g. 'Unit', 'Suite', 'Plot').")
+	@Parameter(description = "The type of unit within a house or building.")
 	private String unitDesignator;
 
-	@Parameter(description = "The civic number (e.g. '525' in '525 Superior St').",
+	@Parameter(description = "The official number assigned to a site by an address authority.",
 			example = "525")
 	private String civicNumber;
 
-	@Parameter(description = "The civic number suffix (e.g. 'A', 'B').")
+	@Parameter(description = "A letter or fraction that follows the civic number (e.g., the A in 1039A Bledsoe St).")
 	private String civicNumberSuffix;
 
-	@Parameter(description = "The street name (e.g. 'Superior').",
+	@Parameter(description = "The official name of the street as assigned by an address authority "
+			+ "(e.g., the Douglas in 1175 Douglas Street).",
 			example = "Superior")
 	private String streetName;
 
-	@Parameter(description = "The street type (e.g. 'St', 'Ave', 'Blvd').")
+	@Parameter(description = "The type of street as assigned by a municipality (e.g., the ST in 1175 DOUGLAS St).")
 	private String streetType;
 
-	@Parameter(description = "The street direction (e.g. 'N', 'S', 'E', 'W').")
+	@Parameter(description = "The abbreviated compass direction as defined by Canada Post and B.C. civic addressing authorities.")
 	private String streetDirection;
 
-	@Parameter(description = "The street qualifier (e.g. 'Upper', 'Lower').")
+	@Parameter(description = "The qualifier of a street name (e.g., the Bridge in Johnson St Bridge).")
 	private String streetQualifier;
 
-	@Parameter(description = "The locality (neighbourhood or city) name.",
+	@Parameter(description = "The name of the locality assigned to a given site by an address authority.",
 			example = "Victoria")
 	private String localityName;
 
@@ -93,15 +95,14 @@ public class GeocodeQuery extends SharedParameters{
 	@Parameter(description = "A tag search condition. Use 'AND' or 'OR' to combine multiple tags.")
 	private String tagCondition;
 
-	@Parameter(description = "The minimum match score (0-100) to include in results.",
+	@Parameter(description = "The minimum score required for a match to be returned.",
 			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "0"))
 	private int minScore = 0;
 
-	@Parameter(description = "Filter results to only include these match precisions. "
-			+ "Possible values: ANY, CIVIC, INTERSECTION, POINT, OCCUPANT, HEADER.")
+	@Parameter(description = "A comma separated list of individual match precision levels to include in results.")
 	private EnumSet<MatchPrecision> matchPrecision = null;
 
-	@Parameter(description = "Exclude results with these match precisions.")
+	@Parameter(description = "A comma separated list of individual match precision levels to exclude from results.")
 	private EnumSet<MatchPrecision> matchPrecisionNot = null;
 
 	@Parameter(hidden = true)
@@ -113,8 +114,8 @@ public class GeocodeQuery extends SharedParameters{
 	@Parameter(description = "Exclude results from these localities.")
 	private List<String> notLocalities = null;
 
-	@Parameter(description = "A centre point (x,y) for distance-based filtering. "
-			+ "Must be used with maxDistance. Cannot be used with bbox.",
+	@Parameter(description = "The coordinates of a centre point (x,y) used to define a bounding circle "
+			+ "that will limit the search area. This parameter must be specified together with 'maxDistance'.",
 			example = "-123.1216,49.2827")
 	private double[] centre;
 
@@ -125,15 +126,14 @@ public class GeocodeQuery extends SharedParameters{
 			+ "Must be used with centre. Cannot be used with bbox.")
 	private int maxDistance;
 
-	@Parameter(description = "A bounding box (xmin,ymin,xmax,maxy) to limit results. "
-			+ "Cannot be used with centre/maxDistance.",
+	@Parameter(description = "A bounding box (xmin,ymin,xmax,ymax) that limits the search area.",
 			example = "-123.13,49.28,-123.11,49.29")
 	private double[] bbox;
 
 	@Parameter(hidden = true)
 	private Polygon bboxPolygon;
 
-	@Parameter(description = "A parcel point (x,y) to filter results to only those near a specific parcel.",
+	@Parameter(description = "The coordinates of a point (x,y) known to be inside the parcel containing a given address.",
 			example = "-123.1216,49.2827")
 	private double[] parcelPoint;
 
@@ -143,8 +143,7 @@ public class GeocodeQuery extends SharedParameters{
 	@Parameter(description = "A user-defined ID that will be returned with the results for correlation.")
 	private String yourId;
 
-	@Parameter(description = "The interpolation method to use. "
-			+ "Possible values: ADAPTIVE, NONE, DEFAULT.",
+	@Parameter(description = "accessPoint interpolation method.",
 			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "ADAPTIVE"))
 	private Interpolation interpolation = Interpolation.ADAPTIVE;
 
@@ -152,7 +151,7 @@ public class GeocodeQuery extends SharedParameters{
 			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "true"))
 	private boolean echo = true;
 
-	@Parameter(description = "If true, allows extrapolation beyond the known address range.",
+	@Parameter(description = "If true, uses supplied parcelPoint to derive an appropriate accessPoint.",
 			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "false"))
 	private boolean extrapolate = false;
 
