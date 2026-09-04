@@ -28,6 +28,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.core.annotations.ParameterObject;
+
 import ca.bc.gov.ols.geocoder.IGeocoder;
 import ca.bc.gov.ols.geocoder.api.GeocodeQuery;
 import ca.bc.gov.ols.geocoder.api.data.SearchResults;
@@ -47,6 +53,14 @@ public class GeocoderController {
 	@Autowired
 	private IGeocoder geocoder;
 	
+	@Operation(
+		summary = "Service root endpoint",
+		description = "Root endpoint that performs a basic geocode of 'BC' to verify the service is operational. "
+				+ "Returns the full search results as a GeoJSON FeatureCollection."
+	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "A basic search result confirming the service is operational.")
+	})
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public OlsResponse geocoderPing() {
 		GeocodeQuery query = new GeocodeQuery("BC");
@@ -56,6 +70,14 @@ public class GeocoderController {
 		return response;
 	}
 	
+	@Operation(
+		summary = "Service health check",
+		description = "Simple health check endpoint that verifies the geocoder service is operational. "
+				+ "Returns HTTP 200 OK if the service is running."
+	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "Service is running.")
+	})
 	@RequestMapping(value = "/ping", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public void geocoder() {
@@ -63,8 +85,20 @@ public class GeocoderController {
 		geocoder.geocode(query);
 	}
 
+	@Operation(
+		summary = "Geocode an address",
+		description = "Geocodes an address string and returns matching physical addresses. "
+				+ "Results include the full address, matched location, and scoring information. "
+				+ "Supports fuzzy matching, auto-complete, and various precision filters. "
+				+ "Returns a GeoJSON FeatureCollection of matching addresses."
+	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "A list of matching sites or intersections and their physical locations. "
+				+ "See https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md#resource-representations-in-http-responses")
+	})
 	@RequestMapping(value = "/addresses", method = RequestMethod.GET)
-	public OlsResponse geocoder(GeocodeQuery query, BindingResult bindingResult) {
+	public OlsResponse geocoder(
+			@ParameterObject GeocodeQuery query, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			throw new InvalidParameterException(bindingResult);
 		}
@@ -82,8 +116,19 @@ public class GeocoderController {
 		return response;
 	}
 	
+	@Operation(
+		summary = "Geocode a site address",
+		description = "Geocodes an address string and returns matching site addresses without interpolation. "
+				+ "This is an alias for the /addresses endpoint with interpolation set to NONE. "
+				+ "Returns a GeoJSON FeatureCollection of matching site addresses."
+	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "A list of matching sites and their physical locations. "
+				+ "See https://github.com/bcgov/ols-geocoder/blob/gh-pages/geocoder-developer-guide.md#resource-representations-in-http-responses")
+	})
 	@RequestMapping(value = "/sites", method = RequestMethod.GET)
-	public OlsResponse siteGeocoder(GeocodeQuery query, BindingResult errors) {
+	public OlsResponse siteGeocoder(
+			@ParameterObject GeocodeQuery query, BindingResult errors) {
 		// sites is just an alias for no interpolation
 		query.setInterpolation(Interpolation.NONE);
 		
@@ -99,6 +144,14 @@ public class GeocoderController {
 		return response;
 	}
 	
+	@Operation(
+		summary = "Service status",
+		description = "Returns the current status of the geocoder service, including version information, "
+				+ "data processing timestamps, and record counts for the road network, parcels, and site addresses."
+	)
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", description = "A JSON response containing details on Geocoder data and any startup warning or errors.")
+	})
 	@RequestMapping(value = "/status", method = {RequestMethod.GET})
 	public BasicStatus status() {
 		return new BasicStatus(geocoder.getStatus());
