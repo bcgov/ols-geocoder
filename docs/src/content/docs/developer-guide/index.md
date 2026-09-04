@@ -129,71 +129,71 @@ The addresses resource will return a document in the requested format and spatia
 #### About Query Representation
 Attribute Name |	Type
 ---------------------: | --- |
-[searchTimestamp](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#searchTimestamp) | Datetime
-[executionTime](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#executionTime) | Real
-[version](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#version) | String 
-[minScore](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#minScore)  | Integer 
-[maxResults](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#maxResults) | Integer 
-[echo](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#echo)  | Boolean
-[interpolation](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#interpolation)  |	String 
-[outputSRS](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#outputSRS) | Integer
-[setBack](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#setBack) |Real 
+[searchTimestamp](../getting-started/glossary/#searchTimestamp) | Datetime
+[executionTime](../getting-started/glossary/#executionTime) | Real
+[version](../getting-started/glossary/#version) | String
+[minScore](../getting-started/glossary/#minScore)  | Integer
+[maxResults](../getting-started/glossary/#maxResults) | Integer
+[echo](../getting-started/glossary/#echo)  | Boolean
+[interpolation](../getting-started/glossary/#interpolation)  |	String
+[outputSRS](../getting-started/glossary/#outputSRS) | Integer
+[setBack](../getting-started/glossary/#setBack) |Real
 
 <br><br>
 <a name=siteaddressrepresentation></a> 
 #### Site Address Representation
 Attribute Name |	Type
 ---------------------: | ---
-[fullAddress](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#fullAddress) |	String
-[score](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#score) |	integer
-[matchPrecision](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#matchPrecision) |	String
-[precisionPoints](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#mprecisionPoints) | integer
-[faults](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#faults) | String
-[siteName](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#siteName) | String
-[unitDesignator](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#unitDesignator) | String
-[unitNumber](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#unitNumber) | String
-[unitNumberSuffix](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#unitNumberSuffix) | String
-[civicNumber](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#civicNumber) | String
-[civicNumberSuffix](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#civicNumberSuffix) | String
-[streetName](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#streetName) | String
-[streetType](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#streetType) | String
-[isStreetTypePrefix](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#isStreetTypePrefix) | Boolean
-[streetDirection](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#streetDirection) | String
-[isStreetDirectionPrefix](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#isStreetDirectionPrefix) | Boolean
-[streetQualifier](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#streetQualifier) | String
-[localityName](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#localityName) | String
-[localityType](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#localityType) | String
-[electoralArea](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#electoralArea) | String
-[provinceCode](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#provinceCode) |	String
-[locationPositionalAccuracy](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#locationPositionalAccuracy) |	String
-[locationDescriptor](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#locationDescriptor) |	String
-[siteID](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#siteID) |	string
-[blockID](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#blockID) |	String
-[fullSiteDescriptor](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#fullSiteDescriptor) |	String
-[accessNotes](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#accessNotes) |	String
-[siteStatus](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#siteStatus) |	String
-[siteRetireDate](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#siteRetireDate) |	Date
-[changeDate](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#changeDate) |	string
-[isOfficial](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#isOfficial) |	string
+[fullAddress](../getting-started/glossary/#fullAddress) |	String
+[score](../getting-started/glossary/#score) |	integer
+[matchPrecision](../getting-started/glossary/#matchPrecision) |	String
+[precisionPoints](../getting-started/glossary/#precisionPoints) | integer
+[faults](../getting-started/glossary/#faults) | String
+[siteName](../getting-started/glossary/#siteName) | String
+[unitDesignator](../getting-started/glossary/#unitDesignator) | String
+[unitNumber](../getting-started/glossary/#unitNumber) | String
+[unitNumberSuffix](../getting-started/glossary/#unitNumberSuffix) | String
+[civicNumber](../getting-started/glossary/#civicNumber) | String
+[civicNumberSuffix](../getting-started/glossary/#civicNumberSuffix) | String
+[streetName](../getting-started/glossary/#streetName) | String
+[streetType](../getting-started/glossary/#streetType) | String
+[isStreetTypePrefix](../getting-started/glossary/#isStreetTypePrefix) | Boolean
+[streetDirection](../getting-started/glossary/#streetDirection) | String
+[isStreetDirectionPrefix](../getting-started/glossary/#isStreetDirectionPrefix) | Boolean
+[streetQualifier](../getting-started/glossary/#streetQualifier) | String
+[localityName](../getting-started/glossary/#localityName) | String
+[localityType](../getting-started/glossary/#localityType) | String
+[electoralArea](../getting-started/glossary/#electoralArea) | String
+[provinceCode](../getting-started/glossary/#provinceCode) |	String
+[locationPositionalAccuracy](../getting-started/glossary/#locationPositionalAccuracy) |	String
+[locationDescriptor](../getting-started/glossary/#locationDescriptor) |	String
+[siteID](../getting-started/glossary/#siteID) |	string
+[blockID](../getting-started/glossary/#blockID) |	String
+[fullSiteDescriptor](../getting-started/glossary/#fullSiteDescriptor) |	String
+[accessNotes](../getting-started/glossary/#accessNotes) |	String
+[siteStatus](../getting-started/glossary/#siteStatus) |	String
+[siteRetireDate](../getting-started/glossary/#siteRetireDate) |	Date
+[changeDate](../getting-started/glossary/#changeDate) |	string
+[isOfficial](../getting-started/glossary/#isOfficial) |	string
 
 <br><br>
 <a name=intersectionaddressrepresentation></a>
 #### Intersection Address Representation
 Attribute Name |	Type
 ---------------------: | ---
-[fullAddress](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#fullAddress) |	String
-[intersectionName](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#intersectionName) |	String
-[localityName](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#localityName) |	String
-[provinceCode](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#provinceCode]) |	String
-[score](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#score) |	Integer
-[matchPrecision](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#matchPrecision) |	String
-[precisionPoints](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#precisionPoints) |	Integer
-[provinceCode](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#provinceCode) |	String
-[matchPrecision](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#matchPrecision) |	String
-[precisionPoints](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#precisionPoints) |	Integer
-[faults](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#faults) |	String
-[intersectionID](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#intersectionID) |	String
-[degree](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#degree) |	String
+[fullAddress](../getting-started/glossary/#fullAddress) |	String
+[intersectionName](../getting-started/glossary/#intersectionName) |	String
+[localityName](../getting-started/glossary/#localityName) |	String
+[provinceCode](../getting-started/glossary/#provinceCode) |	String
+[score](../getting-started/glossary/#score) |	Integer
+[matchPrecision](../getting-started/glossary/#matchPrecision) |	String
+[precisionPoints](../getting-started/glossary/#precisionPoints) |	Integer
+[provinceCode](../getting-started/glossary/#provinceCode) |	String
+[matchPrecision](../getting-started/glossary/#matchPrecision) |	String
+[precisionPoints](../getting-started/glossary/#precisionPoints) |	Integer
+[faults](../getting-started/glossary/#faults) |	String
+[intersectionID](../getting-started/glossary/#intersectionID) |	String
+[degree](../getting-started/glossary/#degree) |	String
 
 <br><br>
 <a name=occupantaddressrepresentation></a>
@@ -204,23 +204,23 @@ The occupants/addresses resource is similar to the addresses resource. Its respo
 #### Occupant Representation
 Attribute Name |	Type
 ---------------------: | ---
-[occupantName](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#occupantName) |	string
-[occupantID](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#occupantID) |	string
-[occupantAliasAddress](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#occupantAliasAddress) |	string
-[occupantDescription](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#occupantDescription) |	string
-[contactEmail](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#contactEmail) |	string
-[contactPhone](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#contactPhone) |	string
-[contactFax](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#contactFax) |	string
-[websiteUrl](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#websiteUrl) |	string
-[imageUrl](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#imageUrl) |	string
-[keywords](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#keywords) |	string
-[businessCategoryClass](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#businessCategoryClass) |	string
-[businessCategoryDescription](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#businessCategoryDescription) |	string
-[naicsCode](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#naicsCode) |	string
-[dateOccupantUpdated](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#dateOccupantUpdated) |	string
-[dateOccupantAdded](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#dateOccupantAdded) |	string
-[custodianId](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#custodianId) |	string
-[sourceDataId](https://github.com/bcgov/api-specs/blob/master/geocoder/glossary.md#sourceDataId) |	string
+[occupantName](../getting-started/glossary/#occupantName) |	string
+[occupantID](../getting-started/glossary/#occupantID) |	string
+[occupantAliasAddress](../getting-started/glossary/#occupantAliasAddress) |	string
+[occupantDescription](../getting-started/glossary/#occupantDescription) |	string
+[contactEmail](../getting-started/glossary/#contactEmail) |	string
+[contactPhone](../getting-started/glossary/#contactPhone) |	string
+[contactFax](../getting-started/glossary/#contactFax) |	string
+[websiteUrl](../getting-started/glossary/#websiteUrl) |	string
+[imageUrl](../getting-started/glossary/#imageUrl) |	string
+[keywords](../getting-started/glossary/#keywords) |	string
+[businessCategoryClass](../getting-started/glossary/#businessCategoryClass) |	string
+[businessCategoryDescription](../getting-started/glossary/#businessCategoryDescription) |	string
+[naicsCode](../getting-started/glossary/#naicsCode) |	string
+[dateOccupantUpdated](../getting-started/glossary/#dateOccupantUpdated) |	string
+[dateOccupantAdded](../getting-started/glossary/#dateOccupantAdded) |	string
+[custodianId](../getting-started/glossary/#custodianId) |	string
+[sourceDataId](../getting-started/glossary/#sourceDataId) |	string
 
 <br><br>
 <a name=aboutfaults></a>
