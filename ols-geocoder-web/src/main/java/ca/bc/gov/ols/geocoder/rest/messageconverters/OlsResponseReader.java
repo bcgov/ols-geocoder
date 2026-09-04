@@ -18,6 +18,8 @@ package ca.bc.gov.ols.geocoder.rest.messageconverters;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import ca.bc.gov.ols.geocoder.api.data.AddressMatch;
 import ca.bc.gov.ols.geocoder.api.data.GeocodeMatch;
@@ -62,7 +64,8 @@ public class OlsResponseReader {
 //			if(addrs.length == 0) {
 //				writer.noMatches();
 //			} else {
-				writer.featureCollectionHeader();
+				Map<String, Object> metadata = parcelMetadata();
+				writer.featureCollectionHeader(metadata);
 				for(SiteAddress addr : addrs) {
 					siteAddress(addr);
 				}
@@ -88,6 +91,21 @@ public class OlsResponseReader {
 			writer.unknown(responseObj);
 		}
 		writer.documentFooter();
+	}
+
+	private Map<String, Object> parcelMetadata() {
+		Map<String, Object> metadata = new LinkedHashMap<String, Object>();
+		if(response.getExtraInfo("version").isEmpty()) return metadata;
+		metadata.put("encoding", response.getExtraInfo("encoding"));
+		metadata.put("searchTimestamp", response.getExtraInfo("searchTimestamp"));
+		metadata.put("executionTime", response.getExtraInfo("executionTime"));
+		metadata.put("version", response.getExtraInfo("version"));
+		metadata.put("baseDataDate", response.getExtraInfo("baseDataDate"));
+		metadata.put("srsCode", response.getOutputSRS());
+		metadata.put("disclaimer", response.getExtraInfo("disclaimer"));
+		metadata.put("privacyStatement", response.getExtraInfo("privacyStatement"));
+		metadata.put("copyrightNotice", response.getExtraInfo("copyrightNotice"));
+		return metadata;
 	}
 
 	public void searchResults(SearchResults results) throws IOException {
@@ -151,7 +169,16 @@ public class OlsResponseReader {
 	
 	public void siteAddress(SiteAddress addr, GeocodeMatch match) throws IOException {
 		writer.featureHeader(addr.getLocation());
+		if(addr.getError() != null) {
+			writer.field("pid", addr.getPid(), true);
+			writer.field("error", addr.getError());
+			writer.featureFooter();
+			return;
+		}
 		writer.field("addressString", "fullAddress", addr.getAddressString());
+		if(addr.getPid() != null) {
+			writer.field("pid", addr.getPid(), true);
+		}
 		if(match != null) {
 			match(match);
 		}

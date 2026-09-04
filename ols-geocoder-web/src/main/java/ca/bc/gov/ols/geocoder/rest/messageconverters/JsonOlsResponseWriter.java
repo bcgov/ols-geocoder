@@ -17,6 +17,7 @@ package ca.bc.gov.ols.geocoder.rest.messageconverters;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Map;
 
 import org.apache.commons.text.StringEscapeUtils;
 
@@ -118,6 +119,17 @@ public class JsonOlsResponseWriter implements OlsResponseWriter {
 	public void featureCollectionHeader() throws IOException {
 		jw.beginObject();
 		jw.name("type").value("FeatureCollection");
+		jw.name("features");
+		jw.beginArray();
+	}
+
+	@Override
+	public void featureCollectionHeader(Map<String, Object> metadata) throws IOException {
+		jw.beginObject();
+		jw.name("type").value("FeatureCollection");
+		for(Map.Entry<String, Object> entry : metadata.entrySet()) {
+			field(entry.getKey(), entry.getValue());
+		}
 		jw.name("features");
 		jw.beginArray();
 	}

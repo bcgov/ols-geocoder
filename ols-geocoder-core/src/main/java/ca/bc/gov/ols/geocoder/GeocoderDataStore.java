@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -210,6 +211,7 @@ public class GeocoderDataStore {
 	
 	/* Used for looking up sites by UUID */
 	private Map<UUID, ISite> sitesByUuid;
+	private Map<String, ISite> sitesByPid;
 	
 	/* Used for looking up segments by segmentId */
 	TIntObjectHashMap<StreetSegment> streetSegmentIdMap;
@@ -668,6 +670,7 @@ public class GeocoderDataStore {
 	private TIntObjectHashMap<List<AccessPoint>> buildAccessPointAndSiteMaps(WordMapBuilder wordMapBuilder,
 			TIntObjectHashMap<ISite> siteIdMap) {
 		sitesByUuid = new THashMap<UUID, ISite>();
+		sitesByPid = new HashMap<String, ISite>();
 		TIntObjectHashMap<List<AccessPoint>> apMap = new TIntObjectHashMap<List<AccessPoint>>();
 		
 		RowReader rr = dataSource.getCombinedSitesPost();
@@ -706,7 +709,13 @@ public class GeocoderDataStore {
 					LocationDescriptor.convert(rr.getString("location_descriptor")),
 					PhysicalStatus.convert(rr.getString("site_status")), 
 					siteRetireDate, 
-					normalizeDate(rr.getDate("site_change_date")));
+				normalizeDate(rr.getDate("site_change_date")));
+			if(pids != null) {
+				for(String pid : pids.split("\\|")) {
+					String normalizedPid = pid.trim();
+					if(!normalizedPid.isEmpty()) sitesByPid.put(normalizedPid, site);
+				}
+			}
 			
 			siteIdMap.put(siteId, site);
 			
@@ -1639,6 +1648,7 @@ public class GeocoderDataStore {
 		siteKDTree = null;
 		siteNameIndex = null;
 		sitesByUuid = null;
+		sitesByPid = null;
 		streetNameTrie = null;
 		unitDesignators = null;
 		wordMap = null;
@@ -1679,12 +1689,31 @@ public class GeocoderDataStore {
 		address.resolveLocation(this, site, ld, setBack);
 		return address;
 	}
+
+	public SiteAddress getSiteByPid(String pid, LocationDescriptor ld, int setBack) {
+		if(!featureSet.contains(GeocoderFeature.REVERSE_GEOCODE)) {
+			throw new FeatureNotSupportedException(GeocoderFeature.REVERSE_GEOCODE);
+		}
+		ISite site = sitesByPid.get(pid);
+		if(site == null || site.getPrimaryAccessPoint() == null) {
+			return null;
+		}
+		SiteAddress address = new SiteAddress(site, null);
+		loadSiteDetailsById(address, site, site.getPrimaryAccessPoint());
+		address.setPid(pid);
+		address.resolveLocation(this, site, ld, setBack);
+		return address;
+	}
 	
 	public ISite getRawSiteByUuid(UUID uuid) {
 		if(!featureSet.contains(GeocoderFeature.REVERSE_GEOCODE)) {
 			throw new FeatureNotSupportedException(GeocoderFeature.REVERSE_GEOCODE);
 		}
 		return sitesByUuid.get(uuid);
+	}
+
+	public ISite getRawSiteByPid(String pid) {
+		return sitesByPid.get(pid);
 	}
 
 	public boolean hasPids(GeocodeMatch match) {
