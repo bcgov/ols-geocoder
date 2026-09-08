@@ -30,13 +30,41 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Download OpenAPI spec
-        uses: actions/download-artifact@v4
-        with:
-          name: openapi-spec
-          path: docs/public
-          run-id: ${{ github.event.workflow_run.id }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Find the latest successful "OpenAPI Spec" workflow run
+          RUN_ID=$(gh api repos/${{ github.repository }}/actions/workflows/openapi-spec.yml/runs \
+            --jq '.workflow_runs[] | select(.conclusion=="success") | .id' | head -1)
+          if [ -n "$RUN_ID" ]; then
+            echo "Downloading openapi-spec from run $RUN_ID"
+          else
+            echo "No successful OpenAPI Spec run found — triggering one now"
+            gh workflow run openapi-spec.yml
+            # Poll until a new successful run appears (max ~60 min)
+            for i in $(seq 1 120); do
+              sleep 30
+              NEW_RUN_ID=$(gh api "repos/${{ github.repository }}/actions/workflows/openapi-spec.yml/runs?per_page=5" \
+                --jq '[.workflow_runs[] | select(.conclusion=="success")] | first | .id // empty')
+              if [ -n "$NEW_RUN_ID" ]; then
+                RUN_ID=$NEW_RUN_ID
+                echo "OpenAPI Spec run $RUN_ID completed successfully"
+                break
+              fi
+              echo "Waiting for OpenAPI Spec workflow to finish... ($((i*30))s)"
+            done
+            if [ -z "$RUN_ID" ]; then
+              echo "::warning::OpenAPI Spec workflow did not complete in time"
+            fi
+          fi
+          if [ -n "$RUN_ID" ]; then
+            gh api repos/${{ github.repository }}/actions/runs/$RUN_ID/artifacts \
+              --jq '.artifacts[] | select(.name=="openapi-spec") | .id' | head -1 | \
+              xargs -I {} gh api repos/${{ github.repository }}/actions/artifacts/{}/zip \
+              > openapi-spec.zip
+            unzip -o openapi-spec.zip -d public
+            rm -f openapi-spec.zip
+          fi
 
       - name: Create placeholder OpenAPI spec if missing
         run: |

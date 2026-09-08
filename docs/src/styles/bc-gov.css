@@ -165,6 +165,42 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 4px;
 }
 
+/* OpenAPI Spec Section Panels */
+.sl-openapi-section-panel {
+  background-color: #f8f8f8 !important;
+}
+
+/* OpenAPI Spec Buttons */
+.sl-openapi-operation-description-button {
+  background-color: #f8f8f8 !important;
+}
+
+/* OpenAPI Spec Selects */
+.sl-openapi-snippet-picker select,
+.sl-openapi-snippet-picker-value,
+.sl-openapi-content-picker-select select,
+.sl-openapi-content-picker-select-value {
+  background-color: #f8f8f8 !important;
+}
+
+/* OpenAPI Spec Inputs */
+.sl-openapi-operation-url input {
+  background-color: #f8f8f8 !important;
+}
+
+/* OpenAPI Spec Code Blocks */
+.sl-openapi-operation-description .expressive-code,
+.sl-openapi-snippets .expressive-code,
+.sl-openapi-section .expressive-code {
+  --ec-codeBackground: #f8f8f8;
+}
+
+.sl-openapi-operation-description pre,
+.sl-openapi-snippets pre,
+.sl-openapi-section pre {
+  background-color: #f8f8f8 !important;
+}
+
 /* Note/Warning Boxes */
 .note {
   border-left: 4px solid var(--sl-color-primary);
