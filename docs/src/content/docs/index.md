@@ -40,6 +40,12 @@ For more information about using the BC Address Geocoder and incorporating it in
 | [Understanding Address Match Scoring](developer-guide/match-scoring) | Explains how address matches are ranked by the geocoder | Geocoder clients, app developers, address data suppliers |
 | [Geocoder Address Match Scoring Reference](developer-guide/match-scoring-reference) | Defines how address matches are ranked by the geocoder | Geocoder clients, app developers, address data suppliers |
 
+## API Reference
+
+| Document | Description | Audience |
+|----------|-------------|----------|
+| [OpenAPI Reference](/ols-geocoder/api/) | Interactive API documentation for all geocoder REST endpoints | App developers |
+
 ## Comparisons
 
 | Document | Description | Audience |
