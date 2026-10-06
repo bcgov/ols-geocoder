@@ -74,9 +74,9 @@ public class ParcelController {
 		PidsResponse pr;
 		if(site == null) {
 			pr = new PidsResponse(null, null);
+		} else {
+			pr = new PidsResponse(site.getUuid(), site.getPids());
 		}
-		
-		pr = new PidsResponse(site.getUuid(), site.getPids());
 		
 		OlsResponse response = new OlsResponse(pr);
 		response.setParams(params);
