@@ -304,6 +304,10 @@ public class GeocoderDataStore {
 		return names;
 	}
 	
+	public boolean isUnitDesignator(String word) {
+		return word != null && unitDesignators != null && unitDesignators.contains(word.toUpperCase());
+	}
+
 	public Set<ISite> getSitesByName(String[] siteNameWords) {
 		if(siteNameWords.length == 0) {
 			return Collections.<ISite> emptySet();
