@@ -25,11 +25,16 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import ca.bc.gov.ols.geocoder.rest.AccessLogFilter;
+import jakarta.servlet.http.HttpServletRequest;
+
 @ControllerAdvice
 public class ExceptionMapper {
 	
 	@ExceptionHandler(RuntimeException.class)
-	public ResponseEntity<ErrorMessage> handleRuntimeException(RuntimeException re) {
+	public ResponseEntity<ErrorMessage> handleRuntimeException(RuntimeException re,
+			HttpServletRequest request) {
+		request.setAttribute(AccessLogFilter.ERROR_MESSAGE_ATTR, re.toString());
 		StringWriter sw = new StringWriter();
 		re.printStackTrace(new PrintWriter(sw));
 		String exceptionAsString = sw.toString();
@@ -40,40 +45,46 @@ public class ExceptionMapper {
 	}
 	
 	@ExceptionHandler(IllegalArgumentException.class)
-	public ResponseEntity<ErrorMessage> handleIllegalArgumentException(IllegalArgumentException iae) {
+	public ResponseEntity<ErrorMessage> handleIllegalArgumentException(IllegalArgumentException iae,
+			HttpServletRequest request) {
 		String message = "Invalid parameter: " + iae.getMessage();
+		request.setAttribute(AccessLogFilter.ERROR_MESSAGE_ATTR, message);
 		return new ResponseEntity<ErrorMessage>(new ErrorMessage(message),
 				HttpStatus.BAD_REQUEST);
 	}
 	
 	@ExceptionHandler(MissingServletRequestParameterException.class)
 	public ResponseEntity<ErrorMessage> handleMissingServletRequestParameterException(
-			MissingServletRequestParameterException msrpe) {
+			MissingServletRequestParameterException msrpe, HttpServletRequest request) {
 		String message = "Missing parameter " + msrpe.getParameterName() + ": "
 				+ msrpe.getMessage();
+		request.setAttribute(AccessLogFilter.ERROR_MESSAGE_ATTR, message);
 		return new ResponseEntity<ErrorMessage>(new ErrorMessage(message),
 				HttpStatus.BAD_REQUEST);
 	}
 	
 	@ExceptionHandler(TypeMismatchException.class)
 	public ResponseEntity<ErrorMessage> handleTypeMismatchException(
-			TypeMismatchException tme) {
+			TypeMismatchException tme, HttpServletRequest request) {
 		String message = "Error in parameter " + tme.getPropertyName() + ": "
 				+ tme.getMessage();
+		request.setAttribute(AccessLogFilter.ERROR_MESSAGE_ATTR, message);
 		return new ResponseEntity<ErrorMessage>(new ErrorMessage(message),
 				HttpStatus.BAD_REQUEST);
 	}
 	
 	@ExceptionHandler(InvalidParameterException.class)
 	public ResponseEntity<ErrorMessage> handleInvalidParameterException(
-			InvalidParameterException ipe) {
+			InvalidParameterException ipe, HttpServletRequest request) {
+		request.setAttribute(AccessLogFilter.ERROR_MESSAGE_ATTR, ipe.getErrorMessage().getMessage());
 		return new ResponseEntity<ErrorMessage>(ipe.getErrorMessage(),
 				HttpStatus.BAD_REQUEST);
 	}
 	
 	@ExceptionHandler(NotFoundException.class)
 	public ResponseEntity<ErrorMessage> handleNotFoundException(
-			NotFoundException nfe) {
+			NotFoundException nfe, HttpServletRequest request) {
+		request.setAttribute(AccessLogFilter.ERROR_MESSAGE_ATTR, nfe.getErrorMessage().getMessage());
 		return new ResponseEntity<ErrorMessage>(nfe.getErrorMessage(),
 				HttpStatus.NOT_FOUND);
 	}
