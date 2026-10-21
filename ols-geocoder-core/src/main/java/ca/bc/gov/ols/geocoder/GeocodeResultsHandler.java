@@ -271,8 +271,14 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 				return false;
 			}
 		}
+		boolean hasUnitNumber = unitNumber != null && !unitNumber.isEmpty();
+		if(start == 1) {
+			// a unit parsed separately plus a multi-word name (UNIT 5 BLDG A) is a genuine site name
+			boolean unitParsed = unitDesignator != null || hasUnitNumber;
+			return !unitParsed || siteWords.size() == 1;
+		}
 		// without a leading designator, only reject when the unit already has a designator and no number
-		return start == 1 || (unitDesignator != null && (unitNumber == null || unitNumber.isEmpty()));
+		return unitDesignator != null && !hasUnitNumber;
 	}
 
 	public int getDerivationCount() {
