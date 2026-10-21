@@ -155,7 +155,10 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 			AddressComponentMisspellings misspellings = new AddressComponentMisspellings();
 			
 			String unitNumber = pd.getPart("unitNumber");
-			if(isUnitMisreadAsSiteName(pd.getMisspellings("siteName"), pd.getPart("unitDesignator"), unitNumber)) {
+			// structured queries supply the site name explicitly
+			// this prevents misinterpreting a unit number as a site name in free-text queries
+			boolean freeText = query.getAddressString() != null && !query.getAddressString().isEmpty();
+			if(freeText && isUnitMisreadAsSiteName(pd.getMisspellings("siteName"), pd.getPart("unitDesignator"), unitNumber)) {
 				return true;
 			}
 			if(unitNumber != null && !unitNumber.isEmpty()) {

@@ -305,7 +305,12 @@ public class GeocoderDataStore {
 	}
 	
 	public boolean isUnitDesignator(String word) {
-		return word != null && unitDesignators != null && unitDesignators.contains(word.toUpperCase());
+		if(word == null || unitDesignators == null) {
+			return false;
+		}
+		String upper = word.toUpperCase();
+		String canonical = abbrMappings == null ? null : abbrMappings.get(upper);
+		return unitDesignators.contains(upper) || (canonical != null && unitDesignators.contains(canonical));
 	}
 
 	public Set<ISite> getSitesByName(String[] siteNameWords) {
