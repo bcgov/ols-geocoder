@@ -71,14 +71,13 @@ public class ParcelController {
 		
 		ISite site = geocoder.getDatastore().getRawSiteByUuid(siteUuid.getValue());
 		
-		PidsResponse pr;
+		OlsResponse response;
 		if(site == null) {
-			pr = new PidsResponse(null, null);
+			response = new OlsResponse(null);
 		} else {
-			pr = new PidsResponse(site.getUuid(), site.getPids());
+			PidsResponse pr = new PidsResponse(site.getUuid(), site.getPids());
+			response = new OlsResponse(pr);
 		}
-		
-		OlsResponse response = new OlsResponse(pr);
 		response.setParams(params);
 		return response;
 	}
