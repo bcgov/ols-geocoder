@@ -39,7 +39,7 @@ public class AbstractSiteTest {
 
 	@ParameterizedTest
 	@MethodSource("sites")
-	public void childlessSiteReturnsImmutableEmptyListAfterTrimming(AbstractSite site) {
+	void childlessSiteReturnsImmutableEmptyListAfterTrimming(AbstractSite site) {
 		assertTrue(site.getChildren().isEmpty());
 		site.trimToSize();
 		List<ISite> children = site.getChildren();
@@ -49,7 +49,7 @@ public class AbstractSiteTest {
 
 	@ParameterizedTest
 	@MethodSource("sites")
-	public void siteRetainsImmutableChildrenAfterTrimming(AbstractSite site) {
+	void siteRetainsImmutableChildrenAfterTrimming(AbstractSite site) {
 		ISite child = new CompactSite(3, UUID.randomUUID(), null, site, null, null, null, null);
 		site.addChild(child);
 		site.trimToSize();
