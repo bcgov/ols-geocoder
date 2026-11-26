@@ -24,6 +24,8 @@ import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.Polygon;
 
+import io.swagger.v3.oas.annotations.Parameter;
+
 import ca.bc.gov.ols.geocoder.api.data.AddressMatch;
 import ca.bc.gov.ols.geocoder.api.data.GeocodeMatch;
 import ca.bc.gov.ols.geocoder.api.data.OccupantAddress;
@@ -44,46 +46,144 @@ import ca.bc.gov.ols.util.GeomParseUtil;
  */
 public class GeocodeQuery extends SharedParameters{
 	
+	@Parameter(description = "Civic or intersection address as a single string.",
+			example = "525 Superior St, Victoria, BC")
 	private String addressString;
+
+	@Parameter(description = "A string containing the name of the building, facility, or institution "
+			+ "(e.g., Duck Building, Casa Del Mar, Crystal Garden, Bluebird House).")
 	private String siteName;
+
+	@Parameter(description = "The unit number (e.g. '100' in '100-525 Superior St').")
 	private String unitNumber;
+
+	@Parameter(description = "The unit number suffix (e.g. 'A', 'B').")
 	private String unitNumberSuffix;
+
+	@Parameter(description = "The type of unit within a house or building.")
 	private String unitDesignator;
+
+	@Parameter(description = "The official number assigned to a site by an address authority.",
+			example = "525")
 	private String civicNumber;
+
+	@Parameter(description = "A letter or fraction that follows the civic number (e.g., the A in 1039A Bledsoe St).")
 	private String civicNumberSuffix;
+
+	@Parameter(description = "The official name of the street as assigned by an address authority "
+			+ "(e.g., the Douglas in 1175 Douglas Street).",
+			example = "Superior")
 	private String streetName;
+
+	@Parameter(description = "The type of street as assigned by a municipality (e.g., the ST in 1175 DOUGLAS St).")
 	private String streetType;
+
+	@Parameter(description = "The abbreviated compass direction as defined by Canada Post and B.C. civic addressing authorities.")
 	private String streetDirection;
+
+	@Parameter(description = "The qualifier of a street name (e.g., the Bridge in Johnson St Bridge).")
 	private String streetQualifier;
+
+	@Parameter(description = "The name of the locality assigned to a given site by an address authority.",
+			example = "Victoria")
 	private String localityName;
+
+	@Parameter(description = "The province or territory name or code.",
+			example = "BC")
 	private String stateProvTerr;
+
+	@Parameter(description = "A tag search condition. Use 'AND' or 'OR' to combine multiple tags.")
 	private String tagCondition;
-	
+
+	@Parameter(description = "The minimum score required for a match to be returned.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "0"))
 	private int minScore = 0;
+
+	@Parameter(description = "A comma separated list of individual match precision levels to include in results.")
 	private EnumSet<MatchPrecision> matchPrecision = null;
+
+	@Parameter(description = "A comma separated list of individual match precision levels to exclude from results.")
 	private EnumSet<MatchPrecision> matchPrecisionNot = null;
+
+	@Parameter(hidden = true)
 	private EnumSet<MatchPrecision> matchPrecisionFilter = null;
+
+	@Parameter(description = "Filter results to only include these localities (neighbourhoods).")
 	private List<String> localities = null;
+
+	@Parameter(description = "Exclude results from these localities.")
 	private List<String> notLocalities = null;
+
+	@Parameter(description = "The coordinates of a centre point (x,y) used to define a bounding circle "
+			+ "that will limit the search area. This parameter must be specified together with 'maxDistance'.",
+			example = "-123.1216,49.2827")
 	private double[] centre;
+
+	@Parameter(hidden = true)
 	private Point centrePoint;
+
+	@Parameter(description = "Maximum distance in metres from the centre point. "
+			+ "Must be used with centre. Cannot be used with bbox.")
 	private int maxDistance;
+
+	@Parameter(description = "A bounding box (xmin,ymin,xmax,ymax) that limits the search area.",
+			example = "-123.13,49.28,-123.11,49.29")
 	private double[] bbox;
+
+	@Parameter(hidden = true)
 	private Polygon bboxPolygon;
+
+	@Parameter(description = "The coordinates of a point (x,y) known to be inside the parcel containing a given address.",
+			example = "-123.1216,49.2827")
 	private double[] parcelPoint;
+
+	@Parameter(hidden = true)
 	private Point parcelPointPoint;
+
+	@Parameter(description = "A user-defined ID that will be returned with the results for correlation.")
 	private String yourId;
+
+	@Parameter(description = "accessPoint interpolation method.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "ADAPTIVE"))
 	private Interpolation interpolation = Interpolation.ADAPTIVE;
+
+	@Parameter(description = "If true, the query parameters are echoed back in the response.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "true"))
 	private boolean echo = true;
+
+	@Parameter(description = "If true, uses supplied parcelPoint to derive an appropriate accessPoint.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean extrapolate = false;
+
+	@Parameter(hidden = true)
 	private long executionTime = 0;
+
+	@Parameter(hidden = true)
 	private Filter<GeocodeMatch> filter = null;
+
+	@Parameter(description = "If true, occupant (business name) information is included in results.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean includeOccupants = false;
+
+	@Parameter(description = "If true, enables auto-complete mode for partial address input.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean autoComplete = false;
+
+	@Parameter(description = "If true, only exact spelling matches are returned.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean exactSpelling = false;
+
+	@Parameter(description = "If true, fuzzy matching is enabled for more lenient address matching.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean fuzzyMatch = false;
+
+	@Parameter(description = "If true, only results with a PID (Property Identifier) are returned.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean hasPid = false;
 
+	@Parameter(description = "The preferred character encoding for the response. "
+			+ "Possible values: utf-8, ascii, extended-ascii.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "utf-8"))
 	private String preferredEncoding = "utf-8";
 
 	public GeocodeQuery() {
@@ -338,6 +438,7 @@ public class GeocodeQuery extends SharedParameters{
 		}
 	}
 	
+	@Parameter(hidden = true)
 	public Point getCentre() {
 		return centrePoint;
 	}
@@ -363,6 +464,7 @@ public class GeocodeQuery extends SharedParameters{
 		this.maxDistance = maxDistance;
 	}
 	
+	@Parameter(hidden = true)
 	public Polygon getBbox() {
 		return bboxPolygon;
 	}
@@ -371,6 +473,7 @@ public class GeocodeQuery extends SharedParameters{
 		this.bbox = bbox;
 	}
 	
+	@Parameter(hidden = true)
 	public Point getParcelPoint() {
 		return parcelPointPoint;
 	}

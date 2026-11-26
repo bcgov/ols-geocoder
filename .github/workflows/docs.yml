@@ -1,0 +1,106 @@
+name: Deploy Pages Docs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+  workflow_run:
+    workflows: ["OpenAPI Spec"]
+    types: [completed]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: "24"
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    defaults:
+      run:
+        working-directory: docs
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Download OpenAPI spec
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Find the latest successful "OpenAPI Spec" workflow run
+          RUN_ID=$(gh api repos/${{ github.repository }}/actions/workflows/openapi-spec.yml/runs \
+            --jq '.workflow_runs[] | select(.conclusion=="success") | .id' | head -1)
+          if [ -n "$RUN_ID" ]; then
+            echo "Downloading openapi-spec from run $RUN_ID"
+          else
+            echo "No successful OpenAPI Spec run found — triggering one now"
+            gh workflow run openapi-spec.yml
+            # Poll until a new successful run appears (max ~60 min)
+            for i in $(seq 1 120); do
+              sleep 30
+              NEW_RUN_ID=$(gh api "repos/${{ github.repository }}/actions/workflows/openapi-spec.yml/runs?per_page=5" \
+                --jq '[.workflow_runs[] | select(.conclusion=="success")] | first | .id // empty')
+              if [ -n "$NEW_RUN_ID" ]; then
+                RUN_ID=$NEW_RUN_ID
+                echo "OpenAPI Spec run $RUN_ID completed successfully"
+                break
+              fi
+              echo "Waiting for OpenAPI Spec workflow to finish... ($((i*30))s)"
+            done
+            if [ -z "$RUN_ID" ]; then
+              echo "::warning::OpenAPI Spec workflow did not complete in time"
+            fi
+          fi
+          if [ -n "$RUN_ID" ]; then
+            gh api repos/${{ github.repository }}/actions/runs/$RUN_ID/artifacts \
+              --jq '.artifacts[] | select(.name=="openapi-spec") | .id' | head -1 | \
+              xargs -I {} gh api repos/${{ github.repository }}/actions/artifacts/{}/zip \
+              > openapi-spec.zip
+            unzip -o openapi-spec.zip -d public
+            rm -f openapi-spec.zip
+          fi
+
+      - name: Create placeholder OpenAPI spec if missing
+        run: |
+          if [ ! -f public/openapi.json ]; then
+            mkdir -p public
+            echo '{"openapi":"3.0.0","info":{"title":"BC Address Geocoder API","version":"unpublished"},"paths":{}}' > public/openapi.json
+          fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: docs/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Build docs
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: docs/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

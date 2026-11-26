@@ -80,9 +80,8 @@ public class TestDataSource implements GeocoderDataSource {
 	
 	private TIntObjectHashMap<FlexObj> localities = new TIntObjectHashMap<FlexObj>();
 	private Map<String, Integer> localitySchema = FlexObj.createSchema(
-			new String[] {"locality_id", "locality_name", "locality_type_name",
-					"state_prov_terr_id", "geom", "locality_type_id", "electoral_area_id",
-					"locality_qualifier"});
+			new String[] {"locality_id", "locality_name", "locality_qualifier", "locality_type_name",
+					"state_prov_terr_id", "geom", "locality_type_id", "electoral_area_id"});
 
 	private TIntObjectHashMap<FlexObj> electoralAreas = new TIntObjectHashMap<FlexObj>();
 	private Map<String, Integer> electoralAreaSchema = FlexObj.createSchema(
@@ -190,12 +189,12 @@ public class TestDataSource implements GeocoderDataSource {
 		
 		// Localities IDs in 100-range
 		localities.put(101, new FlexObj(localitySchema,
-				new Object[] {101, "Victoria", "City", 10,
-						gf.createPoint(new Coordinate(1, 1)), 1, 1, null
+				new Object[] {101, "Victoria", null, "City", 10,
+						gf.createPoint(new Coordinate(1, 1)), 1, 1
 				}));
 		localities.put(102, new FlexObj(localitySchema,
-				new Object[] {102, "Vancouver", "City", 10,
-						gf.createPoint(new Coordinate(1, 1)), 1, 2, null
+				new Object[] {102, "Vancouver", null, "City", 10,
+						gf.createPoint(new Coordinate(1, 1)), 1, 2
 				}));
 		
 		// Business Category IDs in the 200-range

@@ -101,7 +101,7 @@ public abstract class AbstractSite extends LocationBase implements ISite {
 
 	private void appendPart(StringBuilder sb, String preSeparator, String part) {
 		if(part != null && !part.isEmpty()) {
-			if(sb.length() > 0) {
+			if(!sb.isEmpty()) {
 				sb.append(preSeparator);
 			}
 			sb.append(part);

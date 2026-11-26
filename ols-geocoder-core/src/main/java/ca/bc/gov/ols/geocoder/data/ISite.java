@@ -82,6 +82,9 @@ public interface ISite extends ILocation {
 	
 	public abstract void findChildrenByUnitNumber(String unitNumber, ArrayList<ISite> matches);
 	
+	/**
+	 * @return an unmodifiable list of child sites, empty when there are none
+	 */
 	public abstract List<ISite> getChildren();
 
 	public abstract void resolveParent(TIntObjectHashMap<ISite> idToSite);

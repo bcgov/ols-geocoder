@@ -155,6 +155,12 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 			AddressComponentMisspellings misspellings = new AddressComponentMisspellings();
 			
 			String unitNumber = pd.getPart("unitNumber");
+			// structured queries supply the site name explicitly
+			// this prevents misinterpreting a unit number as a site name in free-text queries
+			boolean freeText = query.getAddressString() != null && !query.getAddressString().isEmpty();
+			if(freeText && isUnitMisreadAsSiteName(pd.getMisspellings("siteName"), pd.getPart("unitDesignator"), unitNumber)) {
+				return true;
+			}
 			if(unitNumber != null && !unitNumber.isEmpty()) {
 				// remove a space between a single-letter prefix and the number, if there is one
 				unitNumber = unitNumber.replace(" ", "");
@@ -253,6 +259,28 @@ public class GeocodeResultsHandler implements ParseDerivationHandler {
 		return true;
 	}
 	
+	// A site name made only of a unit designator and/or unit number (e.g. "unit 901 --") is really a unit.
+	// Uses the original input words, since fuzzy matching can turn "unit" into e.g. "unity" or "nuit".
+	private boolean isUnitMisreadAsSiteName(List<MisspellingOf<Word>> siteWords, String unitDesignator, String unitNumber) {
+		if(siteWords == null || siteWords.isEmpty()) {
+			return false;
+		}
+		int start = datastore.isUnitDesignator(siteWords.get(0).getMisspelling()) ? 1 : 0;
+		for(int i = start; i < siteWords.size(); i++) {
+			if(!siteWords.get(i).getMisspelling().matches("\\d+|[A-Za-z]")) {
+				return false;
+			}
+		}
+		boolean hasUnitNumber = unitNumber != null && !unitNumber.isEmpty();
+		if(start == 1) {
+			// a unit parsed separately plus a multi-word name (UNIT 5 BLDG A) is a genuine site name
+			boolean unitParsed = unitDesignator != null || hasUnitNumber;
+			return !unitParsed || siteWords.size() == 1;
+		}
+		// without a leading designator, only reject when the unit already has a designator and no number
+		return unitDesignator != null && !hasUnitNumber;
+	}
+
 	public int getDerivationCount() {
 		return derivationCount;
 	}

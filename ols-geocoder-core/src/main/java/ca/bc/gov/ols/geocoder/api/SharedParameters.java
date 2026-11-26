@@ -15,17 +15,42 @@
  */
 package ca.bc.gov.ols.geocoder.api;
 
+import io.swagger.v3.oas.annotations.Parameter;
+
 import ca.bc.gov.ols.geocoder.data.enumTypes.LocationDescriptor;
 
 public class SharedParameters {
 
+	@Parameter(description = "If provided the JSON result will be wrapped in a function call of the given name (for JSONP support).",
+			example = "jsonp")
 	private String callback = "jsonp";
+
+	@Parameter(description = "The EPSG code of the spatial reference system (SRS) to use for output geometries.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "4326"),
+			example = "4326")
 	private int outputSRS = 4326;
+
+	@Parameter(description = "If true the result is returned as a file attachment.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean asAttachment = false;
+
+	@Parameter(description = "A set of user-defined tags to apply to the query results.")
 	protected String tags;
+
+	@Parameter(description = "If true the results are returned in brief format, omitting detailed address and location properties.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean brief = false;
+
+	@Parameter(description = "The maximum number of results to return.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "1"))
 	private Integer maxResults;
+
+	@Parameter(description = "The setback distance in metres from the street segment. A value of -1 indicates the centroid of the address range.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "0"))
 	private int setBack = 0;
+
+	@Parameter(description = "Describes the nature of the address location.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "any"))
 	protected LocationDescriptor locationDescriptor = LocationDescriptor.ANY;
 
 	public String getCallback() {

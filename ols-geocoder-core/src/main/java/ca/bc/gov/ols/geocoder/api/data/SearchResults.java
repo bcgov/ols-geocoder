@@ -32,6 +32,8 @@ import ca.bc.gov.ols.geocoder.api.GeocodeQuery;
 import ca.bc.gov.ols.geocoder.data.enumTypes.Interpolation;
 import ca.bc.gov.ols.geocoder.data.enumTypes.LocationDescriptor;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 /**
  * SearchResults holds all of the information related to the result of a geocode or other search. It
  * also support JAXB-based xml output.
@@ -41,65 +43,85 @@ import ca.bc.gov.ols.geocoder.data.enumTypes.LocationDescriptor;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
+@Schema(description = "The complete search results for a geocode query, including match information, scoring, metadata, and the list of matching addresses.")
 public class SearchResults {
 	
 	@XmlElement
+	@Schema(description = "The original query address that was geocoded.")
 	private String queryAddress;
 	
 	@XmlElementWrapper
 	@XmlElementRef
+	@Schema(description = "The list of matching addresses, sorted by score (highest first). Each match includes the full address, location, and scoring details.")
 	private List<GeocodeMatch> matches;
 	
 	@XmlElement
+	@Schema(description = "The EPSG code of the spatial reference system used for the output geometries.")
 	private int srsCode;
 	
 	@XmlElement
+	@Schema(description = "The maximum number of search results returned.")
 	private int maxResults;
 	
 	@XmlElement
+	@Schema(description = "The minimum score required for a match to be returned.")
 	private int minScore;
 	
 	@XmlElement
+	@Schema(description = "The distance (in metres) to move the access point away from the curb towards the inside of the parcel.")
 	private int setBack;
 
 	@XmlElement
+	@Schema(description = "A semicolon-separated list of tags associated with the results.")
 	private String tags;
 
 	@XmlElement
+	@Schema(description = "Whether unmatched address details are included in the results.")
 	private boolean isEcho;
 	
 	@XmlElement
+	@Schema(description = "Whether the results include addresses with known civic numbers.")
 	private boolean knownAddresses;
 	
 	@XmlElement
+	@Schema(description = "The timestamp when the search was executed.")
 	private LocalDateTime searchTimeStamp;
 	
 	@XmlElement
+	@Schema(description = "The execution time of the search in seconds.")
 	private BigDecimal executionTime;
 	
 	@XmlElement
+	@Schema(description = "The date and time when the underlying geocoder data was last processed.")
 	private ZonedDateTime processingDate;
 	
 	@XmlElement
+	@Schema(description = "A legal disclaimer for the geocoder service.")
 	private String disclaimer;
 	
 	@XmlElement
+	@Schema(description = "The interpolation method used for address matching.")
 	private Interpolation interpolation;
 	
 	@XmlElement
+	@Schema(description = "The privacy statement for the geocoder service.")
 	private String privacyStatement;
 	
 	@XmlElement
+	@Schema(description = "The copyright notice for the geocoder data.")
 	private String copyrightNotice;
 	
 	@XmlElement
+	@Schema(description = "The copyright license for the geocoder data.")
 	private String copyrightLicense;
 	
 	@XmlElement
+	@Schema(description = "The location descriptor used for the output addresses.")
 	private LocationDescriptor locationDescriptor;
 	
 	// response body attribute
 	@XmlElement
+	@Schema(description = "The character encoding of the output. Defaults to 'ascii'.")
 	private String encoding = "ascii";
 	
 	public SearchResults() {
