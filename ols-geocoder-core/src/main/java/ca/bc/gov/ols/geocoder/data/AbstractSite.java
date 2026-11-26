@@ -101,7 +101,7 @@ public abstract class AbstractSite extends LocationBase implements ISite {
 
 	private void appendPart(StringBuilder sb, String preSeparator, String part) {
 		if(part != null && !part.isEmpty()) {
-			if(sb.length() > 0) {
+			if(!sb.isEmpty()) {
 				sb.append(preSeparator);
 			}
 			sb.append(part);
@@ -133,7 +133,7 @@ public abstract class AbstractSite extends LocationBase implements ISite {
 
 	@Override
 	public List<ISite> getChildren() {
-		return Collections.unmodifiableList(children);
+		return children == null ? Collections.emptyList() : Collections.unmodifiableList(children);
 	}
 	
 	/**
