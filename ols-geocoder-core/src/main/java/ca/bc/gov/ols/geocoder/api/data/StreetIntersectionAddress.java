@@ -23,6 +23,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import ca.bc.gov.ols.geocoder.data.Locality;
 import ca.bc.gov.ols.geocoder.data.StreetIntersection;
 import ca.bc.gov.ols.geocoder.data.StreetName;
@@ -31,10 +33,23 @@ import ca.bc.gov.ols.geocoder.data.enumTypes.PositionalAccuracy;
 
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
+@Schema(description = "Represents a street intersection address, including the intersection's unique ID, "
+		+ "name (built from the intersecting street names), degree (number of streets meeting at the intersection), "
+		+ "and the representative point location.")
 public class StreetIntersectionAddress extends GeocoderAddress {
-	
+
+	@Schema(description = "The unique identifier (UUID) of the intersection.",
+			example = "74628473-1460-4d5f-8699-34964e8d3ba6")
 	private String id;
+
+	@Schema(description = "The name of the intersection, built from the intersecting street names "
+			+ "(e.g. 'Douglas St and Johnson St'). If only one street name is known, it is repeated.",
+			example = "Douglas St and Johnson St")
 	private String name;
+
+	@Schema(description = "The degree of the intersection, i.e. the number of streets meeting at this point. "
+			+ "A dead-end has degree 1, a T-intersection has degree 2, a four-way intersection has degree 4.",
+			example = "4")
 	private int degree;
 	
 	public StreetIntersectionAddress() {

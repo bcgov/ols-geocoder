@@ -22,25 +22,44 @@ import ca.bc.gov.ols.geocoder.data.AccessPoint;
 import ca.bc.gov.ols.geocoder.data.BusinessCategory;
 import ca.bc.gov.ols.geocoder.data.IOccupant;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "An occupant address representation including site address details and occupant information such as name, contact details, and business category.")
 public class OccupantAddress extends SiteAddress {
 
+	@Schema(description = "The UUID of the occupant.")
 	private String occupantId; // this is the UUID
+	@Schema(description = "The name of the occupant (business or organization).")
 	private String occupantName;
+	@Schema(description = "A description of the occupant.")
 	private String occupantDescription;
+	@Schema(description = "An alternative address for the occupant.")
 	private String occupantAliasAddress;
+	@Schema(description = "The contact phone number.")
 	private String contactPhone;
+	@Schema(description = "The contact email address.")
 	private String contactEmail;
+	@Schema(description = "The contact fax number.")
 	private String contactFax;
+	@Schema(description = "The website URL of the occupant.")
 	private String websiteUrl;
+	@Schema(description = "The image URL of the occupant.")
 	private String imageUrl;
+	@Schema(description = "A list of keyword tags associated with the occupant.")
 	private List<String> keywordList;
+	@Schema(description = "The business category class.")
 	private String businessCategoryClass;
+	@Schema(description = "The business category description.")
 	private String businessCategoryDescription;
+	@Schema(description = "The NAICS code for the business.")
 	private String naicsCode;
+	@Schema(description = "The date the occupant information was last updated.")
 	private LocalDate dateOccupantUpdated;
+	@Schema(description = "The date the occupant was added.")
 	private LocalDate dateOccupantAdded;
 	//private String custodianId;
 	//private String sourceDataId;
+	@Schema(description = "A custom style name for mapping display.")
 	private String customStyleName;
 	
 	public OccupantAddress(IOccupant occ, AccessPoint ap) {

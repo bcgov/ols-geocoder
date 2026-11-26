@@ -20,21 +20,50 @@ import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.Polygon;
 
+import io.swagger.v3.oas.annotations.Parameter;
+
 import ca.bc.gov.ols.geocoder.api.GeometryReprojector;
 import ca.bc.gov.ols.geocoder.api.SharedParameters;
 import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 import ca.bc.gov.ols.util.GeomParseUtil;
 
 public class ReverseGeocodeParameters extends SharedParameters {
-	
+
+	@Parameter(description = "The minimum degree an intersection can have to be included in results. "
+			+ "A dead-end has a degree of 1.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "2"))
 	private int minDegree = 2;
+
+	@Parameter(description = "The maximum degree an intersection can have to be included in results. "
+			+ "A four-way stop has a degree of 4.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(defaultValue = "100"))
 	private int maxDegree = 100;
+
+	@Parameter(description = "The X (longitude) and Y (latitude) coordinate of the search point, "
+			+ "in the format 'x,y'. Must be in the same SRS as the outputSRS parameter.",
+			required = true,
+			example = "-122.377,50.121")
 	private double[] point;
+	@Parameter(hidden = true)
 	private Point pointPoint;
+
+	@Parameter(description = "A bounding box (xmin,ymin,xmax,ymax) used to limit the search area. "
+			+ "Must be in the same SRS as the outputSRS parameter.",
+			required = true,
+			example = "-119.51,49.48,-119.53,49.50")
 	private double[] bbox;
+	@Parameter(hidden = true)
 	private Polygon bboxPolygon;
+
+	@Parameter(description = "The maximum distance (in metres) to search from the given point.")
 	private Integer maxDistance;
+
+	@Parameter(description = "If true, address results that are identified as 'access points' are excluded.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean excludeUnits = false;
+
+	@Parameter(description = "If true, only civic addresses are returned.",
+			schema = @io.swagger.v3.oas.annotations.media.Schema(type = "boolean", defaultValue = "false"))
 	private boolean onlyCivic = false;
 	
 	public int getMinDegree() {

@@ -41,36 +41,62 @@ import ca.bc.gov.ols.geocoder.data.enumTypes.PhysicalStatus;
 import ca.bc.gov.ols.geocoder.data.enumTypes.PositionalAccuracy;
 import ca.bc.gov.ols.geocoder.util.GeocoderUtil;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
+@Schema(description = "A site address representation including street address details, civic number, site identifiers, and status information.")
 public class SiteAddress extends GeocoderAddress {
 	
+	@Schema(description = "The unit number within a building or complex.")
 	private String unitNumber;
+	@Schema(description = "A letter that follows the unit number (e.g., 'A', 'B').")
 	private String unitNumberSuffix;
+	@Schema(description = "The type of unit within a building (e.g., 'Suite', 'Unit', 'Apt').")
 	private String unitDesignator;
+	@Schema(description = "The civic number assigned to the site.")
 	private Integer civicNumber;
+	@Schema(description = "A letter or fraction that follows the civic number.")
 	private String civicNumberSuffix;
+	@Schema(description = "The street name.")
 	private String streetName;
+	@Schema(description = "The street type (e.g., 'St', 'Ave', 'Blvd').")
 	private String streetType;
+	@Schema(description = "Whether the street type appears as a prefix before the street name.")
 	private Boolean isStreetTypePrefix;
+	@Schema(description = "The street direction (e.g., 'N', 'S', 'E', 'W').")
 	private String streetDirection;
+	@Schema(description = "Whether the street direction appears as a prefix before the street name.")
 	private Boolean isStreetDirectionPrefix;
+	@Schema(description = "The street qualifier (e.g., 'Bridge' in 'Johnson St Bridge').")
 	private String streetQualifier;
 	@XmlTransient
+	@Schema(description = "The descriptor of the parent site.")
 	private String parentSiteDescriptor;
+	@Schema(description = "The UUID of the site.")
 	private String siteID; // note: this is the UUID
+	@Schema(description = "The numeric ID of the site.")
 	private Integer SID; // note: this is the ID
+	@Schema(description = "The UUID of the parent site.")
 	private String parentSiteID; // note: this is the UUID
+	@Schema(description = "The street segment (block) ID.")
 	private Integer streetSegmentID; // aka blockID
+	@Schema(description = "The name of the building, facility, or institution.")
 	private String siteName;
+	@Schema(description = "A narrative description of the location.")
 	private String narrativeLocation;
 	
+	@Schema(description = "Whether this is the primary address for the site.")
 	private boolean isPrimary = true;
+	@Schema(description = "The physical status of the site.")
 	private PhysicalStatus siteStatus;
+	@Schema(description = "The date the site was retired.")
 	private LocalDate siteRetireDate;
+	@Schema(description = "The date the site was last changed.")
 	private LocalDate siteChangeDate;
 	
 	@XmlTransient
+	@Schema(description = "The internal access point ID.")
 	private Integer accessPointId;
 	
 	public SiteAddress() {
