@@ -280,10 +280,10 @@ public class TestDataSource implements GeocoderDataSource {
 					"Software;Consulting;", "professionalScientificAndTechnicalServices",
 					LocalDate.of(2015,1,1), LocalDate.of(1979,1,1), "1", "1", ""
 				}));
-
 		combinedSitesPost.put(4002, new FlexObj(combinedSitesPostSchema,
 				new Object[] {4002, "00000000-0000-0000-0000-000000004002", null, null, null,
-						"parcelPoint", null, null, "medium", "A", LocalDate.of(2015,1,1), null, gf.createPoint(new Coordinate(1, 1)), "CAP", true, null, "medium", 4002, "A", null, null,
+						"parcelPoint", null, null, "medium", "A", LocalDate.of(2015,1,1), null, gf.createPoint(new Coordinate(1, 1)), "CAP", true, null,
+						"medium", 4002, "A", null, null,
 						gf.createPoint(new Coordinate(1, 1)), "Suite 419 – 1207 Douglas Street Victoria, British Columbia, Canada, V8W 2E7", 2001, 101, "028726014", "BCA"
 				}));
 
