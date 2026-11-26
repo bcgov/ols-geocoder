@@ -133,7 +133,10 @@ public abstract class AbstractSite extends LocationBase implements ISite {
 
 	@Override
 	public List<ISite> getChildren() {
-		return children == null ? Collections.emptyList() : Collections.unmodifiableList(children);
+		if(children == null) {
+			return Collections.emptyList();
+		}
+		return Collections.unmodifiableList(children);
 	}
 	
 	/**
