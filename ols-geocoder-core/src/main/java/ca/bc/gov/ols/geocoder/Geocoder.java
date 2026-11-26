@@ -2000,7 +2000,7 @@ public class Geocoder implements IGeocoder {
 						new RuleTerm("siteNameWithFrontGate", RuleOperator.OPTION),
 						new RuleTerm("civicNumberDescription"),
 						new RuleTerm("streetDescription"),
-						new RuleTerm("unitDescriptionWithDesignator", RuleOperator.OPTION),
+						new RuleTerm("unitDescription", RuleOperator.OPTION),
 						new RuleTerm("localityTail")}));
 		
 		parserGen.addRule(new RuleSequence("nonCivicAddress", false,
