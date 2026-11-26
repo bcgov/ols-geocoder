@@ -24,6 +24,7 @@ import java.util.UUID;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -56,5 +57,26 @@ public class AbstractSiteTest {
 		List<ISite> children = site.getChildren();
 		assertEquals(List.of(child), children);
 		assertThrows(UnsupportedOperationException.class, () -> children.add(site));
+	}
+
+	@Test
+	void descriptorsSeparateNonEmptyPartsAndIncludeParent() {
+		Site parent = new Site(1, UUID.randomUUID(), null, null, "Parent", null, null, null,
+				null, null, null, null, null, null);
+		Site child = new Site(2, UUID.randomUUID(), null, parent, "Building", "12", "A", "Unit",
+				null, null, null, null, null, null);
+
+		assertEquals("Unit 12A, Building, Parent", child.getFullSiteDescriptor());
+		assertEquals("Building, Parent", child.getFullSiteName());
+		assertEquals("Parent", parent.getFullSiteDescriptor());
+	}
+
+	@Test
+	void descriptorHandlesHalfSuffixAndEmptyParts() {
+		Site site = new Site(1, UUID.randomUUID(), null, null, "", "12", "1/2", "",
+				null, null, null, null, null, null);
+
+		assertEquals("12 1/2", site.getFullSiteDescriptor());
+		assertEquals("", site.getFullSiteName());
 	}
 }
