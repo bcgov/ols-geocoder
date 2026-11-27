@@ -26,7 +26,6 @@ import javax.xml.bind.annotation.XmlType;
 import org.locationtech.jts.geom.Point;
 
 import ca.bc.gov.ols.geocoder.GeocoderDataStore;
-import ca.bc.gov.ols.geocoder.config.LocalityMapping;
 import ca.bc.gov.ols.geocoder.data.AccessPoint;
 import ca.bc.gov.ols.geocoder.data.BlockFace;
 import ca.bc.gov.ols.geocoder.data.CivicAccessPoint;
@@ -83,6 +82,8 @@ public class SiteAddress extends GeocoderAddress {
 	private Integer streetSegmentID; // aka blockID
 	@Schema(description = "The name of the building, facility, or institution.")
 	private String siteName;
+	private String pid;
+	private String error;
 	@Schema(description = "A narrative description of the location.")
 	private String narrativeLocation;
 	
@@ -123,6 +124,8 @@ public class SiteAddress extends GeocoderAddress {
 		parentSiteID = base.parentSiteID;
 		streetSegmentID = base.streetSegmentID;
 		siteName = base.siteName;
+		pid = base.pid;
+		error = base.error;
 		narrativeLocation = base.narrativeLocation;
 		isPrimary = base.isPrimary;
 		siteStatus = base.siteStatus;
@@ -405,7 +408,7 @@ public class SiteAddress extends GeocoderAddress {
 	protected String buildAddressString() {
 		StringBuilder sb = new StringBuilder(1024);
 		appendPart(sb, " ", getFullSiteDescriptor());
-		if(sb.length() > 0) {
+		if(!sb.isEmpty()) {
 			// add front gate onto end of site name
 			sb.append(" -- ");
 		}
@@ -415,7 +418,7 @@ public class SiteAddress extends GeocoderAddress {
 	
 	protected void appendPart(StringBuilder sb, String preSeparator, Object part) {
 		if(part != null && !"".equals(part)) {
-			if(sb.length() > 0 && sb.charAt(sb.length() - 1) != ' ') {
+			if(!sb.isEmpty() && sb.charAt(sb.length() - 1) != ' ') {
 				sb.append(preSeparator);
 			}
 			sb.append(part);
@@ -456,6 +459,22 @@ public class SiteAddress extends GeocoderAddress {
 	
 	public String getSiteName() {
 		return siteName;
+	}
+
+	public String getPid() {
+		return pid;
+	}
+
+	public void setPid(String pid) {
+		this.pid = pid;
+	}
+
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
 	}
 	
 	public void setSiteName(String siteName) {
@@ -598,8 +617,7 @@ public class SiteAddress extends GeocoderAddress {
 			setLocation(routingPoint);
 			setLocationDescriptor(LocationDescriptor.ROUTING_POINT);
 			setLocationPositionalAccuracy(ap.getPositionalAccuracy());
-		} else if(site != null
-				&& !LocationDescriptor.ACCESS_POINT.equals(ld)) {
+		} else if(site != null) {
 			// the query must be requesting one of the site points, we can only
 			// return whatever it is that we have (rooftop, parcel, frontDoor, etc)
 			setLocation(site.getLocation());

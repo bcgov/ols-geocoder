@@ -17,6 +17,7 @@ package ca.bc.gov.ols.geocoder.rest.messageconverters;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Map;
 
 import org.apache.commons.text.StringEscapeUtils;
 
@@ -27,9 +28,11 @@ import ca.bc.gov.ols.geocoder.config.GeocoderConfig;
 import org.locationtech.jts.geom.Point;
 
 public class JsonOlsResponseWriter implements OlsResponseWriter {
+	private static final String FEATURE_COLLECTION = "FeatureCollection";
+	private static final String FEATURES = "features";
 
-	private JsonWriter jw;
-	protected GeocoderConfig config;
+	private final JsonWriter jw;
+	protected final GeocoderConfig config;
 	
 	public JsonOlsResponseWriter(Writer out, GeocoderConfig config) {
 		jw = new JsonWriter(out);
@@ -67,7 +70,7 @@ public class JsonOlsResponseWriter implements OlsResponseWriter {
 	
 	@Override
 	public void field(String glossaryName, String fieldName, Object fieldValue, boolean forceString) throws IOException {
-		if(fieldName == "srsCode") {
+		if("srsCode".equals(fieldName)) {
 			jw.name("crs");
 				jw.beginObject();
 				jw.name("type").value("EPSG");
@@ -95,7 +98,7 @@ public class JsonOlsResponseWriter implements OlsResponseWriter {
 	@Override
 	public void searchResultsHeader() throws IOException {
 		jw.beginObject();
-		jw.name("type").value("FeatureCollection");
+		jw.name("type").value(FEATURE_COLLECTION);
 	}
 
 	@Override
@@ -105,7 +108,7 @@ public class JsonOlsResponseWriter implements OlsResponseWriter {
 
 	@Override
 	public void matchesHeader() throws IOException {
-		jw.name("features");
+		jw.name(FEATURES);
 		jw.beginArray();
 	}
 
@@ -117,8 +120,19 @@ public class JsonOlsResponseWriter implements OlsResponseWriter {
 	@Override
 	public void featureCollectionHeader() throws IOException {
 		jw.beginObject();
-		jw.name("type").value("FeatureCollection");
-		jw.name("features");
+		jw.name("type").value(FEATURE_COLLECTION);
+		jw.name(FEATURES);
+		jw.beginArray();
+	}
+
+	@Override
+	public void featureCollectionHeader(Map<String, Object> metadata) throws IOException {
+		jw.beginObject();
+		jw.name("type").value(FEATURE_COLLECTION);
+		for(Map.Entry<String, Object> entry : metadata.entrySet()) {
+			field(entry.getKey(), entry.getValue());
+		}
+		jw.name(FEATURES);
 		jw.beginArray();
 	}
 

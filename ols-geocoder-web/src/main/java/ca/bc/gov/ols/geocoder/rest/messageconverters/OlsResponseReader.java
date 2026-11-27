@@ -18,6 +18,8 @@ package ca.bc.gov.ols.geocoder.rest.messageconverters;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import ca.bc.gov.ols.geocoder.api.data.AddressMatch;
 import ca.bc.gov.ols.geocoder.api.data.GeocodeMatch;
@@ -36,9 +38,17 @@ import ca.bc.gov.ols.geocoder.util.GeocoderUtil;
 public class OlsResponseReader {
 
 	public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE;
-	private OlsResponse response;
-	private OlsResponseWriter writer;
-	private GeocoderConfig config;
+	private static final String ENCODING = "encoding";
+	private static final String SEARCH_TIMESTAMP = "searchTimestamp";
+	private static final String EXECUTION_TIME = "executionTime";
+	private static final String VERSION = "version";
+	private static final String BASE_DATA_DATE = "baseDataDate";
+	private static final String DISCLAIMER = "disclaimer";
+	private static final String PRIVACY_STATEMENT = "privacyStatement";
+	private static final String COPYRIGHT_NOTICE = "copyrightNotice";
+	private final OlsResponse response;
+	private final OlsResponseWriter writer;
+	private final GeocoderConfig config;
 	
 	OlsResponseReader(OlsResponse response, OlsResponseWriter writer, GeocoderConfig config) {
 		this.response = response;
@@ -62,7 +72,8 @@ public class OlsResponseReader {
 //			if(addrs.length == 0) {
 //				writer.noMatches();
 //			} else {
-				writer.featureCollectionHeader();
+				Map<String, Object> metadata = parcelMetadata();
+				writer.featureCollectionHeader(metadata);
 				for(SiteAddress addr : addrs) {
 					siteAddress(addr);
 				}
@@ -90,16 +101,31 @@ public class OlsResponseReader {
 		writer.documentFooter();
 	}
 
+	private Map<String, Object> parcelMetadata() {
+		Map<String, Object> metadata = new LinkedHashMap<String, Object>();
+		if(response.getExtraInfo(VERSION).isEmpty()) return metadata;
+		metadata.put(ENCODING, response.getExtraInfo(ENCODING));
+		metadata.put(SEARCH_TIMESTAMP, response.getExtraInfo(SEARCH_TIMESTAMP));
+		metadata.put(EXECUTION_TIME, response.getExtraInfo(EXECUTION_TIME));
+		metadata.put(VERSION, response.getExtraInfo(VERSION));
+		metadata.put(BASE_DATA_DATE, response.getExtraInfo(BASE_DATA_DATE));
+		metadata.put("srsCode", response.getOutputSRS());
+		metadata.put(DISCLAIMER, response.getExtraInfo(DISCLAIMER));
+		metadata.put(PRIVACY_STATEMENT, response.getExtraInfo(PRIVACY_STATEMENT));
+		metadata.put(COPYRIGHT_NOTICE, response.getExtraInfo(COPYRIGHT_NOTICE));
+		return metadata;
+	}
+
 	public void searchResults(SearchResults results) throws IOException {
 		writer.searchResultsHeader();
 		writer.field("queryAddress", results.getQueryAddress());
 		if(!response.isBrief()) {
-			writer.field("encoding", results.getEncoding());
+			writer.field(ENCODING, results.getEncoding());
 		}
-		writer.field("searchTimestamp", results.getSearchTimeStamp());
-		writer.field("executionTime", results.getExecutionTime());
-		writer.field("version", GeocoderConfig.VERSION);
-		writer.field("baseDataDate", results.getProcessingDate());
+		writer.field(SEARCH_TIMESTAMP, results.getSearchTimeStamp());
+		writer.field(EXECUTION_TIME, results.getExecutionTime());
+		writer.field(VERSION, GeocoderConfig.VERSION);
+		writer.field(BASE_DATA_DATE, results.getProcessingDate());
 		writer.field("srsCode", results.getSrsCode());
 		writer.field("interpolation", results.getInterpolation());
 		writer.field("echo", results.getIsEcho());
@@ -107,9 +133,9 @@ public class OlsResponseReader {
 		writer.field("setBack", results.getSetBack());
 		writer.field("minScore", results.getMinScore());
 		writer.field("maxResults", results.getMaxResults());
-		writer.field("disclaimer", config.getDisclaimer());
-		writer.field("privacyStatement", config.getPrivacyStatement());
-		writer.field("copyrightNotice", config.getCopyrightNotice());
+		writer.field(DISCLAIMER, config.getDisclaimer());
+		writer.field(PRIVACY_STATEMENT, config.getPrivacyStatement());
+		writer.field(COPYRIGHT_NOTICE, config.getCopyrightNotice());
 		writer.field("copyrightLicense", config.getCopyrightLicense());
 		
 		writer.matchesHeader();
@@ -151,7 +177,16 @@ public class OlsResponseReader {
 	
 	public void siteAddress(SiteAddress addr, GeocodeMatch match) throws IOException {
 		writer.featureHeader(addr.getLocation());
+		if(addr.getError() != null) {
+			writer.field("pid", addr.getPid(), true);
+			writer.field("error", addr.getError());
+			writer.featureFooter();
+			return;
+		}
 		writer.field("addressString", "fullAddress", addr.getAddressString());
+		if(addr.getPid() != null) {
+			writer.field("pid", addr.getPid(), true);
+		}
 		if(match != null) {
 			match(match);
 		}
