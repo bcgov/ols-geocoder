@@ -62,7 +62,7 @@ public class LocationReprojector {
 	
 	public static CoordinateReferenceSystem srsCodeToCRS(int srsCode) {
 		try {
-			return CRS.decode("EPSG:" + srsCode);
+			return CRS.decode("EPSG:%d".formatted(srsCode));
 		} catch(NoSuchAuthorityCodeException e) {
 			throw new IllegalArgumentException("Invalid srsCode: \"" + srsCode + "\"");
 		} catch(FactoryException e) {

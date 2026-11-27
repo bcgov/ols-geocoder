@@ -38,9 +38,17 @@ import ca.bc.gov.ols.geocoder.util.GeocoderUtil;
 public class OlsResponseReader {
 
 	public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE;
-	private OlsResponse response;
-	private OlsResponseWriter writer;
-	private GeocoderConfig config;
+	private static final String ENCODING = "encoding";
+	private static final String SEARCH_TIMESTAMP = "searchTimestamp";
+	private static final String EXECUTION_TIME = "executionTime";
+	private static final String VERSION = "version";
+	private static final String BASE_DATA_DATE = "baseDataDate";
+	private static final String DISCLAIMER = "disclaimer";
+	private static final String PRIVACY_STATEMENT = "privacyStatement";
+	private static final String COPYRIGHT_NOTICE = "copyrightNotice";
+	private final OlsResponse response;
+	private final OlsResponseWriter writer;
+	private final GeocoderConfig config;
 	
 	OlsResponseReader(OlsResponse response, OlsResponseWriter writer, GeocoderConfig config) {
 		this.response = response;
@@ -95,16 +103,16 @@ public class OlsResponseReader {
 
 	private Map<String, Object> parcelMetadata() {
 		Map<String, Object> metadata = new LinkedHashMap<String, Object>();
-		if(response.getExtraInfo("version").isEmpty()) return metadata;
-		metadata.put("encoding", response.getExtraInfo("encoding"));
-		metadata.put("searchTimestamp", response.getExtraInfo("searchTimestamp"));
-		metadata.put("executionTime", response.getExtraInfo("executionTime"));
-		metadata.put("version", response.getExtraInfo("version"));
-		metadata.put("baseDataDate", response.getExtraInfo("baseDataDate"));
+		if(response.getExtraInfo(VERSION).isEmpty()) return metadata;
+		metadata.put(ENCODING, response.getExtraInfo(ENCODING));
+		metadata.put(SEARCH_TIMESTAMP, response.getExtraInfo(SEARCH_TIMESTAMP));
+		metadata.put(EXECUTION_TIME, response.getExtraInfo(EXECUTION_TIME));
+		metadata.put(VERSION, response.getExtraInfo(VERSION));
+		metadata.put(BASE_DATA_DATE, response.getExtraInfo(BASE_DATA_DATE));
 		metadata.put("srsCode", response.getOutputSRS());
-		metadata.put("disclaimer", response.getExtraInfo("disclaimer"));
-		metadata.put("privacyStatement", response.getExtraInfo("privacyStatement"));
-		metadata.put("copyrightNotice", response.getExtraInfo("copyrightNotice"));
+		metadata.put(DISCLAIMER, response.getExtraInfo(DISCLAIMER));
+		metadata.put(PRIVACY_STATEMENT, response.getExtraInfo(PRIVACY_STATEMENT));
+		metadata.put(COPYRIGHT_NOTICE, response.getExtraInfo(COPYRIGHT_NOTICE));
 		return metadata;
 	}
 
@@ -112,12 +120,12 @@ public class OlsResponseReader {
 		writer.searchResultsHeader();
 		writer.field("queryAddress", results.getQueryAddress());
 		if(!response.isBrief()) {
-			writer.field("encoding", results.getEncoding());
+			writer.field(ENCODING, results.getEncoding());
 		}
-		writer.field("searchTimestamp", results.getSearchTimeStamp());
-		writer.field("executionTime", results.getExecutionTime());
-		writer.field("version", GeocoderConfig.VERSION);
-		writer.field("baseDataDate", results.getProcessingDate());
+		writer.field(SEARCH_TIMESTAMP, results.getSearchTimeStamp());
+		writer.field(EXECUTION_TIME, results.getExecutionTime());
+		writer.field(VERSION, GeocoderConfig.VERSION);
+		writer.field(BASE_DATA_DATE, results.getProcessingDate());
 		writer.field("srsCode", results.getSrsCode());
 		writer.field("interpolation", results.getInterpolation());
 		writer.field("echo", results.getIsEcho());
@@ -125,9 +133,9 @@ public class OlsResponseReader {
 		writer.field("setBack", results.getSetBack());
 		writer.field("minScore", results.getMinScore());
 		writer.field("maxResults", results.getMaxResults());
-		writer.field("disclaimer", config.getDisclaimer());
-		writer.field("privacyStatement", config.getPrivacyStatement());
-		writer.field("copyrightNotice", config.getCopyrightNotice());
+		writer.field(DISCLAIMER, config.getDisclaimer());
+		writer.field(PRIVACY_STATEMENT, config.getPrivacyStatement());
+		writer.field(COPYRIGHT_NOTICE, config.getCopyrightNotice());
 		writer.field("copyrightLicense", config.getCopyrightLicense());
 		
 		writer.matchesHeader();

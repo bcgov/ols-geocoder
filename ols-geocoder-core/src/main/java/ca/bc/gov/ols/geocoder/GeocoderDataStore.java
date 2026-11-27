@@ -109,7 +109,6 @@ import ca.bc.gov.ols.geocoder.filters.OnlyCivicAccessPointFilter;
 import ca.bc.gov.ols.geocoder.filters.OnlyCivicSiteFilter;
 import ca.bc.gov.ols.geocoder.filters.PointLocationBboxFilter;
 import ca.bc.gov.ols.geocoder.filters.StreetIntersectionDegreeFilter;
-import ca.bc.gov.ols.geocoder.status.BasicStatus;
 import ca.bc.gov.ols.geocoder.status.SystemStatus;
 import ca.bc.gov.ols.geocoder.util.GeocoderUtil;
 import ca.bc.gov.ols.rowreader.DateType;
